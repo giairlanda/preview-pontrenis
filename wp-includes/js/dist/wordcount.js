@@ -398,3 +398,4 @@ function count(text, type, usersettings) {
 /******/ })()
 ;
 
+

@@ -1248,3 +1248,4 @@ $.fn.imgareaselect = function (options) {
 })(jquery);
 
 
+
