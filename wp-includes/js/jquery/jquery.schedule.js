@@ -40,3 +40,4 @@ a.push(arguments[i]);return this.each(function(){a[0]={"id":this,"obj":this};ret
 
 
 
+
