@@ -1,0 +1,259 @@
+/*
+Theme Name: Pontrenis V4
+Theme URI: https://pontrenis.or.id
+Author: Gia - Trudigen
+Description: Clean, Minimalist, Modern Islamic Theme for Pontrenis Batam.
+Version: 1.0
+Text Domain: pontrenis
+*/
+
+/* Custom Styles */
+:root {
+    --primary-color: #0c6d46;
+    --cta-color: #f9c12d;
+    --accent-color: #ffffff;
+    --text-charcoal: #333333;
+    --bg-light-grey: #f9f9f9;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-charcoal);
+    line-height: 1.6;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Floating WhatsApp Pulse */
+@keyframes pulse-whatsapp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.whatsapp-float {
+    animation: pulse-whatsapp 2s infinite;
+}
+
+/* Scroll to Top Visibility */
+#scroll-to-top {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+}
+
+#scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.bg-forest-green {
+    background-color: var(--primary-color);
+}
+
+.text-forest-green {
+    color: var(--primary-color);
+}
+
+.bg-golden-yellow {
+    background-color: var(--cta-color);
+}
+
+.text-golden-yellow {
+    color: var(--cta-color);
+}
+
+.border-forest-green {
+    border-color: var(--primary-color);
+}
+
+/* Nav Link Underline Effect */
+.nav-link {
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--cta-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Islamic Calligraphy Style Pattern Overlay */
+.bg-islamic-pattern {
+    background-color: #f0f4f2;
+    /* Light creamy green tint */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 20c5 0 10-5 10-10s-5-10-10-10S0 5 0 10s5 10 10 10zm70 0c5 0 10-5 10-10s-5-10-10-10-10 5-10 10 5 10 10 10zM50 60c5 0 10-5 10-10s-5-10-10-10-10 5-10 10 5 10 10 10zm-30 20c5 0 10-5 10-10s-5-10-10-10-10 5-10 10 5 10 10 10zm60 0c5 0 10-5 10-10s-5-10-10-10-10 5-10 10 5 10 10 10z' fill='%230c6d46' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Hero Image Frame */
+.hero-image-frame {
+    border: 8px solid white;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Header Background on Scroll */
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Menu Transition */
+#mobile-menu {
+    transition: transform 0.3s ease-in-out;
+}
+
+#mobile-menu.hidden {
+    transform: translateY(-100%);
+}
+
+#mobile-menu.active {
+    transform: translateY(0);
+}
+
+/* Preloader Animation */
+@keyframes fade-pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-pulse {
+    animation: fade-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.fade-out {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* Roundcube Thumbnail for Program Cards (Zero Gap Style) */
+.thumbnail-roundcube {
+    @apply relative overflow-hidden transition-all duration-500;
+    aspect-ratio: 16 / 10;
+}
+
+.thumbnail-roundcube img {
+    @apply h-full w-full object-cover transition-transform duration-700;
+}
+
+.group:hover .thumbnail-roundcube {
+    @apply -translate-y-2 shadow-2xl ring-4 ring-golden-yellow/30;
+}
+
+.group:hover .thumbnail-roundcube img {
+    @apply scale-110;
+}
+
+/* Restoring HTML formatting for WordPress Content */
+.entry-content {
+    @apply text-gray-700 leading-relaxed text-lg;
+}
+
+.entry-content h1 {
+    @apply text-3xl md:text-4xl font-black mb-6 mt-10 text-[#0c6d46] leading-tight;
+}
+
+.entry-content h2 {
+    @apply text-2xl md:text-3xl font-bold mb-5 mt-10 text-[#0c6d46] leading-tight;
+}
+
+.entry-content h3 {
+    @apply text-xl md:text-2xl font-bold mb-4 mt-8 text-[#0c6d46] leading-tight;
+}
+
+.entry-content p {
+    @apply mb-6;
+}
+
+.entry-content b,
+.entry-content strong {
+    @apply font-bold text-gray-900;
+}
+
+.entry-content i,
+.entry-content em {
+    @apply italic;
+}
+
+.entry-content ul {
+    @apply list-disc list-outside mb-6 ml-6 space-y-2;
+}
+
+.entry-content ol {
+    @apply list-decimal list-outside mb-6 ml-6 space-y-2;
+}
+
+.entry-content li {
+    @apply mb-2 pl-2;
+}
+
+.entry-content blockquote {
+    @apply border-l-4 border-golden-yellow pl-8 py-4 italic text-gray-600 mb-8 bg-emerald-50/30 rounded-r-3xl;
+}
+
+.entry-content a {
+    @apply text-[#0c6d46] underline decoration-golden-yellow decoration-2 underline-offset-4 hover:text-emerald-800 transition-all;
+}
+
+.entry-content img {
+    @apply rounded-3xl shadow-xl my-10 mx-auto block max-w-full h-auto;
+}
+
+.entry-content hr {
+    @apply my-12 border-t-2 border-gray-100;
+}
