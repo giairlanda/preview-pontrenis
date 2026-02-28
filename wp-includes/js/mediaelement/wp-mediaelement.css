@@ -4,7 +4,7 @@
 }
 
 .mejs-container * {
-	font-family: Helvetica, Arial;
+	font-family: helvetica, arial;
 }
 
 .mejs-container,
@@ -47,7 +47,7 @@
 	background: transparent;
 }
 
-/* Override theme styles that may conflict with controls. */
+/* override theme styles that may conflict with controls. */
 .mejs-controls button:hover {
 	border: none;
 	-webkit-box-shadow: none;
@@ -68,8 +68,8 @@
 }
 
 .media-embed-details .embed-media-settings .setting span:not(.button-group) {
-	max-width: 400px; /* Back-compat for pre-5.3 */
-	width: auto; /* Back-compat for pre-5.3 */
+	max-width: 400px; /* back-compat for pre-5.3 */
+	width: auto; /* back-compat for pre-5.3 */
 }
 
 .media-embed-details .embed-media-settings .checkbox-setting span {
@@ -291,3 +291,5 @@ video.wp-video-shortcode,
 .wp-audio-playlist .me-cannotplay span {
 	padding: 5px 15px;
 }
+
+

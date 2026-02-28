@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Shake 1.13.3
+ * jquery ui effects shake 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Shake Effect
-//>>group: Effects
-//>>description: Shakes an element horizontally or vertically n times.
+//>>label: shake effect
+//>>group: effects
+//>>description: shakes an element horizontally or vertically n times.
 //>>docs: https://api.jqueryui.com/shake-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,8 +26,8 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
@@ -40,26 +40,26 @@ return $.effects.define( "shake", function( options, done ) {
 		distance = options.distance || 20,
 		times = options.times || 3,
 		anims = times * 2 + 1,
-		speed = Math.round( options.duration / anims ),
+		speed = math.round( options.duration / anims ),
 		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
-		positiveMotion = ( direction === "up" || direction === "left" ),
+		positivemotion = ( direction === "up" || direction === "left" ),
 		animation = {},
 		animation1 = {},
 		animation2 = {},
 
 		queuelen = element.queue().length;
 
-	$.effects.createPlaceholder( element );
+	$.effects.createplaceholder( element );
 
-	// Animation
-	animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
-	animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
-	animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
+	// animation
+	animation[ ref ] = ( positivemotion ? "-=" : "+=" ) + distance;
+	animation1[ ref ] = ( positivemotion ? "+=" : "-=" ) + distance * 2;
+	animation2[ ref ] = ( positivemotion ? "-=" : "+=" ) + distance * 2;
 
-	// Animate
+	// animate
 	element.animate( animation, speed, options.easing );
 
-	// Shakes
+	// shakes
 	for ( ; i < times; i++ ) {
 		element
 			.animate( animation1, speed, options.easing )
@@ -75,3 +75,5 @@ return $.effects.define( "shake", function( options, done ) {
 } );
 
 } );
+
+

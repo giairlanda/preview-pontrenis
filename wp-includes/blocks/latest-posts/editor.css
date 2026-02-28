@@ -13,3 +13,4 @@
 :root :where(.wp-block-latest-posts.is-grid),:root :where(.wp-block-latest-posts__list){
   padding-left:0;
 }
+

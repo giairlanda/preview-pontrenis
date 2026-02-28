@@ -11,53 +11,55 @@
 	/**
 	 * wp.sanitize
 	 *
-	 * Helper functions to sanitize strings.
+	 * helper functions to sanitize strings.
 	 */
 	wp.sanitize = {
 
 		/**
-		 * Strip HTML tags.
+		 * strip html tags.
 		 *
-		 * @param {string} text - Text to strip the HTML tags from.
+		 * @param {string} text - text to strip the html tags from.
 		 *
-		 * @return {string} Stripped text.
+		 * @return {string} stripped text.
 		 */
-		stripTags: function( text ) {
+		striptags: function( text ) {
 			let _text = text || '';
 
-			// Do the search-replace until there is nothing to be replaced.
+			// do the search-replace until there is nothing to be replaced.
 			do {
-				// Keep pre-replace text for comparison.
+				// keep pre-replace text for comparison.
 				text = _text;
 
-				// Do the replacement.
+				// do the replacement.
 				_text = text
-					.replace( /<!--[\s\S]*?(-->|$)/g, '' )
-					.replace( /<(script|style)[^>]*>[\s\S]*?(<\/\1>|$)/ig, '' )
-					.replace( /<\/?[a-z][\s\S]*?(>|$)/ig, '' );
+					.replace( /<!--[\s\s]*?(-->|$)/g, '' )
+					.replace( /<(script|style)[^>]*>[\s\s]*?(<\/\1>|$)/ig, '' )
+					.replace( /<\/?[a-z][\s\s]*?(>|$)/ig, '' );
 			} while ( _text !== text );
 
-			// Return the text with stripped tags.
+			// return the text with stripped tags.
 			return _text;
 		},
 
 		/**
-		 * Strip HTML tags and convert HTML entities.
+		 * strip html tags and convert html entities.
 		 *
-		 * @param {string} text - Text to strip tags and convert HTML entities.
+		 * @param {string} text - text to strip tags and convert html entities.
 		 *
-		 * @return {string} Sanitized text.
+		 * @return {string} sanitized text.
 		 */
-		stripTagsAndEncodeText: function( text ) {
-			let _text = wp.sanitize.stripTags( text ),
-				textarea = document.createElement( 'textarea' );
+		striptagsandencodetext: function( text ) {
+			let _text = wp.sanitize.striptags( text ),
+				textarea = document.createelement( 'textarea' );
 
 			try {
-				textarea.textContent = _text;
-				_text = wp.sanitize.stripTags( textarea.value );
+				textarea.textcontent = _text;
+				_text = wp.sanitize.striptags( textarea.value );
 			} catch ( er ) {}
 
 			return _text;
 		}
 	};
 }() );
+
+

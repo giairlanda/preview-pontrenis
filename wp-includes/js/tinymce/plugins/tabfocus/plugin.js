@@ -1,48 +1,48 @@
 (function () {
-var tabfocus = (function (domGlobals) {
+var tabfocus = (function (domglobals) {
     'use strict';
 
-    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+    var global = tinymce.util.tools.resolve('tinymce.pluginmanager');
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+    var global$1 = tinymce.util.tools.resolve('tinymce.dom.domutils');
 
-    var global$2 = tinymce.util.Tools.resolve('tinymce.EditorManager');
+    var global$2 = tinymce.util.tools.resolve('tinymce.editormanager');
 
-    var global$3 = tinymce.util.Tools.resolve('tinymce.Env');
+    var global$3 = tinymce.util.tools.resolve('tinymce.env');
 
-    var global$4 = tinymce.util.Tools.resolve('tinymce.util.Delay');
+    var global$4 = tinymce.util.tools.resolve('tinymce.util.delay');
 
-    var global$5 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+    var global$5 = tinymce.util.tools.resolve('tinymce.util.tools');
 
-    var global$6 = tinymce.util.Tools.resolve('tinymce.util.VK');
+    var global$6 = tinymce.util.tools.resolve('tinymce.util.vk');
 
-    var getTabFocusElements = function (editor) {
-      return editor.getParam('tabfocus_elements', ':prev,:next');
+    var gettabfocuselements = function (editor) {
+      return editor.getparam('tabfocus_elements', ':prev,:next');
     };
-    var getTabFocus = function (editor) {
-      return editor.getParam('tab_focus', getTabFocusElements(editor));
+    var gettabfocus = function (editor) {
+      return editor.getparam('tab_focus', gettabfocuselements(editor));
     };
-    var Settings = { getTabFocus: getTabFocus };
+    var settings = { gettabfocus: gettabfocus };
 
-    var DOM = global$1.DOM;
-    var tabCancel = function (e) {
-      if (e.keyCode === global$6.TAB && !e.ctrlKey && !e.altKey && !e.metaKey) {
-        e.preventDefault();
+    var dom = global$1.dom;
+    var tabcancel = function (e) {
+      if (e.keycode === global$6.tab && !e.ctrlkey && !e.altkey && !e.metakey) {
+        e.preventdefault();
       }
     };
     var setup = function (editor) {
-      function tabHandler(e) {
+      function tabhandler(e) {
         var x, el, v, i;
-        if (e.keyCode !== global$6.TAB || e.ctrlKey || e.altKey || e.metaKey || e.isDefaultPrevented()) {
+        if (e.keycode !== global$6.tab || e.ctrlkey || e.altkey || e.metakey || e.isdefaultprevented()) {
           return;
         }
         function find(direction) {
-          el = DOM.select(':input:enabled,*[tabindex]:not(iframe)');
-          function canSelectRecursive(e) {
-            return e.nodeName === 'BODY' || e.type !== 'hidden' && e.style.display !== 'none' && e.style.visibility !== 'hidden' && canSelectRecursive(e.parentNode);
+          el = dom.select(':input:enabled,*[tabindex]:not(iframe)');
+          function canselectrecursive(e) {
+            return e.nodename === 'body' || e.type !== 'hidden' && e.style.display !== 'none' && e.style.visibility !== 'hidden' && canselectrecursive(e.parentnode);
           }
-          function canSelect(el) {
-            return /INPUT|TEXTAREA|BUTTON/.test(el.tagName) && global$2.get(e.id) && el.tabIndex !== -1 && canSelectRecursive(el);
+          function canselect(el) {
+            return /input|textarea|button/.test(el.tagname) && global$2.get(e.id) && el.tabindex !== -1 && canselectrecursive(el);
           }
           global$5.each(el, function (e, i) {
             if (e.id === editor.id) {
@@ -52,73 +52,75 @@ var tabfocus = (function (domGlobals) {
           });
           if (direction > 0) {
             for (i = x + 1; i < el.length; i++) {
-              if (canSelect(el[i])) {
+              if (canselect(el[i])) {
                 return el[i];
               }
             }
           } else {
             for (i = x - 1; i >= 0; i--) {
-              if (canSelect(el[i])) {
+              if (canselect(el[i])) {
                 return el[i];
               }
             }
           }
           return null;
         }
-        v = global$5.explode(Settings.getTabFocus(editor));
+        v = global$5.explode(settings.gettabfocus(editor));
         if (v.length === 1) {
           v[1] = v[0];
           v[0] = ':prev';
         }
-        if (e.shiftKey) {
+        if (e.shiftkey) {
           if (v[0] === ':prev') {
             el = find(-1);
           } else {
-            el = DOM.get(v[0]);
+            el = dom.get(v[0]);
           }
         } else {
           if (v[1] === ':next') {
             el = find(1);
           } else {
-            el = DOM.get(v[1]);
+            el = dom.get(v[1]);
           }
         }
         if (el) {
-          var focusEditor = global$2.get(el.id || el.name);
-          if (el.id && focusEditor) {
-            focusEditor.focus();
+          var focuseditor = global$2.get(el.id || el.name);
+          if (el.id && focuseditor) {
+            focuseditor.focus();
           } else {
-            global$4.setTimeout(function () {
+            global$4.settimeout(function () {
               if (!global$3.webkit) {
-                domGlobals.window.focus();
+                domglobals.window.focus();
               }
               el.focus();
             }, 10);
           }
-          e.preventDefault();
+          e.preventdefault();
         }
       }
       editor.on('init', function () {
         if (editor.inline) {
-          DOM.setAttrib(editor.getBody(), 'tabIndex', null);
+          dom.setattrib(editor.getbody(), 'tabindex', null);
         }
-        editor.on('keyup', tabCancel);
+        editor.on('keyup', tabcancel);
         if (global$3.gecko) {
-          editor.on('keypress keydown', tabHandler);
+          editor.on('keypress keydown', tabhandler);
         } else {
-          editor.on('keydown', tabHandler);
+          editor.on('keydown', tabhandler);
         }
       });
     };
-    var Keyboard = { setup: setup };
+    var keyboard = { setup: setup };
 
     global.add('tabfocus', function (editor) {
-      Keyboard.setup(editor);
+      keyboard.setup(editor);
     });
-    function Plugin () {
+    function plugin () {
     }
 
-    return Plugin;
+    return plugin;
 
 }(window));
 })();
+
+

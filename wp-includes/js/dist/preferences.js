@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,79 +22,79 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  PreferenceToggleMenuItem: () => (/* reexport */ PreferenceToggleMenuItem),
-  privateApis: () => (/* reexport */ privateApis),
+  preferencetogglemenuitem: () => (/* reexport */ preferencetogglemenuitem),
+  privateapis: () => (/* reexport */ privateapis),
   store: () => (/* reexport */ store)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/preferences/build-module/store/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, {
+// namespace object: ./node_modules/@wordpress/preferences/build-module/store/actions.js
+var actions_namespaceobject = {};
+__webpack_require__.r(actions_namespaceobject);
+__webpack_require__.d(actions_namespaceobject, {
   set: () => (set),
-  setDefaults: () => (setDefaults),
-  setPersistenceLayer: () => (setPersistenceLayer),
+  setdefaults: () => (setdefaults),
+  setpersistencelayer: () => (setpersistencelayer),
   toggle: () => (toggle)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/preferences/build-module/store/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, {
+// namespace object: ./node_modules/@wordpress/preferences/build-module/store/selectors.js
+var selectors_namespaceobject = {};
+__webpack_require__.r(selectors_namespaceobject);
+__webpack_require__.d(selectors_namespaceobject, {
   get: () => (get)
 });
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
 ;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceobject = window["wp"]["data"];
 ;// external ["wp","components"]
-const external_wp_components_namespaceObject = window["wp"]["components"];
+const external_wp_components_namespaceobject = window["wp"]["components"];
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// external ["wp","primitives"]
-const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+const external_wp_primitives_namespaceobject = window["wp"]["primitives"];
 ;// ./node_modules/@wordpress/icons/build-module/library/check.js
 
 
-var check_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M16.5 7.5 10 13.9l-2.5-2.4-1 1 3.5 3.6 7.5-7.6z" }) });
+var check_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m16.5 7.5 10 13.9l-2.5-2.4-1 1 3.5 3.6 7.5-7.6z" }) });
 
 
 ;// external ["wp","a11y"]
-const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
+const external_wp_a11y_namespaceobject = window["wp"]["a11y"];
 ;// ./node_modules/@wordpress/preferences/build-module/store/reducer.js
 
 function defaults(state = {}, action) {
-  if (action.type === "SET_PREFERENCE_DEFAULTS") {
+  if (action.type === "set_preference_defaults") {
     const { scope, defaults: values } = action;
     return {
       ...state,
@@ -106,23 +106,23 @@ function defaults(state = {}, action) {
   }
   return state;
 }
-function withPersistenceLayer(reducer) {
-  let persistenceLayer;
+function withpersistencelayer(reducer) {
+  let persistencelayer;
   return (state, action) => {
-    if (action.type === "SET_PERSISTENCE_LAYER") {
-      const { persistenceLayer: persistence, persistedData } = action;
-      persistenceLayer = persistence;
-      return persistedData;
+    if (action.type === "set_persistence_layer") {
+      const { persistencelayer: persistence, persisteddata } = action;
+      persistencelayer = persistence;
+      return persisteddata;
     }
-    const nextState = reducer(state, action);
-    if (action.type === "SET_PREFERENCE_VALUE") {
-      persistenceLayer?.set(nextState);
+    const nextstate = reducer(state, action);
+    if (action.type === "set_preference_value") {
+      persistencelayer?.set(nextstate);
     }
-    return nextState;
+    return nextstate;
   };
 }
-const preferences = withPersistenceLayer((state = {}, action) => {
-  if (action.type === "SET_PREFERENCE_VALUE") {
+const preferences = withpersistencelayer((state = {}, action) => {
+  if (action.type === "set_preference_value") {
     const { scope, name, value } = action;
     return {
       ...state,
@@ -134,7 +134,7 @@ const preferences = withPersistenceLayer((state = {}, action) => {
   }
   return state;
 });
-var reducer_default = (0,external_wp_data_namespaceObject.combineReducers)({
+var reducer_default = (0,external_wp_data_namespaceobject.combinereducers)({
   defaults,
   preferences
 });
@@ -143,60 +143,60 @@ var reducer_default = (0,external_wp_data_namespaceObject.combineReducers)({
 ;// ./node_modules/@wordpress/preferences/build-module/store/actions.js
 function toggle(scope, name) {
   return function({ select, dispatch }) {
-    const currentValue = select.get(scope, name);
-    dispatch.set(scope, name, !currentValue);
+    const currentvalue = select.get(scope, name);
+    dispatch.set(scope, name, !currentvalue);
   };
 }
 function set(scope, name, value) {
   return {
-    type: "SET_PREFERENCE_VALUE",
+    type: "set_preference_value",
     scope,
     name,
     value
   };
 }
-function setDefaults(scope, defaults) {
+function setdefaults(scope, defaults) {
   return {
-    type: "SET_PREFERENCE_DEFAULTS",
+    type: "set_preference_defaults",
     scope,
     defaults
   };
 }
-async function setPersistenceLayer(persistenceLayer) {
-  const persistedData = await persistenceLayer.get();
+async function setpersistencelayer(persistencelayer) {
+  const persisteddata = await persistencelayer.get();
   return {
-    type: "SET_PERSISTENCE_LAYER",
-    persistenceLayer,
-    persistedData
+    type: "set_persistence_layer",
+    persistencelayer,
+    persisteddata
   };
 }
 
 
 ;// external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
+const external_wp_deprecated_namespaceobject = window["wp"]["deprecated"];
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_namespaceobject);
 ;// ./node_modules/@wordpress/preferences/build-module/store/selectors.js
 
-const withDeprecatedKeys = (originalGet) => (state, scope, name) => {
-  const settingsToMoveToCore = [
-    "allowRightClickOverrides",
-    "distractionFree",
-    "editorMode",
-    "fixedToolbar",
-    "focusMode",
-    "hiddenBlockTypes",
-    "inactivePanels",
-    "keepCaretInsideBlock",
-    "mostUsedBlocks",
-    "openPanels",
-    "showBlockBreadcrumbs",
-    "showIconLabels",
-    "showListViewByDefault",
-    "isPublishSidebarEnabled",
-    "isComplementaryAreaVisible",
-    "pinnedItems"
+const withdeprecatedkeys = (originalget) => (state, scope, name) => {
+  const settingstomovetocore = [
+    "allowrightclickoverrides",
+    "distractionfree",
+    "editormode",
+    "fixedtoolbar",
+    "focusmode",
+    "hiddenblocktypes",
+    "inactivepanels",
+    "keepcaretinsideblock",
+    "mostusedblocks",
+    "openpanels",
+    "showblockbreadcrumbs",
+    "showiconlabels",
+    "showlistviewbydefault",
+    "ispublishsidebarenabled",
+    "iscomplementaryareavisible",
+    "pinneditems"
   ];
-  if (settingsToMoveToCore.includes(name) && ["core/edit-post", "core/edit-site"].includes(scope)) {
+  if (settingstomovetocore.includes(name) && ["core/edit-post", "core/edit-site"].includes(scope)) {
     external_wp_deprecated_default()(
       `wp.data.select( 'core/preferences' ).get( '${scope}', '${name}' )`,
       {
@@ -204,18 +204,18 @@ const withDeprecatedKeys = (originalGet) => (state, scope, name) => {
         alternative: `wp.data.select( 'core/preferences' ).get( 'core', '${name}' )`
       }
     );
-    return originalGet(state, "core", name);
+    return originalget(state, "core", name);
   }
-  return originalGet(state, scope, name);
+  return originalget(state, scope, name);
 };
-const get = withDeprecatedKeys((state, scope, name) => {
+const get = withdeprecatedkeys((state, scope, name) => {
   const value = state.preferences[scope]?.[name];
   return value !== void 0 ? value : state.defaults[scope]?.[name];
 });
 
 
 ;// ./node_modules/@wordpress/preferences/build-module/store/constants.js
-const STORE_NAME = "core/preferences";
+const store_name = "core/preferences";
 
 
 ;// ./node_modules/@wordpress/preferences/build-module/store/index.js
@@ -224,12 +224,12 @@ const STORE_NAME = "core/preferences";
 
 
 
-const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, {
+const store = (0,external_wp_data_namespaceobject.createreduxstore)(store_name, {
   reducer: reducer_default,
-  actions: actions_namespaceObject,
-  selectors: selectors_namespaceObject
+  actions: actions_namespaceobject,
+  selectors: selectors_namespaceobject
 });
-(0,external_wp_data_namespaceObject.register)(store);
+(0,external_wp_data_namespaceobject.register)(store);
 
 
 ;// ./node_modules/@wordpress/preferences/build-module/components/preference-toggle-menu-item/index.js
@@ -240,51 +240,51 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
 
 
 
-function PreferenceToggleMenuItem({
+function preferencetogglemenuitem({
   scope,
   name,
   label,
   info,
-  messageActivated,
-  messageDeactivated,
+  messageactivated,
+  messagedeactivated,
   shortcut,
-  handleToggling = true,
-  onToggle = () => null,
+  handletoggling = true,
+  ontoggle = () => null,
   disabled = false
 }) {
-  const isActive = (0,external_wp_data_namespaceObject.useSelect)(
+  const isactive = (0,external_wp_data_namespaceobject.useselect)(
     (select) => !!select(store).get(scope, name),
     [scope, name]
   );
-  const { toggle } = (0,external_wp_data_namespaceObject.useDispatch)(store);
-  const speakMessage = () => {
-    if (isActive) {
-      const message = messageDeactivated || (0,external_wp_i18n_namespaceObject.sprintf)(
-        /* translators: %s: preference name, e.g. 'Fullscreen mode' */
-        (0,external_wp_i18n_namespaceObject.__)("Preference deactivated - %s"),
+  const { toggle } = (0,external_wp_data_namespaceobject.usedispatch)(store);
+  const speakmessage = () => {
+    if (isactive) {
+      const message = messagedeactivated || (0,external_wp_i18n_namespaceobject.sprintf)(
+        /* translators: %s: preference name, e.g. 'fullscreen mode' */
+        (0,external_wp_i18n_namespaceobject.__)("preference deactivated - %s"),
         label
       );
-      (0,external_wp_a11y_namespaceObject.speak)(message);
+      (0,external_wp_a11y_namespaceobject.speak)(message);
     } else {
-      const message = messageActivated || (0,external_wp_i18n_namespaceObject.sprintf)(
-        /* translators: %s: preference name, e.g. 'Fullscreen mode' */
-        (0,external_wp_i18n_namespaceObject.__)("Preference activated - %s"),
+      const message = messageactivated || (0,external_wp_i18n_namespaceobject.sprintf)(
+        /* translators: %s: preference name, e.g. 'fullscreen mode' */
+        (0,external_wp_i18n_namespaceobject.__)("preference activated - %s"),
         label
       );
-      (0,external_wp_a11y_namespaceObject.speak)(message);
+      (0,external_wp_a11y_namespaceobject.speak)(message);
     }
   };
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    external_wp_components_namespaceObject.MenuItem,
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    external_wp_components_namespaceobject.menuitem,
     {
-      icon: isActive && check_default,
-      isSelected: isActive,
-      onClick: () => {
-        onToggle();
-        if (handleToggling) {
+      icon: isactive && check_default,
+      isselected: isactive,
+      onclick: () => {
+        ontoggle();
+        if (handletoggling) {
           toggle(scope, name);
         }
-        speakMessage();
+        speakmessage();
       },
       role: "menuitemcheckbox",
       info,
@@ -303,22 +303,22 @@ function PreferenceToggleMenuItem({
 ;// ./node_modules/@wordpress/preferences/build-module/components/preference-base-option/index.js
 
 
-function BaseOption({ help, label, isChecked, onChange, children }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)("div", { className: "preference-base-option", children: [
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      external_wp_components_namespaceObject.ToggleControl,
+function baseoption({ help, label, ischecked, onchange, children }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)("div", { classname: "preference-base-option", children: [
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      external_wp_components_namespaceobject.togglecontrol,
       {
-        __nextHasNoMarginBottom: true,
+        __nexthasnomarginbottom: true,
         help,
         label,
-        checked: isChecked,
-        onChange
+        checked: ischecked,
+        onchange
       }
     ),
     children
   ] });
 }
-var preference_base_option_default = BaseOption;
+var preference_base_option_default = baseoption;
 
 
 ;// ./node_modules/@wordpress/preferences/build-module/components/preference-toggle-control/index.js
@@ -326,46 +326,46 @@ var preference_base_option_default = BaseOption;
 
 
 
-function PreferenceToggleControl(props) {
+function preferencetogglecontrol(props) {
   const {
     scope,
-    featureName,
-    onToggle = () => {
+    featurename,
+    ontoggle = () => {
     },
-    ...remainingProps
+    ...remainingprops
   } = props;
-  const isChecked = (0,external_wp_data_namespaceObject.useSelect)(
-    (select) => !!select(store).get(scope, featureName),
-    [scope, featureName]
+  const ischecked = (0,external_wp_data_namespaceobject.useselect)(
+    (select) => !!select(store).get(scope, featurename),
+    [scope, featurename]
   );
-  const { toggle } = (0,external_wp_data_namespaceObject.useDispatch)(store);
-  const onChange = () => {
-    onToggle();
-    toggle(scope, featureName);
+  const { toggle } = (0,external_wp_data_namespaceobject.usedispatch)(store);
+  const onchange = () => {
+    ontoggle();
+    toggle(scope, featurename);
   };
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
     preference_base_option_default,
     {
-      onChange,
-      isChecked,
-      ...remainingProps
+      onchange,
+      ischecked,
+      ...remainingprops
     }
   );
 }
-var preference_toggle_control_default = PreferenceToggleControl;
+var preference_toggle_control_default = preferencetogglecontrol;
 
 
 ;// ./node_modules/@wordpress/preferences/build-module/components/preferences-modal/index.js
 
 
 
-function PreferencesModal({ closeModal, children }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    external_wp_components_namespaceObject.Modal,
+function preferencesmodal({ closemodal, children }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    external_wp_components_namespaceobject.modal,
     {
-      className: "preferences-modal",
-      title: (0,external_wp_i18n_namespaceObject.__)("Preferences"),
-      onRequestClose: closeModal,
+      classname: "preferences-modal",
+      title: (0,external_wp_i18n_namespaceobject.__)("preferences"),
+      onrequestclose: closemodal,
       children
     }
   );
@@ -374,25 +374,25 @@ function PreferencesModal({ closeModal, children }) {
 
 ;// ./node_modules/@wordpress/preferences/build-module/components/preferences-modal-section/index.js
 
-const Section = ({ description, title, children }) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)("fieldset", { className: "preferences-modal__section", children: [
-  /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)("legend", { className: "preferences-modal__section-legend", children: [
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("h2", { className: "preferences-modal__section-title", children: title }),
-    description && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("p", { className: "preferences-modal__section-description", children: description })
+const section = ({ description, title, children }) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)("fieldset", { classname: "preferences-modal__section", children: [
+  /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)("legend", { classname: "preferences-modal__section-legend", children: [
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("h2", { classname: "preferences-modal__section-title", children: title }),
+    description && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("p", { classname: "preferences-modal__section-description", children: description })
   ] }),
-  /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", { className: "preferences-modal__section-content", children })
+  /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("div", { classname: "preferences-modal__section-content", children })
 ] });
-var preferences_modal_section_default = Section;
+var preferences_modal_section_default = section;
 
 
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// ./node_modules/@wordpress/icons/build-module/icon/index.js
 
-var icon_default = (0,external_wp_element_namespaceObject.forwardRef)(
+var icon_default = (0,external_wp_element_namespaceobject.forwardref)(
   ({ icon, size = 24, ...props }, ref) => {
-    return (0,external_wp_element_namespaceObject.cloneElement)(icon, {
+    return (0,external_wp_element_namespaceobject.cloneelement)(icon, {
       width: size,
       height: size,
       ...props,
@@ -405,21 +405,21 @@ var icon_default = (0,external_wp_element_namespaceObject.forwardRef)(
 ;// ./node_modules/@wordpress/icons/build-module/library/chevron-left.js
 
 
-var chevron_left_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M14.6 7l-1.2-1L8 12l5.4 6 1.2-1-4.6-5z" }) });
+var chevron_left_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m14.6 7l-1.2-1l8 12l5.4 6 1.2-1-4.6-5z" }) });
 
 
 ;// ./node_modules/@wordpress/icons/build-module/library/chevron-right.js
 
 
-var chevron_right_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M10.6 6L9.4 7l4.6 5-4.6 5 1.2 1 5.4-6z" }) });
+var chevron_right_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m10.6 6l9.4 7l4.6 5-4.6 5 1.2 1 5.4-6z" }) });
 
 
-;// external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+;// external ["wp","privateapis"]
+const external_wp_privateapis_namespaceobject = window["wp"]["privateapis"];
 ;// ./node_modules/@wordpress/preferences/build-module/lock-unlock.js
 
-const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)(
-  "I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.",
+const { lock, unlock } = (0,external_wp_privateapis_namespaceobject.__dangerousoptintounstableapisonlyforcoremodules)(
+  "i acknowledge private features are not for use in themes or plugins and doing so will break in the next version of wordpress.",
   "@wordpress/preferences"
 );
 
@@ -432,53 +432,53 @@ const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousO
 
 
 
-const { Tabs } = unlock(external_wp_components_namespaceObject.privateApis);
-const PREFERENCES_MENU = "preferences-menu";
-function PreferencesModalTabs({ sections }) {
-  const isLargeViewport = (0,external_wp_compose_namespaceObject.useViewportMatch)("medium");
-  const [activeMenu, setActiveMenu] = (0,external_wp_element_namespaceObject.useState)(PREFERENCES_MENU);
-  const { tabs, sectionsContentMap } = (0,external_wp_element_namespaceObject.useMemo)(() => {
-    let mappedTabs = {
+const { tabs } = unlock(external_wp_components_namespaceobject.privateapis);
+const preferences_menu = "preferences-menu";
+function preferencesmodaltabs({ sections }) {
+  const islargeviewport = (0,external_wp_compose_namespaceobject.useviewportmatch)("medium");
+  const [activemenu, setactivemenu] = (0,external_wp_element_namespaceobject.usestate)(preferences_menu);
+  const { tabs, sectionscontentmap } = (0,external_wp_element_namespaceobject.usememo)(() => {
+    let mappedtabs = {
       tabs: [],
-      sectionsContentMap: {}
+      sectionscontentmap: {}
     };
     if (sections.length) {
-      mappedTabs = sections.reduce(
-        (accumulator, { name, tabLabel: title, content }) => {
+      mappedtabs = sections.reduce(
+        (accumulator, { name, tablabel: title, content }) => {
           accumulator.tabs.push({ name, title });
-          accumulator.sectionsContentMap[name] = content;
+          accumulator.sectionscontentmap[name] = content;
           return accumulator;
         },
-        { tabs: [], sectionsContentMap: {} }
+        { tabs: [], sectionscontentmap: {} }
       );
     }
-    return mappedTabs;
+    return mappedtabs;
   }, [sections]);
-  let modalContent;
-  if (isLargeViewport) {
-    modalContent = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", { className: "preferences__tabs", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(
-      Tabs,
+  let modalcontent;
+  if (islargeviewport) {
+    modalcontent = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("div", { classname: "preferences__tabs", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(
+      tabs,
       {
-        defaultTabId: activeMenu !== PREFERENCES_MENU ? activeMenu : void 0,
-        onSelect: setActiveMenu,
+        defaulttabid: activemenu !== preferences_menu ? activemenu : void 0,
+        onselect: setactivemenu,
         orientation: "vertical",
         children: [
-          /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(Tabs.TabList, { className: "preferences__tabs-tablist", children: tabs.map((tab) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-            Tabs.Tab,
+          /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(tabs.tablist, { classname: "preferences__tabs-tablist", children: tabs.map((tab) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+            tabs.tab,
             {
-              tabId: tab.name,
-              className: "preferences__tabs-tab",
+              tabid: tab.name,
+              classname: "preferences__tabs-tab",
               children: tab.title
             },
             tab.name
           )) }),
-          tabs.map((tab) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-            Tabs.TabPanel,
+          tabs.map((tab) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+            tabs.tabpanel,
             {
-              tabId: tab.name,
-              className: "preferences__tabs-tabpanel",
+              tabid: tab.name,
+              classname: "preferences__tabs-tabpanel",
               focusable: false,
-              children: sectionsContentMap[tab.name] || null
+              children: sectionscontentmap[tab.name] || null
             },
             tab.name
           ))
@@ -486,20 +486,20 @@ function PreferencesModalTabs({ sections }) {
       }
     ) });
   } else {
-    modalContent = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_wp_components_namespaceObject.Navigator, { initialPath: "/", className: "preferences__provider", children: [
-      /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Navigator.Screen, { path: "/", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Card, { isBorderless: true, size: "small", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.CardBody, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.__experimentalItemGroup, { children: tabs.map((tab) => {
-        return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-          external_wp_components_namespaceObject.Navigator.Button,
+    modalcontent = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_wp_components_namespaceobject.navigator, { initialpath: "/", classname: "preferences__provider", children: [
+      /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.navigator.screen, { path: "/", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.card, { isborderless: true, size: "small", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.cardbody, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.__experimentalitemgroup, { children: tabs.map((tab) => {
+        return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+          external_wp_components_namespaceobject.navigator.button,
           {
             path: `/${tab.name}`,
-            as: external_wp_components_namespaceObject.__experimentalItem,
-            isAction: true,
-            children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_wp_components_namespaceObject.__experimentalHStack, { justify: "space-between", children: [
-              /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.FlexItem, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.__experimentalTruncate, { children: tab.title }) }),
-              /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.FlexItem, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
+            as: external_wp_components_namespaceobject.__experimentalitem,
+            isaction: true,
+            children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_wp_components_namespaceobject.__experimentalhstack, { justify: "space-between", children: [
+              /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.flexitem, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.__experimentaltruncate, { children: tab.title }) }),
+              /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.flexitem, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
                 icon_default,
                 {
-                  icon: (0,external_wp_i18n_namespaceObject.isRTL)() ? chevron_left_default : chevron_right_default
+                  icon: (0,external_wp_i18n_namespaceobject.isrtl)() ? chevron_left_default : chevron_right_default
                 }
               ) })
             ] })
@@ -508,31 +508,31 @@ function PreferencesModalTabs({ sections }) {
         );
       }) }) }) }) }),
       sections.length && sections.map((section) => {
-        return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-          external_wp_components_namespaceObject.Navigator.Screen,
+        return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+          external_wp_components_namespaceobject.navigator.screen,
           {
             path: `/${section.name}`,
-            children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_wp_components_namespaceObject.Card, { isBorderless: true, size: "large", children: [
-              /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(
-                external_wp_components_namespaceObject.CardHeader,
+            children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_wp_components_namespaceobject.card, { isborderless: true, size: "large", children: [
+              /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(
+                external_wp_components_namespaceobject.cardheader,
                 {
-                  isBorderless: false,
+                  isborderless: false,
                   justify: "left",
                   size: "small",
                   gap: "6",
                   children: [
-                    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-                      external_wp_components_namespaceObject.Navigator.BackButton,
+                    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+                      external_wp_components_namespaceobject.navigator.backbutton,
                       {
-                        icon: (0,external_wp_i18n_namespaceObject.isRTL)() ? chevron_right_default : chevron_left_default,
-                        label: (0,external_wp_i18n_namespaceObject.__)("Back")
+                        icon: (0,external_wp_i18n_namespaceobject.isrtl)() ? chevron_right_default : chevron_left_default,
+                        label: (0,external_wp_i18n_namespaceobject.__)("back")
                       }
                     ),
-                    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.__experimentalText, { size: "16", children: section.tabLabel })
+                    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.__experimentaltext, { size: "16", children: section.tablabel })
                   ]
                 }
               ),
-              /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.CardBody, { children: section.content })
+              /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.cardbody, { children: section.content })
             ] })
           },
           `${section.name}-menu`
@@ -540,7 +540,7 @@ function PreferencesModalTabs({ sections }) {
       })
     ] });
   }
-  return modalContent;
+  return modalcontent;
 }
 
 
@@ -551,13 +551,13 @@ function PreferencesModalTabs({ sections }) {
 
 
 
-const privateApis = {};
-lock(privateApis, {
-  PreferenceBaseOption: preference_base_option_default,
-  PreferenceToggleControl: preference_toggle_control_default,
-  PreferencesModal: PreferencesModal,
-  PreferencesModalSection: preferences_modal_section_default,
-  PreferencesModalTabs: PreferencesModalTabs
+const privateapis = {};
+lock(privateapis, {
+  preferencebaseoption: preference_base_option_default,
+  preferencetogglecontrol: preference_toggle_control_default,
+  preferencesmodal: preferencesmodal,
+  preferencesmodalsection: preferences_modal_section_default,
+  preferencesmodaltabs: preferencesmodaltabs
 });
 
 
@@ -570,3 +570,4 @@ lock(privateApis, {
 (window.wp = window.wp || {}).preferences = __webpack_exports__;
 /******/ })()
 ;
+

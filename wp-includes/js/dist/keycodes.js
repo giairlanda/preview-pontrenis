@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,68 +10,68 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  ALT: () => (/* binding */ ALT),
-  BACKSPACE: () => (/* binding */ BACKSPACE),
-  COMMAND: () => (/* binding */ COMMAND),
-  CTRL: () => (/* binding */ CTRL),
-  DELETE: () => (/* binding */ DELETE),
-  DOWN: () => (/* binding */ DOWN),
-  END: () => (/* binding */ END),
-  ENTER: () => (/* binding */ ENTER),
-  ESCAPE: () => (/* binding */ ESCAPE),
-  F10: () => (/* binding */ F10),
-  HOME: () => (/* binding */ HOME),
-  LEFT: () => (/* binding */ LEFT),
-  PAGEDOWN: () => (/* binding */ PAGEDOWN),
-  PAGEUP: () => (/* binding */ PAGEUP),
-  RIGHT: () => (/* binding */ RIGHT),
-  SHIFT: () => (/* binding */ SHIFT),
-  SPACE: () => (/* binding */ SPACE),
-  TAB: () => (/* binding */ TAB),
-  UP: () => (/* binding */ UP),
-  ZERO: () => (/* binding */ ZERO),
-  displayShortcut: () => (/* binding */ displayShortcut),
-  displayShortcutList: () => (/* binding */ displayShortcutList),
-  isAppleOS: () => (/* reexport */ isAppleOS),
-  isKeyboardEvent: () => (/* binding */ isKeyboardEvent),
+  alt: () => (/* binding */ alt),
+  backspace: () => (/* binding */ backspace),
+  command: () => (/* binding */ command),
+  ctrl: () => (/* binding */ ctrl),
+  delete: () => (/* binding */ delete),
+  down: () => (/* binding */ down),
+  end: () => (/* binding */ end),
+  enter: () => (/* binding */ enter),
+  escape: () => (/* binding */ escape),
+  f10: () => (/* binding */ f10),
+  home: () => (/* binding */ home),
+  left: () => (/* binding */ left),
+  pagedown: () => (/* binding */ pagedown),
+  pageup: () => (/* binding */ pageup),
+  right: () => (/* binding */ right),
+  shift: () => (/* binding */ shift),
+  space: () => (/* binding */ space),
+  tab: () => (/* binding */ tab),
+  up: () => (/* binding */ up),
+  zero: () => (/* binding */ zero),
+  displayshortcut: () => (/* binding */ displayshortcut),
+  displayshortcutlist: () => (/* binding */ displayshortcutlist),
+  isappleos: () => (/* reexport */ isappleos),
+  iskeyboardevent: () => (/* binding */ iskeyboardevent),
   modifiers: () => (/* binding */ modifiers),
-  rawShortcut: () => (/* binding */ rawShortcut),
-  shortcutAriaLabel: () => (/* binding */ shortcutAriaLabel)
+  rawshortcut: () => (/* binding */ rawshortcut),
+  shortcutarialabel: () => (/* binding */ shortcutarialabel)
 });
 
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// ./node_modules/@wordpress/keycodes/build-module/platform.js
-function isAppleOS(_window) {
+function isappleos(_window) {
   if (!_window) {
     if (typeof window === "undefined") {
       return false;
@@ -79,160 +79,160 @@ function isAppleOS(_window) {
     _window = window;
   }
   const { platform } = _window.navigator;
-  return platform.indexOf("Mac") !== -1 || ["iPad", "iPhone"].includes(platform);
+  return platform.indexof("mac") !== -1 || ["ipad", "iphone"].includes(platform);
 }
 
 
 ;// ./node_modules/@wordpress/keycodes/build-module/index.js
 
 
-const BACKSPACE = 8;
-const TAB = 9;
-const ENTER = 13;
-const ESCAPE = 27;
-const SPACE = 32;
-const PAGEUP = 33;
-const PAGEDOWN = 34;
-const END = 35;
-const HOME = 36;
-const LEFT = 37;
-const UP = 38;
-const RIGHT = 39;
-const DOWN = 40;
-const DELETE = 46;
-const F10 = 121;
-const ALT = "alt";
-const CTRL = "ctrl";
-const COMMAND = "meta";
-const SHIFT = "shift";
-const ZERO = 48;
-function capitaliseFirstCharacter(string) {
-  return string.length < 2 ? string.toUpperCase() : string.charAt(0).toUpperCase() + string.slice(1);
+const backspace = 8;
+const tab = 9;
+const enter = 13;
+const escape = 27;
+const space = 32;
+const pageup = 33;
+const pagedown = 34;
+const end = 35;
+const home = 36;
+const left = 37;
+const up = 38;
+const right = 39;
+const down = 40;
+const delete = 46;
+const f10 = 121;
+const alt = "alt";
+const ctrl = "ctrl";
+const command = "meta";
+const shift = "shift";
+const zero = 48;
+function capitalisefirstcharacter(string) {
+  return string.length < 2 ? string.touppercase() : string.charat(0).touppercase() + string.slice(1);
 }
-function mapValues(object, mapFn) {
-  return Object.fromEntries(
-    Object.entries(object).map(([key, value]) => [
+function mapvalues(object, mapfn) {
+  return object.fromentries(
+    object.entries(object).map(([key, value]) => [
       key,
-      mapFn(value)
+      mapfn(value)
     ])
   );
 }
 const modifiers = {
-  primary: (_isApple) => _isApple() ? [COMMAND] : [CTRL],
-  primaryShift: (_isApple) => _isApple() ? [SHIFT, COMMAND] : [CTRL, SHIFT],
-  primaryAlt: (_isApple) => _isApple() ? [ALT, COMMAND] : [CTRL, ALT],
-  secondary: (_isApple) => _isApple() ? [SHIFT, ALT, COMMAND] : [CTRL, SHIFT, ALT],
-  access: (_isApple) => _isApple() ? [CTRL, ALT] : [SHIFT, ALT],
-  ctrl: () => [CTRL],
-  alt: () => [ALT],
-  ctrlShift: () => [CTRL, SHIFT],
-  shift: () => [SHIFT],
-  shiftAlt: () => [SHIFT, ALT],
+  primary: (_isapple) => _isapple() ? [command] : [ctrl],
+  primaryshift: (_isapple) => _isapple() ? [shift, command] : [ctrl, shift],
+  primaryalt: (_isapple) => _isapple() ? [alt, command] : [ctrl, alt],
+  secondary: (_isapple) => _isapple() ? [shift, alt, command] : [ctrl, shift, alt],
+  access: (_isapple) => _isapple() ? [ctrl, alt] : [shift, alt],
+  ctrl: () => [ctrl],
+  alt: () => [alt],
+  ctrlshift: () => [ctrl, shift],
+  shift: () => [shift],
+  shiftalt: () => [shift, alt],
   undefined: () => []
 };
-const rawShortcut = /* @__PURE__ */ mapValues(modifiers, (modifier) => {
-  return (character, _isApple = isAppleOS) => {
-    return [...modifier(_isApple), character.toLowerCase()].join(
+const rawshortcut = /* @__pure__ */ mapvalues(modifiers, (modifier) => {
+  return (character, _isapple = isappleos) => {
+    return [...modifier(_isapple), character.tolowercase()].join(
       "+"
     );
   };
 });
-const displayShortcutList = /* @__PURE__ */ mapValues(
+const displayshortcutlist = /* @__pure__ */ mapvalues(
   modifiers,
   (modifier) => {
-    return (character, _isApple = isAppleOS) => {
-      const isApple = _isApple();
-      const replacementKeyMap = {
-        [ALT]: isApple ? "\u2325" : "Alt",
-        [CTRL]: isApple ? "\u2303" : "Ctrl",
-        // Make sure ⌃ is the U+2303 UP ARROWHEAD unicode character and not the caret character.
-        [COMMAND]: "\u2318",
-        [SHIFT]: isApple ? "\u21E7" : "Shift"
+    return (character, _isapple = isappleos) => {
+      const isapple = _isapple();
+      const replacementkeymap = {
+        [alt]: isapple ? "\u2325" : "alt",
+        [ctrl]: isapple ? "\u2303" : "ctrl",
+        // make sure ✃ is the u+2303 up arrowhead unicode character and not the caret character.
+        [command]: "\u2318",
+        [shift]: isapple ? "\u21e7" : "shift"
       };
-      const modifierKeys = modifier(_isApple).reduce(
+      const modifierkeys = modifier(_isapple).reduce(
         (accumulator, key) => {
-          const replacementKey = replacementKeyMap[key] ?? key;
-          if (isApple) {
-            return [...accumulator, replacementKey];
+          const replacementkey = replacementkeymap[key] ?? key;
+          if (isapple) {
+            return [...accumulator, replacementkey];
           }
-          return [...accumulator, replacementKey, "+"];
+          return [...accumulator, replacementkey, "+"];
         },
         []
       );
       return [
-        ...modifierKeys,
-        capitaliseFirstCharacter(character)
+        ...modifierkeys,
+        capitalisefirstcharacter(character)
       ];
     };
   }
 );
-const displayShortcut = /* @__PURE__ */ mapValues(
-  displayShortcutList,
-  (shortcutList) => {
-    return (character, _isApple = isAppleOS) => shortcutList(character, _isApple).join("");
+const displayshortcut = /* @__pure__ */ mapvalues(
+  displayshortcutlist,
+  (shortcutlist) => {
+    return (character, _isapple = isappleos) => shortcutlist(character, _isapple).join("");
   }
 );
-const shortcutAriaLabel = /* @__PURE__ */ mapValues(modifiers, (modifier) => {
-  return (character, _isApple = isAppleOS) => {
-    const isApple = _isApple();
-    const replacementKeyMap = {
-      [SHIFT]: "Shift",
-      [COMMAND]: isApple ? "Command" : "Control",
-      [CTRL]: "Control",
-      [ALT]: isApple ? "Option" : "Alt",
+const shortcutarialabel = /* @__pure__ */ mapvalues(modifiers, (modifier) => {
+  return (character, _isapple = isappleos) => {
+    const isapple = _isapple();
+    const replacementkeymap = {
+      [shift]: "shift",
+      [command]: isapple ? "command" : "control",
+      [ctrl]: "control",
+      [alt]: isapple ? "option" : "alt",
       /* translators: comma as in the character ',' */
-      ",": (0,external_wp_i18n_namespaceObject.__)("Comma"),
+      ",": (0,external_wp_i18n_namespaceobject.__)("comma"),
       /* translators: period as in the character '.' */
-      ".": (0,external_wp_i18n_namespaceObject.__)("Period"),
+      ".": (0,external_wp_i18n_namespaceobject.__)("period"),
       /* translators: backtick as in the character '`' */
-      "`": (0,external_wp_i18n_namespaceObject.__)("Backtick"),
+      "`": (0,external_wp_i18n_namespaceobject.__)("backtick"),
       /* translators: tilde as in the character '~' */
-      "~": (0,external_wp_i18n_namespaceObject.__)("Tilde")
+      "~": (0,external_wp_i18n_namespaceobject.__)("tilde")
     };
-    return [...modifier(_isApple), character].map(
-      (key) => capitaliseFirstCharacter(replacementKeyMap[key] ?? key)
-    ).join(isApple ? " " : " + ");
+    return [...modifier(_isapple), character].map(
+      (key) => capitalisefirstcharacter(replacementkeymap[key] ?? key)
+    ).join(isapple ? " " : " + ");
   };
 });
-function getEventModifiers(event) {
-  return [ALT, CTRL, COMMAND, SHIFT].filter(
-    (key) => event[`${key}Key`]
+function geteventmodifiers(event) {
+  return [alt, ctrl, command, shift].filter(
+    (key) => event[`${key}key`]
   );
 }
-const isKeyboardEvent = /* @__PURE__ */ mapValues(modifiers, (getModifiers) => {
-  return (event, character, _isApple = isAppleOS) => {
-    const mods = getModifiers(_isApple);
-    const eventMods = getEventModifiers(event);
-    const replacementWithShiftKeyMap = {
-      Comma: ",",
-      Backslash: "\\",
-      // Windows returns `\` for both IntlRo and IntlYen.
-      IntlRo: "\\",
-      IntlYen: "\\"
+const iskeyboardevent = /* @__pure__ */ mapvalues(modifiers, (getmodifiers) => {
+  return (event, character, _isapple = isappleos) => {
+    const mods = getmodifiers(_isapple);
+    const eventmods = geteventmodifiers(event);
+    const replacementwithshiftkeymap = {
+      comma: ",",
+      backslash: "\\",
+      // windows returns `\` for both intlro and intlyen.
+      intlro: "\\",
+      intlyen: "\\"
     };
-    const modsDiff = mods.filter(
-      (mod) => !eventMods.includes(mod)
+    const modsdiff = mods.filter(
+      (mod) => !eventmods.includes(mod)
     );
-    const eventModsDiff = eventMods.filter(
+    const eventmodsdiff = eventmods.filter(
       (mod) => !mods.includes(mod)
     );
-    if (modsDiff.length > 0 || eventModsDiff.length > 0) {
+    if (modsdiff.length > 0 || eventmodsdiff.length > 0) {
       return false;
     }
-    let key = event.key.toLowerCase();
+    let key = event.key.tolowercase();
     if (!character) {
       return mods.includes(key);
     }
-    if (event.altKey && character.length === 1) {
-      key = String.fromCharCode(event.keyCode).toLowerCase();
+    if (event.altkey && character.length === 1) {
+      key = string.fromcharcode(event.keycode).tolowercase();
     }
-    if (event.shiftKey && character.length === 1 && replacementWithShiftKeyMap[event.code]) {
-      key = replacementWithShiftKeyMap[event.code];
+    if (event.shiftkey && character.length === 1 && replacementwithshiftkeymap[event.code]) {
+      key = replacementwithshiftkeymap[event.code];
     }
     if (character === "del") {
       character = "delete";
     }
-    return key === character.toLowerCase();
+    return key === character.tolowercase();
   };
 });
 
@@ -240,3 +240,4 @@ const isKeyboardEvent = /* @__PURE__ */ mapValues(modifiers, (getModifiers) => {
 (window.wp = window.wp || {}).keycodes = __webpack_exports__;
 /******/ })()
 ;
+

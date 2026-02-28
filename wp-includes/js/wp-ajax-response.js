@@ -2,52 +2,52 @@
  * @output wp-includes/js/wp-ajax-response.js
  */
 
- /* global wpAjax */
+ /* global wpajax */
 
-window.wpAjax = jQuery.extend( {
+window.wpajax = jquery.extend( {
 	unserialize: function( s ) {
 		var r = {}, q, pp, i, p;
 		if ( !s ) { return r; }
 		q = s.split('?'); if ( q[1] ) { s = q[1]; }
 		pp = s.split('&');
 		for ( i in pp ) {
-			if ( typeof pp.hasOwnProperty === 'function' && !pp.hasOwnProperty(i) ) { continue; }
+			if ( typeof pp.hasownproperty === 'function' && !pp.hasownproperty(i) ) { continue; }
 			p = pp[i].split('=');
 			r[p[0]] = p[1];
 		}
 		return r;
 	},
-	parseAjaxResponse: function( x, r, e ) { // 1 = good, 0 = strange (bad data?), -1 = you lack permission.
-		var parsed = {}, re = jQuery('#' + r).empty(), err = '', noticeMessage = '';
+	parseajaxresponse: function( x, r, e ) { // 1 = good, 0 = strange (bad data?), -1 = you lack permission.
+		var parsed = {}, re = jquery('#' + r).empty(), err = '', noticemessage = '';
 
-		if ( x && typeof x === 'object' && x.getElementsByTagName('wp_ajax') ) {
+		if ( x && typeof x === 'object' && x.getelementsbytagname('wp_ajax') ) {
 			parsed.responses = [];
 			parsed.errors = false;
-			jQuery('response', x).each( function() {
-				var th = jQuery(this), child = jQuery(this.firstChild), response;
-				response = { action: th.attr('action'), what: child.get(0).nodeName, id: child.attr('id'), oldId: child.attr('old_id'), position: child.attr('position') };
-				response.data = jQuery( 'response_data', child ).text();
+			jquery('response', x).each( function() {
+				var th = jquery(this), child = jquery(this.firstchild), response;
+				response = { action: th.attr('action'), what: child.get(0).nodename, id: child.attr('id'), oldid: child.attr('old_id'), position: child.attr('position') };
+				response.data = jquery( 'response_data', child ).text();
 				response.supplemental = {};
-				if ( !jQuery( 'supplemental', child ).children().each( function() {
+				if ( !jquery( 'supplemental', child ).children().each( function() {
 
-					if ( this.nodeName === 'notice' ) {
-						noticeMessage += jQuery(this).text();
+					if ( this.nodename === 'notice' ) {
+						noticemessage += jquery(this).text();
 						return;
 					}
 
-					response.supplemental[this.nodeName] = jQuery(this).text();
+					response.supplemental[this.nodename] = jquery(this).text();
 				} ).length ) { response.supplemental = false; }
 				response.errors = [];
-				if ( !jQuery('wp_error', child).each( function() {
-					var code = jQuery(this).attr('code'), anError, errorData, formField;
-					anError = { code: code, message: this.firstChild.nodeValue, data: false };
-					errorData = jQuery('wp_error_data[code="' + code + '"]', x);
-					if ( errorData ) { anError.data = errorData.get(); }
-					formField = jQuery( 'form-field', errorData ).text();
-					if ( formField ) { code = formField; }
-					if ( e ) { wpAjax.invalidateForm( jQuery('#' + e + ' :input[name="' + code + '"]' ).parents('.form-field:first') ); }
-					err += '<p>' + anError.message + '</p>';
-					response.errors.push( anError );
+				if ( !jquery('wp_error', child).each( function() {
+					var code = jquery(this).attr('code'), anerror, errordata, formfield;
+					anerror = { code: code, message: this.firstchild.nodevalue, data: false };
+					errordata = jquery('wp_error_data[code="' + code + '"]', x);
+					if ( errordata ) { anerror.data = errordata.get(); }
+					formfield = jquery( 'form-field', errordata ).text();
+					if ( formfield ) { code = formfield; }
+					if ( e ) { wpajax.invalidateform( jquery('#' + e + ' :input[name="' + code + '"]' ).parents('.form-field:first') ); }
+					err += '<p>' + anerror.message + '</p>';
+					response.errors.push( anerror );
 					parsed.errors = true;
 				} ).length ) { response.errors = false; }
 				parsed.responses.push( response );
@@ -55,37 +55,39 @@ window.wpAjax = jQuery.extend( {
 			if ( err.length ) {
 				re.html( '<div class="notice notice-error" role="alert">' + err + '</div>' );
 				wp.a11y.speak( err );
-			} else if ( noticeMessage.length ) {
-				re.html( '<div class="notice notice-success is-dismissible" role="alert"><p>' + noticeMessage + '</p></div>');
-				jQuery(document).trigger( 'wp-updates-notice-added' );
-				wp.a11y.speak( noticeMessage );
+			} else if ( noticemessage.length ) {
+				re.html( '<div class="notice notice-success is-dismissible" role="alert"><p>' + noticemessage + '</p></div>');
+				jquery(document).trigger( 'wp-updates-notice-added' );
+				wp.a11y.speak( noticemessage );
 			}
 			return parsed;
 		}
-		if ( isNaN( x ) ) {
+		if ( isnan( x ) ) {
 			wp.a11y.speak( x );
 			return ! re.html( '<div class="notice notice-error" role="alert"><p>' + x + '</p></div>' );
 		}
-		x = parseInt( x, 10 );
+		x = parseint( x, 10 );
 		if ( -1 === x ) {
-			wp.a11y.speak( wpAjax.noPerm );
-			return ! re.html( '<div class="notice notice-error" role="alert"><p>' + wpAjax.noPerm + '</p></div>' );
+			wp.a11y.speak( wpajax.noperm );
+			return ! re.html( '<div class="notice notice-error" role="alert"><p>' + wpajax.noperm + '</p></div>' );
 		} else if ( 0 === x ) {
-			wp.a11y.speak( wpAjax.broken );
-			return ! re.html( '<div class="notice notice-error" role="alert"><p>' + wpAjax.broken  + '</p></div>' );
+			wp.a11y.speak( wpajax.broken );
+			return ! re.html( '<div class="notice notice-error" role="alert"><p>' + wpajax.broken  + '</p></div>' );
 		}
 		return true;
 	},
-	invalidateForm: function ( selector ) {
-		return jQuery( selector ).addClass( 'form-invalid' ).find('input').one( 'change wp-check-valid-field', function() { jQuery(this).closest('.form-invalid').removeClass( 'form-invalid' ); } );
+	invalidateform: function ( selector ) {
+		return jquery( selector ).addclass( 'form-invalid' ).find('input').one( 'change wp-check-valid-field', function() { jquery(this).closest('.form-invalid').removeclass( 'form-invalid' ); } );
 	},
-	validateForm: function( selector ) {
-		selector = jQuery( selector );
-		return !wpAjax.invalidateForm( selector.find('.form-required').filter( function() { return jQuery('input:visible', this).val() === ''; } ) ).length;
+	validateform: function( selector ) {
+		selector = jquery( selector );
+		return !wpajax.invalidateform( selector.find('.form-required').filter( function() { return jquery('input:visible', this).val() === ''; } ) ).length;
 	}
-}, wpAjax || { noPerm: 'Sorry, you are not allowed to do that.', broken: 'An error occurred while processing your request. Please refresh the page and try again.' } );
+}, wpajax || { noperm: 'sorry, you are not allowed to do that.', broken: 'an error occurred while processing your request. please refresh the page and try again.' } );
 
-// Basic form validation.
-jQuery( function($){
-	$('form.validate').on( 'submit', function() { return wpAjax.validateForm( $(this) ); } );
+// basic form validation.
+jquery( function($){
+	$('form.validate').on( 'submit', function() { return wpajax.validateform( $(this) ); } );
 });
+
+

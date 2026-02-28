@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "utf-8";
 
 .wp-block-separator{
   border:none;
@@ -11,8 +11,8 @@
   text-align:center;
 }
 :root :where(.wp-block-separator.is-style-dots):before{
-  color:currentColor;
-  content:"Â·Â·Â·";
+  color:currentcolor;
+  content:"â·â·â·";
   font-family:serif;
   font-size:1.5em;
   letter-spacing:2em;
@@ -23,3 +23,4 @@
   background:none !important;
   border:none !important;
 }
+

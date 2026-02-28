@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,105 +22,105 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   setup: () => (/* binding */ setup),
   speak: () => (/* reexport */ speak)
 });
 
-;// external ["wp","domReady"]
-const external_wp_domReady_namespaceObject = window["wp"]["domReady"];
-var external_wp_domReady_default = /*#__PURE__*/__webpack_require__.n(external_wp_domReady_namespaceObject);
+;// external ["wp","domready"]
+const external_wp_domready_namespaceobject = window["wp"]["domready"];
+var external_wp_domready_default = /*#__pure__*/__webpack_require__.n(external_wp_domready_namespaceobject);
 ;// ./node_modules/@wordpress/a11y/build-module/script/add-container.js
-function addContainer(ariaLive = "polite") {
-  const container = document.createElement("div");
-  container.id = `a11y-speak-${ariaLive}`;
-  container.className = "a11y-speak-region";
-  container.setAttribute(
+function addcontainer(arialive = "polite") {
+  const container = document.createelement("div");
+  container.id = `a11y-speak-${arialive}`;
+  container.classname = "a11y-speak-region";
+  container.setattribute(
     "style",
     "position:absolute;margin:-1px;padding:0;height:1px;width:1px;overflow:hidden;clip-path:inset(50%);border:0;word-wrap:normal !important;"
   );
-  container.setAttribute("aria-live", ariaLive);
-  container.setAttribute("aria-relevant", "additions text");
-  container.setAttribute("aria-atomic", "true");
+  container.setattribute("aria-live", arialive);
+  container.setattribute("aria-relevant", "additions text");
+  container.setattribute("aria-atomic", "true");
   const { body } = document;
   if (body) {
-    body.appendChild(container);
+    body.appendchild(container);
   }
   return container;
 }
 
 
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// ./node_modules/@wordpress/a11y/build-module/script/add-intro-text.js
 
-function addIntroText() {
-  const introText = document.createElement("p");
-  introText.id = "a11y-speak-intro-text";
-  introText.className = "a11y-speak-intro-text";
-  introText.textContent = (0,external_wp_i18n_namespaceObject.__)("Notifications");
-  introText.setAttribute(
+function addintrotext() {
+  const introtext = document.createelement("p");
+  introtext.id = "a11y-speak-intro-text";
+  introtext.classname = "a11y-speak-intro-text";
+  introtext.textcontent = (0,external_wp_i18n_namespaceobject.__)("notifications");
+  introtext.setattribute(
     "style",
     "position:absolute;margin:-1px;padding:0;height:1px;width:1px;overflow:hidden;clip-path:inset(50%);border:0;word-wrap:normal !important;"
   );
-  introText.setAttribute("hidden", "");
+  introtext.setattribute("hidden", "");
   const { body } = document;
   if (body) {
-    body.appendChild(introText);
+    body.appendchild(introtext);
   }
-  return introText;
+  return introtext;
 }
 
 
 ;// ./node_modules/@wordpress/a11y/build-module/shared/clear.js
 function clear() {
-  const regions = document.getElementsByClassName("a11y-speak-region");
-  const introText = document.getElementById("a11y-speak-intro-text");
+  const regions = document.getelementsbyclassname("a11y-speak-region");
+  const introtext = document.getelementbyid("a11y-speak-intro-text");
   for (let i = 0; i < regions.length; i++) {
-    regions[i].textContent = "";
+    regions[i].textcontent = "";
   }
-  if (introText) {
-    introText.setAttribute("hidden", "hidden");
+  if (introtext) {
+    introtext.setattribute("hidden", "hidden");
   }
 }
 
 
 ;// ./node_modules/@wordpress/a11y/build-module/shared/filter-message.js
-let previousMessage = "";
-function filterMessage(message) {
+let previousmessage = "";
+function filtermessage(message) {
   message = message.replace(/<[^<>]+>/g, " ");
-  if (previousMessage === message) {
-    message += "\xA0";
+  if (previousmessage === message) {
+    message += "\xa0";
   }
-  previousMessage = message;
+  previousmessage = message;
   return message;
 }
 
@@ -128,21 +128,21 @@ function filterMessage(message) {
 ;// ./node_modules/@wordpress/a11y/build-module/shared/index.js
 
 
-function speak(message, ariaLive) {
+function speak(message, arialive) {
   clear();
-  message = filterMessage(message);
-  const introText = document.getElementById("a11y-speak-intro-text");
-  const containerAssertive = document.getElementById(
+  message = filtermessage(message);
+  const introtext = document.getelementbyid("a11y-speak-intro-text");
+  const containerassertive = document.getelementbyid(
     "a11y-speak-assertive"
   );
-  const containerPolite = document.getElementById("a11y-speak-polite");
-  if (containerAssertive && ariaLive === "assertive") {
-    containerAssertive.textContent = message;
-  } else if (containerPolite) {
-    containerPolite.textContent = message;
+  const containerpolite = document.getelementbyid("a11y-speak-polite");
+  if (containerassertive && arialive === "assertive") {
+    containerassertive.textcontent = message;
+  } else if (containerpolite) {
+    containerpolite.textcontent = message;
   }
-  if (introText) {
-    introText.removeAttribute("hidden");
+  if (introtext) {
+    introtext.removeattribute("hidden");
   }
 }
 
@@ -153,24 +153,25 @@ function speak(message, ariaLive) {
 
 
 function setup() {
-  const introText = document.getElementById("a11y-speak-intro-text");
-  const containerAssertive = document.getElementById(
+  const introtext = document.getelementbyid("a11y-speak-intro-text");
+  const containerassertive = document.getelementbyid(
     "a11y-speak-assertive"
   );
-  const containerPolite = document.getElementById("a11y-speak-polite");
-  if (introText === null) {
-    addIntroText();
+  const containerpolite = document.getelementbyid("a11y-speak-polite");
+  if (introtext === null) {
+    addintrotext();
   }
-  if (containerAssertive === null) {
-    addContainer("assertive");
+  if (containerassertive === null) {
+    addcontainer("assertive");
   }
-  if (containerPolite === null) {
-    addContainer("polite");
+  if (containerpolite === null) {
+    addcontainer("polite");
   }
 }
-external_wp_domReady_default()(setup);
+external_wp_domready_default()(setup);
 
 
 (window.wp = window.wp || {}).a11y = __webpack_exports__;
 /******/ })()
 ;
+

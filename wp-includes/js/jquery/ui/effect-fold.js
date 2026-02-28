@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Fold 1.13.3
+ * jquery ui effects fold 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Fold Effect
-//>>group: Effects
-//>>description: Folds an element first horizontally and then vertically.
+//>>label: fold effect
+//>>group: effects
+//>>description: folds an element first horizontally and then vertically.
 //>>docs: https://api.jqueryui.com/fold-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,28 +26,28 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 return $.effects.define( "fold", "hide", function( options, done ) {
 
-	// Create element
+	// create element
 	var element = $( this ),
 		mode = options.mode,
 		show = mode === "show",
 		hide = mode === "hide",
 		size = options.size || 15,
 		percent = /([0-9]+)%/.exec( size ),
-		horizFirst = !!options.horizFirst,
-		ref = horizFirst ? [ "right", "bottom" ] : [ "bottom", "right" ],
+		horizfirst = !!options.horizfirst,
+		ref = horizfirst ? [ "right", "bottom" ] : [ "bottom", "right" ],
 		duration = options.duration / 2,
 
-		placeholder = $.effects.createPlaceholder( element ),
+		placeholder = $.effects.createplaceholder( element ),
 
-		start = element.cssClip(),
+		start = element.cssclip(),
 		animation1 = { clip: $.extend( {}, start ) },
 		animation2 = { clip: $.extend( {}, start ) },
 
@@ -56,28 +56,28 @@ return $.effects.define( "fold", "hide", function( options, done ) {
 		queuelen = element.queue().length;
 
 	if ( percent ) {
-		size = parseInt( percent[ 1 ], 10 ) / 100 * distance[ hide ? 0 : 1 ];
+		size = parseint( percent[ 1 ], 10 ) / 100 * distance[ hide ? 0 : 1 ];
 	}
 	animation1.clip[ ref[ 0 ] ] = size;
 	animation2.clip[ ref[ 0 ] ] = size;
 	animation2.clip[ ref[ 1 ] ] = 0;
 
 	if ( show ) {
-		element.cssClip( animation2.clip );
+		element.cssclip( animation2.clip );
 		if ( placeholder ) {
-			placeholder.css( $.effects.clipToBox( animation2 ) );
+			placeholder.css( $.effects.cliptobox( animation2 ) );
 		}
 
 		animation2.clip = start;
 	}
 
-	// Animate
+	// animate
 	element
 		.queue( function( next ) {
 			if ( placeholder ) {
 				placeholder
-					.animate( $.effects.clipToBox( animation1 ), duration, options.easing )
-					.animate( $.effects.clipToBox( animation2 ), duration, options.easing );
+					.animate( $.effects.cliptobox( animation1 ), duration, options.easing )
+					.animate( $.effects.cliptobox( animation2 ), duration, options.easing );
 			}
 
 			next();
@@ -90,3 +90,5 @@ return $.effects.define( "fold", "hide", function( options, done ) {
 } );
 
 } );
+
+

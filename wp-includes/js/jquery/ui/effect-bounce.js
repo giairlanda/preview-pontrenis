@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Bounce 1.13.3
+ * jquery ui effects bounce 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Bounce Effect
-//>>group: Effects
-//>>description: Bounces an element horizontally or vertically n times.
+//>>label: bounce effect
+//>>group: effects
+//>>description: bounces an element horizontally or vertically n times.
 //>>docs: https://api.jqueryui.com/bounce-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,17 +26,17 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 return $.effects.define( "bounce", function( options, done ) {
-	var upAnim, downAnim, refValue,
+	var upanim, downanim, refvalue,
 		element = $( this ),
 
-		// Defaults:
+		// defaults:
 		mode = options.mode,
 		hide = mode === "hide",
 		show = mode === "show",
@@ -44,65 +44,65 @@ return $.effects.define( "bounce", function( options, done ) {
 		distance = options.distance,
 		times = options.times || 5,
 
-		// Number of internal animations
+		// number of internal animations
 		anims = times * 2 + ( show || hide ? 1 : 0 ),
 		speed = options.duration / anims,
 		easing = options.easing,
 
-		// Utility:
+		// utility:
 		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
 		motion = ( direction === "up" || direction === "left" ),
 		i = 0,
 
 		queuelen = element.queue().length;
 
-	$.effects.createPlaceholder( element );
+	$.effects.createplaceholder( element );
 
-	refValue = element.css( ref );
+	refvalue = element.css( ref );
 
-	// Default distance for the BIGGEST bounce is the outer Distance / 3
+	// default distance for the biggest bounce is the outer distance / 3
 	if ( !distance ) {
-		distance = element[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
+		distance = element[ ref === "top" ? "outerheight" : "outerwidth" ]() / 3;
 	}
 
 	if ( show ) {
-		downAnim = { opacity: 1 };
-		downAnim[ ref ] = refValue;
+		downanim = { opacity: 1 };
+		downanim[ ref ] = refvalue;
 
-		// If we are showing, force opacity 0 and set the initial position
+		// if we are showing, force opacity 0 and set the initial position
 		// then do the "first" animation
 		element
 			.css( "opacity", 0 )
 			.css( ref, motion ? -distance * 2 : distance * 2 )
-			.animate( downAnim, speed, easing );
+			.animate( downanim, speed, easing );
 	}
 
-	// Start at the smallest distance if we are hiding
+	// start at the smallest distance if we are hiding
 	if ( hide ) {
-		distance = distance / Math.pow( 2, times - 1 );
+		distance = distance / math.pow( 2, times - 1 );
 	}
 
-	downAnim = {};
-	downAnim[ ref ] = refValue;
+	downanim = {};
+	downanim[ ref ] = refvalue;
 
-	// Bounces up/down/left/right then back to 0 -- times * 2 animations happen here
+	// bounces up/down/left/right then back to 0 -- times * 2 animations happen here
 	for ( ; i < times; i++ ) {
-		upAnim = {};
-		upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+		upanim = {};
+		upanim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
 
 		element
-			.animate( upAnim, speed, easing )
-			.animate( downAnim, speed, easing );
+			.animate( upanim, speed, easing )
+			.animate( downanim, speed, easing );
 
 		distance = hide ? distance * 2 : distance / 2;
 	}
 
-	// Last Bounce when Hiding
+	// last bounce when hiding
 	if ( hide ) {
-		upAnim = { opacity: 0 };
-		upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+		upanim = { opacity: 0 };
+		upanim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
 
-		element.animate( upAnim, speed, easing );
+		element.animate( upanim, speed, easing );
 	}
 
 	element.queue( done );
@@ -111,3 +111,5 @@ return $.effects.define( "bounce", function( options, done ) {
 } );
 
 } );
+
+

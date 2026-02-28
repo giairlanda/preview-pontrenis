@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,102 +10,102 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  BlockQuotation: () => (/* reexport */ BlockQuotation),
-  Circle: () => (/* reexport */ Circle),
-  Defs: () => (/* reexport */ Defs),
-  G: () => (/* reexport */ G),
-  HorizontalRule: () => (/* reexport */ HorizontalRule),
-  Line: () => (/* reexport */ Line),
-  LinearGradient: () => (/* reexport */ LinearGradient),
-  Path: () => (/* reexport */ Path),
-  Polygon: () => (/* reexport */ Polygon),
-  RadialGradient: () => (/* reexport */ RadialGradient),
-  Rect: () => (/* reexport */ Rect),
-  SVG: () => (/* reexport */ SVG),
-  Stop: () => (/* reexport */ Stop),
-  View: () => (/* reexport */ View)
+  blockquotation: () => (/* reexport */ blockquotation),
+  circle: () => (/* reexport */ circle),
+  defs: () => (/* reexport */ defs),
+  g: () => (/* reexport */ g),
+  horizontalrule: () => (/* reexport */ horizontalrule),
+  line: () => (/* reexport */ line),
+  lineargradient: () => (/* reexport */ lineargradient),
+  path: () => (/* reexport */ path),
+  polygon: () => (/* reexport */ polygon),
+  radialgradient: () => (/* reexport */ radialgradient),
+  rect: () => (/* reexport */ rect),
+  svg: () => (/* reexport */ svg),
+  stop: () => (/* reexport */ stop),
+  view: () => (/* reexport */ view)
 });
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
 ;// ./node_modules/clsx/dist/clsx.mjs
-function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
+function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(array.isarray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// ./node_modules/@wordpress/primitives/build-module/svg/index.js
 
 
 
-const Circle = (props) => (0,external_wp_element_namespaceObject.createElement)("circle", props);
-const G = (props) => (0,external_wp_element_namespaceObject.createElement)("g", props);
-const Line = (props) => (0,external_wp_element_namespaceObject.createElement)("line", props);
-const Path = (props) => (0,external_wp_element_namespaceObject.createElement)("path", props);
-const Polygon = (props) => (0,external_wp_element_namespaceObject.createElement)("polygon", props);
-const Rect = (props) => (0,external_wp_element_namespaceObject.createElement)("rect", props);
-const Defs = (props) => (0,external_wp_element_namespaceObject.createElement)("defs", props);
-const RadialGradient = (props) => (0,external_wp_element_namespaceObject.createElement)("radialGradient", props);
-const LinearGradient = (props) => (0,external_wp_element_namespaceObject.createElement)("linearGradient", props);
-const Stop = (props) => (0,external_wp_element_namespaceObject.createElement)("stop", props);
-const SVG = (0,external_wp_element_namespaceObject.forwardRef)(
+const circle = (props) => (0,external_wp_element_namespaceobject.createelement)("circle", props);
+const g = (props) => (0,external_wp_element_namespaceobject.createelement)("g", props);
+const line = (props) => (0,external_wp_element_namespaceobject.createelement)("line", props);
+const path = (props) => (0,external_wp_element_namespaceobject.createelement)("path", props);
+const polygon = (props) => (0,external_wp_element_namespaceobject.createelement)("polygon", props);
+const rect = (props) => (0,external_wp_element_namespaceobject.createelement)("rect", props);
+const defs = (props) => (0,external_wp_element_namespaceobject.createelement)("defs", props);
+const radialgradient = (props) => (0,external_wp_element_namespaceobject.createelement)("radialgradient", props);
+const lineargradient = (props) => (0,external_wp_element_namespaceobject.createelement)("lineargradient", props);
+const stop = (props) => (0,external_wp_element_namespaceobject.createelement)("stop", props);
+const svg = (0,external_wp_element_namespaceobject.forwardref)(
   /**
-   * @param {SVGProps}                                    props isPressed indicates whether the SVG should appear as pressed.
-   *                                                            Other props will be passed through to svg component.
-   * @param {import('react').ForwardedRef<SVGSVGElement>} ref   The forwarded ref to the SVG element.
+   * @param {svgprops}                                    props ispressed indicates whether the svg should appear as pressed.
+   *                                                            other props will be passed through to svg component.
+   * @param {import('react').forwardedref<svgsvgelement>} ref   the forwarded ref to the svg element.
    *
-   * @return {JSX.Element} Stop component
+   * @return {jsx.element} stop component
    */
-  ({ className, isPressed, ...props }, ref) => {
-    const appliedProps = {
+  ({ classname, ispressed, ...props }, ref) => {
+    const appliedprops = {
       ...props,
-      className: dist_clsx(className, { "is-pressed": isPressed }) || void 0,
+      classname: dist_clsx(classname, { "is-pressed": ispressed }) || void 0,
       "aria-hidden": true,
       focusable: false
     };
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("svg", { ...appliedProps, ref });
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("svg", { ...appliedprops, ref });
   }
 );
-SVG.displayName = "SVG";
+svg.displayname = "svg";
 
 
 ;// ./node_modules/@wordpress/primitives/build-module/horizontal-rule/index.js
-const HorizontalRule = "hr";
+const horizontalrule = "hr";
 
 
 ;// ./node_modules/@wordpress/primitives/build-module/block-quotation/index.js
-const BlockQuotation = "blockquote";
+const blockquotation = "blockquote";
 
 
 ;// ./node_modules/@wordpress/primitives/build-module/view/index.js
-const View = "div";
+const view = "div";
 
 
 ;// ./node_modules/@wordpress/primitives/build-module/index.js
@@ -117,3 +117,4 @@ const View = "div";
 (window.wp = window.wp || {}).primitives = __webpack_exports__;
 /******/ })()
 ;
+

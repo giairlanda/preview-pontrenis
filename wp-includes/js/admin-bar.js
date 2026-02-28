@@ -2,253 +2,253 @@
  * @output wp-includes/js/admin-bar.js
  */
 /**
- * Admin bar with Vanilla JS, no external dependencies.
+ * admin bar with vanilla js, no external dependencies.
  *
  * @since 5.3.1
  *
- * @param {Object} document  The document object.
- * @param {Object} window    The window object.
- * @param {Object} navigator The navigator object.
+ * @param {object} document  the document object.
+ * @param {object} window    the window object.
+ * @param {object} navigator the navigator object.
  *
  * @return {void}
  */
 ( function( document, window, navigator ) {
-	document.addEventListener( 'DOMContentLoaded', function() {
-		var adminBar = document.getElementById( 'wpadminbar' ),
-			topMenuItems,
-			allMenuItems,
-			adminBarLogout,
-			adminBarSearchForm,
+	document.addeventlistener( 'domcontentloaded', function() {
+		var adminbar = document.getelementbyid( 'wpadminbar' ),
+			topmenuitems,
+			allmenuitems,
+			adminbarlogout,
+			adminbarsearchform,
 			shortlink,
-			skipLink,
-			mobileEvent,
-			adminBarSearchInput,
+			skiplink,
+			mobileevent,
+			adminbarsearchinput,
 			i;
 
-		if ( ! adminBar || ! ( 'querySelectorAll' in adminBar ) ) {
+		if ( ! adminbar || ! ( 'queryselectorall' in adminbar ) ) {
 			return;
 		}
 
-		topMenuItems = adminBar.querySelectorAll( 'li.menupop' );
-		allMenuItems = adminBar.querySelectorAll( '.ab-item' );
-		adminBarLogout = document.querySelector( '#wp-admin-bar-logout a' );
-		adminBarSearchForm = document.getElementById( 'adminbarsearch' );
-		shortlink = document.getElementById( 'wp-admin-bar-get-shortlink' );
-		skipLink = adminBar.querySelector( '.screen-reader-shortcut' );
-		mobileEvent = /Mobile\/.+Safari/.test( navigator.userAgent ) ? 'touchstart' : 'click';
+		topmenuitems = adminbar.queryselectorall( 'li.menupop' );
+		allmenuitems = adminbar.queryselectorall( '.ab-item' );
+		adminbarlogout = document.queryselector( '#wp-admin-bar-logout a' );
+		adminbarsearchform = document.getelementbyid( 'adminbarsearch' );
+		shortlink = document.getelementbyid( 'wp-admin-bar-get-shortlink' );
+		skiplink = adminbar.queryselector( '.screen-reader-shortcut' );
+		mobileevent = /mobile\/.+safari/.test( navigator.useragent ) ? 'touchstart' : 'click';
 
-		// Remove nojs class after the DOM is loaded.
-		removeClass( adminBar, 'nojs' );
+		// remove nojs class after the dom is loaded.
+		removeclass( adminbar, 'nojs' );
 
 		if ( 'ontouchstart' in window ) {
-			// Remove hover class when the user touches outside the menu items.
-			document.body.addEventListener( mobileEvent, function( e ) {
-				if ( ! getClosest( e.target, 'li.menupop' ) ) {
-					removeAllHoverClass( topMenuItems );
+			// remove hover class when the user touches outside the menu items.
+			document.body.addeventlistener( mobileevent, function( e ) {
+				if ( ! getclosest( e.target, 'li.menupop' ) ) {
+					removeallhoverclass( topmenuitems );
 				}
 			} );
 
-			// Add listener for menu items to toggle hover class by touches.
-			// Remove the callback later for better performance.
-			adminBar.addEventListener( 'touchstart', function bindMobileEvents() {
-				for ( var i = 0; i < topMenuItems.length; i++ ) {
-					topMenuItems[i].addEventListener( 'click', mobileHover.bind( null, topMenuItems ) );
+			// add listener for menu items to toggle hover class by touches.
+			// remove the callback later for better performance.
+			adminbar.addeventlistener( 'touchstart', function bindmobileevents() {
+				for ( var i = 0; i < topmenuitems.length; i++ ) {
+					topmenuitems[i].addeventlistener( 'click', mobilehover.bind( null, topmenuitems ) );
 				}
 
-				adminBar.removeEventListener( 'touchstart', bindMobileEvents );
+				adminbar.removeeventlistener( 'touchstart', bindmobileevents );
 			} );
 		}
 
-		// Scroll page to top when clicking on the admin bar.
-		adminBar.addEventListener( 'click', scrollToTop );
+		// scroll page to top when clicking on the admin bar.
+		adminbar.addeventlistener( 'click', scrolltotop );
 
-		for ( i = 0; i < topMenuItems.length; i++ ) {
-			// Adds or removes the hover class based on the hover intent.
+		for ( i = 0; i < topmenuitems.length; i++ ) {
+			// adds or removes the hover class based on the hover intent.
 			window.hoverintent(
-				topMenuItems[i],
-				addClass.bind( null, topMenuItems[i], 'hover' ),
-				removeClass.bind( null, topMenuItems[i], 'hover' )
+				topmenuitems[i],
+				addclass.bind( null, topmenuitems[i], 'hover' ),
+				removeclass.bind( null, topmenuitems[i], 'hover' )
 			).options( {
 				timeout: 180
 			} );
 
-			// Toggle hover class if the enter key is pressed.
-			topMenuItems[i].addEventListener( 'keydown', toggleHoverIfEnter );
+			// toggle hover class if the enter key is pressed.
+			topmenuitems[i].addeventlistener( 'keydown', togglehoverifenter );
 		}
 
-		// Remove hover class if the escape key is pressed.
-		for ( i = 0; i < allMenuItems.length; i++ ) {
-			allMenuItems[i].addEventListener( 'keydown', removeHoverIfEscape );
+		// remove hover class if the escape key is pressed.
+		for ( i = 0; i < allmenuitems.length; i++ ) {
+			allmenuitems[i].addeventlistener( 'keydown', removehoverifescape );
 		}
 
-		if ( adminBarSearchForm ) {
-			adminBarSearchInput = document.getElementById( 'adminbar-search' );
+		if ( adminbarsearchform ) {
+			adminbarsearchinput = document.getelementbyid( 'adminbar-search' );
 
-			// Adds the adminbar-focused class on focus.
-			adminBarSearchInput.addEventListener( 'focus', function() {
-				addClass( adminBarSearchForm, 'adminbar-focused' );
+			// adds the adminbar-focused class on focus.
+			adminbarsearchinput.addeventlistener( 'focus', function() {
+				addclass( adminbarsearchform, 'adminbar-focused' );
 			} );
 
-			// Removes the adminbar-focused class on blur.
-			adminBarSearchInput.addEventListener( 'blur', function() {
-				removeClass( adminBarSearchForm, 'adminbar-focused' );
+			// removes the adminbar-focused class on blur.
+			adminbarsearchinput.addeventlistener( 'blur', function() {
+				removeclass( adminbarsearchform, 'adminbar-focused' );
 			} );
 		}
 
 		if ( shortlink ) {
-			shortlink.addEventListener( 'click', clickShortlink );
+			shortlink.addeventlistener( 'click', clickshortlink );
 		}
 
-		// Prevents the toolbar from covering up content when a hash is present in the URL.
+		// prevents the toolbar from covering up content when a hash is present in the url.
 		if ( window.location.hash ) {
-			window.scrollBy( 0, -32 );
+			window.scrollby( 0, -32 );
 		}
 
-		// Clear sessionStorage on logging out.
-		if ( adminBarLogout ) {
-			adminBarLogout.addEventListener( 'click', emptySessionStorage );
+		// clear sessionstorage on logging out.
+		if ( adminbarlogout ) {
+			adminbarlogout.addeventlistener( 'click', emptysessionstorage );
 		}
 	} );
 
 	/**
-	 * Remove hover class for top level menu item when escape is pressed.
+	 * remove hover class for top level menu item when escape is pressed.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {Event} event The keydown event.
+	 * @param {event} event the keydown event.
 	 */
-	function removeHoverIfEscape( event ) {
+	function removehoverifescape( event ) {
 		var wrapper;
 
 		if ( event.which !== 27 ) {
 			return;
 		}
 
-		wrapper = getClosest( event.target, '.menupop' );
+		wrapper = getclosest( event.target, '.menupop' );
 
 		if ( ! wrapper ) {
 			return;
 		}
 
-		wrapper.querySelector( '.menupop > .ab-item' ).focus();
-		removeClass( wrapper, 'hover' );
+		wrapper.queryselector( '.menupop > .ab-item' ).focus();
+		removeclass( wrapper, 'hover' );
 	}
 
 	/**
-	 * Toggle hover class for top level menu item when enter is pressed.
+	 * toggle hover class for top level menu item when enter is pressed.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {Event} event The keydown event.
+	 * @param {event} event the keydown event.
 	 */
-	function toggleHoverIfEnter( event ) {
+	function togglehoverifenter( event ) {
 		var wrapper;
 
-		// Follow link if pressing Ctrl and/or Shift with Enter (opening in a new tab or window).
-		if ( event.which !== 13 || event.ctrlKey || event.shiftKey ) {
+		// follow link if pressing ctrl and/or shift with enter (opening in a new tab or window).
+		if ( event.which !== 13 || event.ctrlkey || event.shiftkey ) {
 			return;
 		}
 
-		if ( !! getClosest( event.target, '.ab-sub-wrapper' ) ) {
+		if ( !! getclosest( event.target, '.ab-sub-wrapper' ) ) {
 			return;
 		}
 
-		wrapper = getClosest( event.target, '.menupop' );
+		wrapper = getclosest( event.target, '.menupop' );
 
 		if ( ! wrapper ) {
 			return;
 		}
 
-		event.preventDefault();
+		event.preventdefault();
 
-		if ( hasClass( wrapper, 'hover' ) ) {
-			removeClass( wrapper, 'hover' );
+		if ( hasclass( wrapper, 'hover' ) ) {
+			removeclass( wrapper, 'hover' );
 		} else {
-			addClass( wrapper, 'hover' );
+			addclass( wrapper, 'hover' );
 		}
 	}
 
 	/**
-	 * Toggle hover class for mobile devices.
+	 * toggle hover class for mobile devices.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {NodeList} topMenuItems All menu items.
-	 * @param {Event} event The click event.
+	 * @param {nodelist} topmenuitems all menu items.
+	 * @param {event} event the click event.
 	 */
-	function mobileHover( topMenuItems, event ) {
+	function mobilehover( topmenuitems, event ) {
 		var wrapper;
 
-		if ( !! getClosest( event.target, '.ab-sub-wrapper' ) ) {
+		if ( !! getclosest( event.target, '.ab-sub-wrapper' ) ) {
 			return;
 		}
 
-		event.preventDefault();
+		event.preventdefault();
 
-		wrapper = getClosest( event.target, '.menupop' );
+		wrapper = getclosest( event.target, '.menupop' );
 
 		if ( ! wrapper ) {
 			return;
 		}
 
-		if ( hasClass( wrapper, 'hover' ) ) {
-			removeClass( wrapper, 'hover' );
+		if ( hasclass( wrapper, 'hover' ) ) {
+			removeclass( wrapper, 'hover' );
 		} else {
-			removeAllHoverClass( topMenuItems );
-			addClass( wrapper, 'hover' );
+			removeallhoverclass( topmenuitems );
+			addclass( wrapper, 'hover' );
 		}
 	}
 
 	/**
-	 * Handles the click on the Shortlink link in the adminbar.
+	 * handles the click on the shortlink link in the adminbar.
 	 *
 	 * @since 3.1.0
-	 * @since 5.3.1 Use querySelector to clean up the function.
+	 * @since 5.3.1 use queryselector to clean up the function.
 	 *
-	 * @param {Event} event The click event.
-	 * @return {boolean} Returns false to prevent default click behavior.
+	 * @param {event} event the click event.
+	 * @return {boolean} returns false to prevent default click behavior.
 	 */
-	function clickShortlink( event ) {
-		var wrapper = event.target.parentNode,
+	function clickshortlink( event ) {
+		var wrapper = event.target.parentnode,
 			input;
 
 		if ( wrapper ) {
-			input = wrapper.querySelector( '.shortlink-input' );
+			input = wrapper.queryselector( '.shortlink-input' );
 		}
 
 		if ( ! input ) {
 			return;
 		}
 
-		// (Old) IE doesn't support preventDefault, and does support returnValue.
-		if ( event.preventDefault ) {
-			event.preventDefault();
+		// (old) ie doesn't support preventdefault, and does support returnvalue.
+		if ( event.preventdefault ) {
+			event.preventdefault();
 		}
 
-		event.returnValue = false;
+		event.returnvalue = false;
 
-		addClass( wrapper, 'selected' );
+		addclass( wrapper, 'selected' );
 
 		input.focus();
 		input.select();
 		input.onblur = function() {
-			removeClass( wrapper, 'selected' );
+			removeclass( wrapper, 'selected' );
 		};
 
 		return false;
 	}
 
 	/**
-	 * Clear sessionStorage on logging out.
+	 * clear sessionstorage on logging out.
 	 *
 	 * @since 5.3.1
 	 */
-	function emptySessionStorage() {
-		if ( 'sessionStorage' in window ) {
+	function emptysessionstorage() {
+		if ( 'sessionstorage' in window ) {
 			try {
-				for ( var key in sessionStorage ) {
-					if ( key.indexOf( 'wp-autosave-' ) > -1 ) {
-						sessionStorage.removeItem( key );
+				for ( var key in sessionstorage ) {
+					if ( key.indexof( 'wp-autosave-' ) > -1 ) {
+						sessionstorage.removeitem( key );
 					}
 				}
 			} catch ( er ) {}
@@ -256,121 +256,121 @@
 	}
 
 	/**
-	 * Check if element has class.
+	 * check if element has class.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {HTMLElement} element The HTML element.
-	 * @param {string}      className The class name.
-	 * @return {boolean} Whether the element has the className.
+	 * @param {htmlelement} element the html element.
+	 * @param {string}      classname the class name.
+	 * @return {boolean} whether the element has the classname.
 	 */
-	function hasClass( element, className ) {
-		var classNames;
+	function hasclass( element, classname ) {
+		var classnames;
 
 		if ( ! element ) {
 			return false;
 		}
 
-		if ( element.classList && element.classList.contains ) {
-			return element.classList.contains( className );
-		} else if ( element.className ) {
-			classNames = element.className.split( ' ' );
-			return classNames.indexOf( className ) > -1;
+		if ( element.classlist && element.classlist.contains ) {
+			return element.classlist.contains( classname );
+		} else if ( element.classname ) {
+			classnames = element.classname.split( ' ' );
+			return classnames.indexof( classname ) > -1;
 		}
 
 		return false;
 	}
 
 	/**
-	 * Add class to an element.
+	 * add class to an element.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {HTMLElement} element The HTML element.
-	 * @param {string}      className The class name.
+	 * @param {htmlelement} element the html element.
+	 * @param {string}      classname the class name.
 	 */
-	function addClass( element, className ) {
+	function addclass( element, classname ) {
 		if ( ! element ) {
 			return;
 		}
 
-		if ( element.classList && element.classList.add ) {
-			element.classList.add( className );
-		} else if ( ! hasClass( element, className ) ) {
-			if ( element.className ) {
-				element.className += ' ';
+		if ( element.classlist && element.classlist.add ) {
+			element.classlist.add( classname );
+		} else if ( ! hasclass( element, classname ) ) {
+			if ( element.classname ) {
+				element.classname += ' ';
 			}
 
-			element.className += className;
+			element.classname += classname;
 		}
 
-		var menuItemToggle = element.querySelector( 'a' );
-		if ( className === 'hover' && menuItemToggle && menuItemToggle.hasAttribute( 'aria-expanded' ) ) {
-			menuItemToggle.setAttribute( 'aria-expanded', 'true' );
+		var menuitemtoggle = element.queryselector( 'a' );
+		if ( classname === 'hover' && menuitemtoggle && menuitemtoggle.hasattribute( 'aria-expanded' ) ) {
+			menuitemtoggle.setattribute( 'aria-expanded', 'true' );
 		}
 	}
 
 	/**
-	 * Remove class from an element.
+	 * remove class from an element.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {HTMLElement} element The HTML element.
-	 * @param {string}      className The class name.
+	 * @param {htmlelement} element the html element.
+	 * @param {string}      classname the class name.
 	 */
-	function removeClass( element, className ) {
-		var testName,
+	function removeclass( element, classname ) {
+		var testname,
 			classes;
 
-		if ( ! element || ! hasClass( element, className ) ) {
+		if ( ! element || ! hasclass( element, classname ) ) {
 			return;
 		}
 
-		if ( element.classList && element.classList.remove ) {
-			element.classList.remove( className );
+		if ( element.classlist && element.classlist.remove ) {
+			element.classlist.remove( classname );
 		} else {
-			testName = ' ' + className + ' ';
-			classes = ' ' + element.className + ' ';
+			testname = ' ' + classname + ' ';
+			classes = ' ' + element.classname + ' ';
 
-			while ( classes.indexOf( testName ) > -1 ) {
-				classes = classes.replace( testName, '' );
+			while ( classes.indexof( testname ) > -1 ) {
+				classes = classes.replace( testname, '' );
 			}
 
-			element.className = classes.replace( /^[\s]+|[\s]+$/g, '' );
+			element.classname = classes.replace( /^[\s]+|[\s]+$/g, '' );
 		}
 
-		var menuItemToggle = element.querySelector( 'a' );
-		if ( className === 'hover' && menuItemToggle && menuItemToggle.hasAttribute( 'aria-expanded' ) ) {
-			menuItemToggle.setAttribute( 'aria-expanded', 'false' );
+		var menuitemtoggle = element.queryselector( 'a' );
+		if ( classname === 'hover' && menuitemtoggle && menuitemtoggle.hasattribute( 'aria-expanded' ) ) {
+			menuitemtoggle.setattribute( 'aria-expanded', 'false' );
 		}
 	}
 
 	/**
-	 * Remove hover class for all menu items.
+	 * remove hover class for all menu items.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {NodeList} topMenuItems All menu items.
+	 * @param {nodelist} topmenuitems all menu items.
 	 */
-	function removeAllHoverClass( topMenuItems ) {
-		if ( topMenuItems && topMenuItems.length ) {
-			for ( var i = 0; i < topMenuItems.length; i++ ) {
-				removeClass( topMenuItems[i], 'hover' );
+	function removeallhoverclass( topmenuitems ) {
+		if ( topmenuitems && topmenuitems.length ) {
+			for ( var i = 0; i < topmenuitems.length; i++ ) {
+				removeclass( topmenuitems[i], 'hover' );
 			}
 		}
 	}
 
 	/**
-	 * Scrolls to the top of the page.
+	 * scrolls to the top of the page.
 	 *
 	 * @since 3.4.0
 	 *
-	 * @param {Event} event The Click event.
+	 * @param {event} event the click event.
 	 *
 	 * @return {void}
 	 */
-	function scrollToTop( event ) {
-		// Only scroll when clicking on the wpadminbar, not on menus or submenus.
+	function scrolltotop( event ) {
+		// only scroll when clicking on the wpadminbar, not on menus or submenus.
 		if (
 			event.target &&
 			event.target.id !== 'wpadminbar' &&
@@ -380,35 +380,35 @@
 		}
 
 		try {
-			window.scrollTo( {
+			window.scrollto( {
 				top: -32,
 				left: 0,
 				behavior: 'smooth'
 			} );
 		} catch ( er ) {
-			window.scrollTo( 0, -32 );
+			window.scrollto( 0, -32 );
 		}
 	}
 
 	/**
-	 * Get closest Element.
+	 * get closest element.
 	 *
 	 * @since 5.3.1
 	 *
-	 * @param {HTMLElement} el Element to get parent.
-	 * @param {string} selector CSS selector to match.
+	 * @param {htmlelement} el element to get parent.
+	 * @param {string} selector css selector to match.
 	 */
-	function getClosest( el, selector ) {
-		if ( ! window.Element.prototype.matches ) {
-			// Polyfill from https://developer.mozilla.org/en-US/docs/Web/API/Element/matches.
-			window.Element.prototype.matches =
-				window.Element.prototype.matchesSelector ||
-				window.Element.prototype.mozMatchesSelector ||
-				window.Element.prototype.msMatchesSelector ||
-				window.Element.prototype.oMatchesSelector ||
-				window.Element.prototype.webkitMatchesSelector ||
+	function getclosest( el, selector ) {
+		if ( ! window.element.prototype.matches ) {
+			// polyfill from https://developer.mozilla.org/en-us/docs/web/api/element/matches.
+			window.element.prototype.matches =
+				window.element.prototype.matchesselector ||
+				window.element.prototype.mozmatchesselector ||
+				window.element.prototype.msmatchesselector ||
+				window.element.prototype.omatchesselector ||
+				window.element.prototype.webkitmatchesselector ||
 				function( s ) {
-					var matches = ( this.document || this.ownerDocument ).querySelectorAll( s ),
+					var matches = ( this.document || this.ownerdocument ).queryselectorall( s ),
 						i = matches.length;
 
 					while ( --i >= 0 && matches.item( i ) !== this ) { }
@@ -417,8 +417,8 @@
 				};
 		}
 
-		// Get the closest matching elent.
-		for ( ; el && el !== document; el = el.parentNode ) {
+		// get the closest matching elent.
+		for ( ; el && el !== document; el = el.parentnode ) {
 			if ( el.matches( selector ) ) {
 				return el;
 			}
@@ -428,3 +428,5 @@
 	}
 
 } )( document, window, navigator );
+
+

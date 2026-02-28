@@ -4,14 +4,14 @@
 (function ( window, document ) {
 	'use strict';
 
-	var supportedBrowser = ( document.querySelector && window.addEventListener ),
+	var supportedbrowser = ( document.queryselector && window.addeventlistener ),
 		loaded = false,
 		secret,
-		secretTimeout,
+		secrettimeout,
 		resizing;
 
-	function sendEmbedMessage( message, value ) {
-		window.parent.postMessage( {
+	function sendembedmessage( message, value ) {
+		window.parent.postmessage( {
 			message: message,
 			value: value,
 			secret: secret
@@ -19,124 +19,124 @@
 	}
 
 	/**
-	 * Send the height message to the parent window.
+	 * send the height message to the parent window.
 	 */
-	function sendHeightMessage() {
-		sendEmbedMessage( 'height', Math.ceil( document.body.getBoundingClientRect().height ) );
+	function sendheightmessage() {
+		sendembedmessage( 'height', math.ceil( document.body.getboundingclientrect().height ) );
 	}
 
-	function onLoad() {
+	function onload() {
 		if ( loaded ) {
 			return;
 		}
 		loaded = true;
 
-		var share_dialog = document.querySelector( '.wp-embed-share-dialog' ),
-			share_dialog_open = document.querySelector( '.wp-embed-share-dialog-open' ),
-			share_dialog_close = document.querySelector( '.wp-embed-share-dialog-close' ),
-			share_input = document.querySelectorAll( '.wp-embed-share-input' ),
-			share_dialog_tabs = document.querySelectorAll( '.wp-embed-share-tab-button button' ),
-			featured_image = document.querySelector( '.wp-embed-featured-image img' ),
+		var share_dialog = document.queryselector( '.wp-embed-share-dialog' ),
+			share_dialog_open = document.queryselector( '.wp-embed-share-dialog-open' ),
+			share_dialog_close = document.queryselector( '.wp-embed-share-dialog-close' ),
+			share_input = document.queryselectorall( '.wp-embed-share-input' ),
+			share_dialog_tabs = document.queryselectorall( '.wp-embed-share-tab-button button' ),
+			featured_image = document.queryselector( '.wp-embed-featured-image img' ),
 			i;
 
 		if ( share_input ) {
 			for ( i = 0; i < share_input.length; i++ ) {
-				share_input[ i ].addEventListener( 'click', function ( e ) {
+				share_input[ i ].addeventlistener( 'click', function ( e ) {
 					e.target.select();
 				} );
 			}
 		}
 
-		function openSharingDialog() {
-			share_dialog.className = share_dialog.className.replace( 'hidden', '' );
-			// Initial focus should go on the currently selected tab in the dialog.
-			document.querySelector( '.wp-embed-share-tab-button [aria-selected="true"]' ).focus();
+		function opensharingdialog() {
+			share_dialog.classname = share_dialog.classname.replace( 'hidden', '' );
+			// initial focus should go on the currently selected tab in the dialog.
+			document.queryselector( '.wp-embed-share-tab-button [aria-selected="true"]' ).focus();
 		}
 
-		function closeSharingDialog() {
-			share_dialog.className += ' hidden';
-			document.querySelector( '.wp-embed-share-dialog-open' ).focus();
+		function closesharingdialog() {
+			share_dialog.classname += ' hidden';
+			document.queryselector( '.wp-embed-share-dialog-open' ).focus();
 		}
 
 		if ( share_dialog_open ) {
-			share_dialog_open.addEventListener( 'click', function () {
-				openSharingDialog();
+			share_dialog_open.addeventlistener( 'click', function () {
+				opensharingdialog();
 			} );
 		}
 
 		if ( share_dialog_close ) {
-			share_dialog_close.addEventListener( 'click', function () {
-				closeSharingDialog();
+			share_dialog_close.addeventlistener( 'click', function () {
+				closesharingdialog();
 			} );
 		}
 
-		function shareClickHandler( e ) {
-			var currentTab = document.querySelector( '.wp-embed-share-tab-button [aria-selected="true"]' );
-			currentTab.setAttribute( 'aria-selected', 'false' );
-			document.querySelector( '#' + currentTab.getAttribute( 'aria-controls' ) ).setAttribute( 'aria-hidden', 'true' );
+		function shareclickhandler( e ) {
+			var currenttab = document.queryselector( '.wp-embed-share-tab-button [aria-selected="true"]' );
+			currenttab.setattribute( 'aria-selected', 'false' );
+			document.queryselector( '#' + currenttab.getattribute( 'aria-controls' ) ).setattribute( 'aria-hidden', 'true' );
 
-			e.target.setAttribute( 'aria-selected', 'true' );
-			document.querySelector( '#' + e.target.getAttribute( 'aria-controls' ) ).setAttribute( 'aria-hidden', 'false' );
+			e.target.setattribute( 'aria-selected', 'true' );
+			document.queryselector( '#' + e.target.getattribute( 'aria-controls' ) ).setattribute( 'aria-hidden', 'false' );
 		}
 
-		function shareKeyHandler( e ) {
+		function sharekeyhandler( e ) {
 			var target = e.target,
-				previousSibling = target.parentElement.previousElementSibling,
-				nextSibling = target.parentElement.nextElementSibling,
-				newTab, newTabChild;
+				previoussibling = target.parentelement.previouselementsibling,
+				nextsibling = target.parentelement.nextelementsibling,
+				newtab, newtabchild;
 
-			if ( 37 === e.keyCode ) {
-				newTab = previousSibling;
-			} else if ( 39 === e.keyCode ) {
-				newTab = nextSibling;
+			if ( 37 === e.keycode ) {
+				newtab = previoussibling;
+			} else if ( 39 === e.keycode ) {
+				newtab = nextsibling;
 			} else {
 				return false;
 			}
 
-			if ( 'rtl' === document.documentElement.getAttribute( 'dir' ) ) {
-				newTab = ( newTab === previousSibling ) ? nextSibling : previousSibling;
+			if ( 'rtl' === document.documentelement.getattribute( 'dir' ) ) {
+				newtab = ( newtab === previoussibling ) ? nextsibling : previoussibling;
 			}
 
-			if ( newTab ) {
-				newTabChild = newTab.firstElementChild;
+			if ( newtab ) {
+				newtabchild = newtab.firstelementchild;
 
-				target.setAttribute( 'tabindex', '-1' );
-				target.setAttribute( 'aria-selected', false );
-				document.querySelector( '#' + target.getAttribute( 'aria-controls' ) ).setAttribute( 'aria-hidden', 'true' );
+				target.setattribute( 'tabindex', '-1' );
+				target.setattribute( 'aria-selected', false );
+				document.queryselector( '#' + target.getattribute( 'aria-controls' ) ).setattribute( 'aria-hidden', 'true' );
 
-				newTabChild.setAttribute( 'tabindex', '0' );
-				newTabChild.setAttribute( 'aria-selected', 'true' );
-				newTabChild.focus();
-				document.querySelector( '#' + newTabChild.getAttribute( 'aria-controls' ) ).setAttribute( 'aria-hidden', 'false' );
+				newtabchild.setattribute( 'tabindex', '0' );
+				newtabchild.setattribute( 'aria-selected', 'true' );
+				newtabchild.focus();
+				document.queryselector( '#' + newtabchild.getattribute( 'aria-controls' ) ).setattribute( 'aria-hidden', 'false' );
 			}
 		}
 
 		if ( share_dialog_tabs ) {
 			for ( i = 0; i < share_dialog_tabs.length; i++ ) {
-				share_dialog_tabs[ i ].addEventListener( 'click', shareClickHandler );
+				share_dialog_tabs[ i ].addeventlistener( 'click', shareclickhandler );
 
-				share_dialog_tabs[ i ].addEventListener( 'keydown', shareKeyHandler );
+				share_dialog_tabs[ i ].addeventlistener( 'keydown', sharekeyhandler );
 			}
 		}
 
-		document.addEventListener( 'keydown', function ( e ) {
-			if ( 27 === e.keyCode && -1 === share_dialog.className.indexOf( 'hidden' ) ) {
-				closeSharingDialog();
-			} else if ( 9 === e.keyCode ) {
-				constrainTabbing( e );
+		document.addeventlistener( 'keydown', function ( e ) {
+			if ( 27 === e.keycode && -1 === share_dialog.classname.indexof( 'hidden' ) ) {
+				closesharingdialog();
+			} else if ( 9 === e.keycode ) {
+				constraintabbing( e );
 			}
 		}, false );
 
-		function constrainTabbing( e ) {
-			// Need to re-get the selected tab each time.
-			var firstFocusable = document.querySelector( '.wp-embed-share-tab-button [aria-selected="true"]' );
+		function constraintabbing( e ) {
+			// need to re-get the selected tab each time.
+			var firstfocusable = document.queryselector( '.wp-embed-share-tab-button [aria-selected="true"]' );
 
-			if ( share_dialog_close === e.target && ! e.shiftKey ) {
-				firstFocusable.focus();
-				e.preventDefault();
-			} else if ( firstFocusable === e.target && e.shiftKey ) {
+			if ( share_dialog_close === e.target && ! e.shiftkey ) {
+				firstfocusable.focus();
+				e.preventdefault();
+			} else if ( firstfocusable === e.target && e.shiftkey ) {
 				share_dialog_close.focus();
-				e.preventDefault();
+				e.preventdefault();
 			}
 		}
 
@@ -144,60 +144,60 @@
 			return;
 		}
 
-		// Send this document's height to the parent (embedding) site.
-		sendHeightMessage();
+		// send this document's height to the parent (embedding) site.
+		sendheightmessage();
 
-		// Send the document's height again after the featured image has been loaded.
+		// send the document's height again after the featured image has been loaded.
 		if ( featured_image ) {
-			featured_image.addEventListener( 'load', sendHeightMessage );
+			featured_image.addeventlistener( 'load', sendheightmessage );
 		}
 
 		/**
-		 * Detect clicks to external (_top) links.
+		 * detect clicks to external (_top) links.
 		 */
-		function linkClickHandler( e ) {
+		function linkclickhandler( e ) {
 			var target = e.target,
 				href;
-			if ( target.hasAttribute( 'href' ) ) {
-				href = target.getAttribute( 'href' );
+			if ( target.hasattribute( 'href' ) ) {
+				href = target.getattribute( 'href' );
 			} else {
-				href = target.parentElement.getAttribute( 'href' );
+				href = target.parentelement.getattribute( 'href' );
 			}
 
-			// Only catch clicks from the primary mouse button, without any modifiers.
-			if ( event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ) {
+			// only catch clicks from the primary mouse button, without any modifiers.
+			if ( event.altkey || event.ctrlkey || event.metakey || event.shiftkey ) {
 				return;
 			}
 
-			// Send link target to the parent (embedding) site.
+			// send link target to the parent (embedding) site.
 			if ( href ) {
-				sendEmbedMessage( 'link', href );
-				e.preventDefault();
+				sendembedmessage( 'link', href );
+				e.preventdefault();
 			}
 		}
 
-		document.addEventListener( 'click', linkClickHandler );
+		document.addeventlistener( 'click', linkclickhandler );
 	}
 
 	/**
-	 * Iframe resize handler.
+	 * iframe resize handler.
 	 */
-	function onResize() {
+	function onresize() {
 		if ( window.self === window.top ) {
 			return;
 		}
 
-		clearTimeout( resizing );
+		cleartimeout( resizing );
 
-		resizing = setTimeout( sendHeightMessage, 100 );
+		resizing = settimeout( sendheightmessage, 100 );
 	}
 
 	/**
-	 * Message handler.
+	 * message handler.
 	 *
-	 * @param {MessageEvent} event
+	 * @param {messageevent} event
 	 */
-	function onMessage( event ) {
+	function onmessage( event ) {
 		var data = event.data;
 
 		if ( ! data ) {
@@ -217,33 +217,35 @@
 		}
 
 		if ( 'ready' === data.message ) {
-			sendHeightMessage();
+			sendheightmessage();
 		}
 	}
 
 	/**
-	 * Re-get the secret when it was added later on.
+	 * re-get the secret when it was added later on.
 	 */
-	function getSecret() {
+	function getsecret() {
 		if ( window.self === window.top || !!secret ) {
 			return;
 		}
 
 		secret = window.location.hash.replace( /.*secret=([\d\w]{10}).*/, '$1' );
 
-		clearTimeout( secretTimeout );
+		cleartimeout( secrettimeout );
 
-		secretTimeout = setTimeout( function () {
-			getSecret();
+		secrettimeout = settimeout( function () {
+			getsecret();
 		}, 100 );
 	}
 
-	if ( supportedBrowser ) {
-		getSecret();
-		document.documentElement.className = document.documentElement.className.replace( /\bno-js\b/, '' ) + ' js';
-		document.addEventListener( 'DOMContentLoaded', onLoad, false );
-		window.addEventListener( 'load', onLoad, false );
-		window.addEventListener( 'resize', onResize, false );
-		window.addEventListener( 'message', onMessage, false );
+	if ( supportedbrowser ) {
+		getsecret();
+		document.documentelement.classname = document.documentelement.classname.replace( /\bno-js\b/, '' ) + ' js';
+		document.addeventlistener( 'domcontentloaded', onload, false );
+		window.addeventlistener( 'load', onload, false );
+		window.addeventlistener( 'resize', onresize, false );
+		window.addeventlistener( 'message', onmessage, false );
 	}
 })( window, document );
+
+

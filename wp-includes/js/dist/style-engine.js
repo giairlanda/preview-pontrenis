@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,77 +10,77 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  compileCSS: () => (/* binding */ compileCSS),
-  getCSSRules: () => (/* binding */ getCSSRules),
-  getCSSValueFromRawStyle: () => (/* reexport */ getCSSValueFromRawStyle)
+  compilecss: () => (/* binding */ compilecss),
+  getcssrules: () => (/* binding */ getcssrules),
+  getcssvaluefromrawstyle: () => (/* reexport */ getcssvaluefromrawstyle)
 });
 
 ;// ./node_modules/tslib/tslib.es6.mjs
 /******************************************************************************
-Copyright (c) Microsoft Corporation.
+copyright (c) microsoft corporation.
 
-Permission to use, copy, modify, and/or distribute this software for any
+permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted.
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+the software is provided "as is" and the author disclaims all warranties with
+regard to this software including all implied warranties of merchantability
+and fitness. in no event shall the author be liable for any special, direct,
+indirect, or consequential damages or any damages whatsoever resulting from
+loss of use, data or profits, whether in an action of contract, negligence or
+other tortious action, arising out of or in connection with the use or
+performance of this software.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
+/* global reflect, promise, suppressederror, symbol, iterator */
 
-var extendStatics = function(d, b) {
-  extendStatics = Object.setPrototypeOf ||
-      ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-      function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-  return extendStatics(d, b);
+var extendstatics = function(d, b) {
+  extendstatics = object.setprototypeof ||
+      ({ __proto__: [] } instanceof array && function (d, b) { d.__proto__ = b; }) ||
+      function (d, b) { for (var p in b) if (object.prototype.hasownproperty.call(b, p)) d[p] = b[p]; };
+  return extendstatics(d, b);
 };
 
 function __extends(d, b) {
   if (typeof b !== "function" && b !== null)
-      throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-  extendStatics(d, b);
+      throw new typeerror("class extends value " + string(b) + " is not a constructor or null");
+  extendstatics(d, b);
   function __() { this.constructor = d; }
-  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  d.prototype = b === null ? object.create(b) : (__.prototype = b.prototype, new __());
 }
 
 var __assign = function() {
-  __assign = Object.assign || function __assign(t) {
+  __assign = object.assign || function __assign(t) {
       for (var s, i = 1, n = arguments.length; i < n; i++) {
           s = arguments[i];
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          for (var p in s) if (object.prototype.hasownproperty.call(s, p)) t[p] = s[p];
       }
       return t;
   }
@@ -89,42 +89,42 @@ var __assign = function() {
 
 function __rest(s, e) {
   var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+  for (var p in s) if (object.prototype.hasownproperty.call(s, p) && e.indexof(p) < 0)
       t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function")
-      for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-          if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+  if (s != null && typeof object.getownpropertysymbols === "function")
+      for (var i = 0, p = object.getownpropertysymbols(s); i < p.length; i++) {
+          if (e.indexof(p[i]) < 0 && object.prototype.propertyisenumerable.call(s, p[i]))
               t[p[i]] = s[p[i]];
       }
   return t;
 }
 
 function __decorate(decorators, target, key, desc) {
-  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = object.getownpropertydescriptor(target, key) : desc, d;
+  if (typeof reflect === "object" && typeof reflect.decorate === "function") r = reflect.decorate(decorators, target, key, desc);
   else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
+  return c > 3 && r && object.defineproperty(target, key, r), r;
 }
 
-function __param(paramIndex, decorator) {
-  return function (target, key) { decorator(target, key, paramIndex); }
+function __param(paramindex, decorator) {
+  return function (target, key) { decorator(target, key, paramindex); }
 }
 
-function __esDecorate(ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
-  function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
-  var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
-  var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
-  var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
+function __esdecorate(ctor, descriptorin, decorators, contextin, initializers, extrainitializers) {
+  function accept(f) { if (f !== void 0 && typeof f !== "function") throw new typeerror("function expected"); return f; }
+  var kind = contextin.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
+  var target = !descriptorin && ctor ? contextin["static"] ? ctor : ctor.prototype : null;
+  var descriptor = descriptorin || (target ? object.getownpropertydescriptor(target, contextin.name) : {});
   var _, done = false;
   for (var i = decorators.length - 1; i >= 0; i--) {
       var context = {};
-      for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
-      for (var p in contextIn.access) context.access[p] = contextIn.access[p];
-      context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
+      for (var p in contextin) context[p] = p === "access" ? {} : contextin[p];
+      for (var p in contextin.access) context.access[p] = contextin.access[p];
+      context.addinitializer = function (f) { if (done) throw new typeerror("cannot add initializers after decoration has completed"); extrainitializers.push(accept(f || null)); };
       var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
       if (kind === "accessor") {
           if (result === void 0) continue;
-          if (result === null || typeof result !== "object") throw new TypeError("Object expected");
+          if (result === null || typeof result !== "object") throw new typeerror("object expected");
           if (_ = accept(result.get)) descriptor.get = _;
           if (_ = accept(result.set)) descriptor.set = _;
           if (_ = accept(result.init)) initializers.unshift(_);
@@ -134,47 +134,47 @@ function __esDecorate(ctor, descriptorIn, decorators, contextIn, initializers, e
           else descriptor[key] = _;
       }
   }
-  if (target) Object.defineProperty(target, contextIn.name, descriptor);
+  if (target) object.defineproperty(target, contextin.name, descriptor);
   done = true;
 };
 
-function __runInitializers(thisArg, initializers, value) {
-  var useValue = arguments.length > 2;
+function __runinitializers(thisarg, initializers, value) {
+  var usevalue = arguments.length > 2;
   for (var i = 0; i < initializers.length; i++) {
-      value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+      value = usevalue ? initializers[i].call(thisarg, value) : initializers[i].call(thisarg);
   }
-  return useValue ? value : void 0;
+  return usevalue ? value : void 0;
 };
 
-function __propKey(x) {
+function __propkey(x) {
   return typeof x === "symbol" ? x : "".concat(x);
 };
 
-function __setFunctionName(f, name, prefix) {
+function __setfunctionname(f, name, prefix) {
   if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
-  return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
+  return object.defineproperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 
-function __metadata(metadataKey, metadataValue) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+function __metadata(metadatakey, metadatavalue) {
+  if (typeof reflect === "object" && typeof reflect.metadata === "function") return reflect.metadata(metadatakey, metadatavalue);
 }
 
-function __awaiter(thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
+function __awaiter(thisarg, _arguments, p, generator) {
+  function adopt(value) { return value instanceof p ? value : new p(function (resolve) { resolve(value); }); }
+  return new (p || (p = promise))(function (resolve, reject) {
       function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
       function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
       function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-      step((generator = generator.apply(thisArg, _arguments || [])).next());
+      step((generator = generator.apply(thisarg, _arguments || [])).next());
   });
 }
 
-function __generator(thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+function __generator(thisarg, body) {
+  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = object.create((typeof iterator === "function" ? iterator : object).prototype);
+  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof symbol === "function" && (g[symbol.iterator] = function() { return this; }), g;
   function verb(n) { return function (v) { return step([n, v]); }; }
   function step(op) {
-      if (f) throw new TypeError("Generator is already executing.");
+      if (f) throw new typeerror("generator is already executing.");
       while (g && (g = 0, op[0] && (_ = 0)), _) try {
           if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
           if (y = 0, t) op = [op[0] & 2, t.value];
@@ -191,30 +191,30 @@ function __generator(thisArg, body) {
                   if (t[2]) _.ops.pop();
                   _.trys.pop(); continue;
           }
-          op = body.call(thisArg, _);
+          op = body.call(thisarg, _);
       } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
       if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
   }
 }
 
-var __createBinding = Object.create ? (function(o, m, k, k2) {
+var __createbinding = object.create ? (function(o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  var desc = Object.getOwnPropertyDescriptor(m, k);
-  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+  var desc = object.getownpropertydescriptor(m, k);
+  if (!desc || ("get" in desc ? !m.__esmodule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
   }
-  Object.defineProperty(o, k2, desc);
+  object.defineproperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
 });
 
-function __exportStar(m, o) {
-  for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+function __exportstar(m, o) {
+  for (var p in m) if (p !== "default" && !object.prototype.hasownproperty.call(o, p)) __createbinding(o, m, p);
 }
 
 function __values(o) {
-  var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+  var s = typeof symbol === "function" && symbol.iterator, m = s && o[s], i = 0;
   if (m) return m.call(o);
   if (o && typeof o.length === "number") return {
       next: function () {
@@ -222,11 +222,11 @@ function __values(o) {
           return { value: o && o[i++], done: !o };
       }
   };
-  throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+  throw new typeerror(s ? "object is not iterable." : "symbol.iterator is not defined.");
 }
 
 function __read(o, n) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  var m = typeof symbol === "function" && o[symbol.iterator];
   if (!m) return o;
   var i = m.call(o), r, ar = [], e;
   try {
@@ -250,120 +250,120 @@ function __spread() {
 }
 
 /** @deprecated */
-function __spreadArrays() {
+function __spreadarrays() {
   for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-  for (var r = Array(s), k = 0, i = 0; i < il; i++)
+  for (var r = array(s), k = 0, i = 0; i < il; i++)
       for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
           r[k] = a[j];
   return r;
 }
 
-function __spreadArray(to, from, pack) {
+function __spreadarray(to, from, pack) {
   if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
       if (ar || !(i in from)) {
-          if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+          if (!ar) ar = array.prototype.slice.call(from, 0, i);
           ar[i] = from[i];
       }
   }
-  return to.concat(ar || Array.prototype.slice.call(from));
+  return to.concat(ar || array.prototype.slice.call(from));
 }
 
 function __await(v) {
   return this instanceof __await ? (this.v = v, this) : new __await(v);
 }
 
-function __asyncGenerator(thisArg, _arguments, generator) {
-  if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var g = generator.apply(thisArg, _arguments || []), i, q = [];
-  return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
-  function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
-  function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
+function __asyncgenerator(thisarg, _arguments, generator) {
+  if (!symbol.asynciterator) throw new typeerror("symbol.asynciterator is not defined.");
+  var g = generator.apply(thisarg, _arguments || []), i, q = [];
+  return i = object.create((typeof asynciterator === "function" ? asynciterator : object).prototype), verb("next"), verb("throw"), verb("return", awaitreturn), i[symbol.asynciterator] = function () { return this; }, i;
+  function awaitreturn(f) { return function (v) { return promise.resolve(v).then(f, reject); }; }
+  function verb(n, f) { if (g[n]) { i[n] = function (v) { return new promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
   function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
-  function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+  function step(r) { r.value instanceof __await ? promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
   function fulfill(value) { resume("next", value); }
   function reject(value) { resume("throw", value); }
   function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
 }
 
-function __asyncDelegator(o) {
+function __asyncdelegator(o) {
   var i, p;
-  return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+  return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[symbol.iterator] = function () { return this; }, i;
   function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: false } : f ? f(v) : v; } : f; }
 }
 
-function __asyncValues(o) {
-  if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var m = o[Symbol.asyncIterator], i;
-  return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-  function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-  function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+function __asyncvalues(o) {
+  if (!symbol.asynciterator) throw new typeerror("symbol.asynciterator is not defined.");
+  var m = o[symbol.asynciterator], i;
+  return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[symbol.asynciterator] = function () { return this; }, i);
+  function verb(n) { i[n] = o[n] && function (v) { return new promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+  function settle(resolve, reject, d, v) { promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 }
 
-function __makeTemplateObject(cooked, raw) {
-  if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+function __maketemplateobject(cooked, raw) {
+  if (object.defineproperty) { object.defineproperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
   return cooked;
 };
 
-var __setModuleDefault = Object.create ? (function(o, v) {
-  Object.defineProperty(o, "default", { enumerable: true, value: v });
+var __setmoduledefault = object.create ? (function(o, v) {
+  object.defineproperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
   o["default"] = v;
 };
 
-var ownKeys = function(o) {
-  ownKeys = Object.getOwnPropertyNames || function (o) {
+var ownkeys = function(o) {
+  ownkeys = object.getownpropertynames || function (o) {
     var ar = [];
-    for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+    for (var k in o) if (object.prototype.hasownproperty.call(o, k)) ar[ar.length] = k;
     return ar;
   };
-  return ownKeys(o);
+  return ownkeys(o);
 };
 
-function __importStar(mod) {
-  if (mod && mod.__esModule) return mod;
+function __importstar(mod) {
+  if (mod && mod.__esmodule) return mod;
   var result = {};
-  if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-  __setModuleDefault(result, mod);
+  if (mod != null) for (var k = ownkeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createbinding(result, mod, k[i]);
+  __setmoduledefault(result, mod);
   return result;
 }
 
-function __importDefault(mod) {
-  return (mod && mod.__esModule) ? mod : { default: mod };
+function __importdefault(mod) {
+  return (mod && mod.__esmodule) ? mod : { default: mod };
 }
 
-function __classPrivateFieldGet(receiver, state, kind, f) {
-  if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+function __classprivatefieldget(receiver, state, kind, f) {
+  if (kind === "a" && !f) throw new typeerror("private accessor was defined without a getter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new typeerror("cannot read private member from an object whose class did not declare it");
   return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 }
 
-function __classPrivateFieldSet(receiver, state, value, kind, f) {
-  if (kind === "m") throw new TypeError("Private method is not writable");
-  if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+function __classprivatefieldset(receiver, state, value, kind, f) {
+  if (kind === "m") throw new typeerror("private method is not writable");
+  if (kind === "a" && !f) throw new typeerror("private accessor was defined without a setter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new typeerror("cannot write private member to an object whose class did not declare it");
   return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 }
 
-function __classPrivateFieldIn(state, receiver) {
-  if (receiver === null || (typeof receiver !== "object" && typeof receiver !== "function")) throw new TypeError("Cannot use 'in' operator on non-object");
+function __classprivatefieldin(state, receiver) {
+  if (receiver === null || (typeof receiver !== "object" && typeof receiver !== "function")) throw new typeerror("cannot use 'in' operator on non-object");
   return typeof state === "function" ? receiver === state : state.has(receiver);
 }
 
-function __addDisposableResource(env, value, async) {
+function __adddisposableresource(env, value, async) {
   if (value !== null && value !== void 0) {
-    if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected.");
+    if (typeof value !== "object" && typeof value !== "function") throw new typeerror("object expected.");
     var dispose, inner;
     if (async) {
-      if (!Symbol.asyncDispose) throw new TypeError("Symbol.asyncDispose is not defined.");
-      dispose = value[Symbol.asyncDispose];
+      if (!symbol.asyncdispose) throw new typeerror("symbol.asyncdispose is not defined.");
+      dispose = value[symbol.asyncdispose];
     }
     if (dispose === void 0) {
-      if (!Symbol.dispose) throw new TypeError("Symbol.dispose is not defined.");
-      dispose = value[Symbol.dispose];
+      if (!symbol.dispose) throw new typeerror("symbol.dispose is not defined.");
+      dispose = value[symbol.dispose];
       if (async) inner = dispose;
     }
-    if (typeof dispose !== "function") throw new TypeError("Object not disposable.");
-    if (inner) dispose = function() { try { inner.call(this); } catch (e) { return Promise.reject(e); } };
+    if (typeof dispose !== "function") throw new typeerror("object not disposable.");
+    if (inner) dispose = function() { try { inner.call(this); } catch (e) { return promise.reject(e); } };
     env.stack.push({ value: value, dispose: dispose, async: async });
   }
   else if (async) {
@@ -372,24 +372,24 @@ function __addDisposableResource(env, value, async) {
   return value;
 }
 
-var _SuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-  var e = new Error(message);
-  return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+var _suppressederror = typeof suppressederror === "function" ? suppressederror : function (error, suppressed, message) {
+  var e = new error(message);
+  return e.name = "suppressederror", e.error = error, e.suppressed = suppressed, e;
 };
 
-function __disposeResources(env) {
+function __disposeresources(env) {
   function fail(e) {
-    env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
-    env.hasError = true;
+    env.error = env.haserror ? new _suppressederror(e, env.error, "an error was suppressed during disposal.") : e;
+    env.haserror = true;
   }
   var r, s = 0;
   function next() {
     while (r = env.stack.pop()) {
       try {
-        if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
+        if (!r.async && s === 1) return s = 0, env.stack.push(r), promise.resolve().then(next);
         if (r.dispose) {
           var result = r.dispose.call(r.value);
-          if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+          if (r.async) return s |= 2, promise.resolve(result).then(next, function(e) { fail(e); return next(); });
         }
         else s |= 1;
       }
@@ -397,16 +397,16 @@ function __disposeResources(env) {
         fail(e);
       }
     }
-    if (s === 1) return env.hasError ? Promise.reject(env.error) : Promise.resolve();
-    if (env.hasError) throw env.error;
+    if (s === 1) return env.haserror ? promise.reject(env.error) : promise.resolve();
+    if (env.haserror) throw env.error;
   }
   return next();
 }
 
-function __rewriteRelativeImportExtension(path, preserveJsx) {
+function __rewriterelativeimportextension(path, preservejsx) {
   if (typeof path === "string" && /^\.\.?\//.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
-          return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
+          return tsx ? preservejsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.tolowercase() + "js");
       });
   }
   return path;
@@ -418,112 +418,112 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
   __rest,
   __decorate,
   __param,
-  __esDecorate,
-  __runInitializers,
-  __propKey,
-  __setFunctionName,
+  __esdecorate,
+  __runinitializers,
+  __propkey,
+  __setfunctionname,
   __metadata,
   __awaiter,
   __generator,
-  __createBinding,
-  __exportStar,
+  __createbinding,
+  __exportstar,
   __values,
   __read,
   __spread,
-  __spreadArrays,
-  __spreadArray,
+  __spreadarrays,
+  __spreadarray,
   __await,
-  __asyncGenerator,
-  __asyncDelegator,
-  __asyncValues,
-  __makeTemplateObject,
-  __importStar,
-  __importDefault,
-  __classPrivateFieldGet,
-  __classPrivateFieldSet,
-  __classPrivateFieldIn,
-  __addDisposableResource,
-  __disposeResources,
-  __rewriteRelativeImportExtension,
+  __asyncgenerator,
+  __asyncdelegator,
+  __asyncvalues,
+  __maketemplateobject,
+  __importstar,
+  __importdefault,
+  __classprivatefieldget,
+  __classprivatefieldset,
+  __classprivatefieldin,
+  __adddisposableresource,
+  __disposeresources,
+  __rewriterelativeimportextension,
 });
 
 ;// ./node_modules/lower-case/dist.es2015/index.js
 /**
- * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
+ * source: ftp://ftp.unicode.org/public/ucd/latest/ucd/specialcasing.txt
  */
-var SUPPORTED_LOCALE = {
+var supported_locale = {
     tr: {
         regexp: /\u0130|\u0049|\u0049\u0307/g,
         map: {
-            Ä°: "\u0069",
-            I: "\u0131",
-            IÌ‡: "\u0069",
+            ä°: "\u0069",
+            i: "\u0131",
+            iì‡: "\u0069",
         },
     },
     az: {
         regexp: /\u0130/g,
         map: {
-            Ä°: "\u0069",
-            I: "\u0131",
-            IÌ‡: "\u0069",
+            ä°: "\u0069",
+            i: "\u0131",
+            iì‡: "\u0069",
         },
     },
     lt: {
-        regexp: /\u0049|\u004A|\u012E|\u00CC|\u00CD|\u0128/g,
+        regexp: /\u0049|\u004a|\u012e|\u00cc|\u00cd|\u0128/g,
         map: {
-            I: "\u0069\u0307",
-            J: "\u006A\u0307",
-            Ä®: "\u012F\u0307",
-            ÃŒ: "\u0069\u0307\u0300",
-            Ã: "\u0069\u0307\u0301",
-            Ä¨: "\u0069\u0307\u0303",
+            i: "\u0069\u0307",
+            j: "\u006a\u0307",
+            ä®: "\u012f\u0307",
+            ãœ: "\u0069\u0307\u0300",
+            ã: "\u0069\u0307\u0301",
+            ä¨: "\u0069\u0307\u0303",
         },
     },
 };
 /**
- * Localized lower case.
+ * localized lower case.
  */
-function localeLowerCase(str, locale) {
-    var lang = SUPPORTED_LOCALE[locale.toLowerCase()];
+function localelowercase(str, locale) {
+    var lang = supported_locale[locale.tolowercase()];
     if (lang)
-        return lowerCase(str.replace(lang.regexp, function (m) { return lang.map[m]; }));
-    return lowerCase(str);
+        return lowercase(str.replace(lang.regexp, function (m) { return lang.map[m]; }));
+    return lowercase(str);
 }
 /**
- * Lower case as a function.
+ * lower case as a function.
  */
-function lowerCase(str) {
-    return str.toLowerCase();
+function lowercase(str) {
+    return str.tolowercase();
 }
 
 ;// ./node_modules/no-case/dist.es2015/index.js
 
-// Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
-var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
-// Remove all non-word characters.
-var DEFAULT_STRIP_REGEXP = /[^A-Z0-9]+/gi;
+// support camel case ("camelcase" -> "camel case" and "camelcase" -> "camel case").
+var default_split_regexp = [/([a-z0-9])([a-z])/g, /([a-z])([a-z][a-z])/g];
+// remove all non-word characters.
+var default_strip_regexp = /[^a-z0-9]+/gi;
 /**
- * Normalize the string into something other libraries can manipulate easier.
+ * normalize the string into something other libraries can manipulate easier.
  */
-function noCase(input, options) {
+function nocase(input, options) {
     if (options === void 0) { options = {}; }
-    var _a = options.splitRegexp, splitRegexp = _a === void 0 ? DEFAULT_SPLIT_REGEXP : _a, _b = options.stripRegexp, stripRegexp = _b === void 0 ? DEFAULT_STRIP_REGEXP : _b, _c = options.transform, transform = _c === void 0 ? lowerCase : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
-    var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
+    var _a = options.splitregexp, splitregexp = _a === void 0 ? default_split_regexp : _a, _b = options.stripregexp, stripregexp = _b === void 0 ? default_strip_regexp : _b, _c = options.transform, transform = _c === void 0 ? lowercase : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
+    var result = replace(replace(input, splitregexp, "$1\0$2"), stripregexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
-    while (result.charAt(start) === "\0")
+    // trim the delimiter from around the output string.
+    while (result.charat(start) === "\0")
         start++;
-    while (result.charAt(end - 1) === "\0")
+    while (result.charat(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    // transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
- * Replace `re` in the input string with the replacement value.
+ * replace `re` in the input string with the replacement value.
  */
 function replace(input, re, value) {
-    if (re instanceof RegExp)
+    if (re instanceof regexp)
         return input.replace(re, value);
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
@@ -531,72 +531,72 @@ function replace(input, re, value) {
 ;// ./node_modules/dot-case/dist.es2015/index.js
 
 
-function dotCase(input, options) {
+function dotcase(input, options) {
     if (options === void 0) { options = {}; }
-    return noCase(input, __assign({ delimiter: "." }, options));
+    return nocase(input, __assign({ delimiter: "." }, options));
 }
 
 ;// ./node_modules/param-case/dist.es2015/index.js
 
 
-function paramCase(input, options) {
+function paramcase(input, options) {
     if (options === void 0) { options = {}; }
-    return dotCase(input, __assign({ delimiter: "-" }, options));
+    return dotcase(input, __assign({ delimiter: "-" }, options));
 }
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/constants.js
-const VARIABLE_REFERENCE_PREFIX = "var:";
-const VARIABLE_PATH_SEPARATOR_TOKEN_ATTRIBUTE = "|";
-const VARIABLE_PATH_SEPARATOR_TOKEN_STYLE = "--";
+const variable_reference_prefix = "var:";
+const variable_path_separator_token_attribute = "|";
+const variable_path_separator_token_style = "--";
 
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/utils.js
 
 
-const getStyleValueByPath = (object, path) => {
+const getstylevaluebypath = (object, path) => {
   let value = object;
-  path.forEach((fieldName) => {
-    value = value?.[fieldName];
+  path.foreach((fieldname) => {
+    value = value?.[fieldname];
   });
   return value;
 };
-function generateRule(style, options, path, ruleKey) {
-  const styleValue = getStyleValueByPath(style, path);
-  return styleValue ? [
+function generaterule(style, options, path, rulekey) {
+  const stylevalue = getstylevaluebypath(style, path);
+  return stylevalue ? [
     {
       selector: options?.selector,
-      key: ruleKey,
-      value: getCSSValueFromRawStyle(styleValue)
+      key: rulekey,
+      value: getcssvaluefromrawstyle(stylevalue)
     }
   ] : [];
 }
-function generateBoxRules(style, options, path, ruleKeys, individualProperties = ["top", "right", "bottom", "left"]) {
-  const boxStyle = getStyleValueByPath(
+function generateboxrules(style, options, path, rulekeys, individualproperties = ["top", "right", "bottom", "left"]) {
+  const boxstyle = getstylevaluebypath(
     style,
     path
   );
-  if (!boxStyle) {
+  if (!boxstyle) {
     return [];
   }
   const rules = [];
-  if (typeof boxStyle === "string") {
+  if (typeof boxstyle === "string") {
     rules.push({
       selector: options?.selector,
-      key: ruleKeys.default,
-      value: getCSSValueFromRawStyle(boxStyle)
+      key: rulekeys.default,
+      value: getcssvaluefromrawstyle(boxstyle)
     });
   } else {
-    const sideRules = individualProperties.reduce(
+    const siderules = individualproperties.reduce(
       (acc, side) => {
-        const value = getCSSValueFromRawStyle(
-          getStyleValueByPath(boxStyle, [side])
+        const value = getcssvaluefromrawstyle(
+          getstylevaluebypath(boxstyle, [side])
         );
         if (value) {
           acc.push({
             selector: options?.selector,
-            key: ruleKeys?.individual.replace(
+            key: rulekeys?.individual.replace(
               "%s",
-              upperFirst(side)
+              upperfirst(side)
             ),
             value
           });
@@ -605,42 +605,42 @@ function generateBoxRules(style, options, path, ruleKeys, individualProperties =
       },
       []
     );
-    rules.push(...sideRules);
+    rules.push(...siderules);
   }
   return rules;
 }
-function getCSSValueFromRawStyle(styleValue) {
-  if (typeof styleValue === "string" && styleValue.startsWith(VARIABLE_REFERENCE_PREFIX)) {
-    const variable = styleValue.slice(VARIABLE_REFERENCE_PREFIX.length).split(VARIABLE_PATH_SEPARATOR_TOKEN_ATTRIBUTE).map(
-      (presetVariable) => paramCase(presetVariable, {
-        splitRegexp: [
-          /([a-z0-9])([A-Z])/g,
-          // fooBar => foo-bar, 3Bar => 3-bar
+function getcssvaluefromrawstyle(stylevalue) {
+  if (typeof stylevalue === "string" && stylevalue.startswith(variable_reference_prefix)) {
+    const variable = stylevalue.slice(variable_reference_prefix.length).split(variable_path_separator_token_attribute).map(
+      (presetvariable) => paramcase(presetvariable, {
+        splitregexp: [
+          /([a-z0-9])([a-z])/g,
+          // foobar => foo-bar, 3bar => 3-bar
           /([0-9])([a-z])/g,
           // 3bar => 3-bar
-          /([A-Za-z])([0-9])/g,
-          // Foo3 => foo-3, foo3 => foo-3
-          /([A-Z])([A-Z][a-z])/g
-          // FOOBar => foo-bar
+          /([a-za-z])([0-9])/g,
+          // foo3 => foo-3, foo3 => foo-3
+          /([a-z])([a-z][a-z])/g
+          // foobar => foo-bar
         ]
       })
-    ).join(VARIABLE_PATH_SEPARATOR_TOKEN_STYLE);
+    ).join(variable_path_separator_token_style);
     return `var(--wp--${variable})`;
   }
-  return styleValue;
+  return stylevalue;
 }
-function upperFirst(string) {
-  const [firstLetter, ...rest] = string;
-  return firstLetter.toUpperCase() + rest.join("");
+function upperfirst(string) {
+  const [firstletter, ...rest] = string;
+  return firstletter.touppercase() + rest.join("");
 }
-function camelCaseJoin(strings) {
-  const [firstItem, ...rest] = strings;
-  return firstItem.toLowerCase() + rest.map(upperFirst).join("");
+function camelcasejoin(strings) {
+  const [firstitem, ...rest] = strings;
+  return firstitem.tolowercase() + rest.map(upperfirst).join("");
 }
-function safeDecodeURI(uri) {
+function safedecodeuri(uri) {
   try {
-    return decodeURI(uri);
-  } catch (uriError) {
+    return decodeuri(uri);
+  } catch (urierror) {
     return uri;
   }
 }
@@ -648,69 +648,69 @@ function safeDecodeURI(uri) {
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/border/index.js
 
-function createBorderGenerateFunction(path) {
-  return (style, options) => generateRule(style, options, path, camelCaseJoin(path));
+function createbordergeneratefunction(path) {
+  return (style, options) => generaterule(style, options, path, camelcasejoin(path));
 }
-function createBorderEdgeGenerateFunction(edge) {
+function createborderedgegeneratefunction(edge) {
   return (style, options) => {
-    return ["color", "style", "width"].flatMap((key) => {
+    return ["color", "style", "width"].flatmap((key) => {
       const path = ["border", edge, key];
-      return createBorderGenerateFunction(path)(style, options);
+      return createbordergeneratefunction(path)(style, options);
     });
   };
 }
 const color = {
   name: "color",
-  generate: createBorderGenerateFunction(["border", "color"])
+  generate: createbordergeneratefunction(["border", "color"])
 };
 const radius = {
   name: "radius",
   generate: (style, options) => {
-    return generateBoxRules(
+    return generateboxrules(
       style,
       options,
       ["border", "radius"],
       {
-        default: "borderRadius",
-        individual: "border%sRadius"
+        default: "borderradius",
+        individual: "border%sradius"
       },
-      ["topLeft", "topRight", "bottomLeft", "bottomRight"]
+      ["topleft", "topright", "bottomleft", "bottomright"]
     );
   }
 };
-const borderStyle = {
+const borderstyle = {
   name: "style",
-  generate: createBorderGenerateFunction(["border", "style"])
+  generate: createbordergeneratefunction(["border", "style"])
 };
 const width = {
   name: "width",
-  generate: createBorderGenerateFunction(["border", "width"])
+  generate: createbordergeneratefunction(["border", "width"])
 };
-const borderTop = {
-  name: "borderTop",
-  generate: createBorderEdgeGenerateFunction("top")
+const bordertop = {
+  name: "bordertop",
+  generate: createborderedgegeneratefunction("top")
 };
-const borderRight = {
-  name: "borderRight",
-  generate: createBorderEdgeGenerateFunction("right")
+const borderright = {
+  name: "borderright",
+  generate: createborderedgegeneratefunction("right")
 };
-const borderBottom = {
-  name: "borderBottom",
-  generate: createBorderEdgeGenerateFunction("bottom")
+const borderbottom = {
+  name: "borderbottom",
+  generate: createborderedgegeneratefunction("bottom")
 };
-const borderLeft = {
-  name: "borderLeft",
-  generate: createBorderEdgeGenerateFunction("left")
+const borderleft = {
+  name: "borderleft",
+  generate: createborderedgegeneratefunction("left")
 };
 var border_default = [
   color,
-  borderStyle,
+  borderstyle,
   width,
   radius,
-  borderTop,
-  borderRight,
-  borderBottom,
-  borderLeft
+  bordertop,
+  borderright,
+  borderbottom,
+  borderleft
 ];
 
 
@@ -719,11 +719,11 @@ var border_default = [
 const background = {
   name: "background",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
       ["color", "background"],
-      "backgroundColor"
+      "backgroundcolor"
     );
   }
 };
@@ -735,7 +735,7 @@ var background_default = background;
 const gradient = {
   name: "gradient",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
       ["color", "gradient"],
@@ -751,7 +751,7 @@ var gradient_default = gradient;
 const text_text = {
   name: "text",
   generate: (style, options) => {
-    return generateRule(style, options, ["color", "text"], "color");
+    return generaterule(style, options, ["color", "text"], "color");
   }
 };
 var text_default = text_text;
@@ -766,107 +766,107 @@ var color_default = [text_default, gradient_default, background_default];
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/dimensions/index.js
 
-const minHeight = {
-  name: "minHeight",
+const minheight = {
+  name: "minheight",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["dimensions", "minHeight"],
-      "minHeight"
+      ["dimensions", "minheight"],
+      "minheight"
     );
   }
 };
-const aspectRatio = {
-  name: "aspectRatio",
+const aspectratio = {
+  name: "aspectratio",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["dimensions", "aspectRatio"],
-      "aspectRatio"
+      ["dimensions", "aspectratio"],
+      "aspectratio"
     );
   }
 };
-var dimensions_default = [minHeight, aspectRatio];
+var dimensions_default = [minheight, aspectratio];
 
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/background/index.js
 
-const backgroundImage = {
-  name: "backgroundImage",
+const backgroundimage = {
+  name: "backgroundimage",
   generate: (style, options) => {
-    const _backgroundImage = style?.background?.backgroundImage;
-    if (typeof _backgroundImage === "object" && _backgroundImage?.url) {
+    const _backgroundimage = style?.background?.backgroundimage;
+    if (typeof _backgroundimage === "object" && _backgroundimage?.url) {
       return [
         {
           selector: options.selector,
-          key: "backgroundImage",
-          // Passed `url` may already be encoded. To prevent double encoding, decodeURI is executed to revert to the original string.
-          value: `url( '${encodeURI(
-            safeDecodeURI(_backgroundImage.url)
+          key: "backgroundimage",
+          // passed `url` may already be encoded. to prevent double encoding, decodeuri is executed to revert to the original string.
+          value: `url( '${encodeuri(
+            safedecodeuri(_backgroundimage.url)
           )}' )`
         }
       ];
     }
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["background", "backgroundImage"],
-      "backgroundImage"
+      ["background", "backgroundimage"],
+      "backgroundimage"
     );
   }
 };
-const backgroundPosition = {
-  name: "backgroundPosition",
+const backgroundposition = {
+  name: "backgroundposition",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["background", "backgroundPosition"],
-      "backgroundPosition"
+      ["background", "backgroundposition"],
+      "backgroundposition"
     );
   }
 };
-const backgroundRepeat = {
-  name: "backgroundRepeat",
+const backgroundrepeat = {
+  name: "backgroundrepeat",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["background", "backgroundRepeat"],
-      "backgroundRepeat"
+      ["background", "backgroundrepeat"],
+      "backgroundrepeat"
     );
   }
 };
-const backgroundSize = {
-  name: "backgroundSize",
+const backgroundsize = {
+  name: "backgroundsize",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["background", "backgroundSize"],
-      "backgroundSize"
+      ["background", "backgroundsize"],
+      "backgroundsize"
     );
   }
 };
-const backgroundAttachment = {
-  name: "backgroundAttachment",
+const backgroundattachment = {
+  name: "backgroundattachment",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["background", "backgroundAttachment"],
-      "backgroundAttachment"
+      ["background", "backgroundattachment"],
+      "backgroundattachment"
     );
   }
 };
 var background_background_default = [
-  backgroundImage,
-  backgroundPosition,
-  backgroundRepeat,
-  backgroundSize,
-  backgroundAttachment
+  backgroundimage,
+  backgroundposition,
+  backgroundrepeat,
+  backgroundsize,
+  backgroundattachment
 ];
 
 
@@ -875,7 +875,7 @@ var background_background_default = [
 const shadow = {
   name: "shadow",
   generate: (style, options) => {
-    return generateRule(style, options, ["shadow"], "boxShadow");
+    return generaterule(style, options, ["shadow"], "boxshadow");
   }
 };
 var shadow_default = [shadow];
@@ -885,29 +885,29 @@ var shadow_default = [shadow];
 
 const outline_color = {
   name: "color",
-  generate: (style, options, path = ["outline", "color"], ruleKey = "outlineColor") => {
-    return generateRule(style, options, path, ruleKey);
+  generate: (style, options, path = ["outline", "color"], rulekey = "outlinecolor") => {
+    return generaterule(style, options, path, rulekey);
   }
 };
 const offset = {
   name: "offset",
-  generate: (style, options, path = ["outline", "offset"], ruleKey = "outlineOffset") => {
-    return generateRule(style, options, path, ruleKey);
+  generate: (style, options, path = ["outline", "offset"], rulekey = "outlineoffset") => {
+    return generaterule(style, options, path, rulekey);
   }
 };
-const outlineStyle = {
+const outlinestyle = {
   name: "style",
-  generate: (style, options, path = ["outline", "style"], ruleKey = "outlineStyle") => {
-    return generateRule(style, options, path, ruleKey);
+  generate: (style, options, path = ["outline", "style"], rulekey = "outlinestyle") => {
+    return generaterule(style, options, path, rulekey);
   }
 };
 const outline_width = {
   name: "width",
-  generate: (style, options, path = ["outline", "width"], ruleKey = "outlineWidth") => {
-    return generateRule(style, options, path, ruleKey);
+  generate: (style, options, path = ["outline", "width"], rulekey = "outlinewidth") => {
+    return generaterule(style, options, path, rulekey);
   }
 };
-var outline_default = [outline_color, outlineStyle, offset, outline_width];
+var outline_default = [outline_color, outlinestyle, offset, outline_width];
 
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/spacing/padding.js
@@ -915,7 +915,7 @@ var outline_default = [outline_color, outlineStyle, offset, outline_width];
 const padding = {
   name: "padding",
   generate: (style, options) => {
-    return generateBoxRules(style, options, ["spacing", "padding"], {
+    return generateboxrules(style, options, ["spacing", "padding"], {
       default: "padding",
       individual: "padding%s"
     });
@@ -929,7 +929,7 @@ var padding_default = padding;
 const margin = {
   name: "margin",
   generate: (style, options) => {
-    return generateBoxRules(style, options, ["spacing", "margin"], {
+    return generateboxrules(style, options, ["spacing", "margin"], {
       default: "margin",
       individual: "margin%s"
     });
@@ -946,127 +946,127 @@ var spacing_default = [margin_default, padding_default];
 
 ;// ./node_modules/@wordpress/style-engine/build-module/styles/typography/index.js
 
-const fontSize = {
-  name: "fontSize",
+const fontsize = {
+  name: "fontsize",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "fontSize"],
-      "fontSize"
+      ["typography", "fontsize"],
+      "fontsize"
     );
   }
 };
-const fontStyle = {
-  name: "fontStyle",
+const fontstyle = {
+  name: "fontstyle",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "fontStyle"],
-      "fontStyle"
+      ["typography", "fontstyle"],
+      "fontstyle"
     );
   }
 };
-const fontWeight = {
-  name: "fontWeight",
+const fontweight = {
+  name: "fontweight",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "fontWeight"],
-      "fontWeight"
+      ["typography", "fontweight"],
+      "fontweight"
     );
   }
 };
-const fontFamily = {
-  name: "fontFamily",
+const fontfamily = {
+  name: "fontfamily",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "fontFamily"],
-      "fontFamily"
+      ["typography", "fontfamily"],
+      "fontfamily"
     );
   }
 };
-const letterSpacing = {
-  name: "letterSpacing",
+const letterspacing = {
+  name: "letterspacing",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "letterSpacing"],
-      "letterSpacing"
+      ["typography", "letterspacing"],
+      "letterspacing"
     );
   }
 };
-const lineHeight = {
-  name: "lineHeight",
+const lineheight = {
+  name: "lineheight",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "lineHeight"],
-      "lineHeight"
+      ["typography", "lineheight"],
+      "lineheight"
     );
   }
 };
-const textColumns = {
-  name: "textColumns",
+const textcolumns = {
+  name: "textcolumns",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "textColumns"],
-      "columnCount"
+      ["typography", "textcolumns"],
+      "columncount"
     );
   }
 };
-const textDecoration = {
-  name: "textDecoration",
+const textdecoration = {
+  name: "textdecoration",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "textDecoration"],
-      "textDecoration"
+      ["typography", "textdecoration"],
+      "textdecoration"
     );
   }
 };
-const textTransform = {
-  name: "textTransform",
+const texttransform = {
+  name: "texttransform",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "textTransform"],
-      "textTransform"
+      ["typography", "texttransform"],
+      "texttransform"
     );
   }
 };
-const writingMode = {
-  name: "writingMode",
+const writingmode = {
+  name: "writingmode",
   generate: (style, options) => {
-    return generateRule(
+    return generaterule(
       style,
       options,
-      ["typography", "writingMode"],
-      "writingMode"
+      ["typography", "writingmode"],
+      "writingmode"
     );
   }
 };
 var typography_default = [
-  fontFamily,
-  fontSize,
-  fontStyle,
-  fontWeight,
-  letterSpacing,
-  lineHeight,
-  textColumns,
-  textDecoration,
-  textTransform,
-  writingMode
+  fontfamily,
+  fontsize,
+  fontstyle,
+  fontweight,
+  letterspacing,
+  lineheight,
+  textcolumns,
+  textdecoration,
+  texttransform,
+  writingmode
 ];
 
 
@@ -1079,7 +1079,7 @@ var typography_default = [
 
 
 
-const styleDefinitions = [
+const styledefinitions = [
   ...border_default,
   ...color_default,
   ...dimensions_default,
@@ -1094,16 +1094,16 @@ const styleDefinitions = [
 ;// ./node_modules/@wordpress/style-engine/build-module/index.js
 
 
-function compileCSS(style, options = {}) {
-  const rules = getCSSRules(style, options);
+function compilecss(style, options = {}) {
+  const rules = getcssrules(style, options);
   if (!options?.selector) {
-    const inlineRules = [];
-    rules.forEach((rule) => {
-      inlineRules.push(`${paramCase(rule.key)}: ${rule.value};`);
+    const inlinerules = [];
+    rules.foreach((rule) => {
+      inlinerules.push(`${paramcase(rule.key)}: ${rule.value};`);
     });
-    return inlineRules.join(" ");
+    return inlinerules.join(" ");
   }
-  const groupedRules = rules.reduce(
+  const groupedrules = rules.reduce(
     (acc, rule) => {
       const { selector } = rule;
       if (!selector) {
@@ -1117,22 +1117,22 @@ function compileCSS(style, options = {}) {
     },
     {}
   );
-  const selectorRules = Object.keys(groupedRules).reduce(
-    (acc, subSelector) => {
+  const selectorrules = object.keys(groupedrules).reduce(
+    (acc, subselector) => {
       acc.push(
-        `${subSelector} { ${groupedRules[subSelector].map(
-          (rule) => `${paramCase(rule.key)}: ${rule.value};`
+        `${subselector} { ${groupedrules[subselector].map(
+          (rule) => `${paramcase(rule.key)}: ${rule.value};`
         ).join(" ")} }`
       );
       return acc;
     },
     []
   );
-  return selectorRules.join("\n");
+  return selectorrules.join("\n");
 }
-function getCSSRules(style, options = {}) {
+function getcssrules(style, options = {}) {
   const rules = [];
-  styleDefinitions.forEach((definition) => {
+  styledefinitions.foreach((definition) => {
     if (typeof definition.generate === "function") {
       rules.push(...definition.generate(style, options));
     }
@@ -1142,6 +1142,7 @@ function getCSSRules(style, options = {}) {
 
 
 
-(window.wp = window.wp || {}).styleEngine = __webpack_exports__;
+(window.wp = window.wp || {}).styleengine = __webpack_exports__;
 /******/ })()
 ;
+

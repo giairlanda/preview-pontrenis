@@ -7,7 +7,7 @@
   background:none;
   border:0;
   box-sizing:border-box;
-  color:currentColor;
+  color:currentcolor;
   cursor:pointer;
   display:inline-flex;
   font-family:inherit;
@@ -34,3 +34,4 @@
 .wp-block-social-link__toolbar_content_text{
   width:250px;
 }
+

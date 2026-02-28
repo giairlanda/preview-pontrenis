@@ -7,56 +7,56 @@
 
 ( function( window, settings ) {
 	/**
-	 * Replaces emoji with images when browsers don't support emoji.
+	 * replaces emoji with images when browsers don't support emoji.
 	 *
 	 * @since 4.2.0
 	 * @access private
 	 *
 	 * @class
 	 *
-	 * @see  Twitter Emoji library
+	 * @see  twitter emoji library
 	 * @link https://github.com/twitter/twemoji
 	 *
-	 * @return {Object} The wpEmoji parse and test functions.
+	 * @return {object} the wpemoji parse and test functions.
 	 */
-	function wpEmoji() {
-		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver,
+	function wpemoji() {
+		var mutationobserver = window.mutationobserver || window.webkitmutationobserver || window.mozmutationobserver,
 
-		// Compression and maintain local scope.
+		// compression and maintain local scope.
 		document = window.document,
 
-		// Private.
+		// private.
 		twemoji, timer,
 		loaded = false,
 		count = 0,
-		ie11 = window.navigator.userAgent.indexOf( 'Trident/7.0' ) > 0;
+		ie11 = window.navigator.useragent.indexof( 'trident/7.0' ) > 0;
 
 		/**
-		 * Detect if the browser supports SVG.
+		 * detect if the browser supports svg.
 		 *
 		 * @since 4.6.0
 		 * @private
 		 *
-		 * @see Modernizr
-		 * @link https://github.com/Modernizr/Modernizr/blob/master/feature-detects/svg/asimg.js
+		 * @see modernizr
+		 * @link https://github.com/modernizr/modernizr/blob/master/feature-detects/svg/asimg.js
 		 *
-		 * @return {boolean} True if the browser supports svg, false if not.
+		 * @return {boolean} true if the browser supports svg, false if not.
 		 */
-		function browserSupportsSvgAsImage() {
-			if ( !! document.implementation.hasFeature ) {
-				return document.implementation.hasFeature( 'http://www.w3.org/TR/SVG11/feature#Image', '1.1' );
+		function browsersupportssvgasimage() {
+			if ( !! document.implementation.hasfeature ) {
+				return document.implementation.hasfeature( 'http://www.w3.org/tr/svg11/feature#image', '1.1' );
 			}
 
-			// document.implementation.hasFeature is deprecated. It can be presumed
-			// if future browsers remove it, the browser will support SVGs as images.
+			// document.implementation.hasfeature is deprecated. it can be presumed
+			// if future browsers remove it, the browser will support svgs as images.
 			return true;
 		}
 
 		/**
-		 * Runs when the document load event is fired, so we can do our first parse of
+		 * runs when the document load event is fired, so we can do our first parse of
 		 * the page.
 		 *
-		 * Listens to all the DOM mutations and checks for added nodes that contain
+		 * listens to all the dom mutations and checks for added nodes that contain
 		 * emoji characters and replaces those with twitter emoji images.
 		 *
 		 * @since 4.2.0
@@ -67,16 +67,16 @@
 				return;
 			}
 
-			// Ensure twemoji is available on the global window before proceeding.
+			// ensure twemoji is available on the global window before proceeding.
 			if ( typeof window.twemoji === 'undefined' ) {
-				// Break if waiting for longer than 30 seconds.
+				// break if waiting for longer than 30 seconds.
 				if ( count > 600 ) {
 					return;
 				}
 
-				// Still waiting.
-				window.clearTimeout( timer );
-				timer = window.setTimeout( load, 50 );
+				// still waiting.
+				window.cleartimeout( timer );
+				timer = window.settimeout( load, 50 );
 				count++;
 
 				return;
@@ -85,73 +85,73 @@
 			twemoji = window.twemoji;
 			loaded = true;
 
-			// Initialize the mutation observer, which checks all added nodes for
+			// initialize the mutation observer, which checks all added nodes for
 			// replaceable emoji characters.
-			if ( MutationObserver ) {
-				new MutationObserver( function( mutationRecords ) {
-					var i = mutationRecords.length,
-						addedNodes, removedNodes, ii, node;
+			if ( mutationobserver ) {
+				new mutationobserver( function( mutationrecords ) {
+					var i = mutationrecords.length,
+						addednodes, removednodes, ii, node;
 
 					while ( i-- ) {
-						addedNodes = mutationRecords[ i ].addedNodes;
-						removedNodes = mutationRecords[ i ].removedNodes;
-						ii = addedNodes.length;
+						addednodes = mutationrecords[ i ].addednodes;
+						removednodes = mutationrecords[ i ].removednodes;
+						ii = addednodes.length;
 
 						/*
-						 * Checks if an image has been replaced by a text element
+						 * checks if an image has been replaced by a text element
 						 * with the same text as the alternate description of the replaced image.
 						 * (presumably because the image could not be loaded).
-						 * If it is, do absolutely nothing.
+						 * if it is, do absolutely nothing.
 						 *
-						 * Node type 3 is a TEXT_NODE.
+						 * node type 3 is a text_node.
 						 *
-						 * @link https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+						 * @link https://developer.mozilla.org/en-us/docs/web/api/node/nodetype
 						 */
 						if (
-							ii === 1 && removedNodes.length === 1 &&
-							addedNodes[0].nodeType === 3 &&
-							removedNodes[0].nodeName === 'IMG' &&
-							addedNodes[0].data === removedNodes[0].alt &&
-							'load-failed' === removedNodes[0].getAttribute( 'data-error' )
+							ii === 1 && removednodes.length === 1 &&
+							addednodes[0].nodetype === 3 &&
+							removednodes[0].nodename === 'img' &&
+							addednodes[0].data === removednodes[0].alt &&
+							'load-failed' === removednodes[0].getattribute( 'data-error' )
 						) {
 							return;
 						}
 
-						// Loop through all the added nodes.
+						// loop through all the added nodes.
 						while ( ii-- ) {
-							node = addedNodes[ ii ];
+							node = addednodes[ ii ];
 
-							// Node type 3 is a TEXT_NODE.
-							if ( node.nodeType === 3 ) {
-								if ( ! node.parentNode ) {
+							// node type 3 is a text_node.
+							if ( node.nodetype === 3 ) {
+								if ( ! node.parentnode ) {
 									continue;
 								}
 
 								if ( ie11 ) {
 									/*
-									 * IE 11's implementation of MutationObserver is buggy.
-									 * It unnecessarily splits text nodes when it encounters a HTML
-									 * template interpolation symbol ( "{{", for example ). So, we
+									 * ie 11's implementation of mutationobserver is buggy.
+									 * it unnecessarily splits text nodes when it encounters a html
+									 * template interpolation symbol ( "{{", for example ). so, we
 									 * join the text nodes back together as a work-around.
 									 *
-									 * Node type 3 is a TEXT_NODE.
+									 * node type 3 is a text_node.
 									 */
-									while( node.nextSibling && 3 === node.nextSibling.nodeType ) {
-										node.nodeValue = node.nodeValue + node.nextSibling.nodeValue;
-										node.parentNode.removeChild( node.nextSibling );
+									while( node.nextsibling && 3 === node.nextsibling.nodetype ) {
+										node.nodevalue = node.nodevalue + node.nextsibling.nodevalue;
+										node.parentnode.removechild( node.nextsibling );
 									}
 								}
 
-								node = node.parentNode;
+								node = node.parentnode;
 							}
 
-							if ( test( node.textContent ) ) {
+							if ( test( node.textcontent ) ) {
 								parse( node );
 							}
 						}
 					}
 				} ).observe( document.body, {
-					childList: true,
+					childlist: true,
 					subtree: true
 				} );
 			}
@@ -160,21 +160,21 @@
 		}
 
 		/**
-		 * Tests if a text string contains emoji characters.
+		 * tests if a text string contains emoji characters.
 		 *
 		 * @since 4.3.0
 		 *
-		 * @memberOf wp.emoji
+		 * @memberof wp.emoji
 		 *
-		 * @param {string} text The string to test.
+		 * @param {string} text the string to test.
 		 *
-		 * @return {boolean} Whether the string contains emoji characters.
+		 * @return {boolean} whether the string contains emoji characters.
 		 */
 		function test( text ) {
-			// Single char. U+20E3 to detect keycaps. U+00A9 "copyright sign" and U+00AE "registered sign" not included.
-			var single = /[\u203C\u2049\u20E3\u2122\u2139\u2194-\u2199\u21A9\u21AA\u2300\u231A\u231B\u2328\u2388\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u261D\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638\u2639\u263A\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267B\u267F\u2692\u2693\u2694\u2696\u2697\u2699\u269B\u269C\u26A0\u26A1\u26AA\u26AB\u26B0\u26B1\u26BD\u26BE\u26C4\u26C5\u26C8\u26CE\u26CF\u26D1\u26D3\u26D4\u26E9\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753\u2754\u2755\u2757\u2763\u2764\u2795\u2796\u2797\u27A1\u27B0\u27BF\u2934\u2935\u2B05\u2B06\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]/,
-			// Surrogate pair range. Only tests for the second half.
-			pair = /[\uDC00-\uDFFF]/;
+			// single char. u+20e3 to detect keycaps. u+00a9 "copyright sign" and u+00ae "registered sign" not included.
+			var single = /[\u203c\u2049\u20e3\u2122\u2139\u2194-\u2199\u21a9\u21aa\u2300\u231a\u231b\u2328\u2388\u23cf\u23e9-\u23f3\u23f8-\u23fa\u24c2\u25aa\u25ab\u25b6\u25c0\u25fb-\u25fe\u2600-\u2604\u260e\u2611\u2614\u2615\u2618\u261d\u2620\u2622\u2623\u2626\u262a\u262e\u262f\u2638\u2639\u263a\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267b\u267f\u2692\u2693\u2694\u2696\u2697\u2699\u269b\u269c\u26a0\u26a1\u26aa\u26ab\u26b0\u26b1\u26bd\u26be\u26c4\u26c5\u26c8\u26ce\u26cf\u26d1\u26d3\u26d4\u26e9\u26ea\u26f0-\u26f5\u26f7-\u26fa\u26fd\u2702\u2705\u2708-\u270d\u270f\u2712\u2714\u2716\u271d\u2721\u2728\u2733\u2734\u2744\u2747\u274c\u274e\u2753\u2754\u2755\u2757\u2763\u2764\u2795\u2796\u2797\u27a1\u27b0\u27bf\u2934\u2935\u2b05\u2b06\u2b07\u2b1b\u2b1c\u2b50\u2b55\u3030\u303d\u3297\u3299]/,
+			// surrogate pair range. only tests for the second half.
+			pair = /[\udc00-\udfff]/;
 
 			if ( text ) {
 				return  pair.test( text ) || single.test( text );
@@ -184,43 +184,43 @@
 		}
 
 		/**
-		 * Parses any emoji characters into Twemoji images.
+		 * parses any emoji characters into twemoji images.
 		 *
-		 * - When passed an element the emoji characters are replaced inline.
-		 * - When passed a string the emoji characters are replaced and the result is
+		 * - when passed an element the emoji characters are replaced inline.
+		 * - when passed a string the emoji characters are replaced and the result is
 		 *   returned.
 		 *
 		 * @since 4.2.0
 		 *
-		 * @memberOf wp.emoji
+		 * @memberof wp.emoji
 		 *
-		 * @param {HTMLElement|string} object The element or string to parse.
-		 * @param {Object}             args   Additional options for Twemoji.
+		 * @param {htmlelement|string} object the element or string to parse.
+		 * @param {object}             args   additional options for twemoji.
 		 *
-		 * @return {HTMLElement|string} A string where all emoji are now image tags of
-		 *                              emoji. Or the element that was passed as the first argument.
+		 * @return {htmlelement|string} a string where all emoji are now image tags of
+		 *                              emoji. or the element that was passed as the first argument.
 		 */
 		function parse( object, args ) {
 			var params;
 
 			/*
-			 * If the browser has full support, twemoji is not loaded or our
+			 * if the browser has full support, twemoji is not loaded or our
 			 * object is not what was expected, we do not parse anything.
 			 */
 			if ( settings.supports.everything || ! twemoji || ! object ||
-				( 'string' !== typeof object && ( ! object.childNodes || ! object.childNodes.length ) ) ) {
+				( 'string' !== typeof object && ( ! object.childnodes || ! object.childnodes.length ) ) ) {
 
 				return object;
 			}
 
-			// Compose the params for the twitter emoji library.
+			// compose the params for the twitter emoji library.
 			args = args || {};
 			params = {
-				base: browserSupportsSvgAsImage() ? settings.svgUrl : settings.baseUrl,
-				ext:  browserSupportsSvgAsImage() ? settings.svgExt : settings.ext,
-				className: args.className || 'emoji',
+				base: browsersupportssvgasimage() ? settings.svgurl : settings.baseurl,
+				ext:  browsersupportssvgasimage() ? settings.svgext : settings.ext,
+				classname: args.classname || 'emoji',
 				callback: function( icon, options ) {
-					// Ignore some standard characters that TinyMCE recommends in its character map.
+					// ignore some standard characters that tinymce recommends in its character map.
 					switch ( icon ) {
 						case 'a9':
 						case 'ae':
@@ -233,9 +233,9 @@
 							return false;
 					}
 
-					if ( settings.supports.everythingExceptFlag &&
-						! /^1f1(?:e[6-9a-f]|f[0-9a-f])-1f1(?:e[6-9a-f]|f[0-9a-f])$/.test( icon ) && // Country flags.
-						! /^(1f3f3-fe0f-200d-1f308|1f3f4-200d-2620-fe0f)$/.test( icon )             // Rainbow and pirate flags.
+					if ( settings.supports.everythingexceptflag &&
+						! /^1f1(?:e[6-9a-f]|f[0-9a-f])-1f1(?:e[6-9a-f]|f[0-9a-f])$/.test( icon ) && // country flags.
+						! /^(1f3f3-fe0f-200d-1f308|1f3f4-200d-2620-fe0f)$/.test( icon )             // rainbow and pirate flags.
 					) {
 						return false;
 					}
@@ -248,19 +248,19 @@
 					};
 				},
 				onerror: function() {
-					if ( twemoji.parentNode ) {
-						this.setAttribute( 'data-error', 'load-failed' );
-						twemoji.parentNode.replaceChild( document.createTextNode( twemoji.alt ), twemoji );
+					if ( twemoji.parentnode ) {
+						this.setattribute( 'data-error', 'load-failed' );
+						twemoji.parentnode.replacechild( document.createtextnode( twemoji.alt ), twemoji );
 					}
 				},
-				doNotParse: function( node ) {
+				donotparse: function( node ) {
 					if (
 						node &&
-						node.className &&
-						typeof node.className === 'string' &&
-						node.className.indexOf( 'wp-exclude-emoji' ) !== -1
+						node.classname &&
+						typeof node.classname === 'string' &&
+						node.classname.indexof( 'wp-exclude-emoji' ) !== -1
 					) {
-						// Do not parse this node. Emojis will not be replaced in this node and all sub-nodes.
+						// do not parse this node. emojis will not be replaced in this node and all sub-nodes.
 						return true;
 					}
 
@@ -268,9 +268,9 @@
 				}
 			};
 
-			if ( typeof args.imgAttr === 'object' ) {
+			if ( typeof args.imgattr === 'object' ) {
 				params.attributes = function() {
-					return args.imgAttr;
+					return args.imgattr;
 				};
 			}
 
@@ -290,6 +290,8 @@
 	/**
 	 * @namespace wp.emoji
 	 */
-	window.wp.emoji = new wpEmoji();
+	window.wp.emoji = new wpemoji();
 
-} )( window, window._wpemojiSettings );
+} )( window, window._wpemojisettings );
+
+

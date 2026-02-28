@@ -1,30 +1,32 @@
-/* global HTMLHint */
+/* global htmlhint */
 /* eslint no-magic-numbers: ["error", { "ignore": [0, 1] }] */
-HTMLHint.addRule({
+htmlhint.addrule({
 	id: 'kses',
-	description: 'Element or attribute cannot be used.',
+	description: 'element or attribute cannot be used.',
 	init: function( parser, reporter, options ) {
 		'use strict';
 
 		var self = this;
-		parser.addListener( 'tagstart', function( event ) {
-			var attr, col, attrName, allowedAttributes, i, len, tagName;
+		parser.addlistener( 'tagstart', function( event ) {
+			var attr, col, attrname, allowedattributes, i, len, tagname;
 
-			tagName = event.tagName.toLowerCase();
-			if ( ! options[ tagName ] ) {
-				reporter.error( 'Tag <' + event.tagName + '> is not allowed.', event.line, event.col, self, event.raw );
+			tagname = event.tagname.tolowercase();
+			if ( ! options[ tagname ] ) {
+				reporter.error( 'tag <' + event.tagname + '> is not allowed.', event.line, event.col, self, event.raw );
 				return;
 			}
 
-			allowedAttributes = options[ tagName ];
-			col = event.col + event.tagName.length + 1;
+			allowedattributes = options[ tagname ];
+			col = event.col + event.tagname.length + 1;
 			for ( i = 0, len = event.attrs.length; i < len; i++ ) {
 				attr = event.attrs[ i ];
-				attrName = attr.name.toLowerCase();
-				if ( ! allowedAttributes[ attrName ] ) {
-					reporter.error( 'Tag attribute [' + attr.raw + ' ] is not allowed.', event.line, col + attr.index, self, attr.raw );
+				attrname = attr.name.tolowercase();
+				if ( ! allowedattributes[ attrname ] ) {
+					reporter.error( 'tag attribute [' + attr.raw + ' ] is not allowed.', event.line, col + attr.index, self, attr.raw );
 				}
 			}
 		});
 	}
 });
+
+

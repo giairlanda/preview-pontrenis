@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Fade 1.13.3
+ * jquery ui effects fade 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Fade Effect
-//>>group: Effects
-//>>description: Fades the element.
+//>>label: fade effect
+//>>group: effects
+//>>description: fades the element.
 //>>docs: https://api.jqueryui.com/fade-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,8 +26,8 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
@@ -48,3 +48,5 @@ return $.effects.define( "fade", "toggle", function( options, done ) {
 } );
 
 } );
+
+

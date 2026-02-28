@@ -2,10 +2,10 @@
  * @output wp-includes/js/customize-loader.js
  */
 
-/* global _wpCustomizeLoaderSettings */
+/* global _wpcustomizeloadersettings */
 
 /**
- * Expose a public API that allows the customizer to be
+ * expose a public api that allows the customizer to be
  * loaded on any page.
  *
  * @namespace wp
@@ -14,99 +14,99 @@ window.wp = window.wp || {};
 
 (function( exports, $ ){
 	var api = wp.customize,
-		Loader;
+		loader;
 
 	$.extend( $.support, {
-		history: !! ( window.history && history.pushState ),
-		hashchange: ('onhashchange' in window) && (document.documentMode === undefined || document.documentMode > 7)
+		history: !! ( window.history && history.pushstate ),
+		hashchange: ('onhashchange' in window) && (document.documentmode === undefined || document.documentmode > 7)
 	});
 
 	/**
-	 * Allows the Customizer to be overlaid on any page.
+	 * allows the customizer to be overlaid on any page.
 	 *
-	 * By default, any element in the body with the load-customize class will open
-	 * an iframe overlay with the URL specified.
+	 * by default, any element in the body with the load-customize class will open
+	 * an iframe overlay with the url specified.
 	 *
-	 *     e.g. <a class="load-customize" href="<?php echo wp_customize_url(); ?>">Open Customizer</a>
+	 *     e.g. <a class="load-customize" href="<?php echo wp_customize_url(); ?>">open customizer</a>
 	 *
-	 * @memberOf wp.customize
+	 * @memberof wp.customize
 	 *
 	 * @class
-	 * @augments wp.customize.Events
+	 * @augments wp.customize.events
 	 */
-	Loader = $.extend( {}, api.Events,/** @lends wp.customize.Loader.prototype */{
+	loader = $.extend( {}, api.events,/** @lends wp.customize.loader.prototype */{
 		/**
-		 * Setup the Loader; triggered on document#ready.
+		 * setup the loader; triggered on document#ready.
 		 */
 		initialize: function() {
 			this.body = $( document.body );
 
-			// Ensure the loader is supported.
-			// Check for settings, postMessage support, and whether we require CORS support.
-			if ( ! Loader.settings || ! $.support.postMessage || ( ! $.support.cors && Loader.settings.isCrossDomain ) ) {
+			// ensure the loader is supported.
+			// check for settings, postmessage support, and whether we require cors support.
+			if ( ! loader.settings || ! $.support.postmessage || ( ! $.support.cors && loader.settings.iscrossdomain ) ) {
 				return;
 			}
 
 			this.window  = $( window );
-			this.element = $( '<div id="customize-container" />' ).appendTo( this.body );
+			this.element = $( '<div id="customize-container" />' ).appendto( this.body );
 
-			// Bind events for opening and closing the overlay.
+			// bind events for opening and closing the overlay.
 			this.bind( 'open', this.overlay.show );
 			this.bind( 'close', this.overlay.hide );
 
-			// Any element in the body with the `load-customize` class opens
-			// the Customizer.
+			// any element in the body with the `load-customize` class opens
+			// the customizer.
 			$('#wpbody').on( 'click', '.load-customize', function( event ) {
-				event.preventDefault();
+				event.preventdefault();
 
-				// Store a reference to the link that opened the Customizer.
-				Loader.link = $(this);
-				// Load the theme.
-				Loader.open( Loader.link.attr('href') );
+				// store a reference to the link that opened the customizer.
+				loader.link = $(this);
+				// load the theme.
+				loader.open( loader.link.attr('href') );
 			});
 
-			// Add navigation listeners.
+			// add navigation listeners.
 			if ( $.support.history ) {
-				this.window.on( 'popstate', Loader.popstate );
+				this.window.on( 'popstate', loader.popstate );
 			}
 
 			if ( $.support.hashchange ) {
-				this.window.on( 'hashchange', Loader.hashchange );
-				this.window.triggerHandler( 'hashchange' );
+				this.window.on( 'hashchange', loader.hashchange );
+				this.window.triggerhandler( 'hashchange' );
 			}
 		},
 
 		popstate: function( e ) {
-			var state = e.originalEvent.state;
+			var state = e.originalevent.state;
 			if ( state && state.customize ) {
-				Loader.open( state.customize );
-			} else if ( Loader.active ) {
-				Loader.close();
+				loader.open( state.customize );
+			} else if ( loader.active ) {
+				loader.close();
 			}
 		},
 
 		hashchange: function() {
-			var hash = window.location.toString().split('#')[1];
+			var hash = window.location.tostring().split('#')[1];
 
-			if ( hash && 0 === hash.indexOf( 'wp_customize=on' ) ) {
-				Loader.open( Loader.settings.url + '?' + hash );
+			if ( hash && 0 === hash.indexof( 'wp_customize=on' ) ) {
+				loader.open( loader.settings.url + '?' + hash );
 			}
 
 			if ( ! hash && ! $.support.history ) {
-				Loader.close();
+				loader.close();
 			}
 		},
 
 		beforeunload: function () {
-			if ( ! Loader.saved() ) {
-				return Loader.settings.l10n.saveAlert;
+			if ( ! loader.saved() ) {
+				return loader.settings.l10n.savealert;
 			}
 		},
 
 		/**
-		 * Open the Customizer overlay for a specific URL.
+		 * open the customizer overlay for a specific url.
 		 *
-		 * @param string src URL to load in the Customizer.
+		 * @param string src url to load in the customizer.
 		 */
 		open: function( src ) {
 
@@ -114,50 +114,50 @@ window.wp = window.wp || {};
 				return;
 			}
 
-			// Load the full page on mobile devices.
-			if ( Loader.settings.browser.mobile ) {
+			// load the full page on mobile devices.
+			if ( loader.settings.browser.mobile ) {
 				return window.location = src;
 			}
 
-			// Store the document title prior to opening the Live Preview.
-			this.originalDocumentTitle = document.title;
+			// store the document title prior to opening the live preview.
+			this.originaldocumenttitle = document.title;
 
 			this.active = true;
-			this.body.addClass('customize-loading');
+			this.body.addclass('customize-loading');
 
 			/*
-			 * Track the dirtiness state (whether the drafted changes have been published)
-			 * of the Customizer in the iframe. This is used to decide whether to display
-			 * an AYS alert if the user tries to close the window before saving changes.
+			 * track the dirtiness state (whether the drafted changes have been published)
+			 * of the customizer in the iframe. this is used to decide whether to display
+			 * an ays alert if the user tries to close the window before saving changes.
 			 */
-			this.saved = new api.Value( true );
+			this.saved = new api.value( true );
 
-			this.iframe = $( '<iframe />', { 'src': src, 'title': Loader.settings.l10n.mainIframeTitle } ).appendTo( this.element );
+			this.iframe = $( '<iframe />', { 'src': src, 'title': loader.settings.l10n.mainiframetitle } ).appendto( this.element );
 			this.iframe.one( 'load', this.loaded );
 
-			// Create a postMessage connection with the iframe.
-			this.messenger = new api.Messenger({
+			// create a postmessage connection with the iframe.
+			this.messenger = new api.messenger({
 				url: src,
 				channel: 'loader',
-				targetWindow: this.iframe[0].contentWindow
+				targetwindow: this.iframe[0].contentwindow
 			});
 
-			// Expose the changeset UUID on the parent window's URL so that the customized state can survive a refresh.
-			if ( history.replaceState ) {
-				this.messenger.bind( 'changeset-uuid', function( changesetUuid ) {
-					var urlParser = document.createElement( 'a' );
-					urlParser.href = location.href;
-					urlParser.search = $.param( _.extend(
-						api.utils.parseQueryString( urlParser.search.substr( 1 ) ),
-						{ changeset_uuid: changesetUuid }
+			// expose the changeset uuid on the parent window's url so that the customized state can survive a refresh.
+			if ( history.replacestate ) {
+				this.messenger.bind( 'changeset-uuid', function( changesetuuid ) {
+					var urlparser = document.createelement( 'a' );
+					urlparser.href = location.href;
+					urlparser.search = $.param( _.extend(
+						api.utils.parsequerystring( urlparser.search.substr( 1 ) ),
+						{ changeset_uuid: changesetuuid }
 					) );
-					history.replaceState( { customize: urlParser.href }, '', urlParser.href );
+					history.replacestate( { customize: urlparser.href }, '', urlparser.href );
 				} );
 			}
 
-			// Wait for the connection from the iframe before sending any postMessage events.
+			// wait for the connection from the iframe before sending any postmessage events.
 			this.messenger.bind( 'ready', function() {
-				Loader.messenger.send( 'back' );
+				loader.messenger.send( 'back' );
 			});
 
 			this.messenger.bind( 'close', function() {
@@ -166,35 +166,35 @@ window.wp = window.wp || {};
 				} else if ( $.support.hashchange ) {
 					window.location.hash = '';
 				} else {
-					Loader.close();
+					loader.close();
 				}
 			});
 
-			// Prompt AYS dialog when navigating away.
+			// prompt ays dialog when navigating away.
 			$( window ).on( 'beforeunload', this.beforeunload );
 
 			this.messenger.bind( 'saved', function () {
-				Loader.saved( true );
+				loader.saved( true );
 			} );
 			this.messenger.bind( 'change', function () {
-				Loader.saved( false );
+				loader.saved( false );
 			} );
 
-			this.messenger.bind( 'title', function( newTitle ){
-				window.document.title = newTitle;
+			this.messenger.bind( 'title', function( newtitle ){
+				window.document.title = newtitle;
 			});
 
-			this.pushState( src );
+			this.pushstate( src );
 
 			this.trigger( 'open' );
 		},
 
-		pushState: function ( src ) {
+		pushstate: function ( src ) {
 			var hash = src.split( '?' )[1];
 
-			// Ensure we don't call pushState if the user hit the forward button.
+			// ensure we don't call pushstate if the user hit the forward button.
 			if ( $.support.history && window.location.href !== src ) {
-				history.pushState( { customize: src }, '', src );
+				history.pushstate( { customize: src }, '', src );
 			} else if ( ! $.support.history && $.support.hashchange && hash ) {
 				window.location.hash = 'wp_customize=on&' + hash;
 			}
@@ -203,89 +203,91 @@ window.wp = window.wp || {};
 		},
 
 		/**
-		 * Callback after the Customizer has been opened.
+		 * callback after the customizer has been opened.
 		 */
 		opened: function() {
-			Loader.body.addClass( 'customize-active full-overlay-active' ).attr( 'aria-busy', 'true' );
+			loader.body.addclass( 'customize-active full-overlay-active' ).attr( 'aria-busy', 'true' );
 		},
 
 		/**
-		 * Close the Customizer overlay.
+		 * close the customizer overlay.
 		 */
 		close: function() {
-			var self = this, onConfirmClose;
+			var self = this, onconfirmclose;
 			if ( ! self.active ) {
 				return;
 			}
 
-			onConfirmClose = function( confirmed ) {
+			onconfirmclose = function( confirmed ) {
 				if ( confirmed ) {
 					self.active = false;
 					self.trigger( 'close' );
 
-					// Restore document title prior to opening the Live Preview.
-					if ( self.originalDocumentTitle ) {
-						document.title = self.originalDocumentTitle;
+					// restore document title prior to opening the live preview.
+					if ( self.originaldocumenttitle ) {
+						document.title = self.originaldocumenttitle;
 					}
 				} else {
 
-					// Go forward since Customizer is exited by history.back().
+					// go forward since customizer is exited by history.back().
 					history.forward();
 				}
-				self.messenger.unbind( 'confirmed-close', onConfirmClose );
+				self.messenger.unbind( 'confirmed-close', onconfirmclose );
 			};
-			self.messenger.bind( 'confirmed-close', onConfirmClose );
+			self.messenger.bind( 'confirmed-close', onconfirmclose );
 
-			Loader.messenger.send( 'confirm-close' );
+			loader.messenger.send( 'confirm-close' );
 		},
 
 		/**
-		 * Callback after the Customizer has been closed.
+		 * callback after the customizer has been closed.
 		 */
 		closed: function() {
-			Loader.iframe.remove();
-			Loader.messenger.destroy();
-			Loader.iframe    = null;
-			Loader.messenger = null;
-			Loader.saved     = null;
-			Loader.body.removeClass( 'customize-active full-overlay-active' ).removeClass( 'customize-loading' );
-			$( window ).off( 'beforeunload', Loader.beforeunload );
+			loader.iframe.remove();
+			loader.messenger.destroy();
+			loader.iframe    = null;
+			loader.messenger = null;
+			loader.saved     = null;
+			loader.body.removeclass( 'customize-active full-overlay-active' ).removeclass( 'customize-loading' );
+			$( window ).off( 'beforeunload', loader.beforeunload );
 			/*
-			 * Return focus to the link that opened the Customizer overlay after
+			 * return focus to the link that opened the customizer overlay after
 			 * the body element visibility is restored.
 			 */
-			if ( Loader.link ) {
-				Loader.link.focus();
+			if ( loader.link ) {
+				loader.link.focus();
 			}
 		},
 
 		/**
-		 * Callback for the `load` event on the Customizer iframe.
+		 * callback for the `load` event on the customizer iframe.
 		 */
 		loaded: function() {
-			Loader.body.removeClass( 'customize-loading' ).attr( 'aria-busy', 'false' );
+			loader.body.removeclass( 'customize-loading' ).attr( 'aria-busy', 'false' );
 		},
 
 		/**
-		 * Overlay hide/show utility methods.
+		 * overlay hide/show utility methods.
 		 */
 		overlay: {
 			show: function() {
-				this.element.fadeIn( 200, Loader.opened );
+				this.element.fadein( 200, loader.opened );
 			},
 
 			hide: function() {
-				this.element.fadeOut( 200, Loader.closed );
+				this.element.fadeout( 200, loader.closed );
 			}
 		}
 	});
 
-	// Bootstrap the Loader on document#ready.
+	// bootstrap the loader on document#ready.
 	$( function() {
-		Loader.settings = _wpCustomizeLoaderSettings;
-		Loader.initialize();
+		loader.settings = _wpcustomizeloadersettings;
+		loader.initialize();
 	});
 
-	// Expose the API publicly on window.wp.customize.Loader.
-	api.Loader = Loader;
-})( wp, jQuery );
+	// expose the api publicly on window.wp.customize.loader.
+	api.loader = loader;
+})( wp, jquery );
+
+

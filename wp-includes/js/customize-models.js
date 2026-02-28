@@ -2,29 +2,29 @@
  * @output wp-includes/js/customize-models.js
  */
 
-/* global _wpCustomizeHeader */
+/* global _wpcustomizeheader */
 (function( $, wp ) {
 	var api = wp.customize;
-	/** @namespace wp.customize.HeaderTool */
-	api.HeaderTool = {};
+	/** @namespace wp.customize.headertool */
+	api.headertool = {};
 
 
 	/**
-	 * wp.customize.HeaderTool.ImageModel
+	 * wp.customize.headertool.imagemodel
 	 *
-	 * A header image. This is where saves via the Customizer API are
-	 * abstracted away, plus our own Ajax calls to add images to and remove
+	 * a header image. this is where saves via the customizer api are
+	 * abstracted away, plus our own ajax calls to add images to and remove
 	 * images from the user's recently uploaded images setting on the server.
-	 * These calls are made regardless of whether the user actually saves new
-	 * Customizer settings.
+	 * these calls are made regardless of whether the user actually saves new
+	 * customizer settings.
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.ImageModel
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.imagemodel
 	 *
 	 * @constructor
-	 * @augments Backbone.Model
+	 * @augments backbone.model
 	 */
-	api.HeaderTool.ImageModel = Backbone.Model.extend(/** @lends wp.customize.HeaderTool.ImageModel.prototype */{
+	api.headertool.imagemodel = backbone.model.extend(/** @lends wp.customize.headertool.imagemodel.prototype */{
 		defaults: function() {
 			return {
 				header: {
@@ -51,16 +51,16 @@
 
 		destroy: function() {
 			var data = this.get('header'),
-				curr = api.HeaderTool.currentHeader.get('header').attachment_id;
+				curr = api.headertool.currentheader.get('header').attachment_id;
 
-			// If the image we're removing is also the current header,
+			// if the image we're removing is also the current header,
 			// unset the latter.
 			if (curr && data.attachment_id === curr) {
-				api.HeaderTool.currentHeader.trigger('hide');
+				api.headertool.currentheader.trigger('hide');
 			}
 
 			wp.ajax.post( 'custom-header-remove', {
-				nonce: _wpCustomizeHeader.nonces.remove,
+				nonce: _wpcustomizeheader.nonces.remove,
 				wp_customize: 'on',
 				theme: api.settings.theme.stylesheet,
 				attachment_id: data.attachment_id
@@ -74,54 +74,54 @@
 				api('header_image').set(this.get('header').random);
 				api('header_image_data').set(this.get('header').random);
 			} else {
-				if (this.get('header').defaultName) {
+				if (this.get('header').defaultname) {
 					api('header_image').set(this.get('header').url);
-					api('header_image_data').set(this.get('header').defaultName);
+					api('header_image_data').set(this.get('header').defaultname);
 				} else {
 					api('header_image').set(this.get('header').url);
 					api('header_image_data').set(this.get('header'));
 				}
 			}
 
-			api.HeaderTool.combinedList.trigger('control:setImage', this);
+			api.headertool.combinedlist.trigger('control:setimage', this);
 		},
 
-		importImage: function() {
+		importimage: function() {
 			var data = this.get('header');
 			if (data.attachment_id === undefined) {
 				return;
 			}
 
 			wp.ajax.post( 'custom-header-add', {
-				nonce: _wpCustomizeHeader.nonces.add,
+				nonce: _wpcustomizeheader.nonces.add,
 				wp_customize: 'on',
 				theme: api.settings.theme.stylesheet,
 				attachment_id: data.attachment_id
 			} );
 		},
 
-		shouldBeCropped: function() {
-			if (this.get('themeFlexWidth') === true &&
-						this.get('themeFlexHeight') === true) {
+		shouldbecropped: function() {
+			if (this.get('themeflexwidth') === true &&
+						this.get('themeflexheight') === true) {
 				return false;
 			}
 
-			if (this.get('themeFlexWidth') === true &&
-				this.get('themeHeight') === this.get('imageHeight')) {
+			if (this.get('themeflexwidth') === true &&
+				this.get('themeheight') === this.get('imageheight')) {
 				return false;
 			}
 
-			if (this.get('themeFlexHeight') === true &&
-				this.get('themeWidth') === this.get('imageWidth')) {
+			if (this.get('themeflexheight') === true &&
+				this.get('themewidth') === this.get('imagewidth')) {
 				return false;
 			}
 
-			if (this.get('themeWidth') === this.get('imageWidth') &&
-				this.get('themeHeight') === this.get('imageHeight')) {
+			if (this.get('themewidth') === this.get('imagewidth') &&
+				this.get('themeheight') === this.get('imageheight')) {
 				return false;
 			}
 
-			if (this.get('imageWidth') <= this.get('themeWidth')) {
+			if (this.get('imagewidth') <= this.get('themewidth')) {
 				return false;
 			}
 
@@ -131,49 +131,49 @@
 
 
 	/**
-	 * wp.customize.HeaderTool.ChoiceList
+	 * wp.customize.headertool.choicelist
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.ChoiceList
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.choicelist
 	 *
 	 * @constructor
-	 * @augments Backbone.Collection
+	 * @augments backbone.collection
 	 */
-	api.HeaderTool.ChoiceList = Backbone.Collection.extend({
-		model: api.HeaderTool.ImageModel,
+	api.headertool.choicelist = backbone.collection.extend({
+		model: api.headertool.imagemodel,
 
-		// Ordered from most recently used to least.
+		// ordered from most recently used to least.
 		comparator: function(model) {
 			return -model.get('header').timestamp;
 		},
 
 		initialize: function() {
-			var current = api.HeaderTool.currentHeader.get('choice').replace(/^https?:\/\//, ''),
-				isRandom = this.isRandomChoice(api.get().header_image);
+			var current = api.headertool.currentheader.get('choice').replace(/^https?:\/\//, ''),
+				israndom = this.israndomchoice(api.get().header_image);
 
-			// Overridable by an extending class.
+			// overridable by an extending class.
 			if (!this.type) {
 				this.type = 'uploaded';
 			}
 
-			// Overridable by an extending class.
+			// overridable by an extending class.
 			if (typeof this.data === 'undefined') {
-				this.data = _wpCustomizeHeader.uploads;
+				this.data = _wpcustomizeheader.uploads;
 			}
 
-			if (isRandom) {
-				// So that when adding data we don't hide regular images.
+			if (israndom) {
+				// so that when adding data we don't hide regular images.
 				current = api.get().header_image;
 			}
 
-			this.on('control:setImage', this.setImage, this);
-			this.on('control:removeImage', this.removeImage, this);
-			this.on('add', this.maybeRemoveOldCrop, this);
-			this.on('add', this.maybeAddRandomChoice, this);
+			this.on('control:setimage', this.setimage, this);
+			this.on('control:removeimage', this.removeimage, this);
+			this.on('add', this.mayberemoveoldcrop, this);
+			this.on('add', this.maybeaddrandomchoice, this);
 
 			_.each(this.data, function(elt, index) {
 				if (!elt.attachment_id) {
-					elt.defaultName = index;
+					elt.defaultname = index;
 				}
 
 				if (typeof elt.timestamp === 'undefined') {
@@ -188,61 +188,61 @@
 			}, this);
 
 			if (this.size() > 0) {
-				this.addRandomChoice(current);
+				this.addrandomchoice(current);
 			}
 		},
 
-		maybeRemoveOldCrop: function( model ) {
-			var newID = model.get( 'header' ).attachment_id || false,
-			 	oldCrop;
+		mayberemoveoldcrop: function( model ) {
+			var newid = model.get( 'header' ).attachment_id || false,
+			 	oldcrop;
 
-			// Bail early if we don't have a new attachment ID.
-			if ( ! newID ) {
+			// bail early if we don't have a new attachment id.
+			if ( ! newid ) {
 				return;
 			}
 
-			oldCrop = this.find( function( item ) {
-				return ( item.cid !== model.cid && item.get( 'header' ).attachment_id === newID );
+			oldcrop = this.find( function( item ) {
+				return ( item.cid !== model.cid && item.get( 'header' ).attachment_id === newid );
 			} );
 
-			// If we found an old crop, remove it from the collection.
-			if ( oldCrop ) {
-				this.remove( oldCrop );
+			// if we found an old crop, remove it from the collection.
+			if ( oldcrop ) {
+				this.remove( oldcrop );
 			}
 		},
 
-		maybeAddRandomChoice: function() {
+		maybeaddrandomchoice: function() {
 			if (this.size() === 1) {
-				this.addRandomChoice();
+				this.addrandomchoice();
 			}
 		},
 
-		addRandomChoice: function(initialChoice) {
-			var isRandomSameType = RegExp(this.type).test(initialChoice),
-				randomChoice = 'random-' + this.type + '-image';
+		addrandomchoice: function(initialchoice) {
+			var israndomsametype = regexp(this.type).test(initialchoice),
+				randomchoice = 'random-' + this.type + '-image';
 
 			this.add({
 				header: {
 					timestamp: 0,
-					random: randomChoice,
+					random: randomchoice,
 					width: 245,
 					height: 41
 				},
-				choice: randomChoice,
+				choice: randomchoice,
 				random: true,
-				selected: isRandomSameType
+				selected: israndomsametype
 			});
 		},
 
-		isRandomChoice: function(choice) {
+		israndomchoice: function(choice) {
 			return (/^random-(uploaded|default)-image$/).test(choice);
 		},
 
-		shouldHideTitle: function() {
+		shouldhidetitle: function() {
 			return this.size() < 2;
 		},
 
-		setImage: function(model) {
+		setimage: function(model) {
 			this.each(function(m) {
 				m.set('selected', false);
 			});
@@ -252,7 +252,7 @@
 			}
 		},
 
-		removeImage: function() {
+		removeimage: function() {
 			this.each(function(m) {
 				m.set('selected', false);
 			});
@@ -261,21 +261,23 @@
 
 
 	/**
-	 * wp.customize.HeaderTool.DefaultsList
+	 * wp.customize.headertool.defaultslist
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.DefaultsList
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.defaultslist
 	 *
 	 * @constructor
-	 * @augments wp.customize.HeaderTool.ChoiceList
-	 * @augments Backbone.Collection
+	 * @augments wp.customize.headertool.choicelist
+	 * @augments backbone.collection
 	 */
-	api.HeaderTool.DefaultsList = api.HeaderTool.ChoiceList.extend({
+	api.headertool.defaultslist = api.headertool.choicelist.extend({
 		initialize: function() {
 			this.type = 'default';
-			this.data = _wpCustomizeHeader.defaults;
-			api.HeaderTool.ChoiceList.prototype.initialize.apply(this);
+			this.data = _wpcustomizeheader.defaults;
+			api.headertool.choicelist.prototype.initialize.apply(this);
 		}
 	});
 
-})( jQuery, window.wp );
+})( jquery, window.wp );
+
+

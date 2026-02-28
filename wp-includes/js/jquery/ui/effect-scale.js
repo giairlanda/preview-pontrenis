@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Scale 1.13.3
+ * jquery ui effects scale 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Scale Effect
-//>>group: Effects
-//>>description: Grows or shrinks an element and its content.
+//>>label: scale effect
+//>>group: effects
+//>>description: grows or shrinks an element and its content.
 //>>docs: https://api.jqueryui.com/scale-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -27,33 +27,35 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 return $.effects.define( "scale", function( options, done ) {
 
-	// Create element
+	// create element
 	var el = $( this ),
 		mode = options.mode,
-		percent = parseInt( options.percent, 10 ) ||
-			( parseInt( options.percent, 10 ) === 0 ? 0 : ( mode !== "effect" ? 0 : 100 ) ),
+		percent = parseint( options.percent, 10 ) ||
+			( parseint( options.percent, 10 ) === 0 ? 0 : ( mode !== "effect" ? 0 : 100 ) ),
 
-		newOptions = $.extend( true, {
-			from: $.effects.scaledDimensions( el ),
-			to: $.effects.scaledDimensions( el, percent, options.direction || "both" ),
+		newoptions = $.extend( true, {
+			from: $.effects.scaleddimensions( el ),
+			to: $.effects.scaleddimensions( el, percent, options.direction || "both" ),
 			origin: options.origin || [ "middle", "center" ]
 		}, options );
 
-	// Fade option to support puff
+	// fade option to support puff
 	if ( options.fade ) {
-		newOptions.from.opacity = 1;
-		newOptions.to.opacity = 0;
+		newoptions.from.opacity = 1;
+		newoptions.to.opacity = 0;
 	}
 
-	$.effects.effect.size.call( this, newOptions, done );
+	$.effects.effect.size.call( this, newoptions, done );
 } );
 
 } );
+
+

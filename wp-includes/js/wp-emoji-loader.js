@@ -4,11 +4,11 @@
 
 /* eslint-env es6 */
 
-// Note: This is loaded as a script module, so there is no need for an IIFE to prevent pollution of the global scope.
+// note: this is loaded as a script module, so there is no need for an iife to prevent pollution of the global scope.
 
 /**
- * Emoji Settings as exported in PHP via _print_emoji_detection_script().
- * @typedef WPEmojiSettings
+ * emoji settings as exported in php via _print_emoji_detection_script().
+ * @typedef wpemojisettings
  * @type {object}
  * @property {?object} source
  * @property {?string} source.concatemoji
@@ -16,26 +16,26 @@
  * @property {?string} source.wpemoji
  */
 
-const settings = /** @type {WPEmojiSettings} */ (
-	JSON.parse( document.getElementById( 'wp-emoji-settings' ).textContent )
+const settings = /** @type {wpemojisettings} */ (
+	json.parse( document.getelementbyid( 'wp-emoji-settings' ).textcontent )
 );
 
-// For compatibility with other scripts that read from this global, in particular wp-includes/js/wp-emoji.js (source file: js/_enqueues/wp/emoji.js).
-window._wpemojiSettings = settings;
+// for compatibility with other scripts that read from this global, in particular wp-includes/js/wp-emoji.js (source file: js/_enqueues/wp/emoji.js).
+window._wpemojisettings = settings;
 
 /**
- * Support tests.
- * @typedef SupportTests
+ * support tests.
+ * @typedef supporttests
  * @type {object}
  * @property {?boolean} flag
  * @property {?boolean} emoji
  */
 
-const sessionStorageKey = 'wpEmojiSettingsSupports';
+const sessionstoragekey = 'wpemojisettingssupports';
 const tests = [ 'flag', 'emoji' ];
 
 /**
- * Checks whether the browser supports offloading to a Worker.
+ * checks whether the browser supports offloading to a worker.
  *
  * @since 6.3.0
  *
@@ -43,101 +43,101 @@ const tests = [ 'flag', 'emoji' ];
  *
  * @returns {boolean}
  */
-function supportsWorkerOffloading() {
+function supportsworkeroffloading() {
 	return (
-		typeof Worker !== 'undefined' &&
-		typeof OffscreenCanvas !== 'undefined' &&
-		typeof URL !== 'undefined' &&
-		URL.createObjectURL &&
-		typeof Blob !== 'undefined'
+		typeof worker !== 'undefined' &&
+		typeof offscreencanvas !== 'undefined' &&
+		typeof url !== 'undefined' &&
+		url.createobjecturl &&
+		typeof blob !== 'undefined'
 	);
 }
 
 /**
- * @typedef SessionSupportTests
+ * @typedef sessionsupporttests
  * @type {object}
  * @property {number} timestamp
- * @property {SupportTests} supportTests
+ * @property {supporttests} supporttests
  */
 
 /**
- * Get support tests from session.
+ * get support tests from session.
  *
  * @since 6.3.0
  *
  * @private
  *
- * @returns {?SupportTests} Support tests, or null if not set or older than 1 week.
+ * @returns {?supporttests} support tests, or null if not set or older than 1 week.
  */
-function getSessionSupportTests() {
+function getsessionsupporttests() {
 	try {
-		/** @type {SessionSupportTests} */
-		const item = JSON.parse(
-			sessionStorage.getItem( sessionStorageKey )
+		/** @type {sessionsupporttests} */
+		const item = json.parse(
+			sessionstorage.getitem( sessionstoragekey )
 		);
 		if (
 			typeof item === 'object' &&
 			typeof item.timestamp === 'number' &&
-			new Date().valueOf() < item.timestamp + 604800 && // Note: Number is a week in seconds.
-			typeof item.supportTests === 'object'
+			new date().valueof() < item.timestamp + 604800 && // note: number is a week in seconds.
+			typeof item.supporttests === 'object'
 		) {
-			return item.supportTests;
+			return item.supporttests;
 		}
 	} catch ( e ) {}
 	return null;
 }
 
 /**
- * Persist the supports in session storage.
+ * persist the supports in session storage.
  *
  * @since 6.3.0
  *
  * @private
  *
- * @param {SupportTests} supportTests Support tests.
+ * @param {supporttests} supporttests support tests.
  */
-function setSessionSupportTests( supportTests ) {
+function setsessionsupporttests( supporttests ) {
 	try {
-		/** @type {SessionSupportTests} */
+		/** @type {sessionsupporttests} */
 		const item = {
-			supportTests: supportTests,
-			timestamp: new Date().valueOf()
+			supporttests: supporttests,
+			timestamp: new date().valueof()
 		};
 
-		sessionStorage.setItem(
-			sessionStorageKey,
-			JSON.stringify( item )
+		sessionstorage.setitem(
+			sessionstoragekey,
+			json.stringify( item )
 		);
 	} catch ( e ) {}
 }
 
 /**
- * Checks if two sets of Emoji characters render the same visually.
+ * checks if two sets of emoji characters render the same visually.
  *
- * This is used to determine if the browser is rendering an emoji with multiple data points
+ * this is used to determine if the browser is rendering an emoji with multiple data points
  * correctly. set1 is the emoji in the correct form, using a zero-width joiner. set2 is the emoji
- * in the incorrect form, using a zero-width space. If the two sets render the same, then the browser
+ * in the incorrect form, using a zero-width space. if the two sets render the same, then the browser
  * does not support the emoji correctly.
  *
- * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
- * scope. Everything must be passed by parameters.
+ * this function may be serialized to run in a worker. therefore, it cannot refer to variables from the containing
+ * scope. everything must be passed by parameters.
  *
  * @since 4.9.0
  *
  * @private
  *
- * @param {CanvasRenderingContext2D} context 2D Context.
- * @param {string} set1 Set of Emoji to test.
- * @param {string} set2 Set of Emoji to test.
+ * @param {canvasrenderingcontext2d} context 2d context.
+ * @param {string} set1 set of emoji to test.
+ * @param {string} set2 set of emoji to test.
  *
- * @return {boolean} True if the two sets render the same.
+ * @return {boolean} true if the two sets render the same.
  */
-function emojiSetsRenderIdentically( context, set1, set2 ) {
-	// Cleanup from previous test.
-	context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
-	context.fillText( set1, 0, 0 );
-	const rendered1 = new Uint32Array(
-		context.getImageData(
+function emojisetsrenderidentically( context, set1, set2 ) {
+	// cleanup from previous test.
+	context.clearrect( 0, 0, context.canvas.width, context.canvas.height );
+	context.filltext( set1, 0, 0 );
+	const rendered1 = new uint32array(
+		context.getimagedata(
 			0,
 			0,
 			context.canvas.width,
@@ -145,11 +145,11 @@ function emojiSetsRenderIdentically( context, set1, set2 ) {
 		).data
 	);
 
-	// Cleanup from previous test.
-	context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
-	context.fillText( set2, 0, 0 );
-	const rendered2 = new Uint32Array(
-		context.getImageData(
+	// cleanup from previous test.
+	context.clearrect( 0, 0, context.canvas.width, context.canvas.height );
+	context.filltext( set2, 0, 0 );
+	const rendered2 = new uint32array(
+		context.getimagedata(
 			0,
 			0,
 			context.canvas.width,
@@ -157,40 +157,40 @@ function emojiSetsRenderIdentically( context, set1, set2 ) {
 		).data
 	);
 
-	return rendered1.every( ( rendered2Data, index ) => {
-		return rendered2Data === rendered2[ index ];
+	return rendered1.every( ( rendered2data, index ) => {
+		return rendered2data === rendered2[ index ];
 	} );
 }
 
 /**
- * Checks if the center point of a single emoji is empty.
+ * checks if the center point of a single emoji is empty.
  *
- * This is used to determine if the browser is rendering an emoji with a single data point
- * correctly. The center point of an incorrectly rendered emoji will be empty. A correctly
+ * this is used to determine if the browser is rendering an emoji with a single data point
+ * correctly. the center point of an incorrectly rendered emoji will be empty. a correctly
  * rendered emoji will have a non-zero value at the center point.
  *
- * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
- * scope. Everything must be passed by parameters.
+ * this function may be serialized to run in a worker. therefore, it cannot refer to variables from the containing
+ * scope. everything must be passed by parameters.
  *
  * @since 6.8.2
  *
  * @private
  *
- * @param {CanvasRenderingContext2D} context 2D Context.
- * @param {string} emoji Emoji to test.
+ * @param {canvasrenderingcontext2d} context 2d context.
+ * @param {string} emoji emoji to test.
  *
- * @return {boolean} True if the center point is empty.
+ * @return {boolean} true if the center point is empty.
  */
-function emojiRendersEmptyCenterPoint( context, emoji ) {
-	// Cleanup from previous test.
-	context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
-	context.fillText( emoji, 0, 0 );
+function emojirendersemptycenterpoint( context, emoji ) {
+	// cleanup from previous test.
+	context.clearrect( 0, 0, context.canvas.width, context.canvas.height );
+	context.filltext( emoji, 0, 0 );
 
-	// Test if the center point (16, 16) is empty (0,0,0,0).
-	const centerPoint = context.getImageData(16, 16, 1, 1);
-	for ( let i = 0; i < centerPoint.data.length; i++ ) {
-		if ( centerPoint.data[ i ] !== 0 ) {
-			// Stop checking the moment it's known not to be empty.
+	// test if the center point (16, 16) is empty (0,0,0,0).
+	const centerpoint = context.getimagedata(16, 16, 1, 1);
+	for ( let i = 0; i < centerpoint.data.length; i++ ) {
+		if ( centerpoint.data[ i ] !== 0 ) {
+			// stop checking the moment it's known not to be empty.
 			return false;
 		}
 	}
@@ -199,238 +199,240 @@ function emojiRendersEmptyCenterPoint( context, emoji ) {
 }
 
 /**
- * Determines if the browser properly renders Emoji that Twemoji can supplement.
+ * determines if the browser properly renders emoji that twemoji can supplement.
  *
- * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
- * scope. Everything must be passed by parameters.
+ * this function may be serialized to run in a worker. therefore, it cannot refer to variables from the containing
+ * scope. everything must be passed by parameters.
  *
  * @since 4.2.0
  *
  * @private
  *
- * @param {CanvasRenderingContext2D} context 2D Context.
- * @param {string} type Whether to test for support of "flag" or "emoji".
- * @param {Function} emojiSetsRenderIdentically Reference to emojiSetsRenderIdentically function, needed due to minification.
- * @param {Function} emojiRendersEmptyCenterPoint Reference to emojiRendersEmptyCenterPoint function, needed due to minification.
+ * @param {canvasrenderingcontext2d} context 2d context.
+ * @param {string} type whether to test for support of "flag" or "emoji".
+ * @param {function} emojisetsrenderidentically reference to emojisetsrenderidentically function, needed due to minification.
+ * @param {function} emojirendersemptycenterpoint reference to emojirendersemptycenterpoint function, needed due to minification.
  *
- * @return {boolean} True if the browser can render emoji, false if it cannot.
+ * @return {boolean} true if the browser can render emoji, false if it cannot.
  */
-function browserSupportsEmoji( context, type, emojiSetsRenderIdentically, emojiRendersEmptyCenterPoint ) {
-	let isIdentical;
+function browsersupportsemoji( context, type, emojisetsrenderidentically, emojirendersemptycenterpoint ) {
+	let isidentical;
 
 	switch ( type ) {
 		case 'flag':
 			/*
-			 * Test for Transgender flag compatibility. Added in Unicode 13.
+			 * test for transgender flag compatibility. added in unicode 13.
 			 *
-			 * To test for support, we try to render it, and compare the rendering to how it would look if
+			 * to test for support, we try to render it, and compare the rendering to how it would look if
 			 * the browser doesn't render it correctly (white flag emoji + transgender symbol).
 			 */
-			isIdentical = emojiSetsRenderIdentically(
+			isidentical = emojisetsrenderidentically(
 				context,
-				'\uD83C\uDFF3\uFE0F\u200D\u26A7\uFE0F', // as a zero-width joiner sequence
-				'\uD83C\uDFF3\uFE0F\u200B\u26A7\uFE0F' // separated by a zero-width space
+				'\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f', // as a zero-width joiner sequence
+				'\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f' // separated by a zero-width space
 			);
 
-			if ( isIdentical ) {
+			if ( isidentical ) {
 				return false;
 			}
 
 			/*
-			 * Test for Sark flag compatibility. This is the least supported of the letter locale flags,
+			 * test for sark flag compatibility. this is the least supported of the letter locale flags,
 			 * so gives us an easy test for full support.
 			 *
-			 * To test for support, we try to render it, and compare the rendering to how it would look if
-			 * the browser doesn't render it correctly ([C] + [Q]).
+			 * to test for support, we try to render it, and compare the rendering to how it would look if
+			 * the browser doesn't render it correctly ([c] + [q]).
 			 */
-			isIdentical = emojiSetsRenderIdentically(
+			isidentical = emojisetsrenderidentically(
 				context,
-				'\uD83C\uDDE8\uD83C\uDDF6', // as the sequence of two code points
-				'\uD83C\uDDE8\u200B\uD83C\uDDF6' // as the two code points separated by a zero-width space
+				'\ud83c\udde8\ud83c\uddf6', // as the sequence of two code points
+				'\ud83c\udde8\u200b\ud83c\uddf6' // as the two code points separated by a zero-width space
 			);
 
-			if ( isIdentical ) {
+			if ( isidentical ) {
 				return false;
 			}
 
 			/*
-			 * Test for English flag compatibility. England is a country in the United Kingdom, it
+			 * test for english flag compatibility. england is a country in the united kingdom, it
 			 * does not have a two letter locale code but rather a five letter sub-division code.
 			 *
-			 * To test for support, we try to render it, and compare the rendering to how it would look if
-			 * the browser doesn't render it correctly (black flag emoji + [G] + [B] + [E] + [N] + [G]).
+			 * to test for support, we try to render it, and compare the rendering to how it would look if
+			 * the browser doesn't render it correctly (black flag emoji + [g] + [b] + [e] + [n] + [g]).
 			 */
-			isIdentical = emojiSetsRenderIdentically(
+			isidentical = emojisetsrenderidentically(
 				context,
 				// as the flag sequence
-				'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
+				'\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f',
 				// with each code point separated by a zero-width space
-				'\uD83C\uDFF4\u200B\uDB40\uDC67\u200B\uDB40\uDC62\u200B\uDB40\uDC65\u200B\uDB40\uDC6E\u200B\uDB40\uDC67\u200B\uDB40\uDC7F'
+				'\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f'
 			);
 
-			return ! isIdentical;
+			return ! isidentical;
 		case 'emoji':
 			/*
-			 * Is there a large, hairy, humanoid mythical creature living in the browser?
+			 * is there a large, hairy, humanoid mythical creature living in the browser?
 			 *
-			 * To test for Emoji 17.0 support, try to render a new emoji: Hairy Creature.
+			 * to test for emoji 17.0 support, try to render a new emoji: hairy creature.
 			 *
-			 * The hairy creature emoji is a single code point emoji. Testing for browser
+			 * the hairy creature emoji is a single code point emoji. testing for browser
 			 * support required testing the center point of the emoji to see if it is empty.
 			 *
-			 * 0xD83E 0x1FAC8 (\uD83E\u1FAC8) == ðŸ«ˆ Hairy creature.
+			 * 0xd83e 0x1fac8 (\ud83e\u1fac8) == ðÿ«ˆ hairy creature.
 			 *
-			 * When updating this test, please ensure that the emoji is either a single code point
-			 * or switch to using the emojiSetsRenderIdentically function and testing with a zero-width
+			 * when updating this test, please ensure that the emoji is either a single code point
+			 * or switch to using the emojisetsrenderidentically function and testing with a zero-width
 			 * joiner vs a zero-width space.
 			 */
-			const notSupported = emojiRendersEmptyCenterPoint( context, '\uD83E\u1FAC8' );
-			return ! notSupported;
+			const notsupported = emojirendersemptycenterpoint( context, '\ud83e\u1fac8' );
+			return ! notsupported;
 	}
 
 	return false;
 }
 
 /**
- * Checks emoji support tests.
+ * checks emoji support tests.
  *
- * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
- * scope. Everything must be passed by parameters.
+ * this function may be serialized to run in a worker. therefore, it cannot refer to variables from the containing
+ * scope. everything must be passed by parameters.
  *
  * @since 6.3.0
  *
  * @private
  *
- * @param {string[]} tests Tests.
- * @param {Function} browserSupportsEmoji Reference to browserSupportsEmoji function, needed due to minification.
- * @param {Function} emojiSetsRenderIdentically Reference to emojiSetsRenderIdentically function, needed due to minification.
- * @param {Function} emojiRendersEmptyCenterPoint Reference to emojiRendersEmptyCenterPoint function, needed due to minification.
+ * @param {string[]} tests tests.
+ * @param {function} browsersupportsemoji reference to browsersupportsemoji function, needed due to minification.
+ * @param {function} emojisetsrenderidentically reference to emojisetsrenderidentically function, needed due to minification.
+ * @param {function} emojirendersemptycenterpoint reference to emojirendersemptycenterpoint function, needed due to minification.
  *
- * @return {SupportTests} Support tests.
+ * @return {supporttests} support tests.
  */
-function testEmojiSupports( tests, browserSupportsEmoji, emojiSetsRenderIdentically, emojiRendersEmptyCenterPoint ) {
+function testemojisupports( tests, browsersupportsemoji, emojisetsrenderidentically, emojirendersemptycenterpoint ) {
 	let canvas;
 	if (
-		typeof WorkerGlobalScope !== 'undefined' &&
-		self instanceof WorkerGlobalScope
+		typeof workerglobalscope !== 'undefined' &&
+		self instanceof workerglobalscope
 	) {
-		canvas = new OffscreenCanvas( 300, 150 ); // Dimensions are default for HTMLCanvasElement.
+		canvas = new offscreencanvas( 300, 150 ); // dimensions are default for htmlcanvaselement.
 	} else {
-		canvas = document.createElement( 'canvas' );
+		canvas = document.createelement( 'canvas' );
 	}
 
-	const context = canvas.getContext( '2d', { willReadFrequently: true } );
+	const context = canvas.getcontext( '2d', { willreadfrequently: true } );
 
 	/*
-	 * Chrome on OS X added native emoji rendering in M41. Unfortunately,
-	 * it doesn't work when the font is bolder than 500 weight. So, we
-	 * check for bold rendering support to avoid invisible emoji in Chrome.
+	 * chrome on os x added native emoji rendering in m41. unfortunately,
+	 * it doesn't work when the font is bolder than 500 weight. so, we
+	 * check for bold rendering support to avoid invisible emoji in chrome.
 	 */
-	context.textBaseline = 'top';
-	context.font = '600 32px Arial';
+	context.textbaseline = 'top';
+	context.font = '600 32px arial';
 
 	const supports = {};
-	tests.forEach( ( test ) => {
-		supports[ test ] = browserSupportsEmoji( context, test, emojiSetsRenderIdentically, emojiRendersEmptyCenterPoint );
+	tests.foreach( ( test ) => {
+		supports[ test ] = browsersupportsemoji( context, test, emojisetsrenderidentically, emojirendersemptycenterpoint );
 	} );
 	return supports;
 }
 
 /**
- * Adds a script to the head of the document.
+ * adds a script to the head of the document.
  *
  * @ignore
  *
  * @since 4.2.0
  *
- * @param {string} src The url where the script is located.
+ * @param {string} src the url where the script is located.
  *
  * @return {void}
  */
-function addScript( src ) {
-	const script = document.createElement( 'script' );
+function addscript( src ) {
+	const script = document.createelement( 'script' );
 	script.src = src;
 	script.defer = true;
-	document.head.appendChild( script );
+	document.head.appendchild( script );
 }
 
 settings.supports = {
 	everything: true,
-	everythingExceptFlag: true
+	everythingexceptflag: true
 };
 
-// Obtain the emoji support from the browser, asynchronously when possible.
-new Promise( ( resolve ) => {
-	let supportTests = getSessionSupportTests();
-	if ( supportTests ) {
-		resolve( supportTests );
+// obtain the emoji support from the browser, asynchronously when possible.
+new promise( ( resolve ) => {
+	let supporttests = getsessionsupporttests();
+	if ( supporttests ) {
+		resolve( supporttests );
 		return;
 	}
 
-	if ( supportsWorkerOffloading() ) {
+	if ( supportsworkeroffloading() ) {
 		try {
-			// Note that the functions are being passed as arguments due to minification.
-			const workerScript =
-				'postMessage(' +
-				testEmojiSupports.toString() +
+			// note that the functions are being passed as arguments due to minification.
+			const workerscript =
+				'postmessage(' +
+				testemojisupports.tostring() +
 				'(' +
 				[
-					JSON.stringify( tests ),
-					browserSupportsEmoji.toString(),
-					emojiSetsRenderIdentically.toString(),
-					emojiRendersEmptyCenterPoint.toString()
+					json.stringify( tests ),
+					browsersupportsemoji.tostring(),
+					emojisetsrenderidentically.tostring(),
+					emojirendersemptycenterpoint.tostring()
 				].join( ',' ) +
 				'));';
-			const blob = new Blob( [ workerScript ], {
+			const blob = new blob( [ workerscript ], {
 				type: 'text/javascript'
 			} );
-			const worker = new Worker( URL.createObjectURL( blob ), { name: 'wpTestEmojiSupports' } );
+			const worker = new worker( url.createobjecturl( blob ), { name: 'wptestemojisupports' } );
 			worker.onmessage = ( event ) => {
-				supportTests = event.data;
-				setSessionSupportTests( supportTests );
+				supporttests = event.data;
+				setsessionsupporttests( supporttests );
 				worker.terminate();
-				resolve( supportTests );
+				resolve( supporttests );
 			};
 			return;
 		} catch ( e ) {}
 	}
 
-	supportTests = testEmojiSupports( tests, browserSupportsEmoji, emojiSetsRenderIdentically, emojiRendersEmptyCenterPoint );
-	setSessionSupportTests( supportTests );
-	resolve( supportTests );
+	supporttests = testemojisupports( tests, browsersupportsemoji, emojisetsrenderidentically, emojirendersemptycenterpoint );
+	setsessionsupporttests( supporttests );
+	resolve( supporttests );
 } )
-	// Once the browser emoji support has been obtained from the session, finalize the settings.
-	.then( ( supportTests ) => {
+	// once the browser emoji support has been obtained from the session, finalize the settings.
+	.then( ( supporttests ) => {
 		/*
-		 * Tests the browser support for flag emojis and other emojis, and adjusts the
+		 * tests the browser support for flag emojis and other emojis, and adjusts the
 		 * support settings accordingly.
 		 */
-		for ( const test in supportTests ) {
-			settings.supports[ test ] = supportTests[ test ];
+		for ( const test in supporttests ) {
+			settings.supports[ test ] = supporttests[ test ];
 
 			settings.supports.everything =
 				settings.supports.everything && settings.supports[ test ];
 
 			if ( 'flag' !== test ) {
-				settings.supports.everythingExceptFlag =
-					settings.supports.everythingExceptFlag &&
+				settings.supports.everythingexceptflag =
+					settings.supports.everythingexceptflag &&
 					settings.supports[ test ];
 			}
 		}
 
-		settings.supports.everythingExceptFlag =
-			settings.supports.everythingExceptFlag &&
+		settings.supports.everythingexceptflag =
+			settings.supports.everythingexceptflag &&
 			! settings.supports.flag;
 
-		// When the browser can not render everything we need to load a polyfill.
+		// when the browser can not render everything we need to load a polyfill.
 		if ( ! settings.supports.everything ) {
 			const src = settings.source || {};
 
 			if ( src.concatemoji ) {
-				addScript( src.concatemoji );
+				addscript( src.concatemoji );
 			} else if ( src.wpemoji && src.twemoji ) {
-				addScript( src.twemoji );
-				addScript( src.wpemoji );
+				addscript( src.twemoji );
+				addscript( src.wpemoji );
 			}
 		}
 	} );
+
+

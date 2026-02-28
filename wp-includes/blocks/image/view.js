@@ -1,5 +1,5 @@
-import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
-/******/ // The require scope
+import * as __webpack_external_module__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+/******/ // the require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
@@ -9,15 +9,15 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
@@ -28,287 +28,289 @@ var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
-const interactivity_namespaceObject = x({ ["getContext"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getContext), ["getElement"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getElement), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store), ["withSyncEvent"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.withSyncEvent) });
+const interactivity_namespaceobject = x({ ["getcontext"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getcontext), ["getelement"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getelement), ["store"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.store), ["withsyncevent"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.withsyncevent) });
 ;// ./node_modules/@wordpress/block-library/build-module/image/view.js
 
-let isTouching = false;
-let lastTouchTime = 0;
-const { state, actions, callbacks } = (0,interactivity_namespaceObject.store)(
+let istouching = false;
+let lasttouchtime = 0;
+const { state, actions, callbacks } = (0,interactivity_namespaceobject.store)(
   "core/image",
   {
     state: {
-      currentImageId: null,
-      get currentImage() {
-        return state.metadata[state.currentImageId];
+      currentimageid: null,
+      get currentimage() {
+        return state.metadata[state.currentimageid];
       },
-      get overlayOpened() {
-        return state.currentImageId !== null;
+      get overlayopened() {
+        return state.currentimageid !== null;
       },
-      get roleAttribute() {
-        return state.overlayOpened ? "dialog" : null;
+      get roleattribute() {
+        return state.overlayopened ? "dialog" : null;
       },
-      get ariaModal() {
-        return state.overlayOpened ? "true" : null;
+      get ariamodal() {
+        return state.overlayopened ? "true" : null;
       },
-      get enlargedSrc() {
-        return state.currentImage.uploadedSrc || "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+      get enlargedsrc() {
+        return state.currentimage.uploadedsrc || "data:image/gif;base64,r0lgodlhaqabaad/acwaaaaaaqabaaacads=";
       },
-      get figureStyles() {
-        return state.overlayOpened && `${state.currentImage.figureStyles?.replace(
+      get figurestyles() {
+        return state.overlayopened && `${state.currentimage.figurestyles?.replace(
           /margin[^;]*;?/g,
           ""
         )};`;
       },
-      get imgStyles() {
-        return state.overlayOpened && `${state.currentImage.imgStyles?.replace(
+      get imgstyles() {
+        return state.overlayopened && `${state.currentimage.imgstyles?.replace(
           /;$/,
           ""
         )}; object-fit:cover;`;
       },
-      get imageButtonRight() {
-        const { imageId } = (0,interactivity_namespaceObject.getContext)();
-        return state.metadata[imageId].imageButtonRight;
+      get imagebuttonright() {
+        const { imageid } = (0,interactivity_namespaceobject.getcontext)();
+        return state.metadata[imageid].imagebuttonright;
       },
-      get imageButtonTop() {
-        const { imageId } = (0,interactivity_namespaceObject.getContext)();
-        return state.metadata[imageId].imageButtonTop;
+      get imagebuttontop() {
+        const { imageid } = (0,interactivity_namespaceobject.getcontext)();
+        return state.metadata[imageid].imagebuttontop;
       },
-      get isContentHidden() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        return state.overlayEnabled && state.currentImageId === ctx.imageId;
+      get iscontenthidden() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        return state.overlayenabled && state.currentimageid === ctx.imageid;
       },
-      get isContentVisible() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        return !state.overlayEnabled && state.currentImageId === ctx.imageId;
+      get iscontentvisible() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        return !state.overlayenabled && state.currentimageid === ctx.imageid;
       }
     },
     actions: {
-      showLightbox() {
-        const { imageId } = (0,interactivity_namespaceObject.getContext)();
-        if (!state.metadata[imageId].imageRef?.complete) {
+      showlightbox() {
+        const { imageid } = (0,interactivity_namespaceobject.getcontext)();
+        if (!state.metadata[imageid].imageref?.complete) {
           return;
         }
-        state.scrollTopReset = document.documentElement.scrollTop;
-        state.scrollLeftReset = document.documentElement.scrollLeft;
-        state.overlayEnabled = true;
-        state.currentImageId = imageId;
-        callbacks.setOverlayStyles();
+        state.scrolltopreset = document.documentelement.scrolltop;
+        state.scrollleftreset = document.documentelement.scrollleft;
+        state.overlayenabled = true;
+        state.currentimageid = imageid;
+        callbacks.setoverlaystyles();
       },
-      hideLightbox() {
-        if (state.overlayEnabled) {
-          state.overlayEnabled = false;
-          setTimeout(function() {
-            state.currentImage.buttonRef.focus({
-              preventScroll: true
+      hidelightbox() {
+        if (state.overlayenabled) {
+          state.overlayenabled = false;
+          settimeout(function() {
+            state.currentimage.buttonref.focus({
+              preventscroll: true
             });
-            state.currentImageId = null;
+            state.currentimageid = null;
           }, 450);
         }
       },
-      handleKeydown: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        if (state.overlayEnabled) {
-          if (event.key === "Tab") {
-            event.preventDefault();
-            const { ref } = (0,interactivity_namespaceObject.getElement)();
-            ref.querySelector("button").focus();
+      handlekeydown: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        if (state.overlayenabled) {
+          if (event.key === "tab") {
+            event.preventdefault();
+            const { ref } = (0,interactivity_namespaceobject.getelement)();
+            ref.queryselector("button").focus();
           }
-          if (event.key === "Escape") {
-            actions.hideLightbox();
+          if (event.key === "escape") {
+            actions.hidelightbox();
           }
         }
       }),
-      handleTouchMove: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        if (state.overlayEnabled) {
-          event.preventDefault();
+      handletouchmove: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        if (state.overlayenabled) {
+          event.preventdefault();
         }
       }),
-      handleTouchStart() {
-        isTouching = true;
+      handletouchstart() {
+        istouching = true;
       },
-      handleTouchEnd() {
-        lastTouchTime = Date.now();
-        isTouching = false;
+      handletouchend() {
+        lasttouchtime = date.now();
+        istouching = false;
       },
-      handleScroll() {
-        if (state.overlayOpened) {
-          if (!isTouching && Date.now() - lastTouchTime > 450) {
-            window.scrollTo(
-              state.scrollLeftReset,
-              state.scrollTopReset
+      handlescroll() {
+        if (state.overlayopened) {
+          if (!istouching && date.now() - lasttouchtime > 450) {
+            window.scrollto(
+              state.scrollleftreset,
+              state.scrolltopreset
             );
           }
         }
       }
     },
     callbacks: {
-      setOverlayStyles() {
-        if (!state.overlayEnabled) {
+      setoverlaystyles() {
+        if (!state.overlayenabled) {
           return;
         }
         let {
-          naturalWidth,
-          naturalHeight,
-          offsetWidth: originalWidth,
-          offsetHeight: originalHeight
-        } = state.currentImage.imageRef;
-        let { x: screenPosX, y: screenPosY } = state.currentImage.imageRef.getBoundingClientRect();
-        const naturalRatio = naturalWidth / naturalHeight;
-        let originalRatio = originalWidth / originalHeight;
-        if (state.currentImage.scaleAttr === "contain") {
-          if (naturalRatio > originalRatio) {
-            const heightWithoutSpace = originalWidth / naturalRatio;
-            screenPosY += (originalHeight - heightWithoutSpace) / 2;
-            originalHeight = heightWithoutSpace;
+          naturalwidth,
+          naturalheight,
+          offsetwidth: originalwidth,
+          offsetheight: originalheight
+        } = state.currentimage.imageref;
+        let { x: screenposx, y: screenposy } = state.currentimage.imageref.getboundingclientrect();
+        const naturalratio = naturalwidth / naturalheight;
+        let originalratio = originalwidth / originalheight;
+        if (state.currentimage.scaleattr === "contain") {
+          if (naturalratio > originalratio) {
+            const heightwithoutspace = originalwidth / naturalratio;
+            screenposy += (originalheight - heightwithoutspace) / 2;
+            originalheight = heightwithoutspace;
           } else {
-            const widthWithoutSpace = originalHeight * naturalRatio;
-            screenPosX += (originalWidth - widthWithoutSpace) / 2;
-            originalWidth = widthWithoutSpace;
+            const widthwithoutspace = originalheight * naturalratio;
+            screenposx += (originalwidth - widthwithoutspace) / 2;
+            originalwidth = widthwithoutspace;
           }
         }
-        originalRatio = originalWidth / originalHeight;
-        let imgMaxWidth = parseFloat(
-          state.currentImage.targetWidth !== "none" ? state.currentImage.targetWidth : naturalWidth
+        originalratio = originalwidth / originalheight;
+        let imgmaxwidth = parsefloat(
+          state.currentimage.targetwidth !== "none" ? state.currentimage.targetwidth : naturalwidth
         );
-        let imgMaxHeight = parseFloat(
-          state.currentImage.targetHeight !== "none" ? state.currentImage.targetHeight : naturalHeight
+        let imgmaxheight = parsefloat(
+          state.currentimage.targetheight !== "none" ? state.currentimage.targetheight : naturalheight
         );
-        let imgRatio = imgMaxWidth / imgMaxHeight;
-        let containerMaxWidth = imgMaxWidth;
-        let containerMaxHeight = imgMaxHeight;
-        let containerWidth = imgMaxWidth;
-        let containerHeight = imgMaxHeight;
-        if (naturalRatio.toFixed(2) !== imgRatio.toFixed(2)) {
-          if (naturalRatio > imgRatio) {
-            const reducedHeight = imgMaxWidth / naturalRatio;
-            if (imgMaxHeight - reducedHeight > imgMaxWidth) {
-              imgMaxHeight = reducedHeight;
-              imgMaxWidth = reducedHeight * naturalRatio;
+        let imgratio = imgmaxwidth / imgmaxheight;
+        let containermaxwidth = imgmaxwidth;
+        let containermaxheight = imgmaxheight;
+        let containerwidth = imgmaxwidth;
+        let containerheight = imgmaxheight;
+        if (naturalratio.tofixed(2) !== imgratio.tofixed(2)) {
+          if (naturalratio > imgratio) {
+            const reducedheight = imgmaxwidth / naturalratio;
+            if (imgmaxheight - reducedheight > imgmaxwidth) {
+              imgmaxheight = reducedheight;
+              imgmaxwidth = reducedheight * naturalratio;
             } else {
-              imgMaxHeight = imgMaxWidth / naturalRatio;
+              imgmaxheight = imgmaxwidth / naturalratio;
             }
           } else {
-            const reducedWidth = imgMaxHeight * naturalRatio;
-            if (imgMaxWidth - reducedWidth > imgMaxHeight) {
-              imgMaxWidth = reducedWidth;
-              imgMaxHeight = reducedWidth / naturalRatio;
+            const reducedwidth = imgmaxheight * naturalratio;
+            if (imgmaxwidth - reducedwidth > imgmaxheight) {
+              imgmaxwidth = reducedwidth;
+              imgmaxheight = reducedwidth / naturalratio;
             } else {
-              imgMaxWidth = imgMaxHeight * naturalRatio;
+              imgmaxwidth = imgmaxheight * naturalratio;
             }
           }
-          containerWidth = imgMaxWidth;
-          containerHeight = imgMaxHeight;
-          imgRatio = imgMaxWidth / imgMaxHeight;
-          if (originalRatio > imgRatio) {
-            containerMaxWidth = imgMaxWidth;
-            containerMaxHeight = containerMaxWidth / originalRatio;
+          containerwidth = imgmaxwidth;
+          containerheight = imgmaxheight;
+          imgratio = imgmaxwidth / imgmaxheight;
+          if (originalratio > imgratio) {
+            containermaxwidth = imgmaxwidth;
+            containermaxheight = containermaxwidth / originalratio;
           } else {
-            containerMaxHeight = imgMaxHeight;
-            containerMaxWidth = containerMaxHeight * originalRatio;
+            containermaxheight = imgmaxheight;
+            containermaxwidth = containermaxheight * originalratio;
           }
         }
-        if (originalWidth > containerWidth || originalHeight > containerHeight) {
-          containerWidth = originalWidth;
-          containerHeight = originalHeight;
+        if (originalwidth > containerwidth || originalheight > containerheight) {
+          containerwidth = originalwidth;
+          containerheight = originalheight;
         }
-        let horizontalPadding = 0;
-        if (window.innerWidth > 480) {
-          horizontalPadding = 80;
-        } else if (window.innerWidth > 1920) {
-          horizontalPadding = 160;
+        let horizontalpadding = 0;
+        if (window.innerwidth > 480) {
+          horizontalpadding = 80;
+        } else if (window.innerwidth > 1920) {
+          horizontalpadding = 160;
         }
-        const verticalPadding = 80;
-        const targetMaxWidth = Math.min(
-          window.innerWidth - horizontalPadding,
-          containerWidth
+        const verticalpadding = 80;
+        const targetmaxwidth = math.min(
+          window.innerwidth - horizontalpadding,
+          containerwidth
         );
-        const targetMaxHeight = Math.min(
-          window.innerHeight - verticalPadding,
-          containerHeight
+        const targetmaxheight = math.min(
+          window.innerheight - verticalpadding,
+          containerheight
         );
-        const targetContainerRatio = targetMaxWidth / targetMaxHeight;
-        if (originalRatio > targetContainerRatio) {
-          containerWidth = targetMaxWidth;
-          containerHeight = containerWidth / originalRatio;
+        const targetcontainerratio = targetmaxwidth / targetmaxheight;
+        if (originalratio > targetcontainerratio) {
+          containerwidth = targetmaxwidth;
+          containerheight = containerwidth / originalratio;
         } else {
-          containerHeight = targetMaxHeight;
-          containerWidth = containerHeight * originalRatio;
+          containerheight = targetmaxheight;
+          containerwidth = containerheight * originalratio;
         }
-        const containerScale = originalWidth / containerWidth;
-        const lightboxImgWidth = imgMaxWidth * (containerWidth / containerMaxWidth);
-        const lightboxImgHeight = imgMaxHeight * (containerHeight / containerMaxHeight);
-        state.overlayStyles = `
-					--wp--lightbox-initial-top-position: ${screenPosY}px;
-					--wp--lightbox-initial-left-position: ${screenPosX}px;
-					--wp--lightbox-container-width: ${containerWidth + 1}px;
-					--wp--lightbox-container-height: ${containerHeight + 1}px;
-					--wp--lightbox-image-width: ${lightboxImgWidth}px;
-					--wp--lightbox-image-height: ${lightboxImgHeight}px;
-					--wp--lightbox-scale: ${containerScale};
-					--wp--lightbox-scrollbar-width: ${window.innerWidth - document.documentElement.clientWidth}px;
+        const containerscale = originalwidth / containerwidth;
+        const lightboximgwidth = imgmaxwidth * (containerwidth / containermaxwidth);
+        const lightboximgheight = imgmaxheight * (containerheight / containermaxheight);
+        state.overlaystyles = `
+					--wp--lightbox-initial-top-position: ${screenposy}px;
+					--wp--lightbox-initial-left-position: ${screenposx}px;
+					--wp--lightbox-container-width: ${containerwidth + 1}px;
+					--wp--lightbox-container-height: ${containerheight + 1}px;
+					--wp--lightbox-image-width: ${lightboximgwidth}px;
+					--wp--lightbox-image-height: ${lightboximgheight}px;
+					--wp--lightbox-scale: ${containerscale};
+					--wp--lightbox-scrollbar-width: ${window.innerwidth - document.documentelement.clientwidth}px;
 				`;
       },
-      setButtonStyles() {
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
+      setbuttonstyles() {
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
         if (!ref) {
           return;
         }
-        const { imageId } = (0,interactivity_namespaceObject.getContext)();
-        state.metadata[imageId].imageRef = ref;
-        state.metadata[imageId].currentSrc = ref.currentSrc;
+        const { imageid } = (0,interactivity_namespaceobject.getcontext)();
+        state.metadata[imageid].imageref = ref;
+        state.metadata[imageid].currentsrc = ref.currentsrc;
         const {
-          naturalWidth,
-          naturalHeight,
-          offsetWidth,
-          offsetHeight
+          naturalwidth,
+          naturalheight,
+          offsetwidth,
+          offsetheight
         } = ref;
-        if (naturalWidth === 0 || naturalHeight === 0) {
+        if (naturalwidth === 0 || naturalheight === 0) {
           return;
         }
-        const figure = ref.parentElement;
-        const figureWidth = ref.parentElement.clientWidth;
-        let figureHeight = ref.parentElement.clientHeight;
-        const caption = figure.querySelector("figcaption");
+        const figure = ref.parentelement;
+        const figurewidth = ref.parentelement.clientwidth;
+        let figureheight = ref.parentelement.clientheight;
+        const caption = figure.queryselector("figcaption");
         if (caption) {
-          const captionComputedStyle = window.getComputedStyle(caption);
+          const captioncomputedstyle = window.getcomputedstyle(caption);
           if (!["absolute", "fixed"].includes(
-            captionComputedStyle.position
+            captioncomputedstyle.position
           )) {
-            figureHeight = figureHeight - caption.offsetHeight - parseFloat(captionComputedStyle.marginTop) - parseFloat(captionComputedStyle.marginBottom);
+            figureheight = figureheight - caption.offsetheight - parsefloat(captioncomputedstyle.margintop) - parsefloat(captioncomputedstyle.marginbottom);
           }
         }
-        const buttonOffsetTop = figureHeight - offsetHeight;
-        const buttonOffsetRight = figureWidth - offsetWidth;
-        let imageButtonTop = buttonOffsetTop + 16;
-        let imageButtonRight = buttonOffsetRight + 16;
-        if (state.metadata[imageId].scaleAttr === "contain") {
-          const naturalRatio = naturalWidth / naturalHeight;
-          const offsetRatio = offsetWidth / offsetHeight;
-          if (naturalRatio >= offsetRatio) {
-            const referenceHeight = offsetWidth / naturalRatio;
-            imageButtonTop = (offsetHeight - referenceHeight) / 2 + buttonOffsetTop + 16;
-            imageButtonRight = buttonOffsetRight + 16;
+        const buttonoffsettop = figureheight - offsetheight;
+        const buttonoffsetright = figurewidth - offsetwidth;
+        let imagebuttontop = buttonoffsettop + 16;
+        let imagebuttonright = buttonoffsetright + 16;
+        if (state.metadata[imageid].scaleattr === "contain") {
+          const naturalratio = naturalwidth / naturalheight;
+          const offsetratio = offsetwidth / offsetheight;
+          if (naturalratio >= offsetratio) {
+            const referenceheight = offsetwidth / naturalratio;
+            imagebuttontop = (offsetheight - referenceheight) / 2 + buttonoffsettop + 16;
+            imagebuttonright = buttonoffsetright + 16;
           } else {
-            const referenceWidth = offsetHeight * naturalRatio;
-            imageButtonTop = buttonOffsetTop + 16;
-            imageButtonRight = (offsetWidth - referenceWidth) / 2 + buttonOffsetRight + 16;
+            const referencewidth = offsetheight * naturalratio;
+            imagebuttontop = buttonoffsettop + 16;
+            imagebuttonright = (offsetwidth - referencewidth) / 2 + buttonoffsetright + 16;
           }
         }
-        state.metadata[imageId].imageButtonTop = imageButtonTop;
-        state.metadata[imageId].imageButtonRight = imageButtonRight;
+        state.metadata[imageid].imagebuttontop = imagebuttontop;
+        state.metadata[imageid].imagebuttonright = imagebuttonright;
       },
-      setOverlayFocus() {
-        if (state.overlayEnabled) {
-          const { ref } = (0,interactivity_namespaceObject.getElement)();
+      setoverlayfocus() {
+        if (state.overlayenabled) {
+          const { ref } = (0,interactivity_namespaceobject.getelement)();
           ref.focus();
         }
       },
-      initTriggerButton() {
-        const { imageId } = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        state.metadata[imageId].buttonRef = ref;
+      inittriggerbutton() {
+        const { imageid } = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        state.metadata[imageid].buttonref = ref;
       }
     }
   },
   { lock: true }
 );
+
+
 

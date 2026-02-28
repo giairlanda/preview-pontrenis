@@ -1,4 +1,4 @@
-/******/ // The require scope
+/******/ // the require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
@@ -8,47 +8,47 @@
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   m: () => (/* binding */ setup),
-  L: () => (/* reexport */ speak)
+  l: () => (/* reexport */ speak)
 });
 
 ;// ./node_modules/@wordpress/a11y/build-module/shared/clear.js
 function clear() {
-  const regions = document.getElementsByClassName("a11y-speak-region");
-  const introText = document.getElementById("a11y-speak-intro-text");
+  const regions = document.getelementsbyclassname("a11y-speak-region");
+  const introtext = document.getelementbyid("a11y-speak-intro-text");
   for (let i = 0; i < regions.length; i++) {
-    regions[i].textContent = "";
+    regions[i].textcontent = "";
   }
-  if (introText) {
-    introText.setAttribute("hidden", "hidden");
+  if (introtext) {
+    introtext.setattribute("hidden", "hidden");
   }
 }
 
 
 ;// ./node_modules/@wordpress/a11y/build-module/shared/filter-message.js
-let previousMessage = "";
-function filterMessage(message) {
+let previousmessage = "";
+function filtermessage(message) {
   message = message.replace(/<[^<>]+>/g, " ");
-  if (previousMessage === message) {
-    message += "\xA0";
+  if (previousmessage === message) {
+    message += "\xa0";
   }
-  previousMessage = message;
+  previousmessage = message;
   return message;
 }
 
@@ -56,21 +56,21 @@ function filterMessage(message) {
 ;// ./node_modules/@wordpress/a11y/build-module/shared/index.js
 
 
-function speak(message, ariaLive) {
+function speak(message, arialive) {
   clear();
-  message = filterMessage(message);
-  const introText = document.getElementById("a11y-speak-intro-text");
-  const containerAssertive = document.getElementById(
+  message = filtermessage(message);
+  const introtext = document.getelementbyid("a11y-speak-intro-text");
+  const containerassertive = document.getelementbyid(
     "a11y-speak-assertive"
   );
-  const containerPolite = document.getElementById("a11y-speak-polite");
-  if (containerAssertive && ariaLive === "assertive") {
-    containerAssertive.textContent = message;
-  } else if (containerPolite) {
-    containerPolite.textContent = message;
+  const containerpolite = document.getelementbyid("a11y-speak-polite");
+  if (containerassertive && arialive === "assertive") {
+    containerassertive.textcontent = message;
+  } else if (containerpolite) {
+    containerpolite.textcontent = message;
   }
-  if (introText) {
-    introText.removeAttribute("hidden");
+  if (introtext) {
+    introtext.removeattribute("hidden");
   }
 }
 
@@ -82,5 +82,7 @@ const setup = () => {
 
 
 var __webpack_exports__setup = __webpack_exports__.m;
-var __webpack_exports__speak = __webpack_exports__.L;
+var __webpack_exports__speak = __webpack_exports__.l;
 export { __webpack_exports__setup as setup, __webpack_exports__speak as speak };
+
+

@@ -32,7 +32,7 @@
 }
 
 #customize-theme-controls .customize-pane-child.control-section-sidebar.is-sub-section-open{
-  transform:translateX(-100%);
+  transform:translatex(-100%);
 }
 
 @media (min-width:600px){
@@ -228,3 +228,4 @@
 .customize-control-sidebar_block_editor *,.customize-control-sidebar_block_editor :after,.customize-control-sidebar_block_editor :before,.customize-widgets-layout__inspector *,.customize-widgets-layout__inspector :after,.customize-widgets-layout__inspector :before{
   box-sizing:inherit;
 }
+

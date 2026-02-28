@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,40 +10,40 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  __dangerousOptInToUnstableAPIsOnlyForCoreModules: () => (/* reexport */ __dangerousOptInToUnstableAPIsOnlyForCoreModules)
+  __dangerousoptintounstableapisonlyforcoremodules: () => (/* reexport */ __dangerousoptintounstableapisonlyforcoremodules)
 });
 
 ;// ./node_modules/@wordpress/private-apis/build-module/implementation.js
-const CORE_MODULES_USING_PRIVATE_APIS = [
+const core_modules_using_private_apis = [
   "@wordpress/block-directory",
   "@wordpress/block-editor",
   "@wordpress/block-library",
@@ -69,66 +69,66 @@ const CORE_MODULES_USING_PRIVATE_APIS = [
   "@wordpress/media-utils",
   "@wordpress/upload-media"
 ];
-const registeredPrivateApis = [];
-const requiredConsent = "I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.";
-const allowReRegistration =  true ? false : 0;
-const __dangerousOptInToUnstableAPIsOnlyForCoreModules = (consent, moduleName) => {
-  if (!CORE_MODULES_USING_PRIVATE_APIS.includes(moduleName)) {
-    throw new Error(
-      `You tried to opt-in to unstable APIs as module "${moduleName}". This feature is only for JavaScript modules shipped with WordPress core. Please do not use it in plugins and themes as the unstable APIs will be removed without a warning. If you ignore this error and depend on unstable features, your product will inevitably break on one of the next WordPress releases.`
+const registeredprivateapis = [];
+const requiredconsent = "i acknowledge private features are not for use in themes or plugins and doing so will break in the next version of wordpress.";
+const allowreregistration =  true ? false : 0;
+const __dangerousoptintounstableapisonlyforcoremodules = (consent, modulename) => {
+  if (!core_modules_using_private_apis.includes(modulename)) {
+    throw new error(
+      `you tried to opt-in to unstable apis as module "${modulename}". this feature is only for javascript modules shipped with wordpress core. please do not use it in plugins and themes as the unstable apis will be removed without a warning. if you ignore this error and depend on unstable features, your product will inevitably break on one of the next wordpress releases.`
     );
   }
-  if (!allowReRegistration && registeredPrivateApis.includes(moduleName)) {
-    throw new Error(
-      `You tried to opt-in to unstable APIs as module "${moduleName}" which is already registered. This feature is only for JavaScript modules shipped with WordPress core. Please do not use it in plugins and themes as the unstable APIs will be removed without a warning. If you ignore this error and depend on unstable features, your product will inevitably break on one of the next WordPress releases.`
+  if (!allowreregistration && registeredprivateapis.includes(modulename)) {
+    throw new error(
+      `you tried to opt-in to unstable apis as module "${modulename}" which is already registered. this feature is only for javascript modules shipped with wordpress core. please do not use it in plugins and themes as the unstable apis will be removed without a warning. if you ignore this error and depend on unstable features, your product will inevitably break on one of the next wordpress releases.`
     );
   }
-  if (consent !== requiredConsent) {
-    throw new Error(
-      `You tried to opt-in to unstable APIs without confirming you know the consequences. This feature is only for JavaScript modules shipped with WordPress core. Please do not use it in plugins and themes as the unstable APIs will removed without a warning. If you ignore this error and depend on unstable features, your product will inevitably break on the next WordPress release.`
+  if (consent !== requiredconsent) {
+    throw new error(
+      `you tried to opt-in to unstable apis without confirming you know the consequences. this feature is only for javascript modules shipped with wordpress core. please do not use it in plugins and themes as the unstable apis will removed without a warning. if you ignore this error and depend on unstable features, your product will inevitably break on the next wordpress release.`
     );
   }
-  registeredPrivateApis.push(moduleName);
+  registeredprivateapis.push(modulename);
   return {
     lock,
     unlock
   };
 };
-function lock(object, privateData) {
+function lock(object, privatedata) {
   if (!object) {
-    throw new Error("Cannot lock an undefined object.");
+    throw new error("cannot lock an undefined object.");
   }
   const _object = object;
   if (!(__private in _object)) {
     _object[__private] = {};
   }
-  lockedData.set(_object[__private], privateData);
+  lockeddata.set(_object[__private], privatedata);
 }
 function unlock(object) {
   if (!object) {
-    throw new Error("Cannot unlock an undefined object.");
+    throw new error("cannot unlock an undefined object.");
   }
   const _object = object;
   if (!(__private in _object)) {
-    throw new Error(
-      "Cannot unlock an object that was not locked before. "
+    throw new error(
+      "cannot unlock an object that was not locked before. "
     );
   }
-  return lockedData.get(_object[__private]);
+  return lockeddata.get(_object[__private]);
 }
-const lockedData = /* @__PURE__ */ new WeakMap();
-const __private = Symbol("Private API ID");
-function allowCoreModule(name) {
-  CORE_MODULES_USING_PRIVATE_APIS.push(name);
+const lockeddata = /* @__pure__ */ new weakmap();
+const __private = symbol("private api id");
+function allowcoremodule(name) {
+  core_modules_using_private_apis.push(name);
 }
-function resetAllowedCoreModules() {
-  while (CORE_MODULES_USING_PRIVATE_APIS.length) {
-    CORE_MODULES_USING_PRIVATE_APIS.pop();
+function resetallowedcoremodules() {
+  while (core_modules_using_private_apis.length) {
+    core_modules_using_private_apis.pop();
   }
 }
-function resetRegisteredPrivateApis() {
-  while (registeredPrivateApis.length) {
-    registeredPrivateApis.pop();
+function resetregisteredprivateapis() {
+  while (registeredprivateapis.length) {
+    registeredprivateapis.pop();
   }
 }
 
@@ -137,6 +137,7 @@ function resetRegisteredPrivateApis() {
 
 
 
-(window.wp = window.wp || {}).privateApis = __webpack_exports__;
+(window.wp = window.wp || {}).privateapis = __webpack_exports__;
 /******/ })()
 ;
+

@@ -1,82 +1,82 @@
 /*
  *	jquery.suggest 1.1b - 2007-08-06
- * Patched by Mark Jaquith with Alexander Dick's "multiple items" patch to allow for auto-suggesting of more than one tag before submitting
- * See: http://www.vulgarisoip.com/2007/06/29/jquerysuggest-an-alternative-jquery-based-autocomplete-library/#comment-7228
+ * patched by mark jaquith with alexander dick's "multiple items" patch to allow for auto-suggesting of more than one tag before submitting
+ * see: http://www.vulgarisoip.com/2007/06/29/jquerysuggest-an-alternative-jquery-based-autocomplete-library/#comment-7228
  *
- *	Uses code and techniques from following libraries:
+ *	uses code and techniques from following libraries:
  *	1. http://www.dyve.net/jquery/?autocomplete
  *	2. http://dev.jquery.com/browser/trunk/plugins/interface/iautocompleter.js
  *
- *	All the new stuff written by Peter Vulgaris (www.vulgarisoip.com)
- *	Feel free to do whatever you want with this file
+ *	all the new stuff written by peter vulgaris (www.vulgarisoip.com)
+ *	feel free to do whatever you want with this file
  *
  */
 
 (function($) {
 
 	$.suggest = function(input, options) {
-		var $input, $results, timeout, prevLength, cache, cacheSize;
+		var $input, $results, timeout, prevlength, cache, cachesize;
 
 		$input = $(input).attr("autocomplete", "off");
 		$results = $("<ul/>");
 
-		timeout = false;		// hold timeout ID for suggestion results to appear
-		prevLength = 0;			// last recorded length of $input.val()
-		cache = [];				// cache MRU list
-		cacheSize = 0;			// size of cache in chars (bytes?)
+		timeout = false;		// hold timeout id for suggestion results to appear
+		prevlength = 0;			// last recorded length of $input.val()
+		cache = [];				// cache mru list
+		cachesize = 0;			// size of cache in chars (bytes?)
 
-		$results.addClass(options.resultsClass).appendTo('body');
+		$results.addclass(options.resultsclass).appendto('body');
 
 
-		resetPosition();
+		resetposition();
 		$(window)
-			.on( 'load', resetPosition ) // just in case user is changing size of page while loading
-			.on( 'resize', resetPosition );
+			.on( 'load', resetposition ) // just in case user is changing size of page while loading
+			.on( 'resize', resetposition );
 
 		$input.blur(function() {
-			setTimeout(function() { $results.hide() }, 200);
+			settimeout(function() { $results.hide() }, 200);
 		});
 
-		$input.keydown(processKey);
+		$input.keydown(processkey);
 
-		function resetPosition() {
+		function resetposition() {
 			// requires jquery.dimension plugin
 			var offset = $input.offset();
 			$results.css({
-				top: (offset.top + input.offsetHeight) + 'px',
+				top: (offset.top + input.offsetheight) + 'px',
 				left: offset.left + 'px'
 			});
 		}
 
 
-		function processKey(e) {
+		function processkey(e) {
 
 			// handling up/down/escape requires results to be visible
-			// handling enter/tab requires that AND a result to be selected
-			if ((/27$|38$|40$/.test(e.keyCode) && $results.is(':visible')) ||
-				(/^13$|^9$/.test(e.keyCode) && getCurrentResult())) {
+			// handling enter/tab requires that and a result to be selected
+			if ((/27$|38$|40$/.test(e.keycode) && $results.is(':visible')) ||
+				(/^13$|^9$/.test(e.keycode) && getcurrentresult())) {
 
-				if (e.preventDefault)
-					e.preventDefault();
-				if (e.stopPropagation)
-					e.stopPropagation();
+				if (e.preventdefault)
+					e.preventdefault();
+				if (e.stoppropagation)
+					e.stoppropagation();
 
-				e.cancelBubble = true;
-				e.returnValue = false;
+				e.cancelbubble = true;
+				e.returnvalue = false;
 
-				switch(e.keyCode) {
+				switch(e.keycode) {
 
 					case 38: // up
-						prevResult();
+						prevresult();
 						break;
 
 					case 40: // down
-						nextResult();
+						nextresult();
 						break;
 
 					case 9:  // tab
 					case 13: // return
-						selectCurrentResult();
+						selectcurrentresult();
 						break;
 
 					case 27: //	escape
@@ -85,12 +85,12 @@
 
 				}
 
-			} else if ($input.val().length != prevLength) {
+			} else if ($input.val().length != prevlength) {
 
 				if (timeout)
-					clearTimeout(timeout);
-				timeout = setTimeout(suggest, options.delay);
-				prevLength = $input.val().length;
+					cleartimeout(timeout);
+				timeout = settimeout(suggest, options.delay);
+				prevlength = $input.val().length;
 
 			}
 
@@ -100,21 +100,21 @@
 
 		function suggest() {
 
-			var q = $.trim($input.val()), multipleSepPos, items;
+			var q = $.trim($input.val()), multipleseppos, items;
 
 			if ( options.multiple ) {
-				multipleSepPos = q.lastIndexOf(options.multipleSep);
-				if ( multipleSepPos != -1 ) {
-					q = $.trim(q.substr(multipleSepPos + options.multipleSep.length));
+				multipleseppos = q.lastindexof(options.multiplesep);
+				if ( multipleseppos != -1 ) {
+					q = $.trim(q.substr(multipleseppos + options.multiplesep.length));
 				}
 			}
 			if (q.length >= options.minchars) {
 
-				cached = checkCache(q);
+				cached = checkcache(q);
 
 				if (cached) {
 
-					displayItems(cached['items']);
+					displayitems(cached['items']);
 
 				} else {
 
@@ -122,10 +122,10 @@
 
 						$results.hide();
 
-						items = parseTxt(txt, q);
+						items = parsetxt(txt, q);
 
-						displayItems(items);
-						addToCache(q, items, txt.length);
+						displayitems(items);
+						addtocache(q, items, txt.length);
 
 					});
 
@@ -140,7 +140,7 @@
 		}
 
 
-		function checkCache(q) {
+		function checkcache(q) {
 			var i;
 			for (i = 0; i < cache.length; i++)
 				if (cache[i]['q'] == q) {
@@ -152,11 +152,11 @@
 
 		}
 
-		function addToCache(q, items, size) {
+		function addtocache(q, items, size) {
 			var cached;
-			while (cache.length && (cacheSize + size > options.maxCacheSize)) {
+			while (cache.length && (cachesize + size > options.maxcachesize)) {
 				cached = cache.pop();
-				cacheSize -= cached['size'];
+				cachesize -= cached['size'];
 			}
 
 			cache.push({
@@ -165,11 +165,11 @@
 				items: items
 				});
 
-			cacheSize += size;
+			cachesize += size;
 
 		}
 
-		function displayItems(items) {
+		function displayitems(items) {
 			var html = '', i;
 			if (!items)
 				return;
@@ -179,7 +179,7 @@
 				return;
 			}
 
-			resetPosition(); // when the form moves after the page has loaded
+			resetposition(); // when the form moves after the page has loaded
 
 			for (i = 0; i < items.length; i++)
 				html += '<li>' + items[i] + '</li>';
@@ -189,18 +189,18 @@
 			$results
 				.children('li')
 				.mouseover(function() {
-					$results.children('li').removeClass(options.selectClass);
-					$(this).addClass(options.selectClass);
+					$results.children('li').removeclass(options.selectclass);
+					$(this).addclass(options.selectclass);
 				})
 				.click(function(e) {
-					e.preventDefault();
-					e.stopPropagation();
-					selectCurrentResult();
+					e.preventdefault();
+					e.stoppropagation();
+					selectcurrentresult();
 				});
 
 		}
 
-		function parseTxt(txt, q) {
+		function parsetxt(txt, q) {
 
 			var items = [], tokens = txt.split(options.delimiter), i, token;
 
@@ -209,8 +209,8 @@
 				token = $.trim(tokens[i]);
 				if (token) {
 					token = token.replace(
-						new RegExp(q, 'ig'),
-						function(q) { return '<span class="' + options.matchClass + '">' + q + '</span>' }
+						new regexp(q, 'ig'),
+						function(q) { return '<span class="' + options.matchclass + '">' + q + '</span>' }
 						);
 					items[items.length] = token;
 				}
@@ -219,70 +219,70 @@
 			return items;
 		}
 
-		function getCurrentResult() {
-			var $currentResult;
+		function getcurrentresult() {
+			var $currentresult;
 			if (!$results.is(':visible'))
 				return false;
 
-			$currentResult = $results.children('li.' + options.selectClass);
+			$currentresult = $results.children('li.' + options.selectclass);
 
-			if (!$currentResult.length)
-				$currentResult = false;
+			if (!$currentresult.length)
+				$currentresult = false;
 
-			return $currentResult;
+			return $currentresult;
 
 		}
 
-		function selectCurrentResult() {
+		function selectcurrentresult() {
 
-			$currentResult = getCurrentResult();
+			$currentresult = getcurrentresult();
 
-			if ($currentResult) {
+			if ($currentresult) {
 				if ( options.multiple ) {
-					if ( $input.val().indexOf(options.multipleSep) != -1 ) {
-						$currentVal = $input.val().substr( 0, ( $input.val().lastIndexOf(options.multipleSep) + options.multipleSep.length ) ) + ' ';
+					if ( $input.val().indexof(options.multiplesep) != -1 ) {
+						$currentval = $input.val().substr( 0, ( $input.val().lastindexof(options.multiplesep) + options.multiplesep.length ) ) + ' ';
 					} else {
-						$currentVal = "";
+						$currentval = "";
 					}
-					$input.val( $currentVal + $currentResult.text() + options.multipleSep + ' ' );
+					$input.val( $currentval + $currentresult.text() + options.multiplesep + ' ' );
 					$input.focus();
 				} else {
-					$input.val($currentResult.text());
+					$input.val($currentresult.text());
 				}
 				$results.hide();
 				$input.trigger('change');
 
-				if (options.onSelect)
-					options.onSelect.apply($input[0]);
+				if (options.onselect)
+					options.onselect.apply($input[0]);
 
 			}
 
 		}
 
-		function nextResult() {
+		function nextresult() {
 
-			$currentResult = getCurrentResult();
+			$currentresult = getcurrentresult();
 
-			if ($currentResult)
-				$currentResult
-					.removeClass(options.selectClass)
+			if ($currentresult)
+				$currentresult
+					.removeclass(options.selectclass)
 					.next()
-						.addClass(options.selectClass);
+						.addclass(options.selectclass);
 			else
-				$results.children('li:first-child').addClass(options.selectClass);
+				$results.children('li:first-child').addclass(options.selectclass);
 
 		}
 
-		function prevResult() {
-			var $currentResult = getCurrentResult();
+		function prevresult() {
+			var $currentresult = getcurrentresult();
 
-			if ($currentResult)
-				$currentResult
-					.removeClass(options.selectClass)
+			if ($currentresult)
+				$currentresult
+					.removeclass(options.selectclass)
 					.prev()
-						.addClass(options.selectClass);
+						.addclass(options.selectclass);
 			else
-				$results.children('li:last-child').addClass(options.selectClass);
+				$results.children('li:last-child').addclass(options.selectclass);
 
 		}
 	}
@@ -294,16 +294,16 @@
 
 		options = options || {};
 		options.multiple = options.multiple || false;
-		options.multipleSep = options.multipleSep || ",";
+		options.multiplesep = options.multiplesep || ",";
 		options.source = source;
 		options.delay = options.delay || 100;
-		options.resultsClass = options.resultsClass || 'ac_results';
-		options.selectClass = options.selectClass || 'ac_over';
-		options.matchClass = options.matchClass || 'ac_match';
+		options.resultsclass = options.resultsclass || 'ac_results';
+		options.selectclass = options.selectclass || 'ac_over';
+		options.matchclass = options.matchclass || 'ac_match';
 		options.minchars = options.minchars || 2;
 		options.delimiter = options.delimiter || '\n';
-		options.onSelect = options.onSelect || false;
-		options.maxCacheSize = options.maxCacheSize || 65536;
+		options.onselect = options.onselect || false;
+		options.maxcachesize = options.maxcachesize || 65536;
 
 		this.each(function() {
 			new $.suggest(this, options);
@@ -313,4 +313,6 @@
 
 	};
 
-})(jQuery);
+})(jquery);
+
+

@@ -1,4 +1,4 @@
-/* global pluploadL10n, plupload, _wpPluploadSettings */
+/* global pluploadl10n, plupload, _wppluploadsettings */
 
 /**
  * @namespace wp
@@ -6,47 +6,47 @@
 window.wp = window.wp || {};
 
 ( function( exports, $ ) {
-	var Uploader;
+	var uploader;
 
-	if ( typeof _wpPluploadSettings === 'undefined' ) {
+	if ( typeof _wppluploadsettings === 'undefined' ) {
 		return;
 	}
 
 	/**
-	 * A WordPress uploader.
+	 * a wordpress uploader.
 	 *
-	 * The Plupload library provides cross-browser uploader UI integration.
-	 * This object bridges the Plupload API to integrate uploads into the
-	 * WordPress back end and the WordPress media experience.
+	 * the plupload library provides cross-browser uploader ui integration.
+	 * this object bridges the plupload api to integrate uploads into the
+	 * wordpress back end and the wordpress media experience.
 	 *
 	 * @class
-	 * @memberOf wp
-	 * @alias wp.Uploader
+	 * @memberof wp
+	 * @alias wp.uploader
 	 *
-	 * @param {object} options           The options passed to the new plupload instance.
-	 * @param {object} options.container The id of uploader container.
-	 * @param {object} options.browser   The id of button to trigger the file select.
-	 * @param {object} options.dropzone  The id of file drop target.
-	 * @param {object} options.plupload  An object of parameters to pass to the plupload instance.
-	 * @param {object} options.params    An object of parameters to pass to $_POST when uploading the file.
-	 *                                   Extends this.plupload.multipart_params under the hood.
+	 * @param {object} options           the options passed to the new plupload instance.
+	 * @param {object} options.container the id of uploader container.
+	 * @param {object} options.browser   the id of button to trigger the file select.
+	 * @param {object} options.dropzone  the id of file drop target.
+	 * @param {object} options.plupload  an object of parameters to pass to the plupload instance.
+	 * @param {object} options.params    an object of parameters to pass to $_post when uploading the file.
+	 *                                   extends this.plupload.multipart_params under the hood.
 	 */
-	Uploader = function( options ) {
+	uploader = function( options ) {
 		var self = this,
-			isIE, // Not used, back-compat.
+			isie, // not used, back-compat.
 			elements = {
 				container: 'container',
 				browser:   'browse_button',
 				dropzone:  'drop_element'
 			},
-			tryAgainCount = {},
-			tryAgain,
+			tryagaincount = {},
+			tryagain,
 			key,
 			error,
-			fileUploaded;
+			fileuploaded;
 
 		this.supports = {
-			upload: Uploader.browser.supported
+			upload: uploader.browser.supported
 		};
 
 		this.supported = this.supports.upload;
@@ -55,27 +55,27 @@ window.wp = window.wp || {};
 			return;
 		}
 
-		// Arguments to send to pluplad.Uploader().
-		// Use deep extend to ensure that multipart_params and other objects are cloned.
-		this.plupload = $.extend( true, { multipart_params: {} }, Uploader.defaults );
-		this.container = document.body; // Set default container.
+		// arguments to send to pluplad.uploader().
+		// use deep extend to ensure that multipart_params and other objects are cloned.
+		this.plupload = $.extend( true, { multipart_params: {} }, uploader.defaults );
+		this.container = document.body; // set default container.
 
 		/*
-		 * Extend the instance with options.
+		 * extend the instance with options.
 		 *
-		 * Use deep extend to allow options.plupload to override individual
+		 * use deep extend to allow options.plupload to override individual
 		 * default plupload keys.
 		 */
 		$.extend( true, this, options );
 
-		// Proxy all methods so this always refers to the current instance.
+		// proxy all methods so this always refers to the current instance.
 		for ( key in this ) {
 			if ( typeof this[ key ] === 'function' ) {
 				this[ key ] = $.proxy( this[ key ], this );
 			}
 		}
 
-		// Ensure all elements are jQuery elements and have id attributes,
+		// ensure all elements are jquery elements and have id attributes,
 		// then set the proper plupload arguments to the ids.
 		for ( key in elements ) {
 			if ( ! this[ key ] ) {
@@ -90,67 +90,67 @@ window.wp = window.wp || {};
 			}
 
 			if ( ! this[ key ].prop('id') ) {
-				this[ key ].prop( 'id', '__wp-uploader-id-' + Uploader.uuid++ );
+				this[ key ].prop( 'id', '__wp-uploader-id-' + uploader.uuid++ );
 			}
 
 			this.plupload[ elements[ key ] ] = this[ key ].prop('id');
 		}
 
-		// If the uploader has neither a browse button nor a dropzone, bail.
+		// if the uploader has neither a browse button nor a dropzone, bail.
 		if ( ! ( this.browser && this.browser.length ) && ! ( this.dropzone && this.dropzone.length ) ) {
 			return;
 		}
 
-		// Initialize the plupload instance.
-		this.uploader = new plupload.Uploader( this.plupload );
+		// initialize the plupload instance.
+		this.uploader = new plupload.uploader( this.plupload );
 		delete this.plupload;
 
-		// Set default params and remove this.params alias.
+		// set default params and remove this.params alias.
 		this.param( this.params || {} );
 		delete this.params;
 
 		/**
-		 * Attempt to create image sub-sizes when an image was uploaded successfully
-		 * but the server responded with HTTP 5xx error.
+		 * attempt to create image sub-sizes when an image was uploaded successfully
+		 * but the server responded with http 5xx error.
 		 *
 		 * @since 5.3.0
 		 *
-		 * @param {string}        message Error message.
-		 * @param {object}        data    Error data from Plupload.
-		 * @param {plupload.File} file    File that was uploaded.
+		 * @param {string}        message error message.
+		 * @param {object}        data    error data from plupload.
+		 * @param {plupload.file} file    file that was uploaded.
 		 */
-		tryAgain = function( message, data, file ) {
+		tryagain = function( message, data, file ) {
 			var times, id;
 
-			if ( ! data || ! data.responseHeaders ) {
-				error( pluploadL10n.http_error_image, data, file, 'no-retry' );
+			if ( ! data || ! data.responseheaders ) {
+				error( pluploadl10n.http_error_image, data, file, 'no-retry' );
 				return;
 			}
 
-			id = data.responseHeaders.match( /x-wp-upload-attachment-id:\s*(\d+)/i );
+			id = data.responseheaders.match( /x-wp-upload-attachment-id:\s*(\d+)/i );
 
 			if ( id && id[1] ) {
 				id = id[1];
 			} else {
-				error( pluploadL10n.http_error_image, data, file, 'no-retry' );
+				error( pluploadl10n.http_error_image, data, file, 'no-retry' );
 				return;
 			}
 
-			times = tryAgainCount[ file.id ];
+			times = tryagaincount[ file.id ];
 
 			if ( times && times > 4 ) {
 				/*
-				 * The file may have been uploaded and attachment post created,
+				 * the file may have been uploaded and attachment post created,
 				 * but post-processing and resizing failed...
-				 * Do a cleanup then tell the user to scale down the image and upload it again.
+				 * do a cleanup then tell the user to scale down the image and upload it again.
 				 */
 				$.ajax({
 					type: 'post',
 					url: ajaxurl,
-					dataType: 'json',
+					datatype: 'json',
 					data: {
 						action: 'media-create-image-subsizes',
-						_wpnonce: _wpPluploadSettings.defaults.multipart_params._wpnonce,
+						_wpnonce: _wppluploadsettings.defaults.multipart_params._wpnonce,
 						attachment_id: id,
 						_wp_upload_failed_cleanup: true,
 					}
@@ -161,24 +161,24 @@ window.wp = window.wp || {};
 			}
 
 			if ( ! times ) {
-				tryAgainCount[ file.id ] = 1;
+				tryagaincount[ file.id ] = 1;
 			} else {
-				tryAgainCount[ file.id ] = ++times;
+				tryagaincount[ file.id ] = ++times;
 			}
 
-			// Another request to try to create the missing image sub-sizes.
+			// another request to try to create the missing image sub-sizes.
 			$.ajax({
 				type: 'post',
 				url: ajaxurl,
-				dataType: 'json',
+				datatype: 'json',
 				data: {
 					action: 'media-create-image-subsizes',
-					_wpnonce: _wpPluploadSettings.defaults.multipart_params._wpnonce,
+					_wpnonce: _wppluploadsettings.defaults.multipart_params._wpnonce,
 					attachment_id: id,
 				}
 			}).done( function( response ) {
 				if ( response.success ) {
-					fileUploaded( self.uploader, file, response );
+					fileuploaded( self.uploader, file, response );
 				} else {
 					if ( response.data && response.data.message ) {
 						message = response.data.message;
@@ -186,10 +186,10 @@ window.wp = window.wp || {};
 
 					error( message, data, file, 'no-retry' );
 				}
-			}).fail( function( jqXHR ) {
-				// If another HTTP 5xx error, try try again...
-				if ( jqXHR.status >= 500 && jqXHR.status < 600 ) {
-					tryAgain( message, data, file );
+			}).fail( function( jqxhr ) {
+				// if another http 5xx error, try try again...
+				if ( jqxhr.status >= 500 && jqxhr.status < 600 ) {
+					tryagain( message, data, file );
 					return;
 				}
 
@@ -198,23 +198,23 @@ window.wp = window.wp || {};
 		}
 
 		/**
-		 * Custom error callback.
+		 * custom error callback.
 		 *
-		 * Add a new error to the errors collection, so other modules can track
-		 * and display errors. @see wp.Uploader.errors.
+		 * add a new error to the errors collection, so other modules can track
+		 * and display errors. @see wp.uploader.errors.
 		 *
-		 * @param {string}        message Error message.
-		 * @param {object}        data    Error data from Plupload.
-		 * @param {plupload.File} file    File that was uploaded.
-		 * @param {string}        retry   Whether to try again to create image sub-sizes. Passing 'no-retry' will prevent it.
+		 * @param {string}        message error message.
+		 * @param {object}        data    error data from plupload.
+		 * @param {plupload.file} file    file that was uploaded.
+		 * @param {string}        retry   whether to try again to create image sub-sizes. passing 'no-retry' will prevent it.
 		 */
 		error = function( message, data, file, retry ) {
-			var isImage = file.type && file.type.indexOf( 'image/' ) === 0,
+			var isimage = file.type && file.type.indexof( 'image/' ) === 0,
 				status = data && data.status;
 
-			// If the file is an image and the error is HTTP 5xx try to create sub-sizes again.
-			if ( retry !== 'no-retry' && isImage && status >= 500 && status < 600 ) {
-				tryAgain( message, data, file );
+			// if the file is an image and the error is http 5xx try to create sub-sizes again.
+			if ( retry !== 'no-retry' && isimage && status >= 500 && status < 600 ) {
+				tryagain( message, data, file );
 				return;
 			}
 
@@ -222,8 +222,8 @@ window.wp = window.wp || {};
 				file.attachment.destroy();
 			}
 
-			Uploader.errors.unshift({
-				message: message || pluploadL10n.default_error,
+			uploader.errors.unshift({
+				message: message || pluploadl10n.default_error,
 				data:    data,
 				file:    file
 			});
@@ -232,52 +232,52 @@ window.wp = window.wp || {};
 		};
 
 		/**
-		 * After a file is successfully uploaded, update its model.
+		 * after a file is successfully uploaded, update its model.
 		 *
-		 * @param {plupload.Uploader} up       Uploader instance.
-		 * @param {plupload.File}     file     File that was uploaded.
-		 * @param {Object}            response Object with response properties.
+		 * @param {plupload.uploader} up       uploader instance.
+		 * @param {plupload.file}     file     file that was uploaded.
+		 * @param {object}            response object with response properties.
 		 */
-		fileUploaded = function( up, file, response ) {
+		fileuploaded = function( up, file, response ) {
 			var complete;
 
-			// Remove the "uploading" UI elements.
+			// remove the "uploading" ui elements.
 			_.each( ['file','loaded','size','percent'], function( key ) {
 				file.attachment.unset( key );
 			} );
 
 			file.attachment.set( _.extend( response.data, { uploading: false } ) );
 
-			wp.media.model.Attachment.get( response.data.id, file.attachment );
+			wp.media.model.attachment.get( response.data.id, file.attachment );
 
-			complete = Uploader.queue.all( function( attachment ) {
+			complete = uploader.queue.all( function( attachment ) {
 				return ! attachment.get( 'uploading' );
 			});
 
 			if ( complete ) {
-				Uploader.queue.reset();
+				uploader.queue.reset();
 			}
 
 			self.success( file.attachment );
 		}
 
 		/**
-		 * After the Uploader has been initialized, initialize some behaviors for the dropzone.
+		 * after the uploader has been initialized, initialize some behaviors for the dropzone.
 		 *
-		 * @param {plupload.Uploader} uploader Uploader instance.
+		 * @param {plupload.uploader} uploader uploader instance.
 		 */
 		this.uploader.bind( 'init', function( uploader ) {
 			var timer, active, dragdrop,
 				dropzone = self.dropzone;
 
-			dragdrop = self.supports.dragdrop = uploader.features.dragdrop && ! Uploader.browser.mobile;
+			dragdrop = self.supports.dragdrop = uploader.features.dragdrop && ! uploader.browser.mobile;
 
-			// Generate drag/drop helper classes.
+			// generate drag/drop helper classes.
 			if ( ! dropzone ) {
 				return;
 			}
 
-			dropzone.toggleClass( 'supports-drag-drop', !! dragdrop );
+			dropzone.toggleclass( 'supports-drag-drop', !! dragdrop );
 
 			if ( ! dragdrop ) {
 				return dropzone.unbind('.wp-uploader');
@@ -286,28 +286,28 @@ window.wp = window.wp || {};
 			// 'dragenter' doesn't fire correctly, simulate it with a limited 'dragover'.
 			dropzone.on( 'dragover.wp-uploader', function() {
 				if ( timer ) {
-					clearTimeout( timer );
+					cleartimeout( timer );
 				}
 
 				if ( active ) {
 					return;
 				}
 
-				dropzone.trigger('dropzone:enter').addClass('drag-over');
+				dropzone.trigger('dropzone:enter').addclass('drag-over');
 				active = true;
 			});
 
 			dropzone.on('dragleave.wp-uploader, drop.wp-uploader', function() {
 				/*
-				 * Using an instant timer prevents the drag-over class
+				 * using an instant timer prevents the drag-over class
 				 * from being quickly removed and re-added when elements
 				 * inside the dropzone are repositioned.
 				 *
 				 * @see https://core.trac.wordpress.org/ticket/21705
 				 */
-				timer = setTimeout( function() {
+				timer = settimeout( function() {
 					active = false;
-					dropzone.trigger('dropzone:leave').removeClass('drag-over');
+					dropzone.trigger('dropzone:leave').removeclass('drag-over');
 				}, 0 );
 			});
 
@@ -325,65 +325,65 @@ window.wp = window.wp || {};
 		if ( this.browser ) {
 			this.browser.on( 'mouseenter', this.refresh );
 		} else {
-			this.uploader.disableBrowse( true );
+			this.uploader.disablebrowse( true );
 		}
 
 		$( self ).on( 'uploader:ready', function() {
 			$( '.moxie-shim-html5 input[type="file"]' )
 				.attr( {
-					tabIndex:      '-1',
+					tabindex:      '-1',
 					'aria-hidden': 'true'
 				} );
 		} );
 
 		/**
-		 * After files were filtered and added to the queue, create a model for each.
+		 * after files were filtered and added to the queue, create a model for each.
 		 *
-		 * @param {plupload.Uploader} up    Uploader instance.
-		 * @param {Array}             files Array of file objects that were added to queue by the user.
+		 * @param {plupload.uploader} up    uploader instance.
+		 * @param {array}             files array of file objects that were added to queue by the user.
 		 */
-		this.uploader.bind( 'FilesAdded', function( up, files ) {
+		this.uploader.bind( 'filesadded', function( up, files ) {
 			_.each( files, function( file ) {
 				var attributes, image;
 
-				// Ignore failed uploads.
-				if ( plupload.FAILED === file.status ) {
+				// ignore failed uploads.
+				if ( plupload.failed === file.status ) {
 					return;
 				}
 
 				if ( file.type === 'image/heic' && up.settings.heic_upload_error ) {
-					// Show error but do not block uploading.
-					Uploader.errors.unshift({
-						message: pluploadL10n.unsupported_image,
+					// show error but do not block uploading.
+					uploader.errors.unshift({
+						message: pluploadl10n.unsupported_image,
 						data:    {},
 						file:    file
 					});
 				} else if ( file.type === 'image/webp' && up.settings.webp_upload_error ) {
-					// Disallow uploading of WebP images if the server cannot edit them.
-					error( pluploadL10n.noneditable_image, {}, file, 'no-retry' );
-					up.removeFile( file );
+					// disallow uploading of webp images if the server cannot edit them.
+					error( pluploadl10n.noneditable_image, {}, file, 'no-retry' );
+					up.removefile( file );
 					return;
 				} else if ( file.type === 'image/avif' && up.settings.avif_upload_error ) {
-					// Disallow uploading of AVIF images if the server cannot edit them.
-					error( pluploadL10n.noneditable_image, {}, file, 'no-retry' );
-					up.removeFile( file );
+					// disallow uploading of avif images if the server cannot edit them.
+					error( pluploadl10n.noneditable_image, {}, file, 'no-retry' );
+					up.removefile( file );
 					return;
 				}
 
-				// Generate attributes for a new `Attachment` model.
+				// generate attributes for a new `attachment` model.
 				attributes = _.extend({
 					file:      file,
 					uploading: true,
-					date:      new Date(),
+					date:      new date(),
 					filename:  file.name,
-					menuOrder: 0,
-					uploadedTo: wp.media.model.settings.post.id
+					menuorder: 0,
+					uploadedto: wp.media.model.settings.post.id
 				}, _.pick( file, 'loaded', 'size', 'percent' ) );
 
-				// Handle early mime type scanning for images.
+				// handle early mime type scanning for images.
 				image = /(?:jpe?g|png|gif)$/i.exec( file.name );
 
-				// For images set the model's type and subtype attributes.
+				// for images set the model's type and subtype attributes.
 				if ( image ) {
 					attributes.type = 'image';
 
@@ -392,10 +392,10 @@ window.wp = window.wp || {};
 					attributes.subtype = ( 'jpg' === image[0] ) ? 'jpeg' : image[0];
 				}
 
-				// Create a model for the attachment, and add it to the Upload queue collection
+				// create a model for the attachment, and add it to the upload queue collection
 				// so listeners to the upload queue can track and display upload progress.
-				file.attachment = wp.media.model.Attachment.create( attributes );
-				Uploader.queue.add( file.attachment );
+				file.attachment = wp.media.model.attachment.create( attributes );
+				uploader.queue.add( file.attachment );
 
 				self.added( file.attachment );
 			});
@@ -404,107 +404,107 @@ window.wp = window.wp || {};
 			up.start();
 		});
 
-		this.uploader.bind( 'UploadProgress', function( up, file ) {
+		this.uploader.bind( 'uploadprogress', function( up, file ) {
 			file.attachment.set( _.pick( file, 'loaded', 'percent' ) );
 			self.progress( file.attachment );
 		});
 
 		/**
-		 * After a file is successfully uploaded, update its model.
+		 * after a file is successfully uploaded, update its model.
 		 *
-		 * @param {plupload.Uploader} up       Uploader instance.
-		 * @param {plupload.File}     file     File that was uploaded.
-		 * @param {Object}            response Object with response properties.
+		 * @param {plupload.uploader} up       uploader instance.
+		 * @param {plupload.file}     file     file that was uploaded.
+		 * @param {object}            response object with response properties.
 		 * @return {mixed}
 		 */
-		this.uploader.bind( 'FileUploaded', function( up, file, response ) {
+		this.uploader.bind( 'fileuploaded', function( up, file, response ) {
 
 			try {
-				response = JSON.parse( response.response );
+				response = json.parse( response.response );
 			} catch ( e ) {
-				return error( pluploadL10n.default_error, e, file );
+				return error( pluploadl10n.default_error, e, file );
 			}
 
-			if ( ! _.isObject( response ) || _.isUndefined( response.success ) ) {
-				return error( pluploadL10n.default_error, null, file );
+			if ( ! _.isobject( response ) || _.isundefined( response.success ) ) {
+				return error( pluploadl10n.default_error, null, file );
 			} else if ( ! response.success ) {
 				return error( response.data && response.data.message, response.data, file );
 			}
 
-			// Success. Update the UI with the new attachment.
-			fileUploaded( up, file, response );
+			// success. update the ui with the new attachment.
+			fileuploaded( up, file, response );
 		});
 
 		/**
-		 * When plupload surfaces an error, send it to the error handler.
+		 * when plupload surfaces an error, send it to the error handler.
 		 *
-		 * @param {plupload.Uploader} up            Uploader instance.
-		 * @param {Object}            pluploadError Contains code, message and sometimes file and other details.
+		 * @param {plupload.uploader} up            uploader instance.
+		 * @param {object}            pluploaderror contains code, message and sometimes file and other details.
 		 */
-		this.uploader.bind( 'Error', function( up, pluploadError ) {
-			var message = pluploadL10n.default_error,
+		this.uploader.bind( 'error', function( up, pluploaderror ) {
+			var message = pluploadl10n.default_error,
 				key;
 
-			// Check for plupload errors.
-			for ( key in Uploader.errorMap ) {
-				if ( pluploadError.code === plupload[ key ] ) {
-					message = Uploader.errorMap[ key ];
+			// check for plupload errors.
+			for ( key in uploader.errormap ) {
+				if ( pluploaderror.code === plupload[ key ] ) {
+					message = uploader.errormap[ key ];
 
 					if ( typeof message === 'function' ) {
-						message = message( pluploadError.file, pluploadError );
+						message = message( pluploaderror.file, pluploaderror );
 					}
 
 					break;
 				}
 			}
 
-			error( message, pluploadError, pluploadError.file );
+			error( message, pluploaderror, pluploaderror.file );
 			up.refresh();
 		});
 
 	};
 
-	// Adds the 'defaults' and 'browser' properties.
-	$.extend( Uploader, _wpPluploadSettings );
+	// adds the 'defaults' and 'browser' properties.
+	$.extend( uploader, _wppluploadsettings );
 
-	Uploader.uuid = 0;
+	uploader.uuid = 0;
 
-	// Map Plupload error codes to user friendly error messages.
-	Uploader.errorMap = {
-		'FAILED':                 pluploadL10n.upload_failed,
-		'FILE_EXTENSION_ERROR':   pluploadL10n.invalid_filetype,
-		'IMAGE_FORMAT_ERROR':     pluploadL10n.not_an_image,
-		'IMAGE_MEMORY_ERROR':     pluploadL10n.image_memory_exceeded,
-		'IMAGE_DIMENSIONS_ERROR': pluploadL10n.image_dimensions_exceeded,
-		'GENERIC_ERROR':          pluploadL10n.upload_failed,
-		'IO_ERROR':               pluploadL10n.io_error,
-		'SECURITY_ERROR':         pluploadL10n.security_error,
+	// map plupload error codes to user friendly error messages.
+	uploader.errormap = {
+		'failed':                 pluploadl10n.upload_failed,
+		'file_extension_error':   pluploadl10n.invalid_filetype,
+		'image_format_error':     pluploadl10n.not_an_image,
+		'image_memory_error':     pluploadl10n.image_memory_exceeded,
+		'image_dimensions_error': pluploadl10n.image_dimensions_exceeded,
+		'generic_error':          pluploadl10n.upload_failed,
+		'io_error':               pluploadl10n.io_error,
+		'security_error':         pluploadl10n.security_error,
 
-		'FILE_SIZE_ERROR': function( file ) {
-			return pluploadL10n.file_exceeds_size_limit.replace( '%s', file.name );
+		'file_size_error': function( file ) {
+			return pluploadl10n.file_exceeds_size_limit.replace( '%s', file.name );
 		},
 
-		'HTTP_ERROR': function( file ) {
-			if ( file.type && file.type.indexOf( 'image/' ) === 0 ) {
-				return pluploadL10n.http_error_image;
+		'http_error': function( file ) {
+			if ( file.type && file.type.indexof( 'image/' ) === 0 ) {
+				return pluploadl10n.http_error_image;
 			}
 
-			return pluploadL10n.http_error;
+			return pluploadl10n.http_error;
 		},
 	};
 
-	$.extend( Uploader.prototype, /** @lends wp.Uploader.prototype */{
+	$.extend( uploader.prototype, /** @lends wp.uploader.prototype */{
 		/**
-		 * Acts as a shortcut to extending the uploader's multipart_params object.
+		 * acts as a shortcut to extending the uploader's multipart_params object.
 		 *
 		 * param( key )
-		 *    Returns the value of the key.
+		 *    returns the value of the key.
 		 *
 		 * param( key, value )
-		 *    Sets the value of a key.
+		 *    sets the value of a key.
 		 *
 		 * param( map )
-		 *    Sets values for a map of data.
+		 *    sets values for a map of data.
 		 */
 		param: function( key, value ) {
 			if ( arguments.length === 1 && typeof key === 'string' ) {
@@ -519,8 +519,8 @@ window.wp = window.wp || {};
 		},
 
 		/**
-		 * Make a few internal event callbacks available on the wp.Uploader object
-		 * to change the Uploader internals if absolutely necessary.
+		 * make a few internal event callbacks available on the wp.uploader object
+		 * to change the uploader internals if absolutely necessary.
 		 */
 		init:     function() {},
 		error:    function() {},
@@ -534,19 +534,19 @@ window.wp = window.wp || {};
 			if ( this.browser ) {
 				node = this.browser[0];
 
-				// Check if the browser node is in the DOM.
+				// check if the browser node is in the dom.
 				while ( node ) {
 					if ( node === document.body ) {
 						attached = true;
 						break;
 					}
-					node = node.parentNode;
+					node = node.parentnode;
 				}
 
 				/*
-				 * If the browser node is not attached to the DOM,
+				 * if the browser node is not attached to the dom,
 				 * use a temporary container to house it, as the browser button shims
-				 * require the button to exist in the DOM at all times.
+				 * require the button to exist in the dom at all times.
 				 */
 				if ( ! attached ) {
 					id = 'wp-uploader-browser-' + this.uploader.id;
@@ -559,7 +559,7 @@ window.wp = window.wp || {};
 							left: '-1000px',
 							height: 0,
 							width: 0
-						}).attr( 'id', 'wp-uploader-browser-' + this.uploader.id ).appendTo('body');
+						}).attr( 'id', 'wp-uploader-browser-' + this.uploader.id ).appendto('body');
 					}
 
 					container.append( this.browser );
@@ -570,12 +570,14 @@ window.wp = window.wp || {};
 		}
 	});
 
-	// Create a collection of attachments in the upload queue,
+	// create a collection of attachments in the upload queue,
 	// so that other modules can track and display upload progress.
-	Uploader.queue = new wp.media.model.Attachments( [], { query: false });
+	uploader.queue = new wp.media.model.attachments( [], { query: false });
 
-	// Create a collection to collect errors incurred while attempting upload.
-	Uploader.errors = new Backbone.Collection();
+	// create a collection to collect errors incurred while attempting upload.
+	uploader.errors = new backbone.collection();
 
-	exports.Uploader = Uploader;
-})( wp, jQuery );
+	exports.uploader = uploader;
+})( wp, jquery );
+
+

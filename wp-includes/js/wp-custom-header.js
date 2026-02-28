@@ -2,68 +2,68 @@
  * @output wp-includes/js/wp-custom-header.js
  */
 
-/* global YT */
+/* global yt */
 (function( window, settings ) {
 
-	var NativeHandler, YouTubeHandler;
+	var nativehandler, youtubehandler;
 
 	/** @namespace wp */
 	window.wp = window.wp || {};
 
-	// Fail gracefully in unsupported browsers.
-	if ( ! ( 'addEventListener' in window ) ) {
+	// fail gracefully in unsupported browsers.
+	if ( ! ( 'addeventlistener' in window ) ) {
 		return;
 	}
 
 	/**
-	 * Trigger an event.
+	 * trigger an event.
 	 *
-	 * @param {Element} target HTML element to dispatch the event on.
-	 * @param {string} name Event name.
+	 * @param {element} target html element to dispatch the event on.
+	 * @param {string} name event name.
 	 */
 	function trigger( target, name ) {
 		var evt;
 
-		if ( 'function' === typeof window.Event ) {
-			evt = new Event( name );
+		if ( 'function' === typeof window.event ) {
+			evt = new event( name );
 		} else {
-			evt = document.createEvent( 'Event' );
-			evt.initEvent( name, true, true );
+			evt = document.createevent( 'event' );
+			evt.initevent( name, true, true );
 		}
 
-		target.dispatchEvent( evt );
+		target.dispatchevent( evt );
 	}
 
 	/**
-	 * Create a custom header instance.
+	 * create a custom header instance.
 	 *
-	 * @memberOf wp
+	 * @memberof wp
 	 *
 	 * @class
 	 */
-	function CustomHeader() {
+	function customheader() {
 		this.handlers = {
-			nativeVideo: new NativeHandler(),
-			youtube: new YouTubeHandler()
+			nativevideo: new nativehandler(),
+			youtube: new youtubehandler()
 		};
 	}
 
-	CustomHeader.prototype = {
+	customheader.prototype = {
 		/**
-		 * Initialize the custom header.
+		 * initialize the custom header.
 		 *
-		 * If the environment supports video, loops through registered handlers
+		 * if the environment supports video, loops through registered handlers
 		 * until one is found that can handle the video.
 		 */
 		initialize: function() {
-			if ( this.supportsVideo() ) {
+			if ( this.supportsvideo() ) {
 				for ( var id in this.handlers ) {
 					var handler = this.handlers[ id ];
 
 					if ( 'test' in handler && handler.test( settings ) ) {
-						this.activeHandler = handler.initialize.call( handler, settings );
+						this.activehandler = handler.initialize.call( handler, settings );
 
-						// Dispatch custom event when the video is loaded.
+						// dispatch custom event when the video is loaded.
 						trigger( document, 'wp-custom-header-video-loaded' );
 						break;
 					}
@@ -72,15 +72,15 @@
 		},
 
 		/**
-		 * Determines if the current environment supports video.
+		 * determines if the current environment supports video.
 		 *
-		 * Themes and plugins can override this method to change the criteria.
+		 * themes and plugins can override this method to change the criteria.
 		 *
 		 * @return {boolean}
 		 */
-		supportsVideo: function() {
-			// Don't load video on small screens. @todo Consider bandwidth and other factors.
-			if ( window.innerWidth < settings.minWidth || window.innerHeight < settings.minHeight ) {
+		supportsvideo: function() {
+			// don't load video on small screens. @todo consider bandwidth and other factors.
+			if ( window.innerwidth < settings.minwidth || window.innerheight < settings.minheight ) {
 				return false;
 			}
 
@@ -88,64 +88,64 @@
 		},
 
 		/**
-		 * Base handler for custom handlers to extend.
+		 * base handler for custom handlers to extend.
 		 *
-		 * @type {BaseHandler}
+		 * @type {basehandler}
 		 */
-		BaseVideoHandler: BaseHandler
+		basevideohandler: basehandler
 	};
 
 	/**
-	 * Create a video handler instance.
+	 * create a video handler instance.
 	 *
-	 * @memberOf wp
+	 * @memberof wp
 	 *
 	 * @class
 	 */
-	function BaseHandler() {}
+	function basehandler() {}
 
-	BaseHandler.prototype = {
+	basehandler.prototype = {
 		/**
-		 * Initialize the video handler.
+		 * initialize the video handler.
 		 *
-		 * @param {Object} settings Video settings.
+		 * @param {object} settings video settings.
 		 */
 		initialize: function( settings ) {
 			var handler = this,
-				button = document.createElement( 'button' );
+				button = document.createelement( 'button' );
 
 			this.settings = settings;
-			this.container = document.getElementById( 'wp-custom-header' );
+			this.container = document.getelementbyid( 'wp-custom-header' );
 			this.button = button;
 
-			button.setAttribute( 'type', 'button' );
-			button.setAttribute( 'id', 'wp-custom-header-video-button' );
-			button.setAttribute( 'class', 'wp-custom-header-video-button wp-custom-header-video-play' );
-			button.innerHTML = settings.l10n.play;
+			button.setattribute( 'type', 'button' );
+			button.setattribute( 'id', 'wp-custom-header-video-button' );
+			button.setattribute( 'class', 'wp-custom-header-video-button wp-custom-header-video-play' );
+			button.innerhtml = settings.l10n.play;
 
-			// Toggle video playback when the button is clicked.
-			button.addEventListener( 'click', function() {
-				if ( handler.isPaused() ) {
+			// toggle video playback when the button is clicked.
+			button.addeventlistener( 'click', function() {
+				if ( handler.ispaused() ) {
 					handler.play();
 				} else {
 					handler.pause();
 				}
 			});
 
-			// Update the button class and text when the video state changes.
-			this.container.addEventListener( 'play', function() {
-				button.className = 'wp-custom-header-video-button wp-custom-header-video-play';
-				button.innerHTML = settings.l10n.pause;
+			// update the button class and text when the video state changes.
+			this.container.addeventlistener( 'play', function() {
+				button.classname = 'wp-custom-header-video-button wp-custom-header-video-play';
+				button.innerhtml = settings.l10n.pause;
 				if ( 'a11y' in window.wp ) {
-					window.wp.a11y.speak( settings.l10n.playSpeak);
+					window.wp.a11y.speak( settings.l10n.playspeak);
 				}
 			});
 
-			this.container.addEventListener( 'pause', function() {
-				button.className = 'wp-custom-header-video-button wp-custom-header-video-pause';
-				button.innerHTML = settings.l10n.play;
+			this.container.addeventlistener( 'pause', function() {
+				button.classname = 'wp-custom-header-video-button wp-custom-header-video-pause';
+				button.innerhtml = settings.l10n.play;
 				if ( 'a11y' in window.wp ) {
-					window.wp.a11y.speak( settings.l10n.pauseSpeak);
+					window.wp.a11y.speak( settings.l10n.pausespeak);
 				}
 			});
 
@@ -153,71 +153,71 @@
 		},
 
 		/**
-		 * Ready method called after a handler is initialized.
+		 * ready method called after a handler is initialized.
 		 *
 		 * @abstract
 		 */
 		ready: function() {},
 
 		/**
-		 * Whether the video is paused.
+		 * whether the video is paused.
 		 *
 		 * @abstract
 		 * @return {boolean}
 		 */
-		isPaused: function() {},
+		ispaused: function() {},
 
 		/**
-		 * Pause the video.
+		 * pause the video.
 		 *
 		 * @abstract
 		 */
 		pause: function() {},
 
 		/**
-		 * Play the video.
+		 * play the video.
 		 *
 		 * @abstract
 		 */
 		play: function() {},
 
 		/**
-		 * Append a video node to the header container.
+		 * append a video node to the header container.
 		 *
-		 * @param {Element} node HTML element.
+		 * @param {element} node html element.
 		 */
-		setVideo: function( node ) {
-			var editShortcutNode,
-				editShortcut = this.container.getElementsByClassName( 'customize-partial-edit-shortcut' );
+		setvideo: function( node ) {
+			var editshortcutnode,
+				editshortcut = this.container.getelementsbyclassname( 'customize-partial-edit-shortcut' );
 
-			if ( editShortcut.length ) {
-				editShortcutNode = this.container.removeChild( editShortcut[0] );
+			if ( editshortcut.length ) {
+				editshortcutnode = this.container.removechild( editshortcut[0] );
 			}
 
-			this.container.innerHTML = '';
-			this.container.appendChild( node );
+			this.container.innerhtml = '';
+			this.container.appendchild( node );
 
-			if ( editShortcutNode ) {
-				this.container.appendChild( editShortcutNode );
+			if ( editshortcutnode ) {
+				this.container.appendchild( editshortcutnode );
 			}
 		},
 
 		/**
-		 * Show the video controls.
+		 * show the video controls.
 		 *
-		 * Appends a play/pause button to header container.
+		 * appends a play/pause button to header container.
 		 */
-		showControls: function() {
+		showcontrols: function() {
 			if ( ! this.container.contains( this.button ) ) {
-				this.container.appendChild( this.button );
+				this.container.appendchild( this.button );
 			}
 		},
 
 		/**
-		 * Whether the handler can process a video.
+		 * whether the handler can process a video.
 		 *
 		 * @abstract
-		 * @param {Object} settings Video settings.
+		 * @param {object} settings video settings.
 		 * @return {boolean}
 		 */
 		test: function() {
@@ -225,9 +225,9 @@
 		},
 
 		/**
-		 * Trigger an event on the header container.
+		 * trigger an event on the header container.
 		 *
-		 * @param {string} name Event name.
+		 * @param {string} name event name.
 		 */
 		trigger: function( name ) {
 			trigger( this.container, name );
@@ -235,100 +235,100 @@
 	};
 
 	/**
-	 * Create a custom handler.
+	 * create a custom handler.
 	 *
-	 * @memberOf wp
+	 * @memberof wp
 	 *
-	 * @param {Object} protoProps Properties to apply to the prototype.
-	 * @return CustomHandler The subclass.
+	 * @param {object} protoprops properties to apply to the prototype.
+	 * @return customhandler the subclass.
 	 */
-	BaseHandler.extend = function( protoProps ) {
+	basehandler.extend = function( protoprops ) {
 		var prop;
 
-		function CustomHandler() {
-			var result = BaseHandler.apply( this, arguments );
+		function customhandler() {
+			var result = basehandler.apply( this, arguments );
 			return result;
 		}
 
-		CustomHandler.prototype = Object.create( BaseHandler.prototype );
-		CustomHandler.prototype.constructor = CustomHandler;
+		customhandler.prototype = object.create( basehandler.prototype );
+		customhandler.prototype.constructor = customhandler;
 
-		for ( prop in protoProps ) {
-			CustomHandler.prototype[ prop ] = protoProps[ prop ];
+		for ( prop in protoprops ) {
+			customhandler.prototype[ prop ] = protoprops[ prop ];
 		}
 
-		return CustomHandler;
+		return customhandler;
 	};
 
 	/**
-	 * Native video handler.
+	 * native video handler.
 	 *
-	 * @memberOf wp
+	 * @memberof wp
 	 *
 	 * @class
 	 */
-	NativeHandler = BaseHandler.extend(/** @lends wp.NativeHandler.prototype */{
+	nativehandler = basehandler.extend(/** @lends wp.nativehandler.prototype */{
 		/**
-		 * Whether the native handler supports a video.
+		 * whether the native handler supports a video.
 		 *
-		 * @param {Object} settings Video settings.
+		 * @param {object} settings video settings.
 		 * @return {boolean}
 		 */
 		test: function( settings ) {
-			var video = document.createElement( 'video' );
-			return video.canPlayType( settings.mimeType );
+			var video = document.createelement( 'video' );
+			return video.canplaytype( settings.mimetype );
 		},
 
 		/**
-		 * Set up a native video element.
+		 * set up a native video element.
 		 */
 		ready: function() {
 			var handler = this,
-				video = document.createElement( 'video' );
+				video = document.createelement( 'video' );
 
 			video.id = 'wp-custom-header-video';
 			video.autoplay = true;
 			video.loop = true;
 			video.muted = true;
-			video.playsInline = true;
+			video.playsinline = true;
 			video.width = this.settings.width;
 			video.height = this.settings.height;
 
-			video.addEventListener( 'play', function() {
+			video.addeventlistener( 'play', function() {
 				handler.trigger( 'play' );
 			});
 
-			video.addEventListener( 'pause', function() {
+			video.addeventlistener( 'pause', function() {
 				handler.trigger( 'pause' );
 			});
 
-			video.addEventListener( 'canplay', function() {
-				handler.showControls();
+			video.addeventlistener( 'canplay', function() {
+				handler.showcontrols();
 			});
 
 			this.video = video;
-			handler.setVideo( video );
-			video.src = this.settings.videoUrl;
+			handler.setvideo( video );
+			video.src = this.settings.videourl;
 		},
 
 		/**
-		 * Whether the video is paused.
+		 * whether the video is paused.
 		 *
 		 * @return {boolean}
 		 */
-		isPaused: function() {
+		ispaused: function() {
 			return this.video.paused;
 		},
 
 		/**
-		 * Pause the video.
+		 * pause the video.
 		 */
 		pause: function() {
 			this.video.pause();
 		},
 
 		/**
-		 * Play the video.
+		 * play the video.
 		 */
 		play: function() {
 			this.video.play();
@@ -336,76 +336,76 @@
 	});
 
 	/**
-	 * YouTube video handler.
+	 * youtube video handler.
 	 *
-	 * @memberOf wp
+	 * @memberof wp
 	 *
-	 * @class wp.YouTubeHandler
+	 * @class wp.youtubehandler
 	 */
-	YouTubeHandler = BaseHandler.extend(/** @lends wp.YouTubeHandler.prototype */{
+	youtubehandler = basehandler.extend(/** @lends wp.youtubehandler.prototype */{
 		/**
-		 * Whether the handler supports a video.
+		 * whether the handler supports a video.
 		 *
-		 * @param {Object} settings Video settings.
+		 * @param {object} settings video settings.
 		 * @return {boolean}
 		 */
 		test: function( settings ) {
-			return 'video/x-youtube' === settings.mimeType;
+			return 'video/x-youtube' === settings.mimetype;
 		},
 
 		/**
-		 * Set up a YouTube iframe.
+		 * set up a youtube iframe.
 		 *
-		 * Loads the YouTube IFrame API if the 'YT' global doesn't exist.
+		 * loads the youtube iframe api if the 'yt' global doesn't exist.
 		 */
 		ready: function() {
 			var handler = this;
 
-			if ( 'YT' in window ) {
-				YT.ready( handler.loadVideo.bind( handler ) );
+			if ( 'yt' in window ) {
+				yt.ready( handler.loadvideo.bind( handler ) );
 			} else {
-				var tag = document.createElement( 'script' );
+				var tag = document.createelement( 'script' );
 				tag.src = 'https://www.youtube.com/iframe_api';
 				tag.onload = function () {
-					YT.ready( handler.loadVideo.bind( handler ) );
+					yt.ready( handler.loadvideo.bind( handler ) );
 				};
 
-				document.getElementsByTagName( 'head' )[0].appendChild( tag );
+				document.getelementsbytagname( 'head' )[0].appendchild( tag );
 			}
 		},
 
 		/**
-		 * Load a YouTube video.
+		 * load a youtube video.
 		 */
-		loadVideo: function() {
+		loadvideo: function() {
 			var handler = this,
-				video = document.createElement( 'div' ),
+				video = document.createelement( 'div' ),
 				// @link http://stackoverflow.com/a/27728417
-				VIDEO_ID_REGEX = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+				video_id_regex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
 
 			video.id = 'wp-custom-header-video';
-			handler.setVideo( video );
+			handler.setvideo( video );
 
-			handler.player = new YT.Player( video, {
+			handler.player = new yt.player( video, {
 				height: this.settings.height,
 				width: this.settings.width,
-				videoId: this.settings.videoUrl.match( VIDEO_ID_REGEX )[1],
+				videoid: this.settings.videourl.match( video_id_regex )[1],
 				events: {
-					onReady: function( e ) {
+					onready: function( e ) {
 						e.target.mute();
-						handler.showControls();
+						handler.showcontrols();
 					},
-					onStateChange: function( e ) {
-						if ( YT.PlayerState.PLAYING === e.data ) {
+					onstatechange: function( e ) {
+						if ( yt.playerstate.playing === e.data ) {
 							handler.trigger( 'play' );
-						} else if ( YT.PlayerState.PAUSED === e.data ) {
+						} else if ( yt.playerstate.paused === e.data ) {
 							handler.trigger( 'pause' );
-						} else if ( YT.PlayerState.ENDED === e.data ) {
-							e.target.playVideo();
+						} else if ( yt.playerstate.ended === e.data ) {
+							e.target.playvideo();
 						}
 					}
 				},
-				playerVars: {
+				playervars: {
 					autoplay: 1,
 					controls: 0,
 					disablekb: 1,
@@ -421,46 +421,48 @@
 		},
 
 		/**
-		 * Whether the video is paused.
+		 * whether the video is paused.
 		 *
 		 * @return {boolean}
 		 */
-		isPaused: function() {
-			return YT.PlayerState.PAUSED === this.player.getPlayerState();
+		ispaused: function() {
+			return yt.playerstate.paused === this.player.getplayerstate();
 		},
 
 		/**
-		 * Pause the video.
+		 * pause the video.
 		 */
 		pause: function() {
-			this.player.pauseVideo();
+			this.player.pausevideo();
 		},
 
 		/**
-		 * Play the video.
+		 * play the video.
 		 */
 		play: function() {
-			this.player.playVideo();
+			this.player.playvideo();
 		}
 	});
 
-	// Initialize the custom header when the DOM is ready.
-	window.wp.customHeader = new CustomHeader();
-	document.addEventListener( 'DOMContentLoaded', window.wp.customHeader.initialize.bind( window.wp.customHeader ), false );
+	// initialize the custom header when the dom is ready.
+	window.wp.customheader = new customheader();
+	document.addeventlistener( 'domcontentloaded', window.wp.customheader.initialize.bind( window.wp.customheader ), false );
 
-	// Selective refresh support in the Customizer.
+	// selective refresh support in the customizer.
 	if ( 'customize' in window.wp ) {
-		window.wp.customize.selectiveRefresh.bind( 'render-partials-response', function( response ) {
+		window.wp.customize.selectiverefresh.bind( 'render-partials-response', function( response ) {
 			if ( 'custom_header_settings' in response ) {
 				settings = response.custom_header_settings;
 			}
 		});
 
-		window.wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+		window.wp.customize.selectiverefresh.bind( 'partial-content-rendered', function( placement ) {
 			if ( 'custom_header' === placement.partial.id ) {
-				window.wp.customHeader.initialize();
+				window.wp.customheader.initialize();
 			}
 		});
 	}
 
-})( window, window._wpCustomHeaderSettings || {} );
+})( window, window._wpcustomheadersettings || {} );
+
+

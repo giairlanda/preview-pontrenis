@@ -1,6 +1,6 @@
-/* global console, MediaElementPlayer, mejs */
+/* global console, mediaelementplayer, mejs */
 (function ( window, $ ) {
-	// Reintegrate `plugins` since they don't exist in MEJS anymore; it won't affect anything in the player
+	// reintegrate `plugins` since they don't exist in mejs anymore; it won't affect anything in the player
 	if (mejs.plugins === undefined) {
 		mejs.plugins = {};
 		mejs.plugins.silverlight = [];
@@ -9,52 +9,52 @@
 		});
 	}
 
-	// Inclusion of old `HtmlMediaElementShim` if it doesn't exist
-	mejs.HtmlMediaElementShim = mejs.HtmlMediaElementShim || {
-		getTypeFromFile: mejs.Utils.getTypeFromFile
+	// inclusion of old `htmlmediaelementshim` if it doesn't exist
+	mejs.htmlmediaelementshim = mejs.htmlmediaelementshim || {
+		gettypefromfile: mejs.utils.gettypefromfile
 	};
 
-	// Add missing global variables for backward compatibility
-	if (mejs.MediaFeatures === undefined) {
-		mejs.MediaFeatures = mejs.Features;
+	// add missing global variables for backward compatibility
+	if (mejs.mediafeatures === undefined) {
+		mejs.mediafeatures = mejs.features;
 	}
-	if (mejs.Utility === undefined) {
-		mejs.Utility = mejs.Utils;
+	if (mejs.utility === undefined) {
+		mejs.utility = mejs.utils;
 	}
 
 	/**
-	 * Create missing variables and have default `classPrefix` overridden to avoid issues.
+	 * create missing variables and have default `classprefix` overridden to avoid issues.
 	 *
 	 * `media` is now a fake wrapper needed to simplify manipulation of various media types,
-	 * so in order to access the `video` or `audio` tag, use `media.originalNode` or `player.node`;
-	 * `player.container` used to be jQuery but now is a HTML element, and many elements inside
-	 * the player rely on it being a HTML now, so its conversion is difficult; however, a
-	 * `player.$container` new variable has been added to be used as jQuery object
+	 * so in order to access the `video` or `audio` tag, use `media.originalnode` or `player.node`;
+	 * `player.container` used to be jquery but now is a html element, and many elements inside
+	 * the player rely on it being a html now, so its conversion is difficult; however, a
+	 * `player.$container` new variable has been added to be used as jquery object
 	 */
-	var init = MediaElementPlayer.prototype.init;
-	MediaElementPlayer.prototype.init = function () {
-		this.options.classPrefix = 'mejs-';
+	var init = mediaelementplayer.prototype.init;
+	mediaelementplayer.prototype.init = function () {
+		this.options.classprefix = 'mejs-';
 		this.$media = this.$node = $( this.node );
 		init.call( this );
 	};
 
-	var ready = MediaElementPlayer.prototype._meReady;
-	MediaElementPlayer.prototype._meReady = function () {
+	var ready = mediaelementplayer.prototype._meready;
+	mediaelementplayer.prototype._meready = function () {
 		this.container = $( this.container) ;
 		this.controls = $( this.controls );
 		this.layers = $( this.layers );
 		ready.apply( this, arguments );
 	};
 
-	// Override method so certain elements can be called with jQuery
-	MediaElementPlayer.prototype.getElement = function ( el ) {
+	// override method so certain elements can be called with jquery
+	mediaelementplayer.prototype.getelement = function ( el ) {
 		return $ !== undefined && el instanceof $ ? el[0] : el;
 	};
 
-	// Add jQuery ONLY to most of custom features' arguments for backward compatibility; default features rely 100%
-	// on the arguments being HTML elements to work properly
-	MediaElementPlayer.prototype.buildfeatures = function ( player, controls, layers, media ) {
-		var defaultFeatures = [
+	// add jquery only to most of custom features' arguments for backward compatibility; default features rely 100%
+	// on the arguments being html elements to work properly
+	mediaelementplayer.prototype.buildfeatures = function ( player, controls, layers, media ) {
+		var defaultfeatures = [
 			'playpause',
 			'current',
 			'progress',
@@ -67,8 +67,8 @@
 			var feature = this.options.features[i];
 			if (this['build' + feature]) {
 				try {
-					// Use jQuery for non-default features
-					if (defaultFeatures.indexOf(feature) === -1) {
+					// use jquery for non-default features
+					if (defaultfeatures.indexof(feature) === -1) {
 						this['build' + feature]( player, $(controls), $(layers), media );
 					} else {
 						this['build' + feature]( player, controls, layers, media );
@@ -81,4 +81,6 @@
 		}
 	};
 
-})( window, jQuery );
+})( window, jquery );
+
+

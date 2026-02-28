@@ -1,5 +1,5 @@
-import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
-/******/ // The require scope
+import * as __webpack_external_module__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+/******/ // the require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
@@ -9,15 +9,15 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
@@ -28,10 +28,10 @@ var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
-const interactivity_namespaceObject = x({ ["getContext"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getContext), ["getElement"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getElement), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store), ["withSyncEvent"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.withSyncEvent) });
+const interactivity_namespaceobject = x({ ["getcontext"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getcontext), ["getelement"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getelement), ["store"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.store), ["withsyncevent"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.withsyncevent) });
 ;// ./node_modules/@wordpress/block-library/build-module/navigation/view.js
 
-const focusableSelectors = [
+const focusableselectors = [
   "a[href]",
   'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
   "select:not([disabled]):not([aria-hidden])",
@@ -40,120 +40,120 @@ const focusableSelectors = [
   "[contenteditable]",
   '[tabindex]:not([tabindex^="-"])'
 ];
-document.addEventListener("click", () => {
+document.addeventlistener("click", () => {
 });
-const { state, actions } = (0,interactivity_namespaceObject.store)(
+const { state, actions } = (0,interactivity_namespaceobject.store)(
   "core/navigation",
   {
     state: {
-      get roleAttribute() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        return ctx.type === "overlay" && state.isMenuOpen ? "dialog" : null;
+      get roleattribute() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        return ctx.type === "overlay" && state.ismenuopen ? "dialog" : null;
       },
-      get ariaModal() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        return ctx.type === "overlay" && state.isMenuOpen ? "true" : null;
+      get ariamodal() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        return ctx.type === "overlay" && state.ismenuopen ? "true" : null;
       },
-      get ariaLabel() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        return ctx.type === "overlay" && state.isMenuOpen ? ctx.ariaLabel : null;
+      get arialabel() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        return ctx.type === "overlay" && state.ismenuopen ? ctx.arialabel : null;
       },
-      get isMenuOpen() {
-        return Object.values(state.menuOpenedBy).filter(Boolean).length > 0;
+      get ismenuopen() {
+        return object.values(state.menuopenedby).filter(boolean).length > 0;
       },
-      get menuOpenedBy() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        return ctx.type === "overlay" ? ctx.overlayOpenedBy : ctx.submenuOpenedBy;
+      get menuopenedby() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        return ctx.type === "overlay" ? ctx.overlayopenedby : ctx.submenuopenedby;
       }
     },
     actions: {
-      openMenuOnHover() {
-        const { type, overlayOpenedBy } = (0,interactivity_namespaceObject.getContext)();
-        if (type === "submenu" && // Only open on hover if the overlay is closed.
-        Object.values(overlayOpenedBy || {}).filter(Boolean).length === 0) {
-          actions.openMenu("hover");
+      openmenuonhover() {
+        const { type, overlayopenedby } = (0,interactivity_namespaceobject.getcontext)();
+        if (type === "submenu" && // only open on hover if the overlay is closed.
+        object.values(overlayopenedby || {}).filter(boolean).length === 0) {
+          actions.openmenu("hover");
         }
       },
-      closeMenuOnHover() {
-        const { type, overlayOpenedBy } = (0,interactivity_namespaceObject.getContext)();
-        if (type === "submenu" && // Only close on hover if the overlay is closed.
-        Object.values(overlayOpenedBy || {}).filter(Boolean).length === 0) {
-          actions.closeMenu("hover");
+      closemenuonhover() {
+        const { type, overlayopenedby } = (0,interactivity_namespaceobject.getcontext)();
+        if (type === "submenu" && // only close on hover if the overlay is closed.
+        object.values(overlayopenedby || {}).filter(boolean).length === 0) {
+          actions.closemenu("hover");
         }
       },
-      openMenuOnClick() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        ctx.previousFocus = ref;
-        actions.openMenu("click");
+      openmenuonclick() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        ctx.previousfocus = ref;
+        actions.openmenu("click");
       },
-      closeMenuOnClick() {
-        actions.closeMenu("click");
-        actions.closeMenu("focus");
+      closemenuonclick() {
+        actions.closemenu("click");
+        actions.closemenu("focus");
       },
-      openMenuOnFocus() {
-        actions.openMenu("focus");
+      openmenuonfocus() {
+        actions.openmenu("focus");
       },
-      toggleMenuOnClick() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (window.document.activeElement !== ref) {
+      togglemenuonclick() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (window.document.activeelement !== ref) {
           ref.focus();
         }
-        const { menuOpenedBy } = state;
-        if (menuOpenedBy.click || menuOpenedBy.focus) {
-          actions.closeMenu("click");
-          actions.closeMenu("focus");
+        const { menuopenedby } = state;
+        if (menuopenedby.click || menuopenedby.focus) {
+          actions.closemenu("click");
+          actions.closemenu("focus");
         } else {
-          ctx.previousFocus = ref;
-          actions.openMenu("click");
+          ctx.previousfocus = ref;
+          actions.openmenu("click");
         }
       },
-      handleMenuKeydown: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        const { type, firstFocusableElement, lastFocusableElement } = (0,interactivity_namespaceObject.getContext)();
-        if (state.menuOpenedBy.click) {
-          if (event.key === "Escape") {
-            event.stopPropagation();
-            actions.closeMenu("click");
-            actions.closeMenu("focus");
+      handlemenukeydown: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        const { type, firstfocusableelement, lastfocusableelement } = (0,interactivity_namespaceobject.getcontext)();
+        if (state.menuopenedby.click) {
+          if (event.key === "escape") {
+            event.stoppropagation();
+            actions.closemenu("click");
+            actions.closemenu("focus");
             return;
           }
-          if (type === "overlay" && event.key === "Tab") {
-            if (event.shiftKey && window.document.activeElement === firstFocusableElement) {
-              event.preventDefault();
-              lastFocusableElement.focus();
-            } else if (!event.shiftKey && window.document.activeElement === lastFocusableElement) {
-              event.preventDefault();
-              firstFocusableElement.focus();
+          if (type === "overlay" && event.key === "tab") {
+            if (event.shiftkey && window.document.activeelement === firstfocusableelement) {
+              event.preventdefault();
+              lastfocusableelement.focus();
+            } else if (!event.shiftkey && window.document.activeelement === lastfocusableelement) {
+              event.preventdefault();
+              firstfocusableelement.focus();
             }
           }
         }
       }),
-      handleMenuFocusout: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        const { modal, type } = (0,interactivity_namespaceObject.getContext)();
-        if (event.relatedTarget === null || !modal?.contains(event.relatedTarget) && event.target !== window.document.activeElement && type === "submenu") {
-          actions.closeMenu("click");
-          actions.closeMenu("focus");
+      handlemenufocusout: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        const { modal, type } = (0,interactivity_namespaceobject.getcontext)();
+        if (event.relatedtarget === null || !modal?.contains(event.relatedtarget) && event.target !== window.document.activeelement && type === "submenu") {
+          actions.closemenu("click");
+          actions.closemenu("focus");
         }
       }),
-      openMenu(menuOpenedOn = "click") {
-        const { type } = (0,interactivity_namespaceObject.getContext)();
-        state.menuOpenedBy[menuOpenedOn] = true;
+      openmenu(menuopenedon = "click") {
+        const { type } = (0,interactivity_namespaceobject.getcontext)();
+        state.menuopenedby[menuopenedon] = true;
         if (type === "overlay") {
-          document.documentElement.classList.add("has-modal-open");
+          document.documentelement.classlist.add("has-modal-open");
         }
       },
-      closeMenu(menuClosedOn = "click") {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        state.menuOpenedBy[menuClosedOn] = false;
-        if (!state.isMenuOpen) {
-          if (ctx.modal?.contains(window.document.activeElement)) {
-            ctx.previousFocus?.focus();
+      closemenu(menuclosedon = "click") {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        state.menuopenedby[menuclosedon] = false;
+        if (!state.ismenuopen) {
+          if (ctx.modal?.contains(window.document.activeelement)) {
+            ctx.previousfocus?.focus();
           }
           ctx.modal = null;
-          ctx.previousFocus = null;
+          ctx.previousfocus = null;
           if (ctx.type === "overlay") {
-            document.documentElement.classList.remove(
+            document.documentelement.classlist.remove(
               "has-modal-open"
             );
           }
@@ -161,25 +161,27 @@ const { state, actions } = (0,interactivity_namespaceObject.store)(
       }
     },
     callbacks: {
-      initMenu() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (state.isMenuOpen) {
-          const focusableElements = ref.querySelectorAll(focusableSelectors);
+      initmenu() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (state.ismenuopen) {
+          const focusableelements = ref.queryselectorall(focusableselectors);
           ctx.modal = ref;
-          ctx.firstFocusableElement = focusableElements[0];
-          ctx.lastFocusableElement = focusableElements[focusableElements.length - 1];
+          ctx.firstfocusableelement = focusableelements[0];
+          ctx.lastfocusableelement = focusableelements[focusableelements.length - 1];
         }
       },
-      focusFirstElement() {
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (state.isMenuOpen) {
-          const focusableElements = ref.querySelectorAll(focusableSelectors);
-          focusableElements?.[0]?.focus();
+      focusfirstelement() {
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (state.ismenuopen) {
+          const focusableelements = ref.queryselectorall(focusableselectors);
+          focusableelements?.[0]?.focus();
         }
       }
     }
   },
   { lock: true }
 );
+
+
 

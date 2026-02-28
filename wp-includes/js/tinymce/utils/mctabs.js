@@ -1,30 +1,30 @@
 /**
  * mctabs.js
  *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * released under lgpl license.
+ * copyright (c) 1999-2017 ephox corp. all rights reserved
  *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
+ * license: http://www.tinymce.com/license
+ * contributing: http://www.tinymce.com/contributing
  */
 
-/*jshint globals: tinyMCEPopup */
+/*jshint globals: tinymcepopup */
 
-function MCTabs() {
+function mctabs() {
   this.settings = [];
-  this.onChange = tinyMCEPopup.editor.windowManager.createInstance('tinymce.util.Dispatcher');
+  this.onchange = tinymcepopup.editor.windowmanager.createinstance('tinymce.util.dispatcher');
 }
 
-MCTabs.prototype.init = function (settings) {
+mctabs.prototype.init = function (settings) {
   this.settings = settings;
 };
 
-MCTabs.prototype.getParam = function (name, default_value) {
+mctabs.prototype.getparam = function (name, default_value) {
   var value = null;
 
   value = (typeof (this.settings[name]) == "undefined") ? default_value : this.settings[name];
 
-  // Fix bool values
+  // fix bool values
   if (value == "true" || value == "false") {
     return (value == "true");
   }
@@ -32,87 +32,87 @@ MCTabs.prototype.getParam = function (name, default_value) {
   return value;
 };
 
-MCTabs.prototype.showTab = function (tab) {
-  tab.className = 'current';
-  tab.setAttribute("aria-selected", true);
-  tab.setAttribute("aria-expanded", true);
-  tab.tabIndex = 0;
+mctabs.prototype.showtab = function (tab) {
+  tab.classname = 'current';
+  tab.setattribute("aria-selected", true);
+  tab.setattribute("aria-expanded", true);
+  tab.tabindex = 0;
 };
 
-MCTabs.prototype.hideTab = function (tab) {
+mctabs.prototype.hidetab = function (tab) {
   var t = this;
 
-  tab.className = '';
-  tab.setAttribute("aria-selected", false);
-  tab.setAttribute("aria-expanded", false);
-  tab.tabIndex = -1;
+  tab.classname = '';
+  tab.setattribute("aria-selected", false);
+  tab.setattribute("aria-expanded", false);
+  tab.tabindex = -1;
 };
 
-MCTabs.prototype.showPanel = function (panel) {
-  panel.className = 'current';
-  panel.setAttribute("aria-hidden", false);
+mctabs.prototype.showpanel = function (panel) {
+  panel.classname = 'current';
+  panel.setattribute("aria-hidden", false);
 };
 
-MCTabs.prototype.hidePanel = function (panel) {
-  panel.className = 'panel';
-  panel.setAttribute("aria-hidden", true);
+mctabs.prototype.hidepanel = function (panel) {
+  panel.classname = 'panel';
+  panel.setattribute("aria-hidden", true);
 };
 
-MCTabs.prototype.getPanelForTab = function (tabElm) {
-  return tinyMCEPopup.dom.getAttrib(tabElm, "aria-controls");
+mctabs.prototype.getpanelfortab = function (tabelm) {
+  return tinymcepopup.dom.getattrib(tabelm, "aria-controls");
 };
 
-MCTabs.prototype.displayTab = function (tab_id, panel_id, avoid_focus) {
-  var panelElm, panelContainerElm, tabElm, tabContainerElm, selectionClass, nodes, i, t = this;
+mctabs.prototype.displaytab = function (tab_id, panel_id, avoid_focus) {
+  var panelelm, panelcontainerelm, tabelm, tabcontainerelm, selectionclass, nodes, i, t = this;
 
-  tabElm = document.getElementById(tab_id);
+  tabelm = document.getelementbyid(tab_id);
 
   if (panel_id === undefined) {
-    panel_id = t.getPanelForTab(tabElm);
+    panel_id = t.getpanelfortab(tabelm);
   }
 
-  panelElm = document.getElementById(panel_id);
-  panelContainerElm = panelElm ? panelElm.parentNode : null;
-  tabContainerElm = tabElm ? tabElm.parentNode : null;
-  selectionClass = t.getParam('selection_class', 'current');
+  panelelm = document.getelementbyid(panel_id);
+  panelcontainerelm = panelelm ? panelelm.parentnode : null;
+  tabcontainerelm = tabelm ? tabelm.parentnode : null;
+  selectionclass = t.getparam('selection_class', 'current');
 
-  if (tabElm && tabContainerElm) {
-    nodes = tabContainerElm.childNodes;
+  if (tabelm && tabcontainerelm) {
+    nodes = tabcontainerelm.childnodes;
 
-    // Hide all other tabs
+    // hide all other tabs
     for (i = 0; i < nodes.length; i++) {
-      if (nodes[i].nodeName == "LI") {
-        t.hideTab(nodes[i]);
+      if (nodes[i].nodename == "li") {
+        t.hidetab(nodes[i]);
       }
     }
 
-    // Show selected tab
-    t.showTab(tabElm);
+    // show selected tab
+    t.showtab(tabelm);
   }
 
-  if (panelElm && panelContainerElm) {
-    nodes = panelContainerElm.childNodes;
+  if (panelelm && panelcontainerelm) {
+    nodes = panelcontainerelm.childnodes;
 
-    // Hide all other panels
+    // hide all other panels
     for (i = 0; i < nodes.length; i++) {
-      if (nodes[i].nodeName == "DIV") {
-        t.hidePanel(nodes[i]);
+      if (nodes[i].nodename == "div") {
+        t.hidepanel(nodes[i]);
       }
     }
 
     if (!avoid_focus) {
-      tabElm.focus();
+      tabelm.focus();
     }
 
-    // Show selected panel
-    t.showPanel(panelElm);
+    // show selected panel
+    t.showpanel(panelelm);
   }
 };
 
-MCTabs.prototype.getAnchor = function () {
+mctabs.prototype.getanchor = function () {
   var pos, url = document.location.href;
 
-  if ((pos = url.lastIndexOf('#')) != -1) {
+  if ((pos = url.lastindexof('#')) != -1) {
     return url.substring(pos + 1);
   }
 
@@ -120,49 +120,50 @@ MCTabs.prototype.getAnchor = function () {
 };
 
 
-//Global instance
-var mcTabs = new MCTabs();
+//global instance
+var mctabs = new mctabs();
 
-tinyMCEPopup.onInit.add(function () {
-  var tinymce = tinyMCEPopup.getWin().tinymce, dom = tinyMCEPopup.dom, each = tinymce.each;
+tinymcepopup.oninit.add(function () {
+  var tinymce = tinymcepopup.getwin().tinymce, dom = tinymcepopup.dom, each = tinymce.each;
 
-  each(dom.select('div.tabs'), function (tabContainerElm) {
-    //var keyNav;
+  each(dom.select('div.tabs'), function (tabcontainerelm) {
+    //var keynav;
 
-    dom.setAttrib(tabContainerElm, "role", "tablist");
+    dom.setattrib(tabcontainerelm, "role", "tablist");
 
-    var items = tinyMCEPopup.dom.select('li', tabContainerElm);
+    var items = tinymcepopup.dom.select('li', tabcontainerelm);
     var action = function (id) {
-      mcTabs.displayTab(id, mcTabs.getPanelForTab(id));
-      mcTabs.onChange.dispatch(id);
+      mctabs.displaytab(id, mctabs.getpanelfortab(id));
+      mctabs.onchange.dispatch(id);
     };
 
     each(items, function (item) {
-      dom.setAttrib(item, 'role', 'tab');
+      dom.setattrib(item, 'role', 'tab');
       dom.bind(item, 'click', function (evt) {
         action(item.id);
       });
     });
 
-    dom.bind(dom.getRoot(), 'keydown', function (evt) {
-      if (evt.keyCode === 9 && evt.ctrlKey && !evt.altKey) { // Tab
-        //keyNav.moveFocus(evt.shiftKey ? -1 : 1);
-        tinymce.dom.Event.cancel(evt);
+    dom.bind(dom.getroot(), 'keydown', function (evt) {
+      if (evt.keycode === 9 && evt.ctrlkey && !evt.altkey) { // tab
+        //keynav.movefocus(evt.shiftkey ? -1 : 1);
+        tinymce.dom.event.cancel(evt);
       }
     });
 
-    each(dom.select('a', tabContainerElm), function (a) {
-      dom.setAttrib(a, 'tabindex', '-1');
+    each(dom.select('a', tabcontainerelm), function (a) {
+      dom.setattrib(a, 'tabindex', '-1');
     });
 
-    /*keyNav = tinyMCEPopup.editor.windowManager.createInstance('tinymce.ui.KeyboardNavigation', {
-      root: tabContainerElm,
+    /*keynav = tinymcepopup.editor.windowmanager.createinstance('tinymce.ui.keyboardnavigation', {
+      root: tabcontainerelm,
       items: items,
-      onAction: action,
-      actOnFocus: true,
-      enableLeftRight: true,
-      enableUpDown: true
-    }, tinyMCEPopup.dom);*/
+      onaction: action,
+      actonfocus: true,
+      enableleftright: true,
+      enableupdown: true
+    }, tinymcepopup.dom);*/
   }
 );
 });
+

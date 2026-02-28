@@ -9,15 +9,16 @@
   margin-right:1ch;
 }
 .wp-block-query-pagination .wp-block-query-pagination-previous-arrow:not(.is-arrow-chevron){
-  transform:scaleX(1);
+  transform:scalex(1);
 }
 .wp-block-query-pagination .wp-block-query-pagination-next-arrow{
   display:inline-block;
   margin-left:1ch;
 }
 .wp-block-query-pagination .wp-block-query-pagination-next-arrow:not(.is-arrow-chevron){
-  transform:scaleX(1);
+  transform:scalex(1);
 }
 .wp-block-query-pagination.aligncenter{
   justify-content:center;
 }
+

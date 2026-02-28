@@ -1,4 +1,4 @@
-import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+import * as __webpack_external_module__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
 /******/ var __webpack_modules__ = ({
 
 /***/ 438:
@@ -10,27 +10,27 @@ module.exports = import("@wordpress/interactivity-router");;
 
 /******/ });
 /************************************************************************/
-/******/ // The module cache
+/******/ // the module cache
 /******/ var __webpack_module_cache__ = {};
 /******/ 
-/******/ // The require function
-/******/ function __webpack_require__(moduleId) {
-/******/ 	// Check if module is in cache
-/******/ 	var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 	if (cachedModule !== undefined) {
-/******/ 		return cachedModule.exports;
+/******/ // the require function
+/******/ function __webpack_require__(moduleid) {
+/******/ 	// check if module is in cache
+/******/ 	var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 	if (cachedmodule !== undefined) {
+/******/ 		return cachedmodule.exports;
 /******/ 	}
-/******/ 	// Create a new module (and put it into the cache)
-/******/ 	var module = __webpack_module_cache__[moduleId] = {
+/******/ 	// create a new module (and put it into the cache)
+/******/ 	var module = __webpack_module_cache__[moduleid] = {
 /******/ 		// no module.id needed
 /******/ 		// no module.loaded needed
 /******/ 		exports: {}
 /******/ 	};
 /******/ 
-/******/ 	// Execute the module function
-/******/ 	__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	// execute the module function
+/******/ 	__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 
-/******/ 	// Return the exports of the module
+/******/ 	// return the exports of the module
 /******/ 	return module.exports;
 /******/ }
 /******/ 
@@ -41,15 +41,15 @@ module.exports = import("@wordpress/interactivity-router");;
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
@@ -60,48 +60,48 @@ var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
-const interactivity_namespaceObject = x({ ["getContext"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getContext), ["getElement"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getElement), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store), ["withSyncEvent"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.withSyncEvent) });
+const interactivity_namespaceobject = x({ ["getcontext"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getcontext), ["getelement"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getelement), ["store"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.store), ["withsyncevent"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.withsyncevent) });
 ;// ./node_modules/@wordpress/block-library/build-module/query/view.js
 
-const isValidLink = (ref) => ref && ref instanceof window.HTMLAnchorElement && ref.href && (!ref.target || ref.target === "_self") && ref.origin === window.location.origin;
-const isValidEvent = (event) => event.button === 0 && // Left clicks only.
-!event.metaKey && // Open in new tab (Mac).
-!event.ctrlKey && // Open in new tab (Windows).
-!event.altKey && // Download.
-!event.shiftKey && !event.defaultPrevented;
-(0,interactivity_namespaceObject.store)(
+const isvalidlink = (ref) => ref && ref instanceof window.htmlanchorelement && ref.href && (!ref.target || ref.target === "_self") && ref.origin === window.location.origin;
+const isvalidevent = (event) => event.button === 0 && // left clicks only.
+!event.metakey && // open in new tab (mac).
+!event.ctrlkey && // open in new tab (windows).
+!event.altkey && // download.
+!event.shiftkey && !event.defaultprevented;
+(0,interactivity_namespaceobject.store)(
   "core/query",
   {
     actions: {
-      navigate: (0,interactivity_namespaceObject.withSyncEvent)(function* (event) {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        const queryRef = ref.closest(
+      navigate: (0,interactivity_namespaceobject.withsyncevent)(function* (event) {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        const queryref = ref.closest(
           ".wp-block-query[data-wp-router-region]"
         );
-        if (isValidLink(ref) && isValidEvent(event)) {
-          event.preventDefault();
-          const { actions } = yield Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 438));
+        if (isvalidlink(ref) && isvalidevent(event)) {
+          event.preventdefault();
+          const { actions } = yield promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 438));
           yield actions.navigate(ref.href);
           ctx.url = ref.href;
-          const firstAnchor = `.wp-block-post-template a[href]`;
-          queryRef.querySelector(firstAnchor)?.focus();
+          const firstanchor = `.wp-block-post-template a[href]`;
+          queryref.queryselector(firstanchor)?.focus();
         }
       }),
       *prefetch() {
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (isValidLink(ref)) {
-          const { actions } = yield Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 438));
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (isvalidlink(ref)) {
+          const { actions } = yield promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 438));
           yield actions.prefetch(ref.href);
         }
       }
     },
     callbacks: {
       *prefetch() {
-        const { url } = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (url && isValidLink(ref)) {
-          const { actions } = yield Promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 438));
+        const { url } = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (url && isvalidlink(ref)) {
+          const { actions } = yield promise.resolve(/* import() */).then(__webpack_require__.bind(__webpack_require__, 438));
           yield actions.prefetch(ref.href);
         }
       }
@@ -109,4 +109,6 @@ const isValidEvent = (event) => event.button === 0 && // Left clicks only.
   },
   { lock: true }
 );
+
+
 

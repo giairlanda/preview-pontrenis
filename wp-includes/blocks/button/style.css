@@ -71,9 +71,10 @@
   padding:.667em 1.333em;
 }
 :root :where(.wp-block-button .wp-block-button__link.is-style-outline:not(.has-text-color)),:root :where(.wp-block-button.is-style-outline>.wp-block-button__link:not(.has-text-color)){
-  color:currentColor;
+  color:currentcolor;
 }
 :root :where(.wp-block-button .wp-block-button__link.is-style-outline:not(.has-background)),:root :where(.wp-block-button.is-style-outline>.wp-block-button__link:not(.has-background)){
   background-color:initial;
   background-image:none;
 }
+

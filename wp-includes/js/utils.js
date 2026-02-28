@@ -1,14 +1,14 @@
 /**
- * Cookie functions.
+ * cookie functions.
  *
  * @output wp-includes/js/utils.js
  */
 
-/* global userSettings, getAllUserSettings, wpCookies, setUserSetting */
-/* exported getUserSetting, setUserSetting, deleteUserSetting */
+/* global usersettings, getallusersettings, wpcookies, setusersetting */
+/* exported getusersetting, setusersetting, deleteusersetting */
 
-window.wpCookies = {
-// The following functions are from Cookie.js class in TinyMCE 3, Moxiecode, used under LGPL.
+window.wpcookies = {
+// the following functions are from cookie.js class in tinymce 3, moxiecode, used under lgpl.
 
 	each: function( obj, cb, scope ) {
 		var n, l;
@@ -27,7 +27,7 @@ window.wpCookies = {
 			}
 		} else {
 			for ( n in obj ) {
-				if ( obj.hasOwnProperty(n) ) {
+				if ( obj.hasownproperty(n) ) {
 					if ( cb.call( scope, obj[n], n, obj ) === false ) {
 						return 0;
 					}
@@ -38,10 +38,10 @@ window.wpCookies = {
 	},
 
 	/**
-	 * Get a multi-values cookie.
-	 * Returns a JS object with the name: 'value' pairs.
+	 * get a multi-values cookie.
+	 * returns a js object with the name: 'value' pairs.
 	 */
-	getHash: function( name ) {
+	gethash: function( name ) {
 		var cookie = this.get( name ), values;
 
 		if ( cookie ) {
@@ -56,11 +56,11 @@ window.wpCookies = {
 	},
 
 	/**
-	 * Set a multi-values cookie.
+	 * set a multi-values cookie.
 	 *
-	 * 'values_obj' is the JS object that is stored. It is encoded as URI in wpCookies.set().
+	 * 'values_obj' is the js object that is stored. it is encoded as uri in wpcookies.set().
 	 */
-	setHash: function( name, values_obj, expires, path, domain, secure ) {
+	sethash: function( name, values_obj, expires, path, domain, secure ) {
 		var str = '';
 
 		this.each( values_obj, function( val, key ) {
@@ -71,7 +71,7 @@ window.wpCookies = {
 	},
 
 	/**
-	 * Get a cookie.
+	 * get a cookie.
 	 */
 	get: function( name ) {
 		var e, b,
@@ -82,10 +82,10 @@ window.wpCookies = {
 			return;
 		}
 
-		b = cookie.indexOf( '; ' + p );
+		b = cookie.indexof( '; ' + p );
 
 		if ( b === -1 ) {
-			b = cookie.indexOf(p);
+			b = cookie.indexof(p);
 
 			if ( b !== 0 ) {
 				return null;
@@ -94,34 +94,34 @@ window.wpCookies = {
 			b += 2;
 		}
 
-		e = cookie.indexOf( ';', b );
+		e = cookie.indexof( ';', b );
 
 		if ( e === -1 ) {
 			e = cookie.length;
 		}
 
-		return decodeURIComponent( cookie.substring( b + p.length, e ) );
+		return decodeuricomponent( cookie.substring( b + p.length, e ) );
 	},
 
 	/**
-	 * Set a cookie.
+	 * set a cookie.
 	 *
-	 * The 'expires' arg can be either a JS Date() object set to the expiration date (back-compat)
+	 * the 'expires' arg can be either a js date() object set to the expiration date (back-compat)
 	 * or the number of seconds until expiration
 	 */
 	set: function( name, value, expires, path, domain, secure ) {
-		var d = new Date();
+		var d = new date();
 
-		if ( typeof( expires ) === 'object' && expires.toGMTString ) {
-			expires = expires.toGMTString();
-		} else if ( parseInt( expires, 10 ) ) {
-			d.setTime( d.getTime() + ( parseInt( expires, 10 ) * 1000 ) ); // Time must be in milliseconds.
-			expires = d.toGMTString();
+		if ( typeof( expires ) === 'object' && expires.togmtstring ) {
+			expires = expires.togmtstring();
+		} else if ( parseint( expires, 10 ) ) {
+			d.settime( d.gettime() + ( parseint( expires, 10 ) * 1000 ) ); // time must be in milliseconds.
+			expires = d.togmtstring();
 		} else {
 			expires = '';
 		}
 
-		document.cookie = name + '=' + encodeURIComponent( value ) +
+		document.cookie = name + '=' + encodeuricomponent( value ) +
 			( expires ? '; expires=' + expires : '' ) +
 			( path    ? '; path=' + path       : '' ) +
 			( domain  ? '; domain=' + domain   : '' ) +
@@ -129,20 +129,20 @@ window.wpCookies = {
 	},
 
 	/**
-	 * Remove a cookie.
+	 * remove a cookie.
 	 *
-	 * This is done by setting it to an empty value and setting the expiration time in the past.
+	 * this is done by setting it to an empty value and setting the expiration time in the past.
 	 */
 	remove: function( name, path, domain, secure ) {
 		this.set( name, '', -1000, path, domain, secure );
 	}
 };
 
-// Returns the value as string. Second arg or empty string is returned when value is not set.
-window.getUserSetting = function( name, def ) {
-	var settings = getAllUserSettings();
+// returns the value as string. second arg or empty string is returned when value is not set.
+window.getusersetting = function( name, def ) {
+	var settings = getallusersettings();
 
-	if ( settings.hasOwnProperty( name ) ) {
+	if ( settings.hasownproperty( name ) ) {
 		return settings[name];
 	}
 
@@ -154,26 +154,26 @@ window.getUserSetting = function( name, def ) {
 };
 
 /*
- * Both name and value must be only ASCII letters, numbers or underscore
- * and the shorter, the better (cookies can store maximum 4KB). Not suitable to store text.
- * The value is converted and stored as string.
+ * both name and value must be only ascii letters, numbers or underscore
+ * and the shorter, the better (cookies can store maximum 4kb). not suitable to store text.
+ * the value is converted and stored as string.
  */
-window.setUserSetting = function( name, value, _del ) {
-	if ( 'object' !== typeof userSettings ) {
+window.setusersetting = function( name, value, _del ) {
+	if ( 'object' !== typeof usersettings ) {
 		return false;
 	}
 
-	var uid = userSettings.uid,
-		settings = wpCookies.getHash( 'wp-settings-' + uid ),
-		path = userSettings.url,
-		secure = !! userSettings.secure;
+	var uid = usersettings.uid,
+		settings = wpcookies.gethash( 'wp-settings-' + uid ),
+		path = usersettings.url,
+		secure = !! usersettings.secure;
 
-	name = name.toString().replace( /[^A-Za-z0-9_-]/g, '' );
+	name = name.tostring().replace( /[^a-za-z0-9_-]/g, '' );
 
 	if ( typeof value === 'number' ) {
-		value = parseInt( value, 10 );
+		value = parseint( value, 10 );
 	} else {
-		value = value.toString().replace( /[^A-Za-z0-9_-]/g, '' );
+		value = value.tostring().replace( /[^a-za-z0-9_-]/g, '' );
 	}
 
 	settings = settings || {};
@@ -184,21 +184,23 @@ window.setUserSetting = function( name, value, _del ) {
 		settings[name] = value;
 	}
 
-	wpCookies.setHash( 'wp-settings-' + uid, settings, 31536000, path, '', secure );
-	wpCookies.set( 'wp-settings-time-' + uid, userSettings.time, 31536000, path, '', secure );
+	wpcookies.sethash( 'wp-settings-' + uid, settings, 31536000, path, '', secure );
+	wpcookies.set( 'wp-settings-time-' + uid, usersettings.time, 31536000, path, '', secure );
 
 	return name;
 };
 
-window.deleteUserSetting = function( name ) {
-	return setUserSetting( name, '', 1 );
+window.deleteusersetting = function( name ) {
+	return setusersetting( name, '', 1 );
 };
 
-// Returns all settings as JS object.
-window.getAllUserSettings = function() {
-	if ( 'object' !== typeof userSettings ) {
+// returns all settings as js object.
+window.getallusersettings = function() {
+	if ( 'object' !== typeof usersettings ) {
 		return {};
 	}
 
-	return wpCookies.getHash( 'wp-settings-' + userSettings.uid ) || {};
+	return wpcookies.gethash( 'wp-settings-' + usersettings.uid ) || {};
 };
+
+

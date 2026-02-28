@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,151 +22,151 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  MediaUpload: () => (/* reexport */ media_upload_default),
-  privateApis: () => (/* reexport */ privateApis),
-  transformAttachment: () => (/* reexport */ transformAttachment),
-  uploadMedia: () => (/* reexport */ uploadMedia),
-  validateFileSize: () => (/* reexport */ validateFileSize),
-  validateMimeType: () => (/* reexport */ validateMimeType),
-  validateMimeTypeForUser: () => (/* reexport */ validateMimeTypeForUser)
+  mediaupload: () => (/* reexport */ media_upload_default),
+  privateapis: () => (/* reexport */ privateapis),
+  transformattachment: () => (/* reexport */ transformattachment),
+  uploadmedia: () => (/* reexport */ uploadmedia),
+  validatefilesize: () => (/* reexport */ validatefilesize),
+  validatemimetype: () => (/* reexport */ validatemimetype),
+  validatemimetypeforuser: () => (/* reexport */ validatemimetypeforuser)
 });
 
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// ./node_modules/@wordpress/media-utils/build-module/components/media-upload/index.js
 
 
-const DEFAULT_EMPTY_GALLERY = [];
-const getFeaturedImageMediaFrame = () => {
+const default_empty_gallery = [];
+const getfeaturedimagemediaframe = () => {
   const { wp } = window;
-  return wp.media.view.MediaFrame.Select.extend({
+  return wp.media.view.mediaframe.select.extend({
     /**
-     * Enables the Set Featured Image Button.
+     * enables the set featured image button.
      *
-     * @param {Object} toolbar toolbar for featured image state
+     * @param {object} toolbar toolbar for featured image state
      * @return {void}
      */
-    featuredImageToolbar(toolbar) {
-      this.createSelectToolbar(toolbar, {
-        text: wp.media.view.l10n.setFeaturedImage,
+    featuredimagetoolbar(toolbar) {
+      this.createselecttoolbar(toolbar, {
+        text: wp.media.view.l10n.setfeaturedimage,
         state: this.options.state
       });
     },
     /**
-     * Handle the edit state requirements of selected media item.
+     * handle the edit state requirements of selected media item.
      *
      * @return {void}
      */
-    editState() {
+    editstate() {
       const selection = this.state("featured-image").get("selection");
-      const view = new wp.media.view.EditImage({
+      const view = new wp.media.view.editimage({
         model: selection.single(),
         controller: this
       }).render();
       this.content.set(view);
-      view.loadEditor();
+      view.loadeditor();
     },
     /**
-     * Create the default states.
+     * create the default states.
      *
      * @return {void}
      */
-    createStates: function createStates() {
+    createstates: function createstates() {
       this.on(
         "toolbar:create:featured-image",
-        this.featuredImageToolbar,
+        this.featuredimagetoolbar,
         this
       );
-      this.on("content:render:edit-image", this.editState, this);
+      this.on("content:render:edit-image", this.editstate, this);
       this.states.add([
-        new wp.media.controller.FeaturedImage(),
-        new wp.media.controller.EditImage({
-          model: this.options.editImage
+        new wp.media.controller.featuredimage(),
+        new wp.media.controller.editimage({
+          model: this.options.editimage
         })
       ]);
     }
   });
 };
-const getSingleMediaFrame = () => {
+const getsinglemediaframe = () => {
   const { wp } = window;
-  return wp.media.view.MediaFrame.Select.extend({
+  return wp.media.view.mediaframe.select.extend({
     /**
-     * Create the default states on the frame.
+     * create the default states on the frame.
      */
-    createStates() {
+    createstates() {
       const options = this.options;
       if (this.options.states) {
         return;
       }
       this.states.add([
-        // Main states.
-        new wp.media.controller.Library({
+        // main states.
+        new wp.media.controller.library({
           library: wp.media.query(options.library),
           multiple: options.multiple,
           title: options.title,
           priority: 20,
           filterable: "uploaded"
-          // Allow filtering by uploaded images.
+          // allow filtering by uploaded images.
         }),
-        new wp.media.controller.EditImage({
-          model: options.editImage
+        new wp.media.controller.editimage({
+          model: options.editimage
         })
       ]);
     }
   });
 };
-const getGalleryDetailsMediaFrame = () => {
+const getgallerydetailsmediaframe = () => {
   const { wp } = window;
-  return wp.media.view.MediaFrame.Post.extend({
+  return wp.media.view.mediaframe.post.extend({
     /**
-     * Set up gallery toolbar.
+     * set up gallery toolbar.
      *
      * @return {void}
      */
-    galleryToolbar() {
+    gallerytoolbar() {
       const editing = this.state().get("editing");
       this.toolbar.set(
-        new wp.media.view.Toolbar({
+        new wp.media.view.toolbar({
           controller: this,
           items: {
             insert: {
               style: "primary",
-              text: editing ? wp.media.view.l10n.updateGallery : wp.media.view.l10n.insertGallery,
+              text: editing ? wp.media.view.l10n.updategallery : wp.media.view.l10n.insertgallery,
               priority: 80,
               requires: { library: true },
               /**
-               * @fires wp.media.controller.State#update
+               * @fires wp.media.controller.state#update
                */
               click() {
                 const controller = this.controller, state = controller.state();
@@ -175,7 +175,7 @@ const getGalleryDetailsMediaFrame = () => {
                   "update",
                   state.get("library")
                 );
-                controller.setState(controller.options.state);
+                controller.setstate(controller.options.state);
                 controller.reset();
               }
             }
@@ -184,31 +184,31 @@ const getGalleryDetailsMediaFrame = () => {
       );
     },
     /**
-     * Handle the edit state requirements of selected media item.
+     * handle the edit state requirements of selected media item.
      *
      * @return {void}
      */
-    editState() {
+    editstate() {
       const selection = this.state("gallery").get("selection");
-      const view = new wp.media.view.EditImage({
+      const view = new wp.media.view.editimage({
         model: selection.single(),
         controller: this
       }).render();
       this.content.set(view);
-      view.loadEditor();
+      view.loadeditor();
     },
     /**
-     * Create the default states.
+     * create the default states.
      *
      * @return {void}
      */
-    createStates: function createStates() {
-      this.on("toolbar:create:main-gallery", this.galleryToolbar, this);
-      this.on("content:render:edit-image", this.editState, this);
+    createstates: function createstates() {
+      this.on("toolbar:create:main-gallery", this.gallerytoolbar, this);
+      this.on("content:render:edit-image", this.editstate, this);
       this.states.add([
-        new wp.media.controller.Library({
+        new wp.media.controller.library({
           id: "gallery",
-          title: wp.media.view.l10n.createGalleryTitle,
+          title: wp.media.view.l10n.creategallerytitle,
           priority: 40,
           toolbar: "main-gallery",
           filterable: "uploaded",
@@ -219,23 +219,23 @@ const getGalleryDetailsMediaFrame = () => {
             ...this.options.library
           })
         }),
-        new wp.media.controller.EditImage({
-          model: this.options.editImage
+        new wp.media.controller.editimage({
+          model: this.options.editimage
         }),
-        new wp.media.controller.GalleryEdit({
+        new wp.media.controller.galleryedit({
           library: this.options.selection,
           editing: this.options.editing,
           menu: "gallery",
-          displaySettings: false,
+          displaysettings: false,
           multiple: true
         }),
-        new wp.media.controller.GalleryAdd()
+        new wp.media.controller.galleryadd()
       ]);
     }
   });
 };
-const slimImageObject = (img) => {
-  const attrSet = [
+const slimimageobject = (img) => {
+  const attrset = [
     "sizes",
     "mime",
     "type",
@@ -246,17 +246,17 @@ const slimImageObject = (img) => {
     "link",
     "caption"
   ];
-  return attrSet.reduce((result, key) => {
-    if (img?.hasOwnProperty(key)) {
+  return attrset.reduce((result, key) => {
+    if (img?.hasownproperty(key)) {
       result[key] = img[key];
     }
     return result;
   }, {});
 };
-const getAttachmentsCollection = (ids) => {
+const getattachmentscollection = (ids) => {
   const { wp } = window;
   return wp.media.query({
-    order: "ASC",
+    order: "asc",
     orderby: "post__in",
     post__in: ids,
     posts_per_page: -1,
@@ -264,219 +264,219 @@ const getAttachmentsCollection = (ids) => {
     type: "image"
   });
 };
-class MediaUpload extends external_wp_element_namespaceObject.Component {
+class mediaupload extends external_wp_element_namespaceobject.component {
   constructor() {
     super(...arguments);
-    this.openModal = this.openModal.bind(this);
-    this.onOpen = this.onOpen.bind(this);
-    this.onSelect = this.onSelect.bind(this);
-    this.onUpdate = this.onUpdate.bind(this);
-    this.onClose = this.onClose.bind(this);
+    this.openmodal = this.openmodal.bind(this);
+    this.onopen = this.onopen.bind(this);
+    this.onselect = this.onselect.bind(this);
+    this.onupdate = this.onupdate.bind(this);
+    this.onclose = this.onclose.bind(this);
   }
-  initializeListeners() {
-    this.frame.on("select", this.onSelect);
-    this.frame.on("update", this.onUpdate);
-    this.frame.on("open", this.onOpen);
-    this.frame.on("close", this.onClose);
+  initializelisteners() {
+    this.frame.on("select", this.onselect);
+    this.frame.on("update", this.onupdate);
+    this.frame.on("open", this.onopen);
+    this.frame.on("close", this.onclose);
   }
   /**
-   * Sets the Gallery frame and initializes listeners.
+   * sets the gallery frame and initializes listeners.
    *
    * @return {void}
    */
-  buildAndSetGalleryFrame() {
+  buildandsetgalleryframe() {
     const {
-      addToGallery = false,
-      allowedTypes,
+      addtogallery = false,
+      allowedtypes,
       multiple = false,
-      value = DEFAULT_EMPTY_GALLERY
+      value = default_empty_gallery
     } = this.props;
-    if (value === this.lastGalleryValue) {
+    if (value === this.lastgalleryvalue) {
       return;
     }
     const { wp } = window;
-    this.lastGalleryValue = value;
+    this.lastgalleryvalue = value;
     if (this.frame) {
       this.frame.remove();
     }
-    let currentState;
-    if (addToGallery) {
-      currentState = "gallery-library";
+    let currentstate;
+    if (addtogallery) {
+      currentstate = "gallery-library";
     } else {
-      currentState = value && value.length ? "gallery-edit" : "gallery";
+      currentstate = value && value.length ? "gallery-edit" : "gallery";
     }
-    if (!this.GalleryDetailsMediaFrame) {
-      this.GalleryDetailsMediaFrame = getGalleryDetailsMediaFrame();
+    if (!this.gallerydetailsmediaframe) {
+      this.gallerydetailsmediaframe = getgallerydetailsmediaframe();
     }
-    const attachments = getAttachmentsCollection(value);
-    const selection = new wp.media.model.Selection(attachments.models, {
-      props: attachments.props.toJSON(),
+    const attachments = getattachmentscollection(value);
+    const selection = new wp.media.model.selection(attachments.models, {
+      props: attachments.props.tojson(),
       multiple
     });
-    this.frame = new this.GalleryDetailsMediaFrame({
-      mimeType: allowedTypes,
-      state: currentState,
+    this.frame = new this.gallerydetailsmediaframe({
+      mimetype: allowedtypes,
+      state: currentstate,
       multiple,
       selection,
       editing: !!value?.length
     });
     wp.media.frame = this.frame;
-    this.initializeListeners();
+    this.initializelisteners();
   }
   /**
-   * Initializes the Media Library requirements for the featured image flow.
+   * initializes the media library requirements for the featured image flow.
    *
    * @return {void}
    */
-  buildAndSetFeatureImageFrame() {
+  buildandsetfeatureimageframe() {
     const { wp } = window;
-    const { value: featuredImageId, multiple, allowedTypes } = this.props;
-    const featuredImageFrame = getFeaturedImageMediaFrame();
-    const attachments = getAttachmentsCollection(featuredImageId);
-    const selection = new wp.media.model.Selection(attachments.models, {
-      props: attachments.props.toJSON()
+    const { value: featuredimageid, multiple, allowedtypes } = this.props;
+    const featuredimageframe = getfeaturedimagemediaframe();
+    const attachments = getattachmentscollection(featuredimageid);
+    const selection = new wp.media.model.selection(attachments.models, {
+      props: attachments.props.tojson()
     });
-    this.frame = new featuredImageFrame({
-      mimeType: allowedTypes,
+    this.frame = new featuredimageframe({
+      mimetype: allowedtypes,
       state: "featured-image",
       multiple,
       selection,
-      editing: featuredImageId
+      editing: featuredimageid
     });
     wp.media.frame = this.frame;
     wp.media.view.settings.post = {
       ...wp.media.view.settings.post,
-      featuredImageId: featuredImageId || -1
+      featuredimageid: featuredimageid || -1
     };
   }
   /**
-   * Initializes the Media Library requirements for the single image flow.
+   * initializes the media library requirements for the single image flow.
    *
    * @return {void}
    */
-  buildAndSetSingleMediaFrame() {
+  buildandsetsinglemediaframe() {
     const { wp } = window;
     const {
-      allowedTypes,
+      allowedtypes,
       multiple = false,
-      title = (0,external_wp_i18n_namespaceObject.__)("Select or Upload Media"),
+      title = (0,external_wp_i18n_namespaceobject.__)("select or upload media"),
       value
     } = this.props;
-    const frameConfig = {
+    const frameconfig = {
       title,
       multiple
     };
-    if (!!allowedTypes) {
-      frameConfig.library = { type: allowedTypes };
+    if (!!allowedtypes) {
+      frameconfig.library = { type: allowedtypes };
     }
     if (this.frame) {
       this.frame.remove();
     }
-    const singleImageFrame = getSingleMediaFrame();
-    const attachments = getAttachmentsCollection(value);
-    const selection = new wp.media.model.Selection(attachments.models, {
-      props: attachments.props.toJSON()
+    const singleimageframe = getsinglemediaframe();
+    const attachments = getattachmentscollection(value);
+    const selection = new wp.media.model.selection(attachments.models, {
+      props: attachments.props.tojson()
     });
-    this.frame = new singleImageFrame({
-      mimeType: allowedTypes,
+    this.frame = new singleimageframe({
+      mimetype: allowedtypes,
       multiple,
       selection,
-      ...frameConfig
+      ...frameconfig
     });
     wp.media.frame = this.frame;
   }
-  componentWillUnmount() {
+  componentwillunmount() {
     this.frame?.remove();
   }
-  onUpdate(selections) {
-    const { onSelect, multiple = false } = this.props;
+  onupdate(selections) {
+    const { onselect, multiple = false } = this.props;
     const state = this.frame.state();
-    const selectedImages = selections || state.get("selection");
-    if (!selectedImages || !selectedImages.models.length) {
+    const selectedimages = selections || state.get("selection");
+    if (!selectedimages || !selectedimages.models.length) {
       return;
     }
     if (multiple) {
-      onSelect(
-        selectedImages.models.map(
-          (model) => slimImageObject(model.toJSON())
+      onselect(
+        selectedimages.models.map(
+          (model) => slimimageobject(model.tojson())
         )
       );
     } else {
-      onSelect(slimImageObject(selectedImages.models[0].toJSON()));
+      onselect(slimimageobject(selectedimages.models[0].tojson()));
     }
   }
-  onSelect() {
-    const { onSelect, multiple = false } = this.props;
-    const attachment = this.frame.state().get("selection").toJSON();
-    onSelect(multiple ? attachment : attachment[0]);
+  onselect() {
+    const { onselect, multiple = false } = this.props;
+    const attachment = this.frame.state().get("selection").tojson();
+    onselect(multiple ? attachment : attachment[0]);
   }
-  onOpen() {
+  onopen() {
     const { wp } = window;
     const { value } = this.props;
-    this.updateCollection();
+    this.updatecollection();
     if (this.props.mode) {
       this.frame.content.mode(this.props.mode);
     }
-    const hasMedia = Array.isArray(value) ? !!value?.length : !!value;
-    if (!hasMedia) {
+    const hasmedia = array.isarray(value) ? !!value?.length : !!value;
+    if (!hasmedia) {
       return;
     }
-    const isGallery = this.props.gallery;
+    const isgallery = this.props.gallery;
     const selection = this.frame.state().get("selection");
-    const valueArray = Array.isArray(value) ? value : [value];
-    if (!isGallery) {
-      valueArray.forEach((id) => {
+    const valuearray = array.isarray(value) ? value : [value];
+    if (!isgallery) {
+      valuearray.foreach((id) => {
         selection.add(wp.media.attachment(id));
       });
     }
-    const attachments = getAttachmentsCollection(valueArray);
+    const attachments = getattachmentscollection(valuearray);
     attachments.more().done(function() {
-      if (isGallery && attachments?.models?.length) {
+      if (isgallery && attachments?.models?.length) {
         selection.add(attachments.models);
       }
     });
   }
-  onClose() {
-    const { onClose } = this.props;
-    if (onClose) {
-      onClose();
+  onclose() {
+    const { onclose } = this.props;
+    if (onclose) {
+      onclose();
     }
     this.frame.detach();
   }
-  updateCollection() {
-    const frameContent = this.frame.content.get();
-    if (frameContent && frameContent.collection) {
-      const collection = frameContent.collection;
-      collection.toArray().forEach((model) => model.trigger("destroy", model));
-      collection.mirroring._hasMore = true;
+  updatecollection() {
+    const framecontent = this.frame.content.get();
+    if (framecontent && framecontent.collection) {
+      const collection = framecontent.collection;
+      collection.toarray().foreach((model) => model.trigger("destroy", model));
+      collection.mirroring._hasmore = true;
       collection.more();
     }
   }
-  openModal() {
+  openmodal() {
     const {
       gallery = false,
-      unstableFeaturedImageFlow = false,
-      modalClass
+      unstablefeaturedimageflow = false,
+      modalclass
     } = this.props;
     if (gallery) {
-      this.buildAndSetGalleryFrame();
+      this.buildandsetgalleryframe();
     } else {
-      this.buildAndSetSingleMediaFrame();
+      this.buildandsetsinglemediaframe();
     }
-    if (modalClass) {
-      this.frame.$el.addClass(modalClass);
+    if (modalclass) {
+      this.frame.$el.addclass(modalclass);
     }
-    if (unstableFeaturedImageFlow) {
-      this.buildAndSetFeatureImageFrame();
+    if (unstablefeaturedimageflow) {
+      this.buildandsetfeatureimageframe();
     }
-    this.initializeListeners();
+    this.initializelisteners();
     this.frame.open();
   }
   render() {
-    return this.props.render({ open: this.openModal });
+    return this.props.render({ open: this.openmodal });
   }
 }
-var media_upload_default = MediaUpload;
+var media_upload_default = mediaupload;
 
 
 ;// ./node_modules/@wordpress/media-utils/build-module/components/index.js
@@ -484,30 +484,30 @@ var media_upload_default = MediaUpload;
 
 
 ;// external ["wp","blob"]
-const external_wp_blob_namespaceObject = window["wp"]["blob"];
-;// external ["wp","apiFetch"]
-const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
+const external_wp_blob_namespaceobject = window["wp"]["blob"];
+;// external ["wp","apifetch"]
+const external_wp_apifetch_namespaceobject = window["wp"]["apifetch"];
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_namespaceobject);
 ;// ./node_modules/@wordpress/media-utils/build-module/utils/flatten-form-data.js
-function isPlainObject(data) {
-  return data !== null && typeof data === "object" && Object.getPrototypeOf(data) === Object.prototype;
+function isplainobject(data) {
+  return data !== null && typeof data === "object" && object.getprototypeof(data) === object.prototype;
 }
-function flattenFormData(formData, key, data) {
-  if (isPlainObject(data)) {
-    for (const [name, value] of Object.entries(data)) {
-      flattenFormData(formData, `${key}[${name}]`, value);
+function flattenformdata(formdata, key, data) {
+  if (isplainobject(data)) {
+    for (const [name, value] of object.entries(data)) {
+      flattenformdata(formdata, `${key}[${name}]`, value);
     }
   } else if (data !== void 0) {
-    formData.append(key, String(data));
+    formdata.append(key, string(data));
   }
 }
 
 
 ;// ./node_modules/@wordpress/media-utils/build-module/utils/transform-attachment.js
-function transformAttachment(attachment) {
-  const { alt_text, source_url, ...savedMediaProps } = attachment;
+function transformattachment(attachment) {
+  const { alt_text, source_url, ...savedmediaprops } = attachment;
   return {
-    ...savedMediaProps,
+    ...savedmediaprops,
     alt: attachment.alt_text,
     caption: attachment.caption?.raw ?? "",
     title: attachment.title.raw,
@@ -521,22 +521,22 @@ function transformAttachment(attachment) {
 
 
 
-async function uploadToServer(file, additionalData = {}, signal) {
-  const data = new FormData();
+async function uploadtoserver(file, additionaldata = {}, signal) {
+  const data = new formdata();
   data.append("file", file, file.name || file.type.replace("/", "."));
-  for (const [key, value] of Object.entries(additionalData)) {
-    flattenFormData(
+  for (const [key, value] of object.entries(additionaldata)) {
+    flattenformdata(
       data,
       key,
       value
     );
   }
-  return transformAttachment(
-    await external_wp_apiFetch_default()({
-      // This allows the video block to directly get a video's poster image.
+  return transformattachment(
+    await external_wp_apifetch_default()({
+      // this allows the video block to directly get a video's poster image.
       path: "/wp/v2/media?_embed=wp:featuredmedia",
       body: data,
-      method: "POST",
+      method: "post",
       signal
     })
   );
@@ -544,12 +544,12 @@ async function uploadToServer(file, additionalData = {}, signal) {
 
 
 ;// ./node_modules/@wordpress/media-utils/build-module/utils/upload-error.js
-class UploadError extends Error {
+class uploaderror extends error {
   code;
   file;
   constructor({ code, message, file, cause }) {
     super(message, { cause });
-    Object.setPrototypeOf(this, new.target.prototype);
+    object.setprototypeof(this, new.target.prototype);
     this.code = code;
     this.file = file;
   }
@@ -559,22 +559,22 @@ class UploadError extends Error {
 ;// ./node_modules/@wordpress/media-utils/build-module/utils/validate-mime-type.js
 
 
-function validateMimeType(file, allowedTypes) {
-  if (!allowedTypes) {
+function validatemimetype(file, allowedtypes) {
+  if (!allowedtypes) {
     return;
   }
-  const isAllowedType = allowedTypes.some((allowedType) => {
-    if (allowedType.includes("/")) {
-      return allowedType === file.type;
+  const isallowedtype = allowedtypes.some((allowedtype) => {
+    if (allowedtype.includes("/")) {
+      return allowedtype === file.type;
     }
-    return file.type.startsWith(`${allowedType}/`);
+    return file.type.startswith(`${allowedtype}/`);
   });
-  if (file.type && !isAllowedType) {
-    throw new UploadError({
-      code: "MIME_TYPE_NOT_SUPPORTED",
-      message: (0,external_wp_i18n_namespaceObject.sprintf)(
+  if (file.type && !isallowedtype) {
+    throw new uploaderror({
+      code: "mime_type_not_supported",
+      message: (0,external_wp_i18n_namespaceobject.sprintf)(
         // translators: %s: file name.
-        (0,external_wp_i18n_namespaceObject.__)("%s: Sorry, this file type is not supported here."),
+        (0,external_wp_i18n_namespaceobject.__)("%s: sorry, this file type is not supported here."),
         file.name
       ),
       file
@@ -584,14 +584,14 @@ function validateMimeType(file, allowedTypes) {
 
 
 ;// ./node_modules/@wordpress/media-utils/build-module/utils/get-mime-types-array.js
-function getMimeTypesArray(wpMimeTypesObject) {
-  if (!wpMimeTypesObject) {
+function getmimetypesarray(wpmimetypesobject) {
+  if (!wpmimetypesobject) {
     return null;
   }
-  return Object.entries(wpMimeTypesObject).flatMap(
-    ([extensionsString, mime]) => {
+  return object.entries(wpmimetypesobject).flatmap(
+    ([extensionsstring, mime]) => {
       const [type] = mime.split("/");
-      const extensions = extensionsString.split("|");
+      const extensions = extensionsstring.split("|");
       return [
         mime,
         ...extensions.map(
@@ -607,21 +607,21 @@ function getMimeTypesArray(wpMimeTypesObject) {
 
 
 
-function validateMimeTypeForUser(file, wpAllowedMimeTypes) {
-  const allowedMimeTypesForUser = getMimeTypesArray(wpAllowedMimeTypes);
-  if (!allowedMimeTypesForUser) {
+function validatemimetypeforuser(file, wpallowedmimetypes) {
+  const allowedmimetypesforuser = getmimetypesarray(wpallowedmimetypes);
+  if (!allowedmimetypesforuser) {
     return;
   }
-  const isAllowedMimeTypeForUser = allowedMimeTypesForUser.includes(
+  const isallowedmimetypeforuser = allowedmimetypesforuser.includes(
     file.type
   );
-  if (file.type && !isAllowedMimeTypeForUser) {
-    throw new UploadError({
-      code: "MIME_TYPE_NOT_ALLOWED_FOR_USER",
-      message: (0,external_wp_i18n_namespaceObject.sprintf)(
+  if (file.type && !isallowedmimetypeforuser) {
+    throw new uploaderror({
+      code: "mime_type_not_allowed_for_user",
+      message: (0,external_wp_i18n_namespaceobject.sprintf)(
         // translators: %s: file name.
-        (0,external_wp_i18n_namespaceObject.__)(
-          "%s: Sorry, you are not allowed to upload this file type."
+        (0,external_wp_i18n_namespaceobject.__)(
+          "%s: sorry, you are not allowed to upload this file type."
         ),
         file.name
       ),
@@ -634,25 +634,25 @@ function validateMimeTypeForUser(file, wpAllowedMimeTypes) {
 ;// ./node_modules/@wordpress/media-utils/build-module/utils/validate-file-size.js
 
 
-function validateFileSize(file, maxUploadFileSize) {
+function validatefilesize(file, maxuploadfilesize) {
   if (file.size <= 0) {
-    throw new UploadError({
-      code: "EMPTY_FILE",
-      message: (0,external_wp_i18n_namespaceObject.sprintf)(
+    throw new uploaderror({
+      code: "empty_file",
+      message: (0,external_wp_i18n_namespaceobject.sprintf)(
         // translators: %s: file name.
-        (0,external_wp_i18n_namespaceObject.__)("%s: This file is empty."),
+        (0,external_wp_i18n_namespaceobject.__)("%s: this file is empty."),
         file.name
       ),
       file
     });
   }
-  if (maxUploadFileSize && file.size > maxUploadFileSize) {
-    throw new UploadError({
-      code: "SIZE_ABOVE_LIMIT",
-      message: (0,external_wp_i18n_namespaceObject.sprintf)(
+  if (maxuploadfilesize && file.size > maxuploadfilesize) {
+    throw new uploaderror({
+      code: "size_above_limit",
+      message: (0,external_wp_i18n_namespaceobject.sprintf)(
         // translators: %s: file name.
-        (0,external_wp_i18n_namespaceObject.__)(
-          "%s: This file exceeds the maximum upload size for this site."
+        (0,external_wp_i18n_namespaceobject.__)(
+          "%s: this file exceeds the maximum upload size for this site."
         ),
         file.name
       ),
@@ -670,85 +670,85 @@ function validateFileSize(file, maxUploadFileSize) {
 
 
 
-function uploadMedia({
-  wpAllowedMimeTypes,
-  allowedTypes,
-  additionalData = {},
-  filesList,
-  maxUploadFileSize,
-  onError,
-  onFileChange,
+function uploadmedia({
+  wpallowedmimetypes,
+  allowedtypes,
+  additionaldata = {},
+  fileslist,
+  maxuploadfilesize,
+  onerror,
+  onfilechange,
   signal,
   multiple = true
 }) {
-  if (!multiple && filesList.length > 1) {
-    onError?.(new Error((0,external_wp_i18n_namespaceObject.__)("Only one file can be used here.")));
+  if (!multiple && fileslist.length > 1) {
+    onerror?.(new error((0,external_wp_i18n_namespaceobject.__)("only one file can be used here.")));
     return;
   }
-  const validFiles = [];
-  const filesSet = [];
-  const setAndUpdateFiles = (index, value) => {
-    if (!window.__experimentalMediaProcessing) {
-      if (filesSet[index]?.url) {
-        (0,external_wp_blob_namespaceObject.revokeBlobURL)(filesSet[index].url);
+  const validfiles = [];
+  const filesset = [];
+  const setandupdatefiles = (index, value) => {
+    if (!window.__experimentalmediaprocessing) {
+      if (filesset[index]?.url) {
+        (0,external_wp_blob_namespaceobject.revokebloburl)(filesset[index].url);
       }
     }
-    filesSet[index] = value;
-    onFileChange?.(
-      filesSet.filter((attachment) => attachment !== null)
+    filesset[index] = value;
+    onfilechange?.(
+      filesset.filter((attachment) => attachment !== null)
     );
   };
-  for (const mediaFile of filesList) {
+  for (const mediafile of fileslist) {
     try {
-      validateMimeTypeForUser(mediaFile, wpAllowedMimeTypes);
+      validatemimetypeforuser(mediafile, wpallowedmimetypes);
     } catch (error) {
-      onError?.(error);
+      onerror?.(error);
       continue;
     }
     try {
-      validateMimeType(mediaFile, allowedTypes);
+      validatemimetype(mediafile, allowedtypes);
     } catch (error) {
-      onError?.(error);
+      onerror?.(error);
       continue;
     }
     try {
-      validateFileSize(mediaFile, maxUploadFileSize);
+      validatefilesize(mediafile, maxuploadfilesize);
     } catch (error) {
-      onError?.(error);
+      onerror?.(error);
       continue;
     }
-    validFiles.push(mediaFile);
-    if (!window.__experimentalMediaProcessing) {
-      filesSet.push({ url: (0,external_wp_blob_namespaceObject.createBlobURL)(mediaFile) });
-      onFileChange?.(filesSet);
+    validfiles.push(mediafile);
+    if (!window.__experimentalmediaprocessing) {
+      filesset.push({ url: (0,external_wp_blob_namespaceobject.createbloburl)(mediafile) });
+      onfilechange?.(filesset);
     }
   }
-  validFiles.map(async (file, index) => {
+  validfiles.map(async (file, index) => {
     try {
-      const attachment = await uploadToServer(
+      const attachment = await uploadtoserver(
         file,
-        additionalData,
+        additionaldata,
         signal
       );
-      setAndUpdateFiles(index, attachment);
+      setandupdatefiles(index, attachment);
     } catch (error) {
-      setAndUpdateFiles(index, null);
+      setandupdatefiles(index, null);
       let message;
       if (typeof error === "object" && error !== null && "message" in error) {
-        message = typeof error.message === "string" ? error.message : String(error.message);
+        message = typeof error.message === "string" ? error.message : string(error.message);
       } else {
-        message = (0,external_wp_i18n_namespaceObject.sprintf)(
+        message = (0,external_wp_i18n_namespaceobject.sprintf)(
           // translators: %s: file name
-          (0,external_wp_i18n_namespaceObject.__)("Error while uploading file %s to the media library."),
+          (0,external_wp_i18n_namespaceobject.__)("error while uploading file %s to the media library."),
           file.name
         );
       }
-      onError?.(
-        new UploadError({
-          code: "GENERAL",
+      onerror?.(
+        new uploaderror({
+          code: "general",
           message,
           file,
-          cause: error instanceof Error ? error : void 0
+          cause: error instanceof error ? error : void 0
         })
       );
     }
@@ -760,21 +760,21 @@ function uploadMedia({
 
 
 
-async function sideloadToServer(file, attachmentId, additionalData = {}, signal) {
-  const data = new FormData();
+async function sideloadtoserver(file, attachmentid, additionaldata = {}, signal) {
+  const data = new formdata();
   data.append("file", file, file.name || file.type.replace("/", "."));
-  for (const [key, value] of Object.entries(additionalData)) {
-    flattenFormData(
+  for (const [key, value] of object.entries(additionaldata)) {
+    flattenformdata(
       data,
       key,
       value
     );
   }
-  return transformAttachment(
-    await external_wp_apiFetch_default()({
-      path: `/wp/v2/media/${attachmentId}/sideload`,
+  return transformattachment(
+    await external_wp_apifetch_default()({
+      path: `/wp/v2/media/${attachmentid}/sideload`,
       body: data,
-      method: "POST",
+      method: "post",
       signal
     })
   );
@@ -787,51 +787,51 @@ async function sideloadToServer(file, attachmentId, additionalData = {}, signal)
 
 const noop = () => {
 };
-async function sideloadMedia({
+async function sideloadmedia({
   file,
-  attachmentId,
-  additionalData = {},
+  attachmentid,
+  additionaldata = {},
   signal,
-  onFileChange,
-  onError = noop
+  onfilechange,
+  onerror = noop
 }) {
   try {
-    const attachment = await sideloadToServer(
+    const attachment = await sideloadtoserver(
       file,
-      attachmentId,
-      additionalData,
+      attachmentid,
+      additionaldata,
       signal
     );
-    onFileChange?.([attachment]);
+    onfilechange?.([attachment]);
   } catch (error) {
     let message;
-    if (error instanceof Error) {
+    if (error instanceof error) {
       message = error.message;
     } else {
-      message = (0,external_wp_i18n_namespaceObject.sprintf)(
+      message = (0,external_wp_i18n_namespaceobject.sprintf)(
         // translators: %s: file name
-        (0,external_wp_i18n_namespaceObject.__)("Error while sideloading file %s to the server."),
+        (0,external_wp_i18n_namespaceobject.__)("error while sideloading file %s to the server."),
         file.name
       );
     }
-    onError(
-      new UploadError({
-        code: "GENERAL",
+    onerror(
+      new uploaderror({
+        code: "general",
         message,
         file,
-        cause: error instanceof Error ? error : void 0
+        cause: error instanceof error ? error : void 0
       })
     );
   }
 }
 
 
-;// external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+;// external ["wp","privateapis"]
+const external_wp_privateapis_namespaceobject = window["wp"]["privateapis"];
 ;// ./node_modules/@wordpress/media-utils/build-module/lock-unlock.js
 
-const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)(
-  "I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.",
+const { lock, unlock } = (0,external_wp_privateapis_namespaceobject.__dangerousoptintounstableapisonlyforcoremodules)(
+  "i acknowledge private features are not for use in themes or plugins and doing so will break in the next version of wordpress.",
   "@wordpress/media-utils"
 );
 
@@ -839,9 +839,9 @@ const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousO
 ;// ./node_modules/@wordpress/media-utils/build-module/private-apis.js
 
 
-const privateApis = {};
-lock(privateApis, {
-  sideloadMedia: sideloadMedia
+const privateapis = {};
+lock(privateapis, {
+  sideloadmedia: sideloadmedia
 });
 
 
@@ -855,6 +855,7 @@ lock(privateApis, {
 
 
 
-(window.wp = window.wp || {}).mediaUtils = __webpack_exports__;
+(window.wp = window.wp || {}).mediautils = __webpack_exports__;
 /******/ })()
 ;
+

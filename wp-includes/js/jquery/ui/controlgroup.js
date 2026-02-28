@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Controlgroup 1.13.3
+ * jquery ui controlgroup 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Controlgroup
-//>>group: Widgets
-//>>description: Visually groups form control widgets
+//>>label: controlgroup
+//>>group: widgets
+//>>description: visually groups form control widgets
 //>>docs: https://api.jqueryui.com/controlgroup/
 //>>demos: https://jqueryui.com/controlgroup/
 //>>css.structure: ../../themes/base/core.css
@@ -21,31 +21,31 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../widget"
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
-var controlgroupCornerRegex = /ui-corner-([a-z]){2,6}/g;
+var controlgroupcornerregex = /ui-corner-([a-z]){2,6}/g;
 
 return $.widget( "ui.controlgroup", {
 	version: "1.13.3",
-	defaultElement: "<div>",
+	defaultelement: "<div>",
 	options: {
 		direction: "horizontal",
 		disabled: null,
-		onlyVisible: true,
+		onlyvisible: true,
 		items: {
 			"button": "input[type=button], input[type=submit], input[type=reset], button, a",
-			"controlgroupLabel": ".ui-controlgroup-label",
+			"controlgrouplabel": ".ui-controlgroup-label",
 			"checkboxradio": "input[type='checkbox'], input[type='radio']",
 			"selectmenu": "select",
 			"spinner": ".ui-spinner-input"
@@ -56,39 +56,39 @@ return $.widget( "ui.controlgroup", {
 		this._enhance();
 	},
 
-	// To support the enhanced option in jQuery Mobile, we isolate DOM manipulation
+	// to support the enhanced option in jquery mobile, we isolate dom manipulation
 	_enhance: function() {
 		this.element.attr( "role", "toolbar" );
 		this.refresh();
 	},
 
 	_destroy: function() {
-		this._callChildMethod( "destroy" );
-		this.childWidgets.removeData( "ui-controlgroup-data" );
-		this.element.removeAttr( "role" );
-		if ( this.options.items.controlgroupLabel ) {
+		this._callchildmethod( "destroy" );
+		this.childwidgets.removedata( "ui-controlgroup-data" );
+		this.element.removeattr( "role" );
+		if ( this.options.items.controlgrouplabel ) {
 			this.element
-				.find( this.options.items.controlgroupLabel )
+				.find( this.options.items.controlgrouplabel )
 				.find( ".ui-controlgroup-label-contents" )
 				.contents().unwrap();
 		}
 	},
 
-	_initWidgets: function() {
+	_initwidgets: function() {
 		var that = this,
-			childWidgets = [];
+			childwidgets = [];
 
-		// First we iterate over each of the items options
+		// first we iterate over each of the items options
 		$.each( this.options.items, function( widget, selector ) {
 			var labels;
 			var options = {};
 
-			// Make sure the widget has a selector set
+			// make sure the widget has a selector set
 			if ( !selector ) {
 				return;
 			}
 
-			if ( widget === "controlgroupLabel" ) {
+			if ( widget === "controlgrouplabel" ) {
 				labels = that.element.find( selector );
 				labels.each( function() {
 					var element = $( this );
@@ -97,69 +97,69 @@ return $.widget( "ui.controlgroup", {
 						return;
 					}
 					element.contents()
-						.wrapAll( "<span class='ui-controlgroup-label-contents'></span>" );
+						.wrapall( "<span class='ui-controlgroup-label-contents'></span>" );
 				} );
-				that._addClass( labels, null, "ui-widget ui-widget-content ui-state-default" );
-				childWidgets = childWidgets.concat( labels.get() );
+				that._addclass( labels, null, "ui-widget ui-widget-content ui-state-default" );
+				childwidgets = childwidgets.concat( labels.get() );
 				return;
 			}
 
-			// Make sure the widget actually exists
+			// make sure the widget actually exists
 			if ( !$.fn[ widget ] ) {
 				return;
 			}
 
-			// We assume everything is in the middle to start because we can't determine
+			// we assume everything is in the middle to start because we can't determine
 			// first / last elements until all enhancments are done.
-			if ( that[ "_" + widget + "Options" ] ) {
-				options = that[ "_" + widget + "Options" ]( "middle" );
+			if ( that[ "_" + widget + "options" ] ) {
+				options = that[ "_" + widget + "options" ]( "middle" );
 			} else {
 				options = { classes: {} };
 			}
 
-			// Find instances of this widget inside controlgroup and init them
+			// find instances of this widget inside controlgroup and init them
 			that.element
 				.find( selector )
 				.each( function() {
 					var element = $( this );
 					var instance = element[ widget ]( "instance" );
 
-					// We need to clone the default options for this type of widget to avoid
+					// we need to clone the default options for this type of widget to avoid
 					// polluting the variable options which has a wider scope than a single widget.
-					var instanceOptions = $.widget.extend( {}, options );
+					var instanceoptions = $.widget.extend( {}, options );
 
-					// If the button is the child of a spinner ignore it
-					// TODO: Find a more generic solution
+					// if the button is the child of a spinner ignore it
+					// todo: find a more generic solution
 					if ( widget === "button" && element.parent( ".ui-spinner" ).length ) {
 						return;
 					}
 
-					// Create the widget if it doesn't exist
+					// create the widget if it doesn't exist
 					if ( !instance ) {
 						instance = element[ widget ]()[ widget ]( "instance" );
 					}
 					if ( instance ) {
-						instanceOptions.classes =
-							that._resolveClassesValues( instanceOptions.classes, instance );
+						instanceoptions.classes =
+							that._resolveclassesvalues( instanceoptions.classes, instance );
 					}
-					element[ widget ]( instanceOptions );
+					element[ widget ]( instanceoptions );
 
-					// Store an instance of the controlgroup to be able to reference
+					// store an instance of the controlgroup to be able to reference
 					// from the outermost element for changing options and refresh
-					var widgetElement = element[ widget ]( "widget" );
-					$.data( widgetElement[ 0 ], "ui-controlgroup-data",
+					var widgetelement = element[ widget ]( "widget" );
+					$.data( widgetelement[ 0 ], "ui-controlgroup-data",
 						instance ? instance : element[ widget ]( "instance" ) );
 
-					childWidgets.push( widgetElement[ 0 ] );
+					childwidgets.push( widgetelement[ 0 ] );
 				} );
 		} );
 
-		this.childWidgets = $( $.uniqueSort( childWidgets ) );
-		this._addClass( this.childWidgets, "ui-controlgroup-item" );
+		this.childwidgets = $( $.uniquesort( childwidgets ) );
+		this._addclass( this.childwidgets, "ui-controlgroup-item" );
 	},
 
-	_callChildMethod: function( method ) {
-		this.childWidgets.each( function() {
+	_callchildmethod: function( method ) {
+		this.childwidgets.each( function() {
 			var element = $( this ),
 				data = element.data( "ui-controlgroup-data" );
 			if ( data && data[ method ] ) {
@@ -168,15 +168,15 @@ return $.widget( "ui.controlgroup", {
 		} );
 	},
 
-	_updateCornerClass: function( element, position ) {
+	_updatecornerclass: function( element, position ) {
 		var remove = "ui-corner-top ui-corner-bottom ui-corner-left ui-corner-right ui-corner-all";
-		var add = this._buildSimpleOptions( position, "label" ).classes.label;
+		var add = this._buildsimpleoptions( position, "label" ).classes.label;
 
-		this._removeClass( element, null, remove );
-		this._addClass( element, null, add );
+		this._removeclass( element, null, remove );
+		this._addclass( element, null, add );
 	},
 
-	_buildSimpleOptions: function( position, key ) {
+	_buildsimpleoptions: function( position, key ) {
 		var direction = this.options.direction === "vertical";
 		var result = {
 			classes: {}
@@ -191,8 +191,8 @@ return $.widget( "ui.controlgroup", {
 		return result;
 	},
 
-	_spinnerOptions: function( position ) {
-		var options = this._buildSimpleOptions( position, "ui-spinner" );
+	_spinneroptions: function( position ) {
+		var options = this._buildsimpleoptions( position, "ui-spinner" );
 
 		options.classes[ "ui-spinner-up" ] = "";
 		options.classes[ "ui-spinner-down" ] = "";
@@ -200,15 +200,15 @@ return $.widget( "ui.controlgroup", {
 		return options;
 	},
 
-	_buttonOptions: function( position ) {
-		return this._buildSimpleOptions( position, "ui-button" );
+	_buttonoptions: function( position ) {
+		return this._buildsimpleoptions( position, "ui-button" );
 	},
 
-	_checkboxradioOptions: function( position ) {
-		return this._buildSimpleOptions( position, "ui-checkboxradio-label" );
+	_checkboxradiooptions: function( position ) {
+		return this._buildsimpleoptions( position, "ui-checkboxradio-label" );
 	},
 
-	_selectmenuOptions: function( position ) {
+	_selectmenuoptions: function( position ) {
 		var direction = this.options.direction === "vertical";
 		return {
 			width: direction ? "auto" : false,
@@ -234,24 +234,24 @@ return $.widget( "ui.controlgroup", {
 		};
 	},
 
-	_resolveClassesValues: function( classes, instance ) {
+	_resolveclassesvalues: function( classes, instance ) {
 		var result = {};
 		$.each( classes, function( key ) {
 			var current = instance.options.classes[ key ] || "";
-			current = String.prototype.trim.call( current.replace( controlgroupCornerRegex, "" ) );
+			current = string.prototype.trim.call( current.replace( controlgroupcornerregex, "" ) );
 			result[ key ] = ( current + " " + classes[ key ] ).replace( /\s+/g, " " );
 		} );
 		return result;
 	},
 
-	_setOption: function( key, value ) {
+	_setoption: function( key, value ) {
 		if ( key === "direction" ) {
-			this._removeClass( "ui-controlgroup-" + this.options.direction );
+			this._removeclass( "ui-controlgroup-" + this.options.direction );
 		}
 
 		this._super( key, value );
 		if ( key === "disabled" ) {
-			this._callChildMethod( value ? "disable" : "enable" );
+			this._callchildmethod( value ? "disable" : "enable" );
 			return;
 		}
 
@@ -262,41 +262,43 @@ return $.widget( "ui.controlgroup", {
 		var children,
 			that = this;
 
-		this._addClass( "ui-controlgroup ui-controlgroup-" + this.options.direction );
+		this._addclass( "ui-controlgroup ui-controlgroup-" + this.options.direction );
 
 		if ( this.options.direction === "horizontal" ) {
-			this._addClass( null, "ui-helper-clearfix" );
+			this._addclass( null, "ui-helper-clearfix" );
 		}
-		this._initWidgets();
+		this._initwidgets();
 
-		children = this.childWidgets;
+		children = this.childwidgets;
 
-		// We filter here because we need to track all childWidgets not just the visible ones
-		if ( this.options.onlyVisible ) {
+		// we filter here because we need to track all childwidgets not just the visible ones
+		if ( this.options.onlyvisible ) {
 			children = children.filter( ":visible" );
 		}
 
 		if ( children.length ) {
 
-			// We do this last because we need to make sure all enhancment is done
+			// we do this last because we need to make sure all enhancment is done
 			// before determining first and last
 			$.each( [ "first", "last" ], function( index, value ) {
 				var instance = children[ value ]().data( "ui-controlgroup-data" );
 
-				if ( instance && that[ "_" + instance.widgetName + "Options" ] ) {
-					var options = that[ "_" + instance.widgetName + "Options" ](
+				if ( instance && that[ "_" + instance.widgetname + "options" ] ) {
+					var options = that[ "_" + instance.widgetname + "options" ](
 						children.length === 1 ? "only" : value
 					);
-					options.classes = that._resolveClassesValues( options.classes, instance );
-					instance.element[ instance.widgetName ]( options );
+					options.classes = that._resolveclassesvalues( options.classes, instance );
+					instance.element[ instance.widgetname ]( options );
 				} else {
-					that._updateCornerClass( children[ value ](), value );
+					that._updatecornerclass( children[ value ](), value );
 				}
 			} );
 
-			// Finally call the refresh method on each of the child widgets.
-			this._callChildMethod( "refresh" );
+			// finally call the refresh method on each of the child widgets.
+			this._callchildmethod( "refresh" );
 		}
 	}
 } );
 } );
+
+

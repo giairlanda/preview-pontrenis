@@ -1,69 +1,69 @@
 /**
- * WordPress View plugin.
+ * wordpress view plugin.
  */
 ( function( tinymce ) {
-	tinymce.PluginManager.add( 'wpview', function( editor ) {
+	tinymce.pluginmanager.add( 'wpview', function( editor ) {
 		function noop () {}
 
-		// Set this here as wp-tinymce.js may be loaded too early.
+		// set this here as wp-tinymce.js may be loaded too early.
 		var wp = window.wp;
 
 		if ( ! wp || ! wp.mce || ! wp.mce.views ) {
 			return {
-				getView: noop
+				getview: noop
 			};
 		}
 
-		// Check if a node is a view or not.
-		function isView( node ) {
-			return editor.dom.hasClass( node, 'wpview' );
+		// check if a node is a view or not.
+		function isview( node ) {
+			return editor.dom.hasclass( node, 'wpview' );
 		}
 
-		// Replace view tags with their text.
-		function resetViews( content ) {
+		// replace view tags with their text.
+		function resetviews( content ) {
 			function callback( match, $1 ) {
-				return '<p>' + window.decodeURIComponent( $1 ) + '</p>';
+				return '<p>' + window.decodeuricomponent( $1 ) + '</p>';
 			}
 
-			if ( ! content || content.indexOf( ' data-wpview-' ) === -1 ) {
+			if ( ! content || content.indexof( ' data-wpview-' ) === -1 ) {
 				return content;
 			}
 
 			return content
-				.replace( /<div[^>]+data-wpview-text="([^"]+)"[^>]*>(?:\.|[\s\S]+?wpview-end[^>]+>\s*<\/span>\s*)?<\/div>/g, callback )
-				.replace( /<p[^>]+data-wpview-marker="([^"]+)"[^>]*>[\s\S]*?<\/p>/g, callback );
+				.replace( /<div[^>]+data-wpview-text="([^"]+)"[^>]*>(?:\.|[\s\s]+?wpview-end[^>]+>\s*<\/span>\s*)?<\/div>/g, callback )
+				.replace( /<p[^>]+data-wpview-marker="([^"]+)"[^>]*>[\s\s]*?<\/p>/g, callback );
 		}
 
 		editor.on( 'init', function() {
-			var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+			var mutationobserver = window.mutationobserver || window.webkitmutationobserver;
 
-			if ( MutationObserver ) {
-				new MutationObserver( function() {
+			if ( mutationobserver ) {
+				new mutationobserver( function() {
 					editor.fire( 'wp-body-class-change' );
 				} )
-				.observe( editor.getBody(), {
+				.observe( editor.getbody(), {
 					attributes: true,
-					attributeFilter: ['class']
+					attributefilter: ['class']
 				} );
 			}
 
-			// Pass on body class name changes from the editor to the wpView iframes.
+			// pass on body class name changes from the editor to the wpview iframes.
 			editor.on( 'wp-body-class-change', function() {
-				var className = editor.getBody().className;
+				var classname = editor.getbody().classname;
 
 				editor.$( 'iframe[class="wpview-sandbox"]' ).each( function( i, iframe ) {
-					// Make sure it is a local iframe.
+					// make sure it is a local iframe.
 					// jshint scripturl: true
 					if ( ! iframe.src || iframe.src === 'javascript:""' ) {
 						try {
-							iframe.contentWindow.document.body.className = className;
+							iframe.contentwindow.document.body.classname = classname;
 						} catch( er ) {}
 					}
 				});
 			} );
 		});
 
-		// Scan new content for matching view patterns and replace them with markers.
+		// scan new content for matching view patterns and replace them with markers.
 		editor.on( 'beforesetcontent', function( event ) {
 			var node;
 
@@ -76,121 +76,121 @@
 			}
 
 			if ( ! event.load ) {
-				node = editor.selection.getNode();
+				node = editor.selection.getnode();
 
-				if ( node && node !== editor.getBody() && /^\s*https?:\/\/\S+\s*$/i.test( event.content ) ) {
-					// When a url is pasted or inserted, only try to embed it when it is in an empty paragraph.
-					node = editor.dom.getParent( node, 'p' );
+				if ( node && node !== editor.getbody() && /^\s*https?:\/\/\s+\s*$/i.test( event.content ) ) {
+					// when a url is pasted or inserted, only try to embed it when it is in an empty paragraph.
+					node = editor.dom.getparent( node, 'p' );
 
-					if ( node && /^[\s\uFEFF\u00A0]*$/.test( editor.$( node ).text() || '' ) ) {
-						// Make sure there are no empty inline elements in the <p>.
-						node.innerHTML = '';
+					if ( node && /^[\s\ufeff\u00a0]*$/.test( editor.$( node ).text() || '' ) ) {
+						// make sure there are no empty inline elements in the <p>.
+						node.innerhtml = '';
 					} else {
 						return;
 					}
 				}
 			}
 
-			event.content = wp.mce.views.setMarkers( event.content, editor );
+			event.content = wp.mce.views.setmarkers( event.content, editor );
 		} );
 
-		// Replace any new markers nodes with views.
+		// replace any new markers nodes with views.
 		editor.on( 'setcontent', function() {
 			wp.mce.views.render();
 		} );
 
-		// Empty view nodes for easier processing.
+		// empty view nodes for easier processing.
 		editor.on( 'preprocess hide', function( event ) {
 			editor.$( 'div[data-wpview-text], p[data-wpview-marker]', event.node ).each( function( i, node ) {
-				node.innerHTML = '.';
+				node.innerhtml = '.';
 			} );
 		}, true );
 
-		// Replace views with their text.
+		// replace views with their text.
 		editor.on( 'postprocess', function( event ) {
-			event.content = resetViews( event.content );
+			event.content = resetviews( event.content );
 		} );
 
-		// Prevent adding of undo levels when replacing wpview markers
+		// prevent adding of undo levels when replacing wpview markers
 		// or when there are changes only in the (non-editable) previews.
 		editor.on( 'beforeaddundo', function( event ) {
-			var lastContent;
-			var newContent = event.level.content || ( event.level.fragments && event.level.fragments.join( '' ) );
+			var lastcontent;
+			var newcontent = event.level.content || ( event.level.fragments && event.level.fragments.join( '' ) );
 
-			if ( ! event.lastLevel ) {
-				lastContent = editor.startContent;
+			if ( ! event.lastlevel ) {
+				lastcontent = editor.startcontent;
 			} else {
-				lastContent = event.lastLevel.content || ( event.lastLevel.fragments && event.lastLevel.fragments.join( '' ) );
+				lastcontent = event.lastlevel.content || ( event.lastlevel.fragments && event.lastlevel.fragments.join( '' ) );
 			}
 
 			if (
-				! newContent ||
-				! lastContent ||
-				newContent.indexOf( ' data-wpview-' ) === -1 ||
-				lastContent.indexOf( ' data-wpview-' ) === -1
+				! newcontent ||
+				! lastcontent ||
+				newcontent.indexof( ' data-wpview-' ) === -1 ||
+				lastcontent.indexof( ' data-wpview-' ) === -1
 			) {
 				return;
 			}
 
-			if ( resetViews( lastContent ) === resetViews( newContent ) ) {
-				event.preventDefault();
+			if ( resetviews( lastcontent ) === resetviews( newcontent ) ) {
+				event.preventdefault();
 			}
 		} );
 
-		// Make sure views are copied as their text.
+		// make sure views are copied as their text.
 		editor.on( 'drop objectselected', function( event ) {
-			if ( isView( event.targetClone ) ) {
-				event.targetClone = editor.getDoc().createTextNode(
-					window.decodeURIComponent( editor.dom.getAttrib( event.targetClone, 'data-wpview-text' ) )
+			if ( isview( event.targetclone ) ) {
+				event.targetclone = editor.getdoc().createtextnode(
+					window.decodeuricomponent( editor.dom.getattrib( event.targetclone, 'data-wpview-text' ) )
 				);
 			}
 		} );
 
-		// Clean up URLs for easier processing.
+		// clean up urls for easier processing.
 		editor.on( 'pastepreprocess', function( event ) {
 			var content = event.content;
 
 			if ( content ) {
 				content = tinymce.trim( content.replace( /<[^>]+>/g, '' ) );
 
-				if ( /^https?:\/\/\S+$/i.test( content ) ) {
+				if ( /^https?:\/\/\s+$/i.test( content ) ) {
 					event.content = content;
 				}
 			}
 		} );
 
-		// Show the view type in the element path.
+		// show the view type in the element path.
 		editor.on( 'resolvename', function( event ) {
-			if ( isView( event.target ) ) {
-				event.name = editor.dom.getAttrib( event.target, 'data-wpview-type' ) || 'object';
+			if ( isview( event.target ) ) {
+				event.name = editor.dom.getattrib( event.target, 'data-wpview-type' ) || 'object';
 			}
 		} );
 
-		// See `media` plugin.
+		// see `media` plugin.
 		editor.on( 'click keyup', function() {
-			var node = editor.selection.getNode();
+			var node = editor.selection.getnode();
 
-			if ( isView( node ) ) {
-				if ( editor.dom.getAttrib( node, 'data-mce-selected' ) ) {
-					node.setAttribute( 'data-mce-selected', '2' );
+			if ( isview( node ) ) {
+				if ( editor.dom.getattrib( node, 'data-mce-selected' ) ) {
+					node.setattribute( 'data-mce-selected', '2' );
 				}
 			}
 		} );
 
-		editor.addButton( 'wp_view_edit', {
-			tooltip: 'Edit|button', // '|button' is not displayed, only used for context.
+		editor.addbutton( 'wp_view_edit', {
+			tooltip: 'edit|button', // '|button' is not displayed, only used for context.
 			icon: 'dashicon dashicons-edit',
 			onclick: function() {
-				var node = editor.selection.getNode();
+				var node = editor.selection.getnode();
 
-				if ( isView( node ) ) {
+				if ( isview( node ) ) {
 					wp.mce.views.edit( editor, node );
 				}
 			}
 		} );
 
-		editor.addButton( 'wp_view_remove', {
-			tooltip: 'Remove',
+		editor.addbutton( 'wp_view_remove', {
+			tooltip: 'remove',
 			icon: 'dashicon dashicons-no',
 			onclick: function() {
 				editor.fire( 'cut' );
@@ -200,14 +200,14 @@
 		editor.once( 'preinit', function() {
 			var toolbar;
 
-			if ( editor.wp && editor.wp._createToolbar ) {
-				toolbar = editor.wp._createToolbar( [
+			if ( editor.wp && editor.wp._createtoolbar ) {
+				toolbar = editor.wp._createtoolbar( [
 					'wp_view_edit',
 					'wp_view_remove'
 				] );
 
 				editor.on( 'wptoolbar', function( event ) {
-					if ( ! event.collapsed && isView( event.element ) ) {
+					if ( ! event.collapsed && isview( event.element ) ) {
 						event.toolbar = toolbar;
 					}
 				} );
@@ -215,11 +215,13 @@
 		} );
 
 		editor.wp = editor.wp || {};
-		editor.wp.getView = noop;
-		editor.wp.setViewCursor = noop;
+		editor.wp.getview = noop;
+		editor.wp.setviewcursor = noop;
 
 		return {
-			getView: noop
+			getview: noop
 		};
 	} );
 } )( window.tinymce );
+
+

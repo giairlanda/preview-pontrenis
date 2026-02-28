@@ -1,219 +1,219 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 5033:
 /***/ ((module, exports, __webpack_require__) => {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
+var __webpack_amd_define_factory__, __webpack_amd_define_array__, __webpack_amd_define_result__;(function (factory) {
 	if (true) {
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		!(__webpack_amd_define_array__ = [], __webpack_amd_define_factory__ = (factory),
+		__webpack_amd_define_result__ = (typeof __webpack_amd_define_factory__ === 'function' ?
+		(__webpack_amd_define_factory__.apply(exports, __webpack_amd_define_array__)) : __webpack_amd_define_factory__),
+		__webpack_amd_define_result__ !== undefined && (module.exports = __webpack_amd_define_result__));
 	} else {}
 }(function(){
 	'use strict';
-	var scheduleStart, throttleDelay, lazytimer, lazyraf;
+	var schedulestart, throttledelay, lazytimer, lazyraf;
 	var root = typeof window != 'undefined' ?
 		window :
 		typeof __webpack_require__.g != undefined ?
 			__webpack_require__.g :
 			this || {};
-	var requestAnimationFrame = root.cancelRequestAnimationFrame && root.requestAnimationFrame || setTimeout;
-	var cancelRequestAnimationFrame = root.cancelRequestAnimationFrame || clearTimeout;
+	var requestanimationframe = root.cancelrequestanimationframe && root.requestanimationframe || settimeout;
+	var cancelrequestanimationframe = root.cancelrequestanimationframe || cleartimeout;
 	var tasks = [];
-	var runAttempts = 0;
-	var isRunning = false;
-	var remainingTime = 7;
-	var minThrottle = 35;
+	var runattempts = 0;
+	var isrunning = false;
+	var remainingtime = 7;
+	var minthrottle = 35;
 	var throttle = 125;
 	var index = 0;
-	var taskStart = 0;
+	var taskstart = 0;
 	var tasklength = 0;
-	var IdleDeadline = {
-		get didTimeout(){
+	var idledeadline = {
+		get didtimeout(){
 			return false;
 		},
-		timeRemaining: function(){
-			var timeRemaining = remainingTime - (Date.now() - taskStart);
-			return timeRemaining < 0 ? 0 : timeRemaining;
+		timeremaining: function(){
+			var timeremaining = remainingtime - (date.now() - taskstart);
+			return timeremaining < 0 ? 0 : timeremaining;
 		},
 	};
-	var setInactive = debounce(function(){
-		remainingTime = 22;
+	var setinactive = debounce(function(){
+		remainingtime = 22;
 		throttle = 66;
-		minThrottle = 0;
+		minthrottle = 0;
 	});
 
 	function debounce(fn){
 		var id, timestamp;
 		var wait = 99;
 		var check = function(){
-			var last = (Date.now()) - timestamp;
+			var last = (date.now()) - timestamp;
 
 			if (last < wait) {
-				id = setTimeout(check, wait - last);
+				id = settimeout(check, wait - last);
 			} else {
 				id = null;
 				fn();
 			}
 		};
 		return function(){
-			timestamp = Date.now();
+			timestamp = date.now();
 			if(!id){
-				id = setTimeout(check, wait);
+				id = settimeout(check, wait);
 			}
 		};
 	}
 
-	function abortRunning(){
-		if(isRunning){
+	function abortrunning(){
+		if(isrunning){
 			if(lazyraf){
-				cancelRequestAnimationFrame(lazyraf);
+				cancelrequestanimationframe(lazyraf);
 			}
 			if(lazytimer){
-				clearTimeout(lazytimer);
+				cleartimeout(lazytimer);
 			}
-			isRunning = false;
+			isrunning = false;
 		}
 	}
 
-	function onInputorMutation(){
+	function oninputormutation(){
 		if(throttle != 125){
-			remainingTime = 7;
+			remainingtime = 7;
 			throttle = 125;
-			minThrottle = 35;
+			minthrottle = 35;
 
-			if(isRunning) {
-				abortRunning();
-				scheduleLazy();
+			if(isrunning) {
+				abortrunning();
+				schedulelazy();
 			}
 		}
-		setInactive();
+		setinactive();
 	}
 
-	function scheduleAfterRaf() {
+	function scheduleafterraf() {
 		lazyraf = null;
-		lazytimer = setTimeout(runTasks, 0);
+		lazytimer = settimeout(runtasks, 0);
 	}
 
-	function scheduleRaf(){
+	function scheduleraf(){
 		lazytimer = null;
-		requestAnimationFrame(scheduleAfterRaf);
+		requestanimationframe(scheduleafterraf);
 	}
 
-	function scheduleLazy(){
+	function schedulelazy(){
 
-		if(isRunning){return;}
-		throttleDelay = throttle - (Date.now() - taskStart);
+		if(isrunning){return;}
+		throttledelay = throttle - (date.now() - taskstart);
 
-		scheduleStart = Date.now();
+		schedulestart = date.now();
 
-		isRunning = true;
+		isrunning = true;
 
-		if(minThrottle && throttleDelay < minThrottle){
-			throttleDelay = minThrottle;
+		if(minthrottle && throttledelay < minthrottle){
+			throttledelay = minthrottle;
 		}
 
-		if(throttleDelay > 9){
-			lazytimer = setTimeout(scheduleRaf, throttleDelay);
+		if(throttledelay > 9){
+			lazytimer = settimeout(scheduleraf, throttledelay);
 		} else {
-			throttleDelay = 0;
-			scheduleRaf();
+			throttledelay = 0;
+			scheduleraf();
 		}
 	}
 
-	function runTasks(){
+	function runtasks(){
 		var task, i, len;
-		var timeThreshold = remainingTime > 9 ?
+		var timethreshold = remainingtime > 9 ?
 			9 :
 			1
 		;
 
-		taskStart = Date.now();
-		isRunning = false;
+		taskstart = date.now();
+		isrunning = false;
 
 		lazytimer = null;
 
-		if(runAttempts > 2 || taskStart - throttleDelay - 50 < scheduleStart){
-			for(i = 0, len = tasks.length; i < len && IdleDeadline.timeRemaining() > timeThreshold; i++){
+		if(runattempts > 2 || taskstart - throttledelay - 50 < schedulestart){
+			for(i = 0, len = tasks.length; i < len && idledeadline.timeremaining() > timethreshold; i++){
 				task = tasks.shift();
 				tasklength++;
 				if(task){
-					task(IdleDeadline);
+					task(idledeadline);
 				}
 			}
 		}
 
 		if(tasks.length){
-			scheduleLazy();
+			schedulelazy();
 		} else {
-			runAttempts = 0;
+			runattempts = 0;
 		}
 	}
 
-	function requestIdleCallbackShim(task){
+	function requestidlecallbackshim(task){
 		index++;
 		tasks.push(task);
-		scheduleLazy();
+		schedulelazy();
 		return index;
 	}
 
-	function cancelIdleCallbackShim(id){
+	function cancelidlecallbackshim(id){
 		var index = id - 1 - tasklength;
 		if(tasks[index]){
 			tasks[index] = null;
 		}
 	}
 
-	if(!root.requestIdleCallback || !root.cancelIdleCallback){
-		root.requestIdleCallback = requestIdleCallbackShim;
-		root.cancelIdleCallback = cancelIdleCallbackShim;
+	if(!root.requestidlecallback || !root.cancelidlecallback){
+		root.requestidlecallback = requestidlecallbackshim;
+		root.cancelidlecallback = cancelidlecallbackshim;
 
-		if(root.document && document.addEventListener){
-			root.addEventListener('scroll', onInputorMutation, true);
-			root.addEventListener('resize', onInputorMutation);
+		if(root.document && document.addeventlistener){
+			root.addeventlistener('scroll', oninputormutation, true);
+			root.addeventlistener('resize', oninputormutation);
 
-			document.addEventListener('focus', onInputorMutation, true);
-			document.addEventListener('mouseover', onInputorMutation, true);
-			['click', 'keypress', 'touchstart', 'mousedown'].forEach(function(name){
-				document.addEventListener(name, onInputorMutation, {capture: true, passive: true});
+			document.addeventlistener('focus', oninputormutation, true);
+			document.addeventlistener('mouseover', oninputormutation, true);
+			['click', 'keypress', 'touchstart', 'mousedown'].foreach(function(name){
+				document.addeventlistener(name, oninputormutation, {capture: true, passive: true});
 			});
 
-			if(root.MutationObserver){
-				new MutationObserver( onInputorMutation ).observe( document.documentElement, {childList: true, subtree: true, attributes: true} );
+			if(root.mutationobserver){
+				new mutationobserver( oninputormutation ).observe( document.documentelement, {childlist: true, subtree: true, attributes: true} );
 			}
 		}
 	} else {
 		try{
-			root.requestIdleCallback(function(){}, {timeout: 0});
+			root.requestidlecallback(function(){}, {timeout: 0});
 		} catch(e){
-			(function(rIC){
-				var timeRemainingProto, timeRemaining;
-				root.requestIdleCallback = function(fn, timeout){
+			(function(ric){
+				var timeremainingproto, timeremaining;
+				root.requestidlecallback = function(fn, timeout){
 					if(timeout && typeof timeout.timeout == 'number'){
-						return rIC(fn, timeout.timeout);
+						return ric(fn, timeout.timeout);
 					}
-					return rIC(fn);
+					return ric(fn);
 				};
-				if(root.IdleCallbackDeadline && (timeRemainingProto = IdleCallbackDeadline.prototype)){
-					timeRemaining = Object.getOwnPropertyDescriptor(timeRemainingProto, 'timeRemaining');
-					if(!timeRemaining || !timeRemaining.configurable || !timeRemaining.get){return;}
-					Object.defineProperty(timeRemainingProto, 'timeRemaining', {
+				if(root.idlecallbackdeadline && (timeremainingproto = idlecallbackdeadline.prototype)){
+					timeremaining = object.getownpropertydescriptor(timeremainingproto, 'timeremaining');
+					if(!timeremaining || !timeremaining.configurable || !timeremaining.get){return;}
+					object.defineproperty(timeremainingproto, 'timeremaining', {
 						value:  function(){
-							return timeRemaining.get.call(this);
+							return timeremaining.get.call(this);
 						},
 						enumerable: true,
 						configurable: true,
 					});
 				}
-			})(root.requestIdleCallback)
+			})(root.requestidlecallback)
 		}
 	}
 
 	return {
-		request: requestIdleCallbackShim,
-		cancel: cancelIdleCallbackShim,
+		request: requestidlecallbackshim,
+		cancel: cancelidlecallbackshim,
 	};
 }));
 
@@ -222,27 +222,27 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	// the module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
+/******/ 	// the require function
+/******/ 	function __webpack_require__(moduleid) {
+/******/ 		// check if module is in cache
+/******/ 		var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 		if (cachedmodule !== undefined) {
+/******/ 			return cachedmodule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleid] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		// execute the module function
+/******/ 		__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		// return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -253,7 +253,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
@@ -262,100 +262,100 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			if (typeof globalthis === 'object') return globalthis;
 /******/ 			try {
-/******/ 				return this || new Function('return this')();
+/******/ 				return this || new function('return this')();
 /******/ 			} catch (e) {
 /******/ 				if (typeof window === 'object') return window;
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// this entry needs to be wrapped in an iife because it needs to be in strict mode.
 (() => {
 "use strict";
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  createQueue: () => (/* binding */ createQueue)
+  createqueue: () => (/* binding */ createqueue)
 });
 
-// EXTERNAL MODULE: ./node_modules/requestidlecallback/index.js
+// external module: ./node_modules/requestidlecallback/index.js
 var requestidlecallback = __webpack_require__(5033);
 ;// ./node_modules/@wordpress/priority-queue/build-module/request-idle-callback.js
 
-function createRequestIdleCallback() {
+function createrequestidlecallback() {
   if (typeof window === "undefined") {
     return (callback) => {
-      setTimeout(() => callback(Date.now()), 0);
+      settimeout(() => callback(date.now()), 0);
     };
   }
-  return window.requestIdleCallback;
+  return window.requestidlecallback;
 }
-var request_idle_callback_default = createRequestIdleCallback();
+var request_idle_callback_default = createrequestidlecallback();
 
 
 ;// ./node_modules/@wordpress/priority-queue/build-module/index.js
 
-const createQueue = () => {
-  const waitingList = /* @__PURE__ */ new Map();
-  let isRunning = false;
-  const runWaitingList = (deadline) => {
-    for (const [nextElement, callback] of waitingList) {
-      waitingList.delete(nextElement);
+const createqueue = () => {
+  const waitinglist = /* @__pure__ */ new map();
+  let isrunning = false;
+  const runwaitinglist = (deadline) => {
+    for (const [nextelement, callback] of waitinglist) {
+      waitinglist.delete(nextelement);
       callback();
-      if ("number" === typeof deadline || deadline.timeRemaining() <= 0) {
+      if ("number" === typeof deadline || deadline.timeremaining() <= 0) {
         break;
       }
     }
-    if (waitingList.size === 0) {
-      isRunning = false;
+    if (waitinglist.size === 0) {
+      isrunning = false;
       return;
     }
-    request_idle_callback_default(runWaitingList);
+    request_idle_callback_default(runwaitinglist);
   };
   const add = (element, item) => {
-    waitingList.set(element, item);
-    if (!isRunning) {
-      isRunning = true;
-      request_idle_callback_default(runWaitingList);
+    waitinglist.set(element, item);
+    if (!isrunning) {
+      isrunning = true;
+      request_idle_callback_default(runwaitinglist);
     }
   };
   const flush = (element) => {
-    const callback = waitingList.get(element);
+    const callback = waitinglist.get(element);
     if (void 0 === callback) {
       return false;
     }
-    waitingList.delete(element);
+    waitinglist.delete(element);
     callback();
     return true;
   };
   const cancel = (element) => {
-    return waitingList.delete(element);
+    return waitinglist.delete(element);
   };
   const reset = () => {
-    waitingList.clear();
-    isRunning = false;
+    waitinglist.clear();
+    isrunning = false;
   };
   return {
     add,
@@ -368,6 +368,7 @@ const createQueue = () => {
 
 })();
 
-(window.wp = window.wp || {}).priorityQueue = __webpack_exports__;
+(window.wp = window.wp || {}).priorityqueue = __webpack_exports__;
 /******/ })()
 ;
+

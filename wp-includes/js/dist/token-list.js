@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,158 +10,158 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ TokenList)
+/* harmony export */   "default": () => (/* binding */ tokenlist)
 /* harmony export */ });
-class TokenList {
-  _currentValue;
-  _valueAsArray;
+class tokenlist {
+  _currentvalue;
+  _valueasarray;
   /**
-   * Constructs a new instance of TokenList.
+   * constructs a new instance of tokenlist.
    *
-   * @param initialValue Initial value to assign.
+   * @param initialvalue initial value to assign.
    */
-  constructor(initialValue = "") {
-    this._currentValue = "";
-    this._valueAsArray = [];
-    this.value = initialValue;
+  constructor(initialvalue = "") {
+    this._currentvalue = "";
+    this._valueasarray = [];
+    this.value = initialvalue;
   }
   entries(...args) {
-    return this._valueAsArray.entries(...args);
+    return this._valueasarray.entries(...args);
   }
-  forEach(...args) {
-    return this._valueAsArray.forEach(...args);
+  foreach(...args) {
+    return this._valueasarray.foreach(...args);
   }
   keys(...args) {
-    return this._valueAsArray.keys(...args);
+    return this._valueasarray.keys(...args);
   }
   values(...args) {
-    return this._valueAsArray.values(...args);
+    return this._valueasarray.values(...args);
   }
   /**
-   * Returns the associated set as string.
+   * returns the associated set as string.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-value
    *
-   * @return Token set as string.
+   * @return token set as string.
    */
   get value() {
-    return this._currentValue;
+    return this._currentvalue;
   }
   /**
-   * Replaces the associated set with a new string value.
+   * replaces the associated set with a new string value.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-value
    *
-   * @param value New token set as string.
+   * @param value new token set as string.
    */
   set value(value) {
-    value = String(value);
-    this._valueAsArray = [
-      ...new Set(value.split(/\s+/g).filter(Boolean))
+    value = string(value);
+    this._valueasarray = [
+      ...new set(value.split(/\s+/g).filter(boolean))
     ];
-    this._currentValue = this._valueAsArray.join(" ");
+    this._currentvalue = this._valueasarray.join(" ");
   }
   /**
-   * Returns the number of tokens.
+   * returns the number of tokens.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-length
    *
-   * @return Number of tokens.
+   * @return number of tokens.
    */
   get length() {
-    return this._valueAsArray.length;
+    return this._valueasarray.length;
   }
   /**
-   * Returns the stringified form of the TokenList.
+   * returns the stringified form of the tokenlist.
    *
-   * @see https://dom.spec.whatwg.org/#DOMTokenList-stringification-behavior
+   * @see https://dom.spec.whatwg.org/#domtokenlist-stringification-behavior
    * @see https://www.ecma-international.org/ecma-262/9.0/index.html#sec-tostring
    *
-   * @return Token set as string.
+   * @return token set as string.
    */
-  toString() {
+  tostring() {
     return this.value;
   }
   /**
-   * Returns an iterator for the TokenList, iterating items of the set.
+   * returns an iterator for the tokenlist, iterating items of the set.
    *
    * @see https://dom.spec.whatwg.org/#domtokenlist
    *
-   * @return TokenList iterator.
+   * @return tokenlist iterator.
    */
-  *[Symbol.iterator]() {
-    return yield* this._valueAsArray;
+  *[symbol.iterator]() {
+    return yield* this._valueasarray;
   }
   /**
-   * Returns the token with index `index`.
+   * returns the token with index `index`.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-item
    *
-   * @param index Index at which to return token.
+   * @param index index at which to return token.
    *
-   * @return Token at index.
+   * @return token at index.
    */
   item(index) {
-    return this._valueAsArray[index];
+    return this._valueasarray[index];
   }
   /**
-   * Returns true if `token` is present, and false otherwise.
+   * returns true if `token` is present, and false otherwise.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-contains
    *
-   * @param item Token to test.
+   * @param item token to test.
    *
-   * @return Whether token is present.
+   * @return whether token is present.
    */
   contains(item) {
-    return this._valueAsArray.indexOf(item) !== -1;
+    return this._valueasarray.indexof(item) !== -1;
   }
   /**
-   * Adds all arguments passed, except those already present.
+   * adds all arguments passed, except those already present.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-add
    *
-   * @param items Items to add.
+   * @param items items to add.
    */
   add(...items) {
     this.value += " " + items.join(" ");
   }
   /**
-   * Removes arguments passed, if they are present.
+   * removes arguments passed, if they are present.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-remove
    *
-   * @param items Items to remove.
+   * @param items items to remove.
    */
   remove(...items) {
-    this.value = this._valueAsArray.filter((val) => !items.includes(val)).join(" ");
+    this.value = this._valueasarray.filter((val) => !items.includes(val)).join(" ");
   }
   /**
-   * If `force` is not given, "toggles" `token`, removing it if it’s present
-   * and adding it if it’s not present. If `force` is true, adds token (same
-   * as add()). If force is false, removes token (same as remove()). Returns
+   * if `force` is not given, "toggles" `token`, removing it if it’s present
+   * and adding it if it’s not present. if `force` is true, adds token (same
+   * as add()). if force is false, removes token (same as remove()). returns
    * true if `token` is now present, and false otherwise.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-toggle
    *
-   * @param token   Token to toggle.
-   * @param [force] Presence to force.
+   * @param token   token to toggle.
+   * @param [force] presence to force.
    *
-   * @return Whether token is present after toggle.
+   * @return whether token is present after toggle.
    */
   toggle(token, force) {
     if (void 0 === force) {
@@ -175,35 +175,35 @@ class TokenList {
     return force;
   }
   /**
-   * Replaces `token` with `newToken`. Returns true if `token` was replaced
-   * with `newToken`, and false otherwise.
+   * replaces `token` with `newtoken`. returns true if `token` was replaced
+   * with `newtoken`, and false otherwise.
    *
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-replace
    *
-   * @param token    Token to replace with `newToken`.
-   * @param newToken Token to use in place of `token`.
+   * @param token    token to replace with `newtoken`.
+   * @param newtoken token to use in place of `token`.
    *
-   * @return Whether replacement occurred.
+   * @return whether replacement occurred.
    */
-  replace(token, newToken) {
+  replace(token, newtoken) {
     if (!this.contains(token)) {
       return false;
     }
     this.remove(token);
-    this.add(newToken);
+    this.add(newtoken);
     return true;
   }
   /* eslint-disable @typescript-eslint/no-unused-vars */
   /**
-   * Returns true if `token` is in the associated attribute’s supported
-   * tokens. Returns false otherwise.
+   * returns true if `token` is in the associated attribute’s supported
+   * tokens. returns false otherwise.
    *
-   * Always returns `true` in this implementation.
+   * always returns `true` in this implementation.
    *
    * @param _token
    * @see https://dom.spec.whatwg.org/#dom-domtokenlist-supports
    *
-   * @return Whether token is supported.
+   * @return whether token is supported.
    */
   supports(_token) {
     return true;
@@ -212,6 +212,7 @@ class TokenList {
 }
 
 
-(window.wp = window.wp || {}).tokenList = __webpack_exports__["default"];
+(window.wp = window.wp || {}).tokenlist = __webpack_exports__["default"];
 /******/ })()
 ;
+

@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,152 +22,152 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  RichTextData: () => (/* reexport */ RichTextData),
-  __experimentalRichText: () => (/* reexport */ __experimentalRichText),
-  __unstableCreateElement: () => (/* reexport */ createElement),
-  __unstableToDom: () => (/* reexport */ toDom),
-  __unstableUseRichText: () => (/* reexport */ useRichText),
-  applyFormat: () => (/* reexport */ applyFormat),
+  richtextdata: () => (/* reexport */ richtextdata),
+  __experimentalrichtext: () => (/* reexport */ __experimentalrichtext),
+  __unstablecreateelement: () => (/* reexport */ createelement),
+  __unstabletodom: () => (/* reexport */ todom),
+  __unstableuserichtext: () => (/* reexport */ userichtext),
+  applyformat: () => (/* reexport */ applyformat),
   concat: () => (/* reexport */ concat),
   create: () => (/* reexport */ create),
-  getActiveFormat: () => (/* reexport */ getActiveFormat),
-  getActiveFormats: () => (/* reexport */ getActiveFormats),
-  getActiveObject: () => (/* reexport */ getActiveObject),
-  getTextContent: () => (/* reexport */ getTextContent),
+  getactiveformat: () => (/* reexport */ getactiveformat),
+  getactiveformats: () => (/* reexport */ getactiveformats),
+  getactiveobject: () => (/* reexport */ getactiveobject),
+  gettextcontent: () => (/* reexport */ gettextcontent),
   insert: () => (/* reexport */ insert),
-  insertObject: () => (/* reexport */ insertObject),
-  isCollapsed: () => (/* reexport */ isCollapsed),
-  isEmpty: () => (/* reexport */ isEmpty),
+  insertobject: () => (/* reexport */ insertobject),
+  iscollapsed: () => (/* reexport */ iscollapsed),
+  isempty: () => (/* reexport */ isempty),
   join: () => (/* reexport */ join),
-  registerFormatType: () => (/* reexport */ registerFormatType),
+  registerformattype: () => (/* reexport */ registerformattype),
   remove: () => (/* reexport */ remove_remove),
-  removeFormat: () => (/* reexport */ removeFormat),
+  removeformat: () => (/* reexport */ removeformat),
   replace: () => (/* reexport */ replace_replace),
   slice: () => (/* reexport */ slice),
   split: () => (/* reexport */ split),
   store: () => (/* reexport */ store),
-  toHTMLString: () => (/* reexport */ toHTMLString),
-  toggleFormat: () => (/* reexport */ toggleFormat),
-  unregisterFormatType: () => (/* reexport */ unregisterFormatType),
-  useAnchor: () => (/* reexport */ useAnchor),
-  useAnchorRef: () => (/* reexport */ useAnchorRef)
+  tohtmlstring: () => (/* reexport */ tohtmlstring),
+  toggleformat: () => (/* reexport */ toggleformat),
+  unregisterformattype: () => (/* reexport */ unregisterformattype),
+  useanchor: () => (/* reexport */ useanchor),
+  useanchorref: () => (/* reexport */ useanchorref)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/rich-text/build-module/store/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, {
-  getFormatType: () => (getFormatType),
-  getFormatTypeForBareElement: () => (getFormatTypeForBareElement),
-  getFormatTypeForClassName: () => (getFormatTypeForClassName),
-  getFormatTypes: () => (getFormatTypes)
+// namespace object: ./node_modules/@wordpress/rich-text/build-module/store/selectors.js
+var selectors_namespaceobject = {};
+__webpack_require__.r(selectors_namespaceobject);
+__webpack_require__.d(selectors_namespaceobject, {
+  getformattype: () => (getformattype),
+  getformattypeforbareelement: () => (getformattypeforbareelement),
+  getformattypeforclassname: () => (getformattypeforclassname),
+  getformattypes: () => (getformattypes)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/rich-text/build-module/store/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, {
-  addFormatTypes: () => (addFormatTypes),
-  removeFormatTypes: () => (removeFormatTypes)
+// namespace object: ./node_modules/@wordpress/rich-text/build-module/store/actions.js
+var actions_namespaceobject = {};
+__webpack_require__.r(actions_namespaceobject);
+__webpack_require__.d(actions_namespaceobject, {
+  addformattypes: () => (addformattypes),
+  removeformattypes: () => (removeformattypes)
 });
 
 ;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceobject = window["wp"]["data"];
 ;// ./node_modules/@wordpress/rich-text/build-module/store/reducer.js
 
-function formatTypes(state = {}, action) {
+function formattypes(state = {}, action) {
   switch (action.type) {
-    case "ADD_FORMAT_TYPES":
+    case "add_format_types":
       return {
         ...state,
-        // Key format types by their name.
-        ...action.formatTypes.reduce(
-          (newFormatTypes, type) => ({
-            ...newFormatTypes,
+        // key format types by their name.
+        ...action.formattypes.reduce(
+          (newformattypes, type) => ({
+            ...newformattypes,
             [type.name]: type
           }),
           {}
         )
       };
-    case "REMOVE_FORMAT_TYPES":
-      return Object.fromEntries(
-        Object.entries(state).filter(
+    case "remove_format_types":
+      return object.fromentries(
+        object.entries(state).filter(
           ([key]) => !action.names.includes(key)
         )
       );
   }
   return state;
 }
-var reducer_default = (0,external_wp_data_namespaceObject.combineReducers)({ formatTypes });
+var reducer_default = (0,external_wp_data_namespaceobject.combinereducers)({ formattypes });
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/store/selectors.js
 
-const getFormatTypes = (0,external_wp_data_namespaceObject.createSelector)(
-  (state) => Object.values(state.formatTypes),
-  (state) => [state.formatTypes]
+const getformattypes = (0,external_wp_data_namespaceobject.createselector)(
+  (state) => object.values(state.formattypes),
+  (state) => [state.formattypes]
 );
-function getFormatType(state, name) {
-  return state.formatTypes[name];
+function getformattype(state, name) {
+  return state.formattypes[name];
 }
-function getFormatTypeForBareElement(state, bareElementTagName) {
-  const formatTypes = getFormatTypes(state);
-  return formatTypes.find(({ className, tagName }) => {
-    return className === null && bareElementTagName === tagName;
-  }) || formatTypes.find(({ className, tagName }) => {
-    return className === null && "*" === tagName;
+function getformattypeforbareelement(state, bareelementtagname) {
+  const formattypes = getformattypes(state);
+  return formattypes.find(({ classname, tagname }) => {
+    return classname === null && bareelementtagname === tagname;
+  }) || formattypes.find(({ classname, tagname }) => {
+    return classname === null && "*" === tagname;
   });
 }
-function getFormatTypeForClassName(state, elementClassName) {
-  return getFormatTypes(state).find(({ className }) => {
-    if (className === null) {
+function getformattypeforclassname(state, elementclassname) {
+  return getformattypes(state).find(({ classname }) => {
+    if (classname === null) {
       return false;
     }
-    return ` ${elementClassName} `.indexOf(` ${className} `) >= 0;
+    return ` ${elementclassname} `.indexof(` ${classname} `) >= 0;
   });
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/store/actions.js
-function addFormatTypes(formatTypes) {
+function addformattypes(formattypes) {
   return {
-    type: "ADD_FORMAT_TYPES",
-    formatTypes: Array.isArray(formatTypes) ? formatTypes : [formatTypes]
+    type: "add_format_types",
+    formattypes: array.isarray(formattypes) ? formattypes : [formattypes]
   };
 }
-function removeFormatTypes(names) {
+function removeformattypes(names) {
   return {
-    type: "REMOVE_FORMAT_TYPES",
-    names: Array.isArray(names) ? names : [names]
+    type: "remove_format_types",
+    names: array.isarray(names) ? names : [names]
   };
 }
 
@@ -177,17 +177,17 @@ function removeFormatTypes(names) {
 
 
 
-const STORE_NAME = "core/rich-text";
-const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, {
+const store_name = "core/rich-text";
+const store = (0,external_wp_data_namespaceobject.createreduxstore)(store_name, {
   reducer: reducer_default,
-  selectors: selectors_namespaceObject,
-  actions: actions_namespaceObject
+  selectors: selectors_namespaceobject,
+  actions: actions_namespaceobject
 });
-(0,external_wp_data_namespaceObject.register)(store);
+(0,external_wp_data_namespaceobject.register)(store);
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/is-format-equal.js
-function isFormatEqual(format1, format2) {
+function isformatequal(format1, format2) {
   if (format1 === format2) {
     return true;
   }
@@ -205,8 +205,8 @@ function isFormatEqual(format1, format2) {
   if (!attributes1 || !attributes2) {
     return false;
   }
-  const keys1 = Object.keys(attributes1);
-  const keys2 = Object.keys(attributes2);
+  const keys1 = object.keys(attributes1);
+  const keys2 = object.keys(attributes2);
   if (keys1.length !== keys2.length) {
     return false;
   }
@@ -223,24 +223,24 @@ function isFormatEqual(format1, format2) {
 
 ;// ./node_modules/@wordpress/rich-text/build-module/normalise-formats.js
 
-function normaliseFormats(value) {
-  const newFormats = value.formats.slice();
-  newFormats.forEach((formatsAtIndex, index) => {
-    const formatsAtPreviousIndex = newFormats[index - 1];
-    if (formatsAtPreviousIndex) {
-      const newFormatsAtIndex = formatsAtIndex.slice();
-      newFormatsAtIndex.forEach((format, formatIndex) => {
-        const previousFormat = formatsAtPreviousIndex[formatIndex];
-        if (isFormatEqual(format, previousFormat)) {
-          newFormatsAtIndex[formatIndex] = previousFormat;
+function normaliseformats(value) {
+  const newformats = value.formats.slice();
+  newformats.foreach((formatsatindex, index) => {
+    const formatsatpreviousindex = newformats[index - 1];
+    if (formatsatpreviousindex) {
+      const newformatsatindex = formatsatindex.slice();
+      newformatsatindex.foreach((format, formatindex) => {
+        const previousformat = formatsatpreviousindex[formatindex];
+        if (isformatequal(format, previousformat)) {
+          newformatsatindex[formatindex] = previousformat;
         }
       });
-      newFormats[index] = newFormatsAtIndex;
+      newformats[index] = newformatsatindex;
     }
   });
   return {
     ...value,
-    formats: newFormats
+    formats: newformats
   };
 }
 
@@ -252,61 +252,61 @@ function replace(array, index, value) {
   array[index] = value;
   return array;
 }
-function applyFormat(value, format, startIndex = value.start, endIndex = value.end) {
-  const { formats, activeFormats } = value;
-  const newFormats = formats.slice();
-  if (startIndex === endIndex) {
-    const startFormat = newFormats[startIndex]?.find(
+function applyformat(value, format, startindex = value.start, endindex = value.end) {
+  const { formats, activeformats } = value;
+  const newformats = formats.slice();
+  if (startindex === endindex) {
+    const startformat = newformats[startindex]?.find(
       ({ type }) => type === format.type
     );
-    if (startFormat) {
-      const index = newFormats[startIndex].indexOf(startFormat);
-      while (newFormats[startIndex] && newFormats[startIndex][index] === startFormat) {
-        newFormats[startIndex] = replace(
-          newFormats[startIndex],
+    if (startformat) {
+      const index = newformats[startindex].indexof(startformat);
+      while (newformats[startindex] && newformats[startindex][index] === startformat) {
+        newformats[startindex] = replace(
+          newformats[startindex],
           index,
           format
         );
-        startIndex--;
+        startindex--;
       }
-      endIndex++;
-      while (newFormats[endIndex] && newFormats[endIndex][index] === startFormat) {
-        newFormats[endIndex] = replace(
-          newFormats[endIndex],
+      endindex++;
+      while (newformats[endindex] && newformats[endindex][index] === startformat) {
+        newformats[endindex] = replace(
+          newformats[endindex],
           index,
           format
         );
-        endIndex++;
+        endindex++;
       }
     }
   } else {
-    let position = Infinity;
-    for (let index = startIndex; index < endIndex; index++) {
-      if (newFormats[index]) {
-        newFormats[index] = newFormats[index].filter(
+    let position = infinity;
+    for (let index = startindex; index < endindex; index++) {
+      if (newformats[index]) {
+        newformats[index] = newformats[index].filter(
           ({ type }) => type !== format.type
         );
-        const length = newFormats[index].length;
+        const length = newformats[index].length;
         if (length < position) {
           position = length;
         }
       } else {
-        newFormats[index] = [];
+        newformats[index] = [];
         position = 0;
       }
     }
-    for (let index = startIndex; index < endIndex; index++) {
-      newFormats[index].splice(position, 0, format);
+    for (let index = startindex; index < endindex; index++) {
+      newformats[index].splice(position, 0, format);
     }
   }
-  return normaliseFormats({
+  return normaliseformats({
     ...value,
-    formats: newFormats,
-    // Always revise active formats. This serves as a placeholder for new
+    formats: newformats,
+    // always revise active formats. this serves as a placeholder for new
     // inputs with the format so new input appears with the format applied,
     // and ensures a format of the same type uses the latest values.
-    activeFormats: [
-      ...activeFormats?.filter(
+    activeformats: [
+      ...activeformats?.filter(
         ({ type }) => type !== format.type
       ) || [],
       format
@@ -316,73 +316,73 @@ function applyFormat(value, format, startIndex = value.start, endIndex = value.e
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/create-element.js
-function createElement({ implementation }, html) {
-  if (!createElement.body) {
-    createElement.body = implementation.createHTMLDocument("").body;
+function createelement({ implementation }, html) {
+  if (!createelement.body) {
+    createelement.body = implementation.createhtmldocument("").body;
   }
-  createElement.body.innerHTML = html;
-  return createElement.body;
+  createelement.body.innerhtml = html;
+  return createelement.body;
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/special-characters.js
-const OBJECT_REPLACEMENT_CHARACTER = "\uFFFC";
-const ZWNBSP = "\uFEFF";
+const object_replacement_character = "\ufffc";
+const zwnbsp = "\ufeff";
 
 
-;// external ["wp","escapeHtml"]
-const external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
+;// external ["wp","escapehtml"]
+const external_wp_escapehtml_namespaceobject = window["wp"]["escapehtml"];
 ;// ./node_modules/@wordpress/rich-text/build-module/get-active-formats.js
 
-function getActiveFormats(value, EMPTY_ACTIVE_FORMATS = []) {
-  const { formats, start, end, activeFormats } = value;
+function getactiveformats(value, empty_active_formats = []) {
+  const { formats, start, end, activeformats } = value;
   if (start === void 0) {
-    return EMPTY_ACTIVE_FORMATS;
+    return empty_active_formats;
   }
   if (start === end) {
-    if (activeFormats) {
-      return activeFormats;
+    if (activeformats) {
+      return activeformats;
     }
-    const formatsBefore = formats[start - 1] || EMPTY_ACTIVE_FORMATS;
-    const formatsAfter = formats[start] || EMPTY_ACTIVE_FORMATS;
-    if (formatsBefore.length < formatsAfter.length) {
-      return formatsBefore;
+    const formatsbefore = formats[start - 1] || empty_active_formats;
+    const formatsafter = formats[start] || empty_active_formats;
+    if (formatsbefore.length < formatsafter.length) {
+      return formatsbefore;
     }
-    return formatsAfter;
+    return formatsafter;
   }
   if (!formats[start]) {
-    return EMPTY_ACTIVE_FORMATS;
+    return empty_active_formats;
   }
-  const selectedFormats = formats.slice(start, end);
-  const _activeFormats = [...selectedFormats[0]];
-  let i = selectedFormats.length;
+  const selectedformats = formats.slice(start, end);
+  const _activeformats = [...selectedformats[0]];
+  let i = selectedformats.length;
   while (i--) {
-    const formatsAtIndex = selectedFormats[i];
-    if (!formatsAtIndex) {
-      return EMPTY_ACTIVE_FORMATS;
+    const formatsatindex = selectedformats[i];
+    if (!formatsatindex) {
+      return empty_active_formats;
     }
-    let ii = _activeFormats.length;
+    let ii = _activeformats.length;
     while (ii--) {
-      const format = _activeFormats[ii];
-      if (!formatsAtIndex.find(
-        (_format) => isFormatEqual(format, _format)
+      const format = _activeformats[ii];
+      if (!formatsatindex.find(
+        (_format) => isformatequal(format, _format)
       )) {
-        _activeFormats.splice(ii, 1);
+        _activeformats.splice(ii, 1);
       }
     }
-    if (_activeFormats.length === 0) {
-      return EMPTY_ACTIVE_FORMATS;
+    if (_activeformats.length === 0) {
+      return empty_active_formats;
     }
   }
-  return _activeFormats || EMPTY_ACTIVE_FORMATS;
+  return _activeformats || empty_active_formats;
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/get-format-type.js
 
 
-function get_format_type_getFormatType(name) {
-  return (0,external_wp_data_namespaceObject.select)(store).getFormatType(name);
+function get_format_type_getformattype(name) {
+  return (0,external_wp_data_namespaceobject.select)(store).getformattype(name);
 }
 
 
@@ -390,70 +390,70 @@ function get_format_type_getFormatType(name) {
 
 
 
-function restoreOnAttributes(attributes, isEditableTree) {
-  if (isEditableTree) {
+function restoreonattributes(attributes, iseditabletree) {
+  if (iseditabletree) {
     return attributes;
   }
-  const newAttributes = {};
+  const newattributes = {};
   for (const key in attributes) {
-    let newKey = key;
-    if (key.startsWith("data-disable-rich-text-")) {
-      newKey = key.slice("data-disable-rich-text-".length);
+    let newkey = key;
+    if (key.startswith("data-disable-rich-text-")) {
+      newkey = key.slice("data-disable-rich-text-".length);
     }
-    newAttributes[newKey] = attributes[key];
+    newattributes[newkey] = attributes[key];
   }
-  return newAttributes;
+  return newattributes;
 }
-function fromFormat({
+function fromformat({
   type,
-  tagName,
+  tagname,
   attributes,
-  unregisteredAttributes,
+  unregisteredattributes,
   object,
-  boundaryClass,
-  isEditableTree
+  boundaryclass,
+  iseditabletree
 }) {
-  const formatType = get_format_type_getFormatType(type);
-  let elementAttributes = {};
-  if (boundaryClass && isEditableTree) {
-    elementAttributes["data-rich-text-format-boundary"] = "true";
+  const formattype = get_format_type_getformattype(type);
+  let elementattributes = {};
+  if (boundaryclass && iseditabletree) {
+    elementattributes["data-rich-text-format-boundary"] = "true";
   }
-  if (!formatType) {
+  if (!formattype) {
     if (attributes) {
-      elementAttributes = { ...attributes, ...elementAttributes };
+      elementattributes = { ...attributes, ...elementattributes };
     }
     return {
       type,
-      attributes: restoreOnAttributes(
-        elementAttributes,
-        isEditableTree
+      attributes: restoreonattributes(
+        elementattributes,
+        iseditabletree
       ),
       object
     };
   }
-  elementAttributes = { ...unregisteredAttributes, ...elementAttributes };
+  elementattributes = { ...unregisteredattributes, ...elementattributes };
   for (const name in attributes) {
-    const key = formatType.attributes ? formatType.attributes[name] : false;
+    const key = formattype.attributes ? formattype.attributes[name] : false;
     if (key) {
-      elementAttributes[key] = attributes[name];
+      elementattributes[key] = attributes[name];
     } else {
-      elementAttributes[name] = attributes[name];
+      elementattributes[name] = attributes[name];
     }
   }
-  if (formatType.className) {
-    if (elementAttributes.class) {
-      elementAttributes.class = `${formatType.className} ${elementAttributes.class}`;
+  if (formattype.classname) {
+    if (elementattributes.class) {
+      elementattributes.class = `${formattype.classname} ${elementattributes.class}`;
     } else {
-      elementAttributes.class = formatType.className;
+      elementattributes.class = formattype.classname;
     }
   }
   return {
-    type: tagName || formatType.tagName,
-    object: formatType.object,
-    attributes: restoreOnAttributes(elementAttributes, isEditableTree)
+    type: tagname || formattype.tagname,
+    object: formattype.object,
+    attributes: restoreonattributes(elementattributes, iseditabletree)
   };
 }
-function isEqualUntil(a, b, index) {
+function isequaluntil(a, b, index) {
   do {
     if (a[index] !== b[index]) {
       return false;
@@ -461,86 +461,86 @@ function isEqualUntil(a, b, index) {
   } while (index--);
   return true;
 }
-function toTree({
+function totree({
   value,
-  preserveWhiteSpace,
-  createEmpty,
+  preservewhitespace,
+  createempty,
   append,
-  getLastChild,
-  getParent,
-  isText,
-  getText,
+  getlastchild,
+  getparent,
+  istext,
+  gettext,
   remove,
-  appendText,
-  onStartIndex,
-  onEndIndex,
-  isEditableTree,
+  appendtext,
+  onstartindex,
+  onendindex,
+  iseditabletree,
   placeholder
 }) {
   const { formats, replacements, text, start, end } = value;
-  const formatsLength = formats.length + 1;
-  const tree = createEmpty();
-  const activeFormats = getActiveFormats(value);
-  const deepestActiveFormat = activeFormats[activeFormats.length - 1];
-  let lastCharacterFormats;
-  let lastCharacter;
+  const formatslength = formats.length + 1;
+  const tree = createempty();
+  const activeformats = getactiveformats(value);
+  const deepestactiveformat = activeformats[activeformats.length - 1];
+  let lastcharacterformats;
+  let lastcharacter;
   append(tree, "");
-  for (let i = 0; i < formatsLength; i++) {
-    const character = text.charAt(i);
-    const shouldInsertPadding = isEditableTree && // Pad the line if the line is empty.
-    (!lastCharacter || // Pad the line if the previous character is a line break, otherwise
+  for (let i = 0; i < formatslength; i++) {
+    const character = text.charat(i);
+    const shouldinsertpadding = iseditabletree && // pad the line if the line is empty.
+    (!lastcharacter || // pad the line if the previous character is a line break, otherwise
     // the line break won't be visible.
-    lastCharacter === "\n");
-    const characterFormats = formats[i];
-    let pointer = getLastChild(tree);
-    if (characterFormats) {
-      characterFormats.forEach((format, formatIndex) => {
-        if (pointer && lastCharacterFormats && // Reuse the last element if all formats remain the same.
-        isEqualUntil(
-          characterFormats,
-          lastCharacterFormats,
-          formatIndex
+    lastcharacter === "\n");
+    const characterformats = formats[i];
+    let pointer = getlastchild(tree);
+    if (characterformats) {
+      characterformats.foreach((format, formatindex) => {
+        if (pointer && lastcharacterformats && // reuse the last element if all formats remain the same.
+        isequaluntil(
+          characterformats,
+          lastcharacterformats,
+          formatindex
         )) {
-          pointer = getLastChild(pointer);
+          pointer = getlastchild(pointer);
           return;
         }
-        const { type, tagName, attributes, unregisteredAttributes } = format;
-        const boundaryClass = isEditableTree && format === deepestActiveFormat;
-        const parent = getParent(pointer);
-        const newNode = append(
+        const { type, tagname, attributes, unregisteredattributes } = format;
+        const boundaryclass = iseditabletree && format === deepestactiveformat;
+        const parent = getparent(pointer);
+        const newnode = append(
           parent,
-          fromFormat({
+          fromformat({
             type,
-            tagName,
+            tagname,
             attributes,
-            unregisteredAttributes,
-            boundaryClass,
-            isEditableTree
+            unregisteredattributes,
+            boundaryclass,
+            iseditabletree
           })
         );
-        if (isText(pointer) && getText(pointer).length === 0) {
+        if (istext(pointer) && gettext(pointer).length === 0) {
           remove(pointer);
         }
-        pointer = append(newNode, "");
+        pointer = append(newnode, "");
       });
     }
     if (i === 0) {
-      if (onStartIndex && start === 0) {
-        onStartIndex(tree, pointer);
+      if (onstartindex && start === 0) {
+        onstartindex(tree, pointer);
       }
-      if (onEndIndex && end === 0) {
-        onEndIndex(tree, pointer);
+      if (onendindex && end === 0) {
+        onendindex(tree, pointer);
       }
     }
-    if (character === OBJECT_REPLACEMENT_CHARACTER) {
+    if (character === object_replacement_character) {
       const replacement = replacements[i];
       if (!replacement) {
         continue;
       }
-      const { type, attributes, innerHTML } = replacement;
-      const formatType = get_format_type_getFormatType(type);
-      if (isEditableTree && type === "#comment") {
-        pointer = append(getParent(pointer), {
+      const { type, attributes, innerhtml } = replacement;
+      const formattype = get_format_type_getformattype(type);
+      if (iseditabletree && type === "#comment") {
+        pointer = append(getparent(pointer), {
           type: "span",
           attributes: {
             contenteditable: "false",
@@ -551,23 +551,23 @@ function toTree({
           append(pointer, { type: "span" }),
           attributes["data-rich-text-comment"].trim()
         );
-      } else if (!isEditableTree && type === "script") {
+      } else if (!iseditabletree && type === "script") {
         pointer = append(
-          getParent(pointer),
-          fromFormat({
+          getparent(pointer),
+          fromformat({
             type: "script",
-            isEditableTree
+            iseditabletree
           })
         );
         append(pointer, {
-          html: decodeURIComponent(
+          html: decodeuricomponent(
             attributes["data-rich-text-script"]
           )
         });
-      } else if (formatType?.contentEditable === false) {
-        if (innerHTML || isEditableTree) {
-          pointer = getParent(pointer);
-          if (isEditableTree) {
+      } else if (formattype?.contenteditable === false) {
+        if (innerhtml || iseditabletree) {
+          pointer = getparent(pointer);
+          if (iseditabletree) {
             const attrs = {
               contenteditable: "false",
               "data-rich-text-bogus": true
@@ -579,70 +579,70 @@ function toTree({
               type: "span",
               attributes: attrs
             });
-            if (isEditableTree && i + 1 === text.length) {
-              append(getParent(pointer), ZWNBSP);
+            if (iseditabletree && i + 1 === text.length) {
+              append(getparent(pointer), zwnbsp);
             }
           }
           pointer = append(
             pointer,
-            fromFormat({
+            fromformat({
               ...replacement,
-              isEditableTree
+              iseditabletree
             })
           );
-          if (innerHTML) {
+          if (innerhtml) {
             append(pointer, {
-              html: innerHTML
+              html: innerhtml
             });
           }
         }
       } else {
         pointer = append(
-          getParent(pointer),
-          fromFormat({
+          getparent(pointer),
+          fromformat({
             ...replacement,
             object: true,
-            isEditableTree
+            iseditabletree
           })
         );
       }
-      pointer = append(getParent(pointer), "");
-    } else if (!preserveWhiteSpace && character === "\n") {
-      pointer = append(getParent(pointer), {
+      pointer = append(getparent(pointer), "");
+    } else if (!preservewhitespace && character === "\n") {
+      pointer = append(getparent(pointer), {
         type: "br",
-        attributes: isEditableTree ? {
+        attributes: iseditabletree ? {
           "data-rich-text-line-break": "true"
         } : void 0,
         object: true
       });
-      pointer = append(getParent(pointer), "");
-    } else if (!isText(pointer)) {
-      pointer = append(getParent(pointer), character);
+      pointer = append(getparent(pointer), "");
+    } else if (!istext(pointer)) {
+      pointer = append(getparent(pointer), character);
     } else {
-      appendText(pointer, character);
+      appendtext(pointer, character);
     }
-    if (onStartIndex && start === i + 1) {
-      onStartIndex(tree, pointer);
+    if (onstartindex && start === i + 1) {
+      onstartindex(tree, pointer);
     }
-    if (onEndIndex && end === i + 1) {
-      onEndIndex(tree, pointer);
+    if (onendindex && end === i + 1) {
+      onendindex(tree, pointer);
     }
-    if (shouldInsertPadding && i === text.length) {
-      append(getParent(pointer), ZWNBSP);
+    if (shouldinsertpadding && i === text.length) {
+      append(getparent(pointer), zwnbsp);
       if (placeholder && text.length === 0) {
-        append(getParent(pointer), {
+        append(getparent(pointer), {
           type: "span",
           attributes: {
             "data-rich-text-placeholder": placeholder,
-            // Necessary to prevent the placeholder from catching
+            // necessary to prevent the placeholder from catching
             // selection and being editable.
             style: "pointer-events:none;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;"
           }
         });
       }
     }
-    lastCharacterFormats = characterFormats;
-    lastCharacter = character;
+    lastcharacterformats = characterformats;
+    lastcharacter = character;
   }
   return tree;
 }
@@ -651,25 +651,25 @@ function toTree({
 ;// ./node_modules/@wordpress/rich-text/build-module/to-html-string.js
 
 
-function toHTMLString({ value, preserveWhiteSpace }) {
-  const tree = toTree({
+function tohtmlstring({ value, preservewhitespace }) {
+  const tree = totree({
     value,
-    preserveWhiteSpace,
-    createEmpty,
+    preservewhitespace,
+    createempty,
     append,
-    getLastChild,
-    getParent,
-    isText,
-    getText,
+    getlastchild,
+    getparent,
+    istext,
+    gettext,
     remove,
-    appendText
+    appendtext
   });
-  return createChildrenHTML(tree.children);
+  return createchildrenhtml(tree.children);
 }
-function createEmpty() {
+function createempty() {
   return {};
 }
-function getLastChild({ children }) {
+function getlastchild({ children }) {
   return children && children[children.length - 1];
 }
 function append(parent, object) {
@@ -681,59 +681,59 @@ function append(parent, object) {
   parent.children.push(object);
   return object;
 }
-function appendText(object, text) {
+function appendtext(object, text) {
   object.text += text;
 }
-function getParent({ parent }) {
+function getparent({ parent }) {
   return parent;
 }
-function isText({ text }) {
+function istext({ text }) {
   return typeof text === "string";
 }
-function getText({ text }) {
+function gettext({ text }) {
   return text;
 }
 function remove(object) {
-  const index = object.parent.children.indexOf(object);
+  const index = object.parent.children.indexof(object);
   if (index !== -1) {
     object.parent.children.splice(index, 1);
   }
   return object;
 }
-function createElementHTML({ type, attributes, object, children }) {
+function createelementhtml({ type, attributes, object, children }) {
   if (type === "#comment") {
     return `<!--${attributes["data-rich-text-comment"]}-->`;
   }
-  let attributeString = "";
+  let attributestring = "";
   for (const key in attributes) {
-    if (!(0,external_wp_escapeHtml_namespaceObject.isValidAttributeName)(key)) {
+    if (!(0,external_wp_escapehtml_namespaceobject.isvalidattributename)(key)) {
       continue;
     }
-    attributeString += ` ${key}="${(0,external_wp_escapeHtml_namespaceObject.escapeAttribute)(
+    attributestring += ` ${key}="${(0,external_wp_escapehtml_namespaceobject.escapeattribute)(
       attributes[key]
     )}"`;
   }
   if (object) {
-    return `<${type}${attributeString}>`;
+    return `<${type}${attributestring}>`;
   }
-  return `<${type}${attributeString}>${createChildrenHTML(
+  return `<${type}${attributestring}>${createchildrenhtml(
     children
   )}</${type}>`;
 }
-function createChildrenHTML(children = []) {
+function createchildrenhtml(children = []) {
   return children.map((child) => {
     if (child.html !== void 0) {
       return child.html;
     }
-    return child.text === void 0 ? createElementHTML(child) : (0,external_wp_escapeHtml_namespaceObject.escapeEditableHTML)(child.text);
+    return child.text === void 0 ? createelementhtml(child) : (0,external_wp_escapehtml_namespaceobject.escapeeditablehtml)(child.text);
   }).join("");
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/get-text-content.js
 
-function getTextContent({ text }) {
-  return text.replace(OBJECT_REPLACEMENT_CHARACTER, "");
+function gettextcontent({ text }) {
+  return text.replace(object_replacement_character, "");
 }
 
 
@@ -745,115 +745,115 @@ function getTextContent({ text }) {
 
 
 
-function createEmptyValue() {
+function createemptyvalue() {
   return {
     formats: [],
     replacements: [],
     text: ""
   };
 }
-function toFormat({ tagName, attributes }) {
-  let formatType;
+function toformat({ tagname, attributes }) {
+  let formattype;
   if (attributes && attributes.class) {
-    formatType = (0,external_wp_data_namespaceObject.select)(store).getFormatTypeForClassName(
+    formattype = (0,external_wp_data_namespaceobject.select)(store).getformattypeforclassname(
       attributes.class
     );
-    if (formatType) {
-      attributes.class = ` ${attributes.class} `.replace(` ${formatType.className} `, " ").trim();
+    if (formattype) {
+      attributes.class = ` ${attributes.class} `.replace(` ${formattype.classname} `, " ").trim();
       if (!attributes.class) {
         delete attributes.class;
       }
     }
   }
-  if (!formatType) {
-    formatType = (0,external_wp_data_namespaceObject.select)(store).getFormatTypeForBareElement(tagName);
+  if (!formattype) {
+    formattype = (0,external_wp_data_namespaceobject.select)(store).getformattypeforbareelement(tagname);
   }
-  if (!formatType) {
-    return attributes ? { type: tagName, attributes } : { type: tagName };
+  if (!formattype) {
+    return attributes ? { type: tagname, attributes } : { type: tagname };
   }
-  if (formatType.__experimentalCreatePrepareEditableTree && !formatType.__experimentalCreateOnChangeEditableValue) {
+  if (formattype.__experimentalcreateprepareeditabletree && !formattype.__experimentalcreateonchangeeditablevalue) {
     return null;
   }
   if (!attributes) {
-    return { formatType, type: formatType.name, tagName };
+    return { formattype, type: formattype.name, tagname };
   }
-  const registeredAttributes = {};
-  const unregisteredAttributes = {};
+  const registeredattributes = {};
+  const unregisteredattributes = {};
   const _attributes = { ...attributes };
-  for (const key in formatType.attributes) {
-    const name = formatType.attributes[key];
-    registeredAttributes[key] = _attributes[name];
+  for (const key in formattype.attributes) {
+    const name = formattype.attributes[key];
+    registeredattributes[key] = _attributes[name];
     delete _attributes[name];
-    if (typeof registeredAttributes[key] === "undefined") {
-      delete registeredAttributes[key];
+    if (typeof registeredattributes[key] === "undefined") {
+      delete registeredattributes[key];
     }
   }
   for (const name in _attributes) {
-    unregisteredAttributes[name] = attributes[name];
+    unregisteredattributes[name] = attributes[name];
   }
-  if (formatType.contentEditable === false) {
-    delete unregisteredAttributes.contenteditable;
+  if (formattype.contenteditable === false) {
+    delete unregisteredattributes.contenteditable;
   }
   return {
-    formatType,
-    type: formatType.name,
-    tagName,
-    attributes: registeredAttributes,
-    unregisteredAttributes
+    formattype,
+    type: formattype.name,
+    tagname,
+    attributes: registeredattributes,
+    unregisteredattributes
   };
 }
-class RichTextData {
+class richtextdata {
   #value;
   static empty() {
-    return new RichTextData();
+    return new richtextdata();
   }
-  static fromPlainText(text) {
-    return new RichTextData(create({ text }));
+  static fromplaintext(text) {
+    return new richtextdata(create({ text }));
   }
-  static fromHTMLString(html) {
-    return new RichTextData(create({ html }));
+  static fromhtmlstring(html) {
+    return new richtextdata(create({ html }));
   }
   /**
-   * Create a RichTextData instance from an HTML element.
+   * create a richtextdata instance from an html element.
    *
-   * @param {HTMLElement}                    htmlElement The HTML element to create the instance from.
-   * @param {{preserveWhiteSpace?: boolean}} options     Options.
-   * @return {RichTextData} The RichTextData instance.
+   * @param {htmlelement}                    htmlelement the html element to create the instance from.
+   * @param {{preservewhitespace?: boolean}} options     options.
+   * @return {richtextdata} the richtextdata instance.
    */
-  static fromHTMLElement(htmlElement, options = {}) {
-    const { preserveWhiteSpace = false } = options;
-    const element = preserveWhiteSpace ? htmlElement : collapseWhiteSpace(htmlElement);
-    const richTextData = new RichTextData(create({ element }));
-    Object.defineProperty(richTextData, "originalHTML", {
-      value: htmlElement.innerHTML
+  static fromhtmlelement(htmlelement, options = {}) {
+    const { preservewhitespace = false } = options;
+    const element = preservewhitespace ? htmlelement : collapsewhitespace(htmlelement);
+    const richtextdata = new richtextdata(create({ element }));
+    object.defineproperty(richtextdata, "originalhtml", {
+      value: htmlelement.innerhtml
     });
-    return richTextData;
+    return richtextdata;
   }
-  constructor(init = createEmptyValue()) {
+  constructor(init = createemptyvalue()) {
     this.#value = init;
   }
-  toPlainText() {
-    return getTextContent(this.#value);
+  toplaintext() {
+    return gettextcontent(this.#value);
   }
-  // We could expose `toHTMLElement` at some point as well, but we'd only use
+  // we could expose `tohtmlelement` at some point as well, but we'd only use
   // it internally.
   /**
-   * Convert the rich text value to an HTML string.
+   * convert the rich text value to an html string.
    *
-   * @param {{preserveWhiteSpace?: boolean}} options Options.
-   * @return {string} The HTML string.
+   * @param {{preservewhitespace?: boolean}} options options.
+   * @return {string} the html string.
    */
-  toHTMLString({ preserveWhiteSpace } = {}) {
-    return this.originalHTML || toHTMLString({ value: this.#value, preserveWhiteSpace });
+  tohtmlstring({ preservewhitespace } = {}) {
+    return this.originalhtml || tohtmlstring({ value: this.#value, preservewhitespace });
   }
-  valueOf() {
-    return this.toHTMLString();
+  valueof() {
+    return this.tohtmlstring();
   }
-  toString() {
-    return this.toHTMLString();
+  tostring() {
+    return this.tohtmlstring();
   }
-  toJSON() {
-    return this.toHTMLString();
+  tojson() {
+    return this.tohtmlstring();
   }
   get length() {
     return this.text.length;
@@ -868,13 +868,13 @@ class RichTextData {
     return this.#value.text;
   }
 }
-for (const name of Object.getOwnPropertyNames(String.prototype)) {
-  if (RichTextData.prototype.hasOwnProperty(name)) {
+for (const name of object.getownpropertynames(string.prototype)) {
+  if (richtextdata.prototype.hasownproperty(name)) {
     continue;
   }
-  Object.defineProperty(RichTextData.prototype, name, {
+  object.defineproperty(richtextdata.prototype, name, {
     value(...args) {
-      return this.toHTMLString()[name](...args);
+      return this.tohtmlstring()[name](...args);
     }
   });
 }
@@ -883,9 +883,9 @@ function create({
   text,
   html,
   range,
-  __unstableIsEditableTree: isEditableTree
+  __unstableiseditabletree: iseditabletree
 } = {}) {
-  if (html instanceof RichTextData) {
+  if (html instanceof richtextdata) {
     return {
       text: html.text,
       formats: html.formats,
@@ -894,244 +894,244 @@ function create({
   }
   if (typeof text === "string" && text.length > 0) {
     return {
-      formats: Array(text.length),
-      replacements: Array(text.length),
+      formats: array(text.length),
+      replacements: array(text.length),
       text
     };
   }
   if (typeof html === "string" && html.length > 0) {
-    element = createElement(document, html);
+    element = createelement(document, html);
   }
   if (typeof element !== "object") {
-    return createEmptyValue();
+    return createemptyvalue();
   }
-  return createFromElement({
+  return createfromelement({
     element,
     range,
-    isEditableTree
+    iseditabletree
   });
 }
-function accumulateSelection(accumulator, node, range, value) {
+function accumulateselection(accumulator, node, range, value) {
   if (!range) {
     return;
   }
-  const { parentNode } = node;
-  const { startContainer, startOffset, endContainer, endOffset } = range;
-  const currentLength = accumulator.text.length;
+  const { parentnode } = node;
+  const { startcontainer, startoffset, endcontainer, endoffset } = range;
+  const currentlength = accumulator.text.length;
   if (value.start !== void 0) {
-    accumulator.start = currentLength + value.start;
-  } else if (node === startContainer && node.nodeType === node.TEXT_NODE) {
-    accumulator.start = currentLength + startOffset;
-  } else if (parentNode === startContainer && node === startContainer.childNodes[startOffset]) {
-    accumulator.start = currentLength;
-  } else if (parentNode === startContainer && node === startContainer.childNodes[startOffset - 1]) {
-    accumulator.start = currentLength + value.text.length;
-  } else if (node === startContainer) {
-    accumulator.start = currentLength;
+    accumulator.start = currentlength + value.start;
+  } else if (node === startcontainer && node.nodetype === node.text_node) {
+    accumulator.start = currentlength + startoffset;
+  } else if (parentnode === startcontainer && node === startcontainer.childnodes[startoffset]) {
+    accumulator.start = currentlength;
+  } else if (parentnode === startcontainer && node === startcontainer.childnodes[startoffset - 1]) {
+    accumulator.start = currentlength + value.text.length;
+  } else if (node === startcontainer) {
+    accumulator.start = currentlength;
   }
   if (value.end !== void 0) {
-    accumulator.end = currentLength + value.end;
-  } else if (node === endContainer && node.nodeType === node.TEXT_NODE) {
-    accumulator.end = currentLength + endOffset;
-  } else if (parentNode === endContainer && node === endContainer.childNodes[endOffset - 1]) {
-    accumulator.end = currentLength + value.text.length;
-  } else if (parentNode === endContainer && node === endContainer.childNodes[endOffset]) {
-    accumulator.end = currentLength;
-  } else if (node === endContainer) {
-    accumulator.end = currentLength + endOffset;
+    accumulator.end = currentlength + value.end;
+  } else if (node === endcontainer && node.nodetype === node.text_node) {
+    accumulator.end = currentlength + endoffset;
+  } else if (parentnode === endcontainer && node === endcontainer.childnodes[endoffset - 1]) {
+    accumulator.end = currentlength + value.text.length;
+  } else if (parentnode === endcontainer && node === endcontainer.childnodes[endoffset]) {
+    accumulator.end = currentlength;
+  } else if (node === endcontainer) {
+    accumulator.end = currentlength + endoffset;
   }
 }
-function filterRange(node, range, filter) {
+function filterrange(node, range, filter) {
   if (!range) {
     return;
   }
-  const { startContainer, endContainer } = range;
-  let { startOffset, endOffset } = range;
-  if (node === startContainer) {
-    startOffset = filter(node.nodeValue.slice(0, startOffset)).length;
+  const { startcontainer, endcontainer } = range;
+  let { startoffset, endoffset } = range;
+  if (node === startcontainer) {
+    startoffset = filter(node.nodevalue.slice(0, startoffset)).length;
   }
-  if (node === endContainer) {
-    endOffset = filter(node.nodeValue.slice(0, endOffset)).length;
+  if (node === endcontainer) {
+    endoffset = filter(node.nodevalue.slice(0, endoffset)).length;
   }
-  return { startContainer, startOffset, endContainer, endOffset };
+  return { startcontainer, startoffset, endcontainer, endoffset };
 }
-function collapseWhiteSpace(element, isRoot = true) {
-  const clone = element.cloneNode(true);
+function collapsewhitespace(element, isroot = true) {
+  const clone = element.clonenode(true);
   clone.normalize();
-  Array.from(clone.childNodes).forEach((node, i, nodes) => {
-    if (node.nodeType === node.TEXT_NODE) {
-      let newNodeValue = node.nodeValue;
-      if (/[\n\t\r\f]/.test(newNodeValue)) {
-        newNodeValue = newNodeValue.replace(/[\n\t\r\f]+/g, " ");
+  array.from(clone.childnodes).foreach((node, i, nodes) => {
+    if (node.nodetype === node.text_node) {
+      let newnodevalue = node.nodevalue;
+      if (/[\n\t\r\f]/.test(newnodevalue)) {
+        newnodevalue = newnodevalue.replace(/[\n\t\r\f]+/g, " ");
       }
-      if (newNodeValue.indexOf("  ") !== -1) {
-        newNodeValue = newNodeValue.replace(/ {2,}/g, " ");
+      if (newnodevalue.indexof("  ") !== -1) {
+        newnodevalue = newnodevalue.replace(/ {2,}/g, " ");
       }
-      if (i === 0 && newNodeValue.startsWith(" ")) {
-        newNodeValue = newNodeValue.slice(1);
-      } else if (isRoot && i === nodes.length - 1 && newNodeValue.endsWith(" ")) {
-        newNodeValue = newNodeValue.slice(0, -1);
+      if (i === 0 && newnodevalue.startswith(" ")) {
+        newnodevalue = newnodevalue.slice(1);
+      } else if (isroot && i === nodes.length - 1 && newnodevalue.endswith(" ")) {
+        newnodevalue = newnodevalue.slice(0, -1);
       }
-      node.nodeValue = newNodeValue;
-    } else if (node.nodeType === node.ELEMENT_NODE) {
-      node.replaceWith(collapseWhiteSpace(node, false));
+      node.nodevalue = newnodevalue;
+    } else if (node.nodetype === node.element_node) {
+      node.replacewith(collapsewhitespace(node, false));
     }
   });
   return clone;
 }
-const CARRIAGE_RETURN = "\r";
-function removeReservedCharacters(string) {
+const carriage_return = "\r";
+function removereservedcharacters(string) {
   return string.replace(
-    new RegExp(
-      `[${ZWNBSP}${OBJECT_REPLACEMENT_CHARACTER}${CARRIAGE_RETURN}]`,
+    new regexp(
+      `[${zwnbsp}${object_replacement_character}${carriage_return}]`,
       "gu"
     ),
     ""
   );
 }
-function createFromElement({ element, range, isEditableTree }) {
-  const accumulator = createEmptyValue();
+function createfromelement({ element, range, iseditabletree }) {
+  const accumulator = createemptyvalue();
   if (!element) {
     return accumulator;
   }
-  if (!element.hasChildNodes()) {
-    accumulateSelection(accumulator, element, range, createEmptyValue());
+  if (!element.haschildnodes()) {
+    accumulateselection(accumulator, element, range, createemptyvalue());
     return accumulator;
   }
-  const length = element.childNodes.length;
+  const length = element.childnodes.length;
   for (let index = 0; index < length; index++) {
-    const node = element.childNodes[index];
-    const tagName = node.nodeName.toLowerCase();
-    if (node.nodeType === node.TEXT_NODE) {
-      const text = removeReservedCharacters(node.nodeValue);
-      range = filterRange(node, range, removeReservedCharacters);
-      accumulateSelection(accumulator, node, range, { text });
+    const node = element.childnodes[index];
+    const tagname = node.nodename.tolowercase();
+    if (node.nodetype === node.text_node) {
+      const text = removereservedcharacters(node.nodevalue);
+      range = filterrange(node, range, removereservedcharacters);
+      accumulateselection(accumulator, node, range, { text });
       accumulator.formats.length += text.length;
       accumulator.replacements.length += text.length;
       accumulator.text += text;
       continue;
     }
-    if (node.nodeType === node.COMMENT_NODE || node.nodeType === node.ELEMENT_NODE && node.tagName === "SPAN" && node.hasAttribute("data-rich-text-comment")) {
+    if (node.nodetype === node.comment_node || node.nodetype === node.element_node && node.tagname === "span" && node.hasattribute("data-rich-text-comment")) {
       const value2 = {
         formats: [,],
         replacements: [
           {
             type: "#comment",
             attributes: {
-              "data-rich-text-comment": node.nodeType === node.COMMENT_NODE ? node.nodeValue : node.getAttribute(
+              "data-rich-text-comment": node.nodetype === node.comment_node ? node.nodevalue : node.getattribute(
                 "data-rich-text-comment"
               )
             }
           }
         ],
-        text: OBJECT_REPLACEMENT_CHARACTER
+        text: object_replacement_character
       };
-      accumulateSelection(accumulator, node, range, value2);
-      mergePair(accumulator, value2);
+      accumulateselection(accumulator, node, range, value2);
+      mergepair(accumulator, value2);
       continue;
     }
-    if (node.nodeType !== node.ELEMENT_NODE) {
+    if (node.nodetype !== node.element_node) {
       continue;
     }
-    if (isEditableTree && // Ignore any line breaks that are not inserted by us.
-    tagName === "br" && !node.getAttribute("data-rich-text-line-break")) {
-      accumulateSelection(accumulator, node, range, createEmptyValue());
+    if (iseditabletree && // ignore any line breaks that are not inserted by us.
+    tagname === "br" && !node.getattribute("data-rich-text-line-break")) {
+      accumulateselection(accumulator, node, range, createemptyvalue());
       continue;
     }
-    if (tagName === "script") {
+    if (tagname === "script") {
       const value2 = {
         formats: [,],
         replacements: [
           {
-            type: tagName,
+            type: tagname,
             attributes: {
-              "data-rich-text-script": node.getAttribute("data-rich-text-script") || encodeURIComponent(node.innerHTML)
+              "data-rich-text-script": node.getattribute("data-rich-text-script") || encodeuricomponent(node.innerhtml)
             }
           }
         ],
-        text: OBJECT_REPLACEMENT_CHARACTER
+        text: object_replacement_character
       };
-      accumulateSelection(accumulator, node, range, value2);
-      mergePair(accumulator, value2);
+      accumulateselection(accumulator, node, range, value2);
+      mergepair(accumulator, value2);
       continue;
     }
-    if (tagName === "br") {
-      accumulateSelection(accumulator, node, range, createEmptyValue());
-      mergePair(accumulator, create({ text: "\n" }));
+    if (tagname === "br") {
+      accumulateselection(accumulator, node, range, createemptyvalue());
+      mergepair(accumulator, create({ text: "\n" }));
       continue;
     }
-    const format = toFormat({
-      tagName,
-      attributes: getAttributes({ element: node })
+    const format = toformat({
+      tagname,
+      attributes: getattributes({ element: node })
     });
-    if (format?.formatType?.contentEditable === false) {
-      delete format.formatType;
-      accumulateSelection(accumulator, node, range, createEmptyValue());
-      mergePair(accumulator, {
+    if (format?.formattype?.contenteditable === false) {
+      delete format.formattype;
+      accumulateselection(accumulator, node, range, createemptyvalue());
+      mergepair(accumulator, {
         formats: [,],
         replacements: [
           {
             ...format,
-            innerHTML: node.innerHTML
+            innerhtml: node.innerhtml
           }
         ],
-        text: OBJECT_REPLACEMENT_CHARACTER
+        text: object_replacement_character
       });
       continue;
     }
     if (format) {
-      delete format.formatType;
+      delete format.formattype;
     }
-    const value = createFromElement({
+    const value = createfromelement({
       element: node,
       range,
-      isEditableTree
+      iseditabletree
     });
-    accumulateSelection(accumulator, node, range, value);
-    if (!format || node.getAttribute("data-rich-text-placeholder") || node.getAttribute("data-rich-text-bogus")) {
-      mergePair(accumulator, value);
+    accumulateselection(accumulator, node, range, value);
+    if (!format || node.getattribute("data-rich-text-placeholder") || node.getattribute("data-rich-text-bogus")) {
+      mergepair(accumulator, value);
     } else if (value.text.length === 0) {
       if (format.attributes) {
-        mergePair(accumulator, {
+        mergepair(accumulator, {
           formats: [,],
           replacements: [format],
-          text: OBJECT_REPLACEMENT_CHARACTER
+          text: object_replacement_character
         });
       }
     } else {
-      let mergeFormats2 = function(formats) {
-        if (mergeFormats2.formats === formats) {
-          return mergeFormats2.newFormats;
+      let mergeformats2 = function(formats) {
+        if (mergeformats2.formats === formats) {
+          return mergeformats2.newformats;
         }
-        const newFormats = formats ? [format, ...formats] : [format];
-        mergeFormats2.formats = formats;
-        mergeFormats2.newFormats = newFormats;
-        return newFormats;
+        const newformats = formats ? [format, ...formats] : [format];
+        mergeformats2.formats = formats;
+        mergeformats2.newformats = newformats;
+        return newformats;
       };
-      var mergeFormats = mergeFormats2;
-      mergeFormats2.newFormats = [format];
-      mergePair(accumulator, {
+      var mergeformats = mergeformats2;
+      mergeformats2.newformats = [format];
+      mergepair(accumulator, {
         ...value,
-        formats: Array.from(value.formats, mergeFormats2)
+        formats: array.from(value.formats, mergeformats2)
       });
     }
   }
   return accumulator;
 }
-function getAttributes({ element }) {
-  if (!element.hasAttributes()) {
+function getattributes({ element }) {
+  if (!element.hasattributes()) {
     return;
   }
   const length = element.attributes.length;
   let accumulator;
   for (let i = 0; i < length; i++) {
     const { name, value } = element.attributes[i];
-    if (name.indexOf("data-rich-text-") === 0) {
+    if (name.indexof("data-rich-text-") === 0) {
       continue;
     }
-    const safeName = /^on/i.test(name) ? "data-disable-rich-text-" + name : name;
+    const safename = /^on/i.test(name) ? "data-disable-rich-text-" + name : name;
     accumulator = accumulator || {};
-    accumulator[safeName] = value;
+    accumulator[safename] = value;
   }
   return accumulator;
 }
@@ -1140,30 +1140,30 @@ function getAttributes({ element }) {
 ;// ./node_modules/@wordpress/rich-text/build-module/concat.js
 
 
-function mergePair(a, b) {
+function mergepair(a, b) {
   a.formats = a.formats.concat(b.formats);
   a.replacements = a.replacements.concat(b.replacements);
   a.text += b.text;
   return a;
 }
 function concat(...values) {
-  return normaliseFormats(values.reduce(mergePair, create()));
+  return normaliseformats(values.reduce(mergepair, create()));
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/get-active-format.js
 
-function getActiveFormat(value, formatType) {
-  return getActiveFormats(value).find(
-    ({ type }) => type === formatType
+function getactiveformat(value, formattype) {
+  return getactiveformats(value).find(
+    ({ type }) => type === formattype
   );
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/get-active-object.js
 
-function getActiveObject({ start, end, replacements, text }) {
-  if (start + 1 !== end || text[start] !== OBJECT_REPLACEMENT_CHARACTER) {
+function getactiveobject({ start, end, replacements, text }) {
+  if (start + 1 !== end || text[start] !== object_replacement_character) {
     return;
   }
   return replacements[start];
@@ -1171,7 +1171,7 @@ function getActiveObject({ start, end, replacements, text }) {
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/is-collapsed.js
-function isCollapsed({
+function iscollapsed({
   start,
   end
 }) {
@@ -1183,7 +1183,7 @@ function isCollapsed({
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/is-empty.js
-function isEmpty({ text }) {
+function isempty({ text }) {
   return text.length === 0;
 }
 
@@ -1195,7 +1195,7 @@ function join(values, separator = "") {
   if (typeof separator === "string") {
     separator = create({ text: separator });
   }
-  return normaliseFormats(
+  return normaliseformats(
     values.reduce((accumulator, { formats, replacements, text }) => ({
       formats: accumulator.formats.concat(separator.formats, formats),
       replacements: accumulator.replacements.concat(
@@ -1211,128 +1211,128 @@ function join(values, separator = "") {
 ;// ./node_modules/@wordpress/rich-text/build-module/register-format-type.js
 
 
-function registerFormatType(name, settings) {
+function registerformattype(name, settings) {
   settings = {
     name,
     ...settings
   };
   if (typeof settings.name !== "string") {
-    window.console.error("Format names must be strings.");
+    window.console.error("format names must be strings.");
     return;
   }
   if (!/^[a-z][a-z0-9-]*\/[a-z][a-z0-9-]*$/.test(settings.name)) {
     window.console.error(
-      "Format names must contain a namespace prefix, include only lowercase alphanumeric characters or dashes, and start with a letter. Example: my-plugin/my-custom-format"
+      "format names must contain a namespace prefix, include only lowercase alphanumeric characters or dashes, and start with a letter. example: my-plugin/my-custom-format"
     );
     return;
   }
-  if ((0,external_wp_data_namespaceObject.select)(store).getFormatType(settings.name)) {
+  if ((0,external_wp_data_namespaceobject.select)(store).getformattype(settings.name)) {
     window.console.error(
-      'Format "' + settings.name + '" is already registered.'
+      'format "' + settings.name + '" is already registered.'
     );
     return;
   }
-  if (typeof settings.tagName !== "string" || settings.tagName === "") {
-    window.console.error("Format tag names must be a string.");
+  if (typeof settings.tagname !== "string" || settings.tagname === "") {
+    window.console.error("format tag names must be a string.");
     return;
   }
-  if ((typeof settings.className !== "string" || settings.className === "") && settings.className !== null) {
+  if ((typeof settings.classname !== "string" || settings.classname === "") && settings.classname !== null) {
     window.console.error(
-      "Format class names must be a string, or null to handle bare elements."
+      "format class names must be a string, or null to handle bare elements."
     );
     return;
   }
-  if (!/^[_a-zA-Z]+[a-zA-Z0-9_-]*$/.test(settings.className)) {
+  if (!/^[_a-za-z]+[a-za-z0-9_-]*$/.test(settings.classname)) {
     window.console.error(
-      "A class name must begin with a letter, followed by any number of hyphens, underscores, letters, or numbers."
+      "a class name must begin with a letter, followed by any number of hyphens, underscores, letters, or numbers."
     );
     return;
   }
-  if (settings.className === null) {
-    const formatTypeForBareElement = (0,external_wp_data_namespaceObject.select)(
+  if (settings.classname === null) {
+    const formattypeforbareelement = (0,external_wp_data_namespaceobject.select)(
       store
-    ).getFormatTypeForBareElement(settings.tagName);
-    if (formatTypeForBareElement && formatTypeForBareElement.name !== "core/unknown") {
+    ).getformattypeforbareelement(settings.tagname);
+    if (formattypeforbareelement && formattypeforbareelement.name !== "core/unknown") {
       window.console.error(
-        `Format "${formatTypeForBareElement.name}" is already registered to handle bare tag name "${settings.tagName}".`
+        `format "${formattypeforbareelement.name}" is already registered to handle bare tag name "${settings.tagname}".`
       );
       return;
     }
   } else {
-    const formatTypeForClassName = (0,external_wp_data_namespaceObject.select)(
+    const formattypeforclassname = (0,external_wp_data_namespaceobject.select)(
       store
-    ).getFormatTypeForClassName(settings.className);
-    if (formatTypeForClassName) {
+    ).getformattypeforclassname(settings.classname);
+    if (formattypeforclassname) {
       window.console.error(
-        `Format "${formatTypeForClassName.name}" is already registered to handle class name "${settings.className}".`
+        `format "${formattypeforclassname.name}" is already registered to handle class name "${settings.classname}".`
       );
       return;
     }
   }
   if (!("title" in settings) || settings.title === "") {
     window.console.error(
-      'The format "' + settings.name + '" must have a title.'
+      'the format "' + settings.name + '" must have a title.'
     );
     return;
   }
   if ("keywords" in settings && settings.keywords.length > 3) {
     window.console.error(
-      'The format "' + settings.name + '" can have a maximum of 3 keywords.'
+      'the format "' + settings.name + '" can have a maximum of 3 keywords.'
     );
     return;
   }
   if (typeof settings.title !== "string") {
-    window.console.error("Format titles must be strings.");
+    window.console.error("format titles must be strings.");
     return;
   }
-  (0,external_wp_data_namespaceObject.dispatch)(store).addFormatTypes(settings);
+  (0,external_wp_data_namespaceobject.dispatch)(store).addformattypes(settings);
   return settings;
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/remove-format.js
 
-function removeFormat(value, formatType, startIndex = value.start, endIndex = value.end) {
-  const { formats, activeFormats } = value;
-  const newFormats = formats.slice();
-  if (startIndex === endIndex) {
-    const format = newFormats[startIndex]?.find(
-      ({ type }) => type === formatType
+function removeformat(value, formattype, startindex = value.start, endindex = value.end) {
+  const { formats, activeformats } = value;
+  const newformats = formats.slice();
+  if (startindex === endindex) {
+    const format = newformats[startindex]?.find(
+      ({ type }) => type === formattype
     );
     if (format) {
-      while (newFormats[startIndex]?.find(
-        (newFormat) => newFormat === format
+      while (newformats[startindex]?.find(
+        (newformat) => newformat === format
       )) {
-        filterFormats(newFormats, startIndex, formatType);
-        startIndex--;
+        filterformats(newformats, startindex, formattype);
+        startindex--;
       }
-      endIndex++;
-      while (newFormats[endIndex]?.find(
-        (newFormat) => newFormat === format
+      endindex++;
+      while (newformats[endindex]?.find(
+        (newformat) => newformat === format
       )) {
-        filterFormats(newFormats, endIndex, formatType);
-        endIndex++;
+        filterformats(newformats, endindex, formattype);
+        endindex++;
       }
     }
   } else {
-    for (let i = startIndex; i < endIndex; i++) {
-      if (newFormats[i]) {
-        filterFormats(newFormats, i, formatType);
+    for (let i = startindex; i < endindex; i++) {
+      if (newformats[i]) {
+        filterformats(newformats, i, formattype);
       }
     }
   }
-  return normaliseFormats({
+  return normaliseformats({
     ...value,
-    formats: newFormats,
-    activeFormats: activeFormats?.filter(({ type }) => type !== formatType) || []
+    formats: newformats,
+    activeformats: activeformats?.filter(({ type }) => type !== formattype) || []
   });
 }
-function filterFormats(formats, index, formatType) {
-  const newFormats = formats[index].filter(
-    ({ type }) => type !== formatType
+function filterformats(formats, index, formattype) {
+  const newformats = formats[index].filter(
+    ({ type }) => type !== formattype
   );
-  if (newFormats.length) {
-    formats[index] = newFormats;
+  if (newformats.length) {
+    formats[index] = newformats;
   } else {
     delete formats[index];
   }
@@ -1342,19 +1342,19 @@ function filterFormats(formats, index, formatType) {
 ;// ./node_modules/@wordpress/rich-text/build-module/insert.js
 
 
-function insert(value, valueToInsert, startIndex = value.start, endIndex = value.end) {
+function insert(value, valuetoinsert, startindex = value.start, endindex = value.end) {
   const { formats, replacements, text } = value;
-  if (typeof valueToInsert === "string") {
-    valueToInsert = create({ text: valueToInsert });
+  if (typeof valuetoinsert === "string") {
+    valuetoinsert = create({ text: valuetoinsert });
   }
-  const index = startIndex + valueToInsert.text.length;
-  return normaliseFormats({
-    formats: formats.slice(0, startIndex).concat(valueToInsert.formats, formats.slice(endIndex)),
-    replacements: replacements.slice(0, startIndex).concat(
-      valueToInsert.replacements,
-      replacements.slice(endIndex)
+  const index = startindex + valuetoinsert.text.length;
+  return normaliseformats({
+    formats: formats.slice(0, startindex).concat(valuetoinsert.formats, formats.slice(endindex)),
+    replacements: replacements.slice(0, startindex).concat(
+      valuetoinsert.replacements,
+      replacements.slice(endindex)
     ),
-    text: text.slice(0, startIndex) + valueToInsert.text + text.slice(endIndex),
+    text: text.slice(0, startindex) + valuetoinsert.text + text.slice(endindex),
     start: index,
     end: index
   });
@@ -1364,8 +1364,8 @@ function insert(value, valueToInsert, startIndex = value.start, endIndex = value
 ;// ./node_modules/@wordpress/rich-text/build-module/remove.js
 
 
-function remove_remove(value, startIndex, endIndex) {
-  return insert(value, create(), startIndex, endIndex);
+function remove_remove(value, startindex, endindex) {
+  return insert(value, create(), startindex, endindex);
 }
 
 
@@ -1374,60 +1374,60 @@ function remove_remove(value, startIndex, endIndex) {
 function replace_replace({ formats, replacements, text, start, end }, pattern, replacement) {
   text = text.replace(pattern, (match, ...rest) => {
     const offset = rest[rest.length - 2];
-    let newText = replacement;
-    let newFormats;
-    let newReplacements;
-    if (typeof newText === "function") {
-      newText = replacement(match, ...rest);
+    let newtext = replacement;
+    let newformats;
+    let newreplacements;
+    if (typeof newtext === "function") {
+      newtext = replacement(match, ...rest);
     }
-    if (typeof newText === "object") {
-      newFormats = newText.formats;
-      newReplacements = newText.replacements;
-      newText = newText.text;
+    if (typeof newtext === "object") {
+      newformats = newtext.formats;
+      newreplacements = newtext.replacements;
+      newtext = newtext.text;
     } else {
-      newFormats = Array(newText.length);
-      newReplacements = Array(newText.length);
+      newformats = array(newtext.length);
+      newreplacements = array(newtext.length);
       if (formats[offset]) {
-        newFormats = newFormats.fill(formats[offset]);
+        newformats = newformats.fill(formats[offset]);
       }
     }
-    formats = formats.slice(0, offset).concat(newFormats, formats.slice(offset + match.length));
+    formats = formats.slice(0, offset).concat(newformats, formats.slice(offset + match.length));
     replacements = replacements.slice(0, offset).concat(
-      newReplacements,
+      newreplacements,
       replacements.slice(offset + match.length)
     );
     if (start) {
-      start = end = offset + newText.length;
+      start = end = offset + newtext.length;
     }
-    return newText;
+    return newtext;
   });
-  return normaliseFormats({ formats, replacements, text, start, end });
+  return normaliseformats({ formats, replacements, text, start, end });
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/insert-object.js
 
 
-function insertObject(value, formatToInsert, startIndex, endIndex) {
-  const valueToInsert = {
+function insertobject(value, formattoinsert, startindex, endindex) {
+  const valuetoinsert = {
     formats: [,],
-    replacements: [formatToInsert],
-    text: OBJECT_REPLACEMENT_CHARACTER
+    replacements: [formattoinsert],
+    text: object_replacement_character
   };
-  return insert(value, valueToInsert, startIndex, endIndex);
+  return insert(value, valuetoinsert, startindex, endindex);
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/slice.js
-function slice(value, startIndex = value.start, endIndex = value.end) {
+function slice(value, startindex = value.start, endindex = value.end) {
   const { formats, replacements, text } = value;
-  if (startIndex === void 0 || endIndex === void 0) {
+  if (startindex === void 0 || endindex === void 0) {
     return { ...value };
   }
   return {
-    formats: formats.slice(startIndex, endIndex),
-    replacements: replacements.slice(startIndex, endIndex),
-    text: text.slice(startIndex, endIndex)
+    formats: formats.slice(startindex, endindex),
+    replacements: replacements.slice(startindex, endindex),
+    text: text.slice(startindex, endindex)
   };
 }
 
@@ -1435,48 +1435,48 @@ function slice(value, startIndex = value.start, endIndex = value.end) {
 ;// ./node_modules/@wordpress/rich-text/build-module/split.js
 function split({ formats, replacements, text, start, end }, string) {
   if (typeof string !== "string") {
-    return splitAtSelection(...arguments);
+    return splitatselection(...arguments);
   }
-  let nextStart = 0;
+  let nextstart = 0;
   return text.split(string).map((substring) => {
-    const startIndex = nextStart;
+    const startindex = nextstart;
     const value = {
-      formats: formats.slice(startIndex, startIndex + substring.length),
+      formats: formats.slice(startindex, startindex + substring.length),
       replacements: replacements.slice(
-        startIndex,
-        startIndex + substring.length
+        startindex,
+        startindex + substring.length
       ),
       text: substring
     };
-    nextStart += string.length + substring.length;
+    nextstart += string.length + substring.length;
     if (start !== void 0 && end !== void 0) {
-      if (start >= startIndex && start < nextStart) {
-        value.start = start - startIndex;
-      } else if (start < startIndex && end > startIndex) {
+      if (start >= startindex && start < nextstart) {
+        value.start = start - startindex;
+      } else if (start < startindex && end > startindex) {
         value.start = 0;
       }
-      if (end >= startIndex && end < nextStart) {
-        value.end = end - startIndex;
-      } else if (start < nextStart && end > nextStart) {
+      if (end >= startindex && end < nextstart) {
+        value.end = end - startindex;
+      } else if (start < nextstart && end > nextstart) {
         value.end = substring.length;
       }
     }
     return value;
   });
 }
-function splitAtSelection({ formats, replacements, text, start, end }, startIndex = start, endIndex = end) {
+function splitatselection({ formats, replacements, text, start, end }, startindex = start, endindex = end) {
   if (start === void 0 || end === void 0) {
     return;
   }
   const before = {
-    formats: formats.slice(0, startIndex),
-    replacements: replacements.slice(0, startIndex),
-    text: text.slice(0, startIndex)
+    formats: formats.slice(0, startindex),
+    replacements: replacements.slice(0, startindex),
+    text: text.slice(0, startindex)
   };
   const after = {
-    formats: formats.slice(endIndex),
-    replacements: replacements.slice(endIndex),
-    text: text.slice(endIndex),
+    formats: formats.slice(endindex),
+    replacements: replacements.slice(endindex),
+    text: text.slice(endindex),
     start: 0,
     end: 0
   };
@@ -1485,8 +1485,8 @@ function splitAtSelection({ formats, replacements, text, start, end }, startInde
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/is-range-equal.js
-function isRangeEqual(a, b) {
-  return a === b || a && b && a.startContainer === b.startContainer && a.startOffset === b.startOffset && a.endContainer === b.endContainer && a.endOffset === b.endOffset;
+function israngeequal(a, b) {
+  return a === b || a && b && a.startcontainer === b.startcontainer && a.startoffset === b.startoffset && a.endcontainer === b.endcontainer && a.endoffset === b.endoffset;
 }
 
 
@@ -1494,23 +1494,23 @@ function isRangeEqual(a, b) {
 
 
 
-const MATHML_NAMESPACE = "http://www.w3.org/1998/Math/MathML";
-function createPathToNode(node, rootNode, path) {
-  const parentNode = node.parentNode;
+const mathml_namespace = "http://www.w3.org/1998/math/mathml";
+function createpathtonode(node, rootnode, path) {
+  const parentnode = node.parentnode;
   let i = 0;
-  while (node = node.previousSibling) {
+  while (node = node.previoussibling) {
     i++;
   }
   path = [i, ...path];
-  if (parentNode !== rootNode) {
-    path = createPathToNode(parentNode, rootNode, path);
+  if (parentnode !== rootnode) {
+    path = createpathtonode(parentnode, rootnode, path);
   }
   return path;
 }
-function getNodeByPath(node, path) {
+function getnodebypath(node, path) {
   path = [...path];
   while (node && path.length > 1) {
-    node = node.childNodes[path.shift()];
+    node = node.childnodes[path.shift()];
   }
   return {
     node,
@@ -1519,442 +1519,442 @@ function getNodeByPath(node, path) {
 }
 function to_dom_append(element, child) {
   if (child.html !== void 0) {
-    return element.innerHTML += child.html;
+    return element.innerhtml += child.html;
   }
   if (typeof child === "string") {
-    child = element.ownerDocument.createTextNode(child);
+    child = element.ownerdocument.createtextnode(child);
   }
   const { type, attributes } = child;
   if (type) {
     if (type === "#comment") {
-      child = element.ownerDocument.createComment(
+      child = element.ownerdocument.createcomment(
         attributes["data-rich-text-comment"]
       );
     } else {
-      const parentNamespace = element.namespaceURI;
+      const parentnamespace = element.namespaceuri;
       if (type === "math") {
-        child = element.ownerDocument.createElementNS(
-          MATHML_NAMESPACE,
+        child = element.ownerdocument.createelementns(
+          mathml_namespace,
           type
         );
-      } else if (parentNamespace === MATHML_NAMESPACE) {
-        if (element.tagName === "MTEXT") {
-          child = element.ownerDocument.createElement(type);
+      } else if (parentnamespace === mathml_namespace) {
+        if (element.tagname === "mtext") {
+          child = element.ownerdocument.createelement(type);
         } else {
-          child = element.ownerDocument.createElementNS(
-            MATHML_NAMESPACE,
+          child = element.ownerdocument.createelementns(
+            mathml_namespace,
             type
           );
         }
       } else {
-        child = element.ownerDocument.createElement(type);
+        child = element.ownerdocument.createelement(type);
       }
       for (const key in attributes) {
-        child.setAttribute(key, attributes[key]);
+        child.setattribute(key, attributes[key]);
       }
     }
   }
-  return element.appendChild(child);
+  return element.appendchild(child);
 }
-function to_dom_appendText(node, text) {
-  node.appendData(text);
+function to_dom_appendtext(node, text) {
+  node.appenddata(text);
 }
-function to_dom_getLastChild({ lastChild }) {
-  return lastChild;
+function to_dom_getlastchild({ lastchild }) {
+  return lastchild;
 }
-function to_dom_getParent({ parentNode }) {
-  return parentNode;
+function to_dom_getparent({ parentnode }) {
+  return parentnode;
 }
-function to_dom_isText(node) {
-  return node.nodeType === node.TEXT_NODE;
+function to_dom_istext(node) {
+  return node.nodetype === node.text_node;
 }
-function to_dom_getText({ nodeValue }) {
-  return nodeValue;
+function to_dom_gettext({ nodevalue }) {
+  return nodevalue;
 }
 function to_dom_remove(node) {
-  return node.parentNode.removeChild(node);
+  return node.parentnode.removechild(node);
 }
-function toDom({
+function todom({
   value,
-  prepareEditableTree,
-  isEditableTree = true,
+  prepareeditabletree,
+  iseditabletree = true,
   placeholder,
   doc = document
 }) {
-  let startPath = [];
-  let endPath = [];
-  if (prepareEditableTree) {
+  let startpath = [];
+  let endpath = [];
+  if (prepareeditabletree) {
     value = {
       ...value,
-      formats: prepareEditableTree(value)
+      formats: prepareeditabletree(value)
     };
   }
-  const createEmpty = () => createElement(doc, "");
-  const tree = toTree({
+  const createempty = () => createelement(doc, "");
+  const tree = totree({
     value,
-    createEmpty,
+    createempty,
     append: to_dom_append,
-    getLastChild: to_dom_getLastChild,
-    getParent: to_dom_getParent,
-    isText: to_dom_isText,
-    getText: to_dom_getText,
+    getlastchild: to_dom_getlastchild,
+    getparent: to_dom_getparent,
+    istext: to_dom_istext,
+    gettext: to_dom_gettext,
     remove: to_dom_remove,
-    appendText: to_dom_appendText,
-    onStartIndex(body, pointer) {
-      startPath = createPathToNode(pointer, body, [
-        pointer.nodeValue.length
+    appendtext: to_dom_appendtext,
+    onstartindex(body, pointer) {
+      startpath = createpathtonode(pointer, body, [
+        pointer.nodevalue.length
       ]);
     },
-    onEndIndex(body, pointer) {
-      endPath = createPathToNode(pointer, body, [
-        pointer.nodeValue.length
+    onendindex(body, pointer) {
+      endpath = createpathtonode(pointer, body, [
+        pointer.nodevalue.length
       ]);
     },
-    isEditableTree,
+    iseditabletree,
     placeholder
   });
   return {
     body: tree,
-    selection: { startPath, endPath }
+    selection: { startpath, endpath }
   };
 }
 function apply({
   value,
   current,
-  prepareEditableTree,
-  __unstableDomOnly,
+  prepareeditabletree,
+  __unstabledomonly,
   placeholder
 }) {
-  const { body, selection } = toDom({
+  const { body, selection } = todom({
     value,
-    prepareEditableTree,
+    prepareeditabletree,
     placeholder,
-    doc: current.ownerDocument
+    doc: current.ownerdocument
   });
-  applyValue(body, current);
-  if (value.start !== void 0 && !__unstableDomOnly) {
-    applySelection(selection, current);
+  applyvalue(body, current);
+  if (value.start !== void 0 && !__unstabledomonly) {
+    applyselection(selection, current);
   }
 }
-function applyValue(future, current) {
+function applyvalue(future, current) {
   let i = 0;
-  let futureChild;
-  while (futureChild = future.firstChild) {
-    const currentChild = current.childNodes[i];
-    if (!currentChild) {
-      current.appendChild(futureChild);
-    } else if (!currentChild.isEqualNode(futureChild)) {
-      if (currentChild.nodeName !== futureChild.nodeName || currentChild.nodeType === currentChild.TEXT_NODE && currentChild.data !== futureChild.data) {
-        current.replaceChild(futureChild, currentChild);
+  let futurechild;
+  while (futurechild = future.firstchild) {
+    const currentchild = current.childnodes[i];
+    if (!currentchild) {
+      current.appendchild(futurechild);
+    } else if (!currentchild.isequalnode(futurechild)) {
+      if (currentchild.nodename !== futurechild.nodename || currentchild.nodetype === currentchild.text_node && currentchild.data !== futurechild.data) {
+        current.replacechild(futurechild, currentchild);
       } else {
-        const currentAttributes = currentChild.attributes;
-        const futureAttributes = futureChild.attributes;
-        if (currentAttributes) {
-          let ii = currentAttributes.length;
+        const currentattributes = currentchild.attributes;
+        const futureattributes = futurechild.attributes;
+        if (currentattributes) {
+          let ii = currentattributes.length;
           while (ii--) {
-            const { name } = currentAttributes[ii];
-            if (!futureChild.getAttribute(name)) {
-              currentChild.removeAttribute(name);
+            const { name } = currentattributes[ii];
+            if (!futurechild.getattribute(name)) {
+              currentchild.removeattribute(name);
             }
           }
         }
-        if (futureAttributes) {
-          for (let ii = 0; ii < futureAttributes.length; ii++) {
-            const { name, value } = futureAttributes[ii];
-            if (currentChild.getAttribute(name) !== value) {
-              currentChild.setAttribute(name, value);
+        if (futureattributes) {
+          for (let ii = 0; ii < futureattributes.length; ii++) {
+            const { name, value } = futureattributes[ii];
+            if (currentchild.getattribute(name) !== value) {
+              currentchild.setattribute(name, value);
             }
           }
         }
-        applyValue(futureChild, currentChild);
-        future.removeChild(futureChild);
+        applyvalue(futurechild, currentchild);
+        future.removechild(futurechild);
       }
     } else {
-      future.removeChild(futureChild);
+      future.removechild(futurechild);
     }
     i++;
   }
-  while (current.childNodes[i]) {
-    current.removeChild(current.childNodes[i]);
+  while (current.childnodes[i]) {
+    current.removechild(current.childnodes[i]);
   }
 }
-function applySelection({ startPath, endPath }, current) {
-  const { node: startContainer, offset: startOffset } = getNodeByPath(
+function applyselection({ startpath, endpath }, current) {
+  const { node: startcontainer, offset: startoffset } = getnodebypath(
     current,
-    startPath
+    startpath
   );
-  const { node: endContainer, offset: endOffset } = getNodeByPath(
+  const { node: endcontainer, offset: endoffset } = getnodebypath(
     current,
-    endPath
+    endpath
   );
-  const { ownerDocument } = current;
-  const { defaultView } = ownerDocument;
-  const selection = defaultView.getSelection();
-  const range = ownerDocument.createRange();
-  range.setStart(startContainer, startOffset);
-  range.setEnd(endContainer, endOffset);
-  const { activeElement } = ownerDocument;
-  if (selection.rangeCount > 0) {
-    if (isRangeEqual(range, selection.getRangeAt(0))) {
+  const { ownerdocument } = current;
+  const { defaultview } = ownerdocument;
+  const selection = defaultview.getselection();
+  const range = ownerdocument.createrange();
+  range.setstart(startcontainer, startoffset);
+  range.setend(endcontainer, endoffset);
+  const { activeelement } = ownerdocument;
+  if (selection.rangecount > 0) {
+    if (israngeequal(range, selection.getrangeat(0))) {
       return;
     }
-    selection.removeAllRanges();
+    selection.removeallranges();
   }
-  selection.addRange(range);
-  if (activeElement !== ownerDocument.activeElement) {
-    if (activeElement instanceof defaultView.HTMLElement) {
-      activeElement.focus();
+  selection.addrange(range);
+  if (activeelement !== ownerdocument.activeelement) {
+    if (activeelement instanceof defaultview.htmlelement) {
+      activeelement.focus();
     }
   }
 }
 
 
 ;// external ["wp","a11y"]
-const external_wp_a11y_namespaceObject = window["wp"]["a11y"];
+const external_wp_a11y_namespaceobject = window["wp"]["a11y"];
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// ./node_modules/@wordpress/rich-text/build-module/toggle-format.js
 
 
 
 
 
-function toggleFormat(value, format) {
-  if (getActiveFormat(value, format.type)) {
+function toggleformat(value, format) {
+  if (getactiveformat(value, format.type)) {
     if (format.title) {
-      (0,external_wp_a11y_namespaceObject.speak)((0,external_wp_i18n_namespaceObject.sprintf)((0,external_wp_i18n_namespaceObject.__)("%s removed."), format.title), "assertive");
+      (0,external_wp_a11y_namespaceobject.speak)((0,external_wp_i18n_namespaceobject.sprintf)((0,external_wp_i18n_namespaceobject.__)("%s removed."), format.title), "assertive");
     }
-    return removeFormat(value, format.type);
+    return removeformat(value, format.type);
   }
   if (format.title) {
-    (0,external_wp_a11y_namespaceObject.speak)((0,external_wp_i18n_namespaceObject.sprintf)((0,external_wp_i18n_namespaceObject.__)("%s applied."), format.title), "assertive");
+    (0,external_wp_a11y_namespaceobject.speak)((0,external_wp_i18n_namespaceobject.sprintf)((0,external_wp_i18n_namespaceobject.__)("%s applied."), format.title), "assertive");
   }
-  return applyFormat(value, format);
+  return applyformat(value, format);
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/unregister-format-type.js
 
 
-function unregisterFormatType(name) {
-  const oldFormat = (0,external_wp_data_namespaceObject.select)(store).getFormatType(name);
-  if (!oldFormat) {
-    window.console.error(`Format ${name} is not registered.`);
+function unregisterformattype(name) {
+  const oldformat = (0,external_wp_data_namespaceobject.select)(store).getformattype(name);
+  if (!oldformat) {
+    window.console.error(`format ${name} is not registered.`);
     return;
   }
-  (0,external_wp_data_namespaceObject.dispatch)(store).removeFormatTypes(name);
-  return oldFormat;
+  (0,external_wp_data_namespaceobject.dispatch)(store).removeformattypes(name);
+  return oldformat;
 }
 
 
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
+const external_wp_deprecated_namespaceobject = window["wp"]["deprecated"];
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_namespaceobject);
 ;// ./node_modules/@wordpress/rich-text/build-module/component/use-anchor-ref.js
 
 
 
-function useAnchorRef({ ref, value, settings = {} }) {
-  external_wp_deprecated_default()("`useAnchorRef` hook", {
+function useanchorref({ ref, value, settings = {} }) {
+  external_wp_deprecated_default()("`useanchorref` hook", {
     since: "6.1",
-    alternative: "`useAnchor` hook"
+    alternative: "`useanchor` hook"
   });
-  const { tagName, className, name } = settings;
-  const activeFormat = name ? getActiveFormat(value, name) : void 0;
-  return (0,external_wp_element_namespaceObject.useMemo)(() => {
+  const { tagname, classname, name } = settings;
+  const activeformat = name ? getactiveformat(value, name) : void 0;
+  return (0,external_wp_element_namespaceobject.usememo)(() => {
     if (!ref.current) {
       return;
     }
     const {
-      ownerDocument: { defaultView }
+      ownerdocument: { defaultview }
     } = ref.current;
-    const selection = defaultView.getSelection();
-    if (!selection.rangeCount) {
+    const selection = defaultview.getselection();
+    if (!selection.rangecount) {
       return;
     }
-    const range = selection.getRangeAt(0);
-    if (!activeFormat) {
+    const range = selection.getrangeat(0);
+    if (!activeformat) {
       return range;
     }
-    let element = range.startContainer;
-    element = element.nextElementSibling || element;
-    while (element.nodeType !== element.ELEMENT_NODE) {
-      element = element.parentNode;
+    let element = range.startcontainer;
+    element = element.nextelementsibling || element;
+    while (element.nodetype !== element.element_node) {
+      element = element.parentnode;
     }
     return element.closest(
-      tagName + (className ? "." + className : "")
+      tagname + (classname ? "." + classname : "")
     );
-  }, [activeFormat, value.start, value.end, tagName, className]);
+  }, [activeformat, value.start, value.end, tagname, classname]);
 }
 
 
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
 ;// ./node_modules/@wordpress/rich-text/build-module/component/use-anchor.js
 
 
-function getFormatElement(range, editableContentElement, tagName, className) {
-  let element = range.startContainer;
-  if (element.nodeType === element.TEXT_NODE && range.startOffset === element.length && element.nextSibling) {
-    element = element.nextSibling;
-    while (element.firstChild) {
-      element = element.firstChild;
+function getformatelement(range, editablecontentelement, tagname, classname) {
+  let element = range.startcontainer;
+  if (element.nodetype === element.text_node && range.startoffset === element.length && element.nextsibling) {
+    element = element.nextsibling;
+    while (element.firstchild) {
+      element = element.firstchild;
     }
   }
-  if (element.nodeType !== element.ELEMENT_NODE) {
-    element = element.parentElement;
+  if (element.nodetype !== element.element_node) {
+    element = element.parentelement;
   }
   if (!element) {
     return;
   }
-  if (element === editableContentElement) {
+  if (element === editablecontentelement) {
     return;
   }
-  if (!editableContentElement.contains(element)) {
+  if (!editablecontentelement.contains(element)) {
     return;
   }
-  const selector = tagName + (className ? "." + className : "");
-  while (element !== editableContentElement) {
+  const selector = tagname + (classname ? "." + classname : "");
+  while (element !== editablecontentelement) {
     if (element.matches(selector)) {
       return element;
     }
-    element = element.parentElement;
+    element = element.parentelement;
   }
 }
-function createVirtualAnchorElement(range, editableContentElement) {
+function createvirtualanchorelement(range, editablecontentelement) {
   return {
-    contextElement: editableContentElement,
-    getBoundingClientRect() {
-      return editableContentElement.contains(range.startContainer) ? range.getBoundingClientRect() : editableContentElement.getBoundingClientRect();
+    contextelement: editablecontentelement,
+    getboundingclientrect() {
+      return editablecontentelement.contains(range.startcontainer) ? range.getboundingclientrect() : editablecontentelement.getboundingclientrect();
     }
   };
 }
-function getAnchor(editableContentElement, tagName, className) {
-  if (!editableContentElement) {
+function getanchor(editablecontentelement, tagname, classname) {
+  if (!editablecontentelement) {
     return;
   }
-  const { ownerDocument } = editableContentElement;
-  const { defaultView } = ownerDocument;
-  const selection = defaultView.getSelection();
+  const { ownerdocument } = editablecontentelement;
+  const { defaultview } = ownerdocument;
+  const selection = defaultview.getselection();
   if (!selection) {
     return;
   }
-  if (!selection.rangeCount) {
+  if (!selection.rangecount) {
     return;
   }
-  const range = selection.getRangeAt(0);
-  if (!range || !range.startContainer) {
+  const range = selection.getrangeat(0);
+  if (!range || !range.startcontainer) {
     return;
   }
-  const formatElement = getFormatElement(
+  const formatelement = getformatelement(
     range,
-    editableContentElement,
-    tagName,
-    className
+    editablecontentelement,
+    tagname,
+    classname
   );
-  if (formatElement) {
-    return formatElement;
+  if (formatelement) {
+    return formatelement;
   }
-  return createVirtualAnchorElement(range, editableContentElement);
+  return createvirtualanchorelement(range, editablecontentelement);
 }
-function useAnchor({ editableContentElement, settings = {} }) {
-  const { tagName, className, isActive } = settings;
-  const [anchor, setAnchor] = (0,external_wp_element_namespaceObject.useState)(
-    () => getAnchor(editableContentElement, tagName, className)
+function useanchor({ editablecontentelement, settings = {} }) {
+  const { tagname, classname, isactive } = settings;
+  const [anchor, setanchor] = (0,external_wp_element_namespaceobject.usestate)(
+    () => getanchor(editablecontentelement, tagname, classname)
   );
-  const wasActive = (0,external_wp_compose_namespaceObject.usePrevious)(isActive);
-  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (!editableContentElement) {
+  const wasactive = (0,external_wp_compose_namespaceobject.useprevious)(isactive);
+  (0,external_wp_element_namespaceobject.uselayouteffect)(() => {
+    if (!editablecontentelement) {
       return;
     }
     function callback() {
-      setAnchor(
-        getAnchor(editableContentElement, tagName, className)
+      setanchor(
+        getanchor(editablecontentelement, tagname, classname)
       );
     }
     function attach() {
-      ownerDocument.addEventListener("selectionchange", callback);
+      ownerdocument.addeventlistener("selectionchange", callback);
     }
     function detach() {
-      ownerDocument.removeEventListener("selectionchange", callback);
+      ownerdocument.removeeventlistener("selectionchange", callback);
     }
-    const { ownerDocument } = editableContentElement;
-    if (editableContentElement === ownerDocument.activeElement || // When a link is created, we need to attach the popover to the newly created anchor.
-    !wasActive && isActive || // Sometimes we're _removing_ an active anchor, such as the inline color popover.
-    // When we add the color, it switches from a virtual anchor to a `<mark>` element.
-    // When we _remove_ the color, it switches from a `<mark>` element to a virtual anchor.
-    wasActive && !isActive) {
-      setAnchor(
-        getAnchor(editableContentElement, tagName, className)
+    const { ownerdocument } = editablecontentelement;
+    if (editablecontentelement === ownerdocument.activeelement || // when a link is created, we need to attach the popover to the newly created anchor.
+    !wasactive && isactive || // sometimes we're _removing_ an active anchor, such as the inline color popover.
+    // when we add the color, it switches from a virtual anchor to a `<mark>` element.
+    // when we _remove_ the color, it switches from a `<mark>` element to a virtual anchor.
+    wasactive && !isactive) {
+      setanchor(
+        getanchor(editablecontentelement, tagname, classname)
       );
       attach();
     }
-    editableContentElement.addEventListener("focusin", attach);
-    editableContentElement.addEventListener("focusout", detach);
+    editablecontentelement.addeventlistener("focusin", attach);
+    editablecontentelement.addeventlistener("focusout", detach);
     return () => {
       detach();
-      editableContentElement.removeEventListener("focusin", attach);
-      editableContentElement.removeEventListener("focusout", detach);
+      editablecontentelement.removeeventlistener("focusin", attach);
+      editablecontentelement.removeeventlistener("focusout", detach);
     };
-  }, [editableContentElement, tagName, className, isActive, wasActive]);
+  }, [editablecontentelement, tagname, classname, isactive, wasactive]);
   return anchor;
 }
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/component/use-default-style.js
 
-const whiteSpace = "pre-wrap";
-const minWidth = "1px";
-function useDefaultStyle() {
-  return (0,external_wp_element_namespaceObject.useCallback)((element) => {
+const whitespace = "pre-wrap";
+const minwidth = "1px";
+function usedefaultstyle() {
+  return (0,external_wp_element_namespaceobject.usecallback)((element) => {
     if (!element) {
       return;
     }
-    element.style.whiteSpace = whiteSpace;
-    element.style.minWidth = minWidth;
+    element.style.whitespace = whitespace;
+    element.style.minwidth = minwidth;
   }, []);
 }
 
 
 ;// ./node_modules/colord/index.mjs
-var r={grad:.9,turn:360,rad:360/(2*Math.PI)},t=function(r){return"string"==typeof r?r.length>0:"number"==typeof r},n=function(r,t,n){return void 0===t&&(t=0),void 0===n&&(n=Math.pow(10,t)),Math.round(n*r)/n+0},e=function(r,t,n){return void 0===t&&(t=0),void 0===n&&(n=1),r>n?n:r>t?r:t},u=function(r){return(r=isFinite(r)?r%360:0)>0?r:r+360},a=function(r){return{r:e(r.r,0,255),g:e(r.g,0,255),b:e(r.b,0,255),a:e(r.a)}},o=function(r){return{r:n(r.r),g:n(r.g),b:n(r.b),a:n(r.a,3)}},i=/^#([0-9a-f]{3,8})$/i,s=function(r){var t=r.toString(16);return t.length<2?"0"+t:t},h=function(r){var t=r.r,n=r.g,e=r.b,u=r.a,a=Math.max(t,n,e),o=a-Math.min(t,n,e),i=o?a===t?(n-e)/o:a===n?2+(e-t)/o:4+(t-n)/o:0;return{h:60*(i<0?i+6:i),s:a?o/a*100:0,v:a/255*100,a:u}},b=function(r){var t=r.h,n=r.s,e=r.v,u=r.a;t=t/360*6,n/=100,e/=100;var a=Math.floor(t),o=e*(1-n),i=e*(1-(t-a)*n),s=e*(1-(1-t+a)*n),h=a%6;return{r:255*[e,i,o,o,s,e][h],g:255*[s,e,e,i,o,o][h],b:255*[o,o,s,e,e,i][h],a:u}},g=function(r){return{h:u(r.h),s:e(r.s,0,100),l:e(r.l,0,100),a:e(r.a)}},d=function(r){return{h:n(r.h),s:n(r.s),l:n(r.l),a:n(r.a,3)}},f=function(r){return b((n=(t=r).s,{h:t.h,s:(n*=((e=t.l)<50?e:100-e)/100)>0?2*n/(e+n)*100:0,v:e+n,a:t.a}));var t,n,e},c=function(r){return{h:(t=h(r)).h,s:(u=(200-(n=t.s))*(e=t.v)/100)>0&&u<200?n*e/100/(u<=100?u:200-u)*100:0,l:u/2,a:t.a};var t,n,e,u},l=/^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s*,\s*([+-]?\d*\.?\d+)%\s*,\s*([+-]?\d*\.?\d+)%\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,p=/^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s+([+-]?\d*\.?\d+)%\s+([+-]?\d*\.?\d+)%\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,v=/^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,m=/^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,y={string:[[function(r){var t=i.exec(r);return t?(r=t[1]).length<=4?{r:parseInt(r[0]+r[0],16),g:parseInt(r[1]+r[1],16),b:parseInt(r[2]+r[2],16),a:4===r.length?n(parseInt(r[3]+r[3],16)/255,2):1}:6===r.length||8===r.length?{r:parseInt(r.substr(0,2),16),g:parseInt(r.substr(2,2),16),b:parseInt(r.substr(4,2),16),a:8===r.length?n(parseInt(r.substr(6,2),16)/255,2):1}:null:null},"hex"],[function(r){var t=v.exec(r)||m.exec(r);return t?t[2]!==t[4]||t[4]!==t[6]?null:a({r:Number(t[1])/(t[2]?100/255:1),g:Number(t[3])/(t[4]?100/255:1),b:Number(t[5])/(t[6]?100/255:1),a:void 0===t[7]?1:Number(t[7])/(t[8]?100:1)}):null},"rgb"],[function(t){var n=l.exec(t)||p.exec(t);if(!n)return null;var e,u,a=g({h:(e=n[1],u=n[2],void 0===u&&(u="deg"),Number(e)*(r[u]||1)),s:Number(n[3]),l:Number(n[4]),a:void 0===n[5]?1:Number(n[5])/(n[6]?100:1)});return f(a)},"hsl"]],object:[[function(r){var n=r.r,e=r.g,u=r.b,o=r.a,i=void 0===o?1:o;return t(n)&&t(e)&&t(u)?a({r:Number(n),g:Number(e),b:Number(u),a:Number(i)}):null},"rgb"],[function(r){var n=r.h,e=r.s,u=r.l,a=r.a,o=void 0===a?1:a;if(!t(n)||!t(e)||!t(u))return null;var i=g({h:Number(n),s:Number(e),l:Number(u),a:Number(o)});return f(i)},"hsl"],[function(r){var n=r.h,a=r.s,o=r.v,i=r.a,s=void 0===i?1:i;if(!t(n)||!t(a)||!t(o))return null;var h=function(r){return{h:u(r.h),s:e(r.s,0,100),v:e(r.v,0,100),a:e(r.a)}}({h:Number(n),s:Number(a),v:Number(o),a:Number(s)});return b(h)},"hsv"]]},N=function(r,t){for(var n=0;n<t.length;n++){var e=t[n][0](r);if(e)return[e,t[n][1]]}return[null,void 0]},x=function(r){return"string"==typeof r?N(r.trim(),y.string):"object"==typeof r&&null!==r?N(r,y.object):[null,void 0]},I=function(r){return x(r)[1]},M=function(r,t){var n=c(r);return{h:n.h,s:e(n.s+100*t,0,100),l:n.l,a:n.a}},H=function(r){return(299*r.r+587*r.g+114*r.b)/1e3/255},$=function(r,t){var n=c(r);return{h:n.h,s:n.s,l:e(n.l+100*t,0,100),a:n.a}},j=function(){function r(r){this.parsed=x(r)[0],this.rgba=this.parsed||{r:0,g:0,b:0,a:1}}return r.prototype.isValid=function(){return null!==this.parsed},r.prototype.brightness=function(){return n(H(this.rgba),2)},r.prototype.isDark=function(){return H(this.rgba)<.5},r.prototype.isLight=function(){return H(this.rgba)>=.5},r.prototype.toHex=function(){return r=o(this.rgba),t=r.r,e=r.g,u=r.b,i=(a=r.a)<1?s(n(255*a)):"","#"+s(t)+s(e)+s(u)+i;var r,t,e,u,a,i},r.prototype.toRgb=function(){return o(this.rgba)},r.prototype.toRgbString=function(){return r=o(this.rgba),t=r.r,n=r.g,e=r.b,(u=r.a)<1?"rgba("+t+", "+n+", "+e+", "+u+")":"rgb("+t+", "+n+", "+e+")";var r,t,n,e,u},r.prototype.toHsl=function(){return d(c(this.rgba))},r.prototype.toHslString=function(){return r=d(c(this.rgba)),t=r.h,n=r.s,e=r.l,(u=r.a)<1?"hsla("+t+", "+n+"%, "+e+"%, "+u+")":"hsl("+t+", "+n+"%, "+e+"%)";var r,t,n,e,u},r.prototype.toHsv=function(){return r=h(this.rgba),{h:n(r.h),s:n(r.s),v:n(r.v),a:n(r.a,3)};var r},r.prototype.invert=function(){return w({r:255-(r=this.rgba).r,g:255-r.g,b:255-r.b,a:r.a});var r},r.prototype.saturate=function(r){return void 0===r&&(r=.1),w(M(this.rgba,r))},r.prototype.desaturate=function(r){return void 0===r&&(r=.1),w(M(this.rgba,-r))},r.prototype.grayscale=function(){return w(M(this.rgba,-1))},r.prototype.lighten=function(r){return void 0===r&&(r=.1),w($(this.rgba,r))},r.prototype.darken=function(r){return void 0===r&&(r=.1),w($(this.rgba,-r))},r.prototype.rotate=function(r){return void 0===r&&(r=15),this.hue(this.hue()+r)},r.prototype.alpha=function(r){return"number"==typeof r?w({r:(t=this.rgba).r,g:t.g,b:t.b,a:r}):n(this.rgba.a,3);var t},r.prototype.hue=function(r){var t=c(this.rgba);return"number"==typeof r?w({h:r,s:t.s,l:t.l,a:t.a}):n(t.h)},r.prototype.isEqual=function(r){return this.toHex()===w(r).toHex()},r}(),w=function(r){return r instanceof j?r:new j(r)},S=(/* unused pure expression or super */ null && ([])),k=function(r){r.forEach(function(r){S.indexOf(r)<0&&(r(j,y),S.push(r))})},E=function(){return new j({r:255*Math.random(),g:255*Math.random(),b:255*Math.random()})};
+var r={grad:.9,turn:360,rad:360/(2*math.pi)},t=function(r){return"string"==typeof r?r.length>0:"number"==typeof r},n=function(r,t,n){return void 0===t&&(t=0),void 0===n&&(n=math.pow(10,t)),math.round(n*r)/n+0},e=function(r,t,n){return void 0===t&&(t=0),void 0===n&&(n=1),r>n?n:r>t?r:t},u=function(r){return(r=isfinite(r)?r%360:0)>0?r:r+360},a=function(r){return{r:e(r.r,0,255),g:e(r.g,0,255),b:e(r.b,0,255),a:e(r.a)}},o=function(r){return{r:n(r.r),g:n(r.g),b:n(r.b),a:n(r.a,3)}},i=/^#([0-9a-f]{3,8})$/i,s=function(r){var t=r.tostring(16);return t.length<2?"0"+t:t},h=function(r){var t=r.r,n=r.g,e=r.b,u=r.a,a=math.max(t,n,e),o=a-math.min(t,n,e),i=o?a===t?(n-e)/o:a===n?2+(e-t)/o:4+(t-n)/o:0;return{h:60*(i<0?i+6:i),s:a?o/a*100:0,v:a/255*100,a:u}},b=function(r){var t=r.h,n=r.s,e=r.v,u=r.a;t=t/360*6,n/=100,e/=100;var a=math.floor(t),o=e*(1-n),i=e*(1-(t-a)*n),s=e*(1-(1-t+a)*n),h=a%6;return{r:255*[e,i,o,o,s,e][h],g:255*[s,e,e,i,o,o][h],b:255*[o,o,s,e,e,i][h],a:u}},g=function(r){return{h:u(r.h),s:e(r.s,0,100),l:e(r.l,0,100),a:e(r.a)}},d=function(r){return{h:n(r.h),s:n(r.s),l:n(r.l),a:n(r.a,3)}},f=function(r){return b((n=(t=r).s,{h:t.h,s:(n*=((e=t.l)<50?e:100-e)/100)>0?2*n/(e+n)*100:0,v:e+n,a:t.a}));var t,n,e},c=function(r){return{h:(t=h(r)).h,s:(u=(200-(n=t.s))*(e=t.v)/100)>0&&u<200?n*e/100/(u<=100?u:200-u)*100:0,l:u/2,a:t.a};var t,n,e,u},l=/^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s*,\s*([+-]?\d*\.?\d+)%\s*,\s*([+-]?\d*\.?\d+)%\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,p=/^hsla?\(\s*([+-]?\d*\.?\d+)(deg|rad|grad|turn)?\s+([+-]?\d*\.?\d+)%\s+([+-]?\d*\.?\d+)%\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,v=/^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*,\s*([+-]?\d*\.?\d+)(%)?\s*(?:,\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,m=/^rgba?\(\s*([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s+([+-]?\d*\.?\d+)(%)?\s*(?:\/\s*([+-]?\d*\.?\d+)(%)?\s*)?\)$/i,y={string:[[function(r){var t=i.exec(r);return t?(r=t[1]).length<=4?{r:parseint(r[0]+r[0],16),g:parseint(r[1]+r[1],16),b:parseint(r[2]+r[2],16),a:4===r.length?n(parseint(r[3]+r[3],16)/255,2):1}:6===r.length||8===r.length?{r:parseint(r.substr(0,2),16),g:parseint(r.substr(2,2),16),b:parseint(r.substr(4,2),16),a:8===r.length?n(parseint(r.substr(6,2),16)/255,2):1}:null:null},"hex"],[function(r){var t=v.exec(r)||m.exec(r);return t?t[2]!==t[4]||t[4]!==t[6]?null:a({r:number(t[1])/(t[2]?100/255:1),g:number(t[3])/(t[4]?100/255:1),b:number(t[5])/(t[6]?100/255:1),a:void 0===t[7]?1:number(t[7])/(t[8]?100:1)}):null},"rgb"],[function(t){var n=l.exec(t)||p.exec(t);if(!n)return null;var e,u,a=g({h:(e=n[1],u=n[2],void 0===u&&(u="deg"),number(e)*(r[u]||1)),s:number(n[3]),l:number(n[4]),a:void 0===n[5]?1:number(n[5])/(n[6]?100:1)});return f(a)},"hsl"]],object:[[function(r){var n=r.r,e=r.g,u=r.b,o=r.a,i=void 0===o?1:o;return t(n)&&t(e)&&t(u)?a({r:number(n),g:number(e),b:number(u),a:number(i)}):null},"rgb"],[function(r){var n=r.h,e=r.s,u=r.l,a=r.a,o=void 0===a?1:a;if(!t(n)||!t(e)||!t(u))return null;var i=g({h:number(n),s:number(e),l:number(u),a:number(o)});return f(i)},"hsl"],[function(r){var n=r.h,a=r.s,o=r.v,i=r.a,s=void 0===i?1:i;if(!t(n)||!t(a)||!t(o))return null;var h=function(r){return{h:u(r.h),s:e(r.s,0,100),v:e(r.v,0,100),a:e(r.a)}}({h:number(n),s:number(a),v:number(o),a:number(s)});return b(h)},"hsv"]]},n=function(r,t){for(var n=0;n<t.length;n++){var e=t[n][0](r);if(e)return[e,t[n][1]]}return[null,void 0]},x=function(r){return"string"==typeof r?n(r.trim(),y.string):"object"==typeof r&&null!==r?n(r,y.object):[null,void 0]},i=function(r){return x(r)[1]},m=function(r,t){var n=c(r);return{h:n.h,s:e(n.s+100*t,0,100),l:n.l,a:n.a}},h=function(r){return(299*r.r+587*r.g+114*r.b)/1e3/255},$=function(r,t){var n=c(r);return{h:n.h,s:n.s,l:e(n.l+100*t,0,100),a:n.a}},j=function(){function r(r){this.parsed=x(r)[0],this.rgba=this.parsed||{r:0,g:0,b:0,a:1}}return r.prototype.isvalid=function(){return null!==this.parsed},r.prototype.brightness=function(){return n(h(this.rgba),2)},r.prototype.isdark=function(){return h(this.rgba)<.5},r.prototype.islight=function(){return h(this.rgba)>=.5},r.prototype.tohex=function(){return r=o(this.rgba),t=r.r,e=r.g,u=r.b,i=(a=r.a)<1?s(n(255*a)):"","#"+s(t)+s(e)+s(u)+i;var r,t,e,u,a,i},r.prototype.torgb=function(){return o(this.rgba)},r.prototype.torgbstring=function(){return r=o(this.rgba),t=r.r,n=r.g,e=r.b,(u=r.a)<1?"rgba("+t+", "+n+", "+e+", "+u+")":"rgb("+t+", "+n+", "+e+")";var r,t,n,e,u},r.prototype.tohsl=function(){return d(c(this.rgba))},r.prototype.tohslstring=function(){return r=d(c(this.rgba)),t=r.h,n=r.s,e=r.l,(u=r.a)<1?"hsla("+t+", "+n+"%, "+e+"%, "+u+")":"hsl("+t+", "+n+"%, "+e+"%)";var r,t,n,e,u},r.prototype.tohsv=function(){return r=h(this.rgba),{h:n(r.h),s:n(r.s),v:n(r.v),a:n(r.a,3)};var r},r.prototype.invert=function(){return w({r:255-(r=this.rgba).r,g:255-r.g,b:255-r.b,a:r.a});var r},r.prototype.saturate=function(r){return void 0===r&&(r=.1),w(m(this.rgba,r))},r.prototype.desaturate=function(r){return void 0===r&&(r=.1),w(m(this.rgba,-r))},r.prototype.grayscale=function(){return w(m(this.rgba,-1))},r.prototype.lighten=function(r){return void 0===r&&(r=.1),w($(this.rgba,r))},r.prototype.darken=function(r){return void 0===r&&(r=.1),w($(this.rgba,-r))},r.prototype.rotate=function(r){return void 0===r&&(r=15),this.hue(this.hue()+r)},r.prototype.alpha=function(r){return"number"==typeof r?w({r:(t=this.rgba).r,g:t.g,b:t.b,a:r}):n(this.rgba.a,3);var t},r.prototype.hue=function(r){var t=c(this.rgba);return"number"==typeof r?w({h:r,s:t.s,l:t.l,a:t.a}):n(t.h)},r.prototype.isequal=function(r){return this.tohex()===w(r).tohex()},r}(),w=function(r){return r instanceof j?r:new j(r)},s=(/* unused pure expression or super */ null && ([])),k=function(r){r.foreach(function(r){s.indexof(r)<0&&(r(j,y),s.push(r))})},e=function(){return new j({r:255*math.random(),g:255*math.random(),b:255*math.random()})};
 
 ;// ./node_modules/@wordpress/rich-text/build-module/component/use-boundary-style.js
 
 
-function useBoundaryStyle({ record }) {
-  const ref = (0,external_wp_element_namespaceObject.useRef)();
-  const { activeFormats = [], replacements, start } = record.current;
-  const activeReplacement = replacements[start];
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if ((!activeFormats || !activeFormats.length) && !activeReplacement) {
+function useboundarystyle({ record }) {
+  const ref = (0,external_wp_element_namespaceobject.useref)();
+  const { activeformats = [], replacements, start } = record.current;
+  const activereplacement = replacements[start];
+  (0,external_wp_element_namespaceobject.useeffect)(() => {
+    if ((!activeformats || !activeformats.length) && !activereplacement) {
       return;
     }
-    const boundarySelector = "*[data-rich-text-format-boundary]";
-    const element = ref.current.querySelector(boundarySelector);
+    const boundaryselector = "*[data-rich-text-format-boundary]";
+    const element = ref.current.queryselector(boundaryselector);
     if (!element) {
       return;
     }
-    const { ownerDocument } = element;
-    const { defaultView } = ownerDocument;
-    const computedStyle = defaultView.getComputedStyle(element);
-    const newColor = w(computedStyle.color).alpha(0.2).toRgbString();
-    const selector = `.rich-text:focus ${boundarySelector}`;
-    const rule = `background-color: ${newColor}`;
+    const { ownerdocument } = element;
+    const { defaultview } = ownerdocument;
+    const computedstyle = defaultview.getcomputedstyle(element);
+    const newcolor = w(computedstyle.color).alpha(0.2).torgbstring();
+    const selector = `.rich-text:focus ${boundaryselector}`;
+    const rule = `background-color: ${newcolor}`;
     const style = `${selector} {${rule}}`;
-    const globalStyleId = "rich-text-boundary-style";
-    let globalStyle = ownerDocument.getElementById(globalStyleId);
-    if (!globalStyle) {
-      globalStyle = ownerDocument.createElement("style");
-      globalStyle.id = globalStyleId;
-      ownerDocument.head.appendChild(globalStyle);
+    const globalstyleid = "rich-text-boundary-style";
+    let globalstyle = ownerdocument.getelementbyid(globalstyleid);
+    if (!globalstyle) {
+      globalstyle = ownerdocument.createelement("style");
+      globalstyle.id = globalstyleid;
+      ownerdocument.head.appendchild(globalstyle);
     }
-    if (globalStyle.innerHTML !== style) {
-      globalStyle.innerHTML = style;
+    if (globalstyle.innerhtml !== style) {
+      globalstyle.innerhtml = style;
     }
-  }, [activeFormats, activeReplacement]);
+  }, [activeformats, activereplacement]);
   return ref;
 }
 
@@ -1965,138 +1965,138 @@ function useBoundaryStyle({ record }) {
 
 
 var copy_handler_default = (props) => (element) => {
-  function onCopy(event) {
+  function oncopy(event) {
     const { record } = props.current;
-    const { ownerDocument } = element;
-    if (isCollapsed(record.current) || !element.contains(ownerDocument.activeElement)) {
+    const { ownerdocument } = element;
+    if (iscollapsed(record.current) || !element.contains(ownerdocument.activeelement)) {
       return;
     }
-    const selectedRecord = slice(record.current);
-    const plainText = getTextContent(selectedRecord);
-    const html = toHTMLString({ value: selectedRecord });
-    event.clipboardData.setData("text/plain", plainText);
-    event.clipboardData.setData("text/html", html);
-    event.clipboardData.setData("rich-text", "true");
-    event.preventDefault();
+    const selectedrecord = slice(record.current);
+    const plaintext = gettextcontent(selectedrecord);
+    const html = tohtmlstring({ value: selectedrecord });
+    event.clipboarddata.setdata("text/plain", plaintext);
+    event.clipboarddata.setdata("text/html", html);
+    event.clipboarddata.setdata("rich-text", "true");
+    event.preventdefault();
     if (event.type === "cut") {
-      ownerDocument.execCommand("delete");
+      ownerdocument.execcommand("delete");
     }
   }
-  const { defaultView } = element.ownerDocument;
-  defaultView.addEventListener("copy", onCopy);
-  defaultView.addEventListener("cut", onCopy);
+  const { defaultview } = element.ownerdocument;
+  defaultview.addeventlistener("copy", oncopy);
+  defaultview.addeventlistener("cut", oncopy);
   return () => {
-    defaultView.removeEventListener("copy", onCopy);
-    defaultView.removeEventListener("cut", onCopy);
+    defaultview.removeeventlistener("copy", oncopy);
+    defaultview.removeeventlistener("cut", oncopy);
   };
 };
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/select-object.js
 var select_object_default = () => (element) => {
-  function onClick(event) {
+  function onclick(event) {
     const { target } = event;
-    if (target === element || target.textContent && target.isContentEditable) {
+    if (target === element || target.textcontent && target.iscontenteditable) {
       return;
     }
-    const { ownerDocument } = target;
-    const { defaultView } = ownerDocument;
-    const selection = defaultView.getSelection();
-    if (selection.containsNode(target)) {
+    const { ownerdocument } = target;
+    const { defaultview } = ownerdocument;
+    const selection = defaultview.getselection();
+    if (selection.containsnode(target)) {
       return;
     }
-    const range = ownerDocument.createRange();
-    const nodeToSelect = target.isContentEditable ? target : target.closest("[contenteditable]");
-    range.selectNode(nodeToSelect);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    event.preventDefault();
+    const range = ownerdocument.createrange();
+    const nodetoselect = target.iscontenteditable ? target : target.closest("[contenteditable]");
+    range.selectnode(nodetoselect);
+    selection.removeallranges();
+    selection.addrange(range);
+    event.preventdefault();
   }
-  function onFocusIn(event) {
-    if (event.relatedTarget && !element.contains(event.relatedTarget) && event.relatedTarget.tagName === "A") {
-      onClick(event);
+  function onfocusin(event) {
+    if (event.relatedtarget && !element.contains(event.relatedtarget) && event.relatedtarget.tagname === "a") {
+      onclick(event);
     }
   }
-  element.addEventListener("click", onClick);
-  element.addEventListener("focusin", onFocusIn);
+  element.addeventlistener("click", onclick);
+  element.addeventlistener("focusin", onfocusin);
   return () => {
-    element.removeEventListener("click", onClick);
-    element.removeEventListener("focusin", onFocusIn);
+    element.removeeventlistener("click", onclick);
+    element.removeeventlistener("focusin", onfocusin);
   };
 };
 
 
 ;// external ["wp","keycodes"]
-const external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
+const external_wp_keycodes_namespaceobject = window["wp"]["keycodes"];
 ;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/format-boundaries.js
 
 
-const EMPTY_ACTIVE_FORMATS = [];
+const empty_active_formats = [];
 var format_boundaries_default = (props) => (element) => {
-  function onKeyDown(event) {
-    const { keyCode, shiftKey, altKey, metaKey, ctrlKey } = event;
+  function onkeydown(event) {
+    const { keycode, shiftkey, altkey, metakey, ctrlkey } = event;
     if (
-      // Only override left and right keys without modifiers pressed.
-      shiftKey || altKey || metaKey || ctrlKey || keyCode !== external_wp_keycodes_namespaceObject.LEFT && keyCode !== external_wp_keycodes_namespaceObject.RIGHT
+      // only override left and right keys without modifiers pressed.
+      shiftkey || altkey || metakey || ctrlkey || keycode !== external_wp_keycodes_namespaceobject.left && keycode !== external_wp_keycodes_namespaceobject.right
     ) {
       return;
     }
-    const { record, applyRecord, forceRender } = props.current;
+    const { record, applyrecord, forcerender } = props.current;
     const {
       text,
       formats,
       start,
       end,
-      activeFormats: currentActiveFormats = []
+      activeformats: currentactiveformats = []
     } = record.current;
-    const collapsed = isCollapsed(record.current);
-    const { ownerDocument } = element;
-    const { defaultView } = ownerDocument;
-    const { direction } = defaultView.getComputedStyle(element);
-    const reverseKey = direction === "rtl" ? external_wp_keycodes_namespaceObject.RIGHT : external_wp_keycodes_namespaceObject.LEFT;
-    const isReverse = event.keyCode === reverseKey;
-    if (collapsed && currentActiveFormats.length === 0) {
-      if (start === 0 && isReverse) {
+    const collapsed = iscollapsed(record.current);
+    const { ownerdocument } = element;
+    const { defaultview } = ownerdocument;
+    const { direction } = defaultview.getcomputedstyle(element);
+    const reversekey = direction === "rtl" ? external_wp_keycodes_namespaceobject.right : external_wp_keycodes_namespaceobject.left;
+    const isreverse = event.keycode === reversekey;
+    if (collapsed && currentactiveformats.length === 0) {
+      if (start === 0 && isreverse) {
         return;
       }
-      if (end === text.length && !isReverse) {
+      if (end === text.length && !isreverse) {
         return;
       }
     }
     if (!collapsed) {
       return;
     }
-    const formatsBefore = formats[start - 1] || EMPTY_ACTIVE_FORMATS;
-    const formatsAfter = formats[start] || EMPTY_ACTIVE_FORMATS;
-    const destination = isReverse ? formatsBefore : formatsAfter;
-    const isIncreasing = currentActiveFormats.every(
+    const formatsbefore = formats[start - 1] || empty_active_formats;
+    const formatsafter = formats[start] || empty_active_formats;
+    const destination = isreverse ? formatsbefore : formatsafter;
+    const isincreasing = currentactiveformats.every(
       (format, index) => format === destination[index]
     );
-    let newActiveFormatsLength = currentActiveFormats.length;
-    if (!isIncreasing) {
-      newActiveFormatsLength--;
-    } else if (newActiveFormatsLength < destination.length) {
-      newActiveFormatsLength++;
+    let newactiveformatslength = currentactiveformats.length;
+    if (!isincreasing) {
+      newactiveformatslength--;
+    } else if (newactiveformatslength < destination.length) {
+      newactiveformatslength++;
     }
-    if (newActiveFormatsLength === currentActiveFormats.length) {
-      record.current._newActiveFormats = destination;
+    if (newactiveformatslength === currentactiveformats.length) {
+      record.current._newactiveformats = destination;
       return;
     }
-    event.preventDefault();
-    const origin = isReverse ? formatsAfter : formatsBefore;
-    const source = isIncreasing ? destination : origin;
-    const newActiveFormats = source.slice(0, newActiveFormatsLength);
-    const newValue = {
+    event.preventdefault();
+    const origin = isreverse ? formatsafter : formatsbefore;
+    const source = isincreasing ? destination : origin;
+    const newactiveformats = source.slice(0, newactiveformatslength);
+    const newvalue = {
       ...record.current,
-      activeFormats: newActiveFormats
+      activeformats: newactiveformats
     };
-    record.current = newValue;
-    applyRecord(newValue);
-    forceRender();
+    record.current = newvalue;
+    applyrecord(newvalue);
+    forcerender();
   }
-  element.addEventListener("keydown", onKeyDown);
+  element.addeventlistener("keydown", onkeydown);
   return () => {
-    element.removeEventListener("keydown", onKeyDown);
+    element.removeeventlistener("keydown", onkeydown);
   };
 };
 
@@ -2105,51 +2105,51 @@ var format_boundaries_default = (props) => (element) => {
 
 
 var delete_default = (props) => (element) => {
-  function onKeyDown(event) {
-    const { keyCode } = event;
-    const { createRecord, handleChange } = props.current;
-    if (event.defaultPrevented) {
+  function onkeydown(event) {
+    const { keycode } = event;
+    const { createrecord, handlechange } = props.current;
+    if (event.defaultprevented) {
       return;
     }
-    if (keyCode !== external_wp_keycodes_namespaceObject.DELETE && keyCode !== external_wp_keycodes_namespaceObject.BACKSPACE) {
+    if (keycode !== external_wp_keycodes_namespaceobject.delete && keycode !== external_wp_keycodes_namespaceobject.backspace) {
       return;
     }
-    const currentValue = createRecord();
-    const { start, end, text } = currentValue;
+    const currentvalue = createrecord();
+    const { start, end, text } = currentvalue;
     if (start === 0 && end !== 0 && end === text.length) {
-      handleChange(remove_remove(currentValue));
-      event.preventDefault();
+      handlechange(remove_remove(currentvalue));
+      event.preventdefault();
     }
   }
-  element.addEventListener("keydown", onKeyDown);
+  element.addeventlistener("keydown", onkeydown);
   return () => {
-    element.removeEventListener("keydown", onKeyDown);
+    element.removeeventlistener("keydown", onkeydown);
   };
 };
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/update-formats.js
 
-function updateFormats({ value, start, end, formats }) {
-  const min = Math.min(start, end);
-  const max = Math.max(start, end);
-  const formatsBefore = value.formats[min - 1] || [];
-  const formatsAfter = value.formats[max] || [];
-  value.activeFormats = formats.map((format, index) => {
-    if (formatsBefore[index]) {
-      if (isFormatEqual(format, formatsBefore[index])) {
-        return formatsBefore[index];
+function updateformats({ value, start, end, formats }) {
+  const min = math.min(start, end);
+  const max = math.max(start, end);
+  const formatsbefore = value.formats[min - 1] || [];
+  const formatsafter = value.formats[max] || [];
+  value.activeformats = formats.map((format, index) => {
+    if (formatsbefore[index]) {
+      if (isformatequal(format, formatsbefore[index])) {
+        return formatsbefore[index];
       }
-    } else if (formatsAfter[index]) {
-      if (isFormatEqual(format, formatsAfter[index])) {
-        return formatsAfter[index];
+    } else if (formatsafter[index]) {
+      if (isformatequal(format, formatsafter[index])) {
+        return formatsafter[index];
       }
     }
     return format;
   });
   while (--end >= start) {
-    if (value.activeFormats.length > 0) {
-      value.formats[end] = value.activeFormats;
+    if (value.activeformats.length > 0) {
+      value.formats[end] = value.activeformats;
     } else {
       delete value.formats[end];
     }
@@ -2161,148 +2161,148 @@ function updateFormats({ value, start, end, formats }) {
 ;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/input-and-selection.js
 
 
-const INSERTION_INPUT_TYPES_TO_IGNORE = /* @__PURE__ */ new Set([
-  "insertParagraph",
-  "insertOrderedList",
-  "insertUnorderedList",
-  "insertHorizontalRule",
-  "insertLink"
+const insertion_input_types_to_ignore = /* @__pure__ */ new set([
+  "insertparagraph",
+  "insertorderedlist",
+  "insertunorderedlist",
+  "inserthorizontalrule",
+  "insertlink"
 ]);
-const input_and_selection_EMPTY_ACTIVE_FORMATS = [];
-const PLACEHOLDER_ATTR_NAME = "data-rich-text-placeholder";
-function fixPlaceholderSelection(defaultView) {
-  const selection = defaultView.getSelection();
-  const { anchorNode, anchorOffset } = selection;
-  if (anchorNode.nodeType !== anchorNode.ELEMENT_NODE) {
+const input_and_selection_empty_active_formats = [];
+const placeholder_attr_name = "data-rich-text-placeholder";
+function fixplaceholderselection(defaultview) {
+  const selection = defaultview.getselection();
+  const { anchornode, anchoroffset } = selection;
+  if (anchornode.nodetype !== anchornode.element_node) {
     return;
   }
-  const targetNode = anchorNode.childNodes[anchorOffset];
-  if (!targetNode || targetNode.nodeType !== targetNode.ELEMENT_NODE || !targetNode.hasAttribute(PLACEHOLDER_ATTR_NAME)) {
+  const targetnode = anchornode.childnodes[anchoroffset];
+  if (!targetnode || targetnode.nodetype !== targetnode.element_node || !targetnode.hasattribute(placeholder_attr_name)) {
     return;
   }
-  selection.collapseToStart();
+  selection.collapsetostart();
 }
 var input_and_selection_default = (props) => (element) => {
-  const { ownerDocument } = element;
-  const { defaultView } = ownerDocument;
-  let isComposing = false;
-  function onInput(event) {
-    if (isComposing) {
+  const { ownerdocument } = element;
+  const { defaultview } = ownerdocument;
+  let iscomposing = false;
+  function oninput(event) {
+    if (iscomposing) {
       return;
     }
-    let inputType;
+    let inputtype;
     if (event) {
-      inputType = event.inputType;
+      inputtype = event.inputtype;
     }
-    const { record, applyRecord, createRecord, handleChange } = props.current;
-    if (inputType && (inputType.indexOf("format") === 0 || INSERTION_INPUT_TYPES_TO_IGNORE.has(inputType))) {
-      applyRecord(record.current);
+    const { record, applyrecord, createrecord, handlechange } = props.current;
+    if (inputtype && (inputtype.indexof("format") === 0 || insertion_input_types_to_ignore.has(inputtype))) {
+      applyrecord(record.current);
       return;
     }
-    const currentValue = createRecord();
-    const { start, activeFormats: oldActiveFormats = [] } = record.current;
-    const change = updateFormats({
-      value: currentValue,
+    const currentvalue = createrecord();
+    const { start, activeformats: oldactiveformats = [] } = record.current;
+    const change = updateformats({
+      value: currentvalue,
       start,
-      end: currentValue.start,
-      formats: oldActiveFormats
+      end: currentvalue.start,
+      formats: oldactiveformats
     });
-    handleChange(change);
+    handlechange(change);
   }
-  function handleSelectionChange() {
-    const { record, applyRecord, createRecord, onSelectionChange } = props.current;
-    if (element.contentEditable !== "true") {
+  function handleselectionchange() {
+    const { record, applyrecord, createrecord, onselectionchange } = props.current;
+    if (element.contenteditable !== "true") {
       return;
     }
-    if (ownerDocument.activeElement !== element) {
-      ownerDocument.removeEventListener(
+    if (ownerdocument.activeelement !== element) {
+      ownerdocument.removeeventlistener(
         "selectionchange",
-        handleSelectionChange
+        handleselectionchange
       );
       return;
     }
-    if (isComposing) {
+    if (iscomposing) {
       return;
     }
-    const { start, end, text } = createRecord();
-    const oldRecord = record.current;
-    if (text !== oldRecord.text) {
-      onInput();
+    const { start, end, text } = createrecord();
+    const oldrecord = record.current;
+    if (text !== oldrecord.text) {
+      oninput();
       return;
     }
-    if (start === oldRecord.start && end === oldRecord.end) {
-      if (oldRecord.text.length === 0 && start === 0) {
-        fixPlaceholderSelection(defaultView);
+    if (start === oldrecord.start && end === oldrecord.end) {
+      if (oldrecord.text.length === 0 && start === 0) {
+        fixplaceholderselection(defaultview);
       }
       return;
     }
-    const newValue = {
-      ...oldRecord,
+    const newvalue = {
+      ...oldrecord,
       start,
       end,
-      // _newActiveFormats may be set on arrow key navigation to control
-      // the right boundary position. If undefined, getActiveFormats will
+      // _newactiveformats may be set on arrow key navigation to control
+      // the right boundary position. if undefined, getactiveformats will
       // give the active formats according to the browser.
-      activeFormats: oldRecord._newActiveFormats,
-      _newActiveFormats: void 0
+      activeformats: oldrecord._newactiveformats,
+      _newactiveformats: void 0
     };
-    const newActiveFormats = getActiveFormats(
-      newValue,
-      input_and_selection_EMPTY_ACTIVE_FORMATS
+    const newactiveformats = getactiveformats(
+      newvalue,
+      input_and_selection_empty_active_formats
     );
-    newValue.activeFormats = newActiveFormats;
-    record.current = newValue;
-    applyRecord(newValue, { domOnly: true });
-    onSelectionChange(start, end);
+    newvalue.activeformats = newactiveformats;
+    record.current = newvalue;
+    applyrecord(newvalue, { domonly: true });
+    onselectionchange(start, end);
   }
-  function onCompositionStart() {
-    isComposing = true;
-    ownerDocument.removeEventListener(
+  function oncompositionstart() {
+    iscomposing = true;
+    ownerdocument.removeeventlistener(
       "selectionchange",
-      handleSelectionChange
+      handleselectionchange
     );
-    element.querySelector(`[${PLACEHOLDER_ATTR_NAME}]`)?.remove();
+    element.queryselector(`[${placeholder_attr_name}]`)?.remove();
   }
-  function onCompositionEnd() {
-    isComposing = false;
-    onInput({ inputType: "insertText" });
-    ownerDocument.addEventListener(
+  function oncompositionend() {
+    iscomposing = false;
+    oninput({ inputtype: "inserttext" });
+    ownerdocument.addeventlistener(
       "selectionchange",
-      handleSelectionChange
+      handleselectionchange
     );
   }
-  function onFocus() {
-    const { record, isSelected, onSelectionChange, applyRecord } = props.current;
-    if (element.parentElement.closest('[contenteditable="true"]')) {
+  function onfocus() {
+    const { record, isselected, onselectionchange, applyrecord } = props.current;
+    if (element.parentelement.closest('[contenteditable="true"]')) {
       return;
     }
-    if (!isSelected) {
+    if (!isselected) {
       const index = void 0;
       record.current = {
         ...record.current,
         start: index,
         end: index,
-        activeFormats: input_and_selection_EMPTY_ACTIVE_FORMATS
+        activeformats: input_and_selection_empty_active_formats
       };
     } else {
-      applyRecord(record.current, { domOnly: true });
+      applyrecord(record.current, { domonly: true });
     }
-    onSelectionChange(record.current.start, record.current.end);
-    window.queueMicrotask(handleSelectionChange);
-    ownerDocument.addEventListener(
+    onselectionchange(record.current.start, record.current.end);
+    window.queuemicrotask(handleselectionchange);
+    ownerdocument.addeventlistener(
       "selectionchange",
-      handleSelectionChange
+      handleselectionchange
     );
   }
-  element.addEventListener("input", onInput);
-  element.addEventListener("compositionstart", onCompositionStart);
-  element.addEventListener("compositionend", onCompositionEnd);
-  element.addEventListener("focus", onFocus);
+  element.addeventlistener("input", oninput);
+  element.addeventlistener("compositionstart", oncompositionstart);
+  element.addeventlistener("compositionend", oncompositionend);
+  element.addeventlistener("focus", onfocus);
   return () => {
-    element.removeEventListener("input", onInput);
-    element.removeEventListener("compositionstart", onCompositionStart);
-    element.removeEventListener("compositionend", onCompositionEnd);
-    element.removeEventListener("focus", onFocus);
+    element.removeeventlistener("input", oninput);
+    element.removeeventlistener("compositionstart", oncompositionstart);
+    element.removeeventlistener("compositionend", oncompositionend);
+    element.removeeventlistener("focus", onfocus);
   };
 };
 
@@ -2310,49 +2310,49 @@ var input_and_selection_default = (props) => (element) => {
 ;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/selection-change-compat.js
 
 var selection_change_compat_default = () => (element) => {
-  const { ownerDocument } = element;
-  const { defaultView } = ownerDocument;
-  const selection = defaultView?.getSelection();
+  const { ownerdocument } = element;
+  const { defaultview } = ownerdocument;
+  const selection = defaultview?.getselection();
   let range;
-  function getRange() {
-    return selection.rangeCount ? selection.getRangeAt(0) : null;
+  function getrange() {
+    return selection.rangecount ? selection.getrangeat(0) : null;
   }
-  function onDown(event) {
+  function ondown(event) {
     const type = event.type === "keydown" ? "keyup" : "pointerup";
-    function onCancel() {
-      ownerDocument.removeEventListener(type, onUp);
-      ownerDocument.removeEventListener("selectionchange", onCancel);
-      ownerDocument.removeEventListener("input", onCancel);
+    function oncancel() {
+      ownerdocument.removeeventlistener(type, onup);
+      ownerdocument.removeeventlistener("selectionchange", oncancel);
+      ownerdocument.removeeventlistener("input", oncancel);
     }
-    function onUp() {
-      onCancel();
-      if (isRangeEqual(range, getRange())) {
+    function onup() {
+      oncancel();
+      if (israngeequal(range, getrange())) {
         return;
       }
-      ownerDocument.dispatchEvent(new Event("selectionchange"));
+      ownerdocument.dispatchevent(new event("selectionchange"));
     }
-    ownerDocument.addEventListener(type, onUp);
-    ownerDocument.addEventListener("selectionchange", onCancel);
-    ownerDocument.addEventListener("input", onCancel);
-    range = getRange();
+    ownerdocument.addeventlistener(type, onup);
+    ownerdocument.addeventlistener("selectionchange", oncancel);
+    ownerdocument.addeventlistener("input", oncancel);
+    range = getrange();
   }
-  element.addEventListener("pointerdown", onDown);
-  element.addEventListener("keydown", onDown);
+  element.addeventlistener("pointerdown", ondown);
+  element.addeventlistener("keydown", ondown);
   return () => {
-    element.removeEventListener("pointerdown", onDown);
-    element.removeEventListener("keydown", onDown);
+    element.removeeventlistener("pointerdown", ondown);
+    element.removeeventlistener("keydown", ondown);
   };
 };
 
 
 ;// ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/prevent-focus-capture.js
-function preventFocusCapture() {
+function preventfocuscapture() {
   return (element) => {
-    const { ownerDocument } = element;
-    const { defaultView } = ownerDocument;
+    const { ownerdocument } = element;
+    const { defaultview } = ownerdocument;
     let value = null;
-    function onPointerDown(event) {
-      if (event.defaultPrevented) {
+    function onpointerdown(event) {
+      if (event.defaultprevented) {
         return;
       }
       if (event.target === element) {
@@ -2361,21 +2361,21 @@ function preventFocusCapture() {
       if (!event.target.contains(element)) {
         return;
       }
-      value = element.getAttribute("contenteditable");
-      element.setAttribute("contenteditable", "false");
-      defaultView.getSelection().removeAllRanges();
+      value = element.getattribute("contenteditable");
+      element.setattribute("contenteditable", "false");
+      defaultview.getselection().removeallranges();
     }
-    function onPointerUp() {
+    function onpointerup() {
       if (value !== null) {
-        element.setAttribute("contenteditable", value);
+        element.setattribute("contenteditable", value);
         value = null;
       }
     }
-    defaultView.addEventListener("pointerdown", onPointerDown);
-    defaultView.addEventListener("pointerup", onPointerUp);
+    defaultview.addeventlistener("pointerdown", onpointerdown);
+    defaultview.addeventlistener("pointerup", onpointerup);
     return () => {
-      defaultView.removeEventListener("pointerdown", onPointerDown);
-      defaultView.removeEventListener("pointerup", onPointerUp);
+      defaultview.removeeventlistener("pointerdown", onpointerdown);
+      defaultview.removeeventlistener("pointerup", onpointerup);
     };
   };
 }
@@ -2391,32 +2391,32 @@ function preventFocusCapture() {
 
 
 
-const allEventListeners = [
+const alleventlisteners = [
   copy_handler_default,
   select_object_default,
   format_boundaries_default,
   delete_default,
   input_and_selection_default,
   selection_change_compat_default,
-  preventFocusCapture
+  preventfocuscapture
 ];
-function useEventListeners(props) {
-  const propsRef = (0,external_wp_element_namespaceObject.useRef)(props);
-  (0,external_wp_element_namespaceObject.useInsertionEffect)(() => {
-    propsRef.current = props;
+function useeventlisteners(props) {
+  const propsref = (0,external_wp_element_namespaceobject.useref)(props);
+  (0,external_wp_element_namespaceobject.useinsertioneffect)(() => {
+    propsref.current = props;
   });
-  const refEffects = (0,external_wp_element_namespaceObject.useMemo)(
-    () => allEventListeners.map((refEffect) => refEffect(propsRef)),
-    [propsRef]
+  const refeffects = (0,external_wp_element_namespaceobject.usememo)(
+    () => alleventlisteners.map((refeffect) => refeffect(propsref)),
+    [propsref]
   );
-  return (0,external_wp_compose_namespaceObject.useRefEffect)(
+  return (0,external_wp_compose_namespaceobject.userefeffect)(
     (element) => {
-      const cleanups = refEffects.map((effect) => effect(element));
+      const cleanups = refeffects.map((effect) => effect(element));
       return () => {
-        cleanups.forEach((cleanup) => cleanup());
+        cleanups.foreach((cleanup) => cleanup());
       };
     },
-    [refEffects]
+    [refeffects]
   );
 }
 
@@ -2431,168 +2431,168 @@ function useEventListeners(props) {
 
 
 
-function useRichText({
+function userichtext({
   value = "",
-  selectionStart,
-  selectionEnd,
+  selectionstart,
+  selectionend,
   placeholder,
-  onSelectionChange,
-  preserveWhiteSpace,
-  onChange,
-  __unstableDisableFormats: disableFormats,
-  __unstableIsSelected: isSelected,
-  __unstableDependencies = [],
-  __unstableAfterParse,
-  __unstableBeforeSerialize,
-  __unstableAddInvisibleFormats
+  onselectionchange,
+  preservewhitespace,
+  onchange,
+  __unstabledisableformats: disableformats,
+  __unstableisselected: isselected,
+  __unstabledependencies = [],
+  __unstableafterparse,
+  __unstablebeforeserialize,
+  __unstableaddinvisibleformats
 }) {
-  const registry = (0,external_wp_data_namespaceObject.useRegistry)();
-  const [, forceRender] = (0,external_wp_element_namespaceObject.useReducer)(() => ({}));
-  const ref = (0,external_wp_element_namespaceObject.useRef)();
-  function createRecord() {
+  const registry = (0,external_wp_data_namespaceobject.useregistry)();
+  const [, forcerender] = (0,external_wp_element_namespaceobject.usereducer)(() => ({}));
+  const ref = (0,external_wp_element_namespaceobject.useref)();
+  function createrecord() {
     const {
-      ownerDocument: { defaultView }
+      ownerdocument: { defaultview }
     } = ref.current;
-    const selection = defaultView.getSelection();
-    const range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+    const selection = defaultview.getselection();
+    const range = selection.rangecount > 0 ? selection.getrangeat(0) : null;
     return create({
       element: ref.current,
       range,
-      __unstableIsEditableTree: true
+      __unstableiseditabletree: true
     });
   }
-  function applyRecord(newRecord, { domOnly } = {}) {
+  function applyrecord(newrecord, { domonly } = {}) {
     apply({
-      value: newRecord,
+      value: newrecord,
       current: ref.current,
-      prepareEditableTree: __unstableAddInvisibleFormats,
-      __unstableDomOnly: domOnly,
+      prepareeditabletree: __unstableaddinvisibleformats,
+      __unstabledomonly: domonly,
       placeholder
     });
   }
-  const _valueRef = (0,external_wp_element_namespaceObject.useRef)(value);
-  const recordRef = (0,external_wp_element_namespaceObject.useRef)();
-  function setRecordFromProps() {
-    _valueRef.current = value;
-    recordRef.current = value;
-    if (!(value instanceof RichTextData)) {
-      recordRef.current = value ? RichTextData.fromHTMLString(value, { preserveWhiteSpace }) : RichTextData.empty();
+  const _valueref = (0,external_wp_element_namespaceobject.useref)(value);
+  const recordref = (0,external_wp_element_namespaceobject.useref)();
+  function setrecordfromprops() {
+    _valueref.current = value;
+    recordref.current = value;
+    if (!(value instanceof richtextdata)) {
+      recordref.current = value ? richtextdata.fromhtmlstring(value, { preservewhitespace }) : richtextdata.empty();
     }
-    recordRef.current = {
-      text: recordRef.current.text,
-      formats: recordRef.current.formats,
-      replacements: recordRef.current.replacements
+    recordref.current = {
+      text: recordref.current.text,
+      formats: recordref.current.formats,
+      replacements: recordref.current.replacements
     };
-    if (disableFormats) {
-      recordRef.current.formats = Array(value.length);
-      recordRef.current.replacements = Array(value.length);
+    if (disableformats) {
+      recordref.current.formats = array(value.length);
+      recordref.current.replacements = array(value.length);
     }
-    if (__unstableAfterParse) {
-      recordRef.current.formats = __unstableAfterParse(
-        recordRef.current
+    if (__unstableafterparse) {
+      recordref.current.formats = __unstableafterparse(
+        recordref.current
       );
     }
-    recordRef.current.start = selectionStart;
-    recordRef.current.end = selectionEnd;
+    recordref.current.start = selectionstart;
+    recordref.current.end = selectionend;
   }
-  const hadSelectionUpdateRef = (0,external_wp_element_namespaceObject.useRef)(false);
-  if (!recordRef.current) {
-    hadSelectionUpdateRef.current = isSelected;
-    setRecordFromProps();
-  } else if (selectionStart !== recordRef.current.start || selectionEnd !== recordRef.current.end) {
-    hadSelectionUpdateRef.current = isSelected;
-    recordRef.current = {
-      ...recordRef.current,
-      start: selectionStart,
-      end: selectionEnd,
-      activeFormats: void 0
+  const hadselectionupdateref = (0,external_wp_element_namespaceobject.useref)(false);
+  if (!recordref.current) {
+    hadselectionupdateref.current = isselected;
+    setrecordfromprops();
+  } else if (selectionstart !== recordref.current.start || selectionend !== recordref.current.end) {
+    hadselectionupdateref.current = isselected;
+    recordref.current = {
+      ...recordref.current,
+      start: selectionstart,
+      end: selectionend,
+      activeformats: void 0
     };
   }
-  function handleChange(newRecord) {
-    recordRef.current = newRecord;
-    applyRecord(newRecord);
-    if (disableFormats) {
-      _valueRef.current = newRecord.text;
+  function handlechange(newrecord) {
+    recordref.current = newrecord;
+    applyrecord(newrecord);
+    if (disableformats) {
+      _valueref.current = newrecord.text;
     } else {
-      const newFormats = __unstableBeforeSerialize ? __unstableBeforeSerialize(newRecord) : newRecord.formats;
-      newRecord = { ...newRecord, formats: newFormats };
+      const newformats = __unstablebeforeserialize ? __unstablebeforeserialize(newrecord) : newrecord.formats;
+      newrecord = { ...newrecord, formats: newformats };
       if (typeof value === "string") {
-        _valueRef.current = toHTMLString({
-          value: newRecord,
-          preserveWhiteSpace
+        _valueref.current = tohtmlstring({
+          value: newrecord,
+          preservewhitespace
         });
       } else {
-        _valueRef.current = new RichTextData(newRecord);
+        _valueref.current = new richtextdata(newrecord);
       }
     }
-    const { start, end, formats, text } = recordRef.current;
+    const { start, end, formats, text } = recordref.current;
     registry.batch(() => {
-      onSelectionChange(start, end);
-      onChange(_valueRef.current, {
-        __unstableFormats: formats,
-        __unstableText: text
+      onselectionchange(start, end);
+      onchange(_valueref.current, {
+        __unstableformats: formats,
+        __unstabletext: text
       });
     });
-    forceRender();
+    forcerender();
   }
-  function applyFromProps() {
-    const previousValue = _valueRef.current;
-    setRecordFromProps();
-    const contentLengthChanged = previousValue && typeof previousValue === "string" && typeof value === "string" && previousValue.length !== value.length;
-    const hasFocus = ref.current?.contains(
-      ref.current.ownerDocument.activeElement
+  function applyfromprops() {
+    const previousvalue = _valueref.current;
+    setrecordfromprops();
+    const contentlengthchanged = previousvalue && typeof previousvalue === "string" && typeof value === "string" && previousvalue.length !== value.length;
+    const hasfocus = ref.current?.contains(
+      ref.current.ownerdocument.activeelement
     );
-    const skipSelection = contentLengthChanged && !hasFocus;
-    applyRecord(recordRef.current, { domOnly: skipSelection });
+    const skipselection = contentlengthchanged && !hasfocus;
+    applyrecord(recordref.current, { domonly: skipselection });
   }
-  const didMountRef = (0,external_wp_element_namespaceObject.useRef)(false);
-  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (didMountRef.current && value !== _valueRef.current) {
-      applyFromProps();
-      forceRender();
+  const didmountref = (0,external_wp_element_namespaceobject.useref)(false);
+  (0,external_wp_element_namespaceobject.uselayouteffect)(() => {
+    if (didmountref.current && value !== _valueref.current) {
+      applyfromprops();
+      forcerender();
     }
   }, [value]);
-  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
-    if (!hadSelectionUpdateRef.current) {
+  (0,external_wp_element_namespaceobject.uselayouteffect)(() => {
+    if (!hadselectionupdateref.current) {
       return;
     }
-    if (ref.current.ownerDocument.activeElement !== ref.current) {
+    if (ref.current.ownerdocument.activeelement !== ref.current) {
       ref.current.focus();
     }
-    applyRecord(recordRef.current);
-    hadSelectionUpdateRef.current = false;
-  }, [hadSelectionUpdateRef.current]);
-  const mergedRefs = (0,external_wp_compose_namespaceObject.useMergeRefs)([
+    applyrecord(recordref.current);
+    hadselectionupdateref.current = false;
+  }, [hadselectionupdateref.current]);
+  const mergedrefs = (0,external_wp_compose_namespaceobject.usemergerefs)([
     ref,
-    useDefaultStyle(),
-    useBoundaryStyle({ record: recordRef }),
-    useEventListeners({
-      record: recordRef,
-      handleChange,
-      applyRecord,
-      createRecord,
-      isSelected,
-      onSelectionChange,
-      forceRender
+    usedefaultstyle(),
+    useboundarystyle({ record: recordref }),
+    useeventlisteners({
+      record: recordref,
+      handlechange,
+      applyrecord,
+      createrecord,
+      isselected,
+      onselectionchange,
+      forcerender
     }),
-    (0,external_wp_compose_namespaceObject.useRefEffect)(() => {
-      applyFromProps();
-      didMountRef.current = true;
-    }, [placeholder, ...__unstableDependencies])
+    (0,external_wp_compose_namespaceobject.userefeffect)(() => {
+      applyfromprops();
+      didmountref.current = true;
+    }, [placeholder, ...__unstabledependencies])
   ]);
   return {
-    value: recordRef.current,
-    // A function to get the most recent value so event handlers in
-    // useRichText implementations have access to it. For example when
+    value: recordref.current,
+    // a function to get the most recent value so event handlers in
+    // userichtext implementations have access to it. for example when
     // listening to input events, we internally update the state, but this
-    // state is not yet available to the input event handler because React
+    // state is not yet available to the input event handler because react
     // may re-render asynchronously.
-    getValue: () => recordRef.current,
-    onChange: handleChange,
-    ref: mergedRefs
+    getvalue: () => recordref.current,
+    onchange: handlechange,
+    ref: mergedrefs
   };
 }
-function __experimentalRichText() {
+function __experimentalrichtext() {
 }
 
 
@@ -2626,6 +2626,7 @@ function __experimentalRichText() {
 
 
 
-(window.wp = window.wp || {}).richText = __webpack_exports__;
+(window.wp = window.wp || {}).richtext = __webpack_exports__;
 /******/ })()
 ;
+

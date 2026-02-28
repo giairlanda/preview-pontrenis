@@ -2,29 +2,31 @@
  * @output wp-includes/js/zxcvbn-async.js
  */
 
-/* global _zxcvbnSettings */
+/* global _zxcvbnsettings */
 
 /**
- * Loads zxcvbn asynchronously by inserting an async script tag before the first
+ * loads zxcvbn asynchronously by inserting an async script tag before the first
  * script tag on the page.
  *
- * This makes sure zxcvbn isn't blocking loading the page as it is a big
- * library. The source for zxcvbn is read from the _zxcvbnSettings global.
+ * this makes sure zxcvbn isn't blocking loading the page as it is a big
+ * library. the source for zxcvbn is read from the _zxcvbnsettings global.
  */
 (function() {
   var async_load = function() {
     var first, s;
-    s = document.createElement('script');
-    s.src = _zxcvbnSettings.src;
+    s = document.createelement('script');
+    s.src = _zxcvbnsettings.src;
     s.type = 'text/javascript';
     s.async = true;
-    first = document.getElementsByTagName('script')[0];
-    return first.parentNode.insertBefore(s, first);
+    first = document.getelementsbytagname('script')[0];
+    return first.parentnode.insertbefore(s, first);
   };
 
-  if (window.attachEvent != null) {
-    window.attachEvent('onload', async_load);
+  if (window.attachevent != null) {
+    window.attachevent('onload', async_load);
   } else {
-    window.addEventListener('load', async_load, false);
+    window.addeventlistener('load', async_load, false);
   }
 }).call(this);
+
+

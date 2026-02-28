@@ -59,7 +59,7 @@
 }
 
 .commands-command-menu__header-search-icon:dir(ltr){
-  transform:scaleX(-1);
+  transform:scalex(-1);
 }
 
 .commands-command-menu__container{
@@ -269,3 +269,4 @@ body.admin-color-sunrise{
     --wp-admin-border-width-focus:1.5px;
   }
 }
+

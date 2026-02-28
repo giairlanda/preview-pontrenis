@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,33 +10,33 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ index_default)
 });
 
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/nonce.js
-function createNonceMiddleware(nonce) {
+function createnoncemiddleware(nonce) {
   const middleware = (options, next) => {
     const { headers = {} } = options;
-    for (const headerName in headers) {
-      if (headerName.toLowerCase() === "x-wp-nonce" && headers[headerName] === middleware.nonce) {
+    for (const headername in headers) {
+      if (headername.tolowercase() === "x-wp-nonce" && headers[headername] === middleware.nonce) {
         return next(options);
       }
     }
@@ -44,27 +44,27 @@ function createNonceMiddleware(nonce) {
       ...options,
       headers: {
         ...headers,
-        "X-WP-Nonce": middleware.nonce
+        "x-wp-nonce": middleware.nonce
       }
     });
   };
   middleware.nonce = nonce;
   return middleware;
 }
-var nonce_default = createNonceMiddleware;
+var nonce_default = createnoncemiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/namespace-endpoint.js
-const namespaceAndEndpointMiddleware = (options, next) => {
+const namespaceandendpointmiddleware = (options, next) => {
   let path = options.path;
-  let namespaceTrimmed, endpointTrimmed;
+  let namespacetrimmed, endpointtrimmed;
   if (typeof options.namespace === "string" && typeof options.endpoint === "string") {
-    namespaceTrimmed = options.namespace.replace(/^\/|\/$/g, "");
-    endpointTrimmed = options.endpoint.replace(/^\//, "");
-    if (endpointTrimmed) {
-      path = namespaceTrimmed + "/" + endpointTrimmed;
+    namespacetrimmed = options.namespace.replace(/^\/|\/$/g, "");
+    endpointtrimmed = options.endpoint.replace(/^\//, "");
+    if (endpointtrimmed) {
+      path = namespacetrimmed + "/" + endpointtrimmed;
     } else {
-      path = namespaceTrimmed;
+      path = namespacetrimmed;
     }
   }
   delete options.namespace;
@@ -74,332 +74,332 @@ const namespaceAndEndpointMiddleware = (options, next) => {
     path
   });
 };
-var namespace_endpoint_default = namespaceAndEndpointMiddleware;
+var namespace_endpoint_default = namespaceandendpointmiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/root-url.js
 
-const createRootURLMiddleware = (rootURL) => (options, next) => {
-  return namespace_endpoint_default(options, (optionsWithPath) => {
-    let url = optionsWithPath.url;
-    let path = optionsWithPath.path;
-    let apiRoot;
+const createrooturlmiddleware = (rooturl) => (options, next) => {
+  return namespace_endpoint_default(options, (optionswithpath) => {
+    let url = optionswithpath.url;
+    let path = optionswithpath.path;
+    let apiroot;
     if (typeof path === "string") {
-      apiRoot = rootURL;
-      if (-1 !== rootURL.indexOf("?")) {
+      apiroot = rooturl;
+      if (-1 !== rooturl.indexof("?")) {
         path = path.replace("?", "&");
       }
       path = path.replace(/^\//, "");
-      if ("string" === typeof apiRoot && -1 !== apiRoot.indexOf("?")) {
+      if ("string" === typeof apiroot && -1 !== apiroot.indexof("?")) {
         path = path.replace("?", "&");
       }
-      url = apiRoot + path;
+      url = apiroot + path;
     }
     return next({
-      ...optionsWithPath,
+      ...optionswithpath,
       url
     });
   });
 };
-var root_url_default = createRootURLMiddleware;
+var root_url_default = createrooturlmiddleware;
 
 
 ;// external ["wp","url"]
-const external_wp_url_namespaceObject = window["wp"]["url"];
+const external_wp_url_namespaceobject = window["wp"]["url"];
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/preloading.js
 
-function createPreloadingMiddleware(preloadedData) {
-  const cache = Object.fromEntries(
-    Object.entries(preloadedData).map(([path, data]) => [
-      (0,external_wp_url_namespaceObject.normalizePath)(path),
+function createpreloadingmiddleware(preloadeddata) {
+  const cache = object.fromentries(
+    object.entries(preloadeddata).map(([path, data]) => [
+      (0,external_wp_url_namespaceobject.normalizepath)(path),
       data
     ])
   );
   return (options, next) => {
     const { parse = true } = options;
-    let rawPath = options.path;
-    if (!rawPath && options.url) {
-      const { rest_route: pathFromQuery, ...queryArgs } = (0,external_wp_url_namespaceObject.getQueryArgs)(
+    let rawpath = options.path;
+    if (!rawpath && options.url) {
+      const { rest_route: pathfromquery, ...queryargs } = (0,external_wp_url_namespaceobject.getqueryargs)(
         options.url
       );
-      if (typeof pathFromQuery === "string") {
-        rawPath = (0,external_wp_url_namespaceObject.addQueryArgs)(pathFromQuery, queryArgs);
+      if (typeof pathfromquery === "string") {
+        rawpath = (0,external_wp_url_namespaceobject.addqueryargs)(pathfromquery, queryargs);
       }
     }
-    if (typeof rawPath !== "string") {
+    if (typeof rawpath !== "string") {
       return next(options);
     }
-    const method = options.method || "GET";
-    const path = (0,external_wp_url_namespaceObject.normalizePath)(rawPath);
-    if ("GET" === method && cache[path]) {
-      const cacheData = cache[path];
+    const method = options.method || "get";
+    const path = (0,external_wp_url_namespaceobject.normalizepath)(rawpath);
+    if ("get" === method && cache[path]) {
+      const cachedata = cache[path];
       delete cache[path];
-      return prepareResponse(cacheData, !!parse);
-    } else if ("OPTIONS" === method && cache[method] && cache[method][path]) {
-      const cacheData = cache[method][path];
+      return prepareresponse(cachedata, !!parse);
+    } else if ("options" === method && cache[method] && cache[method][path]) {
+      const cachedata = cache[method][path];
       delete cache[method][path];
-      return prepareResponse(cacheData, !!parse);
+      return prepareresponse(cachedata, !!parse);
     }
     return next(options);
   };
 }
-function prepareResponse(responseData, parse) {
+function prepareresponse(responsedata, parse) {
   if (parse) {
-    return Promise.resolve(responseData.body);
+    return promise.resolve(responsedata.body);
   }
   try {
-    return Promise.resolve(
-      new window.Response(JSON.stringify(responseData.body), {
+    return promise.resolve(
+      new window.response(json.stringify(responsedata.body), {
         status: 200,
-        statusText: "OK",
-        headers: responseData.headers
+        statustext: "ok",
+        headers: responsedata.headers
       })
     );
   } catch {
-    Object.entries(
-      responseData.headers
-    ).forEach(([key, value]) => {
-      if (key.toLowerCase() === "link") {
-        responseData.headers[key] = value.replace(
+    object.entries(
+      responsedata.headers
+    ).foreach(([key, value]) => {
+      if (key.tolowercase() === "link") {
+        responsedata.headers[key] = value.replace(
           /<([^>]+)>/,
-          (_, url) => `<${encodeURI(url)}>`
+          (_, url) => `<${encodeuri(url)}>`
         );
       }
     });
-    return Promise.resolve(
-      parse ? responseData.body : new window.Response(JSON.stringify(responseData.body), {
+    return promise.resolve(
+      parse ? responsedata.body : new window.response(json.stringify(responsedata.body), {
         status: 200,
-        statusText: "OK",
-        headers: responseData.headers
+        statustext: "ok",
+        headers: responsedata.headers
       })
     );
   }
 }
-var preloading_default = createPreloadingMiddleware;
+var preloading_default = createpreloadingmiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/fetch-all-middleware.js
 
 
-const modifyQuery = ({ path, url, ...options }, queryArgs) => ({
+const modifyquery = ({ path, url, ...options }, queryargs) => ({
   ...options,
-  url: url && (0,external_wp_url_namespaceObject.addQueryArgs)(url, queryArgs),
-  path: path && (0,external_wp_url_namespaceObject.addQueryArgs)(path, queryArgs)
+  url: url && (0,external_wp_url_namespaceobject.addqueryargs)(url, queryargs),
+  path: path && (0,external_wp_url_namespaceobject.addqueryargs)(path, queryargs)
 });
-const parseResponse = (response) => response.json ? response.json() : Promise.reject(response);
-const parseLinkHeader = (linkHeader) => {
-  if (!linkHeader) {
+const parseresponse = (response) => response.json ? response.json() : promise.reject(response);
+const parselinkheader = (linkheader) => {
+  if (!linkheader) {
     return {};
   }
-  const match = linkHeader.match(/<([^>]+)>; rel="next"/);
+  const match = linkheader.match(/<([^>]+)>; rel="next"/);
   return match ? {
     next: match[1]
   } : {};
 };
-const getNextPageUrl = (response) => {
-  const { next } = parseLinkHeader(response.headers.get("link"));
+const getnextpageurl = (response) => {
+  const { next } = parselinkheader(response.headers.get("link"));
   return next;
 };
-const requestContainsUnboundedQuery = (options) => {
-  const pathIsUnbounded = !!options.path && options.path.indexOf("per_page=-1") !== -1;
-  const urlIsUnbounded = !!options.url && options.url.indexOf("per_page=-1") !== -1;
-  return pathIsUnbounded || urlIsUnbounded;
+const requestcontainsunboundedquery = (options) => {
+  const pathisunbounded = !!options.path && options.path.indexof("per_page=-1") !== -1;
+  const urlisunbounded = !!options.url && options.url.indexof("per_page=-1") !== -1;
+  return pathisunbounded || urlisunbounded;
 };
-const fetchAllMiddleware = async (options, next) => {
+const fetchallmiddleware = async (options, next) => {
   if (options.parse === false) {
     return next(options);
   }
-  if (!requestContainsUnboundedQuery(options)) {
+  if (!requestcontainsunboundedquery(options)) {
     return next(options);
   }
   const response = await index_default({
-    ...modifyQuery(options, {
+    ...modifyquery(options, {
       per_page: 100
     }),
-    // Ensure headers are returned for page 1.
+    // ensure headers are returned for page 1.
     parse: false
   });
-  const results = await parseResponse(response);
-  if (!Array.isArray(results)) {
+  const results = await parseresponse(response);
+  if (!array.isarray(results)) {
     return results;
   }
-  let nextPage = getNextPageUrl(response);
-  if (!nextPage) {
+  let nextpage = getnextpageurl(response);
+  if (!nextpage) {
     return results;
   }
-  let mergedResults = [].concat(results);
-  while (nextPage) {
-    const nextResponse = await index_default({
+  let mergedresults = [].concat(results);
+  while (nextpage) {
+    const nextresponse = await index_default({
       ...options,
-      // Ensure the URL for the next page is used instead of any provided path.
+      // ensure the url for the next page is used instead of any provided path.
       path: void 0,
-      url: nextPage,
-      // Ensure we still get headers so we can identify the next page.
+      url: nextpage,
+      // ensure we still get headers so we can identify the next page.
       parse: false
     });
-    const nextResults = await parseResponse(nextResponse);
-    mergedResults = mergedResults.concat(nextResults);
-    nextPage = getNextPageUrl(nextResponse);
+    const nextresults = await parseresponse(nextresponse);
+    mergedresults = mergedresults.concat(nextresults);
+    nextpage = getnextpageurl(nextresponse);
   }
-  return mergedResults;
+  return mergedresults;
 };
-var fetch_all_middleware_default = fetchAllMiddleware;
+var fetch_all_middleware_default = fetchallmiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/http-v1.js
-const OVERRIDE_METHODS = /* @__PURE__ */ new Set(["PATCH", "PUT", "DELETE"]);
-const DEFAULT_METHOD = "GET";
-const httpV1Middleware = (options, next) => {
-  const { method = DEFAULT_METHOD } = options;
-  if (OVERRIDE_METHODS.has(method.toUpperCase())) {
+const override_methods = /* @__pure__ */ new set(["patch", "put", "delete"]);
+const default_method = "get";
+const httpv1middleware = (options, next) => {
+  const { method = default_method } = options;
+  if (override_methods.has(method.touppercase())) {
     options = {
       ...options,
       headers: {
         ...options.headers,
-        "X-HTTP-Method-Override": method,
-        "Content-Type": "application/json"
+        "x-http-method-override": method,
+        "content-type": "application/json"
       },
-      method: "POST"
+      method: "post"
     };
   }
   return next(options);
 };
-var http_v1_default = httpV1Middleware;
+var http_v1_default = httpv1middleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/user-locale.js
 
-const userLocaleMiddleware = (options, next) => {
-  if (typeof options.url === "string" && !(0,external_wp_url_namespaceObject.hasQueryArg)(options.url, "_locale")) {
-    options.url = (0,external_wp_url_namespaceObject.addQueryArgs)(options.url, { _locale: "user" });
+const userlocalemiddleware = (options, next) => {
+  if (typeof options.url === "string" && !(0,external_wp_url_namespaceobject.hasqueryarg)(options.url, "_locale")) {
+    options.url = (0,external_wp_url_namespaceobject.addqueryargs)(options.url, { _locale: "user" });
   }
-  if (typeof options.path === "string" && !(0,external_wp_url_namespaceObject.hasQueryArg)(options.path, "_locale")) {
-    options.path = (0,external_wp_url_namespaceObject.addQueryArgs)(options.path, { _locale: "user" });
+  if (typeof options.path === "string" && !(0,external_wp_url_namespaceobject.hasqueryarg)(options.path, "_locale")) {
+    options.path = (0,external_wp_url_namespaceobject.addqueryargs)(options.path, { _locale: "user" });
   }
   return next(options);
 };
-var user_locale_default = userLocaleMiddleware;
+var user_locale_default = userlocalemiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/utils/response.js
 
-async function parseJsonAndNormalizeError(response) {
+async function parsejsonandnormalizeerror(response) {
   try {
     return await response.json();
   } catch {
     throw {
       code: "invalid_json",
-      message: (0,external_wp_i18n_namespaceObject.__)("The response is not a valid JSON response.")
+      message: (0,external_wp_i18n_namespaceobject.__)("the response is not a valid json response.")
     };
   }
 }
-async function parseResponseAndNormalizeError(response, shouldParseResponse = true) {
-  if (!shouldParseResponse) {
+async function parseresponseandnormalizeerror(response, shouldparseresponse = true) {
+  if (!shouldparseresponse) {
     return response;
   }
   if (response.status === 204) {
     return null;
   }
-  return await parseJsonAndNormalizeError(response);
+  return await parsejsonandnormalizeerror(response);
 }
-async function parseAndThrowError(response, shouldParseResponse = true) {
-  if (!shouldParseResponse) {
+async function parseandthrowerror(response, shouldparseresponse = true) {
+  if (!shouldparseresponse) {
     throw response;
   }
-  throw await parseJsonAndNormalizeError(response);
+  throw await parsejsonandnormalizeerror(response);
 }
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/media-upload.js
 
 
-function isMediaUploadRequest(options) {
-  const isCreateMethod = !!options.method && options.method === "POST";
-  const isMediaEndpoint = !!options.path && options.path.indexOf("/wp/v2/media") !== -1 || !!options.url && options.url.indexOf("/wp/v2/media") !== -1;
-  return isMediaEndpoint && isCreateMethod;
+function ismediauploadrequest(options) {
+  const iscreatemethod = !!options.method && options.method === "post";
+  const ismediaendpoint = !!options.path && options.path.indexof("/wp/v2/media") !== -1 || !!options.url && options.url.indexof("/wp/v2/media") !== -1;
+  return ismediaendpoint && iscreatemethod;
 }
-const mediaUploadMiddleware = (options, next) => {
-  if (!isMediaUploadRequest(options)) {
+const mediauploadmiddleware = (options, next) => {
+  if (!ismediauploadrequest(options)) {
     return next(options);
   }
   let retries = 0;
-  const maxRetries = 5;
-  const postProcess = (attachmentId) => {
+  const maxretries = 5;
+  const postprocess = (attachmentid) => {
     retries++;
     return next({
-      path: `/wp/v2/media/${attachmentId}/post-process`,
-      method: "POST",
+      path: `/wp/v2/media/${attachmentid}/post-process`,
+      method: "post",
       data: { action: "create-image-subsizes" },
       parse: false
     }).catch(() => {
-      if (retries < maxRetries) {
-        return postProcess(attachmentId);
+      if (retries < maxretries) {
+        return postprocess(attachmentid);
       }
       next({
-        path: `/wp/v2/media/${attachmentId}?force=true`,
-        method: "DELETE"
+        path: `/wp/v2/media/${attachmentid}?force=true`,
+        method: "delete"
       });
-      return Promise.reject();
+      return promise.reject();
     });
   };
   return next({ ...options, parse: false }).catch((response) => {
-    if (!(response instanceof globalThis.Response)) {
-      return Promise.reject(response);
+    if (!(response instanceof globalthis.response)) {
+      return promise.reject(response);
     }
-    const attachmentId = response.headers.get(
+    const attachmentid = response.headers.get(
       "x-wp-upload-attachment-id"
     );
-    if (response.status >= 500 && response.status < 600 && attachmentId) {
-      return postProcess(attachmentId).catch(() => {
+    if (response.status >= 500 && response.status < 600 && attachmentid) {
+      return postprocess(attachmentid).catch(() => {
         if (options.parse !== false) {
-          return Promise.reject({
+          return promise.reject({
             code: "post_process",
-            message: (0,external_wp_i18n_namespaceObject.__)(
-              "Media upload failed. If this is a photo or a large image, please scale it down and try again."
+            message: (0,external_wp_i18n_namespaceobject.__)(
+              "media upload failed. if this is a photo or a large image, please scale it down and try again."
             )
           });
         }
-        return Promise.reject(response);
+        return promise.reject(response);
       });
     }
-    return parseAndThrowError(response, options.parse);
+    return parseandthrowerror(response, options.parse);
   }).then(
-    (response) => parseResponseAndNormalizeError(response, options.parse)
+    (response) => parseresponseandnormalizeerror(response, options.parse)
   );
 };
-var media_upload_default = mediaUploadMiddleware;
+var media_upload_default = mediauploadmiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/middlewares/theme-preview.js
 
-const createThemePreviewMiddleware = (themePath) => (options, next) => {
+const createthemepreviewmiddleware = (themepath) => (options, next) => {
   if (typeof options.url === "string") {
-    const wpThemePreview = (0,external_wp_url_namespaceObject.getQueryArg)(
+    const wpthemepreview = (0,external_wp_url_namespaceobject.getqueryarg)(
       options.url,
       "wp_theme_preview"
     );
-    if (wpThemePreview === void 0) {
-      options.url = (0,external_wp_url_namespaceObject.addQueryArgs)(options.url, {
-        wp_theme_preview: themePath
+    if (wpthemepreview === void 0) {
+      options.url = (0,external_wp_url_namespaceobject.addqueryargs)(options.url, {
+        wp_theme_preview: themepath
       });
-    } else if (wpThemePreview === "") {
-      options.url = (0,external_wp_url_namespaceObject.removeQueryArgs)(
+    } else if (wpthemepreview === "") {
+      options.url = (0,external_wp_url_namespaceobject.removequeryargs)(
         options.url,
         "wp_theme_preview"
       );
     }
   }
   if (typeof options.path === "string") {
-    const wpThemePreview = (0,external_wp_url_namespaceObject.getQueryArg)(
+    const wpthemepreview = (0,external_wp_url_namespaceobject.getqueryarg)(
       options.path,
       "wp_theme_preview"
     );
-    if (wpThemePreview === void 0) {
-      options.path = (0,external_wp_url_namespaceObject.addQueryArgs)(options.path, {
-        wp_theme_preview: themePath
+    if (wpthemepreview === void 0) {
+      options.path = (0,external_wp_url_namespaceobject.addqueryargs)(options.path, {
+        wp_theme_preview: themepath
       });
-    } else if (wpThemePreview === "") {
-      options.path = (0,external_wp_url_namespaceObject.removeQueryArgs)(
+    } else if (wpthemepreview === "") {
+      options.path = (0,external_wp_url_namespaceobject.removequeryargs)(
         options.path,
         "wp_theme_preview"
       );
@@ -407,7 +407,7 @@ const createThemePreviewMiddleware = (themePath) => (options, next) => {
   }
   return next(options);
 };
-var theme_preview_default = createThemePreviewMiddleware;
+var theme_preview_default = createthemepreviewmiddleware;
 
 
 ;// ./node_modules/@wordpress/api-fetch/build-module/index.js
@@ -422,14 +422,14 @@ var theme_preview_default = createThemePreviewMiddleware;
 
 
 
-const DEFAULT_HEADERS = {
-  // The backend uses the Accept header as a condition for considering an
-  // incoming request as a REST request.
+const default_headers = {
+  // the backend uses the accept header as a condition for considering an
+  // incoming request as a rest request.
   //
-  // See: https://core.trac.wordpress.org/ticket/44534
-  Accept: "application/json, */*;q=0.1"
+  // see: https://core.trac.wordpress.org/ticket/44534
+  accept: "application/json, */*;q=0.1"
 };
-const DEFAULT_OPTIONS = {
+const default_options = {
   credentials: "include"
 };
 const middlewares = [
@@ -438,93 +438,94 @@ const middlewares = [
   http_v1_default,
   fetch_all_middleware_default
 ];
-function registerMiddleware(middleware) {
+function registermiddleware(middleware) {
   middlewares.unshift(middleware);
 }
-const defaultFetchHandler = (nextOptions) => {
-  const { url, path, data, parse = true, ...remainingOptions } = nextOptions;
-  let { body, headers } = nextOptions;
-  headers = { ...DEFAULT_HEADERS, ...headers };
+const defaultfetchhandler = (nextoptions) => {
+  const { url, path, data, parse = true, ...remainingoptions } = nextoptions;
+  let { body, headers } = nextoptions;
+  headers = { ...default_headers, ...headers };
   if (data) {
-    body = JSON.stringify(data);
-    headers["Content-Type"] = "application/json";
+    body = json.stringify(data);
+    headers["content-type"] = "application/json";
   }
-  const responsePromise = globalThis.fetch(
-    // Fall back to explicitly passing `window.location` which is the behavior if `undefined` is passed.
+  const responsepromise = globalthis.fetch(
+    // fall back to explicitly passing `window.location` which is the behavior if `undefined` is passed.
     url || path || window.location.href,
     {
-      ...DEFAULT_OPTIONS,
-      ...remainingOptions,
+      ...default_options,
+      ...remainingoptions,
       body,
       headers
     }
   );
-  return responsePromise.then(
+  return responsepromise.then(
     (response) => {
       if (!response.ok) {
-        return parseAndThrowError(response, parse);
+        return parseandthrowerror(response, parse);
       }
-      return parseResponseAndNormalizeError(response, parse);
+      return parseresponseandnormalizeerror(response, parse);
     },
     (err) => {
-      if (err && err.name === "AbortError") {
+      if (err && err.name === "aborterror") {
         throw err;
       }
-      if (!globalThis.navigator.onLine) {
+      if (!globalthis.navigator.online) {
         throw {
           code: "offline_error",
-          message: (0,external_wp_i18n_namespaceObject.__)(
-            "Unable to connect. Please check your Internet connection."
+          message: (0,external_wp_i18n_namespaceobject.__)(
+            "unable to connect. please check your internet connection."
           )
         };
       }
       throw {
         code: "fetch_error",
-        message: (0,external_wp_i18n_namespaceObject.__)(
-          "Could not get a valid response from the server."
+        message: (0,external_wp_i18n_namespaceobject.__)(
+          "could not get a valid response from the server."
         )
       };
     }
   );
 };
-let fetchHandler = defaultFetchHandler;
-function setFetchHandler(newFetchHandler) {
-  fetchHandler = newFetchHandler;
+let fetchhandler = defaultfetchhandler;
+function setfetchhandler(newfetchhandler) {
+  fetchhandler = newfetchhandler;
 }
-const apiFetch = (options) => {
-  const enhancedHandler = middlewares.reduceRight(
+const apifetch = (options) => {
+  const enhancedhandler = middlewares.reduceright(
     (next, middleware) => {
-      return (workingOptions) => middleware(workingOptions, next);
+      return (workingoptions) => middleware(workingoptions, next);
     },
-    fetchHandler
+    fetchhandler
   );
-  return enhancedHandler(options).catch((error) => {
+  return enhancedhandler(options).catch((error) => {
     if (error.code !== "rest_cookie_invalid_nonce") {
-      return Promise.reject(error);
+      return promise.reject(error);
     }
-    return globalThis.fetch(apiFetch.nonceEndpoint).then((response) => {
+    return globalthis.fetch(apifetch.nonceendpoint).then((response) => {
       if (!response.ok) {
-        return Promise.reject(error);
+        return promise.reject(error);
       }
       return response.text();
     }).then((text) => {
-      apiFetch.nonceMiddleware.nonce = text;
-      return apiFetch(options);
+      apifetch.noncemiddleware.nonce = text;
+      return apifetch(options);
     });
   });
 };
-apiFetch.use = registerMiddleware;
-apiFetch.setFetchHandler = setFetchHandler;
-apiFetch.createNonceMiddleware = nonce_default;
-apiFetch.createPreloadingMiddleware = preloading_default;
-apiFetch.createRootURLMiddleware = root_url_default;
-apiFetch.fetchAllMiddleware = fetch_all_middleware_default;
-apiFetch.mediaUploadMiddleware = media_upload_default;
-apiFetch.createThemePreviewMiddleware = theme_preview_default;
-var index_default = apiFetch;
+apifetch.use = registermiddleware;
+apifetch.setfetchhandler = setfetchhandler;
+apifetch.createnoncemiddleware = nonce_default;
+apifetch.createpreloadingmiddleware = preloading_default;
+apifetch.createrooturlmiddleware = root_url_default;
+apifetch.fetchallmiddleware = fetch_all_middleware_default;
+apifetch.mediauploadmiddleware = media_upload_default;
+apifetch.createthemepreviewmiddleware = theme_preview_default;
+var index_default = apifetch;
 
 
 
-(window.wp = window.wp || {}).apiFetch = __webpack_exports__["default"];
+(window.wp = window.wp || {}).apifetch = __webpack_exports__["default"];
 /******/ })()
 ;
+

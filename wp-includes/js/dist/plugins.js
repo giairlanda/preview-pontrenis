@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,93 +22,93 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  PluginArea: () => (/* reexport */ plugin_area_default),
-  getPlugin: () => (/* reexport */ getPlugin),
-  getPlugins: () => (/* reexport */ getPlugins),
-  registerPlugin: () => (/* reexport */ registerPlugin),
-  unregisterPlugin: () => (/* reexport */ unregisterPlugin),
-  usePluginContext: () => (/* reexport */ usePluginContext),
-  withPluginContext: () => (/* reexport */ withPluginContext)
+  pluginarea: () => (/* reexport */ plugin_area_default),
+  getplugin: () => (/* reexport */ getplugin),
+  getplugins: () => (/* reexport */ getplugins),
+  registerplugin: () => (/* reexport */ registerplugin),
+  unregisterplugin: () => (/* reexport */ unregisterplugin),
+  useplugincontext: () => (/* reexport */ useplugincontext),
+  withplugincontext: () => (/* reexport */ withplugincontext)
 });
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
 ;// ./node_modules/memize/dist/index.js
 /**
- * Memize options object.
+ * memize options object.
  *
- * @typedef MemizeOptions
+ * @typedef memizeoptions
  *
- * @property {number} [maxSize] Maximum size of the cache.
+ * @property {number} [maxsize] maximum size of the cache.
  */
 
 /**
- * Internal cache entry.
+ * internal cache entry.
  *
- * @typedef MemizeCacheNode
+ * @typedef memizecachenode
  *
- * @property {?MemizeCacheNode|undefined} [prev] Previous node.
- * @property {?MemizeCacheNode|undefined} [next] Next node.
- * @property {Array<*>}                   args   Function arguments for cache
+ * @property {?memizecachenode|undefined} [prev] previous node.
+ * @property {?memizecachenode|undefined} [next] next node.
+ * @property {array<*>}                   args   function arguments for cache
  *                                               entry.
- * @property {*}                          val    Function result.
+ * @property {*}                          val    function result.
  */
 
 /**
- * Properties of the enhanced function for controlling cache.
+ * properties of the enhanced function for controlling cache.
  *
- * @typedef MemizeMemoizedFunction
+ * @typedef memizememoizedfunction
  *
- * @property {()=>void} clear Clear the cache.
+ * @property {()=>void} clear clear the cache.
  */
 
 /**
- * Accepts a function to be memoized, and returns a new memoized function, with
+ * accepts a function to be memoized, and returns a new memoized function, with
  * optional options.
  *
- * @template {(...args: any[]) => any} F
+ * @template {(...args: any[]) => any} f
  *
- * @param {F}             fn        Function to memoize.
- * @param {MemizeOptions} [options] Options object.
+ * @param {f}             fn        function to memoize.
+ * @param {memizeoptions} [options] options object.
  *
- * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
+ * @return {((...args: parameters<f>) => returntype<f>) & memizememoizedfunction} memoized function.
  */
 function memize(fn, options) {
 	var size = 0;
 
-	/** @type {?MemizeCacheNode|undefined} */
+	/** @type {?memizecachenode|undefined} */
 	var head;
 
-	/** @type {?MemizeCacheNode|undefined} */
+	/** @type {?memizecachenode|undefined} */
 	var tail;
 
 	options = options || {};
@@ -119,58 +119,58 @@ function memize(fn, options) {
 			args,
 			i;
 
-		searchCache: while (node) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
+		searchcache: while (node) {
+			// perform a shallow equality test to confirm that whether the node
+			// under test is a candidate for the arguments passed. two arrays
 			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
+			// strictly equal between the two sets. avoid abstracting to a
 			// function which could incur an arguments leaking deoptimization.
 
-			// Check whether node arguments match arguments length
+			// check whether node arguments match arguments length
 			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
-			// Check whether node arguments match arguments values
+			// check whether node arguments match arguments values
 			for (i = 0; i < len; i++) {
 				if (node.args[i] !== arguments[i]) {
 					node = node.next;
-					continue searchCache;
+					continue searchcache;
 				}
 			}
 
-			// At this point we can assume we've found a match
+			// at this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			// surface matched node to head if not already
 			if (node !== head) {
-				// As tail, shift to previous. Must only shift if not also
+				// as tail, shift to previous. must only shift if not also
 				// head, since if both head and tail, there is no previous.
 				if (node === tail) {
 					tail = node.prev;
 				}
 
-				// Adjust siblings to point to each other. If node was tail,
+				// adjust siblings to point to each other. if node was tail,
 				// this also handles new tail's empty `next` assignment.
-				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
+				/** @type {memizecachenode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = head;
 				node.prev = null;
-				/** @type {MemizeCacheNode} */ (head).prev = node;
+				/** @type {memizecachenode} */ (head).prev = node;
 				head = node;
 			}
 
-			// Return immediately
+			// return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		// no cached value found. continue to insertion phase:
 
-		// Create a copy of arguments (avoid leaking deoptimization)
-		args = new Array(len);
+		// create a copy of arguments (avoid leaking deoptimization)
+		args = new array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
 		}
@@ -178,26 +178,26 @@ function memize(fn, options) {
 		node = {
 			args: args,
 
-			// Generate the result from original function
+			// generate the result from original function
 			val: fn.apply(null, args),
 		};
 
-		// Don't need to check whether node is already head, since it would
+		// don't need to check whether node is already head, since it would
 		// have been returned above already if it was
 
-		// Shift existing head down list
+		// shift existing head down list
 		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
-			// If no head, follows that there's no tail (at initial or reset)
+			// if no head, follows that there's no tail (at initial or reset)
 			tail = node;
 		}
 
-		// Trim tail if we're reached max size and are pending cache insertion
-		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
-			tail = /** @type {MemizeCacheNode} */ (tail).prev;
-			/** @type {MemizeCacheNode} */ (tail).next = null;
+		// trim tail if we're reached max size and are pending cache insertion
+		if (size === /** @type {memizeoptions} */ (options).maxsize) {
+			tail = /** @type {memizecachenode} */ (tail).prev;
+			/** @type {memizecachenode} */ (tail).next = null;
 		} else {
 			size++;
 		}
@@ -213,7 +213,7 @@ function memize(fn, options) {
 		size = 0;
 	};
 
-	// Ignore reason: There's not a clear solution to create an intersection of
+	// ignore reason: there's not a clear solution to create an intersection of
 	// the function with additional properties, where the goal is to retain the
 	// function signature of the incoming argument and add control properties
 	// on the return value.
@@ -225,66 +225,66 @@ function memize(fn, options) {
 
 
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// external ["wp","hooks"]
-const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
-;// external ["wp","isShallowEqual"]
-const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
-var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
+const external_wp_hooks_namespaceobject = window["wp"]["hooks"];
+;// external ["wp","isshallowequal"]
+const external_wp_isshallowequal_namespaceobject = window["wp"]["isshallowequal"];
+var external_wp_isshallowequal_default = /*#__pure__*/__webpack_require__.n(external_wp_isshallowequal_namespaceobject);
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
 ;// external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
+const external_wp_deprecated_namespaceobject = window["wp"]["deprecated"];
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_namespaceobject);
 ;// ./node_modules/@wordpress/plugins/build-module/components/plugin-context/index.js
 
 
 
 
-const Context = (0,external_wp_element_namespaceObject.createContext)({
+const context = (0,external_wp_element_namespaceobject.createcontext)({
   name: null,
   icon: null
 });
-Context.displayName = "PluginContext";
-const PluginContextProvider = Context.Provider;
-function usePluginContext() {
-  return (0,external_wp_element_namespaceObject.useContext)(Context);
+context.displayname = "plugincontext";
+const plugincontextprovider = context.provider;
+function useplugincontext() {
+  return (0,external_wp_element_namespaceobject.usecontext)(context);
 }
-const withPluginContext = (mapContextToProps) => (0,external_wp_compose_namespaceObject.createHigherOrderComponent)((OriginalComponent) => {
-  external_wp_deprecated_default()("wp.plugins.withPluginContext", {
+const withplugincontext = (mapcontexttoprops) => (0,external_wp_compose_namespaceobject.createhigherordercomponent)((originalcomponent) => {
+  external_wp_deprecated_default()("wp.plugins.withplugincontext", {
     since: "6.8.0",
-    alternative: "wp.plugins.usePluginContext"
+    alternative: "wp.plugins.useplugincontext"
   });
-  return (props) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(Context.Consumer, { children: (context) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    OriginalComponent,
+  return (props) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(context.consumer, { children: (context) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    originalcomponent,
     {
       ...props,
-      ...mapContextToProps(context, props)
+      ...mapcontexttoprops(context, props)
     }
   ) });
-}, "withPluginContext");
+}, "withplugincontext");
 
 
 ;// ./node_modules/@wordpress/plugins/build-module/components/plugin-error-boundary/index.js
 
-class PluginErrorBoundary extends external_wp_element_namespaceObject.Component {
+class pluginerrorboundary extends external_wp_element_namespaceobject.component {
   constructor(props) {
     super(props);
     this.state = {
-      hasError: false
+      haserror: false
     };
   }
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getderivedstatefromerror() {
+    return { haserror: true };
   }
-  componentDidCatch(error) {
-    const { name, onError } = this.props;
-    if (onError) {
-      onError(name, error);
+  componentdidcatch(error) {
+    const { name, onerror } = this.props;
+    if (onerror) {
+      onerror(name, error);
     }
   }
   render() {
-    if (!this.state.hasError) {
+    if (!this.state.haserror) {
       return this.props.children;
     }
     return null;
@@ -293,55 +293,55 @@ class PluginErrorBoundary extends external_wp_element_namespaceObject.Component 
 
 
 ;// external ["wp","primitives"]
-const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+const external_wp_primitives_namespaceobject = window["wp"]["primitives"];
 ;// ./node_modules/@wordpress/icons/build-module/library/plugins.js
 
 
-var plugins_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M10.5 4v4h3V4H15v4h1.5a1 1 0 011 1v4l-3 4v2a1 1 0 01-1 1h-3a1 1 0 01-1-1v-2l-3-4V9a1 1 0 011-1H9V4h1.5zm.5 12.5v2h2v-2l3-4v-3H8v3l3 4z" }) });
+var plugins_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m10.5 4v4h3v4h15v4h1.5a1 1 0 011 1v4l-3 4v2a1 1 0 01-1 1h-3a1 1 0 01-1-1v-2l-3-4v9a1 1 0 011-1h9v4h1.5zm.5 12.5v2h2v-2l3-4v-3h8v3l3 4z" }) });
 
 
 ;// ./node_modules/@wordpress/plugins/build-module/api/index.js
 
 
 const plugins = {};
-function registerPlugin(name, settings) {
+function registerplugin(name, settings) {
   if (typeof settings !== "object") {
-    console.error("No settings object provided!");
+    console.error("no settings object provided!");
     return null;
   }
   if (typeof name !== "string") {
-    console.error("Plugin name must be string.");
+    console.error("plugin name must be string.");
     return null;
   }
   if (!/^[a-z][a-z0-9-]*$/.test(name)) {
     console.error(
-      'Plugin name must include only lowercase alphanumeric characters or dashes, and start with a letter. Example: "my-plugin".'
+      'plugin name must include only lowercase alphanumeric characters or dashes, and start with a letter. example: "my-plugin".'
     );
     return null;
   }
   if (plugins[name]) {
-    console.error(`Plugin "${name}" is already registered.`);
+    console.error(`plugin "${name}" is already registered.`);
   }
-  settings = (0,external_wp_hooks_namespaceObject.applyFilters)(
-    "plugins.registerPlugin",
+  settings = (0,external_wp_hooks_namespaceobject.applyfilters)(
+    "plugins.registerplugin",
     settings,
     name
   );
   const { render, scope } = settings;
   if (typeof render !== "function") {
     console.error(
-      'The "render" property must be specified and must be a valid function.'
+      'the "render" property must be specified and must be a valid function.'
     );
     return null;
   }
   if (scope) {
     if (typeof scope !== "string") {
-      console.error("Plugin scope must be string.");
+      console.error("plugin scope must be string.");
       return null;
     }
     if (!/^[a-z][a-z0-9-]*$/.test(scope)) {
       console.error(
-        'Plugin scope must include only lowercase alphanumeric characters or dashes, and start with a letter. Example: "my-page".'
+        'plugin scope must include only lowercase alphanumeric characters or dashes, and start with a letter. example: "my-page".'
       );
       return null;
     }
@@ -351,24 +351,24 @@ function registerPlugin(name, settings) {
     icon: plugins_default,
     ...settings
   };
-  (0,external_wp_hooks_namespaceObject.doAction)("plugins.pluginRegistered", settings, name);
+  (0,external_wp_hooks_namespaceobject.doaction)("plugins.pluginregistered", settings, name);
   return settings;
 }
-function unregisterPlugin(name) {
+function unregisterplugin(name) {
   if (!plugins[name]) {
-    console.error('Plugin "' + name + '" is not registered.');
+    console.error('plugin "' + name + '" is not registered.');
     return;
   }
-  const oldPlugin = plugins[name];
+  const oldplugin = plugins[name];
   delete plugins[name];
-  (0,external_wp_hooks_namespaceObject.doAction)("plugins.pluginUnregistered", oldPlugin, name);
-  return oldPlugin;
+  (0,external_wp_hooks_namespaceobject.doaction)("plugins.pluginunregistered", oldplugin, name);
+  return oldplugin;
 }
-function getPlugin(name) {
+function getplugin(name) {
   return plugins[name];
 }
-function getPlugins(scope) {
-  return Object.values(plugins).filter(
+function getplugins(scope) {
+  return object.values(plugins).filter(
     (plugin) => plugin.scope === scope
   );
 }
@@ -383,65 +383,65 @@ function getPlugins(scope) {
 
 
 
-const getPluginContext = memize(
+const getplugincontext = memize(
   (icon, name) => ({
     icon,
     name
   })
 );
-function PluginArea({
+function pluginarea({
   scope,
-  onError
+  onerror
 }) {
-  const store = (0,external_wp_element_namespaceObject.useMemo)(() => {
-    let lastValue = [];
+  const store = (0,external_wp_element_namespaceobject.usememo)(() => {
+    let lastvalue = [];
     return {
       subscribe(listener) {
-        (0,external_wp_hooks_namespaceObject.addAction)(
-          "plugins.pluginRegistered",
+        (0,external_wp_hooks_namespaceobject.addaction)(
+          "plugins.pluginregistered",
           "core/plugins/plugin-area/plugins-registered",
           listener
         );
-        (0,external_wp_hooks_namespaceObject.addAction)(
-          "plugins.pluginUnregistered",
+        (0,external_wp_hooks_namespaceobject.addaction)(
+          "plugins.pluginunregistered",
           "core/plugins/plugin-area/plugins-unregistered",
           listener
         );
         return () => {
-          (0,external_wp_hooks_namespaceObject.removeAction)(
-            "plugins.pluginRegistered",
+          (0,external_wp_hooks_namespaceobject.removeaction)(
+            "plugins.pluginregistered",
             "core/plugins/plugin-area/plugins-registered"
           );
-          (0,external_wp_hooks_namespaceObject.removeAction)(
-            "plugins.pluginUnregistered",
+          (0,external_wp_hooks_namespaceobject.removeaction)(
+            "plugins.pluginunregistered",
             "core/plugins/plugin-area/plugins-unregistered"
           );
         };
       },
-      getValue() {
-        const nextValue = getPlugins(scope);
-        if (!external_wp_isShallowEqual_default()(lastValue, nextValue)) {
-          lastValue = nextValue;
+      getvalue() {
+        const nextvalue = getplugins(scope);
+        if (!external_wp_isshallowequal_default()(lastvalue, nextvalue)) {
+          lastvalue = nextvalue;
         }
-        return lastValue;
+        return lastvalue;
       }
     };
   }, [scope]);
-  const plugins = (0,external_wp_element_namespaceObject.useSyncExternalStore)(
+  const plugins = (0,external_wp_element_namespaceobject.usesyncexternalstore)(
     store.subscribe,
-    store.getValue,
-    store.getValue
+    store.getvalue,
+    store.getvalue
   );
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", { style: { display: "none" }, children: plugins.map(({ icon, name, render: Plugin }) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    PluginContextProvider,
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("div", { style: { display: "none" }, children: plugins.map(({ icon, name, render: plugin }) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    plugincontextprovider,
     {
-      value: getPluginContext(icon, name),
-      children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(PluginErrorBoundary, { name, onError, children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(Plugin, {}) })
+      value: getplugincontext(icon, name),
+      children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(pluginerrorboundary, { name, onerror, children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(plugin, {}) })
     },
     name
   )) });
 }
-var plugin_area_default = PluginArea;
+var plugin_area_default = pluginarea;
 
 
 ;// ./node_modules/@wordpress/plugins/build-module/components/index.js
@@ -456,3 +456,4 @@ var plugin_area_default = PluginArea;
 (window.wp = window.wp || {}).plugins = __webpack_exports__;
 /******/ })()
 ;
+

@@ -8,73 +8,73 @@
 	var api = wp.customize;
 
 	/**
-	 * wp.customize.HeaderTool.CurrentView
+	 * wp.customize.headertool.currentview
 	 *
-	 * Displays the currently selected header image, or a placeholder in lack
+	 * displays the currently selected header image, or a placeholder in lack
 	 * thereof.
 	 *
-	 * Instantiate with model wp.customize.HeaderTool.currentHeader.
+	 * instantiate with model wp.customize.headertool.currentheader.
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.CurrentView
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.currentview
 	 *
 	 * @constructor
-	 * @augments wp.Backbone.View
+	 * @augments wp.backbone.view
 	 */
-	api.HeaderTool.CurrentView = wp.Backbone.View.extend(/** @lends wp.customize.HeaderTool.CurrentView.prototype */{
+	api.headertool.currentview = wp.backbone.view.extend(/** @lends wp.customize.headertool.currentview.prototype */{
 		template: wp.template('header-current'),
 
 		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
+			this.listento(this.model, 'change', this.render);
 			this.render();
 		},
 
 		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
-			this.setButtons();
+			this.$el.html(this.template(this.model.tojson()));
+			this.setbuttons();
 			return this;
 		},
 
-		setButtons: function() {
+		setbuttons: function() {
 			var elements = $('#customize-control-header_image .actions .remove');
-			var addButton = $('#customize-control-header_image .actions .new');
+			var addbutton = $('#customize-control-header_image .actions .new');
 
 			if (this.model.get('choice')) {
 				elements.show();
-				addButton.removeClass('upload-button');
+				addbutton.removeclass('upload-button');
 			} else {
 				elements.hide();
-				addButton.addClass('upload-button');
+				addbutton.addclass('upload-button');
 			}
 		}
 	});
 
 
 	/**
-	 * wp.customize.HeaderTool.ChoiceView
+	 * wp.customize.headertool.choiceview
 	 *
-	 * Represents a choosable header image, be it user-uploaded,
-	 * theme-suggested or a special Randomize choice.
+	 * represents a choosable header image, be it user-uploaded,
+	 * theme-suggested or a special randomize choice.
 	 *
-	 * Takes a wp.customize.HeaderTool.ImageModel.
+	 * takes a wp.customize.headertool.imagemodel.
 	 *
-	 * Manually changes model wp.customize.HeaderTool.currentHeader via the
+	 * manually changes model wp.customize.headertool.currentheader via the
 	 * `select` method.
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.ChoiceView
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.choiceview
 	 *
 	 * @constructor
-	 * @augments wp.Backbone.View
+	 * @augments wp.backbone.view
 	 */
-	api.HeaderTool.ChoiceView = wp.Backbone.View.extend(/** @lends wp.customize.HeaderTool.ChoiceView.prototype */{
+	api.headertool.choiceview = wp.backbone.view.extend(/** @lends wp.customize.headertool.choiceview.prototype */{
 		template: wp.template('header-choice'),
 
-		className: 'header-view',
+		classname: 'header-view',
 
 		events: {
 			'click .choice,.random': 'select',
-			'click .close': 'removeImage'
+			'click .close': 'removeimage'
 		},
 
 		initialize: function() {
@@ -83,48 +83,48 @@
 				this.model.get('choice')
 			];
 
-			this.listenTo(this.model, 'change:selected', this.toggleSelected);
+			this.listento(this.model, 'change:selected', this.toggleselected);
 
 			if (_.contains(properties, api.get().header_image)) {
-				api.HeaderTool.currentHeader.set(this.extendedModel());
+				api.headertool.currentheader.set(this.extendedmodel());
 			}
 		},
 
 		render: function() {
-			this.$el.html(this.template(this.extendedModel()));
+			this.$el.html(this.template(this.extendedmodel()));
 
-			this.toggleSelected();
+			this.toggleselected();
 			return this;
 		},
 
-		toggleSelected: function() {
-			this.$el.toggleClass('selected', this.model.get('selected'));
+		toggleselected: function() {
+			this.$el.toggleclass('selected', this.model.get('selected'));
 		},
 
-		extendedModel: function() {
+		extendedmodel: function() {
 			var c = this.model.get('collection');
-			return _.extend(this.model.toJSON(), {
+			return _.extend(this.model.tojson(), {
 				type: c.type
 			});
 		},
 
 		select: function() {
-			this.preventJump();
+			this.preventjump();
 			this.model.save();
-			api.HeaderTool.currentHeader.set(this.extendedModel());
+			api.headertool.currentheader.set(this.extendedmodel());
 		},
 
-		preventJump: function() {
+		preventjump: function() {
 			var container = $('.wp-full-overlay-sidebar-content'),
-				scroll = container.scrollTop();
+				scroll = container.scrolltop();
 
 			_.defer(function() {
-				container.scrollTop(scroll);
+				container.scrolltop(scroll);
 			});
 		},
 
-		removeImage: function(e) {
-			e.stopPropagation();
+		removeimage: function(e) {
+			e.stoppropagation();
 			this.model.destroy();
 			this.remove();
 		}
@@ -132,66 +132,66 @@
 
 
 	/**
-	 * wp.customize.HeaderTool.ChoiceListView
+	 * wp.customize.headertool.choicelistview
 	 *
-	 * A container for ChoiceViews. These choices should be of one same type:
+	 * a container for choiceviews. these choices should be of one same type:
 	 * user-uploaded headers or theme-defined ones.
 	 *
-	 * Takes a wp.customize.HeaderTool.ChoiceList.
+	 * takes a wp.customize.headertool.choicelist.
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.ChoiceListView
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.choicelistview
 	 *
 	 * @constructor
-	 * @augments wp.Backbone.View
+	 * @augments wp.backbone.view
 	 */
-	api.HeaderTool.ChoiceListView = wp.Backbone.View.extend(/** @lends wp.customize.HeaderTool.ChoiceListView.prototype */{
+	api.headertool.choicelistview = wp.backbone.view.extend(/** @lends wp.customize.headertool.choicelistview.prototype */{
 		initialize: function() {
-			this.listenTo(this.collection, 'add', this.addOne);
-			this.listenTo(this.collection, 'remove', this.render);
-			this.listenTo(this.collection, 'sort', this.render);
-			this.listenTo(this.collection, 'change', this.toggleList);
+			this.listento(this.collection, 'add', this.addone);
+			this.listento(this.collection, 'remove', this.render);
+			this.listento(this.collection, 'sort', this.render);
+			this.listento(this.collection, 'change', this.togglelist);
 			this.render();
 		},
 
 		render: function() {
 			this.$el.empty();
-			this.collection.each(this.addOne, this);
-			this.toggleList();
+			this.collection.each(this.addone, this);
+			this.togglelist();
 		},
 
-		addOne: function(choice) {
+		addone: function(choice) {
 			var view;
 			choice.set({ collection: this.collection });
-			view = new api.HeaderTool.ChoiceView({ model: choice });
+			view = new api.headertool.choiceview({ model: choice });
 			this.$el.append(view.render().el);
 		},
 
-		toggleList: function() {
+		togglelist: function() {
 			var title = this.$el.parents().prev('.customize-control-title'),
-				randomButton = this.$el.find('.random').parent();
-			if (this.collection.shouldHideTitle()) {
-				title.add(randomButton).hide();
+				randombutton = this.$el.find('.random').parent();
+			if (this.collection.shouldhidetitle()) {
+				title.add(randombutton).hide();
 			} else {
-				title.add(randomButton).show();
+				title.add(randombutton).show();
 			}
 		}
 	});
 
 
 	/**
-	 * wp.customize.HeaderTool.CombinedList
+	 * wp.customize.headertool.combinedlist
 	 *
-	 * Aggregates wp.customize.HeaderTool.ChoiceList collections (or any
-	 * Backbone object, really) and acts as a bus to feed them events.
+	 * aggregates wp.customize.headertool.choicelist collections (or any
+	 * backbone object, really) and acts as a bus to feed them events.
 	 *
-	 * @memberOf wp.customize.HeaderTool
-	 * @alias wp.customize.HeaderTool.CombinedList
+	 * @memberof wp.customize.headertool
+	 * @alias wp.customize.headertool.combinedlist
 	 *
 	 * @constructor
-	 * @augments wp.Backbone.View
+	 * @augments wp.backbone.view
 	 */
-	api.HeaderTool.CombinedList = wp.Backbone.View.extend(/** @lends wp.customize.HeaderTool.CombinedList.prototype */{
+	api.headertool.combinedlist = wp.backbone.view.extend(/** @lends wp.customize.headertool.combinedlist.prototype */{
 		initialize: function(collections) {
 			this.collections = collections;
 			this.on('all', this.propagate, this);
@@ -203,4 +203,6 @@
 		}
 	});
 
-})( jQuery, window.wp, _ );
+})( jquery, window.wp, _ );
+
+

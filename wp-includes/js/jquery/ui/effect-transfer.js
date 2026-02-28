@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Transfer 1.13.3
+ * jquery ui effects transfer 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Transfer Effect
-//>>group: Effects
-//>>description: Displays a transfer effect from one element to another.
+//>>label: transfer effect
+//>>group: effects
+//>>description: displays a transfer effect from one element to another.
 //>>docs: https://api.jqueryui.com/transfer-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,14 +26,14 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 var effect;
-if ( $.uiBackCompat !== false ) {
+if ( $.uibackcompat !== false ) {
 	effect = $.effects.define( "transfer", function( options, done ) {
 		$( this ).transfer( options, done );
 	} );
@@ -41,3 +41,5 @@ if ( $.uiBackCompat !== false ) {
 return effect;
 
 } );
+
+

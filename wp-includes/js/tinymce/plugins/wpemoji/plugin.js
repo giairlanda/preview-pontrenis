@@ -1,13 +1,13 @@
 ( function( tinymce ) {
-	tinymce.PluginManager.add( 'wpemoji', function( editor ) {
+	tinymce.pluginmanager.add( 'wpemoji', function( editor ) {
 		var typing,
 			wp = window.wp,
-			settings = window._wpemojiSettings,
-			env = tinymce.Env,
-			ua = window.navigator.userAgent,
-			isWin = ua.indexOf( 'Windows' ) > -1,
-			isWin8 = ( function() {
-				var match = ua.match( /Windows NT 6\.(\d)/ );
+			settings = window._wpemojisettings,
+			env = tinymce.env,
+			ua = window.navigator.useragent,
+			iswin = ua.indexof( 'windows' ) > -1,
+			iswin8 = ( function() {
+				var match = ua.match( /windows nt 6\.(\d)/ );
 
 				if ( match && match[1] > 1 ) {
 					return true;
@@ -20,57 +20,57 @@
 			return;
 		}
 
-		function setImgAttr( image ) {
-			image.className = 'emoji';
-			image.setAttribute( 'data-mce-resize', 'false' );
-			image.setAttribute( 'data-mce-placeholder', '1' );
-			image.setAttribute( 'data-wp-emoji', '1' );
+		function setimgattr( image ) {
+			image.classname = 'emoji';
+			image.setattribute( 'data-mce-resize', 'false' );
+			image.setattribute( 'data-mce-placeholder', '1' );
+			image.setattribute( 'data-wp-emoji', '1' );
 		}
 
-		function replaceEmoji( node ) {
-			var imgAttr = {
+		function replaceemoji( node ) {
+			var imgattr = {
 				'data-mce-resize': 'false',
 				'data-mce-placeholder': '1',
 				'data-wp-emoji': '1'
 			};
 
-			wp.emoji.parse( node, { imgAttr: imgAttr } );
+			wp.emoji.parse( node, { imgattr: imgattr } );
 		}
 
-		// Test if the node text contains emoji char(s) and replace.
-		function parseNode( node ) {
+		// test if the node text contains emoji char(s) and replace.
+		function parsenode( node ) {
 			var selection, bookmark;
 
-			if ( node && window.twemoji && window.twemoji.test( node.textContent || node.innerText ) ) {
+			if ( node && window.twemoji && window.twemoji.test( node.textcontent || node.innertext ) ) {
 				if ( env.webkit ) {
 					selection = editor.selection;
-					bookmark = selection.getBookmark();
+					bookmark = selection.getbookmark();
 				}
 
-				replaceEmoji( node );
+				replaceemoji( node );
 
 				if ( env.webkit ) {
-					selection.moveToBookmark( bookmark );
+					selection.movetobookmark( bookmark );
 				}
 			}
 		}
 
-		if ( isWin8 ) {
+		if ( iswin8 ) {
 			/*
-			 * Windows 8+ emoji can be "typed" with the onscreen keyboard.
-			 * That triggers the normal keyboard events, but not the 'input' event.
-			 * Thankfully it sets keyCode 231 when the onscreen keyboard inserts any emoji.
+			 * windows 8+ emoji can be "typed" with the onscreen keyboard.
+			 * that triggers the normal keyboard events, but not the 'input' event.
+			 * thankfully it sets keycode 231 when the onscreen keyboard inserts any emoji.
 			 */
 			editor.on( 'keyup', function( event ) {
-				if ( event.keyCode === 231 ) {
-					parseNode( editor.selection.getNode() );
+				if ( event.keycode === 231 ) {
+					parsenode( editor.selection.getnode() );
 				}
 			} );
-		} else if ( ! isWin ) {
+		} else if ( ! iswin ) {
 			/*
-			 * In MacOS inserting emoji doesn't trigger the stanradr keyboard events.
-			 * Thankfully it triggers the 'input' event.
-			 * This works in Android and iOS as well.
+			 * in macos inserting emoji doesn't trigger the stanradr keyboard events.
+			 * thankfully it triggers the 'input' event.
+			 * this works in android and ios as well.
 			 */
 			editor.on( 'keydown keyup', function( event ) {
 				typing = ( event.type === 'keydown' );
@@ -81,31 +81,31 @@
 					return;
 				}
 
-				parseNode( editor.selection.getNode() );
+				parsenode( editor.selection.getnode() );
 			});
 		}
 
 		editor.on( 'setcontent', function( event ) {
 			var selection = editor.selection,
-				node = selection.getNode();
+				node = selection.getnode();
 
-			if ( window.twemoji && window.twemoji.test( node.textContent || node.innerText ) ) {
-				replaceEmoji( node );
+			if ( window.twemoji && window.twemoji.test( node.textcontent || node.innertext ) ) {
+				replaceemoji( node );
 
-				// In IE all content in the editor is left selected after wp.emoji.parse()...
-				// Collapse the selection to the beginning.
-				if ( env.ie && env.ie < 9 && event.load && node && node.nodeName === 'BODY' ) {
+				// in ie all content in the editor is left selected after wp.emoji.parse()...
+				// collapse the selection to the beginning.
+				if ( env.ie && env.ie < 9 && event.load && node && node.nodename === 'body' ) {
 					selection.collapse( true );
 				}
 			}
 		} );
 
-		// Convert Twemoji compatible pasted emoji replacement images into our format.
-		editor.on( 'PastePostProcess', function( event ) {
+		// convert twemoji compatible pasted emoji replacement images into our format.
+		editor.on( 'pastepostprocess', function( event ) {
 			if ( window.twemoji ) {
 				tinymce.each( editor.dom.$( 'img.emoji', event.node ), function( image ) {
 					if ( image.alt && window.twemoji.test( image.alt ) ) {
-						setImgAttr( image );
+						setimgattr( image );
 					}
 				});
 			}
@@ -126,9 +126,11 @@
 		} );
 
 		editor.on( 'resolvename', function( event ) {
-			if ( event.target.nodeName === 'IMG' && editor.dom.getAttrib( event.target, 'data-wp-emoji' ) ) {
-				event.preventDefault();
+			if ( event.target.nodename === 'img' && editor.dom.getattrib( event.target, 'data-wp-emoji' ) ) {
+				event.preventdefault();
 			}
 		} );
 	} );
 } )( window.tinymce );
+
+

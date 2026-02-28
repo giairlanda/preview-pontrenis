@@ -3,25 +3,27 @@
  */
 
 /*
- * Wrap the jQuery UI Dialog open function remove focus from tinyMCE.
+ * wrap the jquery ui dialog open function remove focus from tinymce.
  */
 ( function($) {
 	$.widget('wp.wpdialog', $.ui.dialog, {
 		open: function() {
-			// Add beforeOpen event.
-			if ( this.isOpen() || false === this._trigger('beforeOpen') ) {
+			// add beforeopen event.
+			if ( this.isopen() || false === this._trigger('beforeopen') ) {
 				return;
 			}
 
-			// Open the dialog.
+			// open the dialog.
 			this._super();
 
-			// WebKit leaves focus in the TinyMCE editor unless we shift focus.
+			// webkit leaves focus in the tinymce editor unless we shift focus.
 			this.element.trigger('focus');
 			this._trigger('refresh');
 		}
 	});
 
-	$.wp.wpdialog.prototype.options.closeOnEscape = false;
+	$.wp.wpdialog.prototype.options.closeonescape = false;
 
-})(jQuery);
+})(jquery);
+
+

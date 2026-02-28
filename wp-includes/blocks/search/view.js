@@ -1,5 +1,5 @@
-import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
-/******/ // The require scope
+import * as __webpack_external_module__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+/******/ // the require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
@@ -9,15 +9,15 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
@@ -28,63 +28,65 @@ var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
-const interactivity_namespaceObject = x({ ["getContext"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getContext), ["getElement"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getElement), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store), ["withSyncEvent"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.withSyncEvent) });
+const interactivity_namespaceobject = x({ ["getcontext"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getcontext), ["getelement"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getelement), ["store"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.store), ["withsyncevent"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.withsyncevent) });
 ;// ./node_modules/@wordpress/block-library/build-module/search/view.js
 
-const { actions } = (0,interactivity_namespaceObject.store)(
+const { actions } = (0,interactivity_namespaceobject.store)(
   "core/search",
   {
     state: {
-      get ariaLabel() {
+      get arialabel() {
         const {
-          isSearchInputVisible,
-          ariaLabelCollapsed,
-          ariaLabelExpanded
-        } = (0,interactivity_namespaceObject.getContext)();
-        return isSearchInputVisible ? ariaLabelExpanded : ariaLabelCollapsed;
+          issearchinputvisible,
+          arialabelcollapsed,
+          arialabelexpanded
+        } = (0,interactivity_namespaceobject.getcontext)();
+        return issearchinputvisible ? arialabelexpanded : arialabelcollapsed;
       },
-      get ariaControls() {
-        const { isSearchInputVisible, inputId } = (0,interactivity_namespaceObject.getContext)();
-        return isSearchInputVisible ? null : inputId;
+      get ariacontrols() {
+        const { issearchinputvisible, inputid } = (0,interactivity_namespaceobject.getcontext)();
+        return issearchinputvisible ? null : inputid;
       },
       get type() {
-        const { isSearchInputVisible } = (0,interactivity_namespaceObject.getContext)();
-        return isSearchInputVisible ? "submit" : "button";
+        const { issearchinputvisible } = (0,interactivity_namespaceobject.getcontext)();
+        return issearchinputvisible ? "submit" : "button";
       },
       get tabindex() {
-        const { isSearchInputVisible } = (0,interactivity_namespaceObject.getContext)();
-        return isSearchInputVisible ? "0" : "-1";
+        const { issearchinputvisible } = (0,interactivity_namespaceobject.getcontext)();
+        return issearchinputvisible ? "0" : "-1";
       }
     },
     actions: {
-      openSearchInput: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (!ctx.isSearchInputVisible) {
-          event.preventDefault();
-          ctx.isSearchInputVisible = true;
-          ref.parentElement.querySelector("input").focus();
+      opensearchinput: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (!ctx.issearchinputvisible) {
+          event.preventdefault();
+          ctx.issearchinputvisible = true;
+          ref.parentelement.queryselector("input").focus();
         }
       }),
-      closeSearchInput() {
-        const ctx = (0,interactivity_namespaceObject.getContext)();
-        ctx.isSearchInputVisible = false;
+      closesearchinput() {
+        const ctx = (0,interactivity_namespaceobject.getcontext)();
+        ctx.issearchinputvisible = false;
       },
-      handleSearchKeydown: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (event?.key === "Escape") {
-          actions.closeSearchInput();
-          ref.querySelector("button").focus();
+      handlesearchkeydown: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (event?.key === "escape") {
+          actions.closesearchinput();
+          ref.queryselector("button").focus();
         }
       }),
-      handleSearchFocusout: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        const { ref } = (0,interactivity_namespaceObject.getElement)();
-        if (!ref.contains(event.relatedTarget) && event.target !== window.document.activeElement) {
-          actions.closeSearchInput();
+      handlesearchfocusout: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        const { ref } = (0,interactivity_namespaceobject.getelement)();
+        if (!ref.contains(event.relatedtarget) && event.target !== window.document.activeelement) {
+          actions.closesearchinput();
         }
       })
     }
   },
   { lock: true }
 );
+
+
 

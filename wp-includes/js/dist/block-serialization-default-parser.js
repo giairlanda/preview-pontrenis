@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,25 +10,25 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -43,25 +43,25 @@ let offset;
 let output;
 let stack;
 const tokenizer = /<!--\s+(\/)?wp:([a-z][a-z0-9_-]*\/)?([a-z][a-z0-9_-]*)\s+({(?:(?=([^}]+|}+(?=})|(?!}\s+\/?-->)[^])*)\5|[^]*?)}\s+)?(\/)?-->/g;
-function Block(blockName, attrs, innerBlocks, innerHTML, innerContent) {
+function block(blockname, attrs, innerblocks, innerhtml, innercontent) {
   return {
-    blockName,
+    blockname,
     attrs,
-    innerBlocks,
-    innerHTML,
-    innerContent
+    innerblocks,
+    innerhtml,
+    innercontent
   };
 }
-function Freeform(innerHTML) {
-  return Block(null, {}, [], innerHTML, [innerHTML]);
+function freeform(innerhtml) {
+  return block(null, {}, [], innerhtml, [innerhtml]);
 }
-function Frame(block, tokenStart, tokenLength, prevOffset, leadingHtmlStart) {
+function frame(block, tokenstart, tokenlength, prevoffset, leadinghtmlstart) {
   return {
     block,
-    tokenStart,
-    tokenLength,
-    prevOffset: prevOffset || tokenStart + tokenLength,
-    leadingHtmlStart
+    tokenstart,
+    tokenlength,
+    prevoffset: prevoffset || tokenstart + tokenlength,
+    leadinghtmlstart
   };
 }
 const parse = (doc) => {
@@ -69,169 +69,169 @@ const parse = (doc) => {
   offset = 0;
   output = [];
   stack = [];
-  tokenizer.lastIndex = 0;
+  tokenizer.lastindex = 0;
   do {
   } while (proceed());
   return output;
 };
 function proceed() {
-  const stackDepth = stack.length;
-  const next = nextToken();
-  const [tokenType, blockName, attrs, startOffset, tokenLength] = next;
-  const leadingHtmlStart = startOffset > offset ? offset : null;
-  switch (tokenType) {
+  const stackdepth = stack.length;
+  const next = nexttoken();
+  const [tokentype, blockname, attrs, startoffset, tokenlength] = next;
+  const leadinghtmlstart = startoffset > offset ? offset : null;
+  switch (tokentype) {
     case "no-more-tokens":
-      if (0 === stackDepth) {
-        addFreeform();
+      if (0 === stackdepth) {
+        addfreeform();
         return false;
       }
-      if (1 === stackDepth) {
-        addBlockFromStack();
+      if (1 === stackdepth) {
+        addblockfromstack();
         return false;
       }
       while (0 < stack.length) {
-        addBlockFromStack();
+        addblockfromstack();
       }
       return false;
     case "void-block":
-      if (0 === stackDepth) {
-        if (null !== leadingHtmlStart) {
+      if (0 === stackdepth) {
+        if (null !== leadinghtmlstart) {
           output.push(
-            Freeform(
+            freeform(
               document.substr(
-                leadingHtmlStart,
-                startOffset - leadingHtmlStart
+                leadinghtmlstart,
+                startoffset - leadinghtmlstart
               )
             )
           );
         }
-        output.push(Block(blockName, attrs, [], "", []));
-        offset = startOffset + tokenLength;
+        output.push(block(blockname, attrs, [], "", []));
+        offset = startoffset + tokenlength;
         return true;
       }
-      addInnerBlock(
-        Block(blockName, attrs, [], "", []),
-        startOffset,
-        tokenLength
+      addinnerblock(
+        block(blockname, attrs, [], "", []),
+        startoffset,
+        tokenlength
       );
-      offset = startOffset + tokenLength;
+      offset = startoffset + tokenlength;
       return true;
     case "block-opener":
       stack.push(
-        Frame(
-          Block(blockName, attrs, [], "", []),
-          startOffset,
-          tokenLength,
-          startOffset + tokenLength,
-          leadingHtmlStart
+        frame(
+          block(blockname, attrs, [], "", []),
+          startoffset,
+          tokenlength,
+          startoffset + tokenlength,
+          leadinghtmlstart
         )
       );
-      offset = startOffset + tokenLength;
+      offset = startoffset + tokenlength;
       return true;
     case "block-closer":
-      if (0 === stackDepth) {
-        addFreeform();
+      if (0 === stackdepth) {
+        addfreeform();
         return false;
       }
-      if (1 === stackDepth) {
-        addBlockFromStack(startOffset);
-        offset = startOffset + tokenLength;
+      if (1 === stackdepth) {
+        addblockfromstack(startoffset);
+        offset = startoffset + tokenlength;
         return true;
       }
-      const stackTop = stack.pop();
+      const stacktop = stack.pop();
       const html = document.substr(
-        stackTop.prevOffset,
-        startOffset - stackTop.prevOffset
+        stacktop.prevoffset,
+        startoffset - stacktop.prevoffset
       );
-      stackTop.block.innerHTML += html;
-      stackTop.block.innerContent.push(html);
-      stackTop.prevOffset = startOffset + tokenLength;
-      addInnerBlock(
-        stackTop.block,
-        stackTop.tokenStart,
-        stackTop.tokenLength,
-        startOffset + tokenLength
+      stacktop.block.innerhtml += html;
+      stacktop.block.innercontent.push(html);
+      stacktop.prevoffset = startoffset + tokenlength;
+      addinnerblock(
+        stacktop.block,
+        stacktop.tokenstart,
+        stacktop.tokenlength,
+        startoffset + tokenlength
       );
-      offset = startOffset + tokenLength;
+      offset = startoffset + tokenlength;
       return true;
     default:
-      addFreeform();
+      addfreeform();
       return false;
   }
 }
-function parseJSON(input) {
+function parsejson(input) {
   try {
-    return JSON.parse(input);
+    return json.parse(input);
   } catch (e) {
     return null;
   }
 }
-function nextToken() {
+function nexttoken() {
   const matches = tokenizer.exec(document);
   if (null === matches) {
     return ["no-more-tokens", "", null, 0, 0];
   }
-  const startedAt = matches.index;
+  const startedat = matches.index;
   const [
     match,
-    closerMatch,
-    namespaceMatch,
-    nameMatch,
-    attrsMatch,
+    closermatch,
+    namespacematch,
+    namematch,
+    attrsmatch,
     ,
-    voidMatch
+    voidmatch
   ] = matches;
   const length = match.length;
-  const isCloser = !!closerMatch;
-  const isVoid = !!voidMatch;
-  const namespace = namespaceMatch || "core/";
-  const name = namespace + nameMatch;
-  const hasAttrs = !!attrsMatch;
-  const attrs = hasAttrs ? parseJSON(attrsMatch) : {};
-  if (isCloser && (isVoid || hasAttrs)) {
+  const iscloser = !!closermatch;
+  const isvoid = !!voidmatch;
+  const namespace = namespacematch || "core/";
+  const name = namespace + namematch;
+  const hasattrs = !!attrsmatch;
+  const attrs = hasattrs ? parsejson(attrsmatch) : {};
+  if (iscloser && (isvoid || hasattrs)) {
   }
-  if (isVoid) {
-    return ["void-block", name, attrs, startedAt, length];
+  if (isvoid) {
+    return ["void-block", name, attrs, startedat, length];
   }
-  if (isCloser) {
-    return ["block-closer", name, null, startedAt, length];
+  if (iscloser) {
+    return ["block-closer", name, null, startedat, length];
   }
-  return ["block-opener", name, attrs, startedAt, length];
+  return ["block-opener", name, attrs, startedat, length];
 }
-function addFreeform(rawLength) {
-  const length = rawLength ? rawLength : document.length - offset;
+function addfreeform(rawlength) {
+  const length = rawlength ? rawlength : document.length - offset;
   if (0 === length) {
     return;
   }
-  output.push(Freeform(document.substr(offset, length)));
+  output.push(freeform(document.substr(offset, length)));
 }
-function addInnerBlock(block, tokenStart, tokenLength, lastOffset) {
+function addinnerblock(block, tokenstart, tokenlength, lastoffset) {
   const parent = stack[stack.length - 1];
-  parent.block.innerBlocks.push(block);
+  parent.block.innerblocks.push(block);
   const html = document.substr(
-    parent.prevOffset,
-    tokenStart - parent.prevOffset
+    parent.prevoffset,
+    tokenstart - parent.prevoffset
   );
   if (html) {
-    parent.block.innerHTML += html;
-    parent.block.innerContent.push(html);
+    parent.block.innerhtml += html;
+    parent.block.innercontent.push(html);
   }
-  parent.block.innerContent.push(null);
-  parent.prevOffset = lastOffset ? lastOffset : tokenStart + tokenLength;
+  parent.block.innercontent.push(null);
+  parent.prevoffset = lastoffset ? lastoffset : tokenstart + tokenlength;
 }
-function addBlockFromStack(endOffset) {
-  const { block, leadingHtmlStart, prevOffset, tokenStart } = stack.pop();
-  const html = endOffset ? document.substr(prevOffset, endOffset - prevOffset) : document.substr(prevOffset);
+function addblockfromstack(endoffset) {
+  const { block, leadinghtmlstart, prevoffset, tokenstart } = stack.pop();
+  const html = endoffset ? document.substr(prevoffset, endoffset - prevoffset) : document.substr(prevoffset);
   if (html) {
-    block.innerHTML += html;
-    block.innerContent.push(html);
+    block.innerhtml += html;
+    block.innercontent.push(html);
   }
-  if (null !== leadingHtmlStart) {
+  if (null !== leadinghtmlstart) {
     output.push(
-      Freeform(
+      freeform(
         document.substr(
-          leadingHtmlStart,
-          tokenStart - leadingHtmlStart
+          leadinghtmlstart,
+          tokenstart - leadinghtmlstart
         )
       )
     );
@@ -240,6 +240,7 @@ function addBlockFromStack(endOffset) {
 }
 
 
-(window.wp = window.wp || {}).blockSerializationDefaultParser = __webpack_exports__;
+(window.wp = window.wp || {}).blockserializationdefaultparser = __webpack_exports__;
 /******/ })()
 ;
+

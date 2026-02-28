@@ -18,9 +18,9 @@
 		selected_class = opts.class_prefix + opts.selected_suffix;
 		destructive_class = opts.class_prefix + opts.destructive_suffix;
 		set_current_row = function (tr) {
-			if ($.table_hotkeys.current_row) $.table_hotkeys.current_row.removeClass(selected_class);
-			tr.addClass(selected_class);
-			tr[0].scrollIntoView(false);
+			if ($.table_hotkeys.current_row) $.table_hotkeys.current_row.removeclass(selected_class);
+			tr.addclass(selected_class);
+			tr[0].scrollintoview(false);
 			$.table_hotkeys.current_row = tr;
 		};
 		adjacent_row_callback = function(which) {
@@ -36,7 +36,7 @@
 				$.table_hotkeys.current_row = first_row;
 				return first_row[0];
 			}
-			method = 'prev' == which? $.fn.prevAll : $.fn.nextAll;
+			method = 'prev' == which? $.fn.prevall : $.fn.nextall;
 			return method.call($.table_hotkeys.current_row, opts.cycle_expr).filter_visible()[0];
 		};
 		adjacent_row = function(which) {
@@ -93,7 +93,9 @@
 	};
 	$.table_hotkeys.current_row = null;
 	$.table_hotkeys.defaults = {cycle_expr: 'tr', class_prefix: 'vim-', selected_suffix: 'current',
-		destructive_suffix: 'destructive', hotkeys_opts: {disableInInput: true, type: 'keypress'},
+		destructive_suffix: 'destructive', hotkeys_opts: {disableininput: true, type: 'keypress'},
 		checkbox_expr: ':checkbox', next_key: 'j', prev_key: 'k', mark_key: 'x',
 		start_row_index: 2, highlight_first: false, highlight_last: false, next_page_link_cb: false, prev_page_link_cb: false};
-})(jQuery);
+})(jquery);
+
+

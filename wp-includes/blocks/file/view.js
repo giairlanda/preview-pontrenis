@@ -1,5 +1,5 @@
-import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
-/******/ // The require scope
+import * as __webpack_external_module__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+/******/ // the require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
@@ -9,15 +9,15 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
@@ -28,30 +28,30 @@ var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
-const interactivity_namespaceObject = x({ ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store) });
+const interactivity_namespaceobject = x({ ["store"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.store) });
 ;// ./node_modules/@wordpress/block-library/build-module/file/utils/index.js
-const browserSupportsPdfs = () => {
-  if (window.navigator.pdfViewerEnabled) {
+const browsersupportspdfs = () => {
+  if (window.navigator.pdfviewerenabled) {
     return true;
   }
-  if (window.navigator.userAgent.indexOf("Mobi") > -1) {
+  if (window.navigator.useragent.indexof("mobi") > -1) {
     return false;
   }
-  if (window.navigator.userAgent.indexOf("Android") > -1) {
+  if (window.navigator.useragent.indexof("android") > -1) {
     return false;
   }
-  if (window.navigator.userAgent.indexOf("Macintosh") > -1 && window.navigator.maxTouchPoints && window.navigator.maxTouchPoints > 2) {
+  if (window.navigator.useragent.indexof("macintosh") > -1 && window.navigator.maxtouchpoints && window.navigator.maxtouchpoints > 2) {
     return false;
   }
-  if (!!(window.ActiveXObject || "ActiveXObject" in window) && !(createActiveXObject("AcroPDF.PDF") || createActiveXObject("PDF.PdfCtrl"))) {
+  if (!!(window.activexobject || "activexobject" in window) && !(createactivexobject("acropdf.pdf") || createactivexobject("pdf.pdfctrl"))) {
     return false;
   }
   return true;
 };
-const createActiveXObject = (type) => {
+const createactivexobject = (type) => {
   let ax;
   try {
-    ax = new window.ActiveXObject(type);
+    ax = new window.activexobject(type);
   } catch (e) {
     ax = void 0;
   }
@@ -62,15 +62,17 @@ const createActiveXObject = (type) => {
 ;// ./node_modules/@wordpress/block-library/build-module/file/view.js
 
 
-(0,interactivity_namespaceObject.store)(
+(0,interactivity_namespaceobject.store)(
   "core/file",
   {
     state: {
-      get hasPdfPreview() {
-        return browserSupportsPdfs();
+      get haspdfpreview() {
+        return browsersupportspdfs();
       }
     }
   },
   { lock: true }
 );
+
+
 

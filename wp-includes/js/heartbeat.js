@@ -1,12 +1,12 @@
 /**
- * Heartbeat API
+ * heartbeat api
  *
- * Heartbeat is a simple server polling API that sends XHR requests to
+ * heartbeat is a simple server polling api that sends xhr requests to
  * the server every 15 - 60 seconds and triggers events (or callbacks) upon
- * receiving data. Currently these 'ticks' handle transports for post locking,
+ * receiving data. currently these 'ticks' handle transports for post locking,
  * login-expiration warnings, autosave, and related tasks while a user is logged in.
  *
- * Available PHP filters (in ajax-actions.php):
+ * available php filters (in ajax-actions.php):
  * - heartbeat_received
  * - heartbeat_send
  * - heartbeat_tick
@@ -15,7 +15,7 @@
  * - heartbeat_nopriv_tick
  * @see wp_ajax_nopriv_heartbeat(), wp_ajax_heartbeat()
  *
- * Custom jQuery events:
+ * custom jquery events:
  * - heartbeat-send
  * - heartbeat-tick
  * - heartbeat-error
@@ -30,81 +30,81 @@
 ( function( $, window, undefined ) {
 
 	/**
-	 * Constructs the Heartbeat API.
+	 * constructs the heartbeat api.
 	 *
 	 * @since 3.6.0
 	 *
-	 * @return {Object} An instance of the Heartbeat class.
+	 * @return {object} an instance of the heartbeat class.
 	 * @constructor
 	 */
-	var Heartbeat = function() {
+	var heartbeat = function() {
 		var $document = $(document),
 			settings = {
-				// Suspend/resume.
+				// suspend/resume.
 				suspend: false,
 
-				// Whether suspending is enabled.
-				suspendEnabled: true,
+				// whether suspending is enabled.
+				suspendenabled: true,
 
-				// Current screen id, defaults to the JS global 'pagenow' when present
+				// current screen id, defaults to the js global 'pagenow' when present
 				// (in the admin) or 'front'.
-				screenId: '',
+				screenid: '',
 
-				// XHR request URL, defaults to the JS global 'ajaxurl' when present.
+				// xhr request url, defaults to the js global 'ajaxurl' when present.
 				url: '',
 
-				// Timestamp, start of the last connection request.
-				lastTick: 0,
+				// timestamp, start of the last connection request.
+				lasttick: 0,
 
-				// Container for the enqueued items.
+				// container for the enqueued items.
 				queue: {},
 
-				// Connect interval (in seconds).
-				mainInterval: 60,
+				// connect interval (in seconds).
+				maininterval: 60,
 
-				// Used when the interval is set to 5 seconds temporarily.
-				tempInterval: 0,
+				// used when the interval is set to 5 seconds temporarily.
+				tempinterval: 0,
 
-				// Used when the interval is reset.
-				originalInterval: 0,
+				// used when the interval is reset.
+				originalinterval: 0,
 
-				// Used to limit the number of Ajax requests.
-				minimalInterval: 0,
+				// used to limit the number of ajax requests.
+				minimalinterval: 0,
 
-				// Used together with tempInterval.
+				// used together with tempinterval.
 				countdown: 0,
 
-				// Whether a connection is currently in progress.
+				// whether a connection is currently in progress.
 				connecting: false,
 
-				// Whether a connection error occurred.
-				connectionError: false,
+				// whether a connection error occurred.
+				connectionerror: false,
 
-				// Used to track non-critical errors.
+				// used to track non-critical errors.
 				errorcount: 0,
 
-				// Whether at least one connection has been completed successfully.
-				hasConnected: false,
+				// whether at least one connection has been completed successfully.
+				hasconnected: false,
 
-				// Whether the current browser window is in focus and the user is active.
-				hasFocus: true,
+				// whether the current browser window is in focus and the user is active.
+				hasfocus: true,
 
-				// Timestamp, last time the user was active. Checked every 30 seconds.
-				userActivity: 0,
+				// timestamp, last time the user was active. checked every 30 seconds.
+				useractivity: 0,
 
-				// Flag whether events tracking user activity were set.
-				userActivityEvents: false,
+				// flag whether events tracking user activity were set.
+				useractivityevents: false,
 
-				// Timer that keeps track of how long a user has focus.
-				checkFocusTimer: 0,
+				// timer that keeps track of how long a user has focus.
+				checkfocustimer: 0,
 
-				// Timer that keeps track of how long needs to be waited before connecting to
+				// timer that keeps track of how long needs to be waited before connecting to
 				// the server again.
-				beatTimer: 0
+				beattimer: 0
 			};
 
 		/**
-		 * Sets local variables and events, then starts the heartbeat.
+		 * sets local variables and events, then starts the heartbeat.
 		 *
 		 * @since 3.8.0
 		 * @access private
@@ -112,124 +112,124 @@
 		 * @return {void}
 		 */
 		function initialize() {
-			var options, hidden, visibilityState, visibilitychange;
+			var options, hidden, visibilitystate, visibilitychange;
 
 			if ( typeof window.pagenow === 'string' ) {
-				settings.screenId = window.pagenow;
+				settings.screenid = window.pagenow;
 			}
 
 			if ( typeof window.ajaxurl === 'string' ) {
 				settings.url = window.ajaxurl;
 			}
 
-			// Pull in options passed from PHP.
-			if ( typeof window.heartbeatSettings === 'object' ) {
-				options = window.heartbeatSettings;
+			// pull in options passed from php.
+			if ( typeof window.heartbeatsettings === 'object' ) {
+				options = window.heartbeatsettings;
 
-				// The XHR URL can be passed as option when window.ajaxurl is not set.
+				// the xhr url can be passed as option when window.ajaxurl is not set.
 				if ( ! settings.url && options.ajaxurl ) {
 					settings.url = options.ajaxurl;
 				}
 
 				/*
-				 * Logic check: the interval can be from 1 to 3600 seconds and can be set temporarily
-				 * to 5 seconds. It can be set in the initial options or changed later from JS
-				 * or from PHP through the AJAX responses.
+				 * logic check: the interval can be from 1 to 3600 seconds and can be set temporarily
+				 * to 5 seconds. it can be set in the initial options or changed later from js
+				 * or from php through the ajax responses.
 				 */
 				if ( options.interval ) {
-					settings.mainInterval = options.interval;
+					settings.maininterval = options.interval;
 
-					if ( settings.mainInterval < 1 ) {
-						settings.mainInterval = 1;
-					} else if ( settings.mainInterval > 3600 ) {
-						settings.mainInterval = 3600;
+					if ( settings.maininterval < 1 ) {
+						settings.maininterval = 1;
+					} else if ( settings.maininterval > 3600 ) {
+						settings.maininterval = 3600;
 					}
 				}
 
 				/*
-				 * Used to limit the number of Ajax requests. Overrides all other intervals
-				 * if they are shorter. Needed for some hosts that cannot handle frequent requests
-				 * and the user may exceed the allocated server CPU time, etc. The minimal interval
+				 * used to limit the number of ajax requests. overrides all other intervals
+				 * if they are shorter. needed for some hosts that cannot handle frequent requests
+				 * and the user may exceed the allocated server cpu time, etc. the minimal interval
 				 * can be up to 600 seconds, however setting it to longer than 120 seconds
 				 * will limit or disable some of the functionality (like post locks).
-				 * Once set at initialization, minimalInterval cannot be changed/overridden.
+				 * once set at initialization, minimalinterval cannot be changed/overridden.
 				 */
-				if ( options.minimalInterval ) {
-					options.minimalInterval = parseInt( options.minimalInterval, 10 );
-					settings.minimalInterval = options.minimalInterval > 0 && options.minimalInterval <= 600 ? options.minimalInterval : 0;
+				if ( options.minimalinterval ) {
+					options.minimalinterval = parseint( options.minimalinterval, 10 );
+					settings.minimalinterval = options.minimalinterval > 0 && options.minimalinterval <= 600 ? options.minimalinterval : 0;
 				}
 
-				if ( settings.minimalInterval && settings.mainInterval < settings.minimalInterval ) {
-					settings.mainInterval = settings.minimalInterval;
+				if ( settings.minimalinterval && settings.maininterval < settings.minimalinterval ) {
+					settings.maininterval = settings.minimalinterval;
 				}
 
-				// 'screenId' can be added from settings on the front end where the JS global
+				// 'screenid' can be added from settings on the front end where the js global
 				// 'pagenow' is not set.
-				if ( ! settings.screenId ) {
-					settings.screenId = options.screenId || 'front';
+				if ( ! settings.screenid ) {
+					settings.screenid = options.screenid || 'front';
 				}
 
 				if ( options.suspension === 'disable' ) {
-					settings.suspendEnabled = false;
+					settings.suspendenabled = false;
 				}
 			}
 
-			// Convert to milliseconds.
-			settings.mainInterval = settings.mainInterval * 1000;
-			settings.originalInterval = settings.mainInterval;
-			if ( settings.minimalInterval ) {
-				settings.minimalInterval = settings.minimalInterval * 1000;
+			// convert to milliseconds.
+			settings.maininterval = settings.maininterval * 1000;
+			settings.originalinterval = settings.maininterval;
+			if ( settings.minimalinterval ) {
+				settings.minimalinterval = settings.minimalinterval * 1000;
 			}
 
 			/*
-			 * Switch the interval to 120 seconds by using the Page Visibility API.
-			 * If the browser doesn't support it (Safari < 7, Android < 4.4, IE < 10), the
+			 * switch the interval to 120 seconds by using the page visibility api.
+			 * if the browser doesn't support it (safari < 7, android < 4.4, ie < 10), the
 			 * interval will be increased to 120 seconds after 5 minutes of mouse and keyboard
 			 * inactivity.
 			 */
 			if ( typeof document.hidden !== 'undefined' ) {
 				hidden = 'hidden';
 				visibilitychange = 'visibilitychange';
-				visibilityState = 'visibilityState';
-			} else if ( typeof document.msHidden !== 'undefined' ) { // IE10.
-				hidden = 'msHidden';
+				visibilitystate = 'visibilitystate';
+			} else if ( typeof document.mshidden !== 'undefined' ) { // ie10.
+				hidden = 'mshidden';
 				visibilitychange = 'msvisibilitychange';
-				visibilityState = 'msVisibilityState';
-			} else if ( typeof document.webkitHidden !== 'undefined' ) { // Android.
-				hidden = 'webkitHidden';
+				visibilitystate = 'msvisibilitystate';
+			} else if ( typeof document.webkithidden !== 'undefined' ) { // android.
+				hidden = 'webkithidden';
 				visibilitychange = 'webkitvisibilitychange';
-				visibilityState = 'webkitVisibilityState';
+				visibilitystate = 'webkitvisibilitystate';
 			}
 
 			if ( hidden ) {
 				if ( document[hidden] ) {
-					settings.hasFocus = false;
+					settings.hasfocus = false;
 				}
 
 				$document.on( visibilitychange + '.wp-heartbeat', function() {
-					if ( document[visibilityState] === 'hidden' ) {
+					if ( document[visibilitystate] === 'hidden' ) {
 						blurred();
-						window.clearInterval( settings.checkFocusTimer );
+						window.clearinterval( settings.checkfocustimer );
 					} else {
 						focused();
-						if ( document.hasFocus ) {
-							settings.checkFocusTimer = window.setInterval( checkFocus, 10000 );
+						if ( document.hasfocus ) {
+							settings.checkfocustimer = window.setinterval( checkfocus, 10000 );
 						}
 					}
 				});
 			}
 
-			// Use document.hasFocus() if available.
-			if ( document.hasFocus ) {
-				settings.checkFocusTimer = window.setInterval( checkFocus, 10000 );
+			// use document.hasfocus() if available.
+			if ( document.hasfocus ) {
+				settings.checkfocustimer = window.setinterval( checkfocus, 10000 );
 			}
 
 			$(window).on( 'pagehide.wp-heartbeat', function() {
-				// Don't connect anymore.
+				// don't connect anymore.
 				suspend();
 
-				// Abort the last request if not completed.
-				if ( settings.xhr && settings.xhr.readyState !== 4 ) {
+				// abort the last request if not completed.
+				if ( settings.xhr && settings.xhr.readystate !== 4 ) {
 					settings.xhr.abort();
 				}
 			});
@@ -237,15 +237,15 @@
 			$(window).on(
 				'pageshow.wp-heartbeat',
 				/**
-				 * Handles pageshow event, specifically when page navigation is restored from back/forward cache.
+				 * handles pageshow event, specifically when page navigation is restored from back/forward cache.
 				 *
-				 * @param {jQuery.Event} event
-				 * @param {PageTransitionEvent} event.originalEvent
+				 * @param {jquery.event} event
+				 * @param {pagetransitionevent} event.originalevent
 				 */
 				function ( event ) {
-					if ( event.originalEvent.persisted ) {
+					if ( event.originalevent.persisted ) {
 						/*
-						 * When page navigation is stored via bfcache (Back/Forward Cache), consider this the same as
+						 * when page navigation is stored via bfcache (back/forward cache), consider this the same as
 						 * if the user had just switched to the tab since the behavior is similar.
 						 */
 						focused();
@@ -253,53 +253,53 @@
 				}
 			);
 
-			// Check for user activity every 30 seconds.
-			window.setInterval( checkUserActivity, 30000 );
+			// check for user activity every 30 seconds.
+			window.setinterval( checkuseractivity, 30000 );
 
-			// Start one tick after DOM ready.
+			// start one tick after dom ready.
 			$( function() {
-				settings.lastTick = time();
-				scheduleNextTick();
+				settings.lasttick = time();
+				schedulenexttick();
 			});
 		}
 
 		/**
-		 * Returns the current time according to the browser.
+		 * returns the current time according to the browser.
 		 *
 		 * @since 3.6.0
 		 * @access private
 		 *
-		 * @return {number} Returns the current time.
+		 * @return {number} returns the current time.
 		 */
 		function time() {
-			return (new Date()).getTime();
+			return (new date()).gettime();
 		}
 
 		/**
-		 * Checks if the iframe is from the same origin.
+		 * checks if the iframe is from the same origin.
 		 *
 		 * @since 3.6.0
 		 * @access private
 		 *
-		 * @return {boolean} Returns whether or not the iframe is from the same origin.
+		 * @return {boolean} returns whether or not the iframe is from the same origin.
 		 */
-		function isLocalFrame( frame ) {
+		function islocalframe( frame ) {
 			var origin, src = frame.src;
 
 			/*
-			 * Need to compare strings as WebKit doesn't throw JS errors when iframes have
-			 * different origin. It throws uncatchable exceptions.
+			 * need to compare strings as webkit doesn't throw js errors when iframes have
+			 * different origin. it throws uncatchable exceptions.
 			 */
 			if ( src && /^https?:\/\//.test( src ) ) {
 				origin = window.location.origin ? window.location.origin : window.location.protocol + '//' + window.location.host;
 
-				if ( src.indexOf( origin ) !== 0 ) {
+				if ( src.indexof( origin ) !== 0 ) {
 					return false;
 				}
 			}
 
 			try {
-				if ( frame.contentWindow.document ) {
+				if ( frame.contentwindow.document ) {
 					return true;
 				}
 			} catch(e) {}
@@ -308,47 +308,47 @@
 		}
 
 		/**
-		 * Checks if the document's focus has changed.
+		 * checks if the document's focus has changed.
 		 *
 		 * @since 4.1.0
 		 * @access private
 		 *
 		 * @return {void}
 		 */
-		function checkFocus() {
-			if ( settings.hasFocus && ! document.hasFocus() ) {
+		function checkfocus() {
+			if ( settings.hasfocus && ! document.hasfocus() ) {
 				blurred();
-			} else if ( ! settings.hasFocus && document.hasFocus() ) {
+			} else if ( ! settings.hasfocus && document.hasfocus() ) {
 				focused();
 			}
 		}
 
 		/**
-		 * Sets error state and fires an event on XHR errors or timeout.
+		 * sets error state and fires an event on xhr errors or timeout.
 		 *
 		 * @since 3.8.0
 		 * @access private
 		 *
-		 * @param {string} error  The error type passed from the XHR.
-		 * @param {number} status The HTTP status code passed from jqXHR
+		 * @param {string} error  the error type passed from the xhr.
+		 * @param {number} status the http status code passed from jqxhr
 		 *                        (200, 404, 500, etc.).
 		 *
 		 * @return {void}
 		 */
-		function setErrorState( error, status ) {
+		function seterrorstate( error, status ) {
 			var trigger;
 
 			if ( error ) {
 				switch ( error ) {
 					case 'abort':
-						// Do nothing.
+						// do nothing.
 						break;
 					case 'timeout':
-						// No response for 30 seconds.
+						// no response for 30 seconds.
 						trigger = true;
 						break;
 					case 'error':
-						if ( 503 === status && settings.hasConnected ) {
+						if ( 503 === status && settings.hasconnected ) {
 							trigger = true;
 							break;
 						}
@@ -358,43 +358,43 @@
 					case 'unknown':
 						settings.errorcount++;
 
-						if ( settings.errorcount > 2 && settings.hasConnected ) {
+						if ( settings.errorcount > 2 && settings.hasconnected ) {
 							trigger = true;
 						}
 
 						break;
 				}
 
-				if ( trigger && ! hasConnectionError() ) {
-					settings.connectionError = true;
+				if ( trigger && ! hasconnectionerror() ) {
+					settings.connectionerror = true;
 					$document.trigger( 'heartbeat-connection-lost', [error, status] );
-					wp.hooks.doAction( 'heartbeat.connection-lost', error, status );
+					wp.hooks.doaction( 'heartbeat.connection-lost', error, status );
 				}
 			}
 		}
 
 		/**
-		 * Clears the error state and fires an event if there is a connection error.
+		 * clears the error state and fires an event if there is a connection error.
 		 *
 		 * @since 3.8.0
 		 * @access private
 		 *
 		 * @return {void}
 		 */
-		function clearErrorState() {
-			// Has connected successfully.
-			settings.hasConnected = true;
+		function clearerrorstate() {
+			// has connected successfully.
+			settings.hasconnected = true;
 
-			if ( hasConnectionError() ) {
+			if ( hasconnectionerror() ) {
 				settings.errorcount = 0;
-				settings.connectionError = false;
+				settings.connectionerror = false;
 				$document.trigger( 'heartbeat-connection-restored' );
-				wp.hooks.doAction( 'heartbeat.connection-restored' );
+				wp.hooks.doaction( 'heartbeat.connection-restored' );
 			}
 		}
 
 		/**
-		 * Gathers the data and connects to the server.
+		 * gathers the data and connects to the server.
 		 *
 		 * @since 3.6.0
 		 * @access private
@@ -402,131 +402,131 @@
 		 * @return {void}
 		 */
 		function connect() {
-			var ajaxData, heartbeatData;
+			var ajaxdata, heartbeatdata;
 
-			// If the connection to the server is slower than the interval,
+			// if the connection to the server is slower than the interval,
 			// heartbeat connects as soon as the previous connection's response is received.
 			if ( settings.connecting || settings.suspend ) {
 				return;
 			}
 
-			settings.lastTick = time();
+			settings.lasttick = time();
 
-			heartbeatData = $.extend( {}, settings.queue );
-			// Clear the data queue. Anything added after this point will be sent on the next tick.
+			heartbeatdata = $.extend( {}, settings.queue );
+			// clear the data queue. anything added after this point will be sent on the next tick.
 			settings.queue = {};
 
-			$document.trigger( 'heartbeat-send', [ heartbeatData ] );
-			wp.hooks.doAction( 'heartbeat.send', heartbeatData );
+			$document.trigger( 'heartbeat-send', [ heartbeatdata ] );
+			wp.hooks.doaction( 'heartbeat.send', heartbeatdata );
 
-			ajaxData = {
-				data: heartbeatData,
-				interval: settings.tempInterval ? settings.tempInterval / 1000 : settings.mainInterval / 1000,
-				_nonce: typeof window.heartbeatSettings === 'object' ? window.heartbeatSettings.nonce : '',
+			ajaxdata = {
+				data: heartbeatdata,
+				interval: settings.tempinterval ? settings.tempinterval / 1000 : settings.maininterval / 1000,
+				_nonce: typeof window.heartbeatsettings === 'object' ? window.heartbeatsettings.nonce : '',
 				action: 'heartbeat',
-				screen_id: settings.screenId,
-				has_focus: settings.hasFocus
+				screen_id: settings.screenid,
+				has_focus: settings.hasfocus
 			};
 
-			if ( 'customize' === settings.screenId  ) {
-				ajaxData.wp_customize = 'on';
+			if ( 'customize' === settings.screenid  ) {
+				ajaxdata.wp_customize = 'on';
 			}
 
 			settings.connecting = true;
 			settings.xhr = $.ajax({
 				url: settings.url,
 				type: 'post',
-				timeout: 30000, // Throw an error if not completed after 30 seconds.
-				data: ajaxData,
-				dataType: 'json'
+				timeout: 30000, // throw an error if not completed after 30 seconds.
+				data: ajaxdata,
+				datatype: 'json'
 			}).always( function() {
 				settings.connecting = false;
-				scheduleNextTick();
-			}).done( function( response, textStatus, jqXHR ) {
-				var newInterval;
+				schedulenexttick();
+			}).done( function( response, textstatus, jqxhr ) {
+				var newinterval;
 
 				if ( ! response ) {
-					setErrorState( 'empty' );
+					seterrorstate( 'empty' );
 					return;
 				}
 
-				clearErrorState();
+				clearerrorstate();
 
 				if ( response.nonces_expired ) {
 					$document.trigger( 'heartbeat-nonces-expired' );
-					wp.hooks.doAction( 'heartbeat.nonces-expired' );
+					wp.hooks.doaction( 'heartbeat.nonces-expired' );
 				}
 
-				// Change the interval from PHP.
+				// change the interval from php.
 				if ( response.heartbeat_interval ) {
-					newInterval = response.heartbeat_interval;
+					newinterval = response.heartbeat_interval;
 					delete response.heartbeat_interval;
 				}
 
-				// Update the heartbeat nonce if set.
-				if ( response.heartbeat_nonce && typeof window.heartbeatSettings === 'object' ) {
-					window.heartbeatSettings.nonce = response.heartbeat_nonce;
+				// update the heartbeat nonce if set.
+				if ( response.heartbeat_nonce && typeof window.heartbeatsettings === 'object' ) {
+					window.heartbeatsettings.nonce = response.heartbeat_nonce;
 					delete response.heartbeat_nonce;
 				}
 
-				// Update the Rest API nonce if set and wp-api loaded.
-				if ( response.rest_nonce && typeof window.wpApiSettings === 'object' ) {
-					window.wpApiSettings.nonce = response.rest_nonce;
-					// This nonce is required for api-fetch through heartbeat.tick.
+				// update the rest api nonce if set and wp-api loaded.
+				if ( response.rest_nonce && typeof window.wpapisettings === 'object' ) {
+					window.wpapisettings.nonce = response.rest_nonce;
+					// this nonce is required for api-fetch through heartbeat.tick.
 					// delete response.rest_nonce;
 				}
 
-				$document.trigger( 'heartbeat-tick', [response, textStatus, jqXHR] );
-				wp.hooks.doAction( 'heartbeat.tick', response, textStatus, jqXHR );
+				$document.trigger( 'heartbeat-tick', [response, textstatus, jqxhr] );
+				wp.hooks.doaction( 'heartbeat.tick', response, textstatus, jqxhr );
 
-				// Do this last. Can trigger the next XHR if connection time > 5 seconds and newInterval == 'fast'.
-				if ( newInterval ) {
-					interval( newInterval );
+				// do this last. can trigger the next xhr if connection time > 5 seconds and newinterval == 'fast'.
+				if ( newinterval ) {
+					interval( newinterval );
 				}
-			}).fail( function( jqXHR, textStatus, error ) {
-				setErrorState( textStatus || 'unknown', jqXHR.status );
-				$document.trigger( 'heartbeat-error', [jqXHR, textStatus, error] );
-				wp.hooks.doAction( 'heartbeat.error', jqXHR, textStatus, error );
+			}).fail( function( jqxhr, textstatus, error ) {
+				seterrorstate( textstatus || 'unknown', jqxhr.status );
+				$document.trigger( 'heartbeat-error', [jqxhr, textstatus, error] );
+				wp.hooks.doaction( 'heartbeat.error', jqxhr, textstatus, error );
 			});
 		}
 
 		/**
-		 * Schedules the next connection.
+		 * schedules the next connection.
 		 *
-		 * Fires immediately if the connection time is longer than the interval.
+		 * fires immediately if the connection time is longer than the interval.
 		 *
 		 * @since 3.8.0
 		 * @access private
 		 *
 		 * @return {void}
 		 */
-		function scheduleNextTick() {
-			var delta = time() - settings.lastTick,
-				interval = settings.mainInterval;
+		function schedulenexttick() {
+			var delta = time() - settings.lasttick,
+				interval = settings.maininterval;
 
 			if ( settings.suspend ) {
 				return;
 			}
 
-			if ( ! settings.hasFocus ) {
-				interval = 120000; // 120 seconds. Post locks expire after 150 seconds.
-			} else if ( settings.countdown > 0 && settings.tempInterval ) {
-				interval = settings.tempInterval;
+			if ( ! settings.hasfocus ) {
+				interval = 120000; // 120 seconds. post locks expire after 150 seconds.
+			} else if ( settings.countdown > 0 && settings.tempinterval ) {
+				interval = settings.tempinterval;
 				settings.countdown--;
 
 				if ( settings.countdown < 1 ) {
-					settings.tempInterval = 0;
+					settings.tempinterval = 0;
 				}
 			}
 
-			if ( settings.minimalInterval && interval < settings.minimalInterval ) {
-				interval = settings.minimalInterval;
+			if ( settings.minimalinterval && interval < settings.minimalinterval ) {
+				interval = settings.minimalinterval;
 			}
 
-			window.clearTimeout( settings.beatTimer );
+			window.cleartimeout( settings.beattimer );
 
 			if ( delta < interval ) {
-				settings.beatTimer = window.setTimeout(
+				settings.beattimer = window.settimeout(
 					function() {
 						connect();
 					},
@@ -538,7 +538,7 @@
 		}
 
 		/**
-		 * Sets the internal state when the browser window becomes hidden or loses focus.
+		 * sets the internal state when the browser window becomes hidden or loses focus.
 		 *
 		 * @since 3.6.0
 		 * @access private
@@ -546,11 +546,11 @@
 		 * @return {void}
 		 */
 		function blurred() {
-			settings.hasFocus = false;
+			settings.hasfocus = false;
 		}
 
 		/**
-		 * Sets the internal state when the browser window becomes visible or is in focus.
+		 * sets the internal state when the browser window becomes visible or is in focus.
 		 *
 		 * @since 3.6.0
 		 * @access private
@@ -558,46 +558,46 @@
 		 * @return {void}
 		 */
 		function focused() {
-			settings.userActivity = time();
+			settings.useractivity = time();
 
-			// Resume if suspended.
+			// resume if suspended.
 			resume();
 
-			if ( ! settings.hasFocus ) {
-				settings.hasFocus = true;
-				scheduleNextTick();
+			if ( ! settings.hasfocus ) {
+				settings.hasfocus = true;
+				schedulenexttick();
 			}
 		}
 
 		/**
-		 * Suspends connecting.
+		 * suspends connecting.
 		 */
 		function suspend() {
 			settings.suspend = true;
 		}
 
 		/**
-		 * Resumes connecting.
+		 * resumes connecting.
 		 */
 		function resume() {
 			settings.suspend = false;
 		}
 
 		/**
-		 * Runs when the user becomes active after a period of inactivity.
+		 * runs when the user becomes active after a period of inactivity.
 		 *
 		 * @since 3.6.0
 		 * @access private
 		 *
 		 * @return {void}
 		 */
-		function userIsActive() {
-			settings.userActivityEvents = false;
+		function userisactive() {
+			settings.useractivityevents = false;
 			$document.off( '.wp-heartbeat-active' );
 
 			$('iframe').each( function( i, frame ) {
-				if ( isLocalFrame( frame ) ) {
-					$( frame.contentWindow ).off( '.wp-heartbeat-active' );
+				if ( islocalframe( frame ) ) {
+					$( frame.contentwindow ).off( '.wp-heartbeat-active' );
 				}
 			});
 
@@ -605,10 +605,10 @@
 		}
 
 		/**
-		 * Checks for user activity.
+		 * checks for user activity.
 		 *
-		 * Runs every 30 seconds. Sets 'hasFocus = true' if user is active and the window
-		 * is in the background. Sets 'hasFocus = false' if the user has been inactive
+		 * runs every 30 seconds. sets 'hasfocus = true' if user is active and the window
+		 * is in the background. sets 'hasfocus = false' if the user has been inactive
 		 * (no mouse or keyboard activity) for 5 minutes even when the window has focus.
 		 *
 		 * @since 3.8.0
@@ -616,198 +616,198 @@
 		 *
 		 * @return {void}
 		 */
-		function checkUserActivity() {
-			var lastActive = settings.userActivity ? time() - settings.userActivity : 0;
+		function checkuseractivity() {
+			var lastactive = settings.useractivity ? time() - settings.useractivity : 0;
 
-			// Throttle down when no mouse or keyboard activity for 5 minutes.
-			if ( lastActive > 300000 && settings.hasFocus ) {
+			// throttle down when no mouse or keyboard activity for 5 minutes.
+			if ( lastactive > 300000 && settings.hasfocus ) {
 				blurred();
 			}
 
-			// Suspend after 10 minutes of inactivity when suspending is enabled.
-			// Always suspend after 60 minutes of inactivity. This will release the post lock, etc.
-			if ( ( settings.suspendEnabled && lastActive > 600000 ) || lastActive > 3600000 ) {
+			// suspend after 10 minutes of inactivity when suspending is enabled.
+			// always suspend after 60 minutes of inactivity. this will release the post lock, etc.
+			if ( ( settings.suspendenabled && lastactive > 600000 ) || lastactive > 3600000 ) {
 				suspend();
 			}
 
-			if ( ! settings.userActivityEvents ) {
+			if ( ! settings.useractivityevents ) {
 				$document.on( 'mouseover.wp-heartbeat-active keyup.wp-heartbeat-active touchend.wp-heartbeat-active', function() {
-					userIsActive();
+					userisactive();
 				});
 
 				$('iframe').each( function( i, frame ) {
-					if ( isLocalFrame( frame ) ) {
-						$( frame.contentWindow ).on( 'mouseover.wp-heartbeat-active keyup.wp-heartbeat-active touchend.wp-heartbeat-active', function() {
-							userIsActive();
+					if ( islocalframe( frame ) ) {
+						$( frame.contentwindow ).on( 'mouseover.wp-heartbeat-active keyup.wp-heartbeat-active touchend.wp-heartbeat-active', function() {
+							userisactive();
 						});
 					}
 				});
 
-				settings.userActivityEvents = true;
+				settings.useractivityevents = true;
 			}
 		}
 
-		// Public methods.
+		// public methods.
 
 		/**
-		 * Checks whether the window (or any local iframe in it) has focus, or the user
+		 * checks whether the window (or any local iframe in it) has focus, or the user
 		 * is active.
 		 *
 		 * @since 3.6.0
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
-		 * @return {boolean} True if the window or the user is active.
+		 * @return {boolean} true if the window or the user is active.
 		 */
-		function hasFocus() {
-			return settings.hasFocus;
+		function hasfocus() {
+			return settings.hasfocus;
 		}
 
 		/**
-		 * Checks whether there is a connection error.
+		 * checks whether there is a connection error.
 		 *
 		 * @since 3.6.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
-		 * @return {boolean} True if a connection error was found.
+		 * @return {boolean} true if a connection error was found.
 		 */
-		function hasConnectionError() {
-			return settings.connectionError;
+		function hasconnectionerror() {
+			return settings.connectionerror;
 		}
 
 		/**
-		 * Connects as soon as possible regardless of 'hasFocus' state.
+		 * connects as soon as possible regardless of 'hasfocus' state.
 		 *
-		 * Will not open two concurrent connections. If a connection is in progress,
+		 * will not open two concurrent connections. if a connection is in progress,
 		 * will connect again immediately after the current connection completes.
 		 *
 		 * @since 3.8.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
 		 * @return {void}
 		 */
-		function connectNow() {
-			settings.lastTick = 0;
-			scheduleNextTick();
+		function connectnow() {
+			settings.lasttick = 0;
+			schedulenexttick();
 		}
 
 		/**
-		 * Disables suspending.
+		 * disables suspending.
 		 *
-		 * Should be used only when Heartbeat is performing critical tasks like
-		 * autosave, post-locking, etc. Using this on many screens may overload
+		 * should be used only when heartbeat is performing critical tasks like
+		 * autosave, post-locking, etc. using this on many screens may overload
 		 * the user's hosting account if several browser windows/tabs are left open
 		 * for a long time.
 		 *
 		 * @since 3.8.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
 		 * @return {void}
 		 */
-		function disableSuspend() {
-			settings.suspendEnabled = false;
+		function disablesuspend() {
+			settings.suspendenabled = false;
 		}
 
 		/**
-		 * Gets/Sets the interval.
+		 * gets/sets the interval.
 		 *
-		 * When setting to 'fast' or 5, the interval is 5 seconds for the next 30 ticks
-		 * (for 2 minutes and 30 seconds) by default. In this case the number of 'ticks'
-		 * can be passed as second argument. If the window doesn't have focus,
+		 * when setting to 'fast' or 5, the interval is 5 seconds for the next 30 ticks
+		 * (for 2 minutes and 30 seconds) by default. in this case the number of 'ticks'
+		 * can be passed as second argument. if the window doesn't have focus,
 		 * the interval slows down to 2 minutes.
 		 *
 		 * @since 3.6.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
-		 * @param {string|number} speed Interval: 'fast' or integer between 1 and 3600 (seconds).
-		 *                              Fast equals 5.
-		 * @param {number}        ticks Tells how many ticks before the interval reverts back.
-		 *                              Value must be between 1 and 30. Used with speed = 'fast' or 5.
+		 * @param {string|number} speed interval: 'fast' or integer between 1 and 3600 (seconds).
+		 *                              fast equals 5.
+		 * @param {number}        ticks tells how many ticks before the interval reverts back.
+		 *                              value must be between 1 and 30. used with speed = 'fast' or 5.
 		 *
-		 * @return {number} Current interval in seconds.
+		 * @return {number} current interval in seconds.
 		 */
 		function interval( speed, ticks ) {
-			var newInterval,
-				oldInterval = settings.tempInterval ? settings.tempInterval : settings.mainInterval;
+			var newinterval,
+				oldinterval = settings.tempinterval ? settings.tempinterval : settings.maininterval;
 
 			if ( speed ) {
 				if ( 'fast' === speed ) {
-					// Special case, see below.
-					newInterval = 5000;
+					// special case, see below.
+					newinterval = 5000;
 				} else if ( 'long-polling' === speed ) {
-					// Allow long polling (experimental).
-					settings.mainInterval = 0;
+					// allow long polling (experimental).
+					settings.maininterval = 0;
 					return 0;
 				} else {
-					speed = parseInt( speed, 10 );
+					speed = parseint( speed, 10 );
 
 					if ( speed >= 1 && speed <= 3600 ) {
-						newInterval = speed * 1000;
+						newinterval = speed * 1000;
 					} else {
-						newInterval = settings.originalInterval;
+						newinterval = settings.originalinterval;
 					}
 				}
 
-				if ( settings.minimalInterval && newInterval < settings.minimalInterval ) {
-					newInterval = settings.minimalInterval;
+				if ( settings.minimalinterval && newinterval < settings.minimalinterval ) {
+					newinterval = settings.minimalinterval;
 				}
 
-				// Special case, runs for a number of ticks then reverts to the previous interval.
-				if ( 5000 === newInterval ) {
-					ticks = parseInt( ticks, 10 ) || 30;
+				// special case, runs for a number of ticks then reverts to the previous interval.
+				if ( 5000 === newinterval ) {
+					ticks = parseint( ticks, 10 ) || 30;
 					ticks = ticks < 1 || ticks > 30 ? 30 : ticks;
 
 					settings.countdown = ticks;
-					settings.tempInterval = newInterval;
+					settings.tempinterval = newinterval;
 				} else {
 					settings.countdown = 0;
-					settings.tempInterval = 0;
-					settings.mainInterval = newInterval;
+					settings.tempinterval = 0;
+					settings.maininterval = newinterval;
 				}
 
 				/*
-				 * Change the next connection time if new interval has been set.
-				 * Will connect immediately if the time since the last connection
+				 * change the next connection time if new interval has been set.
+				 * will connect immediately if the time since the last connection
 				 * is greater than the new interval.
 				 */
-				if ( newInterval !== oldInterval ) {
-					scheduleNextTick();
+				if ( newinterval !== oldinterval ) {
+					schedulenexttick();
 				}
 			}
 
-			return settings.tempInterval ? settings.tempInterval / 1000 : settings.mainInterval / 1000;
+			return settings.tempinterval ? settings.tempinterval / 1000 : settings.maininterval / 1000;
 		}
 
 		/**
-		 * Enqueues data to send with the next XHR.
+		 * enqueues data to send with the next xhr.
 		 *
-		 * As the data is send asynchronously, this function doesn't return the XHR
-		 * response. To see the response, use the custom jQuery event 'heartbeat-tick'
+		 * as the data is send asynchronously, this function doesn't return the xhr
+		 * response. to see the response, use the custom jquery event 'heartbeat-tick'
 		 * on the document, example:
-		 *		$(document).on( 'heartbeat-tick.myname', function( event, data, textStatus, jqXHR ) {
+		 *		$(document).on( 'heartbeat-tick.myname', function( event, data, textstatus, jqxhr ) {
 		 *			// code
 		 *		});
-		 * If the same 'handle' is used more than once, the data is not overwritten when
-		 * the third argument is 'true'. Use `wp.heartbeat.isQueued('handle')` to see if
+		 * if the same 'handle' is used more than once, the data is not overwritten when
+		 * the third argument is 'true'. use `wp.heartbeat.isqueued('handle')` to see if
 		 * any data is already queued for that handle.
 		 *
 		 * @since 3.6.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
-		 * @param {string}  handle      Unique handle for the data, used in PHP to
+		 * @param {string}  handle      unique handle for the data, used in php to
 		 *                              receive the data.
-		 * @param {*}       data        The data to send.
-		 * @param {boolean} noOverwrite Whether to overwrite existing data in the queue.
+		 * @param {*}       data        the data to send.
+		 * @param {boolean} nooverwrite whether to overwrite existing data in the queue.
 		 *
-		 * @return {boolean} True if the data was queued.
+		 * @return {boolean} true if the data was queued.
 		 */
-		function enqueue( handle, data, noOverwrite ) {
+		function enqueue( handle, data, nooverwrite ) {
 			if ( handle ) {
-				if ( noOverwrite && this.isQueued( handle ) ) {
+				if ( nooverwrite && this.isqueued( handle ) ) {
 					return false;
 				}
 
@@ -818,28 +818,28 @@
 		}
 
 		/**
-		 * Checks if data with a particular handle is queued.
+		 * checks if data with a particular handle is queued.
 		 *
 		 * @since 3.6.0
 		 *
-		 * @param {string} handle The handle for the data.
+		 * @param {string} handle the handle for the data.
 		 *
-		 * @return {boolean} True if the data is queued with this handle.
+		 * @return {boolean} true if the data is queued with this handle.
 		 */
-		function isQueued( handle ) {
+		function isqueued( handle ) {
 			if ( handle ) {
-				return settings.queue.hasOwnProperty( handle );
+				return settings.queue.hasownproperty( handle );
 			}
 		}
 
 		/**
-		 * Removes data with a particular handle from the queue.
+		 * removes data with a particular handle from the queue.
 		 *
 		 * @since 3.7.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
-		 * @param {string} handle The handle for the data.
+		 * @param {string} handle the handle for the data.
 		 *
 		 * @return {void}
 		 */
@@ -850,51 +850,53 @@
 		}
 
 		/**
-		 * Gets data that was enqueued with a particular handle.
+		 * gets data that was enqueued with a particular handle.
 		 *
 		 * @since 3.7.0
 		 *
-		 * @memberOf wp.heartbeat.prototype
+		 * @memberof wp.heartbeat.prototype
 		 *
-		 * @param {string} handle The handle for the data.
+		 * @param {string} handle the handle for the data.
 		 *
-		 * @return {*} The data or undefined.
+		 * @return {*} the data or undefined.
 		 */
-		function getQueuedItem( handle ) {
+		function getqueueditem( handle ) {
 			if ( handle ) {
-				return this.isQueued( handle ) ? settings.queue[handle] : undefined;
+				return this.isqueued( handle ) ? settings.queue[handle] : undefined;
 			}
 		}
 
 		initialize();
 
-		// Expose public methods.
+		// expose public methods.
 		return {
-			hasFocus: hasFocus,
-			connectNow: connectNow,
-			disableSuspend: disableSuspend,
+			hasfocus: hasfocus,
+			connectnow: connectnow,
+			disablesuspend: disablesuspend,
 			interval: interval,
-			hasConnectionError: hasConnectionError,
+			hasconnectionerror: hasconnectionerror,
 			enqueue: enqueue,
 			dequeue: dequeue,
-			isQueued: isQueued,
-			getQueuedItem: getQueuedItem
+			isqueued: isqueued,
+			getqueueditem: getqueueditem
 		};
 	};
 
 	/**
-	 * Ensure the global `wp` object exists.
+	 * ensure the global `wp` object exists.
 	 *
 	 * @namespace wp
 	 */
 	window.wp = window.wp || {};
 
 	/**
-	 * Contains the Heartbeat API.
+	 * contains the heartbeat api.
 	 *
 	 * @namespace wp.heartbeat
-	 * @type {Heartbeat}
+	 * @type {heartbeat}
 	 */
-	window.wp.heartbeat = new Heartbeat();
+	window.wp.heartbeat = new heartbeat();
 
-}( jQuery, window ));
+}( jquery, window ));
+
+

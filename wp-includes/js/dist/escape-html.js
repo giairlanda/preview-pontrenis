@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,78 +10,79 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  escapeAmpersand: () => (/* binding */ escapeAmpersand),
-  escapeAttribute: () => (/* binding */ escapeAttribute),
-  escapeEditableHTML: () => (/* binding */ escapeEditableHTML),
-  escapeHTML: () => (/* binding */ escapeHTML),
-  escapeLessThan: () => (/* binding */ escapeLessThan),
-  escapeQuotationMark: () => (/* binding */ escapeQuotationMark),
-  isValidAttributeName: () => (/* binding */ isValidAttributeName)
+  escapeampersand: () => (/* binding */ escapeampersand),
+  escapeattribute: () => (/* binding */ escapeattribute),
+  escapeeditablehtml: () => (/* binding */ escapeeditablehtml),
+  escapehtml: () => (/* binding */ escapehtml),
+  escapelessthan: () => (/* binding */ escapelessthan),
+  escapequotationmark: () => (/* binding */ escapequotationmark),
+  isvalidattributename: () => (/* binding */ isvalidattributename)
 });
 
 ;// ./node_modules/@wordpress/escape-html/build-module/escape-greater.js
-function __unstableEscapeGreaterThan(value) {
+function __unstableescapegreaterthan(value) {
   return value.replace(/>/g, "&gt;");
 }
 
 
 ;// ./node_modules/@wordpress/escape-html/build-module/index.js
 
-const REGEXP_INVALID_ATTRIBUTE_NAME = /[\u007F-\u009F "'>/="\uFDD0-\uFDEF]/;
-function escapeAmpersand(value) {
+const regexp_invalid_attribute_name = /[\u007f-\u009f "'>/="\ufdd0-\ufdef]/;
+function escapeampersand(value) {
   return value.replace(/&(?!([a-z0-9]+|#[0-9]+|#x[a-f0-9]+);)/gi, "&amp;");
 }
-function escapeQuotationMark(value) {
+function escapequotationmark(value) {
   return value.replace(/"/g, "&quot;");
 }
-function escapeLessThan(value) {
+function escapelessthan(value) {
   return value.replace(/</g, "&lt;");
 }
-function escapeAttribute(value) {
-  return __unstableEscapeGreaterThan(
-    escapeQuotationMark(escapeAmpersand(value))
+function escapeattribute(value) {
+  return __unstableescapegreaterthan(
+    escapequotationmark(escapeampersand(value))
   );
 }
-function escapeHTML(value) {
-  return escapeLessThan(escapeAmpersand(value));
+function escapehtml(value) {
+  return escapelessthan(escapeampersand(value));
 }
-function escapeEditableHTML(value) {
-  return escapeLessThan(value.replace(/&/g, "&amp;"));
+function escapeeditablehtml(value) {
+  return escapelessthan(value.replace(/&/g, "&amp;"));
 }
-function isValidAttributeName(name) {
-  return !REGEXP_INVALID_ATTRIBUTE_NAME.test(name);
+function isvalidattributename(name) {
+  return !regexp_invalid_attribute_name.test(name);
 }
 
 
-(window.wp = window.wp || {}).escapeHtml = __webpack_exports__;
+(window.wp = window.wp || {}).escapehtml = __webpack_exports__;
 /******/ })()
 ;
+

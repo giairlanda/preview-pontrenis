@@ -1,10 +1,10 @@
 
-// Node.prototype.contains
+// node.prototype.contains
 (function() {
 
 	function contains(node) {
 		if (!(0 in arguments)) {
-			throw new TypeError('1 argument is required');
+			throw new typeerror('1 argument is required');
 		}
 
 		do {
@@ -12,23 +12,25 @@
 				return true;
 			}
 		// eslint-disable-next-line no-cond-assign
-		} while (node = node && node.parentNode);
+		} while (node = node && node.parentnode);
 
 		return false;
 	}
 
-	// IE
-	if ('HTMLElement' in self && 'contains' in HTMLElement.prototype) {
+	// ie
+	if ('htmlelement' in self && 'contains' in htmlelement.prototype) {
 		try {
-			delete HTMLElement.prototype.contains;
+			delete htmlelement.prototype.contains;
 		// eslint-disable-next-line no-empty
 		} catch (e) {}
 	}
 
-	if ('Node' in self) {
-		Node.prototype.contains = contains;
+	if ('node' in self) {
+		node.prototype.contains = contains;
 	} else {
-		document.contains = Element.prototype.contains = contains;
+		document.contains = element.prototype.contains = contains;
 	}
 
 }());
+
+

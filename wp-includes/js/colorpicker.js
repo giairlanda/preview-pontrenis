@@ -1,86 +1,86 @@
 // ===================================================================
-// Author: Matt Kruse <matt@mattkruse.com>
-// WWW: http://www.mattkruse.com/
+// author: matt kruse <matt@mattkruse.com>
+// www: http://www.mattkruse.com/
 //
-// NOTICE: You may use this code for any purpose, commercial or
-// private, without any further permission from the author. You may
+// notice: you may use this code for any purpose, commercial or
+// private, without any further permission from the author. you may
 // remove this notice from your final code if you wish, however it is
 // appreciated by the author if at least my web site address is kept.
 //
-// You may *NOT* re-distribute this code in any way except through its
-// use. That means, you can include it in your product, or your web
-// site, or any other form where the code is actually being used. You
+// you may *not* re-distribute this code in any way except through its
+// use. that means, you can include it in your product, or your web
+// site, or any other form where the code is actually being used. you
 // may not put the plain javascript up on your site for download or
 // include it in your javascript libraries for download.
-// If you wish to share this code with others, please just point them
-// to the URL instead.
-// Please DO NOT link directly to my .js files from your site. Copy
-// the files to your server and use them there. Thank you.
+// if you wish to share this code with others, please just point them
+// to the url instead.
+// please do not link directly to my .js files from your site. copy
+// the files to your server and use them there. thank you.
 // ===================================================================
 
 
-/* SOURCE FILE: AnchorPosition.js */
+/* source file: anchorposition.js */
 
 /*
-AnchorPosition.js
-Author: Matt Kruse
-Last modified: 10/11/02
+anchorposition.js
+author: matt kruse
+last modified: 10/11/02
 
-DESCRIPTION: These functions find the position of an <A> tag in a document,
+description: these functions find the position of an <a> tag in a document,
 so other elements can be positioned relative to it.
 
-COMPATABILITY: Netscape 4.x,6.x,Mozilla, IE 5.x,6.x on Windows. Some small
-positioning errors - usually with Window positioning - occur on the
-Macintosh platform.
+compatability: netscape 4.x,6.x,mozilla, ie 5.x,6.x on windows. some small
+positioning errors - usually with window positioning - occur on the
+macintosh platform.
 
-FUNCTIONS:
-getAnchorPosition(anchorname)
-  Returns an Object() having .x and .y properties of the pixel coordinates
-  of the upper-left corner of the anchor. Position is relative to the PAGE.
+functions:
+getanchorposition(anchorname)
+  returns an object() having .x and .y properties of the pixel coordinates
+  of the upper-left corner of the anchor. position is relative to the page.
 
-getAnchorWindowPosition(anchorname)
-  Returns an Object() having .x and .y properties of the pixel coordinates
-  of the upper-left corner of the anchor, relative to the WHOLE SCREEN.
+getanchorwindowposition(anchorname)
+  returns an object() having .x and .y properties of the pixel coordinates
+  of the upper-left corner of the anchor, relative to the whole screen.
 
-NOTES:
+notes:
 
-1) For popping up separate browser windows, use getAnchorWindowPosition.
-   Otherwise, use getAnchorPosition
+1) for popping up separate browser windows, use getanchorwindowposition.
+   otherwise, use getanchorposition
 
-2) Your anchor tag MUST contain both NAME and ID attributes which are the
-   same. For example:
-   <A NAME="test" ID="test"> </A>
+2) your anchor tag must contain both name and id attributes which are the
+   same. for example:
+   <a name="test" id="test"> </a>
 
-3) There must be at least a space between <A> </A> for IE5.5 to see the
-   anchor tag correctly. Do not do <A></A> with no space.
+3) there must be at least a space between <a> </a> for ie5.5 to see the
+   anchor tag correctly. do not do <a></a> with no space.
 */
 
-// getAnchorPosition(anchorname)
-//   This function returns an object having .x and .y properties which are the coordinates
+// getanchorposition(anchorname)
+//   this function returns an object having .x and .y properties which are the coordinates
 //   of the named anchor, relative to the page.
-function getAnchorPosition(anchorname) {
-	// This function will return an Object with x and y properties
-	var useWindow=false;
-	var coordinates=new Object();
+function getanchorposition(anchorname) {
+	// this function will return an object with x and y properties
+	var usewindow=false;
+	var coordinates=new object();
 	var x=0,y=0;
-	// Browser capability sniffing
+	// browser capability sniffing
 	var use_gebi=false, use_css=false, use_layers=false;
-	if (document.getElementById) { use_gebi=true; }
+	if (document.getelementbyid) { use_gebi=true; }
 	else if (document.all) { use_css=true; }
 	else if (document.layers) { use_layers=true; }
-	// Logic to find position
+	// logic to find position
  	if (use_gebi && document.all) {
-		x=AnchorPosition_getPageOffsetLeft(document.all[anchorname]);
-		y=AnchorPosition_getPageOffsetTop(document.all[anchorname]);
+		x=anchorposition_getpageoffsetleft(document.all[anchorname]);
+		y=anchorposition_getpageoffsettop(document.all[anchorname]);
 		}
 	else if (use_gebi) {
-		var o=document.getElementById(anchorname);
-		x=AnchorPosition_getPageOffsetLeft(o);
-		y=AnchorPosition_getPageOffsetTop(o);
+		var o=document.getelementbyid(anchorname);
+		x=anchorposition_getpageoffsetleft(o);
+		y=anchorposition_getpageoffsettop(o);
 		}
  	else if (use_css) {
-		x=AnchorPosition_getPageOffsetLeft(document.all[anchorname]);
-		y=AnchorPosition_getPageOffsetTop(document.all[anchorname]);
+		x=anchorposition_getpageoffsetleft(document.all[anchorname]);
+		y=anchorposition_getpageoffsettop(document.all[anchorname]);
 		}
 	else if (use_layers) {
 		var found=0;
@@ -101,281 +101,281 @@ function getAnchorPosition(anchorname) {
 	return coordinates;
 	}
 
-// getAnchorWindowPosition(anchorname)
-//   This function returns an object having .x and .y properties which are the coordinates
+// getanchorwindowposition(anchorname)
+//   this function returns an object having .x and .y properties which are the coordinates
 //   of the named anchor, relative to the window
-function getAnchorWindowPosition(anchorname) {
-	var coordinates=getAnchorPosition(anchorname);
+function getanchorwindowposition(anchorname) {
+	var coordinates=getanchorposition(anchorname);
 	var x=0;
 	var y=0;
-	if (document.getElementById) {
-		if (isNaN(window.screenX)) {
-			x=coordinates.x-document.body.scrollLeft+window.screenLeft;
-			y=coordinates.y-document.body.scrollTop+window.screenTop;
+	if (document.getelementbyid) {
+		if (isnan(window.screenx)) {
+			x=coordinates.x-document.body.scrollleft+window.screenleft;
+			y=coordinates.y-document.body.scrolltop+window.screentop;
 			}
 		else {
-			x=coordinates.x+window.screenX+(window.outerWidth-window.innerWidth)-window.pageXOffset;
-			y=coordinates.y+window.screenY+(window.outerHeight-24-window.innerHeight)-window.pageYOffset;
+			x=coordinates.x+window.screenx+(window.outerwidth-window.innerwidth)-window.pagexoffset;
+			y=coordinates.y+window.screeny+(window.outerheight-24-window.innerheight)-window.pageyoffset;
 			}
 		}
 	else if (document.all) {
-		x=coordinates.x-document.body.scrollLeft+window.screenLeft;
-		y=coordinates.y-document.body.scrollTop+window.screenTop;
+		x=coordinates.x-document.body.scrollleft+window.screenleft;
+		y=coordinates.y-document.body.scrolltop+window.screentop;
 		}
 	else if (document.layers) {
-		x=coordinates.x+window.screenX+(window.outerWidth-window.innerWidth)-window.pageXOffset;
-		y=coordinates.y+window.screenY+(window.outerHeight-24-window.innerHeight)-window.pageYOffset;
+		x=coordinates.x+window.screenx+(window.outerwidth-window.innerwidth)-window.pagexoffset;
+		y=coordinates.y+window.screeny+(window.outerheight-24-window.innerheight)-window.pageyoffset;
 		}
 	coordinates.x=x;
 	coordinates.y=y;
 	return coordinates;
 	}
 
-// Functions for IE to get position of an object
-function AnchorPosition_getPageOffsetLeft (el) {
-	var ol=el.offsetLeft;
-	while ((el=el.offsetParent) != null) { ol += el.offsetLeft; }
+// functions for ie to get position of an object
+function anchorposition_getpageoffsetleft (el) {
+	var ol=el.offsetleft;
+	while ((el=el.offsetparent) != null) { ol += el.offsetleft; }
 	return ol;
 	}
-function AnchorPosition_getWindowOffsetLeft (el) {
-	return AnchorPosition_getPageOffsetLeft(el)-document.body.scrollLeft;
+function anchorposition_getwindowoffsetleft (el) {
+	return anchorposition_getpageoffsetleft(el)-document.body.scrollleft;
 	}
-function AnchorPosition_getPageOffsetTop (el) {
-	var ot=el.offsetTop;
-	while((el=el.offsetParent) != null) { ot += el.offsetTop; }
+function anchorposition_getpageoffsettop (el) {
+	var ot=el.offsettop;
+	while((el=el.offsetparent) != null) { ot += el.offsettop; }
 	return ot;
 	}
-function AnchorPosition_getWindowOffsetTop (el) {
-	return AnchorPosition_getPageOffsetTop(el)-document.body.scrollTop;
+function anchorposition_getwindowoffsettop (el) {
+	return anchorposition_getpageoffsettop(el)-document.body.scrolltop;
 	}
 
-/* SOURCE FILE: PopupWindow.js */
+/* source file: popupwindow.js */
 
 /*
-PopupWindow.js
-Author: Matt Kruse
-Last modified: 02/16/04
+popupwindow.js
+author: matt kruse
+last modified: 02/16/04
 
-DESCRIPTION: This object allows you to easily and quickly popup a window
-in a certain place. The window can either be a DIV or a separate browser
+description: this object allows you to easily and quickly popup a window
+in a certain place. the window can either be a div or a separate browser
 window.
 
-COMPATABILITY: Works with Netscape 4.x, 6.x, IE 5.x on Windows. Some small
-positioning errors - usually with Window positioning - occur on the
-Macintosh platform. Due to bugs in Netscape 4.x, populating the popup
-window with <STYLE> tags may cause errors.
+compatability: works with netscape 4.x, 6.x, ie 5.x on windows. some small
+positioning errors - usually with window positioning - occur on the
+macintosh platform. due to bugs in netscape 4.x, populating the popup
+window with <style> tags may cause errors.
 
-USAGE:
-// Create an object for a WINDOW popup
-var win = new PopupWindow();
+usage:
+// create an object for a window popup
+var win = new popupwindow();
 
-// Create an object for a DIV window using the DIV named 'mydiv'
-var win = new PopupWindow('mydiv');
+// create an object for a div window using the div named 'mydiv'
+var win = new popupwindow('mydiv');
 
-// Set the window to automatically hide itself when the user clicks
+// set the window to automatically hide itself when the user clicks
 // anywhere else on the page except the popup
-win.autoHide();
+win.autohide();
 
-// Show the window relative to the anchor name passed in
-win.showPopup(anchorname);
+// show the window relative to the anchor name passed in
+win.showpopup(anchorname);
 
-// Hide the popup
-win.hidePopup();
+// hide the popup
+win.hidepopup();
 
-// Set the size of the popup window (only applies to WINDOW popups
-win.setSize(width,height);
+// set the size of the popup window (only applies to window popups
+win.setsize(width,height);
 
-// Populate the contents of the popup window that will be shown. If you
+// populate the contents of the popup window that will be shown. if you
 // change the contents while it is displayed, you will need to refresh()
 win.populate(string);
 
-// set the URL of the window, rather than populating its contents
+// set the url of the window, rather than populating its contents
 // manually
-win.setUrl("http://www.site.com/");
+win.seturl("http://www.site.com/");
 
-// Refresh the contents of the popup
+// refresh the contents of the popup
 win.refresh();
 
-// Specify how many pixels to the right of the anchor the popup will appear
-win.offsetX = 50;
+// specify how many pixels to the right of the anchor the popup will appear
+win.offsetx = 50;
 
-// Specify how many pixels below the anchor the popup will appear
-win.offsetY = 100;
+// specify how many pixels below the anchor the popup will appear
+win.offsety = 100;
 
-NOTES:
-1) Requires the functions in AnchorPosition.js
+notes:
+1) requires the functions in anchorposition.js
 
-2) Your anchor tag MUST contain both NAME and ID attributes which are the
-   same. For example:
-   <A NAME="test" ID="test"> </A>
+2) your anchor tag must contain both name and id attributes which are the
+   same. for example:
+   <a name="test" id="test"> </a>
 
-3) There must be at least a space between <A> </A> for IE5.5 to see the
-   anchor tag correctly. Do not do <A></A> with no space.
+3) there must be at least a space between <a> </a> for ie5.5 to see the
+   anchor tag correctly. do not do <a></a> with no space.
 
-4) When a PopupWindow object is created, a handler for 'onmouseup' is
-   attached to any event handler you may have already defined. Do NOT define
-   an event handler for 'onmouseup' after you define a PopupWindow object or
-   the autoHide() will not work correctly.
+4) when a popupwindow object is created, a handler for 'onmouseup' is
+   attached to any event handler you may have already defined. do not define
+   an event handler for 'onmouseup' after you define a popupwindow object or
+   the autohide() will not work correctly.
 */
 
-// Set the position of the popup window based on the anchor
-function PopupWindow_getXYPosition(anchorname) {
+// set the position of the popup window based on the anchor
+function popupwindow_getxyposition(anchorname) {
 	var coordinates;
-	if (this.type == "WINDOW") {
-		coordinates = getAnchorWindowPosition(anchorname);
+	if (this.type == "window") {
+		coordinates = getanchorwindowposition(anchorname);
 		}
 	else {
-		coordinates = getAnchorPosition(anchorname);
+		coordinates = getanchorposition(anchorname);
 		}
 	this.x = coordinates.x;
 	this.y = coordinates.y;
 	}
-// Set width/height of DIV/popup window
-function PopupWindow_setSize(width,height) {
+// set width/height of div/popup window
+function popupwindow_setsize(width,height) {
 	this.width = width;
 	this.height = height;
 	}
-// Fill the window with contents
-function PopupWindow_populate(contents) {
+// fill the window with contents
+function popupwindow_populate(contents) {
 	this.contents = contents;
 	this.populated = false;
 	}
-// Set the URL to go to
-function PopupWindow_setUrl(url) {
+// set the url to go to
+function popupwindow_seturl(url) {
 	this.url = url;
 	}
-// Set the window popup properties
-function PopupWindow_setWindowProperties(props) {
-	this.windowProperties = props;
+// set the window popup properties
+function popupwindow_setwindowproperties(props) {
+	this.windowproperties = props;
 	}
-// Refresh the displayed contents of the popup
-function PopupWindow_refresh() {
-	if (this.divName != null) {
-		// refresh the DIV object
+// refresh the displayed contents of the popup
+function popupwindow_refresh() {
+	if (this.divname != null) {
+		// refresh the div object
 		if (this.use_gebi) {
-			document.getElementById(this.divName).innerHTML = this.contents;
+			document.getelementbyid(this.divname).innerhtml = this.contents;
 			}
 		else if (this.use_css) {
-			document.all[this.divName].innerHTML = this.contents;
+			document.all[this.divname].innerhtml = this.contents;
 			}
 		else if (this.use_layers) {
-			var d = document.layers[this.divName];
+			var d = document.layers[this.divname];
 			d.document.open();
 			d.document.writeln(this.contents);
 			d.document.close();
 			}
 		}
 	else {
-		if (this.popupWindow != null && !this.popupWindow.closed) {
+		if (this.popupwindow != null && !this.popupwindow.closed) {
 			if (this.url!="") {
-				this.popupWindow.location.href=this.url;
+				this.popupwindow.location.href=this.url;
 				}
 			else {
-				this.popupWindow.document.open();
-				this.popupWindow.document.writeln(this.contents);
-				this.popupWindow.document.close();
+				this.popupwindow.document.open();
+				this.popupwindow.document.writeln(this.contents);
+				this.popupwindow.document.close();
 			}
-			this.popupWindow.focus();
+			this.popupwindow.focus();
 			}
 		}
 	}
-// Position and show the popup, relative to an anchor object
-function PopupWindow_showPopup(anchorname) {
-	this.getXYPosition(anchorname);
-	this.x += this.offsetX;
-	this.y += this.offsetY;
+// position and show the popup, relative to an anchor object
+function popupwindow_showpopup(anchorname) {
+	this.getxyposition(anchorname);
+	this.x += this.offsetx;
+	this.y += this.offsety;
 	if (!this.populated && (this.contents != "")) {
 		this.populated = true;
 		this.refresh();
 		}
-	if (this.divName != null) {
-		// Show the DIV object
+	if (this.divname != null) {
+		// show the div object
 		if (this.use_gebi) {
-			document.getElementById(this.divName).style.left = this.x + "px";
-			document.getElementById(this.divName).style.top = this.y;
-			document.getElementById(this.divName).style.visibility = "visible";
+			document.getelementbyid(this.divname).style.left = this.x + "px";
+			document.getelementbyid(this.divname).style.top = this.y;
+			document.getelementbyid(this.divname).style.visibility = "visible";
 			}
 		else if (this.use_css) {
-			document.all[this.divName].style.left = this.x;
-			document.all[this.divName].style.top = this.y;
-			document.all[this.divName].style.visibility = "visible";
+			document.all[this.divname].style.left = this.x;
+			document.all[this.divname].style.top = this.y;
+			document.all[this.divname].style.visibility = "visible";
 			}
 		else if (this.use_layers) {
-			document.layers[this.divName].left = this.x;
-			document.layers[this.divName].top = this.y;
-			document.layers[this.divName].visibility = "visible";
+			document.layers[this.divname].left = this.x;
+			document.layers[this.divname].top = this.y;
+			document.layers[this.divname].visibility = "visible";
 			}
 		}
 	else {
-		if (this.popupWindow == null || this.popupWindow.closed) {
-			// If the popup window will go off-screen, move it so it doesn't
+		if (this.popupwindow == null || this.popupwindow.closed) {
+			// if the popup window will go off-screen, move it so it doesn't
 			if (this.x<0) { this.x=0; }
 			if (this.y<0) { this.y=0; }
-			if (screen && screen.availHeight) {
-				if ((this.y + this.height) > screen.availHeight) {
-					this.y = screen.availHeight - this.height;
+			if (screen && screen.availheight) {
+				if ((this.y + this.height) > screen.availheight) {
+					this.y = screen.availheight - this.height;
 					}
 				}
-			if (screen && screen.availWidth) {
-				if ((this.x + this.width) > screen.availWidth) {
-					this.x = screen.availWidth - this.width;
+			if (screen && screen.availwidth) {
+				if ((this.x + this.width) > screen.availwidth) {
+					this.x = screen.availwidth - this.width;
 					}
 				}
-			var avoidAboutBlank = window.opera || ( document.layers && !navigator.mimeTypes['*'] ) || navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled );
-			this.popupWindow = window.open(avoidAboutBlank?"":"about:blank","window_"+anchorname,this.windowProperties+",width="+this.width+",height="+this.height+",screenX="+this.x+",left="+this.x+",screenY="+this.y+",top="+this.y+"");
+			var avoidaboutblank = window.opera || ( document.layers && !navigator.mimetypes['*'] ) || navigator.vendor == 'kde' || ( document.childnodes && !document.all && !navigator.taintenabled );
+			this.popupwindow = window.open(avoidaboutblank?"":"about:blank","window_"+anchorname,this.windowproperties+",width="+this.width+",height="+this.height+",screenx="+this.x+",left="+this.x+",screeny="+this.y+",top="+this.y+"");
 			}
 		this.refresh();
 		}
 	}
-// Hide the popup
-function PopupWindow_hidePopup() {
-	if (this.divName != null) {
+// hide the popup
+function popupwindow_hidepopup() {
+	if (this.divname != null) {
 		if (this.use_gebi) {
-			document.getElementById(this.divName).style.visibility = "hidden";
+			document.getelementbyid(this.divname).style.visibility = "hidden";
 			}
 		else if (this.use_css) {
-			document.all[this.divName].style.visibility = "hidden";
+			document.all[this.divname].style.visibility = "hidden";
 			}
 		else if (this.use_layers) {
-			document.layers[this.divName].visibility = "hidden";
+			document.layers[this.divname].visibility = "hidden";
 			}
 		}
 	else {
-		if (this.popupWindow && !this.popupWindow.closed) {
-			this.popupWindow.close();
-			this.popupWindow = null;
+		if (this.popupwindow && !this.popupwindow.closed) {
+			this.popupwindow.close();
+			this.popupwindow = null;
 			}
 		}
 	}
-// Pass an event and return whether or not it was the popup DIV that was clicked
-function PopupWindow_isClicked(e) {
-	if (this.divName != null) {
+// pass an event and return whether or not it was the popup div that was clicked
+function popupwindow_isclicked(e) {
+	if (this.divname != null) {
 		if (this.use_layers) {
-			var clickX = e.pageX;
-			var clickY = e.pageY;
-			var t = document.layers[this.divName];
-			if ((clickX > t.left) && (clickX < t.left+t.clip.width) && (clickY > t.top) && (clickY < t.top+t.clip.height)) {
+			var clickx = e.pagex;
+			var clicky = e.pagey;
+			var t = document.layers[this.divname];
+			if ((clickx > t.left) && (clickx < t.left+t.clip.width) && (clicky > t.top) && (clicky < t.top+t.clip.height)) {
 				return true;
 				}
 			else { return false; }
 			}
-		else if (document.all) { // Need to hard-code this to trap IE for error-handling
-			var t = window.event.srcElement;
-			while (t.parentElement != null) {
-				if (t.id==this.divName) {
+		else if (document.all) { // need to hard-code this to trap ie for error-handling
+			var t = window.event.srcelement;
+			while (t.parentelement != null) {
+				if (t.id==this.divname) {
 					return true;
 					}
-				t = t.parentElement;
+				t = t.parentelement;
 				}
 			return false;
 			}
 		else if (this.use_gebi && e) {
-			var t = e.originalTarget;
-			while (t.parentNode != null) {
-				if (t.id==this.divName) {
+			var t = e.originaltarget;
+			while (t.parentnode != null) {
+				if (t.id==this.divname) {
 					return true;
 					}
-				t = t.parentNode;
+				t = t.parentnode;
 				}
 			return false;
 			}
@@ -384,324 +384,326 @@ function PopupWindow_isClicked(e) {
 	return false;
 	}
 
-// Check an onMouseDown event to see if we should hide
-function PopupWindow_hideIfNotClicked(e) {
-	if (this.autoHideEnabled && !this.isClicked(e)) {
-		this.hidePopup();
+// check an onmousedown event to see if we should hide
+function popupwindow_hideifnotclicked(e) {
+	if (this.autohideenabled && !this.isclicked(e)) {
+		this.hidepopup();
 		}
 	}
-// Call this to make the DIV disable automatically when mouse is clicked outside it
-function PopupWindow_autoHide() {
-	this.autoHideEnabled = true;
+// call this to make the div disable automatically when mouse is clicked outside it
+function popupwindow_autohide() {
+	this.autohideenabled = true;
 	}
-// This global function checks all PopupWindow objects onmouseup to see if they should be hidden
-function PopupWindow_hidePopupWindows(e) {
-	for (var i=0; i<popupWindowObjects.length; i++) {
-		if (popupWindowObjects[i] != null) {
-			var p = popupWindowObjects[i];
-			p.hideIfNotClicked(e);
+// this global function checks all popupwindow objects onmouseup to see if they should be hidden
+function popupwindow_hidepopupwindows(e) {
+	for (var i=0; i<popupwindowobjects.length; i++) {
+		if (popupwindowobjects[i] != null) {
+			var p = popupwindowobjects[i];
+			p.hideifnotclicked(e);
 			}
 		}
 	}
-// Run this immediately to attach the event listener
-function PopupWindow_attachListener() {
+// run this immediately to attach the event listener
+function popupwindow_attachlistener() {
 	if (document.layers) {
-		document.captureEvents(Event.MOUSEUP);
+		document.captureevents(event.mouseup);
 		}
-	window.popupWindowOldEventListener = document.onmouseup;
-	if (window.popupWindowOldEventListener != null) {
-		document.onmouseup = new Function("window.popupWindowOldEventListener(); PopupWindow_hidePopupWindows();");
+	window.popupwindowoldeventlistener = document.onmouseup;
+	if (window.popupwindowoldeventlistener != null) {
+		document.onmouseup = new function("window.popupwindowoldeventlistener(); popupwindow_hidepopupwindows();");
 		}
 	else {
-		document.onmouseup = PopupWindow_hidePopupWindows;
+		document.onmouseup = popupwindow_hidepopupwindows;
 		}
 	}
-// CONSTRUCTOR for the PopupWindow object
-// Pass it a DIV name to use a DHTML popup, otherwise will default to window popup
-function PopupWindow() {
-	if (!window.popupWindowIndex) { window.popupWindowIndex = 0; }
-	if (!window.popupWindowObjects) { window.popupWindowObjects = new Array(); }
-	if (!window.listenerAttached) {
-		window.listenerAttached = true;
-		PopupWindow_attachListener();
+// constructor for the popupwindow object
+// pass it a div name to use a dhtml popup, otherwise will default to window popup
+function popupwindow() {
+	if (!window.popupwindowindex) { window.popupwindowindex = 0; }
+	if (!window.popupwindowobjects) { window.popupwindowobjects = new array(); }
+	if (!window.listenerattached) {
+		window.listenerattached = true;
+		popupwindow_attachlistener();
 		}
-	this.index = popupWindowIndex++;
-	popupWindowObjects[this.index] = this;
-	this.divName = null;
-	this.popupWindow = null;
+	this.index = popupwindowindex++;
+	popupwindowobjects[this.index] = this;
+	this.divname = null;
+	this.popupwindow = null;
 	this.width=0;
 	this.height=0;
 	this.populated = false;
 	this.visible = false;
-	this.autoHideEnabled = false;
+	this.autohideenabled = false;
 
 	this.contents = "";
 	this.url="";
-	this.windowProperties="toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable,alwaysRaised,dependent,titlebar=no";
+	this.windowproperties="toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable,alwaysraised,dependent,titlebar=no";
 	if (arguments.length>0) {
-		this.type="DIV";
-		this.divName = arguments[0];
+		this.type="div";
+		this.divname = arguments[0];
 		}
 	else {
-		this.type="WINDOW";
+		this.type="window";
 		}
 	this.use_gebi = false;
 	this.use_css = false;
 	this.use_layers = false;
-	if (document.getElementById) { this.use_gebi = true; }
+	if (document.getelementbyid) { this.use_gebi = true; }
 	else if (document.all) { this.use_css = true; }
 	else if (document.layers) { this.use_layers = true; }
-	else { this.type = "WINDOW"; }
-	this.offsetX = 0;
-	this.offsetY = 0;
-	// Method mappings
-	this.getXYPosition = PopupWindow_getXYPosition;
-	this.populate = PopupWindow_populate;
-	this.setUrl = PopupWindow_setUrl;
-	this.setWindowProperties = PopupWindow_setWindowProperties;
-	this.refresh = PopupWindow_refresh;
-	this.showPopup = PopupWindow_showPopup;
-	this.hidePopup = PopupWindow_hidePopup;
-	this.setSize = PopupWindow_setSize;
-	this.isClicked = PopupWindow_isClicked;
-	this.autoHide = PopupWindow_autoHide;
-	this.hideIfNotClicked = PopupWindow_hideIfNotClicked;
+	else { this.type = "window"; }
+	this.offsetx = 0;
+	this.offsety = 0;
+	// method mappings
+	this.getxyposition = popupwindow_getxyposition;
+	this.populate = popupwindow_populate;
+	this.seturl = popupwindow_seturl;
+	this.setwindowproperties = popupwindow_setwindowproperties;
+	this.refresh = popupwindow_refresh;
+	this.showpopup = popupwindow_showpopup;
+	this.hidepopup = popupwindow_hidepopup;
+	this.setsize = popupwindow_setsize;
+	this.isclicked = popupwindow_isclicked;
+	this.autohide = popupwindow_autohide;
+	this.hideifnotclicked = popupwindow_hideifnotclicked;
 	}
 
-/* SOURCE FILE: ColorPicker2.js */
+/* source file: colorpicker2.js */
 
 /*
-Last modified: 02/24/2003
+last modified: 02/24/2003
 
-DESCRIPTION: This widget is used to select a color, in hexadecimal #RRGGBB
-form. It uses a color "swatch" to display the standard 216-color web-safe
-palette. The user can then click on a color to select it.
+description: this widget is used to select a color, in hexadecimal #rrggbb
+form. it uses a color "swatch" to display the standard 216-color web-safe
+palette. the user can then click on a color to select it.
 
-COMPATABILITY: See notes in AnchorPosition.js and PopupWindow.js.
-Only the latest DHTML-capable browsers will show the color and hex values
+compatability: see notes in anchorposition.js and popupwindow.js.
+only the latest dhtml-capable browsers will show the color and hex values
 at the bottom as your mouse goes over them.
 
-USAGE:
-// Create a new ColorPicker object using DHTML popup
-var cp = new ColorPicker();
+usage:
+// create a new colorpicker object using dhtml popup
+var cp = new colorpicker();
 
-// Create a new ColorPicker object using Window Popup
-var cp = new ColorPicker('window');
+// create a new colorpicker object using window popup
+var cp = new colorpicker('window');
 
-// Add a link in your page to trigger the popup. For example:
-<A HREF="#" onClick="cp.show('pick');return false;" NAME="pick" ID="pick">Pick</A>
+// add a link in your page to trigger the popup. for example:
+<a href="#" onclick="cp.show('pick');return false;" name="pick" id="pick">pick</a>
 
-// Or use the built-in "select" function to do the dirty work for you:
-<A HREF="#" onClick="cp.select(document.forms[0].color,'pick');return false;" NAME="pick" ID="pick">Pick</A>
+// or use the built-in "select" function to do the dirty work for you:
+<a href="#" onclick="cp.select(document.forms[0].color,'pick');return false;" name="pick" id="pick">pick</a>
 
-// If using DHTML popup, write out the required DIV tag near the bottom
+// if using dhtml popup, write out the required div tag near the bottom
 // of your page.
-<SCRIPT LANGUAGE="JavaScript">cp.writeDiv()</SCRIPT>
+<script language="javascript">cp.writediv()</script>
 
-// Write the 'pickColor' function that will be called when the user clicks
-// a color and do something with the value. This is only required if you
+// write the 'pickcolor' function that will be called when the user clicks
+// a color and do something with the value. this is only required if you
 // want to do something other than simply populate a form field, which is
 // what the 'select' function will give you.
-function pickColor(color) {
+function pickcolor(color) {
 	field.value = color;
 	}
 
-NOTES:
-1) Requires the functions in AnchorPosition.js and PopupWindow.js
+notes:
+1) requires the functions in anchorposition.js and popupwindow.js
 
-2) Your anchor tag MUST contain both NAME and ID attributes which are the
-   same. For example:
-   <A NAME="test" ID="test"> </A>
+2) your anchor tag must contain both name and id attributes which are the
+   same. for example:
+   <a name="test" id="test"> </a>
 
-3) There must be at least a space between <A> </A> for IE5.5 to see the
-   anchor tag correctly. Do not do <A></A> with no space.
+3) there must be at least a space between <a> </a> for ie5.5 to see the
+   anchor tag correctly. do not do <a></a> with no space.
 
-4) When a ColorPicker object is created, a handler for 'onmouseup' is
-   attached to any event handler you may have already defined. Do NOT define
-   an event handler for 'onmouseup' after you define a ColorPicker object or
+4) when a colorpicker object is created, a handler for 'onmouseup' is
+   attached to any event handler you may have already defined. do not define
+   an event handler for 'onmouseup' after you define a colorpicker object or
    the color picker will not hide itself correctly.
 */
-ColorPicker_targetInput = null;
-function ColorPicker_writeDiv() {
-	document.writeln("<DIV ID=\"colorPickerDiv\" STYLE=\"position:absolute;visibility:hidden;\"> </DIV>");
+colorpicker_targetinput = null;
+function colorpicker_writediv() {
+	document.writeln("<div id=\"colorpickerdiv\" style=\"position:absolute;visibility:hidden;\"> </div>");
 	}
 
-function ColorPicker_show(anchorname) {
-	this.showPopup(anchorname);
+function colorpicker_show(anchorname) {
+	this.showpopup(anchorname);
 	}
 
-function ColorPicker_pickColor(color,obj) {
-	obj.hidePopup();
-	pickColor(color);
+function colorpicker_pickcolor(color,obj) {
+	obj.hidepopup();
+	pickcolor(color);
 	}
 
-// A Default "pickColor" function to accept the color passed back from popup.
-// User can over-ride this with their own function.
-function pickColor(color) {
-	if (ColorPicker_targetInput==null) {
-		alert("Target Input is null, which means you either didn't use the 'select' function or you have no defined your own 'pickColor' function to handle the picked color!");
+// a default "pickcolor" function to accept the color passed back from popup.
+// user can over-ride this with their own function.
+function pickcolor(color) {
+	if (colorpicker_targetinput==null) {
+		alert("target input is null, which means you either didn't use the 'select' function or you have no defined your own 'pickcolor' function to handle the picked color!");
 		return;
 		}
-	ColorPicker_targetInput.value = color;
+	colorpicker_targetinput.value = color;
 	}
 
-// This function is the easiest way to popup the window, select a color, and
+// this function is the easiest way to popup the window, select a color, and
 // have the value populate a form field, which is what most people want to do.
-function ColorPicker_select(inputobj,linkname) {
+function colorpicker_select(inputobj,linkname) {
 	if (inputobj.type!="text" && inputobj.type!="hidden" && inputobj.type!="textarea") {
-		alert("colorpicker.select: Input object passed is not a valid form input object");
-		window.ColorPicker_targetInput=null;
+		alert("colorpicker.select: input object passed is not a valid form input object");
+		window.colorpicker_targetinput=null;
 		return;
 		}
-	window.ColorPicker_targetInput = inputobj;
+	window.colorpicker_targetinput = inputobj;
 	this.show(linkname);
 	}
 
-// This function runs when you move your mouse over a color block, if you have a newer browser
-function ColorPicker_highlightColor(c) {
+// this function runs when you move your mouse over a color block, if you have a newer browser
+function colorpicker_highlightcolor(c) {
 	var thedoc = (arguments.length>1)?arguments[1]:window.document;
-	var d = thedoc.getElementById("colorPickerSelectedColor");
-	d.style.backgroundColor = c;
-	d = thedoc.getElementById("colorPickerSelectedColorValue");
-	d.innerHTML = c;
+	var d = thedoc.getelementbyid("colorpickerselectedcolor");
+	d.style.backgroundcolor = c;
+	d = thedoc.getelementbyid("colorpickerselectedcolorvalue");
+	d.innerhtml = c;
 	}
 
-function ColorPicker() {
-	var windowMode = false;
-	// Create a new PopupWindow object
+function colorpicker() {
+	var windowmode = false;
+	// create a new popupwindow object
 	if (arguments.length==0) {
-		var divname = "colorPickerDiv";
+		var divname = "colorpickerdiv";
 		}
 	else if (arguments[0] == "window") {
 		var divname = '';
-		windowMode = true;
+		windowmode = true;
 		}
 	else {
 		var divname = arguments[0];
 		}
 
 	if (divname != "") {
-		var cp = new PopupWindow(divname);
+		var cp = new popupwindow(divname);
 		}
 	else {
-		var cp = new PopupWindow();
-		cp.setSize(225,250);
+		var cp = new popupwindow();
+		cp.setsize(225,250);
 		}
 
-	// Object variables
-	cp.currentValue = "#FFFFFF";
+	// object variables
+	cp.currentvalue = "#ffffff";
 
-	// Method Mappings
-	cp.writeDiv = ColorPicker_writeDiv;
-	cp.highlightColor = ColorPicker_highlightColor;
-	cp.show = ColorPicker_show;
-	cp.select = ColorPicker_select;
+	// method mappings
+	cp.writediv = colorpicker_writediv;
+	cp.highlightcolor = colorpicker_highlightcolor;
+	cp.show = colorpicker_show;
+	cp.select = colorpicker_select;
 
-	// Code to populate color picker window
-	var colors = new Array(	"#4180B6","#69AEE7","#000000","#000033","#000066","#000099","#0000CC","#0000FF","#330000","#330033","#330066","#330099",
-							"#3300CC","#3300FF","#660000","#660033","#660066","#660099","#6600CC","#6600FF","#990000","#990033","#990066","#990099",
-							"#9900CC","#9900FF","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#FF0000","#FF0033","#FF0066","#FF0099",
-							"#FF00CC","#FF00FF","#7FFFFF","#7FFFFF","#7FF7F7","#7FEFEF","#7FE7E7","#7FDFDF","#7FD7D7","#7FCFCF","#7FC7C7","#7FBFBF",
-							"#7FB7B7","#7FAFAF","#7FA7A7","#7F9F9F","#7F9797","#7F8F8F","#7F8787","#7F7F7F","#7F7777","#7F6F6F","#7F6767","#7F5F5F",
-							"#7F5757","#7F4F4F","#7F4747","#7F3F3F","#7F3737","#7F2F2F","#7F2727","#7F1F1F","#7F1717","#7F0F0F","#7F0707","#7F0000",
+	// code to populate color picker window
+	var colors = new array(	"#4180b6","#69aee7","#000000","#000033","#000066","#000099","#0000cc","#0000ff","#330000","#330033","#330066","#330099",
+							"#3300cc","#3300ff","#660000","#660033","#660066","#660099","#6600cc","#6600ff","#990000","#990033","#990066","#990099",
+							"#9900cc","#9900ff","#cc0000","#cc0033","#cc0066","#cc0099","#cc00cc","#cc00ff","#ff0000","#ff0033","#ff0066","#ff0099",
+							"#ff00cc","#ff00ff","#7fffff","#7fffff","#7ff7f7","#7fefef","#7fe7e7","#7fdfdf","#7fd7d7","#7fcfcf","#7fc7c7","#7fbfbf",
+							"#7fb7b7","#7fafaf","#7fa7a7","#7f9f9f","#7f9797","#7f8f8f","#7f8787","#7f7f7f","#7f7777","#7f6f6f","#7f6767","#7f5f5f",
+							"#7f5757","#7f4f4f","#7f4747","#7f3f3f","#7f3737","#7f2f2f","#7f2727","#7f1f1f","#7f1717","#7f0f0f","#7f0707","#7f0000",
 
-							"#4180B6","#69AEE7","#003300","#003333","#003366","#003399","#0033CC","#0033FF","#333300","#333333","#333366","#333399",
-							"#3333CC","#3333FF","#663300","#663333","#663366","#663399","#6633CC","#6633FF","#993300","#993333","#993366","#993399",
-							"#9933CC","#9933FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF","#FF3300","#FF3333","#FF3366","#FF3399",
-							"#FF33CC","#FF33FF","#FF7FFF","#FF7FFF","#F77FF7","#EF7FEF","#E77FE7","#DF7FDF","#D77FD7","#CF7FCF","#C77FC7","#BF7FBF",
-							"#B77FB7","#AF7FAF","#A77FA7","#9F7F9F","#977F97","#8F7F8F","#877F87","#7F7F7F","#777F77","#6F7F6F","#677F67","#5F7F5F",
-							"#577F57","#4F7F4F","#477F47","#3F7F3F","#377F37","#2F7F2F","#277F27","#1F7F1F","#177F17","#0F7F0F","#077F07","#007F00",
+							"#4180b6","#69aee7","#003300","#003333","#003366","#003399","#0033cc","#0033ff","#333300","#333333","#333366","#333399",
+							"#3333cc","#3333ff","#663300","#663333","#663366","#663399","#6633cc","#6633ff","#993300","#993333","#993366","#993399",
+							"#9933cc","#9933ff","#cc3300","#cc3333","#cc3366","#cc3399","#cc33cc","#cc33ff","#ff3300","#ff3333","#ff3366","#ff3399",
+							"#ff33cc","#ff33ff","#ff7fff","#ff7fff","#f77ff7","#ef7fef","#e77fe7","#df7fdf","#d77fd7","#cf7fcf","#c77fc7","#bf7fbf",
+							"#b77fb7","#af7faf","#a77fa7","#9f7f9f","#977f97","#8f7f8f","#877f87","#7f7f7f","#777f77","#6f7f6f","#677f67","#5f7f5f",
+							"#577f57","#4f7f4f","#477f47","#3f7f3f","#377f37","#2f7f2f","#277f27","#1f7f1f","#177f17","#0f7f0f","#077f07","#007f00",
 
-							"#4180B6","#69AEE7","#006600","#006633","#006666","#006699","#0066CC","#0066FF","#336600","#336633","#336666","#336699",
-							"#3366CC","#3366FF","#666600","#666633","#666666","#666699","#6666CC","#6666FF","#996600","#996633","#996666","#996699",
-							"#9966CC","#9966FF","#CC6600","#CC6633","#CC6666","#CC6699","#CC66CC","#CC66FF","#FF6600","#FF6633","#FF6666","#FF6699",
-							"#FF66CC","#FF66FF","#FFFF7F","#FFFF7F","#F7F77F","#EFEF7F","#E7E77F","#DFDF7F","#D7D77F","#CFCF7F","#C7C77F","#BFBF7F",
-							"#B7B77F","#AFAF7F","#A7A77F","#9F9F7F","#97977F","#8F8F7F","#87877F","#7F7F7F","#77777F","#6F6F7F","#67677F","#5F5F7F",
-							"#57577F","#4F4F7F","#47477F","#3F3F7F","#37377F","#2F2F7F","#27277F","#1F1F7F","#17177F","#0F0F7F","#07077F","#00007F",
+							"#4180b6","#69aee7","#006600","#006633","#006666","#006699","#0066cc","#0066ff","#336600","#336633","#336666","#336699",
+							"#3366cc","#3366ff","#666600","#666633","#666666","#666699","#6666cc","#6666ff","#996600","#996633","#996666","#996699",
+							"#9966cc","#9966ff","#cc6600","#cc6633","#cc6666","#cc6699","#cc66cc","#cc66ff","#ff6600","#ff6633","#ff6666","#ff6699",
+							"#ff66cc","#ff66ff","#ffff7f","#ffff7f","#f7f77f","#efef7f","#e7e77f","#dfdf7f","#d7d77f","#cfcf7f","#c7c77f","#bfbf7f",
+							"#b7b77f","#afaf7f","#a7a77f","#9f9f7f","#97977f","#8f8f7f","#87877f","#7f7f7f","#77777f","#6f6f7f","#67677f","#5f5f7f",
+							"#57577f","#4f4f7f","#47477f","#3f3f7f","#37377f","#2f2f7f","#27277f","#1f1f7f","#17177f","#0f0f7f","#07077f","#00007f",
 
-							"#4180B6","#69AEE7","#009900","#009933","#009966","#009999","#0099CC","#0099FF","#339900","#339933","#339966","#339999",
-							"#3399CC","#3399FF","#669900","#669933","#669966","#669999","#6699CC","#6699FF","#999900","#999933","#999966","#999999",
-							"#9999CC","#9999FF","#CC9900","#CC9933","#CC9966","#CC9999","#CC99CC","#CC99FF","#FF9900","#FF9933","#FF9966","#FF9999",
-							"#FF99CC","#FF99FF","#3FFFFF","#3FFFFF","#3FF7F7","#3FEFEF","#3FE7E7","#3FDFDF","#3FD7D7","#3FCFCF","#3FC7C7","#3FBFBF",
-							"#3FB7B7","#3FAFAF","#3FA7A7","#3F9F9F","#3F9797","#3F8F8F","#3F8787","#3F7F7F","#3F7777","#3F6F6F","#3F6767","#3F5F5F",
-							"#3F5757","#3F4F4F","#3F4747","#3F3F3F","#3F3737","#3F2F2F","#3F2727","#3F1F1F","#3F1717","#3F0F0F","#3F0707","#3F0000",
+							"#4180b6","#69aee7","#009900","#009933","#009966","#009999","#0099cc","#0099ff","#339900","#339933","#339966","#339999",
+							"#3399cc","#3399ff","#669900","#669933","#669966","#669999","#6699cc","#6699ff","#999900","#999933","#999966","#999999",
+							"#9999cc","#9999ff","#cc9900","#cc9933","#cc9966","#cc9999","#cc99cc","#cc99ff","#ff9900","#ff9933","#ff9966","#ff9999",
+							"#ff99cc","#ff99ff","#3fffff","#3fffff","#3ff7f7","#3fefef","#3fe7e7","#3fdfdf","#3fd7d7","#3fcfcf","#3fc7c7","#3fbfbf",
+							"#3fb7b7","#3fafaf","#3fa7a7","#3f9f9f","#3f9797","#3f8f8f","#3f8787","#3f7f7f","#3f7777","#3f6f6f","#3f6767","#3f5f5f",
+							"#3f5757","#3f4f4f","#3f4747","#3f3f3f","#3f3737","#3f2f2f","#3f2727","#3f1f1f","#3f1717","#3f0f0f","#3f0707","#3f0000",
 
-							"#4180B6","#69AEE7","#00CC00","#00CC33","#00CC66","#00CC99","#00CCCC","#00CCFF","#33CC00","#33CC33","#33CC66","#33CC99",
-							"#33CCCC","#33CCFF","#66CC00","#66CC33","#66CC66","#66CC99","#66CCCC","#66CCFF","#99CC00","#99CC33","#99CC66","#99CC99",
-							"#99CCCC","#99CCFF","#CCCC00","#CCCC33","#CCCC66","#CCCC99","#CCCCCC","#CCCCFF","#FFCC00","#FFCC33","#FFCC66","#FFCC99",
-							"#FFCCCC","#FFCCFF","#FF3FFF","#FF3FFF","#F73FF7","#EF3FEF","#E73FE7","#DF3FDF","#D73FD7","#CF3FCF","#C73FC7","#BF3FBF",
-							"#B73FB7","#AF3FAF","#A73FA7","#9F3F9F","#973F97","#8F3F8F","#873F87","#7F3F7F","#773F77","#6F3F6F","#673F67","#5F3F5F",
-							"#573F57","#4F3F4F","#473F47","#3F3F3F","#373F37","#2F3F2F","#273F27","#1F3F1F","#173F17","#0F3F0F","#073F07","#003F00",
+							"#4180b6","#69aee7","#00cc00","#00cc33","#00cc66","#00cc99","#00cccc","#00ccff","#33cc00","#33cc33","#33cc66","#33cc99",
+							"#33cccc","#33ccff","#66cc00","#66cc33","#66cc66","#66cc99","#66cccc","#66ccff","#99cc00","#99cc33","#99cc66","#99cc99",
+							"#99cccc","#99ccff","#cccc00","#cccc33","#cccc66","#cccc99","#cccccc","#ccccff","#ffcc00","#ffcc33","#ffcc66","#ffcc99",
+							"#ffcccc","#ffccff","#ff3fff","#ff3fff","#f73ff7","#ef3fef","#e73fe7","#df3fdf","#d73fd7","#cf3fcf","#c73fc7","#bf3fbf",
+							"#b73fb7","#af3faf","#a73fa7","#9f3f9f","#973f97","#8f3f8f","#873f87","#7f3f7f","#773f77","#6f3f6f","#673f67","#5f3f5f",
+							"#573f57","#4f3f4f","#473f47","#3f3f3f","#373f37","#2f3f2f","#273f27","#1f3f1f","#173f17","#0f3f0f","#073f07","#003f00",
 
-							"#4180B6","#69AEE7","#00FF00","#00FF33","#00FF66","#00FF99","#00FFCC","#00FFFF","#33FF00","#33FF33","#33FF66","#33FF99",
-							"#33FFCC","#33FFFF","#66FF00","#66FF33","#66FF66","#66FF99","#66FFCC","#66FFFF","#99FF00","#99FF33","#99FF66","#99FF99",
-							"#99FFCC","#99FFFF","#CCFF00","#CCFF33","#CCFF66","#CCFF99","#CCFFCC","#CCFFFF","#FFFF00","#FFFF33","#FFFF66","#FFFF99",
-							"#FFFFCC","#FFFFFF","#FFFF3F","#FFFF3F","#F7F73F","#EFEF3F","#E7E73F","#DFDF3F","#D7D73F","#CFCF3F","#C7C73F","#BFBF3F",
-							"#B7B73F","#AFAF3F","#A7A73F","#9F9F3F","#97973F","#8F8F3F","#87873F","#7F7F3F","#77773F","#6F6F3F","#67673F","#5F5F3F",
-							"#57573F","#4F4F3F","#47473F","#3F3F3F","#37373F","#2F2F3F","#27273F","#1F1F3F","#17173F","#0F0F3F","#07073F","#00003F",
+							"#4180b6","#69aee7","#00ff00","#00ff33","#00ff66","#00ff99","#00ffcc","#00ffff","#33ff00","#33ff33","#33ff66","#33ff99",
+							"#33ffcc","#33ffff","#66ff00","#66ff33","#66ff66","#66ff99","#66ffcc","#66ffff","#99ff00","#99ff33","#99ff66","#99ff99",
+							"#99ffcc","#99ffff","#ccff00","#ccff33","#ccff66","#ccff99","#ccffcc","#ccffff","#ffff00","#ffff33","#ffff66","#ffff99",
+							"#ffffcc","#ffffff","#ffff3f","#ffff3f","#f7f73f","#efef3f","#e7e73f","#dfdf3f","#d7d73f","#cfcf3f","#c7c73f","#bfbf3f",
+							"#b7b73f","#afaf3f","#a7a73f","#9f9f3f","#97973f","#8f8f3f","#87873f","#7f7f3f","#77773f","#6f6f3f","#67673f","#5f5f3f",
+							"#57573f","#4f4f3f","#47473f","#3f3f3f","#37373f","#2f2f3f","#27273f","#1f1f3f","#17173f","#0f0f3f","#07073f","#00003f",
 
-							"#4180B6","#69AEE7","#FFFFFF","#FFEEEE","#FFDDDD","#FFCCCC","#FFBBBB","#FFAAAA","#FF9999","#FF8888","#FF7777","#FF6666",
-							"#FF5555","#FF4444","#FF3333","#FF2222","#FF1111","#FF0000","#FF0000","#FF0000","#FF0000","#EE0000","#DD0000","#CC0000",
-							"#BB0000","#AA0000","#990000","#880000","#770000","#660000","#550000","#440000","#330000","#220000","#110000","#000000",
+							"#4180b6","#69aee7","#ffffff","#ffeeee","#ffdddd","#ffcccc","#ffbbbb","#ffaaaa","#ff9999","#ff8888","#ff7777","#ff6666",
+							"#ff5555","#ff4444","#ff3333","#ff2222","#ff1111","#ff0000","#ff0000","#ff0000","#ff0000","#ee0000","#dd0000","#cc0000",
+							"#bb0000","#aa0000","#990000","#880000","#770000","#660000","#550000","#440000","#330000","#220000","#110000","#000000",
 							"#000000","#000000","#000000","#001111","#002222","#003333","#004444","#005555","#006666","#007777","#008888","#009999",
-							"#00AAAA","#00BBBB","#00CCCC","#00DDDD","#00EEEE","#00FFFF","#00FFFF","#00FFFF","#00FFFF","#11FFFF","#22FFFF","#33FFFF",
-							"#44FFFF","#55FFFF","#66FFFF","#77FFFF","#88FFFF","#99FFFF","#AAFFFF","#BBFFFF","#CCFFFF","#DDFFFF","#EEFFFF","#FFFFFF",
+							"#00aaaa","#00bbbb","#00cccc","#00dddd","#00eeee","#00ffff","#00ffff","#00ffff","#00ffff","#11ffff","#22ffff","#33ffff",
+							"#44ffff","#55ffff","#66ffff","#77ffff","#88ffff","#99ffff","#aaffff","#bbffff","#ccffff","#ddffff","#eeffff","#ffffff",
 
-							"#4180B6","#69AEE7","#FFFFFF","#EEFFEE","#DDFFDD","#CCFFCC","#BBFFBB","#AAFFAA","#99FF99","#88FF88","#77FF77","#66FF66",
-							"#55FF55","#44FF44","#33FF33","#22FF22","#11FF11","#00FF00","#00FF00","#00FF00","#00FF00","#00EE00","#00DD00","#00CC00",
-							"#00BB00","#00AA00","#009900","#008800","#007700","#006600","#005500","#004400","#003300","#002200","#001100","#000000",
+							"#4180b6","#69aee7","#ffffff","#eeffee","#ddffdd","#ccffcc","#bbffbb","#aaffaa","#99ff99","#88ff88","#77ff77","#66ff66",
+							"#55ff55","#44ff44","#33ff33","#22ff22","#11ff11","#00ff00","#00ff00","#00ff00","#00ff00","#00ee00","#00dd00","#00cc00",
+							"#00bb00","#00aa00","#009900","#008800","#007700","#006600","#005500","#004400","#003300","#002200","#001100","#000000",
 							"#000000","#000000","#000000","#110011","#220022","#330033","#440044","#550055","#660066","#770077","#880088","#990099",
-							"#AA00AA","#BB00BB","#CC00CC","#DD00DD","#EE00EE","#FF00FF","#FF00FF","#FF00FF","#FF00FF","#FF11FF","#FF22FF","#FF33FF",
-							"#FF44FF","#FF55FF","#FF66FF","#FF77FF","#FF88FF","#FF99FF","#FFAAFF","#FFBBFF","#FFCCFF","#FFDDFF","#FFEEFF","#FFFFFF",
+							"#aa00aa","#bb00bb","#cc00cc","#dd00dd","#ee00ee","#ff00ff","#ff00ff","#ff00ff","#ff00ff","#ff11ff","#ff22ff","#ff33ff",
+							"#ff44ff","#ff55ff","#ff66ff","#ff77ff","#ff88ff","#ff99ff","#ffaaff","#ffbbff","#ffccff","#ffddff","#ffeeff","#ffffff",
 
-							"#4180B6","#69AEE7","#FFFFFF","#EEEEFF","#DDDDFF","#CCCCFF","#BBBBFF","#AAAAFF","#9999FF","#8888FF","#7777FF","#6666FF",
-							"#5555FF","#4444FF","#3333FF","#2222FF","#1111FF","#0000FF","#0000FF","#0000FF","#0000FF","#0000EE","#0000DD","#0000CC",
-							"#0000BB","#0000AA","#000099","#000088","#000077","#000066","#000055","#000044","#000033","#000022","#000011","#000000",
+							"#4180b6","#69aee7","#ffffff","#eeeeff","#ddddff","#ccccff","#bbbbff","#aaaaff","#9999ff","#8888ff","#7777ff","#6666ff",
+							"#5555ff","#4444ff","#3333ff","#2222ff","#1111ff","#0000ff","#0000ff","#0000ff","#0000ff","#0000ee","#0000dd","#0000cc",
+							"#0000bb","#0000aa","#000099","#000088","#000077","#000066","#000055","#000044","#000033","#000022","#000011","#000000",
 							"#000000","#000000","#000000","#111100","#222200","#333300","#444400","#555500","#666600","#777700","#888800","#999900",
-							"#AAAA00","#BBBB00","#CCCC00","#DDDD00","#EEEE00","#FFFF00","#FFFF00","#FFFF00","#FFFF00","#FFFF11","#FFFF22","#FFFF33",
-							"#FFFF44","#FFFF55","#FFFF66","#FFFF77","#FFFF88","#FFFF99","#FFFFAA","#FFFFBB","#FFFFCC","#FFFFDD","#FFFFEE","#FFFFFF",
+							"#aaaa00","#bbbb00","#cccc00","#dddd00","#eeee00","#ffff00","#ffff00","#ffff00","#ffff00","#ffff11","#ffff22","#ffff33",
+							"#ffff44","#ffff55","#ffff66","#ffff77","#ffff88","#ffff99","#ffffaa","#ffffbb","#ffffcc","#ffffdd","#ffffee","#ffffff",
 
-							"#4180B6","#69AEE7","#FFFFFF","#FFFFFF","#FBFBFB","#F7F7F7","#F3F3F3","#EFEFEF","#EBEBEB","#E7E7E7","#E3E3E3","#DFDFDF",
-							"#DBDBDB","#D7D7D7","#D3D3D3","#CFCFCF","#CBCBCB","#C7C7C7","#C3C3C3","#BFBFBF","#BBBBBB","#B7B7B7","#B3B3B3","#AFAFAF",
-							"#ABABAB","#A7A7A7","#A3A3A3","#9F9F9F","#9B9B9B","#979797","#939393","#8F8F8F","#8B8B8B","#878787","#838383","#7F7F7F",
-							"#7B7B7B","#777777","#737373","#6F6F6F","#6B6B6B","#676767","#636363","#5F5F5F","#5B5B5B","#575757","#535353","#4F4F4F",
-							"#4B4B4B","#474747","#434343","#3F3F3F","#3B3B3B","#373737","#333333","#2F2F2F","#2B2B2B","#272727","#232323","#1F1F1F",
-							"#1B1B1B","#171717","#131313","#0F0F0F","#0B0B0B","#070707","#030303","#000000","#000000","#000000","#000000","#000000");
+							"#4180b6","#69aee7","#ffffff","#ffffff","#fbfbfb","#f7f7f7","#f3f3f3","#efefef","#ebebeb","#e7e7e7","#e3e3e3","#dfdfdf",
+							"#dbdbdb","#d7d7d7","#d3d3d3","#cfcfcf","#cbcbcb","#c7c7c7","#c3c3c3","#bfbfbf","#bbbbbb","#b7b7b7","#b3b3b3","#afafaf",
+							"#ababab","#a7a7a7","#a3a3a3","#9f9f9f","#9b9b9b","#979797","#939393","#8f8f8f","#8b8b8b","#878787","#838383","#7f7f7f",
+							"#7b7b7b","#777777","#737373","#6f6f6f","#6b6b6b","#676767","#636363","#5f5f5f","#5b5b5b","#575757","#535353","#4f4f4f",
+							"#4b4b4b","#474747","#434343","#3f3f3f","#3b3b3b","#373737","#333333","#2f2f2f","#2b2b2b","#272727","#232323","#1f1f1f",
+							"#1b1b1b","#171717","#131313","#0f0f0f","#0b0b0b","#070707","#030303","#000000","#000000","#000000","#000000","#000000");
 	var total = colors.length;
 	var width = 72;
 	var cp_contents = "";
-	var windowRef = (windowMode)?"window.opener.":"";
-	if (windowMode) {
-		cp_contents += "<html><head><title>Select Color</title></head>";
+	var windowref = (windowmode)?"window.opener.":"";
+	if (windowmode) {
+		cp_contents += "<html><head><title>select color</title></head>";
 		cp_contents += "<body marginwidth=0 marginheight=0 leftmargin=0 topmargin=0><span style='text-align: center;'>";
 		}
 	cp_contents += "<table style='border: none;' cellspacing=0 cellpadding=0>";
-	var use_highlight = (document.getElementById || document.all)?true:false;
+	var use_highlight = (document.getelementbyid || document.all)?true:false;
 	for (var i=0; i<total; i++) {
 		if ((i % width) == 0) { cp_contents += "<tr>"; }
-		if (use_highlight) { var mo = 'onMouseOver="'+windowRef+'ColorPicker_highlightColor(\''+colors[i]+'\',window.document)"'; }
+		if (use_highlight) { var mo = 'onmouseover="'+windowref+'colorpicker_highlightcolor(\''+colors[i]+'\',window.document)"'; }
 		else { mo = ""; }
-		cp_contents += '<td style="background-color: '+colors[i]+';"><a href="javascript:void()" onclick="'+windowRef+'ColorPicker_pickColor(\''+colors[i]+'\','+windowRef+'window.popupWindowObjects['+cp.index+']);return false;" '+mo+'>&nbsp;</a></td>';
+		cp_contents += '<td style="background-color: '+colors[i]+';"><a href="javascript:void()" onclick="'+windowref+'colorpicker_pickcolor(\''+colors[i]+'\','+windowref+'window.popupwindowobjects['+cp.index+']);return false;" '+mo+'>&nbsp;</a></td>';
 		if ( ((i+1)>=total) || (((i+1) % width) == 0)) {
 			cp_contents += "</tr>";
 			}
 		}
-	// If the browser supports dynamically changing TD cells, add the fancy stuff
-	if (document.getElementById) {
-		var width1 = Math.floor(width/2);
+	// if the browser supports dynamically changing td cells, add the fancy stuff
+	if (document.getelementbyid) {
+		var width1 = math.floor(width/2);
 		var width2 = width = width1;
-		cp_contents += "<tr><td colspan='"+width1+"' style='background-color: #FFF;' ID='colorPickerSelectedColor'>&nbsp;</td><td colspan='"+width2+"' style='text-align: center;' id='colorPickerSelectedColorValue'>#FFFFFF</td></tr>";
+		cp_contents += "<tr><td colspan='"+width1+"' style='background-color: #fff;' id='colorpickerselectedcolor'>&nbsp;</td><td colspan='"+width2+"' style='text-align: center;' id='colorpickerselectedcolorvalue'>#ffffff</td></tr>";
 		}
 	cp_contents += "</table>";
-	if (windowMode) {
+	if (windowmode) {
 		cp_contents += "</span></body></html>";
 		}
 	// end populate code
 
-	// Write the contents to the popup object
+	// write the contents to the popup object
 	cp.populate(cp_contents+"\n");
-	// Move the table down a bit so you can see it
-	cp.offsetY = 25;
-	cp.autoHide();
+	// move the table down a bit so you can see it
+	cp.offsety = 25;
+	cp.autohide();
 	return cp;
 	}
+
+

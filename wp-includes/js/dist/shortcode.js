@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,74 +10,74 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ index_default)
 });
 
-// UNUSED EXPORTS: attrs, fromMatch, next, regexp, replace, string
+// unused exports: attrs, frommatch, next, regexp, replace, string
 
 ;// ./node_modules/memize/dist/index.js
 /**
- * Memize options object.
+ * memize options object.
  *
- * @typedef MemizeOptions
+ * @typedef memizeoptions
  *
- * @property {number} [maxSize] Maximum size of the cache.
+ * @property {number} [maxsize] maximum size of the cache.
  */
 
 /**
- * Internal cache entry.
+ * internal cache entry.
  *
- * @typedef MemizeCacheNode
+ * @typedef memizecachenode
  *
- * @property {?MemizeCacheNode|undefined} [prev] Previous node.
- * @property {?MemizeCacheNode|undefined} [next] Next node.
- * @property {Array<*>}                   args   Function arguments for cache
+ * @property {?memizecachenode|undefined} [prev] previous node.
+ * @property {?memizecachenode|undefined} [next] next node.
+ * @property {array<*>}                   args   function arguments for cache
  *                                               entry.
- * @property {*}                          val    Function result.
+ * @property {*}                          val    function result.
  */
 
 /**
- * Properties of the enhanced function for controlling cache.
+ * properties of the enhanced function for controlling cache.
  *
- * @typedef MemizeMemoizedFunction
+ * @typedef memizememoizedfunction
  *
- * @property {()=>void} clear Clear the cache.
+ * @property {()=>void} clear clear the cache.
  */
 
 /**
- * Accepts a function to be memoized, and returns a new memoized function, with
+ * accepts a function to be memoized, and returns a new memoized function, with
  * optional options.
  *
- * @template {(...args: any[]) => any} F
+ * @template {(...args: any[]) => any} f
  *
- * @param {F}             fn        Function to memoize.
- * @param {MemizeOptions} [options] Options object.
+ * @param {f}             fn        function to memoize.
+ * @param {memizeoptions} [options] options object.
  *
- * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
+ * @return {((...args: parameters<f>) => returntype<f>) & memizememoizedfunction} memoized function.
  */
 function memize(fn, options) {
 	var size = 0;
 
-	/** @type {?MemizeCacheNode|undefined} */
+	/** @type {?memizecachenode|undefined} */
 	var head;
 
-	/** @type {?MemizeCacheNode|undefined} */
+	/** @type {?memizecachenode|undefined} */
 	var tail;
 
 	options = options || {};
@@ -88,58 +88,58 @@ function memize(fn, options) {
 			args,
 			i;
 
-		searchCache: while (node) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
+		searchcache: while (node) {
+			// perform a shallow equality test to confirm that whether the node
+			// under test is a candidate for the arguments passed. two arrays
 			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
+			// strictly equal between the two sets. avoid abstracting to a
 			// function which could incur an arguments leaking deoptimization.
 
-			// Check whether node arguments match arguments length
+			// check whether node arguments match arguments length
 			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
-			// Check whether node arguments match arguments values
+			// check whether node arguments match arguments values
 			for (i = 0; i < len; i++) {
 				if (node.args[i] !== arguments[i]) {
 					node = node.next;
-					continue searchCache;
+					continue searchcache;
 				}
 			}
 
-			// At this point we can assume we've found a match
+			// at this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			// surface matched node to head if not already
 			if (node !== head) {
-				// As tail, shift to previous. Must only shift if not also
+				// as tail, shift to previous. must only shift if not also
 				// head, since if both head and tail, there is no previous.
 				if (node === tail) {
 					tail = node.prev;
 				}
 
-				// Adjust siblings to point to each other. If node was tail,
+				// adjust siblings to point to each other. if node was tail,
 				// this also handles new tail's empty `next` assignment.
-				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
+				/** @type {memizecachenode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = head;
 				node.prev = null;
-				/** @type {MemizeCacheNode} */ (head).prev = node;
+				/** @type {memizecachenode} */ (head).prev = node;
 				head = node;
 			}
 
-			// Return immediately
+			// return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		// no cached value found. continue to insertion phase:
 
-		// Create a copy of arguments (avoid leaking deoptimization)
-		args = new Array(len);
+		// create a copy of arguments (avoid leaking deoptimization)
+		args = new array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
 		}
@@ -147,26 +147,26 @@ function memize(fn, options) {
 		node = {
 			args: args,
 
-			// Generate the result from original function
+			// generate the result from original function
 			val: fn.apply(null, args),
 		};
 
-		// Don't need to check whether node is already head, since it would
+		// don't need to check whether node is already head, since it would
 		// have been returned above already if it was
 
-		// Shift existing head down list
+		// shift existing head down list
 		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
-			// If no head, follows that there's no tail (at initial or reset)
+			// if no head, follows that there's no tail (at initial or reset)
 			tail = node;
 		}
 
-		// Trim tail if we're reached max size and are pending cache insertion
-		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
-			tail = /** @type {MemizeCacheNode} */ (tail).prev;
-			/** @type {MemizeCacheNode} */ (tail).next = null;
+		// trim tail if we're reached max size and are pending cache insertion
+		if (size === /** @type {memizeoptions} */ (options).maxsize) {
+			tail = /** @type {memizecachenode} */ (tail).prev;
+			/** @type {memizecachenode} */ (tail).next = null;
 		} else {
 			size++;
 		}
@@ -182,7 +182,7 @@ function memize(fn, options) {
 		size = 0;
 	};
 
-	// Ignore reason: There's not a clear solution to create an intersection of
+	// ignore reason: there's not a clear solution to create an intersection of
 	// the function with additional properties, where the goal is to retain the
 	// function signature of the incoming argument and add control properties
 	// on the return value.
@@ -198,18 +198,18 @@ function memize(fn, options) {
 
 function next(tag, text, index = 0) {
   const re = regexp(tag);
-  re.lastIndex = index;
+  re.lastindex = index;
   const match = re.exec(text);
   if (!match) {
     return;
   }
   if ("[" === match[1] && "]" === match[7]) {
-    return next(tag, text, re.lastIndex);
+    return next(tag, text, re.lastindex);
   }
   const result = {
     index: match.index,
     content: match[0],
-    shortcode: fromMatch(match)
+    shortcode: frommatch(match)
   };
   if (match[1]) {
     result.content = result.content.slice(1);
@@ -227,7 +227,7 @@ function replace(tag, text, callback) {
       if (left === "[" && right === "]") {
         return match;
       }
-      const result = callback(fromMatch(arguments));
+      const result = callback(frommatch(arguments));
       return result || result === "" ? left + result + right : match;
     }
   );
@@ -236,7 +236,7 @@ function string(options) {
   return new shortcode(options).string();
 }
 function regexp(tag) {
-  return new RegExp(
+  return new regexp(
     "\\[(\\[?)(" + tag + ")(?![\\w-])([^\\]\\/]*(?:\\/(?!\\])[^\\]\\/]*)*?)(?:(\\/)\\]|\\](?:([^\\[]*(?:\\[(?!\\/\\2\\])[^\\[]*)*)(\\[\\/\\2\\]))?)(\\]?)",
     "g"
   );
@@ -244,16 +244,16 @@ function regexp(tag) {
 const attrs = memize((text) => {
   const named = {};
   const numeric = [];
-  const pattern = /([\w-]+)\s*=\s*"([^"]*)"(?:\s|$)|([\w-]+)\s*=\s*'([^']*)'(?:\s|$)|([\w-]+)\s*=\s*([^\s'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|'([^']*)'(?:\s|$)|(\S+)(?:\s|$)/g;
+  const pattern = /([\w-]+)\s*=\s*"([^"]*)"(?:\s|$)|([\w-]+)\s*=\s*'([^']*)'(?:\s|$)|([\w-]+)\s*=\s*([^\s'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|'([^']*)'(?:\s|$)|(\s+)(?:\s|$)/g;
   text = text.replace(/[\u00a0\u200b]/g, " ");
   let match;
   while (match = pattern.exec(text)) {
     if (match[1]) {
-      named[match[1].toLowerCase()] = match[2];
+      named[match[1].tolowercase()] = match[2];
     } else if (match[3]) {
-      named[match[3].toLowerCase()] = match[4];
+      named[match[3].tolowercase()] = match[4];
     } else if (match[5]) {
-      named[match[5].toLowerCase()] = match[6];
+      named[match[5].tolowercase()] = match[6];
     } else if (match[7]) {
       numeric.push(match[7]);
     } else if (match[8]) {
@@ -264,7 +264,7 @@ const attrs = memize((text) => {
   }
   return { named, numeric };
 });
-function fromMatch(match) {
+function frommatch(match) {
   let type;
   if (match[4]) {
     type = "self-closing";
@@ -280,10 +280,10 @@ function fromMatch(match) {
     content: match[5]
   });
 }
-const shortcode = Object.assign(
+const shortcode = object.assign(
   function(options) {
     const { tag, attrs: attributes, type, content } = options || {};
-    Object.assign(this, { tag, type, content });
+    object.assign(this, { tag, type, content });
     this.attrs = {
       named: {},
       numeric: []
@@ -291,13 +291,13 @@ const shortcode = Object.assign(
     if (!attributes) {
       return;
     }
-    const attributeTypes = ["named", "numeric"];
+    const attributetypes = ["named", "numeric"];
     if (typeof attributes === "string") {
       this.attrs = attrs(attributes);
-    } else if (attributes.length === attributeTypes.length && attributeTypes.every((t, key) => t === attributes[key])) {
+    } else if (attributes.length === attributetypes.length && attributetypes.every((t, key) => t === attributes[key])) {
       this.attrs = attributes;
     } else {
-      Object.entries(attributes).forEach(([key, value]) => {
+      object.entries(attributes).foreach(([key, value]) => {
         this.set(key, value);
       });
     }
@@ -308,53 +308,53 @@ const shortcode = Object.assign(
     string,
     regexp,
     attrs,
-    fromMatch
+    frommatch
   }
 );
-Object.assign(shortcode.prototype, {
+object.assign(shortcode.prototype, {
   /**
-   * Get a shortcode attribute.
+   * get a shortcode attribute.
    *
-   * Automatically detects whether `attr` is named or numeric and routes it
+   * automatically detects whether `attr` is named or numeric and routes it
    * accordingly.
    *
-   * @param {(number|string)} attr Attribute key.
+   * @param {(number|string)} attr attribute key.
    *
-   * @return {string} Attribute value.
+   * @return {string} attribute value.
    */
   get(attr) {
     return this.attrs[typeof attr === "number" ? "numeric" : "named"][attr];
   },
   /**
-   * Set a shortcode attribute.
+   * set a shortcode attribute.
    *
-   * Automatically detects whether `attr` is named or numeric and routes it
+   * automatically detects whether `attr` is named or numeric and routes it
    * accordingly.
    *
-   * @param {(number|string)} attr  Attribute key.
-   * @param {string}          value Attribute value.
+   * @param {(number|string)} attr  attribute key.
+   * @param {string}          value attribute value.
    *
-   * @return {InstanceType< import('./types').shortcode >} Shortcode instance.
+   * @return {instancetype< import('./types').shortcode >} shortcode instance.
    */
   set(attr, value) {
     this.attrs[typeof attr === "number" ? "numeric" : "named"][attr] = value;
     return this;
   },
   /**
-   * Transform the shortcode into a string.
+   * transform the shortcode into a string.
    *
-   * @return {string} String representation of the shortcode.
+   * @return {string} string representation of the shortcode.
    */
   string() {
     let text = "[" + this.tag;
-    this.attrs.numeric.forEach((value) => {
+    this.attrs.numeric.foreach((value) => {
       if (/\s/.test(value)) {
         text += ' "' + value + '"';
       } else {
         text += " " + value;
       }
     });
-    Object.entries(this.attrs.named).forEach(([name, value]) => {
+    object.entries(this.attrs.named).foreach(([name, value]) => {
       text += " " + name + '="' + value + '"';
     });
     if ("single" === this.type) {
@@ -375,3 +375,4 @@ var index_default = shortcode;
 (window.wp = window.wp || {}).shortcode = __webpack_exports__["default"];
 /******/ })()
 ;
+

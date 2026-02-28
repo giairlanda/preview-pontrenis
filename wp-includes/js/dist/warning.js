@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,36 +10,36 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ warning)
 });
 
 ;// ./node_modules/@wordpress/warning/build-module/utils.js
-const logged = /* @__PURE__ */ new Set();
+const logged = /* @__pure__ */ new set();
 
 
 ;// ./node_modules/@wordpress/warning/build-module/index.js
 
-function isDev() {
+function isdev() {
   return true === true;
 }
 function warning(message) {
-  if (!isDev()) {
+  if (!isdev()) {
     return;
   }
   if (logged.has(message)) {
@@ -47,7 +47,7 @@ function warning(message) {
   }
   console.warn(message);
   try {
-    throw Error(message);
+    throw error(message);
   } catch (x) {
   }
   logged.add(message);
@@ -57,3 +57,4 @@ function warning(message) {
 (window.wp = window.wp || {}).warning = __webpack_exports__["default"];
 /******/ })()
 ;
+

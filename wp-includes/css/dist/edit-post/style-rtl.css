@@ -47,7 +47,7 @@
 }
 .admin-ui-page__header-subtitle{
   color:#757575;
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   line-height:20px;
@@ -115,7 +115,7 @@
 }
 
 .edit-post-fullscreen-mode-close-site-icon__icon{
-  fill:currentColor;
+  fill:currentcolor;
   height:100%;
   padding:12px;
   width:100%;
@@ -157,7 +157,7 @@
   width:64px;
 }
 .edit-post-fullscreen-mode-close__back-icon svg{
-  fill:currentColor;
+  fill:currentcolor;
 }
 .edit-post-fullscreen-mode-close__back-icon.has-site-icon{
   backdrop-filter:saturate(180%) blur(15px);
@@ -218,7 +218,7 @@
   position:absolute;
 }
 .edit-post-meta-boxes-main__presenter>button[aria-expanded]>svg{
-  fill:currentColor;
+  fill:currentcolor;
 }
 .edit-post-meta-boxes-main__presenter button[role=separator]{
   cursor:row-resize;
@@ -236,7 +236,7 @@
   outline:2px solid #0000;
   outline-offset:-2px;
   position:absolute;
-  transform:translateX(50%);
+  transform:translatex(50%);
   width:inherit;
 }
 @media not (prefers-reduced-motion){
@@ -407,7 +407,7 @@ body.is-fullscreen-mode .edit-post-layout .components-editor-notices__snackbar{
   object-fit:cover;
 }
 .edit-post-welcome-guide__heading,.edit-template-welcome-guide__heading{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:24px;
   line-height:1.4;
   margin:16px 0;
@@ -610,3 +610,4 @@ body.admin-color-sunrise{
     --wp-admin-border-width-focus:1.5px;
   }
 }
+

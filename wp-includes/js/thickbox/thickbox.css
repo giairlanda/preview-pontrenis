@@ -1,4 +1,4 @@
-#TB_overlay {
+#tb_overlay {
 	background: #000;
 	opacity: 0.7;
 	filter: alpha(opacity=70);
@@ -7,13 +7,13 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 100050; /* Above DFW. */
+	z-index: 100050; /* above dfw. */
 }
 
-#TB_window {
+#tb_window {
 	position: fixed;
 	background-color: #fff;
-	z-index: 100050; /* Above DFW. */
+	z-index: 100050; /* above dfw. */
 	visibility: hidden;
 	text-align: left;
 	top: 50%;
@@ -22,7 +22,7 @@
 	box-shadow: 0 3px 6px rgba( 0, 0, 0, 0.3 );
 }
 
-#TB_window img#TB_Image {
+#tb_window img#tb_image {
 	display: block;
 	margin: 15px 0 0 15px;
 	border-right: 1px solid #ccc;
@@ -31,19 +31,19 @@
 	border-left: 1px solid #666;
 }
 
-#TB_caption{
+#tb_caption{
 	height: 25px;
 	padding: 7px 30px 10px 25px;
 	float: left;
 }
 
-#TB_closeWindow {
+#tb_closewindow {
 	height: 25px;
 	padding: 11px 25px 10px 0;
 	float: right;
 }
 
-#TB_closeWindowButton {
+#tb_closewindowbutton {
 	position: absolute;
 	left: auto;
 	right: 0;
@@ -58,7 +58,7 @@
 	transition: color .1s ease-in-out, background .1s ease-in-out;
 }
 
-#TB_ajaxWindowTitle {
+#tb_ajaxwindowtitle {
 	float: left;
 	font-weight: 600;
 	line-height: 29px;
@@ -69,13 +69,13 @@
 	width: calc( 100% - 39px );
 }
 
-#TB_title {
+#tb_title {
 	background: #fcfcfc;
 	border-bottom: 1px solid #ddd;
 	height: 29px;
 }
 
-#TB_ajaxContent {
+#tb_ajaxcontent {
 	clear: both;
 	padding: 2px 15px 15px 15px;
 	overflow: auto;
@@ -83,27 +83,27 @@
 	line-height: 1.4em;
 }
 
-#TB_ajaxContent.TB_modal {
+#tb_ajaxcontent.tb_modal {
 	padding: 15px;
 }
 
-#TB_ajaxContent p {
+#tb_ajaxcontent p {
 	padding: 5px 0px 5px 0px;
 }
 
-#TB_load {
+#tb_load {
 	position: fixed;
 	display: none;
 	z-index: 100050;
 	top: 50%;
 	left: 50%;
-	background-color: #E8E8E8;
+	background-color: #e8e8e8;
 	border: 1px solid #555;
 	margin: -45px 0 0 -125px;
 	padding: 40px 15px 15px;
 }
 
-#TB_HideSelect {
+#tb_hideselect {
 	z-index: 99;
 	position: fixed;
 	top: 0;
@@ -116,7 +116,7 @@
 	width: 100%;
 }
 
-#TB_iframeContent {
+#tb_iframecontent {
 	clear: both;
 	border: none;
 }
@@ -141,12 +141,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-#TB_closeWindowButton:hover .tb-close-icon,
-#TB_closeWindowButton:focus .tb-close-icon {
+#tb_closewindowbutton:hover .tb-close-icon,
+#tb_closewindowbutton:focus .tb-close-icon {
 	color: #006799;
 }
 
-#TB_closeWindowButton:focus .tb-close-icon {
+#tb_closewindowbutton:focus .tb-close-icon {
 	-webkit-box-shadow:
 		0 0 0 1px #5b9dd9,
 		0 0 2px 1px rgba(30, 140, 190, .8);
@@ -154,3 +154,5 @@
 		0 0 0 1px #5b9dd9,
 		0 0 2px 1px rgba(30, 140, 190, .8);
 }
+
+

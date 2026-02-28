@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "utf-8";
 @media not (prefers-reduced-motion){
   .components-animate__appear{
     animation:components-animate__appear-animation .1s cubic-bezier(0, 0, .2, 1) 0s;
@@ -20,10 +20,10 @@
 
 @keyframes components-animate__appear-animation{
   0%{
-    transform:translateY(-2em) scaleY(0) scaleX(0);
+    transform:translatey(-2em) scaley(0) scalex(0);
   }
   to{
-    transform:translateY(0) scaleY(1) scaleX(1);
+    transform:translatey(0) scaley(1) scalex(1);
   }
 }
 @media not (prefers-reduced-motion){
@@ -32,16 +32,16 @@
     animation-fill-mode:forwards;
   }
   .components-animate__slide-in.is-from-left{
-    transform:translateX(100%);
+    transform:translatex(100%);
   }
   .components-animate__slide-in.is-from-right{
-    transform:translateX(-100%);
+    transform:translatex(-100%);
   }
 }
 
 @keyframes components-animate__slide-in-animation{
   to{
-    transform:translateX(0);
+    transform:translatex(0);
   }
 }
 @media not (prefers-reduced-motion){
@@ -241,7 +241,7 @@
 }
 .components-button.is-secondary{
   background:#0000;
-  box-shadow:inset 0 0 0 1px var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9)), 0 0 0 currentColor;
+  box-shadow:inset 0 0 0 1px var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9)), 0 0 0 currentcolor;
   color:var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
   outline:1px solid #0000;
   white-space:nowrap;
@@ -255,7 +255,7 @@
   box-shadow:inset 0 0 0 1px #ddd;
 }
 .components-button.is-secondary:focus:not(:disabled){
-  box-shadow:0 0 0 currentColor inset, 0 0 0 var(--wp-admin-border-width-focus) var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
+  box-shadow:0 0 0 currentcolor inset, 0 0 0 var(--wp-admin-border-width-focus) var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
 }
 .components-button.is-tertiary{
   background:#0000;
@@ -406,12 +406,12 @@ p+.components-button.is-tertiary{
   outline:2px solid #0000;
 }
 .components-button svg{
-  fill:currentColor;
+  fill:currentcolor;
   outline:none;
 }
 @media (forced-colors:active){
   .components-button svg{
-    fill:CanvasText;
+    fill:canvastext;
   }
 }
 .components-button .components-visually-hidden{
@@ -530,7 +530,7 @@ p+.components-button.is-tertiary{
 
 .components-calendar__chevron{
   display:inline-block;
-  fill:currentColor;
+  fill:currentcolor;
   height:16px;
   width:16px;
 }
@@ -640,7 +640,7 @@ p+.components-button.is-tertiary{
   }
 }
 .components-calendar[dir=rtl] .components-calendar__day--preview svg{
-  transform:scaleX(-1);
+  transform:scalex(-1);
 }
 
 .components-calendar__day--preview.components-calendar__range-middle .components-calendar__day-button:before{
@@ -648,34 +648,34 @@ p+.components-button.is-tertiary{
 }
 @keyframes slide-in-left{
   0%{
-    transform:translateX(-100%);
+    transform:translatex(-100%);
   }
   to{
-    transform:translateX(0);
+    transform:translatex(0);
   }
 }
 @keyframes slide-in-right{
   0%{
-    transform:translateX(100%);
+    transform:translatex(100%);
   }
   to{
-    transform:translateX(0);
+    transform:translatex(0);
   }
 }
 @keyframes slide-out-left{
   0%{
-    transform:translateX(0);
+    transform:translatex(0);
   }
   to{
-    transform:translateX(-100%);
+    transform:translatex(-100%);
   }
 }
 @keyframes slide-out-right{
   0%{
-    transform:translateX(0);
+    transform:translatex(0);
   }
   to{
-    transform:translateX(100%);
+    transform:translatex(100%);
   }
 }
 @keyframes fade-in{
@@ -758,7 +758,7 @@ p+.components-button.is-tertiary{
   border:1px solid #949494;
   border-radius:2px;
   box-shadow:0 0 0 #0000;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:16px;
   line-height:normal;
   margin-right:12px;
@@ -952,7 +952,7 @@ svg.components-checkbox-control__checked,svg.components-checkbox-control__indete
 }
 
 .components-circular-option-picker__option-wrapper:before{
-  background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none'%3E%3Cpath fill='%23555d65' d='M6 8V6H4v2zm2 0V6h2v2zm2 8H8v-2h2zm2 0v-2h2v2zm0 2v-2h-2v2H8v2h2v-2zm2 0v2h-2v-2zm2 0h-2v-2h2z'/%3E%3Cpath fill='%23555d65' fill-rule='evenodd' d='M18 18h2v-2h-2v-2h2v-2h-2v-2h2V8h-2v2h-2V8h-2v2h2v2h-2v2h2v2h2zm-2-4v-2h2v2z' clip-rule='evenodd'/%3E%3Cpath fill='%23555d65' d='M18 18v2h-2v-2z'/%3E%3Cpath fill='%23555d65' fill-rule='evenodd' d='M8 10V8H6v2H4v2h2v2H4v2h2v2H4v2h2v2H4v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2V8h-2V6h2V4h-2v2h-2V4h-2v2h-2V4h-2v2h-2V4h-2v2h2v2h-2v2zm0 2v-2H6v2zm2 0v-2h2v2zm0 2v-2H8v2H6v2h2v2H6v2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2V8h-2V6h-2v2h-2V6h-2v2h-2v2h2v2h-2v2z' clip-rule='evenodd'/%3E%3Cpath fill='%23555d65' fill-rule='evenodd' d='M4 0H2v2H0v2h2v2H0v2h2v2H0v2h2v2H0v2h2v2H0v2h2v2H0v2h2v2H0v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2V8h-2V6h2V4h-2V2h2V0h-2v2h-2V0h-2v2h-2V0h-2v2h-2V0h-2v2h-2V0h-2v2H8V0H6v2H4zm0 4V2H2v2zm2 0V2h2v2zm0 2V4H4v2H2v2h2v2H2v2h2v2H2v2h2v2H2v2h2v2H2v2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2V8h-2V6h2V4h-2V2h-2v2h-2V2h-2v2h-2V2h-2v2h-2V2h-2v2H8v2z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background:url("data:image/svg+xml;charset=utf-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none'%3e%3cpath fill='%23555d65' d='m6 8v6h4v2zm2 0v6h2v2zm2 8h8v-2h2zm2 0v-2h2v2zm0 2v-2h-2v2h8v2h2v-2zm2 0v2h-2v-2zm2 0h-2v-2h2z'/%3e%3cpath fill='%23555d65' fill-rule='evenodd' d='m18 18h2v-2h-2v-2h2v-2h-2v-2h2v8h-2v2h-2v8h-2v2h2v2h-2v2h2v2h2zm-2-4v-2h2v2z' clip-rule='evenodd'/%3e%3cpath fill='%23555d65' d='m18 18v2h-2v-2z'/%3e%3cpath fill='%23555d65' fill-rule='evenodd' d='m8 10v8h6v2h4v2h2v2h4v2h2v2h4v2h2v2h4v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v8h-2v6h2v4h-2v2h-2v4h-2v2h-2v4h-2v2h-2v4h-2v2h2v2h-2v2zm0 2v-2h6v2zm2 0v-2h2v2zm0 2v-2h8v2h6v2h2v2h6v2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v8h-2v6h-2v2h-2v6h-2v2h-2v2h2v2h-2v2z' clip-rule='evenodd'/%3e%3cpath fill='%23555d65' fill-rule='evenodd' d='m4 0h2v2h0v2h2v2h0v2h2v2h0v2h2v2h0v2h2v2h0v2h2v2h0v2h2v2h0v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v8h-2v6h2v4h-2v2h2v0h-2v2h-2v0h-2v2h-2v0h-2v2h-2v0h-2v2h-2v0h-2v2h8v0h6v2h4zm0 4v2h2v2zm2 0v2h2v2zm0 2v4h4v2h2v2h2v2h2v2h2v2h2v2h2v2h2v2h2v2h2v2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2v8h-2v6h2v4h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h-2v2h8v2z' clip-rule='evenodd'/%3e%3c/svg%3e");
   border-radius:50%;
   bottom:1px;
   content:"";
@@ -1090,7 +1090,7 @@ input.components-combobox-control__input[type=text]:focus{
   border:1px solid #949494;
   border-radius:2px;
   box-shadow:0 0 0 #0000;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:16px;
   line-height:normal;
   padding:6px 8px;
@@ -1350,12 +1350,12 @@ body.is-dragging-components-draggable{
 .components-drop-zone__content-icon{
   line-height:0;
   margin:0 auto 8px;
-  fill:currentColor;
+  fill:currentcolor;
   pointer-events:none;
 }
 
 .components-drop-zone__content-text{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
 }
 
@@ -1392,7 +1392,7 @@ body.is-dragging-components-draggable{
 }
 
 .components-dropdown-menu__menu{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   line-height:1.4;
   width:100%;
@@ -1544,7 +1544,7 @@ body.is-dragging-components-draggable{
 .components-form-toggle.is-checked .components-form-toggle__thumb{
   background-color:#fff;
   border-width:0;
-  transform:translateX(16px);
+  transform:translatex(16px);
 }
 .components-disabled .components-form-toggle,.components-form-toggle.is-disabled{
   opacity:.3;
@@ -1576,7 +1576,7 @@ body.is-dragging-components-draggable{
   border:1px solid #949494;
   border-radius:2px;
   box-shadow:0 0 0 #0000;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:16px;
   line-height:normal;
   padding:6px 8px;
@@ -1960,7 +1960,7 @@ body.is-dragging-components-draggable{
 
 .components-menu-item__shortcut{
   align-self:center;
-  color:currentColor;
+  color:currentcolor;
   display:none;
   margin-left:auto;
   margin-right:0;
@@ -2186,7 +2186,7 @@ body.is-dragging-components-draggable{
   border-left:4px solid var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
   color:#1e1e1e;
   display:flex;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   padding:8px 12px;
 }
@@ -2350,8 +2350,8 @@ body.is-dragging-components-draggable{
   position:absolute;
   right:16px;
   top:50%;
-  transform:translateY(-50%);
-  fill:currentColor;
+  transform:translatey(-50%);
+  fill:currentcolor;
 }
 @media not (prefers-reduced-motion){
   .components-panel__body-toggle.components-button .components-panel__arrow{
@@ -2360,9 +2360,9 @@ body.is-dragging-components-draggable{
 }
 body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right{
   -ms-filter:fliph;
-  filter:FlipH;
+  filter:fliph;
   margin-top:-10px;
-  transform:scaleX(-1);
+  transform:scalex(-1);
 }
 
 .components-panel__icon{
@@ -2424,7 +2424,7 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
 }
 
 .components-placeholder__error,.components-placeholder__fieldset,.components-placeholder__instructions,.components-placeholder__label{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   letter-spacing:normal;
@@ -2439,11 +2439,11 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
 }
 .components-placeholder__label .block-editor-block-icon,.components-placeholder__label .dashicon,.components-placeholder__label>svg{
   margin-right:4px;
-  fill:currentColor;
+  fill:currentcolor;
 }
 @media (forced-colors:active){
   .components-placeholder__label .block-editor-block-icon,.components-placeholder__label .dashicon,.components-placeholder__label>svg{
-    fill:CanvasText;
+    fill:canvastext;
   }
 }
 .components-placeholder__label:empty{
@@ -2459,7 +2459,7 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
   width:100%;
 }
 .components-placeholder__fieldset form p,.components-placeholder__fieldset p{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
 }
 
@@ -2471,7 +2471,7 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
   border:1px solid #949494;
   border-radius:2px;
   box-shadow:0 0 0 #0000;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:16px;
   line-height:normal;
   padding:6px 8px;
@@ -2561,7 +2561,7 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
   pointer-events:auto;
 }
 .components-placeholder.has-illustration:before{
-  background:currentColor;
+  background:currentcolor;
   bottom:0;
   content:"";
   left:0;
@@ -2591,7 +2591,7 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
   top:50%;
   transform:translate(-50%, -50%);
   width:100%;
-  stroke:currentColor;
+  stroke:currentcolor;
   opacity:.25;
 }
 
@@ -2714,7 +2714,7 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
 
 .components-radio-control{
   border:0;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   margin:0;
   padding:0;
@@ -2921,21 +2921,21 @@ body.rtl .components-panel__body-toggle.components-button .dashicons-arrow-right
 @keyframes components-resizable-box__top-bottom-animation{
   0%{
     opacity:0;
-    transform:scaleX(0);
+    transform:scalex(0);
   }
   to{
     opacity:1;
-    transform:scaleX(1);
+    transform:scalex(1);
   }
 }
 @keyframes components-resizable-box__left-right-animation{
   0%{
     opacity:0;
-    transform:scaleY(0);
+    transform:scaley(0);
   }
   to{
     opacity:1;
-    transform:scaleY(1);
+    transform:scaley(1);
   }
 }
 .components-resizable-box__handle-right{
@@ -2992,7 +2992,7 @@ body.lockscroll,html.lockscroll{
   box-sizing:border-box;
   color:#fff;
   cursor:pointer;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   max-width:600px;
   padding:12px 20px;
@@ -3034,7 +3034,7 @@ body.lockscroll,html.lockscroll{
   outline:1px dotted #fff;
 }
 .components-snackbar__action.components-button:hover,.components-snackbar__action.components-external-link:hover{
-  color:currentColor;
+  color:currentcolor;
   text-decoration:none;
 }
 
@@ -3142,7 +3142,7 @@ body.lockscroll,html.lockscroll{
   border-radius:2px;
   box-shadow:0 0 0 #0000;
   color:var(--wp-components-color-foreground, #1e1e1e);
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:16px;
   height:32px;
   line-height:normal;
@@ -3288,10 +3288,10 @@ body.lockscroll,html.lockscroll{
 
 @keyframes components-button__appear-animation{
   0%{
-    transform:scaleY(0);
+    transform:scaley(0);
   }
   to{
-    transform:scaleY(1);
+    transform:scaley(1);
   }
 }
 .components-toolbar__control.components-button{
@@ -3303,7 +3303,7 @@ body.lockscroll,html.lockscroll{
 .components-toolbar__control.components-button[data-subscript]:after{
   bottom:10px;
   content:attr(data-subscript);
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:600;
   line-height:12px;
@@ -3385,7 +3385,7 @@ div.components-toolbar>div+div.has-left-divider:before{
   border-radius:2px;
   box-shadow:0 1px 2px #0000000d,0 2px 3px #0000000a,0 6px 6px #00000008,0 8px 8px #00000005;
   color:#f0f0f0;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:12px;
   line-height:1.4;
   padding:4px 8px;
@@ -3439,7 +3439,7 @@ div.components-toolbar>div+div.has-left-divider:before{
   animation:components-validated-control__indicator-jump .2s cubic-bezier(.68, -.55, .27, 1.55);
   color:var(--wp-components-color-gray-700, #757575);
   display:flex;
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:.75rem;
   gap:4px;
   line-height:16px;
@@ -3465,11 +3465,11 @@ div.components-toolbar>div+div.has-left-divider:before{
 @keyframes components-validated-control__indicator-jump{
   0%{
     opacity:0;
-    transform:translateY(-4px);
+    transform:translatey(-4px);
   }
   to{
     opacity:1;
-    transform:translateY(0);
+    transform:translatey(0);
   }
 }
 :root{
@@ -3486,3 +3486,4 @@ div.components-toolbar>div+div.has-left-divider:before{
     --wp-admin-border-width-focus:1.5px;
   }
 }
+

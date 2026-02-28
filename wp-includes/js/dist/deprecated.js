@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,45 +10,45 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   "default": () => (/* binding */ deprecated)
 });
 
-// UNUSED EXPORTS: logged
+// unused exports: logged
 
 ;// external ["wp","hooks"]
-const external_wp_hooks_namespaceObject = window["wp"]["hooks"];
+const external_wp_hooks_namespaceobject = window["wp"]["hooks"];
 ;// ./node_modules/@wordpress/deprecated/build-module/index.js
 
-const logged = /* @__PURE__ */ Object.create(null);
+const logged = /* @__pure__ */ object.create(null);
 function deprecated(feature, options = {}) {
   const { since, version, alternative, plugin, link, hint } = options;
-  const pluginMessage = plugin ? ` from ${plugin}` : "";
-  const sinceMessage = since ? ` since version ${since}` : "";
-  const versionMessage = version ? ` and will be removed${pluginMessage} in version ${version}` : "";
-  const useInsteadMessage = alternative ? ` Please use ${alternative} instead.` : "";
-  const linkMessage = link ? ` See: ${link}` : "";
-  const hintMessage = hint ? ` Note: ${hint}` : "";
-  const message = `${feature} is deprecated${sinceMessage}${versionMessage}.${useInsteadMessage}${linkMessage}${hintMessage}`;
+  const pluginmessage = plugin ? ` from ${plugin}` : "";
+  const sincemessage = since ? ` since version ${since}` : "";
+  const versionmessage = version ? ` and will be removed${pluginmessage} in version ${version}` : "";
+  const useinsteadmessage = alternative ? ` please use ${alternative} instead.` : "";
+  const linkmessage = link ? ` see: ${link}` : "";
+  const hintmessage = hint ? ` note: ${hint}` : "";
+  const message = `${feature} is deprecated${sincemessage}${versionmessage}.${useinsteadmessage}${linkmessage}${hintmessage}`;
   if (message in logged) {
     return;
   }
-  (0,external_wp_hooks_namespaceObject.doAction)("deprecated", feature, options, message);
+  (0,external_wp_hooks_namespaceobject.doaction)("deprecated", feature, options, message);
   console.warn(message);
   logged[message] = true;
 }
@@ -57,3 +57,4 @@ function deprecated(feature, options = {}) {
 (window.wp = window.wp || {}).deprecated = __webpack_exports__["default"];
 /******/ })()
 ;
+

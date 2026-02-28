@@ -29,7 +29,7 @@
 
 .admin-ui-page__header-subtitle{
   color:#757575;
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   line-height:20px;
@@ -63,3 +63,4 @@
   content:attr(aria-label);
   font-size:12px;
 }
+

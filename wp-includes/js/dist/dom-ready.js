@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,34 +10,35 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ domReady)
+/* harmony export */   "default": () => (/* binding */ domready)
 /* harmony export */ });
-function domReady(callback) {
+function domready(callback) {
   if (typeof document === "undefined") {
     return;
   }
-  if (document.readyState === "complete" || // DOMContentLoaded + Images/Styles/etc loaded, so we call directly.
-  document.readyState === "interactive") {
+  if (document.readystate === "complete" || // domcontentloaded + images/styles/etc loaded, so we call directly.
+  document.readystate === "interactive") {
     return void callback();
   }
-  document.addEventListener("DOMContentLoaded", callback);
+  document.addeventlistener("domcontentloaded", callback);
 }
 
 
-(window.wp = window.wp || {}).domReady = __webpack_exports__["default"];
+(window.wp = window.wp || {}).domready = __webpack_exports__["default"];
 /******/ })()
 ;
+

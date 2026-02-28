@@ -1,4 +1,5 @@
 .wp-block-math__textarea-control textarea{
   direction:ltr;
-  font-family:Menlo,Consolas,monaco,monospace;
+  font-family:menlo,consolas,monaco,monospace;
 }
+

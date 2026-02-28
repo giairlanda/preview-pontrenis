@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,61 +10,61 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ isShallowEqual),
-  isShallowEqualArrays: () => (/* reexport */ isShallowEqualArrays),
-  isShallowEqualObjects: () => (/* reexport */ isShallowEqualObjects)
+  "default": () => (/* binding */ isshallowequal),
+  isshallowequalarrays: () => (/* reexport */ isshallowequalarrays),
+  isshallowequalobjects: () => (/* reexport */ isshallowequalobjects)
 });
 
 ;// ./node_modules/@wordpress/is-shallow-equal/build-module/objects.js
-function isShallowEqualObjects(a, b) {
+function isshallowequalobjects(a, b) {
   if (a === b) {
     return true;
   }
-  const aKeys = Object.keys(a);
-  const bKeys = Object.keys(b);
-  if (aKeys.length !== bKeys.length) {
+  const akeys = object.keys(a);
+  const bkeys = object.keys(b);
+  if (akeys.length !== bkeys.length) {
     return false;
   }
   let i = 0;
-  while (i < aKeys.length) {
-    const key = aKeys[i];
-    const aValue = a[key];
+  while (i < akeys.length) {
+    const key = akeys[i];
+    const avalue = a[key];
     if (
-      // In iterating only the keys of the first object after verifying
+      // in iterating only the keys of the first object after verifying
       // equal lengths, account for the case that an explicit `undefined`
       // value in the first is implicitly undefined in the second.
       //
-      // Example: isShallowEqualObjects( { a: undefined }, { b: 5 } )
-      aValue === void 0 && !b.hasOwnProperty(key) || aValue !== b[key]
+      // example: isshallowequalobjects( { a: undefined }, { b: 5 } )
+      avalue === void 0 && !b.hasownproperty(key) || avalue !== b[key]
     ) {
       return false;
     }
@@ -75,7 +75,7 @@ function isShallowEqualObjects(a, b) {
 
 
 ;// ./node_modules/@wordpress/is-shallow-equal/build-module/arrays.js
-function isShallowEqualArrays(a, b) {
+function isshallowequalarrays(a, b) {
   if (a === b) {
     return true;
   }
@@ -96,18 +96,19 @@ function isShallowEqualArrays(a, b) {
 
 
 
-function isShallowEqual(a, b) {
+function isshallowequal(a, b) {
   if (a && b) {
-    if (a.constructor === Object && b.constructor === Object) {
-      return isShallowEqualObjects(a, b);
-    } else if (Array.isArray(a) && Array.isArray(b)) {
-      return isShallowEqualArrays(a, b);
+    if (a.constructor === object && b.constructor === object) {
+      return isshallowequalobjects(a, b);
+    } else if (array.isarray(a) && array.isarray(b)) {
+      return isshallowequalarrays(a, b);
     }
   }
   return a === b;
 }
 
 
-(window.wp = window.wp || {}).isShallowEqual = __webpack_exports__;
+(window.wp = window.wp || {}).isshallowequal = __webpack_exports__;
 /******/ })()
 ;
+

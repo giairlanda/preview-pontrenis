@@ -14,7 +14,7 @@
 .wp-block-code{
   border:1px solid #ccc;
   border-radius:4px;
-  font-family:Menlo,Consolas,monaco,monospace;
+  font-family:menlo,consolas,monaco,monospace;
   padding:.8em 1em;
 }
 
@@ -56,11 +56,11 @@
 .wp-block-pullquote{
   border-bottom:4px solid;
   border-top:4px solid;
-  color:currentColor;
+  color:currentcolor;
   margin-bottom:1.75em;
 }
 .wp-block-pullquote :where(cite),.wp-block-pullquote :where(footer),.wp-block-pullquote__citation{
-  color:currentColor;
+  color:currentcolor;
   font-size:.8125em;
   font-style:normal;
   text-transform:uppercase;
@@ -72,7 +72,7 @@
   padding-right:1em;
 }
 .wp-block-quote cite,.wp-block-quote footer{
-  color:currentColor;
+  color:currentcolor;
   font-size:.8125em;
   font-style:normal;
   position:relative;
@@ -161,3 +161,4 @@
   margin-top:0;
   padding:1.25em 2.375em;
 }
+

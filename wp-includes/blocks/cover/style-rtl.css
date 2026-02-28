@@ -234,3 +234,4 @@ body:not(.editor-styles-wrapper) .wp-block-cover:not(.wp-block-cover:has(.wp-blo
 .has-modal-open body:not(.editor-styles-wrapper) .wp-block-cover:not(.wp-block-cover:has(.wp-block-cover__background+.wp-block-cover__inner-container)) .wp-block-cover__inner-container{
   z-index:auto;
 }
+

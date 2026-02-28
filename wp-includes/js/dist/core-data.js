@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 287:
@@ -6,28 +6,28 @@
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   fL: () => (/* binding */ pascalCase),
-/* harmony export */   l3: () => (/* binding */ pascalCaseTransform)
+/* harmony export */   fl: () => (/* binding */ pascalcase),
+/* harmony export */   l3: () => (/* binding */ pascalcasetransform)
 /* harmony export */ });
-/* unused harmony export pascalCaseTransformMerge */
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1635);
-/* harmony import */ var no_case__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2226);
+/* unused harmony export pascalcasetransformmerge */
+/* harmony import */ var tslib__webpack_imported_module_1__ = __webpack_require__(1635);
+/* harmony import */ var no_case__webpack_imported_module_0__ = __webpack_require__(2226);
 
 
-function pascalCaseTransform(input, index) {
-    var firstChar = input.charAt(0);
-    var lowerChars = input.substr(1).toLowerCase();
-    if (index > 0 && firstChar >= "0" && firstChar <= "9") {
-        return "_" + firstChar + lowerChars;
+function pascalcasetransform(input, index) {
+    var firstchar = input.charat(0);
+    var lowerchars = input.substr(1).tolowercase();
+    if (index > 0 && firstchar >= "0" && firstchar <= "9") {
+        return "_" + firstchar + lowerchars;
     }
-    return "" + firstChar.toUpperCase() + lowerChars;
+    return "" + firstchar.touppercase() + lowerchars;
 }
-function pascalCaseTransformMerge(input) {
-    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+function pascalcasetransformmerge(input) {
+    return input.charat(0).touppercase() + input.slice(1).tolowercase();
 }
-function pascalCase(input, options) {
+function pascalcase(input, options) {
     if (options === void 0) { options = {}; }
-    return (0,no_case__WEBPACK_IMPORTED_MODULE_0__/* .noCase */ .W)(input, (0,tslib__WEBPACK_IMPORTED_MODULE_1__/* .__assign */ .Cl)({ delimiter: "", transform: pascalCaseTransform }, options));
+    return (0,no_case__webpack_imported_module_0__/* .nocase */ .w)(input, (0,tslib__webpack_imported_module_1__/* .__assign */ .cl)({ delimiter: "", transform: pascalcasetransform }, options));
 }
 
 
@@ -38,17 +38,17 @@ function pascalCase(input, options) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (/* binding */ get_normalized_comma_separable_default)
+/* harmony export */   a: () => (/* binding */ get_normalized_comma_separable_default)
 /* harmony export */ });
-function getNormalizedCommaSeparable(value) {
+function getnormalizedcommaseparable(value) {
   if (typeof value === "string") {
     return value.split(",");
-  } else if (Array.isArray(value)) {
+  } else if (array.isarray(value)) {
     return value;
   }
   return null;
 }
-var get_normalized_comma_separable_default = getNormalizedCommaSeparable;
+var get_normalized_comma_separable_default = getnormalizedcommaseparable;
 
 
 
@@ -58,7 +58,7 @@ var get_normalized_comma_separable_default = getNormalizedCommaSeparable;
 /***/ ((module) => {
 
 "use strict";
-module.exports = window["wp"]["apiFetch"];
+module.exports = window["wp"]["apifetch"];
 
 /***/ }),
 
@@ -67,45 +67,45 @@ module.exports = window["wp"]["apiFetch"];
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Cl: () => (/* binding */ __assign)
+/* harmony export */   cl: () => (/* binding */ __assign)
 /* harmony export */ });
-/* unused harmony exports __extends, __rest, __decorate, __param, __esDecorate, __runInitializers, __propKey, __setFunctionName, __metadata, __awaiter, __generator, __createBinding, __exportStar, __values, __read, __spread, __spreadArrays, __spreadArray, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet, __classPrivateFieldIn, __addDisposableResource, __disposeResources, __rewriteRelativeImportExtension */
+/* unused harmony exports __extends, __rest, __decorate, __param, __esdecorate, __runinitializers, __propkey, __setfunctionname, __metadata, __awaiter, __generator, __createbinding, __exportstar, __values, __read, __spread, __spreadarrays, __spreadarray, __await, __asyncgenerator, __asyncdelegator, __asyncvalues, __maketemplateobject, __importstar, __importdefault, __classprivatefieldget, __classprivatefieldset, __classprivatefieldin, __adddisposableresource, __disposeresources, __rewriterelativeimportextension */
 /******************************************************************************
-Copyright (c) Microsoft Corporation.
+copyright (c) microsoft corporation.
 
-Permission to use, copy, modify, and/or distribute this software for any
+permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted.
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+the software is provided "as is" and the author disclaims all warranties with
+regard to this software including all implied warranties of merchantability
+and fitness. in no event shall the author be liable for any special, direct,
+indirect, or consequential damages or any damages whatsoever resulting from
+loss of use, data or profits, whether in an action of contract, negligence or
+other tortious action, arising out of or in connection with the use or
+performance of this software.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
+/* global reflect, promise, suppressederror, symbol, iterator */
 
-var extendStatics = function(d, b) {
-  extendStatics = Object.setPrototypeOf ||
-      ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-      function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-  return extendStatics(d, b);
+var extendstatics = function(d, b) {
+  extendstatics = object.setprototypeof ||
+      ({ __proto__: [] } instanceof array && function (d, b) { d.__proto__ = b; }) ||
+      function (d, b) { for (var p in b) if (object.prototype.hasownproperty.call(b, p)) d[p] = b[p]; };
+  return extendstatics(d, b);
 };
 
 function __extends(d, b) {
   if (typeof b !== "function" && b !== null)
-      throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-  extendStatics(d, b);
+      throw new typeerror("class extends value " + string(b) + " is not a constructor or null");
+  extendstatics(d, b);
   function __() { this.constructor = d; }
-  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  d.prototype = b === null ? object.create(b) : (__.prototype = b.prototype, new __());
 }
 
 var __assign = function() {
-  __assign = Object.assign || function __assign(t) {
+  __assign = object.assign || function __assign(t) {
       for (var s, i = 1, n = arguments.length; i < n; i++) {
           s = arguments[i];
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          for (var p in s) if (object.prototype.hasownproperty.call(s, p)) t[p] = s[p];
       }
       return t;
   }
@@ -114,42 +114,42 @@ var __assign = function() {
 
 function __rest(s, e) {
   var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+  for (var p in s) if (object.prototype.hasownproperty.call(s, p) && e.indexof(p) < 0)
       t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function")
-      for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-          if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+  if (s != null && typeof object.getownpropertysymbols === "function")
+      for (var i = 0, p = object.getownpropertysymbols(s); i < p.length; i++) {
+          if (e.indexof(p[i]) < 0 && object.prototype.propertyisenumerable.call(s, p[i]))
               t[p[i]] = s[p[i]];
       }
   return t;
 }
 
 function __decorate(decorators, target, key, desc) {
-  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = object.getownpropertydescriptor(target, key) : desc, d;
+  if (typeof reflect === "object" && typeof reflect.decorate === "function") r = reflect.decorate(decorators, target, key, desc);
   else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
+  return c > 3 && r && object.defineproperty(target, key, r), r;
 }
 
-function __param(paramIndex, decorator) {
-  return function (target, key) { decorator(target, key, paramIndex); }
+function __param(paramindex, decorator) {
+  return function (target, key) { decorator(target, key, paramindex); }
 }
 
-function __esDecorate(ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
-  function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
-  var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
-  var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
-  var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
+function __esdecorate(ctor, descriptorin, decorators, contextin, initializers, extrainitializers) {
+  function accept(f) { if (f !== void 0 && typeof f !== "function") throw new typeerror("function expected"); return f; }
+  var kind = contextin.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
+  var target = !descriptorin && ctor ? contextin["static"] ? ctor : ctor.prototype : null;
+  var descriptor = descriptorin || (target ? object.getownpropertydescriptor(target, contextin.name) : {});
   var _, done = false;
   for (var i = decorators.length - 1; i >= 0; i--) {
       var context = {};
-      for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
-      for (var p in contextIn.access) context.access[p] = contextIn.access[p];
-      context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
+      for (var p in contextin) context[p] = p === "access" ? {} : contextin[p];
+      for (var p in contextin.access) context.access[p] = contextin.access[p];
+      context.addinitializer = function (f) { if (done) throw new typeerror("cannot add initializers after decoration has completed"); extrainitializers.push(accept(f || null)); };
       var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
       if (kind === "accessor") {
           if (result === void 0) continue;
-          if (result === null || typeof result !== "object") throw new TypeError("Object expected");
+          if (result === null || typeof result !== "object") throw new typeerror("object expected");
           if (_ = accept(result.get)) descriptor.get = _;
           if (_ = accept(result.set)) descriptor.set = _;
           if (_ = accept(result.init)) initializers.unshift(_);
@@ -159,47 +159,47 @@ function __esDecorate(ctor, descriptorIn, decorators, contextIn, initializers, e
           else descriptor[key] = _;
       }
   }
-  if (target) Object.defineProperty(target, contextIn.name, descriptor);
+  if (target) object.defineproperty(target, contextin.name, descriptor);
   done = true;
 };
 
-function __runInitializers(thisArg, initializers, value) {
-  var useValue = arguments.length > 2;
+function __runinitializers(thisarg, initializers, value) {
+  var usevalue = arguments.length > 2;
   for (var i = 0; i < initializers.length; i++) {
-      value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+      value = usevalue ? initializers[i].call(thisarg, value) : initializers[i].call(thisarg);
   }
-  return useValue ? value : void 0;
+  return usevalue ? value : void 0;
 };
 
-function __propKey(x) {
+function __propkey(x) {
   return typeof x === "symbol" ? x : "".concat(x);
 };
 
-function __setFunctionName(f, name, prefix) {
+function __setfunctionname(f, name, prefix) {
   if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
-  return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
+  return object.defineproperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
 };
 
-function __metadata(metadataKey, metadataValue) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+function __metadata(metadatakey, metadatavalue) {
+  if (typeof reflect === "object" && typeof reflect.metadata === "function") return reflect.metadata(metadatakey, metadatavalue);
 }
 
-function __awaiter(thisArg, _arguments, P, generator) {
-  function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-  return new (P || (P = Promise))(function (resolve, reject) {
+function __awaiter(thisarg, _arguments, p, generator) {
+  function adopt(value) { return value instanceof p ? value : new p(function (resolve) { resolve(value); }); }
+  return new (p || (p = promise))(function (resolve, reject) {
       function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
       function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
       function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-      step((generator = generator.apply(thisArg, _arguments || [])).next());
+      step((generator = generator.apply(thisarg, _arguments || [])).next());
   });
 }
 
-function __generator(thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+function __generator(thisarg, body) {
+  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = object.create((typeof iterator === "function" ? iterator : object).prototype);
+  return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof symbol === "function" && (g[symbol.iterator] = function() { return this; }), g;
   function verb(n) { return function (v) { return step([n, v]); }; }
   function step(op) {
-      if (f) throw new TypeError("Generator is already executing.");
+      if (f) throw new typeerror("generator is already executing.");
       while (g && (g = 0, op[0] && (_ = 0)), _) try {
           if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
           if (y = 0, t) op = [op[0] & 2, t.value];
@@ -216,30 +216,30 @@ function __generator(thisArg, body) {
                   if (t[2]) _.ops.pop();
                   _.trys.pop(); continue;
           }
-          op = body.call(thisArg, _);
+          op = body.call(thisarg, _);
       } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
       if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
   }
 }
 
-var __createBinding = Object.create ? (function(o, m, k, k2) {
+var __createbinding = object.create ? (function(o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  var desc = Object.getOwnPropertyDescriptor(m, k);
-  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+  var desc = object.getownpropertydescriptor(m, k);
+  if (!desc || ("get" in desc ? !m.__esmodule : desc.writable || desc.configurable)) {
       desc = { enumerable: true, get: function() { return m[k]; } };
   }
-  Object.defineProperty(o, k2, desc);
+  object.defineproperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
 });
 
-function __exportStar(m, o) {
-  for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+function __exportstar(m, o) {
+  for (var p in m) if (p !== "default" && !object.prototype.hasownproperty.call(o, p)) __createbinding(o, m, p);
 }
 
 function __values(o) {
-  var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+  var s = typeof symbol === "function" && symbol.iterator, m = s && o[s], i = 0;
   if (m) return m.call(o);
   if (o && typeof o.length === "number") return {
       next: function () {
@@ -247,11 +247,11 @@ function __values(o) {
           return { value: o && o[i++], done: !o };
       }
   };
-  throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+  throw new typeerror(s ? "object is not iterable." : "symbol.iterator is not defined.");
 }
 
 function __read(o, n) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  var m = typeof symbol === "function" && o[symbol.iterator];
   if (!m) return o;
   var i = m.call(o), r, ar = [], e;
   try {
@@ -275,120 +275,120 @@ function __spread() {
 }
 
 /** @deprecated */
-function __spreadArrays() {
+function __spreadarrays() {
   for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-  for (var r = Array(s), k = 0, i = 0; i < il; i++)
+  for (var r = array(s), k = 0, i = 0; i < il; i++)
       for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
           r[k] = a[j];
   return r;
 }
 
-function __spreadArray(to, from, pack) {
+function __spreadarray(to, from, pack) {
   if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
       if (ar || !(i in from)) {
-          if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+          if (!ar) ar = array.prototype.slice.call(from, 0, i);
           ar[i] = from[i];
       }
   }
-  return to.concat(ar || Array.prototype.slice.call(from));
+  return to.concat(ar || array.prototype.slice.call(from));
 }
 
 function __await(v) {
   return this instanceof __await ? (this.v = v, this) : new __await(v);
 }
 
-function __asyncGenerator(thisArg, _arguments, generator) {
-  if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var g = generator.apply(thisArg, _arguments || []), i, q = [];
-  return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
-  function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
-  function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
+function __asyncgenerator(thisarg, _arguments, generator) {
+  if (!symbol.asynciterator) throw new typeerror("symbol.asynciterator is not defined.");
+  var g = generator.apply(thisarg, _arguments || []), i, q = [];
+  return i = object.create((typeof asynciterator === "function" ? asynciterator : object).prototype), verb("next"), verb("throw"), verb("return", awaitreturn), i[symbol.asynciterator] = function () { return this; }, i;
+  function awaitreturn(f) { return function (v) { return promise.resolve(v).then(f, reject); }; }
+  function verb(n, f) { if (g[n]) { i[n] = function (v) { return new promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
   function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
-  function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+  function step(r) { r.value instanceof __await ? promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
   function fulfill(value) { resume("next", value); }
   function reject(value) { resume("throw", value); }
   function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
 }
 
-function __asyncDelegator(o) {
+function __asyncdelegator(o) {
   var i, p;
-  return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+  return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[symbol.iterator] = function () { return this; }, i;
   function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: false } : f ? f(v) : v; } : f; }
 }
 
-function __asyncValues(o) {
-  if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-  var m = o[Symbol.asyncIterator], i;
-  return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-  function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-  function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+function __asyncvalues(o) {
+  if (!symbol.asynciterator) throw new typeerror("symbol.asynciterator is not defined.");
+  var m = o[symbol.asynciterator], i;
+  return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[symbol.asynciterator] = function () { return this; }, i);
+  function verb(n) { i[n] = o[n] && function (v) { return new promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+  function settle(resolve, reject, d, v) { promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 }
 
-function __makeTemplateObject(cooked, raw) {
-  if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+function __maketemplateobject(cooked, raw) {
+  if (object.defineproperty) { object.defineproperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
   return cooked;
 };
 
-var __setModuleDefault = Object.create ? (function(o, v) {
-  Object.defineProperty(o, "default", { enumerable: true, value: v });
+var __setmoduledefault = object.create ? (function(o, v) {
+  object.defineproperty(o, "default", { enumerable: true, value: v });
 }) : function(o, v) {
   o["default"] = v;
 };
 
-var ownKeys = function(o) {
-  ownKeys = Object.getOwnPropertyNames || function (o) {
+var ownkeys = function(o) {
+  ownkeys = object.getownpropertynames || function (o) {
     var ar = [];
-    for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+    for (var k in o) if (object.prototype.hasownproperty.call(o, k)) ar[ar.length] = k;
     return ar;
   };
-  return ownKeys(o);
+  return ownkeys(o);
 };
 
-function __importStar(mod) {
-  if (mod && mod.__esModule) return mod;
+function __importstar(mod) {
+  if (mod && mod.__esmodule) return mod;
   var result = {};
-  if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-  __setModuleDefault(result, mod);
+  if (mod != null) for (var k = ownkeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createbinding(result, mod, k[i]);
+  __setmoduledefault(result, mod);
   return result;
 }
 
-function __importDefault(mod) {
-  return (mod && mod.__esModule) ? mod : { default: mod };
+function __importdefault(mod) {
+  return (mod && mod.__esmodule) ? mod : { default: mod };
 }
 
-function __classPrivateFieldGet(receiver, state, kind, f) {
-  if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+function __classprivatefieldget(receiver, state, kind, f) {
+  if (kind === "a" && !f) throw new typeerror("private accessor was defined without a getter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new typeerror("cannot read private member from an object whose class did not declare it");
   return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 }
 
-function __classPrivateFieldSet(receiver, state, value, kind, f) {
-  if (kind === "m") throw new TypeError("Private method is not writable");
-  if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+function __classprivatefieldset(receiver, state, value, kind, f) {
+  if (kind === "m") throw new typeerror("private method is not writable");
+  if (kind === "a" && !f) throw new typeerror("private accessor was defined without a setter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new typeerror("cannot write private member to an object whose class did not declare it");
   return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 }
 
-function __classPrivateFieldIn(state, receiver) {
-  if (receiver === null || (typeof receiver !== "object" && typeof receiver !== "function")) throw new TypeError("Cannot use 'in' operator on non-object");
+function __classprivatefieldin(state, receiver) {
+  if (receiver === null || (typeof receiver !== "object" && typeof receiver !== "function")) throw new typeerror("cannot use 'in' operator on non-object");
   return typeof state === "function" ? receiver === state : state.has(receiver);
 }
 
-function __addDisposableResource(env, value, async) {
+function __adddisposableresource(env, value, async) {
   if (value !== null && value !== void 0) {
-    if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected.");
+    if (typeof value !== "object" && typeof value !== "function") throw new typeerror("object expected.");
     var dispose, inner;
     if (async) {
-      if (!Symbol.asyncDispose) throw new TypeError("Symbol.asyncDispose is not defined.");
-      dispose = value[Symbol.asyncDispose];
+      if (!symbol.asyncdispose) throw new typeerror("symbol.asyncdispose is not defined.");
+      dispose = value[symbol.asyncdispose];
     }
     if (dispose === void 0) {
-      if (!Symbol.dispose) throw new TypeError("Symbol.dispose is not defined.");
-      dispose = value[Symbol.dispose];
+      if (!symbol.dispose) throw new typeerror("symbol.dispose is not defined.");
+      dispose = value[symbol.dispose];
       if (async) inner = dispose;
     }
-    if (typeof dispose !== "function") throw new TypeError("Object not disposable.");
-    if (inner) dispose = function() { try { inner.call(this); } catch (e) { return Promise.reject(e); } };
+    if (typeof dispose !== "function") throw new typeerror("object not disposable.");
+    if (inner) dispose = function() { try { inner.call(this); } catch (e) { return promise.reject(e); } };
     env.stack.push({ value: value, dispose: dispose, async: async });
   }
   else if (async) {
@@ -397,24 +397,24 @@ function __addDisposableResource(env, value, async) {
   return value;
 }
 
-var _SuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-  var e = new Error(message);
-  return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+var _suppressederror = typeof suppressederror === "function" ? suppressederror : function (error, suppressed, message) {
+  var e = new error(message);
+  return e.name = "suppressederror", e.error = error, e.suppressed = suppressed, e;
 };
 
-function __disposeResources(env) {
+function __disposeresources(env) {
   function fail(e) {
-    env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
-    env.hasError = true;
+    env.error = env.haserror ? new _suppressederror(e, env.error, "an error was suppressed during disposal.") : e;
+    env.haserror = true;
   }
   var r, s = 0;
   function next() {
     while (r = env.stack.pop()) {
       try {
-        if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
+        if (!r.async && s === 1) return s = 0, env.stack.push(r), promise.resolve().then(next);
         if (r.dispose) {
           var result = r.dispose.call(r.value);
-          if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
+          if (r.async) return s |= 2, promise.resolve(result).then(next, function(e) { fail(e); return next(); });
         }
         else s |= 1;
       }
@@ -422,54 +422,54 @@ function __disposeResources(env) {
         fail(e);
       }
     }
-    if (s === 1) return env.hasError ? Promise.reject(env.error) : Promise.resolve();
-    if (env.hasError) throw env.error;
+    if (s === 1) return env.haserror ? promise.reject(env.error) : promise.resolve();
+    if (env.haserror) throw env.error;
   }
   return next();
 }
 
-function __rewriteRelativeImportExtension(path, preserveJsx) {
+function __rewriterelativeimportextension(path, preservejsx) {
   if (typeof path === "string" && /^\.\.?\//.test(path)) {
       return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
-          return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
+          return tsx ? preservejsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.tolowercase() + "js");
       });
   }
   return path;
 }
 
-/* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ({
+/* unused harmony default export */ var __webpack_default_export__ = ({
   __extends,
   __assign,
   __rest,
   __decorate,
   __param,
-  __esDecorate,
-  __runInitializers,
-  __propKey,
-  __setFunctionName,
+  __esdecorate,
+  __runinitializers,
+  __propkey,
+  __setfunctionname,
   __metadata,
   __awaiter,
   __generator,
-  __createBinding,
-  __exportStar,
+  __createbinding,
+  __exportstar,
   __values,
   __read,
   __spread,
-  __spreadArrays,
-  __spreadArray,
+  __spreadarrays,
+  __spreadarray,
   __await,
-  __asyncGenerator,
-  __asyncDelegator,
-  __asyncValues,
-  __makeTemplateObject,
-  __importStar,
-  __importDefault,
-  __classPrivateFieldGet,
-  __classPrivateFieldSet,
-  __classPrivateFieldIn,
-  __addDisposableResource,
-  __disposeResources,
-  __rewriteRelativeImportExtension,
+  __asyncgenerator,
+  __asyncdelegator,
+  __asyncvalues,
+  __maketemplateobject,
+  __importstar,
+  __importdefault,
+  __classprivatefieldget,
+  __classprivatefieldset,
+  __classprivatefieldin,
+  __adddisposableresource,
+  __disposeresources,
+  __rewriterelativeimportextension,
 });
 
 
@@ -480,36 +480,36 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   W: () => (/* binding */ noCase)
+/* harmony export */   w: () => (/* binding */ nocase)
 /* harmony export */ });
-/* harmony import */ var lower_case__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7314);
+/* harmony import */ var lower_case__webpack_imported_module_0__ = __webpack_require__(7314);
 
-// Support camel case ("camelCase" -> "camel Case" and "CAMELCase" -> "CAMEL Case").
-var DEFAULT_SPLIT_REGEXP = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g];
-// Remove all non-word characters.
-var DEFAULT_STRIP_REGEXP = /[^A-Z0-9]+/gi;
+// support camel case ("camelcase" -> "camel case" and "camelcase" -> "camel case").
+var default_split_regexp = [/([a-z0-9])([a-z])/g, /([a-z])([a-z][a-z])/g];
+// remove all non-word characters.
+var default_strip_regexp = /[^a-z0-9]+/gi;
 /**
- * Normalize the string into something other libraries can manipulate easier.
+ * normalize the string into something other libraries can manipulate easier.
  */
-function noCase(input, options) {
+function nocase(input, options) {
     if (options === void 0) { options = {}; }
-    var _a = options.splitRegexp, splitRegexp = _a === void 0 ? DEFAULT_SPLIT_REGEXP : _a, _b = options.stripRegexp, stripRegexp = _b === void 0 ? DEFAULT_STRIP_REGEXP : _b, _c = options.transform, transform = _c === void 0 ? lower_case__WEBPACK_IMPORTED_MODULE_0__/* .lowerCase */ .g : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
-    var result = replace(replace(input, splitRegexp, "$1\0$2"), stripRegexp, "\0");
+    var _a = options.splitregexp, splitregexp = _a === void 0 ? default_split_regexp : _a, _b = options.stripregexp, stripregexp = _b === void 0 ? default_strip_regexp : _b, _c = options.transform, transform = _c === void 0 ? lower_case__webpack_imported_module_0__/* .lowercase */ .g : _c, _d = options.delimiter, delimiter = _d === void 0 ? " " : _d;
+    var result = replace(replace(input, splitregexp, "$1\0$2"), stripregexp, "\0");
     var start = 0;
     var end = result.length;
-    // Trim the delimiter from around the output string.
-    while (result.charAt(start) === "\0")
+    // trim the delimiter from around the output string.
+    while (result.charat(start) === "\0")
         start++;
-    while (result.charAt(end - 1) === "\0")
+    while (result.charat(end - 1) === "\0")
         end--;
-    // Transform each token independently.
+    // transform each token independently.
     return result.slice(start, end).split("\0").map(transform).join(delimiter);
 }
 /**
- * Replace `re` in the input string with the replacement value.
+ * replace `re` in the input string with the replacement value.
  */
 function replace(input, re, value) {
-    if (re instanceof RegExp)
+    if (re instanceof regexp)
         return input.replace(re, value);
     return re.reduce(function (input, re) { return input.replace(re, value); }, input);
 }
@@ -522,60 +522,60 @@ function replace(input, re, value) {
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  A: () => (/* binding */ createLocksActions)
+  a: () => (/* binding */ createlocksactions)
 });
 
 ;// ./node_modules/@wordpress/core-data/build-module/locks/utils.js
-function deepCopyLocksTreePath(tree, path) {
-  const newTree = { ...tree };
-  let currentNode = newTree;
-  for (const branchName of path) {
-    currentNode.children = {
-      ...currentNode.children,
-      [branchName]: {
+function deepcopylockstreepath(tree, path) {
+  const newtree = { ...tree };
+  let currentnode = newtree;
+  for (const branchname of path) {
+    currentnode.children = {
+      ...currentnode.children,
+      [branchname]: {
         locks: [],
         children: {},
-        ...currentNode.children[branchName]
+        ...currentnode.children[branchname]
       }
     };
-    currentNode = currentNode.children[branchName];
+    currentnode = currentnode.children[branchname];
   }
-  return newTree;
+  return newtree;
 }
-function getNode(tree, path) {
-  let currentNode = tree;
-  for (const branchName of path) {
-    const nextNode = currentNode.children[branchName];
-    if (!nextNode) {
+function getnode(tree, path) {
+  let currentnode = tree;
+  for (const branchname of path) {
+    const nextnode = currentnode.children[branchname];
+    if (!nextnode) {
       return null;
     }
-    currentNode = nextNode;
+    currentnode = nextnode;
   }
-  return currentNode;
+  return currentnode;
 }
-function* iteratePath(tree, path) {
-  let currentNode = tree;
-  yield currentNode;
-  for (const branchName of path) {
-    const nextNode = currentNode.children[branchName];
-    if (!nextNode) {
+function* iteratepath(tree, path) {
+  let currentnode = tree;
+  yield currentnode;
+  for (const branchname of path) {
+    const nextnode = currentnode.children[branchname];
+    if (!nextnode) {
       break;
     }
-    yield nextNode;
-    currentNode = nextNode;
+    yield nextnode;
+    currentnode = nextnode;
   }
 }
-function* iterateDescendants(node) {
-  const stack = Object.values(node.children);
+function* iteratedescendants(node) {
+  const stack = object.values(node.children);
   while (stack.length) {
-    const childNode = stack.pop();
-    yield childNode;
-    stack.push(...Object.values(childNode.children));
+    const childnode = stack.pop();
+    yield childnode;
+    stack.push(...object.values(childnode.children));
   }
 }
-function hasConflictingLock({ exclusive }, locks) {
+function hasconflictinglock({ exclusive }, locks) {
   if (exclusive && locks.length) {
     return true;
   }
@@ -588,44 +588,44 @@ function hasConflictingLock({ exclusive }, locks) {
 
 ;// ./node_modules/@wordpress/core-data/build-module/locks/reducer.js
 
-const DEFAULT_STATE = {
+const default_state = {
   requests: [],
   tree: {
     locks: [],
     children: {}
   }
 };
-function locks(state = DEFAULT_STATE, action) {
+function locks(state = default_state, action) {
   switch (action.type) {
-    case "ENQUEUE_LOCK_REQUEST": {
+    case "enqueue_lock_request": {
       const { request } = action;
       return {
         ...state,
         requests: [request, ...state.requests]
       };
     }
-    case "GRANT_LOCK_REQUEST": {
+    case "grant_lock_request": {
       const { lock, request } = action;
       const { store, path } = request;
-      const storePath = [store, ...path];
-      const newTree = deepCopyLocksTreePath(state.tree, storePath);
-      const node = getNode(newTree, storePath);
+      const storepath = [store, ...path];
+      const newtree = deepcopylockstreepath(state.tree, storepath);
+      const node = getnode(newtree, storepath);
       node.locks = [...node.locks, lock];
       return {
         ...state,
         requests: state.requests.filter((r) => r !== request),
-        tree: newTree
+        tree: newtree
       };
     }
-    case "RELEASE_LOCK": {
+    case "release_lock": {
       const { lock } = action;
-      const storePath = [lock.store, ...lock.path];
-      const newTree = deepCopyLocksTreePath(state.tree, storePath);
-      const node = getNode(newTree, storePath);
+      const storepath = [lock.store, ...lock.path];
+      const newtree = deepcopylockstreepath(state.tree, storepath);
+      const node = getnode(newtree, storepath);
       node.locks = node.locks.filter((l) => l !== lock);
       return {
         ...state,
-        tree: newTree
+        tree: newtree
       };
     }
   }
@@ -635,23 +635,23 @@ function locks(state = DEFAULT_STATE, action) {
 
 ;// ./node_modules/@wordpress/core-data/build-module/locks/selectors.js
 
-function getPendingLockRequests(state) {
+function getpendinglockrequests(state) {
   return state.requests;
 }
-function isLockAvailable(state, store, path, { exclusive }) {
-  const storePath = [store, ...path];
+function islockavailable(state, store, path, { exclusive }) {
+  const storepath = [store, ...path];
   const locks = state.tree;
-  for (const node2 of iteratePath(locks, storePath)) {
-    if (hasConflictingLock({ exclusive }, node2.locks)) {
+  for (const node2 of iteratepath(locks, storepath)) {
+    if (hasconflictinglock({ exclusive }, node2.locks)) {
       return false;
     }
   }
-  const node = getNode(locks, storePath);
+  const node = getnode(locks, storepath);
   if (!node) {
     return true;
   }
-  for (const descendant of iterateDescendants(node)) {
-    if (hasConflictingLock({ exclusive }, descendant.locks)) {
+  for (const descendant of iteratedescendants(node)) {
+    if (hasconflictinglock({ exclusive }, descendant.locks)) {
       return false;
     }
   }
@@ -662,37 +662,37 @@ function isLockAvailable(state, store, path, { exclusive }) {
 ;// ./node_modules/@wordpress/core-data/build-module/locks/engine.js
 
 
-function createLocks() {
-  let state = locks(void 0, { type: "@@INIT" });
-  function processPendingLockRequests() {
-    for (const request of getPendingLockRequests(state)) {
-      const { store, path, exclusive, notifyAcquired } = request;
-      if (isLockAvailable(state, store, path, { exclusive })) {
+function createlocks() {
+  let state = locks(void 0, { type: "@@init" });
+  function processpendinglockrequests() {
+    for (const request of getpendinglockrequests(state)) {
+      const { store, path, exclusive, notifyacquired } = request;
+      if (islockavailable(state, store, path, { exclusive })) {
         const lock = { store, path, exclusive };
         state = locks(state, {
-          type: "GRANT_LOCK_REQUEST",
+          type: "grant_lock_request",
           lock,
           request
         });
-        notifyAcquired(lock);
+        notifyacquired(lock);
       }
     }
   }
   function acquire(store, path, exclusive) {
-    return new Promise((resolve) => {
+    return new promise((resolve) => {
       state = locks(state, {
-        type: "ENQUEUE_LOCK_REQUEST",
-        request: { store, path, exclusive, notifyAcquired: resolve }
+        type: "enqueue_lock_request",
+        request: { store, path, exclusive, notifyacquired: resolve }
       });
-      processPendingLockRequests();
+      processpendinglockrequests();
     });
   }
   function release(lock) {
     state = locks(state, {
-      type: "RELEASE_LOCK",
+      type: "release_lock",
       lock
     });
-    processPendingLockRequests();
+    processpendinglockrequests();
   }
   return { acquire, release };
 }
@@ -700,15 +700,15 @@ function createLocks() {
 
 ;// ./node_modules/@wordpress/core-data/build-module/locks/actions.js
 
-function createLocksActions() {
-  const locks = createLocks();
-  function __unstableAcquireStoreLock(store, path, { exclusive }) {
+function createlocksactions() {
+  const locks = createlocks();
+  function __unstableacquirestorelock(store, path, { exclusive }) {
     return () => locks.acquire(store, path, exclusive);
   }
-  function __unstableReleaseStoreLock(lock) {
+  function __unstablereleasestorelock(lock) {
     return () => locks.release(lock);
   }
-  return { __unstableAcquireStoreLock, __unstableReleaseStoreLock };
+  return { __unstableacquirestorelock, __unstablereleasestorelock };
 }
 
 
@@ -720,9 +720,9 @@ function createLocksActions() {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   E: () => (/* binding */ STORE_NAME)
+/* harmony export */   e: () => (/* binding */ store_name)
 /* harmony export */ });
-const STORE_NAME = "core";
+const store_name = "core";
 
 
 
@@ -733,34 +733,34 @@ const STORE_NAME = "core";
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   CO: () => (/* binding */ ALLOWED_RESOURCE_ACTIONS),
-/* harmony export */   kC: () => (/* binding */ getUserPermissionCacheKey),
-/* harmony export */   qY: () => (/* binding */ getUserPermissionsFromAllowHeader)
+/* harmony export */   co: () => (/* binding */ allowed_resource_actions),
+/* harmony export */   kc: () => (/* binding */ getuserpermissioncachekey),
+/* harmony export */   qy: () => (/* binding */ getuserpermissionsfromallowheader)
 /* harmony export */ });
-const ALLOWED_RESOURCE_ACTIONS = [
+const allowed_resource_actions = [
   "create",
   "read",
   "update",
   "delete"
 ];
-function getUserPermissionsFromAllowHeader(allowedMethods) {
+function getuserpermissionsfromallowheader(allowedmethods) {
   const permissions = {};
-  if (!allowedMethods) {
+  if (!allowedmethods) {
     return permissions;
   }
   const methods = {
-    create: "POST",
-    read: "GET",
-    update: "PUT",
-    delete: "DELETE"
+    create: "post",
+    read: "get",
+    update: "put",
+    delete: "delete"
   };
-  for (const [actionName, methodName] of Object.entries(methods)) {
-    permissions[actionName] = allowedMethods.includes(methodName);
+  for (const [actionname, methodname] of object.entries(methods)) {
+    permissions[actionname] = allowedmethods.includes(methodname);
   }
   return permissions;
 }
-function getUserPermissionCacheKey(action, resource, id) {
-  const key = (typeof resource === "object" ? [action, resource.kind, resource.name, resource.id] : [action, resource, id]).filter(Boolean).join("/");
+function getuserpermissioncachekey(action, resource, id) {
+  const key = (typeof resource === "object" ? [action, resource.kind, resource.name, resource.id] : [action, resource, id]).filter(boolean).join("/");
   return key;
 }
 
@@ -773,15 +773,15 @@ function getUserPermissionCacheKey(action, resource, id) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   n: () => (/* binding */ Status)
+/* harmony export */   n: () => (/* binding */ status)
 /* harmony export */ });
-var Status = /* @__PURE__ */ ((Status2) => {
-  Status2["Idle"] = "IDLE";
-  Status2["Resolving"] = "RESOLVING";
-  Status2["Error"] = "ERROR";
-  Status2["Success"] = "SUCCESS";
-  return Status2;
-})(Status || {});
+var status = /* @__pure__ */ ((status2) => {
+  status2["idle"] = "idle";
+  status2["resolving"] = "resolving";
+  status2["error"] = "error";
+  status2["success"] = "success";
+  return status2;
+})(status || {});
 
 
 
@@ -794,66 +794,66 @@ var Status = /* @__PURE__ */ ((Status2) => {
 
 
 function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+  if (typeof symbol === "function" && typeof symbol.iterator === "symbol") {
     _typeof = function (obj) {
       return typeof obj;
     };
   } else {
     _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
   return _typeof(obj);
 }
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+function _classcallcheck(instance, constructor) {
+  if (!(instance instanceof constructor)) {
+    throw new typeerror("cannot call a class as a function");
   }
 }
 
-function _defineProperties(target, props) {
+function _defineproperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
     if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
+    object.defineproperty(target, descriptor.key, descriptor);
   }
 }
 
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
+function _createclass(constructor, protoprops, staticprops) {
+  if (protoprops) _defineproperties(constructor.prototype, protoprops);
+  if (staticprops) _defineproperties(constructor, staticprops);
+  return constructor;
 }
 
 /**
- * Given an instance of EquivalentKeyMap, returns its internal value pair tuple
- * for a key, if one exists. The tuple members consist of the last reference
+ * given an instance of equivalentkeymap, returns its internal value pair tuple
+ * for a key, if one exists. the tuple members consist of the last reference
  * value for the key (used in efficient subsequent lookups) and the value
  * assigned for the key at the leaf node.
  *
- * @param {EquivalentKeyMap} instance EquivalentKeyMap instance.
- * @param {*} key                     The key for which to return value pair.
+ * @param {equivalentkeymap} instance equivalentkeymap instance.
+ * @param {*} key                     the key for which to return value pair.
  *
- * @return {?Array} Value pair, if exists.
+ * @return {?array} value pair, if exists.
  */
-function getValuePair(instance, key) {
+function getvaluepair(instance, key) {
   var _map = instance._map,
-      _arrayTreeMap = instance._arrayTreeMap,
-      _objectTreeMap = instance._objectTreeMap; // Map keeps a reference to the last object-like key used to set the
+      _arraytreemap = instance._arraytreemap,
+      _objecttreemap = instance._objecttreemap; // map keeps a reference to the last object-like key used to set the
   // value, which can be used to shortcut immediately to the value.
 
   if (_map.has(key)) {
     return _map.get(key);
-  } // Sort keys to ensure stable retrieval from tree.
+  } // sort keys to ensure stable retrieval from tree.
 
 
-  var properties = Object.keys(key).sort(); // Tree by type to avoid conflicts on numeric object keys, empty value.
+  var properties = object.keys(key).sort(); // tree by type to avoid conflicts on numeric object keys, empty value.
 
-  var map = Array.isArray(key) ? _arrayTreeMap : _objectTreeMap;
+  var map = array.isarray(key) ? _arraytreemap : _objecttreemap;
 
   for (var i = 0; i < properties.length; i++) {
     var property = properties[i];
@@ -863,57 +863,57 @@ function getValuePair(instance, key) {
       return;
     }
 
-    var propertyValue = key[property];
-    map = map.get(propertyValue);
+    var propertyvalue = key[property];
+    map = map.get(propertyvalue);
 
     if (map === undefined) {
       return;
     }
   }
 
-  var valuePair = map.get('_ekm_value');
+  var valuepair = map.get('_ekm_value');
 
-  if (!valuePair) {
+  if (!valuepair) {
     return;
-  } // If reached, it implies that an object-like key was set with another
+  } // if reached, it implies that an object-like key was set with another
   // reference, so delete the reference and replace with the current.
 
 
-  _map.delete(valuePair[0]);
+  _map.delete(valuepair[0]);
 
-  valuePair[0] = key;
-  map.set('_ekm_value', valuePair);
+  valuepair[0] = key;
+  map.set('_ekm_value', valuepair);
 
-  _map.set(key, valuePair);
+  _map.set(key, valuepair);
 
-  return valuePair;
+  return valuepair;
 }
 /**
- * Variant of a Map object which enables lookup by equivalent (deeply equal)
+ * variant of a map object which enables lookup by equivalent (deeply equal)
  * object and array keys.
  */
 
 
-var EquivalentKeyMap =
-/*#__PURE__*/
+var equivalentkeymap =
+/*#__pure__*/
 function () {
   /**
-   * Constructs a new instance of EquivalentKeyMap.
+   * constructs a new instance of equivalentkeymap.
    *
-   * @param {Iterable.<*>} iterable Initial pair of key, value for map.
+   * @param {iterable.<*>} iterable initial pair of key, value for map.
    */
-  function EquivalentKeyMap(iterable) {
-    _classCallCheck(this, EquivalentKeyMap);
+  function equivalentkeymap(iterable) {
+    _classcallcheck(this, equivalentkeymap);
 
     this.clear();
 
-    if (iterable instanceof EquivalentKeyMap) {
-      // Map#forEach is only means of iterating with support for IE11.
-      var iterablePairs = [];
-      iterable.forEach(function (value, key) {
-        iterablePairs.push([key, value]);
+    if (iterable instanceof equivalentkeymap) {
+      // map#foreach is only means of iterating with support for ie11.
+      var iterablepairs = [];
+      iterable.foreach(function (value, key) {
+        iterablepairs.push([key, value]);
       });
-      iterable = iterablePairs;
+      iterable = iterablepairs;
     }
 
     if (iterable != null) {
@@ -923,100 +923,100 @@ function () {
     }
   }
   /**
-   * Accessor property returning the number of elements.
+   * accessor property returning the number of elements.
    *
-   * @return {number} Number of elements.
+   * @return {number} number of elements.
    */
 
 
-  _createClass(EquivalentKeyMap, [{
+  _createclass(equivalentkeymap, [{
     key: "set",
 
     /**
-     * Add or update an element with a specified key and value.
+     * add or update an element with a specified key and value.
      *
-     * @param {*} key   The key of the element to add.
-     * @param {*} value The value of the element to add.
+     * @param {*} key   the key of the element to add.
+     * @param {*} value the value of the element to add.
      *
-     * @return {EquivalentKeyMap} Map instance.
+     * @return {equivalentkeymap} map instance.
      */
     value: function set(key, value) {
-      // Shortcut non-object-like to set on internal Map.
+      // shortcut non-object-like to set on internal map.
       if (key === null || _typeof(key) !== 'object') {
         this._map.set(key, value);
 
         return this;
-      } // Sort keys to ensure stable assignment into tree.
+      } // sort keys to ensure stable assignment into tree.
 
 
-      var properties = Object.keys(key).sort();
-      var valuePair = [key, value]; // Tree by type to avoid conflicts on numeric object keys, empty value.
+      var properties = object.keys(key).sort();
+      var valuepair = [key, value]; // tree by type to avoid conflicts on numeric object keys, empty value.
 
-      var map = Array.isArray(key) ? this._arrayTreeMap : this._objectTreeMap;
+      var map = array.isarray(key) ? this._arraytreemap : this._objecttreemap;
 
       for (var i = 0; i < properties.length; i++) {
         var property = properties[i];
 
         if (!map.has(property)) {
-          map.set(property, new EquivalentKeyMap());
+          map.set(property, new equivalentkeymap());
         }
 
         map = map.get(property);
-        var propertyValue = key[property];
+        var propertyvalue = key[property];
 
-        if (!map.has(propertyValue)) {
-          map.set(propertyValue, new EquivalentKeyMap());
+        if (!map.has(propertyvalue)) {
+          map.set(propertyvalue, new equivalentkeymap());
         }
 
-        map = map.get(propertyValue);
-      } // If an _ekm_value exists, there was already an equivalent key. Before
+        map = map.get(propertyvalue);
+      } // if an _ekm_value exists, there was already an equivalent key. before
       // overriding, ensure that the old key reference is removed from map to
-      // avoid memory leak of accumulating equivalent keys. This is, in a
-      // sense, a poor man's WeakMap, while still enabling iterability.
+      // avoid memory leak of accumulating equivalent keys. this is, in a
+      // sense, a poor man's weakmap, while still enabling iterability.
 
 
-      var previousValuePair = map.get('_ekm_value');
+      var previousvaluepair = map.get('_ekm_value');
 
-      if (previousValuePair) {
-        this._map.delete(previousValuePair[0]);
+      if (previousvaluepair) {
+        this._map.delete(previousvaluepair[0]);
       }
 
-      map.set('_ekm_value', valuePair);
+      map.set('_ekm_value', valuepair);
 
-      this._map.set(key, valuePair);
+      this._map.set(key, valuepair);
 
       return this;
     }
     /**
-     * Returns a specified element.
+     * returns a specified element.
      *
-     * @param {*} key The key of the element to return.
+     * @param {*} key the key of the element to return.
      *
-     * @return {?*} The element associated with the specified key or undefined
+     * @return {?*} the element associated with the specified key or undefined
      *              if the key can't be found.
      */
 
   }, {
     key: "get",
     value: function get(key) {
-      // Shortcut non-object-like to get from internal Map.
+      // shortcut non-object-like to get from internal map.
       if (key === null || _typeof(key) !== 'object') {
         return this._map.get(key);
       }
 
-      var valuePair = getValuePair(this, key);
+      var valuepair = getvaluepair(this, key);
 
-      if (valuePair) {
-        return valuePair[1];
+      if (valuepair) {
+        return valuepair[1];
       }
     }
     /**
-     * Returns a boolean indicating whether an element with the specified key
+     * returns a boolean indicating whether an element with the specified key
      * exists or not.
      *
-     * @param {*} key The key of the element to test for presence.
+     * @param {*} key the key of the element to test for presence.
      *
-     * @return {boolean} Whether an element with the specified key exists.
+     * @return {boolean} whether an element with the specified key exists.
      */
 
   }, {
@@ -1024,18 +1024,18 @@ function () {
     value: function has(key) {
       if (key === null || _typeof(key) !== 'object') {
         return this._map.has(key);
-      } // Test on the _presence_ of the pair, not its value, as even undefined
+      } // test on the _presence_ of the pair, not its value, as even undefined
       // can be a valid member value for a key.
 
 
-      return getValuePair(this, key) !== undefined;
+      return getvaluepair(this, key) !== undefined;
     }
     /**
-     * Removes the specified element.
+     * removes the specified element.
      *
-     * @param {*} key The key of the element to remove.
+     * @param {*} key the key of the element to remove.
      *
-     * @return {boolean} Returns true if an element existed and has been
+     * @return {boolean} returns true if an element existed and has been
      *                   removed, or false if the element does not exist.
      */
 
@@ -1044,7 +1044,7 @@ function () {
     value: function _delete(key) {
       if (!this.has(key)) {
         return false;
-      } // This naive implementation will leave orphaned child trees. A better
+      } // this naive implementation will leave orphaned child trees. a better
       // implementation should traverse and remove orphans.
 
 
@@ -1052,40 +1052,40 @@ function () {
       return true;
     }
     /**
-     * Executes a provided function once per each key/value pair, in insertion
+     * executes a provided function once per each key/value pair, in insertion
      * order.
      *
-     * @param {Function} callback Function to execute for each element.
-     * @param {*}        thisArg  Value to use as `this` when executing
+     * @param {function} callback function to execute for each element.
+     * @param {*}        thisarg  value to use as `this` when executing
      *                            `callback`.
      */
 
   }, {
-    key: "forEach",
-    value: function forEach(callback) {
+    key: "foreach",
+    value: function foreach(callback) {
       var _this = this;
 
-      var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this;
+      var thisarg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this;
 
-      this._map.forEach(function (value, key) {
-        // Unwrap value from object-like value pair.
+      this._map.foreach(function (value, key) {
+        // unwrap value from object-like value pair.
         if (key !== null && _typeof(key) === 'object') {
           value = value[1];
         }
 
-        callback.call(thisArg, value, key, _this);
+        callback.call(thisarg, value, key, _this);
       });
     }
     /**
-     * Removes all elements.
+     * removes all elements.
      */
 
   }, {
     key: "clear",
     value: function clear() {
-      this._map = new Map();
-      this._arrayTreeMap = new Map();
-      this._objectTreeMap = new Map();
+      this._map = new map();
+      this._arraytreemap = new map();
+      this._objecttreemap = new map();
     }
   }, {
     key: "size",
@@ -1094,10 +1094,10 @@ function () {
     }
   }]);
 
-  return EquivalentKeyMap;
+  return equivalentkeymap;
 }();
 
-module.exports = EquivalentKeyMap;
+module.exports = equivalentkeymap;
 
 
 /***/ }),
@@ -1113,95 +1113,95 @@ module.exports = EquivalentKeyMap;
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  __experimentalBatch: () => (/* binding */ __experimentalBatch),
-  __experimentalReceiveCurrentGlobalStylesId: () => (/* binding */ __experimentalReceiveCurrentGlobalStylesId),
-  __experimentalReceiveThemeBaseGlobalStyles: () => (/* binding */ __experimentalReceiveThemeBaseGlobalStyles),
-  __experimentalReceiveThemeGlobalStyleVariations: () => (/* binding */ __experimentalReceiveThemeGlobalStyleVariations),
-  __experimentalSaveSpecifiedEntityEdits: () => (/* binding */ __experimentalSaveSpecifiedEntityEdits),
-  __unstableCreateUndoLevel: () => (/* binding */ __unstableCreateUndoLevel),
-  addEntities: () => (/* binding */ addEntities),
-  deleteEntityRecord: () => (/* binding */ deleteEntityRecord),
-  editEntityRecord: () => (/* binding */ editEntityRecord),
-  receiveAutosaves: () => (/* binding */ receiveAutosaves),
-  receiveCurrentTheme: () => (/* binding */ receiveCurrentTheme),
-  receiveCurrentUser: () => (/* binding */ receiveCurrentUser),
-  receiveDefaultTemplateId: () => (/* binding */ receiveDefaultTemplateId),
-  receiveEmbedPreview: () => (/* binding */ receiveEmbedPreview),
-  receiveEntityRecords: () => (/* binding */ receiveEntityRecords),
-  receiveNavigationFallbackId: () => (/* binding */ receiveNavigationFallbackId),
-  receiveRevisions: () => (/* binding */ receiveRevisions),
-  receiveThemeGlobalStyleRevisions: () => (/* binding */ receiveThemeGlobalStyleRevisions),
-  receiveThemeSupports: () => (/* binding */ receiveThemeSupports),
-  receiveUploadPermissions: () => (/* binding */ receiveUploadPermissions),
-  receiveUserPermission: () => (/* binding */ receiveUserPermission),
-  receiveUserPermissions: () => (/* binding */ receiveUserPermissions),
-  receiveUserQuery: () => (/* binding */ receiveUserQuery),
+  __experimentalbatch: () => (/* binding */ __experimentalbatch),
+  __experimentalreceivecurrentglobalstylesid: () => (/* binding */ __experimentalreceivecurrentglobalstylesid),
+  __experimentalreceivethemebaseglobalstyles: () => (/* binding */ __experimentalreceivethemebaseglobalstyles),
+  __experimentalreceivethemeglobalstylevariations: () => (/* binding */ __experimentalreceivethemeglobalstylevariations),
+  __experimentalsavespecifiedentityedits: () => (/* binding */ __experimentalsavespecifiedentityedits),
+  __unstablecreateundolevel: () => (/* binding */ __unstablecreateundolevel),
+  addentities: () => (/* binding */ addentities),
+  deleteentityrecord: () => (/* binding */ deleteentityrecord),
+  editentityrecord: () => (/* binding */ editentityrecord),
+  receiveautosaves: () => (/* binding */ receiveautosaves),
+  receivecurrenttheme: () => (/* binding */ receivecurrenttheme),
+  receivecurrentuser: () => (/* binding */ receivecurrentuser),
+  receivedefaulttemplateid: () => (/* binding */ receivedefaulttemplateid),
+  receiveembedpreview: () => (/* binding */ receiveembedpreview),
+  receiveentityrecords: () => (/* binding */ receiveentityrecords),
+  receivenavigationfallbackid: () => (/* binding */ receivenavigationfallbackid),
+  receiverevisions: () => (/* binding */ receiverevisions),
+  receivethemeglobalstylerevisions: () => (/* binding */ receivethemeglobalstylerevisions),
+  receivethemesupports: () => (/* binding */ receivethemesupports),
+  receiveuploadpermissions: () => (/* binding */ receiveuploadpermissions),
+  receiveuserpermission: () => (/* binding */ receiveuserpermission),
+  receiveuserpermissions: () => (/* binding */ receiveuserpermissions),
+  receiveuserquery: () => (/* binding */ receiveuserquery),
   redo: () => (/* binding */ redo),
-  saveEditedEntityRecord: () => (/* binding */ saveEditedEntityRecord),
-  saveEntityRecord: () => (/* binding */ saveEntityRecord),
+  saveeditedentityrecord: () => (/* binding */ saveeditedentityrecord),
+  saveentityrecord: () => (/* binding */ saveentityrecord),
   undo: () => (/* binding */ undo)
 });
 
-// EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
+// external module: ./node_modules/fast-deep-equal/es6/index.js
 var es6 = __webpack_require__(7734);
-var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
+var es6_default = /*#__pure__*/__webpack_require__.n(es6);
 ;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/native.js
-const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+const randomuuid = typeof crypto !== 'undefined' && crypto.randomuuid && crypto.randomuuid.bind(crypto);
 /* harmony default export */ const esm_browser_native = ({
-  randomUUID
+  randomuuid
 });
 ;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/rng.js
-// Unique ID creation requires a high quality random # generator. In the browser we therefore
-// require the crypto API and do not support built-in fallback to lower quality random number
-// generators (like Math.random()).
-let getRandomValues;
-const rnds8 = new Uint8Array(16);
+// unique id creation requires a high quality random # generator. in the browser we therefore
+// require the crypto api and do not support built-in fallback to lower quality random number
+// generators (like math.random()).
+let getrandomvalues;
+const rnds8 = new uint8array(16);
 function rng() {
   // lazy load so that environments that need to polyfill have a chance to do so
-  if (!getRandomValues) {
-    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
-    getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
+  if (!getrandomvalues) {
+    // getrandomvalues needs to be invoked in a context where "this" is a crypto implementation.
+    getrandomvalues = typeof crypto !== 'undefined' && crypto.getrandomvalues && crypto.getrandomvalues.bind(crypto);
 
-    if (!getRandomValues) {
-      throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
+    if (!getrandomvalues) {
+      throw new error('crypto.getrandomvalues() not supported. see https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
     }
   }
 
-  return getRandomValues(rnds8);
+  return getrandomvalues(rnds8);
 }
 ;// ./node_modules/@wordpress/core-data/node_modules/uuid/dist/esm-browser/stringify.js
 
 /**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ * convert array of 16 byte values to uuid string format of the form:
+ * xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
  */
 
-const byteToHex = [];
+const bytetohex = [];
 
 for (let i = 0; i < 256; ++i) {
-  byteToHex.push((i + 0x100).toString(16).slice(1));
+  bytetohex.push((i + 0x100).tostring(16).slice(1));
 }
 
-function unsafeStringify(arr, offset = 0) {
-  // Note: Be careful editing this code!  It's been tuned for performance
-  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
-  return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
+function unsafestringify(arr, offset = 0) {
+  // note: be careful editing this code!  it's been tuned for performance
+  // and works in ways you may not expect. see https://github.com/uuidjs/uuid/pull/434
+  return bytetohex[arr[offset + 0]] + bytetohex[arr[offset + 1]] + bytetohex[arr[offset + 2]] + bytetohex[arr[offset + 3]] + '-' + bytetohex[arr[offset + 4]] + bytetohex[arr[offset + 5]] + '-' + bytetohex[arr[offset + 6]] + bytetohex[arr[offset + 7]] + '-' + bytetohex[arr[offset + 8]] + bytetohex[arr[offset + 9]] + '-' + bytetohex[arr[offset + 10]] + bytetohex[arr[offset + 11]] + bytetohex[arr[offset + 12]] + bytetohex[arr[offset + 13]] + bytetohex[arr[offset + 14]] + bytetohex[arr[offset + 15]];
 }
 
 function stringify(arr, offset = 0) {
-  const uuid = unsafeStringify(arr, offset); // Consistency check for valid UUID.  If this throws, it's likely due to one
+  const uuid = unsafestringify(arr, offset); // consistency check for valid uuid.  if this throws, it's likely due to one
   // of the following:
-  // - One or more input array values don't map to a hex octet (leading to
+  // - one or more input array values don't map to a hex octet (leading to
   // "undefined" in the uuid)
-  // - Invalid input values for the RFC `version` or `variant` fields
+  // - invalid input values for the rfc `version` or `variant` fields
 
   if (!validate(uuid)) {
-    throw TypeError('Stringified UUID is invalid');
+    throw typeerror('stringified uuid is invalid');
   }
 
   return uuid;
@@ -1214,15 +1214,15 @@ function stringify(arr, offset = 0) {
 
 
 function v4(options, buf, offset) {
-  if (esm_browser_native.randomUUID && !buf && !options) {
-    return esm_browser_native.randomUUID();
+  if (esm_browser_native.randomuuid && !buf && !options) {
+    return esm_browser_native.randomuuid();
   }
 
   options = options || {};
-  const rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  const rnds = options.random || (options.rng || rng)(); // per 4.4, set bits for version and `clock_seq_hi_and_reserved`
 
   rnds[6] = rnds[6] & 0x0f | 0x40;
-  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+  rnds[8] = rnds[8] & 0x3f | 0x80; // copy bytes to buffer, if provided
 
   if (buf) {
     offset = offset || 0;
@@ -1234,104 +1234,104 @@ function v4(options, buf, offset) {
     return buf;
   }
 
-  return unsafeStringify(rnds);
+  return unsafestringify(rnds);
 }
 
 /* harmony default export */ const esm_browser_v4 = (v4);
-// EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(1455);
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
-// EXTERNAL MODULE: external ["wp","url"]
+// external module: external ["wp","apifetch"]
+var external_wp_apifetch_ = __webpack_require__(1455);
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_);
+// external module: external ["wp","url"]
 var external_wp_url_ = __webpack_require__(3832);
-// EXTERNAL MODULE: external ["wp","deprecated"]
+// external module: external ["wp","deprecated"]
 var external_wp_deprecated_ = __webpack_require__(4040);
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/set-nested-value.js
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_);
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/set-nested-value.js
 var set_nested_value = __webpack_require__(5003);
 ;// ./node_modules/@wordpress/core-data/build-module/utils/get-nested-value.js
-function getNestedValue(object, path, defaultValue) {
-  if (!object || typeof object !== "object" || typeof path !== "string" && !Array.isArray(path)) {
+function getnestedvalue(object, path, defaultvalue) {
+  if (!object || typeof object !== "object" || typeof path !== "string" && !array.isarray(path)) {
     return object;
   }
-  const normalizedPath = Array.isArray(path) ? path : path.split(".");
+  const normalizedpath = array.isarray(path) ? path : path.split(".");
   let value = object;
-  normalizedPath.forEach((fieldName) => {
-    value = value?.[fieldName];
+  normalizedpath.foreach((fieldname) => {
+    value = value?.[fieldname];
   });
-  return value !== void 0 ? value : defaultValue;
+  return value !== void 0 ? value : defaultvalue;
 }
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/queried-data/actions.js
-function receiveItems(items, edits, meta) {
+function receiveitems(items, edits, meta) {
   return {
-    type: "RECEIVE_ITEMS",
-    items: Array.isArray(items) ? items : [items],
-    persistedEdits: edits,
+    type: "receive_items",
+    items: array.isarray(items) ? items : [items],
+    persistededits: edits,
     meta
   };
 }
-function removeItems(kind, name, records, invalidateCache = false) {
+function removeitems(kind, name, records, invalidatecache = false) {
   return {
-    type: "REMOVE_ITEMS",
-    itemIds: Array.isArray(records) ? records : [records],
+    type: "remove_items",
+    itemids: array.isarray(records) ? records : [records],
     kind,
     name,
-    invalidateCache
+    invalidatecache
   };
 }
-function receiveQueriedItems(items, query = {}, edits, meta) {
+function receivequerieditems(items, query = {}, edits, meta) {
   return {
-    ...receiveItems(items, edits, meta),
+    ...receiveitems(items, edits, meta),
     query
   };
 }
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
 var entities = __webpack_require__(5914);
 ;// ./node_modules/@wordpress/core-data/build-module/batch/default-processor.js
 
-let maxItems = null;
-function chunk(arr, chunkSize) {
+let maxitems = null;
+function chunk(arr, chunksize) {
   const tmp = [...arr];
   const cache = [];
   while (tmp.length) {
-    cache.push(tmp.splice(0, chunkSize));
+    cache.push(tmp.splice(0, chunksize));
   }
   return cache;
 }
-async function defaultProcessor(requests) {
-  if (maxItems === null) {
-    const preflightResponse = await external_wp_apiFetch_default()({
+async function defaultprocessor(requests) {
+  if (maxitems === null) {
+    const preflightresponse = await external_wp_apifetch_default()({
       path: "/batch/v1",
-      method: "OPTIONS"
+      method: "options"
     });
-    maxItems = preflightResponse.endpoints[0].args.requests.maxItems;
+    maxitems = preflightresponse.endpoints[0].args.requests.maxitems;
   }
   const results = [];
-  for (const batchRequests of chunk(requests, maxItems)) {
-    const batchResponse = await external_wp_apiFetch_default()({
+  for (const batchrequests of chunk(requests, maxitems)) {
+    const batchresponse = await external_wp_apifetch_default()({
       path: "/batch/v1",
-      method: "POST",
+      method: "post",
       data: {
         validation: "require-all-validate",
-        requests: batchRequests.map((request) => ({
+        requests: batchrequests.map((request) => ({
           path: request.path,
           body: request.data,
-          // Rename 'data' to 'body'.
+          // rename 'data' to 'body'.
           method: request.method,
           headers: request.headers
         }))
       }
     });
-    let batchResults;
-    if (batchResponse.failed) {
-      batchResults = batchResponse.responses.map((response) => ({
+    let batchresults;
+    if (batchresponse.failed) {
+      batchresults = batchresponse.responses.map((response) => ({
         error: response?.body
       }));
     } else {
-      batchResults = batchResponse.responses.map((response) => {
+      batchresults = batchresponse.responses.map((response) => {
         const result = {};
         if (response.status >= 200 && response.status < 300) {
           result.output = response.body;
@@ -1341,7 +1341,7 @@ async function defaultProcessor(requests) {
         return result;
       });
     }
-    results.push(...batchResults);
+    results.push(...batchresults);
   }
   return results;
 }
@@ -1349,41 +1349,41 @@ async function defaultProcessor(requests) {
 
 ;// ./node_modules/@wordpress/core-data/build-module/batch/create-batch.js
 
-function createBatch(processor = defaultProcessor) {
-  let lastId = 0;
+function createbatch(processor = defaultprocessor) {
+  let lastid = 0;
   let queue = [];
-  const pending = new ObservableSet();
+  const pending = new observableset();
   return {
     /**
-     * Adds an input to the batch and returns a promise that is resolved or
+     * adds an input to the batch and returns a promise that is resolved or
      * rejected when the input is processed by `batch.run()`.
      *
-     * You may also pass a thunk which allows inputs to be added
+     * you may also pass a thunk which allows inputs to be added
      * asynchronously.
      *
      * ```
-     * // Both are allowed:
+     * // both are allowed:
      * batch.add( { path: '/v1/books', ... } );
      * batch.add( ( add ) => add( { path: '/v1/books', ... } ) );
      * ```
      *
-     * If a thunk is passed, `batch.run()` will pause until either:
+     * if a thunk is passed, `batch.run()` will pause until either:
      *
-     * - The thunk calls its `add` argument, or;
-     * - The thunk returns a promise and that promise resolves, or;
-     * - The thunk returns a non-promise.
+     * - the thunk calls its `add` argument, or;
+     * - the thunk returns a promise and that promise resolves, or;
+     * - the thunk returns a non-promise.
      *
-     * @param {any|Function} inputOrThunk Input to add or thunk to execute.
+     * @param {any|function} inputorthunk input to add or thunk to execute.
      *
-     * @return {Promise|any} If given an input, returns a promise that
+     * @return {promise|any} if given an input, returns a promise that
      *                       is resolved or rejected when the batch is
-     *                       processed. If given a thunk, returns the return
+     *                       processed. if given a thunk, returns the return
      *                       value of that thunk.
      */
-    add(inputOrThunk) {
-      const id = ++lastId;
+    add(inputorthunk) {
+      const id = ++lastid;
       pending.add(id);
-      const add = (input) => new Promise((resolve, reject) => {
+      const add = (input) => new promise((resolve, reject) => {
         queue.push({
           input,
           resolve,
@@ -1391,23 +1391,23 @@ function createBatch(processor = defaultProcessor) {
         });
         pending.delete(id);
       });
-      if (typeof inputOrThunk === "function") {
-        return Promise.resolve(inputOrThunk(add)).finally(() => {
+      if (typeof inputorthunk === "function") {
+        return promise.resolve(inputorthunk(add)).finally(() => {
           pending.delete(id);
         });
       }
-      return add(inputOrThunk);
+      return add(inputorthunk);
     },
     /**
-     * Runs the batch. This calls `batchProcessor` and resolves or rejects
+     * runs the batch. this calls `batchprocessor` and resolves or rejects
      * all promises returned by `add()`.
      *
-     * @return {Promise<boolean>} A promise that resolves to a boolean that is true
+     * @return {promise<boolean>} a promise that resolves to a boolean that is true
      *                   if the processor returned no errors.
      */
     async run() {
       if (pending.size) {
-        await new Promise((resolve) => {
+        await new promise((resolve) => {
           const unsubscribe = pending.subscribe(() => {
             if (!pending.size) {
               unsubscribe();
@@ -1422,8 +1422,8 @@ function createBatch(processor = defaultProcessor) {
           queue.map(({ input }) => input)
         );
         if (results.length !== queue.length) {
-          throw new Error(
-            "run: Array returned by processor must be same size as input array."
+          throw new error(
+            "run: array returned by processor must be same size as input array."
           );
         }
       } catch (error) {
@@ -1432,38 +1432,38 @@ function createBatch(processor = defaultProcessor) {
         }
         throw error;
       }
-      let isSuccess = true;
-      results.forEach((result, key) => {
-        const queueItem = queue[key];
+      let issuccess = true;
+      results.foreach((result, key) => {
+        const queueitem = queue[key];
         if (result?.error) {
-          queueItem?.reject(result.error);
-          isSuccess = false;
+          queueitem?.reject(result.error);
+          issuccess = false;
         } else {
-          queueItem?.resolve(result?.output ?? result);
+          queueitem?.resolve(result?.output ?? result);
         }
       });
       queue = [];
-      return isSuccess;
+      return issuccess;
     }
   };
 }
-class ObservableSet {
+class observableset {
   constructor(...args) {
-    this.set = new Set(...args);
-    this.subscribers = /* @__PURE__ */ new Set();
+    this.set = new set(...args);
+    this.subscribers = /* @__pure__ */ new set();
   }
   get size() {
     return this.set.size;
   }
   add(value) {
     this.set.add(value);
-    this.subscribers.forEach((subscriber) => subscriber());
+    this.subscribers.foreach((subscriber) => subscriber());
     return this;
   }
   delete(value) {
-    const isSuccess = this.set.delete(value);
-    this.subscribers.forEach((subscriber) => subscriber());
-    return isSuccess;
+    const issuccess = this.set.delete(value);
+    this.subscribers.foreach((subscriber) => subscriber());
+    return issuccess;
   }
   subscribe(subscriber) {
     this.subscribers.add(subscriber);
@@ -1474,9 +1474,9 @@ class ObservableSet {
 }
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/name.js
+// external module: ./node_modules/@wordpress/core-data/build-module/name.js
 var build_module_name = __webpack_require__(2278);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/log-entity-deprecation.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/log-entity-deprecation.js
 var log_entity_deprecation = __webpack_require__(9410);
 ;// ./node_modules/@wordpress/core-data/build-module/actions.js
 
@@ -1491,295 +1491,295 @@ var log_entity_deprecation = __webpack_require__(9410);
 
 
 
-function receiveUserQuery(queryID, users) {
+function receiveuserquery(queryid, users) {
   return {
-    type: "RECEIVE_USER_QUERY",
-    users: Array.isArray(users) ? users : [users],
-    queryID
+    type: "receive_user_query",
+    users: array.isarray(users) ? users : [users],
+    queryid
   };
 }
-function receiveCurrentUser(currentUser) {
+function receivecurrentuser(currentuser) {
   return {
-    type: "RECEIVE_CURRENT_USER",
-    currentUser
+    type: "receive_current_user",
+    currentuser
   };
 }
-function addEntities(entities) {
+function addentities(entities) {
   return {
-    type: "ADD_ENTITIES",
+    type: "add_entities",
     entities
   };
 }
-function receiveEntityRecords(kind, name, records, query, invalidateCache = false, edits, meta) {
-  if (kind === "postType") {
-    records = (Array.isArray(records) ? records : [records]).map(
+function receiveentityrecords(kind, name, records, query, invalidatecache = false, edits, meta) {
+  if (kind === "posttype") {
+    records = (array.isarray(records) ? records : [records]).map(
       (record) => record.status === "auto-draft" ? { ...record, title: "" } : record
     );
   }
   let action;
   if (query) {
-    action = receiveQueriedItems(records, query, edits, meta);
+    action = receivequerieditems(records, query, edits, meta);
   } else {
-    action = receiveItems(records, edits, meta);
+    action = receiveitems(records, edits, meta);
   }
   return {
     ...action,
     kind,
     name,
-    invalidateCache
+    invalidatecache
   };
 }
-function receiveCurrentTheme(currentTheme) {
+function receivecurrenttheme(currenttheme) {
   return {
-    type: "RECEIVE_CURRENT_THEME",
-    currentTheme
+    type: "receive_current_theme",
+    currenttheme
   };
 }
-function __experimentalReceiveCurrentGlobalStylesId(currentGlobalStylesId) {
+function __experimentalreceivecurrentglobalstylesid(currentglobalstylesid) {
   return {
-    type: "RECEIVE_CURRENT_GLOBAL_STYLES_ID",
-    id: currentGlobalStylesId
+    type: "receive_current_global_styles_id",
+    id: currentglobalstylesid
   };
 }
-function __experimentalReceiveThemeBaseGlobalStyles(stylesheet, globalStyles) {
+function __experimentalreceivethemebaseglobalstyles(stylesheet, globalstyles) {
   return {
-    type: "RECEIVE_THEME_GLOBAL_STYLES",
+    type: "receive_theme_global_styles",
     stylesheet,
-    globalStyles
+    globalstyles
   };
 }
-function __experimentalReceiveThemeGlobalStyleVariations(stylesheet, variations) {
+function __experimentalreceivethemeglobalstylevariations(stylesheet, variations) {
   return {
-    type: "RECEIVE_THEME_GLOBAL_STYLE_VARIATIONS",
+    type: "receive_theme_global_style_variations",
     stylesheet,
     variations
   };
 }
-function receiveThemeSupports() {
-  external_wp_deprecated_default()("wp.data.dispatch( 'core' ).receiveThemeSupports", {
+function receivethemesupports() {
+  external_wp_deprecated_default()("wp.data.dispatch( 'core' ).receivethemesupports", {
     since: "5.9"
   });
   return {
-    type: "DO_NOTHING"
+    type: "do_nothing"
   };
 }
-function receiveThemeGlobalStyleRevisions(currentId, revisions) {
+function receivethemeglobalstylerevisions(currentid, revisions) {
   external_wp_deprecated_default()(
-    "wp.data.dispatch( 'core' ).receiveThemeGlobalStyleRevisions()",
+    "wp.data.dispatch( 'core' ).receivethemeglobalstylerevisions()",
     {
       since: "6.5.0",
-      alternative: "wp.data.dispatch( 'core' ).receiveRevisions"
+      alternative: "wp.data.dispatch( 'core' ).receiverevisions"
     }
   );
   return {
-    type: "RECEIVE_THEME_GLOBAL_STYLE_REVISIONS",
-    currentId,
+    type: "receive_theme_global_style_revisions",
+    currentid,
     revisions
   };
 }
-function receiveEmbedPreview(url, preview) {
+function receiveembedpreview(url, preview) {
   return {
-    type: "RECEIVE_EMBED_PREVIEW",
+    type: "receive_embed_preview",
     url,
     preview
   };
 }
-const deleteEntityRecord = (kind, name, recordId, query, { __unstableFetch = (external_wp_apiFetch_default()), throwOnError = false } = {}) => async ({ dispatch, resolveSelect }) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "deleteEntityRecord");
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+const deleteentityrecord = (kind, name, recordid, query, { __unstablefetch = (external_wp_apifetch_default()), throwonerror = false } = {}) => async ({ dispatch, resolveselect }) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "deleteentityrecord");
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.kind === kind && config.name === name
   );
   let error;
-  let deletedRecord = false;
-  if (!entityConfig) {
+  let deletedrecord = false;
+  if (!entityconfig) {
     return;
   }
-  const lock = await dispatch.__unstableAcquireStoreLock(
-    build_module_name/* STORE_NAME */.E,
-    ["entities", "records", kind, name, recordId],
+  const lock = await dispatch.__unstableacquirestorelock(
+    build_module_name/* store_name */.e,
+    ["entities", "records", kind, name, recordid],
     { exclusive: true }
   );
   try {
     dispatch({
-      type: "DELETE_ENTITY_RECORD_START",
+      type: "delete_entity_record_start",
       kind,
       name,
-      recordId
+      recordid
     });
-    let hasError = false;
+    let haserror = false;
     try {
-      let path = `${entityConfig.baseURL}/${recordId}`;
+      let path = `${entityconfig.baseurl}/${recordid}`;
       if (query) {
-        path = (0,external_wp_url_.addQueryArgs)(path, query);
+        path = (0,external_wp_url_.addqueryargs)(path, query);
       }
-      deletedRecord = await __unstableFetch({
+      deletedrecord = await __unstablefetch({
         path,
-        method: "DELETE"
+        method: "delete"
       });
-      await dispatch(removeItems(kind, name, recordId, true));
+      await dispatch(removeitems(kind, name, recordid, true));
     } catch (_error) {
-      hasError = true;
+      haserror = true;
       error = _error;
     }
     dispatch({
-      type: "DELETE_ENTITY_RECORD_FINISH",
+      type: "delete_entity_record_finish",
       kind,
       name,
-      recordId,
+      recordid,
       error
     });
-    if (hasError && throwOnError) {
+    if (haserror && throwonerror) {
       throw error;
     }
-    return deletedRecord;
+    return deletedrecord;
   } finally {
-    dispatch.__unstableReleaseStoreLock(lock);
+    dispatch.__unstablereleasestorelock(lock);
   }
 };
-const editEntityRecord = (kind, name, recordId, edits, options = {}) => ({ select, dispatch }) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "editEntityRecord");
-  const entityConfig = select.getEntityConfig(kind, name);
-  if (!entityConfig) {
-    throw new Error(
-      `The entity being edited (${kind}, ${name}) does not have a loaded config.`
+const editentityrecord = (kind, name, recordid, edits, options = {}) => ({ select, dispatch }) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "editentityrecord");
+  const entityconfig = select.getentityconfig(kind, name);
+  if (!entityconfig) {
+    throw new error(
+      `the entity being edited (${kind}, ${name}) does not have a loaded config.`
     );
   }
-  const { mergedEdits = {} } = entityConfig;
-  const record = select.getRawEntityRecord(kind, name, recordId);
-  const editedRecord = select.getEditedEntityRecord(
+  const { mergededits = {} } = entityconfig;
+  const record = select.getrawentityrecord(kind, name, recordid);
+  const editedrecord = select.geteditedentityrecord(
     kind,
     name,
-    recordId
+    recordid
   );
   const edit = {
     kind,
     name,
-    recordId,
-    // Clear edits when they are equal to their persisted counterparts
+    recordid,
+    // clear edits when they are equal to their persisted counterparts
     // so that the property is not considered dirty.
-    edits: Object.keys(edits).reduce((acc, key) => {
-      const recordValue = record[key];
-      const editedRecordValue = editedRecord[key];
-      const value = mergedEdits[key] ? { ...editedRecordValue, ...edits[key] } : edits[key];
-      acc[key] = es6_default()(recordValue, value) ? void 0 : value;
+    edits: object.keys(edits).reduce((acc, key) => {
+      const recordvalue = record[key];
+      const editedrecordvalue = editedrecord[key];
+      const value = mergededits[key] ? { ...editedrecordvalue, ...edits[key] } : edits[key];
+      acc[key] = es6_default()(recordvalue, value) ? void 0 : value;
       return acc;
     }, {})
   };
-  if (window.__experimentalEnableSync && entityConfig.syncConfig) {
+  if (window.__experimentalenablesync && entityconfig.syncconfig) {
     if (false) {}
   }
-  if (!options.undoIgnore) {
-    select.getUndoManager().addRecord(
+  if (!options.undoignore) {
+    select.getundomanager().addrecord(
       [
         {
-          id: { kind, name, recordId },
-          changes: Object.keys(edits).reduce((acc, key) => {
+          id: { kind, name, recordid },
+          changes: object.keys(edits).reduce((acc, key) => {
             acc[key] = {
-              from: editedRecord[key],
+              from: editedrecord[key],
               to: edits[key]
             };
             return acc;
           }, {})
         }
       ],
-      options.isCached
+      options.iscached
     );
   }
   dispatch({
-    type: "EDIT_ENTITY_RECORD",
+    type: "edit_entity_record",
     ...edit
   });
 };
 const undo = () => ({ select, dispatch }) => {
-  const undoRecord = select.getUndoManager().undo();
-  if (!undoRecord) {
+  const undorecord = select.getundomanager().undo();
+  if (!undorecord) {
     return;
   }
   dispatch({
-    type: "UNDO",
-    record: undoRecord
+    type: "undo",
+    record: undorecord
   });
 };
 const redo = () => ({ select, dispatch }) => {
-  const redoRecord = select.getUndoManager().redo();
-  if (!redoRecord) {
+  const redorecord = select.getundomanager().redo();
+  if (!redorecord) {
     return;
   }
   dispatch({
-    type: "REDO",
-    record: redoRecord
+    type: "redo",
+    record: redorecord
   });
 };
-const __unstableCreateUndoLevel = () => ({ select }) => {
-  select.getUndoManager().addRecord();
+const __unstablecreateundolevel = () => ({ select }) => {
+  select.getundomanager().addrecord();
 };
-const saveEntityRecord = (kind, name, record, {
-  isAutosave = false,
-  __unstableFetch = (external_wp_apiFetch_default()),
-  throwOnError = false
-} = {}) => async ({ select, resolveSelect, dispatch }) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "saveEntityRecord");
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+const saveentityrecord = (kind, name, record, {
+  isautosave = false,
+  __unstablefetch = (external_wp_apifetch_default()),
+  throwonerror = false
+} = {}) => async ({ select, resolveselect, dispatch }) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "saveentityrecord");
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.kind === kind && config.name === name
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
-  const entityIdKey = entityConfig.key ?? entities/* DEFAULT_ENTITY_KEY */.C_;
-  const recordId = record[entityIdKey];
-  const isNewRecord = !!entityIdKey && !recordId;
-  const lock = await dispatch.__unstableAcquireStoreLock(
-    build_module_name/* STORE_NAME */.E,
-    ["entities", "records", kind, name, recordId || esm_browser_v4()],
+  const entityidkey = entityconfig.key ?? entities/* default_entity_key */.c_;
+  const recordid = record[entityidkey];
+  const isnewrecord = !!entityidkey && !recordid;
+  const lock = await dispatch.__unstableacquirestorelock(
+    build_module_name/* store_name */.e,
+    ["entities", "records", kind, name, recordid || esm_browser_v4()],
     { exclusive: true }
   );
   try {
-    for (const [key, value] of Object.entries(record)) {
+    for (const [key, value] of object.entries(record)) {
       if (typeof value === "function") {
-        const evaluatedValue = value(
-          select.getEditedEntityRecord(kind, name, recordId)
+        const evaluatedvalue = value(
+          select.geteditedentityrecord(kind, name, recordid)
         );
-        dispatch.editEntityRecord(
+        dispatch.editentityrecord(
           kind,
           name,
-          recordId,
+          recordid,
           {
-            [key]: evaluatedValue
+            [key]: evaluatedvalue
           },
-          { undoIgnore: true }
+          { undoignore: true }
         );
-        record[key] = evaluatedValue;
+        record[key] = evaluatedvalue;
       }
     }
     dispatch({
-      type: "SAVE_ENTITY_RECORD_START",
+      type: "save_entity_record_start",
       kind,
       name,
-      recordId,
-      isAutosave
+      recordid,
+      isautosave
     });
-    let updatedRecord;
+    let updatedrecord;
     let error;
-    let hasError = false;
+    let haserror = false;
     try {
-      const path = `${entityConfig.baseURL}${recordId ? "/" + recordId : ""}`;
-      const persistedRecord = !isNewRecord ? select.getRawEntityRecord(kind, name, recordId) : {};
-      if (isAutosave) {
-        const currentUser = select.getCurrentUser();
-        const currentUserId = currentUser ? currentUser.id : void 0;
-        const autosavePost = await resolveSelect.getAutosave(
-          persistedRecord.type,
-          persistedRecord.id,
-          currentUserId
+      const path = `${entityconfig.baseurl}${recordid ? "/" + recordid : ""}`;
+      const persistedrecord = !isnewrecord ? select.getrawentityrecord(kind, name, recordid) : {};
+      if (isautosave) {
+        const currentuser = select.getcurrentuser();
+        const currentuserid = currentuser ? currentuser.id : void 0;
+        const autosavepost = await resolveselect.getautosave(
+          persistedrecord.type,
+          persistedrecord.id,
+          currentuserid
         );
         let data = {
-          ...persistedRecord,
-          ...autosavePost,
+          ...persistedrecord,
+          ...autosavepost,
           ...record
         };
-        data = Object.keys(data).reduce(
+        data = object.keys(data).reduce(
           (acc, key) => {
             if ([
               "title",
@@ -1792,243 +1792,243 @@ const saveEntityRecord = (kind, name, record, {
             return acc;
           },
           {
-            // Do not update the `status` if we have edited it when auto saving.
-            // It's very important to let the user explicitly save this change,
-            // because it can lead to unexpected results. An example would be to
+            // do not update the `status` if we have edited it when auto saving.
+            // it's very important to let the user explicitly save this change,
+            // because it can lead to unexpected results. an example would be to
             // have a draft post and change the status to publish.
             status: data.status === "auto-draft" ? "draft" : void 0
           }
         );
-        updatedRecord = await __unstableFetch({
+        updatedrecord = await __unstablefetch({
           path: `${path}/autosaves`,
-          method: "POST",
+          method: "post",
           data
         });
-        if (persistedRecord.id === updatedRecord.id) {
-          let newRecord = {
-            ...persistedRecord,
+        if (persistedrecord.id === updatedrecord.id) {
+          let newrecord = {
+            ...persistedrecord,
             ...data,
-            ...updatedRecord
+            ...updatedrecord
           };
-          newRecord = Object.keys(newRecord).reduce(
+          newrecord = object.keys(newrecord).reduce(
             (acc, key) => {
               if (["title", "excerpt", "content"].includes(
                 key
               )) {
-                acc[key] = newRecord[key];
+                acc[key] = newrecord[key];
               } else if (key === "status") {
-                acc[key] = persistedRecord.status === "auto-draft" && newRecord.status === "draft" ? newRecord.status : persistedRecord.status;
+                acc[key] = persistedrecord.status === "auto-draft" && newrecord.status === "draft" ? newrecord.status : persistedrecord.status;
               } else {
-                acc[key] = persistedRecord[key];
+                acc[key] = persistedrecord[key];
               }
               return acc;
             },
             {}
           );
-          dispatch.receiveEntityRecords(
+          dispatch.receiveentityrecords(
             kind,
             name,
-            newRecord,
+            newrecord,
             void 0,
             true
           );
         } else {
-          dispatch.receiveAutosaves(
-            persistedRecord.id,
-            updatedRecord
+          dispatch.receiveautosaves(
+            persistedrecord.id,
+            updatedrecord
           );
         }
       } else {
         let edits = record;
-        if (entityConfig.__unstablePrePersist) {
+        if (entityconfig.__unstableprepersist) {
           edits = {
             ...edits,
-            ...entityConfig.__unstablePrePersist(
-              persistedRecord,
+            ...entityconfig.__unstableprepersist(
+              persistedrecord,
               edits
             )
           };
         }
-        updatedRecord = await __unstableFetch({
+        updatedrecord = await __unstablefetch({
           path,
-          method: recordId ? "PUT" : "POST",
+          method: recordid ? "put" : "post",
           data: edits
         });
-        dispatch.receiveEntityRecords(
+        dispatch.receiveentityrecords(
           kind,
           name,
-          updatedRecord,
+          updatedrecord,
           void 0,
           true,
           edits
         );
       }
     } catch (_error) {
-      hasError = true;
+      haserror = true;
       error = _error;
     }
     dispatch({
-      type: "SAVE_ENTITY_RECORD_FINISH",
+      type: "save_entity_record_finish",
       kind,
       name,
-      recordId,
+      recordid,
       error,
-      isAutosave
+      isautosave
     });
-    if (hasError && throwOnError) {
+    if (haserror && throwonerror) {
       throw error;
     }
-    return updatedRecord;
+    return updatedrecord;
   } finally {
-    dispatch.__unstableReleaseStoreLock(lock);
+    dispatch.__unstablereleasestorelock(lock);
   }
 };
-const __experimentalBatch = (requests) => async ({ dispatch }) => {
-  const batch = createBatch();
+const __experimentalbatch = (requests) => async ({ dispatch }) => {
+  const batch = createbatch();
   const api = {
-    saveEntityRecord(kind, name, record, options) {
+    saveentityrecord(kind, name, record, options) {
       return batch.add(
-        (add) => dispatch.saveEntityRecord(kind, name, record, {
+        (add) => dispatch.saveentityrecord(kind, name, record, {
           ...options,
-          __unstableFetch: add
+          __unstablefetch: add
         })
       );
     },
-    saveEditedEntityRecord(kind, name, recordId, options) {
+    saveeditedentityrecord(kind, name, recordid, options) {
       return batch.add(
-        (add) => dispatch.saveEditedEntityRecord(kind, name, recordId, {
+        (add) => dispatch.saveeditedentityrecord(kind, name, recordid, {
           ...options,
-          __unstableFetch: add
+          __unstablefetch: add
         })
       );
     },
-    deleteEntityRecord(kind, name, recordId, query, options) {
+    deleteentityrecord(kind, name, recordid, query, options) {
       return batch.add(
-        (add) => dispatch.deleteEntityRecord(kind, name, recordId, query, {
+        (add) => dispatch.deleteentityrecord(kind, name, recordid, query, {
           ...options,
-          __unstableFetch: add
+          __unstablefetch: add
         })
       );
     }
   };
-  const resultPromises = requests.map((request) => request(api));
-  const [, ...results] = await Promise.all([
+  const resultpromises = requests.map((request) => request(api));
+  const [, ...results] = await promise.all([
     batch.run(),
-    ...resultPromises
+    ...resultpromises
   ]);
   return results;
 };
-const saveEditedEntityRecord = (kind, name, recordId, options) => async ({ select, dispatch, resolveSelect }) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "saveEditedEntityRecord");
-  if (!select.hasEditsForEntityRecord(kind, name, recordId)) {
+const saveeditedentityrecord = (kind, name, recordid, options) => async ({ select, dispatch, resolveselect }) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "saveeditedentityrecord");
+  if (!select.haseditsforentityrecord(kind, name, recordid)) {
     return;
   }
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.kind === kind && config.name === name
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
-  const entityIdKey = entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_;
-  const edits = select.getEntityRecordNonTransientEdits(
+  const entityidkey = entityconfig.key || entities/* default_entity_key */.c_;
+  const edits = select.getentityrecordnontransientedits(
     kind,
     name,
-    recordId
+    recordid
   );
-  const record = { [entityIdKey]: recordId, ...edits };
-  return await dispatch.saveEntityRecord(kind, name, record, options);
+  const record = { [entityidkey]: recordid, ...edits };
+  return await dispatch.saveentityrecord(kind, name, record, options);
 };
-const __experimentalSaveSpecifiedEntityEdits = (kind, name, recordId, itemsToSave, options) => async ({ select, dispatch, resolveSelect }) => {
-  (0,log_entity_deprecation/* default */.A)(
+const __experimentalsavespecifiedentityedits = (kind, name, recordid, itemstosave, options) => async ({ select, dispatch, resolveselect }) => {
+  (0,log_entity_deprecation/* default */.a)(
     kind,
     name,
-    "__experimentalSaveSpecifiedEntityEdits"
+    "__experimentalsavespecifiedentityedits"
   );
-  if (!select.hasEditsForEntityRecord(kind, name, recordId)) {
+  if (!select.haseditsforentityrecord(kind, name, recordid)) {
     return;
   }
-  const edits = select.getEntityRecordNonTransientEdits(
+  const edits = select.getentityrecordnontransientedits(
     kind,
     name,
-    recordId
+    recordid
   );
-  const editsToSave = {};
-  for (const item of itemsToSave) {
-    (0,set_nested_value/* default */.A)(editsToSave, item, getNestedValue(edits, item));
+  const editstosave = {};
+  for (const item of itemstosave) {
+    (0,set_nested_value/* default */.a)(editstosave, item, getnestedvalue(edits, item));
   }
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.kind === kind && config.name === name
   );
-  const entityIdKey = entityConfig?.key || entities/* DEFAULT_ENTITY_KEY */.C_;
-  if (recordId) {
-    editsToSave[entityIdKey] = recordId;
+  const entityidkey = entityconfig?.key || entities/* default_entity_key */.c_;
+  if (recordid) {
+    editstosave[entityidkey] = recordid;
   }
-  return await dispatch.saveEntityRecord(
+  return await dispatch.saveentityrecord(
     kind,
     name,
-    editsToSave,
+    editstosave,
     options
   );
 };
-function receiveUploadPermissions(hasUploadPermissions) {
-  external_wp_deprecated_default()("wp.data.dispatch( 'core' ).receiveUploadPermissions", {
+function receiveuploadpermissions(hasuploadpermissions) {
+  external_wp_deprecated_default()("wp.data.dispatch( 'core' ).receiveuploadpermissions", {
     since: "5.9",
-    alternative: "receiveUserPermission"
+    alternative: "receiveuserpermission"
   });
-  return receiveUserPermission("create/media", hasUploadPermissions);
+  return receiveuserpermission("create/media", hasuploadpermissions);
 }
-function receiveUserPermission(key, isAllowed) {
+function receiveuserpermission(key, isallowed) {
   return {
-    type: "RECEIVE_USER_PERMISSION",
+    type: "receive_user_permission",
     key,
-    isAllowed
+    isallowed
   };
 }
-function receiveUserPermissions(permissions) {
+function receiveuserpermissions(permissions) {
   return {
-    type: "RECEIVE_USER_PERMISSIONS",
+    type: "receive_user_permissions",
     permissions
   };
 }
-function receiveAutosaves(postId, autosaves) {
+function receiveautosaves(postid, autosaves) {
   return {
-    type: "RECEIVE_AUTOSAVES",
-    postId,
-    autosaves: Array.isArray(autosaves) ? autosaves : [autosaves]
+    type: "receive_autosaves",
+    postid,
+    autosaves: array.isarray(autosaves) ? autosaves : [autosaves]
   };
 }
-function receiveNavigationFallbackId(fallbackId) {
+function receivenavigationfallbackid(fallbackid) {
   return {
-    type: "RECEIVE_NAVIGATION_FALLBACK_ID",
-    fallbackId
+    type: "receive_navigation_fallback_id",
+    fallbackid
   };
 }
-function receiveDefaultTemplateId(query, templateId) {
+function receivedefaulttemplateid(query, templateid) {
   return {
-    type: "RECEIVE_DEFAULT_TEMPLATE",
+    type: "receive_default_template",
     query,
-    templateId
+    templateid
   };
 }
-const receiveRevisions = (kind, name, recordKey, records, query, invalidateCache = false, meta) => async ({ dispatch, resolveSelect }) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "receiveRevisions");
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+const receiverevisions = (kind, name, recordkey, records, query, invalidatecache = false, meta) => async ({ dispatch, resolveselect }) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "receiverevisions");
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.kind === kind && config.name === name
   );
-  const key = entityConfig && entityConfig?.revisionKey ? entityConfig.revisionKey : entities/* DEFAULT_ENTITY_KEY */.C_;
+  const key = entityconfig && entityconfig?.revisionkey ? entityconfig.revisionkey : entities/* default_entity_key */.c_;
   dispatch({
-    type: "RECEIVE_ITEM_REVISIONS",
+    type: "receive_item_revisions",
     key,
-    items: Array.isArray(records) ? records : [records],
-    recordKey,
+    items: array.isarray(records) ? records : [records],
+    recordkey,
     meta,
     query,
     kind,
     name,
-    invalidateCache
+    invalidatecache
   });
 };
 
@@ -2049,20 +2049,20 @@ module.exports = window["wp"]["url"];
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  A: () => (/* binding */ get_query_parts_default)
+  a: () => (/* binding */ get_query_parts_default)
 });
 
-// UNUSED EXPORTS: getQueryParts
+// unused exports: getqueryparts
 
-// EXTERNAL MODULE: external ["wp","url"]
+// external module: external ["wp","url"]
 var external_wp_url_ = __webpack_require__(3832);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
 var get_normalized_comma_separable = __webpack_require__(533);
 ;// ./node_modules/@wordpress/core-data/build-module/utils/with-weak-map-cache.js
-function withWeakMapCache(fn) {
-  const cache = /* @__PURE__ */ new WeakMap();
+function withweakmapcache(fn) {
+  const cache = /* @__pure__ */ new weakmap();
   return (key) => {
     let value;
     if (cache.has(key)) {
@@ -2076,53 +2076,53 @@ function withWeakMapCache(fn) {
     return value;
   };
 }
-var with_weak_map_cache_default = withWeakMapCache;
+var with_weak_map_cache_default = withweakmapcache;
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js
 
 
-function getQueryParts(query) {
+function getqueryparts(query) {
   const parts = {
-    stableKey: "",
+    stablekey: "",
     page: 1,
-    perPage: 10,
+    perpage: 10,
     fields: null,
     include: null,
     context: "default"
   };
-  const keys = Object.keys(query).sort();
+  const keys = object.keys(query).sort();
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
     let value = query[key];
     switch (key) {
       case "page":
-        parts[key] = Number(value);
+        parts[key] = number(value);
         break;
       case "per_page":
-        parts.perPage = Number(value);
+        parts.perpage = number(value);
         break;
       case "context":
         parts.context = value;
         break;
       default:
         if (key === "_fields") {
-          parts.fields = (0,get_normalized_comma_separable/* default */.A)(value) ?? [];
+          parts.fields = (0,get_normalized_comma_separable/* default */.a)(value) ?? [];
           value = parts.fields.join();
         }
         if (key === "include") {
           if (typeof value === "number") {
-            value = value.toString();
+            value = value.tostring();
           }
-          parts.include = ((0,get_normalized_comma_separable/* default */.A)(value) ?? []).map(Number);
+          parts.include = ((0,get_normalized_comma_separable/* default */.a)(value) ?? []).map(number);
           value = parts.include.join();
         }
-        parts.stableKey += (parts.stableKey ? "&" : "") + (0,external_wp_url_.addQueryArgs)("", { [key]: value }).slice(1);
+        parts.stablekey += (parts.stablekey ? "&" : "") + (0,external_wp_url_.addqueryargs)("", { [key]: value }).slice(1);
     }
   }
   return parts;
 }
-var get_query_parts_default = with_weak_map_cache_default(getQueryParts);
+var get_query_parts_default = with_weak_map_cache_default(getqueryparts);
 
 
 
@@ -2141,24 +2141,24 @@ module.exports = window["wp"]["deprecated"];
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  A: () => (/* binding */ EntityProvider)
+  a: () => (/* binding */ entityprovider)
 });
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-// EXTERNAL MODULE: external ["wp","element"]
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
+// external module: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(6087);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/entity-context.js
+// external module: ./node_modules/@wordpress/core-data/build-module/entity-context.js
 var entity_context = __webpack_require__(8843);
 ;// ./node_modules/@wordpress/core-data/build-module/entity-provider.js
 
 
 
-function EntityProvider({ kind, type: name, id, children }) {
-  const parent = (0,external_wp_element_.useContext)(entity_context/* EntityContext */.D);
-  const childContext = (0,external_wp_element_.useMemo)(
+function entityprovider({ kind, type: name, id, children }) {
+  const parent = (0,external_wp_element_.usecontext)(entity_context/* entitycontext */.d);
+  const childcontext = (0,external_wp_element_.usememo)(
     () => ({
       ...parent,
       [kind]: {
@@ -2168,7 +2168,7 @@ function EntityProvider({ kind, type: name, id, children }) {
     }),
     [parent, kind, name, id]
   );
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(entity_context/* EntityContext */.D.Provider, { value: childContext, children });
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(entity_context/* entitycontext */.d.provider, { value: childcontext, children });
 }
 
 
@@ -2181,45 +2181,45 @@ function EntityProvider({ kind, type: name, id, children }) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   EntityProvider: () => (/* reexport safe */ _entity_provider__WEBPACK_IMPORTED_MODULE_17__.A),
-/* harmony export */   __experimentalFetchLinkSuggestions: () => (/* reexport safe */ _fetch__WEBPACK_IMPORTED_MODULE_14__.Y3),
-/* harmony export */   __experimentalFetchUrlData: () => (/* reexport safe */ _fetch__WEBPACK_IMPORTED_MODULE_14__.gr),
-/* harmony export */   __experimentalUseEntityRecord: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.qh),
-/* harmony export */   __experimentalUseEntityRecords: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.bM),
-/* harmony export */   __experimentalUseResourcePermissions: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__._),
-/* harmony export */   fetchBlockPatterns: () => (/* reexport safe */ _fetch__WEBPACK_IMPORTED_MODULE_14__.l$),
-/* harmony export */   privateApis: () => (/* reexport safe */ _private_apis__WEBPACK_IMPORTED_MODULE_16__.j),
+/* harmony export */   entityprovider: () => (/* reexport safe */ _entity_provider__webpack_imported_module_17__.a),
+/* harmony export */   __experimentalfetchlinksuggestions: () => (/* reexport safe */ _fetch__webpack_imported_module_14__.y3),
+/* harmony export */   __experimentalfetchurldata: () => (/* reexport safe */ _fetch__webpack_imported_module_14__.gr),
+/* harmony export */   __experimentaluseentityrecord: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.qh),
+/* harmony export */   __experimentaluseentityrecords: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.bm),
+/* harmony export */   __experimentaluseresourcepermissions: () => (/* reexport safe */ _hooks__webpack_imported_module_15__._),
+/* harmony export */   fetchblockpatterns: () => (/* reexport safe */ _fetch__webpack_imported_module_14__.l$),
+/* harmony export */   privateapis: () => (/* reexport safe */ _private_apis__webpack_imported_module_16__.j),
 /* harmony export */   store: () => (/* binding */ store),
-/* harmony export */   useEntityBlockEditor: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.hg),
-/* harmony export */   useEntityId: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.mV),
-/* harmony export */   useEntityProp: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.S$),
-/* harmony export */   useEntityRecord: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.MA),
-/* harmony export */   useEntityRecords: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.$u),
-/* harmony export */   useResourcePermissions: () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_15__.qs)
+/* harmony export */   useentityblockeditor: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.hg),
+/* harmony export */   useentityid: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.mv),
+/* harmony export */   useentityprop: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.s$),
+/* harmony export */   useentityrecord: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.ma),
+/* harmony export */   useentityrecords: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.$u),
+/* harmony export */   useresourcepermissions: () => (/* reexport safe */ _hooks__webpack_imported_module_15__.qs)
 /* harmony export */ });
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7143);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5469);
-/* harmony import */ var _selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8368);
-/* harmony import */ var _private_selectors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(8741);
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3440);
-/* harmony import */ var _private_actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(9424);
-/* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6384);
-/* harmony import */ var _locks_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2239);
-/* harmony import */ var _entities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5914);
-/* harmony import */ var _name__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2278);
-/* harmony import */ var _lock_unlock__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(6378);
-/* harmony import */ var _dynamic_entities__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8582);
-/* harmony import */ var _utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9410);
-/* harmony import */ var _entity_provider__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(4460);
-/* harmony import */ var _entity_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(3377);
-/* harmony import */ var _entity_types__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_entity_types__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _entity_types__WEBPACK_IMPORTED_MODULE_13__) if(["default","EntityProvider","store"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _entity_types__WEBPACK_IMPORTED_MODULE_13__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-/* harmony import */ var _fetch__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(7006);
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(5891);
-/* harmony import */ var _private_apis__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(7826);
+/* harmony import */ var _wordpress_data__webpack_imported_module_0__ = __webpack_require__(7143);
+/* harmony import */ var _wordpress_data__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_wordpress_data__webpack_imported_module_0__);
+/* harmony import */ var _reducer__webpack_imported_module_6__ = __webpack_require__(5469);
+/* harmony import */ var _selectors__webpack_imported_module_3__ = __webpack_require__(8368);
+/* harmony import */ var _private_selectors__webpack_imported_module_11__ = __webpack_require__(8741);
+/* harmony import */ var _actions__webpack_imported_module_5__ = __webpack_require__(3440);
+/* harmony import */ var _private_actions__webpack_imported_module_12__ = __webpack_require__(9424);
+/* harmony import */ var _resolvers__webpack_imported_module_4__ = __webpack_require__(6384);
+/* harmony import */ var _locks_actions__webpack_imported_module_8__ = __webpack_require__(2239);
+/* harmony import */ var _entities__webpack_imported_module_1__ = __webpack_require__(5914);
+/* harmony import */ var _name__webpack_imported_module_9__ = __webpack_require__(2278);
+/* harmony import */ var _lock_unlock__webpack_imported_module_10__ = __webpack_require__(6378);
+/* harmony import */ var _dynamic_entities__webpack_imported_module_7__ = __webpack_require__(8582);
+/* harmony import */ var _utils_log_entity_deprecation__webpack_imported_module_2__ = __webpack_require__(9410);
+/* harmony import */ var _entity_provider__webpack_imported_module_17__ = __webpack_require__(4460);
+/* harmony import */ var _entity_types__webpack_imported_module_13__ = __webpack_require__(3377);
+/* harmony import */ var _entity_types__webpack_imported_module_13___default = /*#__pure__*/__webpack_require__.n(_entity_types__webpack_imported_module_13__);
+/* harmony reexport (unknown) */ var __webpack_reexport_object__ = {};
+/* harmony reexport (unknown) */ for(const __webpack_import_key__ in _entity_types__webpack_imported_module_13__) if(["default","entityprovider","store"].indexof(__webpack_import_key__) < 0) __webpack_reexport_object__[__webpack_import_key__] = () => _entity_types__webpack_imported_module_13__[__webpack_import_key__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __webpack_reexport_object__);
+/* harmony import */ var _fetch__webpack_imported_module_14__ = __webpack_require__(7006);
+/* harmony import */ var _hooks__webpack_imported_module_15__ = __webpack_require__(5891);
+/* harmony import */ var _private_apis__webpack_imported_module_16__ = __webpack_require__(7826);
 
 
 
@@ -2233,94 +2233,94 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const entitiesConfig = [
-  ..._entities__WEBPACK_IMPORTED_MODULE_1__/* .rootEntitiesConfig */ .Mr,
-  ..._entities__WEBPACK_IMPORTED_MODULE_1__/* .additionalEntityConfigLoaders */ .L2.filter((config) => !!config.name)
+const entitiesconfig = [
+  ..._entities__webpack_imported_module_1__/* .rootentitiesconfig */ .mr,
+  ..._entities__webpack_imported_module_1__/* .additionalentityconfigloaders */ .l2.filter((config) => !!config.name)
 ];
-const entitySelectors = entitiesConfig.reduce((result, entity) => {
+const entityselectors = entitiesconfig.reduce((result, entity) => {
   const { kind, name, plural } = entity;
-  const getEntityRecordMethodName = (0,_entities__WEBPACK_IMPORTED_MODULE_1__/* .getMethodName */ .zD)(kind, name);
-  result[getEntityRecordMethodName] = (state, key, query) => {
-    (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, name, getEntityRecordMethodName, {
-      isShorthandSelector: true,
-      alternativeFunctionName: "getEntityRecord"
+  const getentityrecordmethodname = (0,_entities__webpack_imported_module_1__/* .getmethodname */ .zd)(kind, name);
+  result[getentityrecordmethodname] = (state, key, query) => {
+    (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, name, getentityrecordmethodname, {
+      isshorthandselector: true,
+      alternativefunctionname: "getentityrecord"
     });
-    return _selectors__WEBPACK_IMPORTED_MODULE_3__.getEntityRecord(state, kind, name, key, query);
+    return _selectors__webpack_imported_module_3__.getentityrecord(state, kind, name, key, query);
   };
   if (plural) {
-    const getEntityRecordsMethodName = (0,_entities__WEBPACK_IMPORTED_MODULE_1__/* .getMethodName */ .zD)(kind, plural, "get");
-    result[getEntityRecordsMethodName] = (state, query) => {
-      (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, name, getEntityRecordsMethodName, {
-        isShorthandSelector: true,
-        alternativeFunctionName: "getEntityRecords"
+    const getentityrecordsmethodname = (0,_entities__webpack_imported_module_1__/* .getmethodname */ .zd)(kind, plural, "get");
+    result[getentityrecordsmethodname] = (state, query) => {
+      (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, name, getentityrecordsmethodname, {
+        isshorthandselector: true,
+        alternativefunctionname: "getentityrecords"
       });
-      return _selectors__WEBPACK_IMPORTED_MODULE_3__.getEntityRecords(state, kind, name, query);
+      return _selectors__webpack_imported_module_3__.getentityrecords(state, kind, name, query);
     };
   }
   return result;
 }, {});
-const entityResolvers = entitiesConfig.reduce((result, entity) => {
+const entityresolvers = entitiesconfig.reduce((result, entity) => {
   const { kind, name, plural } = entity;
-  const getEntityRecordMethodName = (0,_entities__WEBPACK_IMPORTED_MODULE_1__/* .getMethodName */ .zD)(kind, name);
-  result[getEntityRecordMethodName] = (key, query) => {
-    (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, name, getEntityRecordMethodName, {
-      isShorthandSelector: true,
-      alternativeFunctionName: "getEntityRecord"
+  const getentityrecordmethodname = (0,_entities__webpack_imported_module_1__/* .getmethodname */ .zd)(kind, name);
+  result[getentityrecordmethodname] = (key, query) => {
+    (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, name, getentityrecordmethodname, {
+      isshorthandselector: true,
+      alternativefunctionname: "getentityrecord"
     });
-    return _resolvers__WEBPACK_IMPORTED_MODULE_4__.getEntityRecord(kind, name, key, query);
+    return _resolvers__webpack_imported_module_4__.getentityrecord(kind, name, key, query);
   };
   if (plural) {
-    const getEntityRecordsMethodName = (0,_entities__WEBPACK_IMPORTED_MODULE_1__/* .getMethodName */ .zD)(kind, plural, "get");
-    result[getEntityRecordsMethodName] = (...args) => {
-      (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, plural, getEntityRecordsMethodName, {
-        isShorthandSelector: true,
-        alternativeFunctionName: "getEntityRecords"
+    const getentityrecordsmethodname = (0,_entities__webpack_imported_module_1__/* .getmethodname */ .zd)(kind, plural, "get");
+    result[getentityrecordsmethodname] = (...args) => {
+      (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, plural, getentityrecordsmethodname, {
+        isshorthandselector: true,
+        alternativefunctionname: "getentityrecords"
       });
-      return _resolvers__WEBPACK_IMPORTED_MODULE_4__.getEntityRecords(kind, name, ...args);
+      return _resolvers__webpack_imported_module_4__.getentityrecords(kind, name, ...args);
     };
-    result[getEntityRecordsMethodName].shouldInvalidate = (action) => _resolvers__WEBPACK_IMPORTED_MODULE_4__.getEntityRecords.shouldInvalidate(action, kind, name);
+    result[getentityrecordsmethodname].shouldinvalidate = (action) => _resolvers__webpack_imported_module_4__.getentityrecords.shouldinvalidate(action, kind, name);
   }
   return result;
 }, {});
-const entityActions = entitiesConfig.reduce((result, entity) => {
+const entityactions = entitiesconfig.reduce((result, entity) => {
   const { kind, name } = entity;
-  const saveEntityRecordMethodName = (0,_entities__WEBPACK_IMPORTED_MODULE_1__/* .getMethodName */ .zD)(kind, name, "save");
-  result[saveEntityRecordMethodName] = (record, options) => {
-    (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, name, saveEntityRecordMethodName, {
-      isShorthandSelector: true,
-      alternativeFunctionName: "saveEntityRecord"
+  const saveentityrecordmethodname = (0,_entities__webpack_imported_module_1__/* .getmethodname */ .zd)(kind, name, "save");
+  result[saveentityrecordmethodname] = (record, options) => {
+    (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, name, saveentityrecordmethodname, {
+      isshorthandselector: true,
+      alternativefunctionname: "saveentityrecord"
     });
-    return _actions__WEBPACK_IMPORTED_MODULE_5__.saveEntityRecord(kind, name, record, options);
+    return _actions__webpack_imported_module_5__.saveentityrecord(kind, name, record, options);
   };
-  const deleteEntityRecordMethodName = (0,_entities__WEBPACK_IMPORTED_MODULE_1__/* .getMethodName */ .zD)(kind, name, "delete");
-  result[deleteEntityRecordMethodName] = (key, query, options) => {
-    (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, name, deleteEntityRecordMethodName, {
-      isShorthandSelector: true,
-      alternativeFunctionName: "deleteEntityRecord"
+  const deleteentityrecordmethodname = (0,_entities__webpack_imported_module_1__/* .getmethodname */ .zd)(kind, name, "delete");
+  result[deleteentityrecordmethodname] = (key, query, options) => {
+    (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, name, deleteentityrecordmethodname, {
+      isshorthandselector: true,
+      alternativefunctionname: "deleteentityrecord"
     });
-    return _actions__WEBPACK_IMPORTED_MODULE_5__.deleteEntityRecord(kind, name, key, query, options);
+    return _actions__webpack_imported_module_5__.deleteentityrecord(kind, name, key, query, options);
   };
   return result;
 }, {});
-const storeConfig = () => ({
-  reducer: _reducer__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Ay,
+const storeconfig = () => ({
+  reducer: _reducer__webpack_imported_module_6__/* ["default"] */ .ay,
   actions: {
-    ..._dynamic_entities__WEBPACK_IMPORTED_MODULE_7__/* .dynamicActions */ .B,
-    ..._actions__WEBPACK_IMPORTED_MODULE_5__,
-    ...entityActions,
-    ...(0,_locks_actions__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .A)()
+    ..._dynamic_entities__webpack_imported_module_7__/* .dynamicactions */ .b,
+    ..._actions__webpack_imported_module_5__,
+    ...entityactions,
+    ...(0,_locks_actions__webpack_imported_module_8__/* ["default"] */ .a)()
   },
   selectors: {
-    ..._dynamic_entities__WEBPACK_IMPORTED_MODULE_7__/* .dynamicSelectors */ .A,
-    ..._selectors__WEBPACK_IMPORTED_MODULE_3__,
-    ...entitySelectors
+    ..._dynamic_entities__webpack_imported_module_7__/* .dynamicselectors */ .a,
+    ..._selectors__webpack_imported_module_3__,
+    ...entityselectors
   },
-  resolvers: { ..._resolvers__WEBPACK_IMPORTED_MODULE_4__, ...entityResolvers }
+  resolvers: { ..._resolvers__webpack_imported_module_4__, ...entityresolvers }
 });
-const store = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createReduxStore)(_name__WEBPACK_IMPORTED_MODULE_9__/* .STORE_NAME */ .E, storeConfig());
-(0,_lock_unlock__WEBPACK_IMPORTED_MODULE_10__/* .unlock */ .T)(store).registerPrivateSelectors(_private_selectors__WEBPACK_IMPORTED_MODULE_11__);
-(0,_lock_unlock__WEBPACK_IMPORTED_MODULE_10__/* .unlock */ .T)(store).registerPrivateActions(_private_actions__WEBPACK_IMPORTED_MODULE_12__);
-(0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.register)(store);
+const store = (0,_wordpress_data__webpack_imported_module_0__.createreduxstore)(_name__webpack_imported_module_9__/* .store_name */ .e, storeconfig());
+(0,_lock_unlock__webpack_imported_module_10__/* .unlock */ .t)(store).registerprivateselectors(_private_selectors__webpack_imported_module_11__);
+(0,_lock_unlock__webpack_imported_module_10__/* .unlock */ .t)(store).registerprivateactions(_private_actions__webpack_imported_module_12__);
+(0,_wordpress_data__webpack_imported_module_0__.register)(store);
 
 
 
@@ -2345,22 +2345,22 @@ module.exports = window["wp"]["blocks"];
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (/* binding */ setNestedValue)
+/* harmony export */   a: () => (/* binding */ setnestedvalue)
 /* harmony export */ });
-function setNestedValue(object, path, value) {
+function setnestedvalue(object, path, value) {
   if (!object || typeof object !== "object") {
     return object;
   }
-  const normalizedPath = Array.isArray(path) ? path : path.split(".");
-  normalizedPath.reduce((acc, key, idx) => {
+  const normalizedpath = array.isarray(path) ? path : path.split(".");
+  normalizedpath.reduce((acc, key, idx) => {
     if (acc[key] === void 0) {
-      if (Number.isInteger(normalizedPath[idx + 1])) {
+      if (number.isinteger(normalizedpath[idx + 1])) {
         acc[key] = [];
       } else {
         acc[key] = {};
       }
     }
-    if (idx === normalizedPath.length - 1) {
+    if (idx === normalizedpath.length - 1) {
       acc[key] = value;
     }
     return acc[key];
@@ -2377,10 +2377,10 @@ function setNestedValue(object, path, value) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Z: () => (/* binding */ RECEIVE_INTERMEDIATE_RESULTS)
+/* harmony export */   z: () => (/* binding */ receive_intermediate_results)
 /* harmony export */ });
-const RECEIVE_INTERMEDIATE_RESULTS = Symbol(
-  "RECEIVE_INTERMEDIATE_RESULTS"
+const receive_intermediate_results = symbol(
+  "receive_intermediate_results"
 );
 
 
@@ -2392,129 +2392,129 @@ const RECEIVE_INTERMEDIATE_RESULTS = Symbol(
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  Ay: () => (/* binding */ reducer_reducer_default)
+  ay: () => (/* binding */ reducer_reducer_default)
 });
 
-// UNUSED EXPORTS: autosaves, blockPatternCategories, blockPatterns, currentGlobalStylesId, currentTheme, currentUser, defaultTemplates, editsReference, embedPreviews, entities, entitiesConfig, navigationFallbackId, registeredPostMeta, themeBaseGlobalStyles, themeGlobalStyleRevisions, themeGlobalStyleVariations, undoManager, userPatternCategories, userPermissions, users
+// unused exports: autosaves, blockpatterncategories, blockpatterns, currentglobalstylesid, currenttheme, currentuser, defaulttemplates, editsreference, embedpreviews, entities, entitiesconfig, navigationfallbackid, registeredpostmeta, themebaseglobalstyles, themeglobalstylerevisions, themeglobalstylevariations, undomanager, userpatterncategories, userpermissions, users
 
-// EXTERNAL MODULE: ./node_modules/fast-deep-equal/es6/index.js
+// external module: ./node_modules/fast-deep-equal/es6/index.js
 var es6 = __webpack_require__(7734);
-var es6_default = /*#__PURE__*/__webpack_require__.n(es6);
+var es6_default = /*#__pure__*/__webpack_require__.n(es6);
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
-// EXTERNAL MODULE: external ["wp","data"]
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
+// external module: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7143);
-;// external ["wp","isShallowEqual"]
-const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
-var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
+;// external ["wp","isshallowequal"]
+const external_wp_isshallowequal_namespaceobject = window["wp"]["isshallowequal"];
+var external_wp_isshallowequal_default = /*#__pure__*/__webpack_require__.n(external_wp_isshallowequal_namespaceobject);
 ;// ./node_modules/@wordpress/undo-manager/build-module/index.js
 
-function mergeHistoryChanges(changes1, changes2) {
-  const newChanges = { ...changes1 };
-  Object.entries(changes2).forEach(([key, value]) => {
-    if (newChanges[key]) {
-      newChanges[key] = { ...newChanges[key], to: value.to };
+function mergehistorychanges(changes1, changes2) {
+  const newchanges = { ...changes1 };
+  object.entries(changes2).foreach(([key, value]) => {
+    if (newchanges[key]) {
+      newchanges[key] = { ...newchanges[key], to: value.to };
     } else {
-      newChanges[key] = value;
+      newchanges[key] = value;
     }
   });
-  return newChanges;
+  return newchanges;
 }
-const addHistoryChangesIntoRecord = (record, changes) => {
-  const existingChangesIndex = record?.findIndex(
-    ({ id: recordIdentifier }) => {
-      return typeof recordIdentifier === "string" ? recordIdentifier === changes.id : external_wp_isShallowEqual_default()(recordIdentifier, changes.id);
+const addhistorychangesintorecord = (record, changes) => {
+  const existingchangesindex = record?.findindex(
+    ({ id: recordidentifier }) => {
+      return typeof recordidentifier === "string" ? recordidentifier === changes.id : external_wp_isshallowequal_default()(recordidentifier, changes.id);
     }
   );
-  const nextRecord = [...record];
-  if (existingChangesIndex !== -1) {
-    nextRecord[existingChangesIndex] = {
+  const nextrecord = [...record];
+  if (existingchangesindex !== -1) {
+    nextrecord[existingchangesindex] = {
       id: changes.id,
-      changes: mergeHistoryChanges(
-        nextRecord[existingChangesIndex].changes,
+      changes: mergehistorychanges(
+        nextrecord[existingchangesindex].changes,
         changes.changes
       )
     };
   } else {
-    nextRecord.push(changes);
+    nextrecord.push(changes);
   }
-  return nextRecord;
+  return nextrecord;
 };
-function createUndoManager() {
+function createundomanager() {
   let history = [];
-  let stagedRecord = [];
+  let stagedrecord = [];
   let offset = 0;
-  const dropPendingRedos = () => {
+  const droppendingredos = () => {
     history = history.slice(0, offset || void 0);
     offset = 0;
   };
-  const appendStagedRecordToLatestHistoryRecord = () => {
+  const appendstagedrecordtolatesthistoryrecord = () => {
     const index = history.length === 0 ? 0 : history.length - 1;
-    let latestRecord = history[index] ?? [];
-    stagedRecord.forEach((changes) => {
-      latestRecord = addHistoryChangesIntoRecord(latestRecord, changes);
+    let latestrecord = history[index] ?? [];
+    stagedrecord.foreach((changes) => {
+      latestrecord = addhistorychangesintorecord(latestrecord, changes);
     });
-    stagedRecord = [];
-    history[index] = latestRecord;
+    stagedrecord = [];
+    history[index] = latestrecord;
   };
-  const isRecordEmpty = (record) => {
-    const filteredRecord = record.filter(({ changes }) => {
-      return Object.values(changes).some(
-        ({ from, to }) => typeof from !== "function" && typeof to !== "function" && !external_wp_isShallowEqual_default()(from, to)
+  const isrecordempty = (record) => {
+    const filteredrecord = record.filter(({ changes }) => {
+      return object.values(changes).some(
+        ({ from, to }) => typeof from !== "function" && typeof to !== "function" && !external_wp_isshallowequal_default()(from, to)
       );
     });
-    return !filteredRecord.length;
+    return !filteredrecord.length;
   };
   return {
-    addRecord(record, isStaged = false) {
-      const isEmpty = !record || isRecordEmpty(record);
-      if (isStaged) {
-        if (isEmpty) {
+    addrecord(record, isstaged = false) {
+      const isempty = !record || isrecordempty(record);
+      if (isstaged) {
+        if (isempty) {
           return;
         }
-        record.forEach((changes) => {
-          stagedRecord = addHistoryChangesIntoRecord(
-            stagedRecord,
+        record.foreach((changes) => {
+          stagedrecord = addhistorychangesintorecord(
+            stagedrecord,
             changes
           );
         });
       } else {
-        dropPendingRedos();
-        if (stagedRecord.length) {
-          appendStagedRecordToLatestHistoryRecord();
+        droppendingredos();
+        if (stagedrecord.length) {
+          appendstagedrecordtolatesthistoryrecord();
         }
-        if (isEmpty) {
+        if (isempty) {
           return;
         }
         history.push(record);
       }
     },
     undo() {
-      if (stagedRecord.length) {
-        dropPendingRedos();
-        appendStagedRecordToLatestHistoryRecord();
+      if (stagedrecord.length) {
+        droppendingredos();
+        appendstagedrecordtolatesthistoryrecord();
       }
-      const undoRecord = history[history.length - 1 + offset];
-      if (!undoRecord) {
+      const undorecord = history[history.length - 1 + offset];
+      if (!undorecord) {
         return;
       }
       offset -= 1;
-      return undoRecord;
+      return undorecord;
     },
     redo() {
-      const redoRecord = history[history.length + offset];
-      if (!redoRecord) {
+      const redorecord = history[history.length + offset];
+      if (!redorecord) {
         return;
       }
       offset += 1;
-      return redoRecord;
+      return redorecord;
     },
-    hasUndo() {
+    hasundo() {
       return !!history[history.length - 1 + offset];
     },
-    hasRedo() {
+    hasredo() {
       return !!history[history.length + offset];
     }
   };
@@ -2522,43 +2522,43 @@ function createUndoManager() {
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/utils/if-matching-action.js
-const ifMatchingAction = (isMatch) => (reducer) => (state, action) => {
-  if (state === void 0 || isMatch(action)) {
+const ifmatchingaction = (ismatch) => (reducer) => (state, action) => {
+  if (state === void 0 || ismatch(action)) {
     return reducer(state, action);
   }
   return state;
 };
-var if_matching_action_default = ifMatchingAction;
+var if_matching_action_default = ifmatchingaction;
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/utils/replace-action.js
-const replaceAction = (replacer) => (reducer) => (state, action) => {
+const replaceaction = (replacer) => (reducer) => (state, action) => {
   return reducer(state, replacer(action));
 };
-var replace_action_default = replaceAction;
+var replace_action_default = replaceaction;
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/utils/conservative-map-item.js
 
-function conservativeMapItem(item, nextItem) {
+function conservativemapitem(item, nextitem) {
   if (!item) {
-    return nextItem;
+    return nextitem;
   }
-  let hasChanges = false;
+  let haschanges = false;
   const result = {};
-  for (const key in nextItem) {
-    if (es6_default()(item[key], nextItem[key])) {
+  for (const key in nextitem) {
+    if (es6_default()(item[key], nextitem[key])) {
       result[key] = item[key];
     } else {
-      hasChanges = true;
-      result[key] = nextItem[key];
+      haschanges = true;
+      result[key] = nextitem[key];
     }
   }
-  if (!hasChanges) {
+  if (!haschanges) {
     return item;
   }
   for (const key in item) {
-    if (!result.hasOwnProperty(key)) {
+    if (!result.hasownproperty(key)) {
       result[key] = item[key];
     }
   }
@@ -2567,26 +2567,26 @@ function conservativeMapItem(item, nextItem) {
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/utils/on-sub-key.js
-const onSubKey = (actionProperty) => (reducer) => (state = {}, action) => {
-  const key = action[actionProperty];
+const onsubkey = (actionproperty) => (reducer) => (state = {}, action) => {
+  const key = action[actionproperty];
   if (key === void 0) {
     return state;
   }
-  const nextKeyState = reducer(state[key], action);
-  if (nextKeyState === state[key]) {
+  const nextkeystate = reducer(state[key], action);
+  if (nextkeystate === state[key]) {
     return state;
   }
   return {
     ...state,
-    [key]: nextKeyState
+    [key]: nextkeystate
   };
 };
-var on_sub_key_default = onSubKey;
+var on_sub_key_default = onsubkey;
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
 var entities = __webpack_require__(5914);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js + 1 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js + 1 modules
 var get_query_parts = __webpack_require__(4027);
 ;// ./node_modules/@wordpress/core-data/build-module/queried-data/reducer.js
 
@@ -2594,56 +2594,56 @@ var get_query_parts = __webpack_require__(4027);
 
 
 
-function getContextFromAction(action) {
+function getcontextfromaction(action) {
   const { query } = action;
   if (!query) {
     return "default";
   }
-  const queryParts = (0,get_query_parts/* default */.A)(query);
-  return queryParts.context;
+  const queryparts = (0,get_query_parts/* default */.a)(query);
+  return queryparts.context;
 }
-function getMergedItemIds(itemIds, nextItemIds, page, perPage) {
-  const receivedAllIds = page === 1 && perPage === -1;
-  if (receivedAllIds) {
-    return nextItemIds;
+function getmergeditemids(itemids, nextitemids, page, perpage) {
+  const receivedallids = page === 1 && perpage === -1;
+  if (receivedallids) {
+    return nextitemids;
   }
-  const nextItemIdsStartIndex = (page - 1) * perPage;
-  const size = Math.max(
-    itemIds?.length ?? 0,
-    nextItemIdsStartIndex + nextItemIds.length
+  const nextitemidsstartindex = (page - 1) * perpage;
+  const size = math.max(
+    itemids?.length ?? 0,
+    nextitemidsstartindex + nextitemids.length
   );
-  const mergedItemIds = new Array(size);
+  const mergeditemids = new array(size);
   for (let i = 0; i < size; i++) {
-    const isInNextItemsRange = i >= nextItemIdsStartIndex && i < nextItemIdsStartIndex + perPage;
-    mergedItemIds[i] = isInNextItemsRange ? nextItemIds[i - nextItemIdsStartIndex] : itemIds?.[i];
+    const isinnextitemsrange = i >= nextitemidsstartindex && i < nextitemidsstartindex + perpage;
+    mergeditemids[i] = isinnextitemsrange ? nextitemids[i - nextitemidsstartindex] : itemids?.[i];
   }
-  return mergedItemIds;
+  return mergeditemids;
 }
-function removeEntitiesById(entities, ids) {
-  return Object.fromEntries(
-    Object.entries(entities).filter(
-      ([id]) => !ids.some((itemId) => {
-        if (Number.isInteger(itemId)) {
-          return itemId === +id;
+function removeentitiesbyid(entities, ids) {
+  return object.fromentries(
+    object.entries(entities).filter(
+      ([id]) => !ids.some((itemid) => {
+        if (number.isinteger(itemid)) {
+          return itemid === +id;
         }
-        return itemId === id;
+        return itemid === id;
       })
     )
   );
 }
 function items(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_ITEMS": {
-      const context = getContextFromAction(action);
-      const key = action.key || entities/* DEFAULT_ENTITY_KEY */.C_;
+    case "receive_items": {
+      const context = getcontextfromaction(action);
+      const key = action.key || entities/* default_entity_key */.c_;
       return {
         ...state,
         [context]: {
           ...state[context],
           ...action.items.reduce((accumulator, value) => {
-            const itemId = value?.[key];
-            accumulator[itemId] = conservativeMapItem(
-              state?.[context]?.[itemId],
+            const itemid = value?.[key];
+            accumulator[itemid] = conservativemapitem(
+              state?.[context]?.[itemid],
               value
             );
             return accumulator;
@@ -2651,99 +2651,99 @@ function items(state = {}, action) {
         }
       };
     }
-    case "REMOVE_ITEMS":
-      return Object.fromEntries(
-        Object.entries(state).map(([itemId, contextState]) => [
-          itemId,
-          removeEntitiesById(contextState, action.itemIds)
+    case "remove_items":
+      return object.fromentries(
+        object.entries(state).map(([itemid, contextstate]) => [
+          itemid,
+          removeentitiesbyid(contextstate, action.itemids)
         ])
       );
   }
   return state;
 }
-function itemIsComplete(state = {}, action) {
+function itemiscomplete(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_ITEMS": {
-      const context = getContextFromAction(action);
-      const { query, key = entities/* DEFAULT_ENTITY_KEY */.C_ } = action;
-      const queryParts = query ? (0,get_query_parts/* default */.A)(query) : {};
-      const isCompleteQuery = !query || !Array.isArray(queryParts.fields);
+    case "receive_items": {
+      const context = getcontextfromaction(action);
+      const { query, key = entities/* default_entity_key */.c_ } = action;
+      const queryparts = query ? (0,get_query_parts/* default */.a)(query) : {};
+      const iscompletequery = !query || !array.isarray(queryparts.fields);
       return {
         ...state,
         [context]: {
           ...state[context],
           ...action.items.reduce((result, item) => {
-            const itemId = item?.[key];
-            result[itemId] = state?.[context]?.[itemId] || isCompleteQuery;
+            const itemid = item?.[key];
+            result[itemid] = state?.[context]?.[itemid] || iscompletequery;
             return result;
           }, {})
         }
       };
     }
-    case "REMOVE_ITEMS":
-      return Object.fromEntries(
-        Object.entries(state).map(([itemId, contextState]) => [
-          itemId,
-          removeEntitiesById(contextState, action.itemIds)
+    case "remove_items":
+      return object.fromentries(
+        object.entries(state).map(([itemid, contextstate]) => [
+          itemid,
+          removeentitiesbyid(contextstate, action.itemids)
         ])
       );
   }
   return state;
 }
-const receiveQueries = (0,external_wp_compose_namespaceObject.compose)([
-  // Limit to matching action type so we don't attempt to replace action on
+const receivequeries = (0,external_wp_compose_namespaceobject.compose)([
+  // limit to matching action type so we don't attempt to replace action on
   // an unhandled action.
   if_matching_action_default((action) => "query" in action),
-  // Inject query parts into action for use both in `onSubKey` and reducer.
+  // inject query parts into action for use both in `onsubkey` and reducer.
   replace_action_default((action) => {
     if (action.query) {
       return {
         ...action,
-        ...(0,get_query_parts/* default */.A)(action.query)
+        ...(0,get_query_parts/* default */.a)(action.query)
       };
     }
     return action;
   }),
   on_sub_key_default("context"),
-  // Queries shape is shared, but keyed by query `stableKey` part. Original
+  // queries shape is shared, but keyed by query `stablekey` part. original
   // reducer tracks only a single query object.
-  on_sub_key_default("stableKey")
+  on_sub_key_default("stablekey")
 ])((state = {}, action) => {
-  const { type, page, perPage, key = entities/* DEFAULT_ENTITY_KEY */.C_ } = action;
-  if (type !== "RECEIVE_ITEMS") {
+  const { type, page, perpage, key = entities/* default_entity_key */.c_ } = action;
+  if (type !== "receive_items") {
     return state;
   }
   return {
-    itemIds: getMergedItemIds(
-      state?.itemIds || [],
-      action.items.map((item) => item?.[key]).filter(Boolean),
+    itemids: getmergeditemids(
+      state?.itemids || [],
+      action.items.map((item) => item?.[key]).filter(boolean),
       page,
-      perPage
+      perpage
     ),
     meta: action.meta
   };
 });
 const queries = (state = {}, action) => {
   switch (action.type) {
-    case "RECEIVE_ITEMS":
-      return receiveQueries(state, action);
-    case "REMOVE_ITEMS":
-      const removedItems = action.itemIds.reduce((result, itemId) => {
-        result[itemId] = true;
+    case "receive_items":
+      return receivequeries(state, action);
+    case "remove_items":
+      const removeditems = action.itemids.reduce((result, itemid) => {
+        result[itemid] = true;
         return result;
       }, {});
-      return Object.fromEntries(
-        Object.entries(state).map(
-          ([queryGroup, contextQueries]) => [
-            queryGroup,
-            Object.fromEntries(
-              Object.entries(contextQueries).map(
-                ([query, queryItems]) => [
+      return object.fromentries(
+        object.entries(state).map(
+          ([querygroup, contextqueries]) => [
+            querygroup,
+            object.fromentries(
+              object.entries(contextqueries).map(
+                ([query, queryitems]) => [
                   query,
                   {
-                    ...queryItems,
-                    itemIds: queryItems.itemIds.filter(
-                      (queryId) => !removedItems[queryId]
+                    ...queryitems,
+                    itemids: queryitems.itemids.filter(
+                      (queryid) => !removeditems[queryid]
                     )
                   }
                 ]
@@ -2756,9 +2756,9 @@ const queries = (state = {}, action) => {
       return state;
   }
 };
-var reducer_default = (0,external_wp_data_.combineReducers)({
+var reducer_default = (0,external_wp_data_.combinereducers)({
   items,
-  itemIsComplete,
+  itemiscomplete,
   queries
 });
 
@@ -2771,16 +2771,16 @@ var reducer_default = (0,external_wp_data_.combineReducers)({
 
 
 
-function users(state = { byId: {}, queries: {} }, action) {
+function users(state = { byid: {}, queries: {} }, action) {
   switch (action.type) {
-    case "RECEIVE_USER_QUERY":
+    case "receive_user_query":
       return {
-        byId: {
-          ...state.byId,
-          // Key users by their ID.
+        byid: {
+          ...state.byid,
+          // key users by their id.
           ...action.users.reduce(
-            (newUsers, user) => ({
-              ...newUsers,
+            (newusers, user) => ({
+              ...newusers,
               [user.id]: user
             }),
             {}
@@ -2788,46 +2788,46 @@ function users(state = { byId: {}, queries: {} }, action) {
         },
         queries: {
           ...state.queries,
-          [action.queryID]: action.users.map((user) => user.id)
+          [action.queryid]: action.users.map((user) => user.id)
         }
       };
   }
   return state;
 }
-function currentUser(state = {}, action) {
+function currentuser(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_CURRENT_USER":
-      return action.currentUser;
+    case "receive_current_user":
+      return action.currentuser;
   }
   return state;
 }
-function currentTheme(state = void 0, action) {
+function currenttheme(state = void 0, action) {
   switch (action.type) {
-    case "RECEIVE_CURRENT_THEME":
-      return action.currentTheme.stylesheet;
+    case "receive_current_theme":
+      return action.currenttheme.stylesheet;
   }
   return state;
 }
-function currentGlobalStylesId(state = void 0, action) {
+function currentglobalstylesid(state = void 0, action) {
   switch (action.type) {
-    case "RECEIVE_CURRENT_GLOBAL_STYLES_ID":
+    case "receive_current_global_styles_id":
       return action.id;
   }
   return state;
 }
-function themeBaseGlobalStyles(state = {}, action) {
+function themebaseglobalstyles(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_THEME_GLOBAL_STYLES":
+    case "receive_theme_global_styles":
       return {
         ...state,
-        [action.stylesheet]: action.globalStyles
+        [action.stylesheet]: action.globalstyles
       };
   }
   return state;
 }
-function themeGlobalStyleVariations(state = {}, action) {
+function themeglobalstylevariations(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_THEME_GLOBAL_STYLE_VARIATIONS":
+    case "receive_theme_global_style_variations":
       return {
         ...state,
         [action.stylesheet]: action.variations
@@ -2835,75 +2835,75 @@ function themeGlobalStyleVariations(state = {}, action) {
   }
   return state;
 }
-const withMultiEntityRecordEdits = (reducer) => (state, action) => {
-  if (action.type === "UNDO" || action.type === "REDO") {
+const withmultientityrecordedits = (reducer) => (state, action) => {
+  if (action.type === "undo" || action.type === "redo") {
     const { record } = action;
-    let newState = state;
-    record.forEach(({ id: { kind, name, recordId }, changes }) => {
-      newState = reducer(newState, {
-        type: "EDIT_ENTITY_RECORD",
+    let newstate = state;
+    record.foreach(({ id: { kind, name, recordid }, changes }) => {
+      newstate = reducer(newstate, {
+        type: "edit_entity_record",
         kind,
         name,
-        recordId,
-        edits: Object.entries(changes).reduce(
+        recordid,
+        edits: object.entries(changes).reduce(
           (acc, [key, value]) => {
-            acc[key] = action.type === "UNDO" ? value.from : value.to;
+            acc[key] = action.type === "undo" ? value.from : value.to;
             return acc;
           },
           {}
         )
       });
     });
-    return newState;
+    return newstate;
   }
   return reducer(state, action);
 };
-function entity(entityConfig) {
-  return (0,external_wp_compose_namespaceObject.compose)([
-    withMultiEntityRecordEdits,
-    // Limit to matching action type so we don't attempt to replace action on
+function entity(entityconfig) {
+  return (0,external_wp_compose_namespaceobject.compose)([
+    withmultientityrecordedits,
+    // limit to matching action type so we don't attempt to replace action on
     // an unhandled action.
     if_matching_action_default(
-      (action) => action.name && action.kind && action.name === entityConfig.name && action.kind === entityConfig.kind
+      (action) => action.name && action.kind && action.name === entityconfig.name && action.kind === entityconfig.kind
     ),
-    // Inject the entity config into the action.
+    // inject the entity config into the action.
     replace_action_default((action) => {
       return {
-        key: entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_,
+        key: entityconfig.key || entities/* default_entity_key */.c_,
         ...action
       };
     })
   ])(
-    (0,external_wp_data_.combineReducers)({
-      queriedData: reducer_default,
+    (0,external_wp_data_.combinereducers)({
+      querieddata: reducer_default,
       edits: (state = {}, action) => {
         switch (action.type) {
-          case "RECEIVE_ITEMS":
+          case "receive_items":
             const context = action?.query?.context ?? "default";
             if (context !== "default") {
               return state;
             }
-            const nextState = { ...state };
+            const nextstate = { ...state };
             for (const record of action.items) {
-              const recordId = record?.[action.key];
-              const edits = nextState[recordId];
+              const recordid = record?.[action.key];
+              const edits = nextstate[recordid];
               if (!edits) {
                 continue;
               }
-              const nextEdits2 = Object.keys(edits).reduce(
+              const nextedits2 = object.keys(edits).reduce(
                 (acc, key) => {
                   if (
-                    // Edits are the "raw" attribute values, but records may have
+                    // edits are the "raw" attribute values, but records may have
                     // objects with more properties, so we use `get` here for the
                     // comparison.
                     !es6_default()(
                       edits[key],
                       record[key]?.raw ?? record[key]
-                    ) && // Sometimes the server alters the sent value which means
+                    ) && // sometimes the server alters the sent value which means
                     // we need to also remove the edits before the api request.
-                    (!action.persistedEdits || !es6_default()(
+                    (!action.persistededits || !es6_default()(
                       edits[key],
-                      action.persistedEdits[key]
+                      action.persistededits[key]
                     ))
                   ) {
                     acc[key] = edits[key];
@@ -2912,40 +2912,40 @@ function entity(entityConfig) {
                 },
                 {}
               );
-              if (Object.keys(nextEdits2).length) {
-                nextState[recordId] = nextEdits2;
+              if (object.keys(nextedits2).length) {
+                nextstate[recordid] = nextedits2;
               } else {
-                delete nextState[recordId];
+                delete nextstate[recordid];
               }
             }
-            return nextState;
-          case "EDIT_ENTITY_RECORD":
-            const nextEdits = {
-              ...state[action.recordId],
+            return nextstate;
+          case "edit_entity_record":
+            const nextedits = {
+              ...state[action.recordid],
               ...action.edits
             };
-            Object.keys(nextEdits).forEach((key) => {
-              if (nextEdits[key] === void 0) {
-                delete nextEdits[key];
+            object.keys(nextedits).foreach((key) => {
+              if (nextedits[key] === void 0) {
+                delete nextedits[key];
               }
             });
             return {
               ...state,
-              [action.recordId]: nextEdits
+              [action.recordid]: nextedits
             };
         }
         return state;
       },
       saving: (state = {}, action) => {
         switch (action.type) {
-          case "SAVE_ENTITY_RECORD_START":
-          case "SAVE_ENTITY_RECORD_FINISH":
+          case "save_entity_record_start":
+          case "save_entity_record_finish":
             return {
               ...state,
-              [action.recordId]: {
-                pending: action.type === "SAVE_ENTITY_RECORD_START",
+              [action.recordid]: {
+                pending: action.type === "save_entity_record_start",
                 error: action.error,
-                isAutosave: action.isAutosave
+                isautosave: action.isautosave
               }
             };
         }
@@ -2953,12 +2953,12 @@ function entity(entityConfig) {
       },
       deleting: (state = {}, action) => {
         switch (action.type) {
-          case "DELETE_ENTITY_RECORD_START":
-          case "DELETE_ENTITY_RECORD_FINISH":
+          case "delete_entity_record_start":
+          case "delete_entity_record_finish":
             return {
               ...state,
-              [action.recordId]: {
-                pending: action.type === "DELETE_ENTITY_RECORD_START",
+              [action.recordid]: {
+                pending: action.type === "delete_entity_record_start",
                 error: action.error
               }
             };
@@ -2966,26 +2966,26 @@ function entity(entityConfig) {
         return state;
       },
       revisions: (state = {}, action) => {
-        if (action.type === "RECEIVE_ITEM_REVISIONS") {
-          const recordKey = action.recordKey;
-          delete action.recordKey;
-          const newState = reducer_default(state[recordKey], {
+        if (action.type === "receive_item_revisions") {
+          const recordkey = action.recordkey;
+          delete action.recordkey;
+          const newstate = reducer_default(state[recordkey], {
             ...action,
-            type: "RECEIVE_ITEMS"
+            type: "receive_items"
           });
           return {
             ...state,
-            [recordKey]: newState
+            [recordkey]: newstate
           };
         }
-        if (action.type === "REMOVE_ITEMS") {
-          return Object.fromEntries(
-            Object.entries(state).filter(
-              ([id]) => !action.itemIds.some((itemId) => {
-                if (Number.isInteger(itemId)) {
-                  return itemId === +id;
+        if (action.type === "remove_items") {
+          return object.fromentries(
+            object.entries(state).filter(
+              ([id]) => !action.itemids.some((itemid) => {
+                if (number.isinteger(itemid)) {
+                  return itemid === +id;
                 }
-                return itemId === id;
+                return itemid === id;
               })
             )
           );
@@ -2995,18 +2995,18 @@ function entity(entityConfig) {
     })
   );
 }
-function entitiesConfig(state = entities/* rootEntitiesConfig */.Mr, action) {
+function entitiesconfig(state = entities/* rootentitiesconfig */.mr, action) {
   switch (action.type) {
-    case "ADD_ENTITIES":
+    case "add_entities":
       return [...state, ...action.entities];
   }
   return state;
 }
 const reducer_entities = (state = {}, action) => {
-  const newConfig = entitiesConfig(state.config, action);
-  let entitiesDataReducer = state.reducer;
-  if (!entitiesDataReducer || newConfig !== state.config) {
-    const entitiesByKind = newConfig.reduce((acc, record) => {
+  const newconfig = entitiesconfig(state.config, action);
+  let entitiesdatareducer = state.reducer;
+  if (!entitiesdatareducer || newconfig !== state.config) {
+    const entitiesbykind = newconfig.reduce((acc, record) => {
       const { kind } = record;
       if (!acc[kind]) {
         acc[kind] = [];
@@ -3014,49 +3014,49 @@ const reducer_entities = (state = {}, action) => {
       acc[kind].push(record);
       return acc;
     }, {});
-    entitiesDataReducer = (0,external_wp_data_.combineReducers)(
-      Object.fromEntries(
-        Object.entries(entitiesByKind).map(
-          ([kind, subEntities]) => {
-            const kindReducer = (0,external_wp_data_.combineReducers)(
-              Object.fromEntries(
-                subEntities.map((entityConfig) => [
-                  entityConfig.name,
-                  entity(entityConfig)
+    entitiesdatareducer = (0,external_wp_data_.combinereducers)(
+      object.fromentries(
+        object.entries(entitiesbykind).map(
+          ([kind, subentities]) => {
+            const kindreducer = (0,external_wp_data_.combinereducers)(
+              object.fromentries(
+                subentities.map((entityconfig) => [
+                  entityconfig.name,
+                  entity(entityconfig)
                 ])
               )
             );
-            return [kind, kindReducer];
+            return [kind, kindreducer];
           }
         )
       )
     );
   }
-  const newData = entitiesDataReducer(state.records, action);
-  if (newData === state.records && newConfig === state.config && entitiesDataReducer === state.reducer) {
+  const newdata = entitiesdatareducer(state.records, action);
+  if (newdata === state.records && newconfig === state.config && entitiesdatareducer === state.reducer) {
     return state;
   }
   return {
-    reducer: entitiesDataReducer,
-    records: newData,
-    config: newConfig
+    reducer: entitiesdatareducer,
+    records: newdata,
+    config: newconfig
   };
 };
-function undoManager(state = createUndoManager()) {
+function undomanager(state = createundomanager()) {
   return state;
 }
-function editsReference(state = {}, action) {
+function editsreference(state = {}, action) {
   switch (action.type) {
-    case "EDIT_ENTITY_RECORD":
-    case "UNDO":
-    case "REDO":
+    case "edit_entity_record":
+    case "undo":
+    case "redo":
       return {};
   }
   return state;
 }
-function embedPreviews(state = {}, action) {
+function embedpreviews(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_EMBED_PREVIEW":
+    case "receive_embed_preview":
       const { url, preview } = action;
       return {
         ...state,
@@ -3065,14 +3065,14 @@ function embedPreviews(state = {}, action) {
   }
   return state;
 }
-function userPermissions(state = {}, action) {
+function userpermissions(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_USER_PERMISSION":
+    case "receive_user_permission":
       return {
         ...state,
-        [action.key]: action.isAllowed
+        [action.key]: action.isallowed
       };
-    case "RECEIVE_USER_PERMISSIONS":
+    case "receive_user_permissions":
       return {
         ...state,
         ...action.permissions
@@ -3082,93 +3082,93 @@ function userPermissions(state = {}, action) {
 }
 function autosaves(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_AUTOSAVES":
-      const { postId, autosaves: autosavesData } = action;
+    case "receive_autosaves":
+      const { postid, autosaves: autosavesdata } = action;
       return {
         ...state,
-        [postId]: autosavesData
+        [postid]: autosavesdata
       };
   }
   return state;
 }
-function blockPatterns(state = [], action) {
+function blockpatterns(state = [], action) {
   switch (action.type) {
-    case "RECEIVE_BLOCK_PATTERNS":
+    case "receive_block_patterns":
       return action.patterns;
   }
   return state;
 }
-function blockPatternCategories(state = [], action) {
+function blockpatterncategories(state = [], action) {
   switch (action.type) {
-    case "RECEIVE_BLOCK_PATTERN_CATEGORIES":
+    case "receive_block_pattern_categories":
       return action.categories;
   }
   return state;
 }
-function userPatternCategories(state = [], action) {
+function userpatterncategories(state = [], action) {
   switch (action.type) {
-    case "RECEIVE_USER_PATTERN_CATEGORIES":
-      return action.patternCategories;
+    case "receive_user_pattern_categories":
+      return action.patterncategories;
   }
   return state;
 }
-function navigationFallbackId(state = null, action) {
+function navigationfallbackid(state = null, action) {
   switch (action.type) {
-    case "RECEIVE_NAVIGATION_FALLBACK_ID":
-      return action.fallbackId;
+    case "receive_navigation_fallback_id":
+      return action.fallbackid;
   }
   return state;
 }
-function themeGlobalStyleRevisions(state = {}, action) {
+function themeglobalstylerevisions(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_THEME_GLOBAL_STYLE_REVISIONS":
+    case "receive_theme_global_style_revisions":
       return {
         ...state,
-        [action.currentId]: action.revisions
+        [action.currentid]: action.revisions
       };
   }
   return state;
 }
-function defaultTemplates(state = {}, action) {
+function defaulttemplates(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_DEFAULT_TEMPLATE":
+    case "receive_default_template":
       return {
         ...state,
-        [JSON.stringify(action.query)]: action.templateId
+        [json.stringify(action.query)]: action.templateid
       };
   }
   return state;
 }
-function registeredPostMeta(state = {}, action) {
+function registeredpostmeta(state = {}, action) {
   switch (action.type) {
-    case "RECEIVE_REGISTERED_POST_META":
+    case "receive_registered_post_meta":
       return {
         ...state,
-        [action.postType]: action.registeredPostMeta
+        [action.posttype]: action.registeredpostmeta
       };
   }
   return state;
 }
-var reducer_reducer_default = (0,external_wp_data_.combineReducers)({
+var reducer_reducer_default = (0,external_wp_data_.combinereducers)({
   users,
-  currentTheme,
-  currentGlobalStylesId,
-  currentUser,
-  themeGlobalStyleVariations,
-  themeBaseGlobalStyles,
-  themeGlobalStyleRevisions,
+  currenttheme,
+  currentglobalstylesid,
+  currentuser,
+  themeglobalstylevariations,
+  themebaseglobalstyles,
+  themeglobalstylerevisions,
   entities: reducer_entities,
-  editsReference,
-  undoManager,
-  embedPreviews,
-  userPermissions,
+  editsreference,
+  undomanager,
+  embedpreviews,
+  userpermissions,
   autosaves,
-  blockPatterns,
-  blockPatternCategories,
-  userPatternCategories,
-  navigationFallbackId,
-  defaultTemplates,
-  registeredPostMeta
+  blockpatterns,
+  blockpatterncategories,
+  userpatterncategories,
+  navigationfallbackid,
+  defaulttemplates,
+  registeredpostmeta
 });
 
 
@@ -3180,26 +3180,26 @@ var reducer_reducer_default = (0,external_wp_data_.combineReducers)({
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   xQ: () => (/* binding */ camelCase)
+/* harmony export */   xq: () => (/* binding */ camelcase)
 /* harmony export */ });
-/* unused harmony exports camelCaseTransform, camelCaseTransformMerge */
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1635);
-/* harmony import */ var pascal_case__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(287);
+/* unused harmony exports camelcasetransform, camelcasetransformmerge */
+/* harmony import */ var tslib__webpack_imported_module_1__ = __webpack_require__(1635);
+/* harmony import */ var pascal_case__webpack_imported_module_0__ = __webpack_require__(287);
 
 
-function camelCaseTransform(input, index) {
+function camelcasetransform(input, index) {
     if (index === 0)
-        return input.toLowerCase();
-    return (0,pascal_case__WEBPACK_IMPORTED_MODULE_0__/* .pascalCaseTransform */ .l3)(input, index);
+        return input.tolowercase();
+    return (0,pascal_case__webpack_imported_module_0__/* .pascalcasetransform */ .l3)(input, index);
 }
-function camelCaseTransformMerge(input, index) {
+function camelcasetransformmerge(input, index) {
     if (index === 0)
-        return input.toLowerCase();
-    return pascalCaseTransformMerge(input);
+        return input.tolowercase();
+    return pascalcasetransformmerge(input);
 }
-function camelCase(input, options) {
+function camelcase(input, options) {
     if (options === void 0) { options = {}; }
-    return (0,pascal_case__WEBPACK_IMPORTED_MODULE_0__/* .pascalCase */ .fL)(input, (0,tslib__WEBPACK_IMPORTED_MODULE_1__/* .__assign */ .Cl)({ transform: camelCaseTransform }, options));
+    return (0,pascal_case__webpack_imported_module_0__/* .pascalcase */ .fl)(input, (0,tslib__webpack_imported_module_1__/* .__assign */ .cl)({ transform: camelcasetransform }, options));
 }
 
 
@@ -3210,29 +3210,29 @@ function camelCase(input, options) {
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  qh: () => (/* reexport */ __experimentalUseEntityRecord),
-  bM: () => (/* reexport */ use_entity_records/* __experimentalUseEntityRecords */.bM),
-  _: () => (/* reexport */ __experimentalUseResourcePermissions),
-  hg: () => (/* reexport */ useEntityBlockEditor),
-  mV: () => (/* reexport */ useEntityId),
-  S$: () => (/* reexport */ useEntityProp),
-  MA: () => (/* reexport */ useEntityRecord),
-  $u: () => (/* reexport */ use_entity_records/* default */.Ay),
+  qh: () => (/* reexport */ __experimentaluseentityrecord),
+  bm: () => (/* reexport */ use_entity_records/* __experimentaluseentityrecords */.bm),
+  _: () => (/* reexport */ __experimentaluseresourcepermissions),
+  hg: () => (/* reexport */ useentityblockeditor),
+  mv: () => (/* reexport */ useentityid),
+  s$: () => (/* reexport */ useentityprop),
+  ma: () => (/* reexport */ useentityrecord),
+  $u: () => (/* reexport */ use_entity_records/* default */.ay),
   qs: () => (/* reexport */ use_resource_permissions_default)
 });
 
-// EXTERNAL MODULE: external ["wp","data"]
+// external module: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7143);
-// EXTERNAL MODULE: external ["wp","deprecated"]
+// external module: external ["wp","deprecated"]
 var external_wp_deprecated_ = __webpack_require__(4040);
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
-// EXTERNAL MODULE: external ["wp","element"]
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_);
+// external module: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(6087);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/hooks/use-query-select.js + 2 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/hooks/use-query-select.js + 2 modules
 var use_query_select = __webpack_require__(7541);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/index.js
+// external module: ./node_modules/@wordpress/core-data/build-module/index.js
 var build_module = __webpack_require__(4565);
 ;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-record.js
 
@@ -3240,83 +3240,83 @@ var build_module = __webpack_require__(4565);
 
 
 
-const EMPTY_OBJECT = {};
-function useEntityRecord(kind, name, recordId, options = { enabled: true }) {
-  const { editEntityRecord, saveEditedEntityRecord } = (0,external_wp_data_.useDispatch)(build_module.store);
-  const mutations = (0,external_wp_element_.useMemo)(
+const empty_object = {};
+function useentityrecord(kind, name, recordid, options = { enabled: true }) {
+  const { editentityrecord, saveeditedentityrecord } = (0,external_wp_data_.usedispatch)(build_module.store);
+  const mutations = (0,external_wp_element_.usememo)(
     () => ({
-      edit: (record2, editOptions = {}) => editEntityRecord(kind, name, recordId, record2, editOptions),
-      save: (saveOptions = {}) => saveEditedEntityRecord(kind, name, recordId, {
-        throwOnError: true,
-        ...saveOptions
+      edit: (record2, editoptions = {}) => editentityrecord(kind, name, recordid, record2, editoptions),
+      save: (saveoptions = {}) => saveeditedentityrecord(kind, name, recordid, {
+        throwonerror: true,
+        ...saveoptions
       })
     }),
-    [editEntityRecord, kind, name, recordId, saveEditedEntityRecord]
+    [editentityrecord, kind, name, recordid, saveeditedentityrecord]
   );
-  const { editedRecord, hasEdits, edits } = (0,external_wp_data_.useSelect)(
+  const { editedrecord, hasedits, edits } = (0,external_wp_data_.useselect)(
     (select) => {
       if (!options.enabled) {
         return {
-          editedRecord: EMPTY_OBJECT,
-          hasEdits: false,
-          edits: EMPTY_OBJECT
+          editedrecord: empty_object,
+          hasedits: false,
+          edits: empty_object
         };
       }
       return {
-        editedRecord: select(build_module.store).getEditedEntityRecord(
+        editedrecord: select(build_module.store).geteditedentityrecord(
           kind,
           name,
-          recordId
+          recordid
         ),
-        hasEdits: select(build_module.store).hasEditsForEntityRecord(
+        hasedits: select(build_module.store).haseditsforentityrecord(
           kind,
           name,
-          recordId
+          recordid
         ),
-        edits: select(build_module.store).getEntityRecordNonTransientEdits(
+        edits: select(build_module.store).getentityrecordnontransientedits(
           kind,
           name,
-          recordId
+          recordid
         )
       };
     },
-    [kind, name, recordId, options.enabled]
+    [kind, name, recordid, options.enabled]
   );
-  const { data: record, ...querySelectRest } = (0,use_query_select/* default */.A)(
+  const { data: record, ...queryselectrest } = (0,use_query_select/* default */.a)(
     (query) => {
       if (!options.enabled) {
         return {
           data: null
         };
       }
-      return query(build_module.store).getEntityRecord(kind, name, recordId);
+      return query(build_module.store).getentityrecord(kind, name, recordid);
     },
-    [kind, name, recordId, options.enabled]
+    [kind, name, recordid, options.enabled]
   );
   return {
     record,
-    editedRecord,
-    hasEdits,
+    editedrecord,
+    hasedits,
     edits,
-    ...querySelectRest,
+    ...queryselectrest,
     ...mutations
   };
 }
-function __experimentalUseEntityRecord(kind, name, recordId, options) {
-  external_wp_deprecated_default()(`wp.data.__experimentalUseEntityRecord`, {
-    alternative: "wp.data.useEntityRecord",
+function __experimentaluseentityrecord(kind, name, recordid, options) {
+  external_wp_deprecated_default()(`wp.data.__experimentaluseentityrecord`, {
+    alternative: "wp.data.useentityrecord",
     since: "6.1"
   });
-  return useEntityRecord(kind, name, recordId, options);
+  return useentityrecord(kind, name, recordid, options);
 }
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-records.js
+// external module: ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-records.js
 var use_entity_records = __webpack_require__(7078);
 ;// external ["wp","warning"]
-const external_wp_warning_namespaceObject = window["wp"]["warning"];
-var external_wp_warning_default = /*#__PURE__*/__webpack_require__.n(external_wp_warning_namespaceObject);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/hooks/constants.js
+const external_wp_warning_namespaceobject = window["wp"]["warning"];
+var external_wp_warning_default = /*#__pure__*/__webpack_require__.n(external_wp_warning_namespaceobject);
+// external module: ./node_modules/@wordpress/core-data/build-module/hooks/constants.js
 var constants = __webpack_require__(2859);
 ;// ./node_modules/@wordpress/core-data/build-module/hooks/use-resource-permissions.js
 
@@ -3324,106 +3324,106 @@ var constants = __webpack_require__(2859);
 
 
 
-function useResourcePermissions(resource, id) {
-  const isEntity = typeof resource === "object";
-  const resourceAsString = isEntity ? JSON.stringify(resource) : resource;
-  if (isEntity && typeof id !== "undefined") {
+function useresourcepermissions(resource, id) {
+  const isentity = typeof resource === "object";
+  const resourceasstring = isentity ? json.stringify(resource) : resource;
+  if (isentity && typeof id !== "undefined") {
     external_wp_warning_default()(
-      `When 'resource' is an entity object, passing 'id' as a separate argument isn't supported.`
+      `when 'resource' is an entity object, passing 'id' as a separate argument isn't supported.`
     );
   }
-  return (0,use_query_select/* default */.A)(
+  return (0,use_query_select/* default */.a)(
     (resolve) => {
-      const hasId = isEntity ? !!resource.id : !!id;
-      const { canUser } = resolve(build_module.store);
-      const create = canUser(
+      const hasid = isentity ? !!resource.id : !!id;
+      const { canuser } = resolve(build_module.store);
+      const create = canuser(
         "create",
-        isEntity ? { kind: resource.kind, name: resource.name } : resource
+        isentity ? { kind: resource.kind, name: resource.name } : resource
       );
-      if (!hasId) {
-        const read2 = canUser("read", resource);
-        const isResolving2 = create.isResolving || read2.isResolving;
-        const hasResolved2 = create.hasResolved && read2.hasResolved;
-        let status2 = constants/* Status */.n.Idle;
-        if (isResolving2) {
-          status2 = constants/* Status */.n.Resolving;
-        } else if (hasResolved2) {
-          status2 = constants/* Status */.n.Success;
+      if (!hasid) {
+        const read2 = canuser("read", resource);
+        const isresolving2 = create.isresolving || read2.isresolving;
+        const hasresolved2 = create.hasresolved && read2.hasresolved;
+        let status2 = constants/* status */.n.idle;
+        if (isresolving2) {
+          status2 = constants/* status */.n.resolving;
+        } else if (hasresolved2) {
+          status2 = constants/* status */.n.success;
         }
         return {
           status: status2,
-          isResolving: isResolving2,
-          hasResolved: hasResolved2,
-          canCreate: create.hasResolved && create.data,
-          canRead: read2.hasResolved && read2.data
+          isresolving: isresolving2,
+          hasresolved: hasresolved2,
+          cancreate: create.hasresolved && create.data,
+          canread: read2.hasresolved && read2.data
         };
       }
-      const read = canUser("read", resource, id);
-      const update = canUser("update", resource, id);
-      const _delete = canUser("delete", resource, id);
-      const isResolving = read.isResolving || create.isResolving || update.isResolving || _delete.isResolving;
-      const hasResolved = read.hasResolved && create.hasResolved && update.hasResolved && _delete.hasResolved;
-      let status = constants/* Status */.n.Idle;
-      if (isResolving) {
-        status = constants/* Status */.n.Resolving;
-      } else if (hasResolved) {
-        status = constants/* Status */.n.Success;
+      const read = canuser("read", resource, id);
+      const update = canuser("update", resource, id);
+      const _delete = canuser("delete", resource, id);
+      const isresolving = read.isresolving || create.isresolving || update.isresolving || _delete.isresolving;
+      const hasresolved = read.hasresolved && create.hasresolved && update.hasresolved && _delete.hasresolved;
+      let status = constants/* status */.n.idle;
+      if (isresolving) {
+        status = constants/* status */.n.resolving;
+      } else if (hasresolved) {
+        status = constants/* status */.n.success;
       }
       return {
         status,
-        isResolving,
-        hasResolved,
-        canRead: hasResolved && read.data,
-        canCreate: hasResolved && create.data,
-        canUpdate: hasResolved && update.data,
-        canDelete: hasResolved && _delete.data
+        isresolving,
+        hasresolved,
+        canread: hasresolved && read.data,
+        cancreate: hasresolved && create.data,
+        canupdate: hasresolved && update.data,
+        candelete: hasresolved && _delete.data
       };
     },
-    [resourceAsString, id]
+    [resourceasstring, id]
   );
 }
-var use_resource_permissions_default = useResourcePermissions;
-function __experimentalUseResourcePermissions(resource, id) {
-  external_wp_deprecated_default()(`wp.data.__experimentalUseResourcePermissions`, {
-    alternative: "wp.data.useResourcePermissions",
+var use_resource_permissions_default = useresourcepermissions;
+function __experimentaluseresourcepermissions(resource, id) {
+  external_wp_deprecated_default()(`wp.data.__experimentaluseresourcepermissions`, {
+    alternative: "wp.data.useresourcepermissions",
     since: "6.1"
   });
-  return useResourcePermissions(resource, id);
+  return useresourcepermissions(resource, id);
 }
 
 
-// EXTERNAL MODULE: external ["wp","blocks"]
+// external module: external ["wp","blocks"]
 var external_wp_blocks_ = __webpack_require__(4997);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/name.js
+// external module: ./node_modules/@wordpress/core-data/build-module/name.js
 var build_module_name = __webpack_require__(2278);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/entity-context.js
+// external module: ./node_modules/@wordpress/core-data/build-module/entity-context.js
 var entity_context = __webpack_require__(8843);
 ;// ./node_modules/@wordpress/core-data/build-module/hooks/use-entity-id.js
 
 
-function useEntityId(kind, name) {
-  const context = (0,external_wp_element_.useContext)(entity_context/* EntityContext */.D);
+function useentityid(kind, name) {
+  const context = (0,external_wp_element_.usecontext)(entity_context/* entitycontext */.d);
   return context?.[kind]?.[name];
 }
 
 
-;// external ["wp","richText"]
-const external_wp_richText_namespaceObject = window["wp"]["richText"];
-;// external ["wp","blockEditor"]
-const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/lock-unlock.js + 1 modules
+;// external ["wp","richtext"]
+const external_wp_richtext_namespaceobject = window["wp"]["richtext"];
+;// external ["wp","blockeditor"]
+const external_wp_blockeditor_namespaceobject = window["wp"]["blockeditor"];
+// external module: ./node_modules/@wordpress/core-data/build-module/lock-unlock.js + 1 modules
 var lock_unlock = __webpack_require__(6378);
 ;// ./node_modules/@wordpress/core-data/build-module/footnotes/get-rich-text-values-cached.js
 
 
-let unlockedApis;
-const cache = /* @__PURE__ */ new WeakMap();
-function getRichTextValuesCached(block) {
-  if (!unlockedApis) {
-    unlockedApis = (0,lock_unlock/* unlock */.T)(external_wp_blockEditor_namespaceObject.privateApis);
+let unlockedapis;
+const cache = /* @__pure__ */ new weakmap();
+function getrichtextvaluescached(block) {
+  if (!unlockedapis) {
+    unlockedapis = (0,lock_unlock/* unlock */.t)(external_wp_blockeditor_namespaceobject.privateapis);
   }
   if (!cache.has(block)) {
-    const values = unlockedApis.getRichTextValues([block]);
+    const values = unlockedapis.getrichtextvalues([block]);
     cache.set(block, values);
   }
   return cache.get(block);
@@ -3432,15 +3432,15 @@ function getRichTextValuesCached(block) {
 
 ;// ./node_modules/@wordpress/core-data/build-module/footnotes/get-footnotes-order.js
 
-const get_footnotes_order_cache = /* @__PURE__ */ new WeakMap();
-function getBlockFootnotesOrder(block) {
+const get_footnotes_order_cache = /* @__pure__ */ new weakmap();
+function getblockfootnotesorder(block) {
   if (!get_footnotes_order_cache.has(block)) {
     const order = [];
-    for (const value of getRichTextValuesCached(block)) {
+    for (const value of getrichtextvaluescached(block)) {
       if (!value) {
         continue;
       }
-      value.replacements.forEach(({ type, attributes }) => {
+      value.replacements.foreach(({ type, attributes }) => {
         if (type === "core/footnote") {
           order.push(attributes["data-fn"]);
         }
@@ -3450,16 +3450,16 @@ function getBlockFootnotesOrder(block) {
   }
   return get_footnotes_order_cache.get(block);
 }
-function getFootnotesOrder(blocks) {
-  return blocks.flatMap(getBlockFootnotesOrder);
+function getfootnotesorder(blocks) {
+  return blocks.flatmap(getblockfootnotesorder);
 }
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/footnotes/index.js
 
 
-let oldFootnotes = {};
-function updateFootnotesFromMeta(blocks, meta) {
+let oldfootnotes = {};
+function updatefootnotesfrommeta(blocks, meta) {
   const output = { blocks };
   if (!meta) {
     return output;
@@ -3467,76 +3467,76 @@ function updateFootnotesFromMeta(blocks, meta) {
   if (meta.footnotes === void 0) {
     return output;
   }
-  const newOrder = getFootnotesOrder(blocks);
-  const footnotes = meta.footnotes ? JSON.parse(meta.footnotes) : [];
-  const currentOrder = footnotes.map((fn) => fn.id);
-  if (currentOrder.join("") === newOrder.join("")) {
+  const neworder = getfootnotesorder(blocks);
+  const footnotes = meta.footnotes ? json.parse(meta.footnotes) : [];
+  const currentorder = footnotes.map((fn) => fn.id);
+  if (currentorder.join("") === neworder.join("")) {
     return output;
   }
-  const newFootnotes = newOrder.map(
-    (fnId) => footnotes.find((fn) => fn.id === fnId) || oldFootnotes[fnId] || {
-      id: fnId,
+  const newfootnotes = neworder.map(
+    (fnid) => footnotes.find((fn) => fn.id === fnid) || oldfootnotes[fnid] || {
+      id: fnid,
       content: ""
     }
   );
-  function updateAttributes(attributes) {
-    if (!attributes || Array.isArray(attributes) || typeof attributes !== "object") {
+  function updateattributes(attributes) {
+    if (!attributes || array.isarray(attributes) || typeof attributes !== "object") {
       return attributes;
     }
     attributes = { ...attributes };
     for (const key in attributes) {
       const value = attributes[key];
-      if (Array.isArray(value)) {
-        attributes[key] = value.map(updateAttributes);
+      if (array.isarray(value)) {
+        attributes[key] = value.map(updateattributes);
         continue;
       }
-      if (typeof value !== "string" && !(value instanceof external_wp_richText_namespaceObject.RichTextData)) {
+      if (typeof value !== "string" && !(value instanceof external_wp_richtext_namespaceobject.richtextdata)) {
         continue;
       }
-      const richTextValue = typeof value === "string" ? external_wp_richText_namespaceObject.RichTextData.fromHTMLString(value) : new external_wp_richText_namespaceObject.RichTextData(value);
-      let hasFootnotes = false;
-      richTextValue.replacements.forEach((replacement) => {
+      const richtextvalue = typeof value === "string" ? external_wp_richtext_namespaceobject.richtextdata.fromhtmlstring(value) : new external_wp_richtext_namespaceobject.richtextdata(value);
+      let hasfootnotes = false;
+      richtextvalue.replacements.foreach((replacement) => {
         if (replacement.type === "core/footnote") {
           const id = replacement.attributes["data-fn"];
-          const index = newOrder.indexOf(id);
-          const countValue = (0,external_wp_richText_namespaceObject.create)({
-            html: replacement.innerHTML
+          const index = neworder.indexof(id);
+          const countvalue = (0,external_wp_richtext_namespaceobject.create)({
+            html: replacement.innerhtml
           });
-          countValue.text = String(index + 1);
-          countValue.formats = Array.from(
-            { length: countValue.text.length },
-            () => countValue.formats[0]
+          countvalue.text = string(index + 1);
+          countvalue.formats = array.from(
+            { length: countvalue.text.length },
+            () => countvalue.formats[0]
           );
-          countValue.replacements = Array.from(
-            { length: countValue.text.length },
-            () => countValue.replacements[0]
+          countvalue.replacements = array.from(
+            { length: countvalue.text.length },
+            () => countvalue.replacements[0]
           );
-          replacement.innerHTML = (0,external_wp_richText_namespaceObject.toHTMLString)({
-            value: countValue
+          replacement.innerhtml = (0,external_wp_richtext_namespaceobject.tohtmlstring)({
+            value: countvalue
           });
-          hasFootnotes = true;
+          hasfootnotes = true;
         }
       });
-      if (hasFootnotes) {
-        attributes[key] = typeof value === "string" ? richTextValue.toHTMLString() : richTextValue;
+      if (hasfootnotes) {
+        attributes[key] = typeof value === "string" ? richtextvalue.tohtmlstring() : richtextvalue;
       }
     }
     return attributes;
   }
-  function updateBlocksAttributes(__blocks) {
+  function updateblocksattributes(__blocks) {
     return __blocks.map((block) => {
       return {
         ...block,
-        attributes: updateAttributes(block.attributes),
-        innerBlocks: updateBlocksAttributes(block.innerBlocks)
+        attributes: updateattributes(block.attributes),
+        innerblocks: updateblocksattributes(block.innerblocks)
       };
     });
   }
-  const newBlocks = updateBlocksAttributes(blocks);
-  oldFootnotes = {
-    ...oldFootnotes,
+  const newblocks = updateblocksattributes(blocks);
+  oldfootnotes = {
+    ...oldfootnotes,
     ...footnotes.reduce((acc, fn) => {
-      if (!newOrder.includes(fn.id)) {
+      if (!neworder.includes(fn.id)) {
         acc[fn.id] = fn;
       }
       return acc;
@@ -3545,9 +3545,9 @@ function updateFootnotesFromMeta(blocks, meta) {
   return {
     meta: {
       ...meta,
-      footnotes: JSON.stringify(newFootnotes)
+      footnotes: json.stringify(newfootnotes)
     },
-    blocks: newBlocks
+    blocks: newblocks
   };
 }
 
@@ -3559,70 +3559,70 @@ function updateFootnotesFromMeta(blocks, meta) {
 
 
 
-const EMPTY_ARRAY = [];
-const parsedBlocksCache = /* @__PURE__ */ new WeakMap();
-function useEntityBlockEditor(kind, name, { id: _id } = {}) {
-  const providerId = useEntityId(kind, name);
-  const id = _id ?? providerId;
-  const { getEntityRecord, getEntityRecordEdits } = (0,external_wp_data_.useSelect)(build_module_name/* STORE_NAME */.E);
-  const { content, editedBlocks, meta } = (0,external_wp_data_.useSelect)(
+const empty_array = [];
+const parsedblockscache = /* @__pure__ */ new weakmap();
+function useentityblockeditor(kind, name, { id: _id } = {}) {
+  const providerid = useentityid(kind, name);
+  const id = _id ?? providerid;
+  const { getentityrecord, getentityrecordedits } = (0,external_wp_data_.useselect)(build_module_name/* store_name */.e);
+  const { content, editedblocks, meta } = (0,external_wp_data_.useselect)(
     (select) => {
       if (!id) {
         return {};
       }
-      const { getEditedEntityRecord } = select(build_module_name/* STORE_NAME */.E);
-      const editedRecord = getEditedEntityRecord(kind, name, id);
+      const { geteditedentityrecord } = select(build_module_name/* store_name */.e);
+      const editedrecord = geteditedentityrecord(kind, name, id);
       return {
-        editedBlocks: editedRecord.blocks,
-        content: editedRecord.content,
-        meta: editedRecord.meta
+        editedblocks: editedrecord.blocks,
+        content: editedrecord.content,
+        meta: editedrecord.meta
       };
     },
     [kind, name, id]
   );
-  const { __unstableCreateUndoLevel, editEntityRecord } = (0,external_wp_data_.useDispatch)(build_module_name/* STORE_NAME */.E);
-  const blocks = (0,external_wp_element_.useMemo)(() => {
+  const { __unstablecreateundolevel, editentityrecord } = (0,external_wp_data_.usedispatch)(build_module_name/* store_name */.e);
+  const blocks = (0,external_wp_element_.usememo)(() => {
     if (!id) {
       return void 0;
     }
-    if (editedBlocks) {
-      return editedBlocks;
+    if (editedblocks) {
+      return editedblocks;
     }
     if (!content || typeof content !== "string") {
-      return EMPTY_ARRAY;
+      return empty_array;
     }
-    const edits = getEntityRecordEdits(kind, name, id);
-    const isUnedited = !edits || !Object.keys(edits).length;
-    const cackeKey = isUnedited ? getEntityRecord(kind, name, id) : edits;
-    let _blocks = parsedBlocksCache.get(cackeKey);
+    const edits = getentityrecordedits(kind, name, id);
+    const isunedited = !edits || !object.keys(edits).length;
+    const cackekey = isunedited ? getentityrecord(kind, name, id) : edits;
+    let _blocks = parsedblockscache.get(cackekey);
     if (!_blocks) {
       _blocks = (0,external_wp_blocks_.parse)(content);
-      parsedBlocksCache.set(cackeKey, _blocks);
+      parsedblockscache.set(cackekey, _blocks);
     }
     return _blocks;
   }, [
     kind,
     name,
     id,
-    editedBlocks,
+    editedblocks,
     content,
-    getEntityRecord,
-    getEntityRecordEdits
+    getentityrecord,
+    getentityrecordedits
   ]);
-  const onChange = (0,external_wp_element_.useCallback)(
-    (newBlocks, options) => {
-      const noChange = blocks === newBlocks;
-      if (noChange) {
-        return __unstableCreateUndoLevel(kind, name, id);
+  const onchange = (0,external_wp_element_.usecallback)(
+    (newblocks, options) => {
+      const nochange = blocks === newblocks;
+      if (nochange) {
+        return __unstablecreateundolevel(kind, name, id);
       }
       const { selection, ...rest } = options;
       const edits = {
         selection,
-        content: ({ blocks: blocksForSerialization = [] }) => (0,external_wp_blocks_.__unstableSerializeAndClean)(blocksForSerialization),
-        ...updateFootnotesFromMeta(newBlocks, meta)
+        content: ({ blocks: blocksforserialization = [] }) => (0,external_wp_blocks_.__unstableserializeandclean)(blocksforserialization),
+        ...updatefootnotesfrommeta(newblocks, meta)
       };
-      editEntityRecord(kind, name, id, edits, {
-        isCached: false,
+      editentityrecord(kind, name, id, edits, {
+        iscached: false,
         ...rest
       });
     },
@@ -3632,23 +3632,23 @@ function useEntityBlockEditor(kind, name, { id: _id } = {}) {
       id,
       blocks,
       meta,
-      __unstableCreateUndoLevel,
-      editEntityRecord
+      __unstablecreateundolevel,
+      editentityrecord
     ]
   );
-  const onInput = (0,external_wp_element_.useCallback)(
-    (newBlocks, options) => {
+  const oninput = (0,external_wp_element_.usecallback)(
+    (newblocks, options) => {
       const { selection, ...rest } = options;
-      const footnotesChanges = updateFootnotesFromMeta(newBlocks, meta);
-      const edits = { selection, ...footnotesChanges };
-      editEntityRecord(kind, name, id, edits, {
-        isCached: true,
+      const footnoteschanges = updatefootnotesfrommeta(newblocks, meta);
+      const edits = { selection, ...footnoteschanges };
+      editentityrecord(kind, name, id, edits, {
+        iscached: true,
         ...rest
       });
     },
-    [kind, name, id, meta, editEntityRecord]
+    [kind, name, id, meta, editentityrecord]
   );
-  return [blocks, onInput, onChange];
+  return [blocks, oninput, onchange];
 }
 
 
@@ -3657,31 +3657,31 @@ function useEntityBlockEditor(kind, name, { id: _id } = {}) {
 
 
 
-function useEntityProp(kind, name, prop, _id) {
-  const providerId = useEntityId(kind, name);
-  const id = _id ?? providerId;
-  const { value, fullValue } = (0,external_wp_data_.useSelect)(
+function useentityprop(kind, name, prop, _id) {
+  const providerid = useentityid(kind, name);
+  const id = _id ?? providerid;
+  const { value, fullvalue } = (0,external_wp_data_.useselect)(
     (select) => {
-      const { getEntityRecord, getEditedEntityRecord } = select(build_module_name/* STORE_NAME */.E);
-      const record = getEntityRecord(kind, name, id);
-      const editedRecord = getEditedEntityRecord(kind, name, id);
-      return record && editedRecord ? {
-        value: editedRecord[prop],
-        fullValue: record[prop]
+      const { getentityrecord, geteditedentityrecord } = select(build_module_name/* store_name */.e);
+      const record = getentityrecord(kind, name, id);
+      const editedrecord = geteditedentityrecord(kind, name, id);
+      return record && editedrecord ? {
+        value: editedrecord[prop],
+        fullvalue: record[prop]
       } : {};
     },
     [kind, name, id, prop]
   );
-  const { editEntityRecord } = (0,external_wp_data_.useDispatch)(build_module_name/* STORE_NAME */.E);
-  const setValue = (0,external_wp_element_.useCallback)(
-    (newValue) => {
-      editEntityRecord(kind, name, id, {
-        [prop]: newValue
+  const { editentityrecord } = (0,external_wp_data_.usedispatch)(build_module_name/* store_name */.e);
+  const setvalue = (0,external_wp_element_.usecallback)(
+    (newvalue) => {
+      editentityrecord(kind, name, id, {
+        [prop]: newvalue
       });
     },
-    [editEntityRecord, kind, name, id, prop]
+    [editentityrecord, kind, name, id, prop]
   );
-  return [value, setValue, fullValue];
+  return [value, setvalue, fullvalue];
 }
 
 
@@ -3702,49 +3702,49 @@ function useEntityProp(kind, name, prop, _id) {
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  C_: () => (/* binding */ DEFAULT_ENTITY_KEY),
-  L2: () => (/* binding */ additionalEntityConfigLoaders),
-  TK: () => (/* binding */ deprecatedEntities),
-  zD: () => (/* binding */ getMethodName),
-  Mr: () => (/* binding */ rootEntitiesConfig)
+  c_: () => (/* binding */ default_entity_key),
+  l2: () => (/* binding */ additionalentityconfigloaders),
+  tk: () => (/* binding */ deprecatedentities),
+  zd: () => (/* binding */ getmethodname),
+  mr: () => (/* binding */ rootentitiesconfig)
 });
 
-// UNUSED EXPORTS: prePersistPostType
+// unused exports: prepersistposttype
 
-// EXTERNAL MODULE: ./node_modules/tslib/tslib.es6.mjs
+// external module: ./node_modules/tslib/tslib.es6.mjs
 var tslib_es6 = __webpack_require__(1635);
-// EXTERNAL MODULE: ./node_modules/no-case/dist.es2015/index.js
+// external module: ./node_modules/no-case/dist.es2015/index.js
 var dist_es2015 = __webpack_require__(2226);
 ;// ./node_modules/upper-case-first/dist.es2015/index.js
 /**
- * Upper case the first character of an input string.
+ * upper case the first character of an input string.
  */
-function upperCaseFirst(input) {
-    return input.charAt(0).toUpperCase() + input.substr(1);
+function uppercasefirst(input) {
+    return input.charat(0).touppercase() + input.substr(1);
 }
 
 ;// ./node_modules/capital-case/dist.es2015/index.js
 
 
 
-function capitalCaseTransform(input) {
-    return upperCaseFirst(input.toLowerCase());
+function capitalcasetransform(input) {
+    return uppercasefirst(input.tolowercase());
 }
-function capitalCase(input, options) {
+function capitalcase(input, options) {
     if (options === void 0) { options = {}; }
-    return (0,dist_es2015/* noCase */.W)(input, (0,tslib_es6/* __assign */.Cl)({ delimiter: " ", transform: capitalCaseTransform }, options));
+    return (0,dist_es2015/* nocase */.w)(input, (0,tslib_es6/* __assign */.cl)({ delimiter: " ", transform: capitalcasetransform }, options));
 }
 
-// EXTERNAL MODULE: ./node_modules/pascal-case/dist.es2015/index.js
+// external module: ./node_modules/pascal-case/dist.es2015/index.js
 var pascal_case_dist_es2015 = __webpack_require__(287);
-// EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(1455);
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
-// EXTERNAL MODULE: external ["wp","blocks"]
+// external module: external ["wp","apifetch"]
+var external_wp_apifetch_ = __webpack_require__(1455);
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_);
+// external module: external ["wp","blocks"]
 var external_wp_blocks_ = __webpack_require__(4997);
-// EXTERNAL MODULE: external ["wp","i18n"]
+// external module: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(7723);
 ;// ./node_modules/@wordpress/core-data/build-module/entities.js
 
@@ -3752,25 +3752,25 @@ var external_wp_i18n_ = __webpack_require__(7723);
 
 
 
-const DEFAULT_ENTITY_KEY = "id";
-const POST_RAW_ATTRIBUTES = ["title", "excerpt", "content"];
-const blocksTransientEdits = {
+const default_entity_key = "id";
+const post_raw_attributes = ["title", "excerpt", "content"];
+const blockstransientedits = {
   blocks: {
     read: (record) => (0,external_wp_blocks_.parse)(record.content?.raw ?? ""),
     write: (record) => ({
-      content: (0,external_wp_blocks_.__unstableSerializeAndClean)(record.blocks)
+      content: (0,external_wp_blocks_.__unstableserializeandclean)(record.blocks)
     })
   }
 };
-const rootEntitiesConfig = [
+const rootentitiesconfig = [
   {
-    label: (0,external_wp_i18n_.__)("Base"),
+    label: (0,external_wp_i18n_.__)("base"),
     kind: "root",
     key: false,
-    name: "__unstableBase",
-    baseURL: "/",
-    baseURLParams: {
-      // Please also change the preload path when changing this.
+    name: "__unstablebase",
+    baseurl: "/",
+    baseurlparams: {
+      // please also change the preload path when changing this.
       // @see lib/compat/wordpress-6.8/preload.php
       _fields: [
         "description",
@@ -3787,253 +3787,253 @@ const rootEntitiesConfig = [
         "show_on_front"
       ].join(",")
     },
-    // The entity doesn't support selecting multiple records.
-    // The property is maintained for backward compatibility.
-    plural: "__unstableBases"
+    // the entity doesn't support selecting multiple records.
+    // the property is maintained for backward compatibility.
+    plural: "__unstablebases"
   },
   {
-    label: (0,external_wp_i18n_.__)("Post Type"),
-    name: "postType",
+    label: (0,external_wp_i18n_.__)("post type"),
+    name: "posttype",
     kind: "root",
     key: "slug",
-    baseURL: "/wp/v2/types",
-    baseURLParams: { context: "edit" },
-    plural: "postTypes"
+    baseurl: "/wp/v2/types",
+    baseurlparams: { context: "edit" },
+    plural: "posttypes"
   },
   {
     name: "media",
     kind: "root",
-    baseURL: "/wp/v2/media",
-    baseURLParams: { context: "edit" },
-    plural: "mediaItems",
-    label: (0,external_wp_i18n_.__)("Media"),
-    rawAttributes: ["caption", "title", "description"],
-    supportsPagination: true
+    baseurl: "/wp/v2/media",
+    baseurlparams: { context: "edit" },
+    plural: "mediaitems",
+    label: (0,external_wp_i18n_.__)("media"),
+    rawattributes: ["caption", "title", "description"],
+    supportspagination: true
   },
   {
     name: "taxonomy",
     kind: "root",
     key: "slug",
-    baseURL: "/wp/v2/taxonomies",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/taxonomies",
+    baseurlparams: { context: "edit" },
     plural: "taxonomies",
-    label: (0,external_wp_i18n_.__)("Taxonomy")
+    label: (0,external_wp_i18n_.__)("taxonomy")
   },
   {
     name: "sidebar",
     kind: "root",
-    baseURL: "/wp/v2/sidebars",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/sidebars",
+    baseurlparams: { context: "edit" },
     plural: "sidebars",
-    transientEdits: { blocks: true },
-    label: (0,external_wp_i18n_.__)("Widget areas")
+    transientedits: { blocks: true },
+    label: (0,external_wp_i18n_.__)("widget areas")
   },
   {
     name: "widget",
     kind: "root",
-    baseURL: "/wp/v2/widgets",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/widgets",
+    baseurlparams: { context: "edit" },
     plural: "widgets",
-    transientEdits: { blocks: true },
-    label: (0,external_wp_i18n_.__)("Widgets")
+    transientedits: { blocks: true },
+    label: (0,external_wp_i18n_.__)("widgets")
   },
   {
-    name: "widgetType",
+    name: "widgettype",
     kind: "root",
-    baseURL: "/wp/v2/widget-types",
-    baseURLParams: { context: "edit" },
-    plural: "widgetTypes",
-    label: (0,external_wp_i18n_.__)("Widget types")
+    baseurl: "/wp/v2/widget-types",
+    baseurlparams: { context: "edit" },
+    plural: "widgettypes",
+    label: (0,external_wp_i18n_.__)("widget types")
   },
   {
-    label: (0,external_wp_i18n_.__)("User"),
+    label: (0,external_wp_i18n_.__)("user"),
     name: "user",
     kind: "root",
-    baseURL: "/wp/v2/users",
-    getTitle: (record) => record?.name || record?.slug,
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/users",
+    gettitle: (record) => record?.name || record?.slug,
+    baseurlparams: { context: "edit" },
     plural: "users",
-    supportsPagination: true
+    supportspagination: true
   },
   {
     name: "comment",
     kind: "root",
-    baseURL: "/wp/v2/comments",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/comments",
+    baseurlparams: { context: "edit" },
     plural: "comments",
-    label: (0,external_wp_i18n_.__)("Comment"),
-    supportsPagination: true
+    label: (0,external_wp_i18n_.__)("comment"),
+    supportspagination: true
   },
   {
     name: "menu",
     kind: "root",
-    baseURL: "/wp/v2/menus",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/menus",
+    baseurlparams: { context: "edit" },
     plural: "menus",
-    label: (0,external_wp_i18n_.__)("Menu"),
-    supportsPagination: true
+    label: (0,external_wp_i18n_.__)("menu"),
+    supportspagination: true
   },
   {
-    name: "menuItem",
+    name: "menuitem",
     kind: "root",
-    baseURL: "/wp/v2/menu-items",
-    baseURLParams: { context: "edit" },
-    plural: "menuItems",
-    label: (0,external_wp_i18n_.__)("Menu Item"),
-    rawAttributes: ["title"],
-    supportsPagination: true
+    baseurl: "/wp/v2/menu-items",
+    baseurlparams: { context: "edit" },
+    plural: "menuitems",
+    label: (0,external_wp_i18n_.__)("menu item"),
+    rawattributes: ["title"],
+    supportspagination: true
   },
   {
-    name: "menuLocation",
+    name: "menulocation",
     kind: "root",
-    baseURL: "/wp/v2/menu-locations",
-    baseURLParams: { context: "edit" },
-    plural: "menuLocations",
-    label: (0,external_wp_i18n_.__)("Menu Location"),
+    baseurl: "/wp/v2/menu-locations",
+    baseurlparams: { context: "edit" },
+    plural: "menulocations",
+    label: (0,external_wp_i18n_.__)("menu location"),
     key: "name"
   },
   {
-    label: (0,external_wp_i18n_.__)("Global Styles"),
-    name: "globalStyles",
+    label: (0,external_wp_i18n_.__)("global styles"),
+    name: "globalstyles",
     kind: "root",
-    baseURL: "/wp/v2/global-styles",
-    baseURLParams: { context: "edit" },
-    plural: "globalStylesVariations",
-    // Should be different from name.
-    getTitle: () => (0,external_wp_i18n_.__)("Custom Styles"),
-    getRevisionsUrl: (parentId, revisionId) => `/wp/v2/global-styles/${parentId}/revisions${revisionId ? "/" + revisionId : ""}`,
-    supportsPagination: true
+    baseurl: "/wp/v2/global-styles",
+    baseurlparams: { context: "edit" },
+    plural: "globalstylesvariations",
+    // should be different from name.
+    gettitle: () => (0,external_wp_i18n_.__)("custom styles"),
+    getrevisionsurl: (parentid, revisionid) => `/wp/v2/global-styles/${parentid}/revisions${revisionid ? "/" + revisionid : ""}`,
+    supportspagination: true
   },
   {
-    label: (0,external_wp_i18n_.__)("Themes"),
+    label: (0,external_wp_i18n_.__)("themes"),
     name: "theme",
     kind: "root",
-    baseURL: "/wp/v2/themes",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/themes",
+    baseurlparams: { context: "edit" },
     plural: "themes",
     key: "stylesheet"
   },
   {
-    label: (0,external_wp_i18n_.__)("Plugins"),
+    label: (0,external_wp_i18n_.__)("plugins"),
     name: "plugin",
     kind: "root",
-    baseURL: "/wp/v2/plugins",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/plugins",
+    baseurlparams: { context: "edit" },
     plural: "plugins",
     key: "plugin"
   },
   {
-    label: (0,external_wp_i18n_.__)("Status"),
+    label: (0,external_wp_i18n_.__)("status"),
     name: "status",
     kind: "root",
-    baseURL: "/wp/v2/statuses",
-    baseURLParams: { context: "edit" },
+    baseurl: "/wp/v2/statuses",
+    baseurlparams: { context: "edit" },
     plural: "statuses",
     key: "slug"
   }
 ];
-const deprecatedEntities = {
+const deprecatedentities = {
   root: {
     media: {
       since: "6.9",
       alternative: {
-        kind: "postType",
+        kind: "posttype",
         name: "attachment"
       }
     }
   }
 };
-const additionalEntityConfigLoaders = [
-  { kind: "postType", loadEntities: loadPostTypeEntities },
-  { kind: "taxonomy", loadEntities: loadTaxonomyEntities },
+const additionalentityconfigloaders = [
+  { kind: "posttype", loadentities: loadposttypeentities },
+  { kind: "taxonomy", loadentities: loadtaxonomyentities },
   {
     kind: "root",
     name: "site",
     plural: "sites",
-    loadEntities: loadSiteEntity
+    loadentities: loadsiteentity
   }
 ];
-const prePersistPostType = (persistedRecord, edits) => {
-  const newEdits = {};
-  if (persistedRecord?.status === "auto-draft") {
-    if (!edits.status && !newEdits.status) {
-      newEdits.status = "draft";
+const prepersistposttype = (persistedrecord, edits) => {
+  const newedits = {};
+  if (persistedrecord?.status === "auto-draft") {
+    if (!edits.status && !newedits.status) {
+      newedits.status = "draft";
     }
-    if ((!edits.title || edits.title === "Auto Draft") && !newEdits.title && (!persistedRecord?.title || persistedRecord?.title === "Auto Draft")) {
-      newEdits.title = "";
+    if ((!edits.title || edits.title === "auto draft") && !newedits.title && (!persistedrecord?.title || persistedrecord?.title === "auto draft")) {
+      newedits.title = "";
     }
   }
-  return newEdits;
+  return newedits;
 };
-async function loadPostTypeEntities() {
-  const postTypes = await external_wp_apiFetch_default()({
+async function loadposttypeentities() {
+  const posttypes = await external_wp_apifetch_default()({
     path: "/wp/v2/types?context=view"
   });
-  return Object.entries(postTypes ?? {}).map(([name, postType]) => {
-    const isTemplate = ["wp_template", "wp_template_part"].includes(
+  return object.entries(posttypes ?? {}).map(([name, posttype]) => {
+    const istemplate = ["wp_template", "wp_template_part"].includes(
       name
     );
-    const namespace = postType?.rest_namespace ?? "wp/v2";
+    const namespace = posttype?.rest_namespace ?? "wp/v2";
     const entity = {
-      kind: "postType",
-      baseURL: `/${namespace}/${postType.rest_base}`,
-      baseURLParams: { context: "edit" },
+      kind: "posttype",
+      baseurl: `/${namespace}/${posttype.rest_base}`,
+      baseurlparams: { context: "edit" },
       name,
-      label: postType.name,
-      transientEdits: {
-        ...blocksTransientEdits,
+      label: posttype.name,
+      transientedits: {
+        ...blockstransientedits,
         selection: true
       },
-      mergedEdits: { meta: true },
-      rawAttributes: POST_RAW_ATTRIBUTES,
-      getTitle: (record) => record?.title?.rendered || record?.title || (isTemplate ? capitalCase(record.slug ?? "") : String(record.id)),
-      __unstablePrePersist: isTemplate ? void 0 : prePersistPostType,
-      __unstable_rest_base: postType.rest_base,
-      supportsPagination: true,
-      getRevisionsUrl: (parentId, revisionId) => `/${namespace}/${postType.rest_base}/${parentId}/revisions${revisionId ? "/" + revisionId : ""}`,
-      revisionKey: isTemplate ? "wp_id" : DEFAULT_ENTITY_KEY
+      mergededits: { meta: true },
+      rawattributes: post_raw_attributes,
+      gettitle: (record) => record?.title?.rendered || record?.title || (istemplate ? capitalcase(record.slug ?? "") : string(record.id)),
+      __unstableprepersist: istemplate ? void 0 : prepersistposttype,
+      __unstable_rest_base: posttype.rest_base,
+      supportspagination: true,
+      getrevisionsurl: (parentid, revisionid) => `/${namespace}/${posttype.rest_base}/${parentid}/revisions${revisionid ? "/" + revisionid : ""}`,
+      revisionkey: istemplate ? "wp_id" : default_entity_key
     };
-    if (window.__experimentalEnableSync) {
+    if (window.__experimentalenablesync) {
       if (false) {}
     }
     return entity;
   });
 }
-async function loadTaxonomyEntities() {
-  const taxonomies = await external_wp_apiFetch_default()({
+async function loadtaxonomyentities() {
+  const taxonomies = await external_wp_apifetch_default()({
     path: "/wp/v2/taxonomies?context=view"
   });
-  return Object.entries(taxonomies ?? {}).map(([name, taxonomy]) => {
+  return object.entries(taxonomies ?? {}).map(([name, taxonomy]) => {
     const namespace = taxonomy?.rest_namespace ?? "wp/v2";
     return {
       kind: "taxonomy",
-      baseURL: `/${namespace}/${taxonomy.rest_base}`,
-      baseURLParams: { context: "edit" },
+      baseurl: `/${namespace}/${taxonomy.rest_base}`,
+      baseurlparams: { context: "edit" },
       name,
       label: taxonomy.name,
-      getTitle: (record) => record?.name,
-      supportsPagination: true
+      gettitle: (record) => record?.name,
+      supportspagination: true
     };
   });
 }
-async function loadSiteEntity() {
+async function loadsiteentity() {
   const entity = {
-    label: (0,external_wp_i18n_.__)("Site"),
+    label: (0,external_wp_i18n_.__)("site"),
     name: "site",
     kind: "root",
     key: false,
-    baseURL: "/wp/v2/settings",
+    baseurl: "/wp/v2/settings",
     meta: {}
   };
-  if (window.__experimentalEnableSync) {
+  if (window.__experimentalenablesync) {
     if (false) {}
   }
-  const site = await external_wp_apiFetch_default()({
-    path: entity.baseURL,
-    method: "OPTIONS"
+  const site = await external_wp_apifetch_default()({
+    path: entity.baseurl,
+    method: "options"
   });
   const labels = {};
-  Object.entries(site?.schema?.properties ?? {}).forEach(
+  object.entries(site?.schema?.properties ?? {}).foreach(
     ([key, value]) => {
       if (typeof value === "object" && value.title) {
         labels[key] = value.title;
@@ -4042,10 +4042,10 @@ async function loadSiteEntity() {
   );
   return [{ ...entity, meta: { labels } }];
 }
-const getMethodName = (kind, name, prefix = "get") => {
-  const kindPrefix = kind === "root" ? "" : (0,pascal_case_dist_es2015/* pascalCase */.fL)(kind);
-  const suffix = (0,pascal_case_dist_es2015/* pascalCase */.fL)(name);
-  return `${prefix}${kindPrefix}${suffix}`;
+const getmethodname = (kind, name, prefix = "get") => {
+  const kindprefix = kind === "root" ? "" : (0,pascal_case_dist_es2015/* pascalcase */.fl)(kind);
+  const suffix = (0,pascal_case_dist_es2015/* pascalcase */.fl)(name);
+  return `${prefix}${kindprefix}${suffix}`;
 };
 
 
@@ -4065,18 +4065,18 @@ module.exports = window["wp"]["element"];
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   s: () => (/* binding */ lock),
-  T: () => (/* binding */ unlock)
+  t: () => (/* binding */ unlock)
 });
 
-;// external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+;// external ["wp","privateapis"]
+const external_wp_privateapis_namespaceobject = window["wp"]["privateapis"];
 ;// ./node_modules/@wordpress/core-data/build-module/lock-unlock.js
 
-const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)(
-  "I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.",
+const { lock, unlock } = (0,external_wp_privateapis_namespaceobject.__dangerousoptintounstableapisonlyforcoremodules)(
+  "i acknowledge private features are not for use in themes or plugins and doing so will break in the next version of wordpress.",
   "@wordpress/core-data"
 );
 
@@ -4088,68 +4088,68 @@ const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousO
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  __experimentalGetCurrentGlobalStylesId: () => (/* binding */ __experimentalGetCurrentGlobalStylesId),
-  __experimentalGetCurrentThemeBaseGlobalStyles: () => (/* binding */ __experimentalGetCurrentThemeBaseGlobalStyles),
-  __experimentalGetCurrentThemeGlobalStylesVariations: () => (/* binding */ __experimentalGetCurrentThemeGlobalStylesVariations),
-  canUser: () => (/* binding */ canUser),
-  canUserEditEntityRecord: () => (/* binding */ canUserEditEntityRecord),
-  getAuthors: () => (/* binding */ getAuthors),
-  getAutosave: () => (/* binding */ getAutosave),
-  getAutosaves: () => (/* binding */ getAutosaves),
-  getBlockPatternCategories: () => (/* binding */ getBlockPatternCategories),
-  getBlockPatterns: () => (/* binding */ getBlockPatterns),
-  getCurrentTheme: () => (/* binding */ getCurrentTheme),
-  getCurrentThemeGlobalStylesRevisions: () => (/* binding */ getCurrentThemeGlobalStylesRevisions),
-  getCurrentUser: () => (/* binding */ getCurrentUser),
-  getDefaultTemplateId: () => (/* binding */ getDefaultTemplateId),
-  getEditedEntityRecord: () => (/* binding */ getEditedEntityRecord),
-  getEmbedPreview: () => (/* binding */ getEmbedPreview),
-  getEntitiesConfig: () => (/* binding */ getEntitiesConfig),
-  getEntityRecord: () => (/* binding */ getEntityRecord),
-  getEntityRecords: () => (/* binding */ getEntityRecords),
-  getEntityRecordsTotalItems: () => (/* binding */ getEntityRecordsTotalItems),
-  getEntityRecordsTotalPages: () => (/* binding */ getEntityRecordsTotalPages),
-  getNavigationFallbackId: () => (/* binding */ getNavigationFallbackId),
-  getRawEntityRecord: () => (/* binding */ getRawEntityRecord),
-  getRegisteredPostMeta: () => (/* binding */ getRegisteredPostMeta),
-  getRevision: () => (/* binding */ getRevision),
-  getRevisions: () => (/* binding */ getRevisions),
-  getThemeSupports: () => (/* binding */ getThemeSupports),
-  getUserPatternCategories: () => (/* binding */ getUserPatternCategories)
+  __experimentalgetcurrentglobalstylesid: () => (/* binding */ __experimentalgetcurrentglobalstylesid),
+  __experimentalgetcurrentthemebaseglobalstyles: () => (/* binding */ __experimentalgetcurrentthemebaseglobalstyles),
+  __experimentalgetcurrentthemeglobalstylesvariations: () => (/* binding */ __experimentalgetcurrentthemeglobalstylesvariations),
+  canuser: () => (/* binding */ canuser),
+  canusereditentityrecord: () => (/* binding */ canusereditentityrecord),
+  getauthors: () => (/* binding */ getauthors),
+  getautosave: () => (/* binding */ getautosave),
+  getautosaves: () => (/* binding */ getautosaves),
+  getblockpatterncategories: () => (/* binding */ getblockpatterncategories),
+  getblockpatterns: () => (/* binding */ getblockpatterns),
+  getcurrenttheme: () => (/* binding */ getcurrenttheme),
+  getcurrentthemeglobalstylesrevisions: () => (/* binding */ getcurrentthemeglobalstylesrevisions),
+  getcurrentuser: () => (/* binding */ getcurrentuser),
+  getdefaulttemplateid: () => (/* binding */ getdefaulttemplateid),
+  geteditedentityrecord: () => (/* binding */ geteditedentityrecord),
+  getembedpreview: () => (/* binding */ getembedpreview),
+  getentitiesconfig: () => (/* binding */ getentitiesconfig),
+  getentityrecord: () => (/* binding */ getentityrecord),
+  getentityrecords: () => (/* binding */ getentityrecords),
+  getentityrecordstotalitems: () => (/* binding */ getentityrecordstotalitems),
+  getentityrecordstotalpages: () => (/* binding */ getentityrecordstotalpages),
+  getnavigationfallbackid: () => (/* binding */ getnavigationfallbackid),
+  getrawentityrecord: () => (/* binding */ getrawentityrecord),
+  getregisteredpostmeta: () => (/* binding */ getregisteredpostmeta),
+  getrevision: () => (/* binding */ getrevision),
+  getrevisions: () => (/* binding */ getrevisions),
+  getthemesupports: () => (/* binding */ getthemesupports),
+  getuserpatterncategories: () => (/* binding */ getuserpatterncategories)
 });
 
-// EXTERNAL MODULE: ./node_modules/camel-case/dist.es2015/index.js
+// external module: ./node_modules/camel-case/dist.es2015/index.js
 var dist_es2015 = __webpack_require__(5663);
-// EXTERNAL MODULE: external ["wp","url"]
+// external module: external ["wp","url"]
 var external_wp_url_ = __webpack_require__(3832);
-// EXTERNAL MODULE: external ["wp","htmlEntities"]
-var external_wp_htmlEntities_ = __webpack_require__(8537);
-// EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(1455);
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/name.js
+// external module: external ["wp","htmlentities"]
+var external_wp_htmlentities_ = __webpack_require__(8537);
+// external module: external ["wp","apifetch"]
+var external_wp_apifetch_ = __webpack_require__(1455);
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_);
+// external module: ./node_modules/@wordpress/core-data/build-module/name.js
 var build_module_name = __webpack_require__(2278);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
 var entities = __webpack_require__(5914);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
 var get_normalized_comma_separable = __webpack_require__(533);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/user-permissions.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/user-permissions.js
 var user_permissions = __webpack_require__(2577);
 ;// ./node_modules/@wordpress/core-data/build-module/utils/forward-resolver.js
-const forwardResolver = (resolverName) => (...args) => async ({ resolveSelect }) => {
-  await resolveSelect[resolverName](...args);
+const forwardresolver = (resolvername) => (...args) => async ({ resolveselect }) => {
+  await resolveselect[resolvername](...args);
 };
-var forward_resolver_default = forwardResolver;
+var forward_resolver_default = forwardresolver;
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/receive-intermediate-results.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/receive-intermediate-results.js
 var receive_intermediate_results = __webpack_require__(5101);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/fetch/index.js + 2 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/fetch/index.js + 2 modules
 var fetch = __webpack_require__(7006);
 ;// ./node_modules/@wordpress/core-data/build-module/resolvers.js
 
@@ -4161,28 +4161,28 @@ var fetch = __webpack_require__(7006);
 
 
 
-const getAuthors = (query) => async ({ dispatch }) => {
-  const path = (0,external_wp_url_.addQueryArgs)(
+const getauthors = (query) => async ({ dispatch }) => {
+  const path = (0,external_wp_url_.addqueryargs)(
     "/wp/v2/users/?who=authors&per_page=100",
     query
   );
-  const users = await external_wp_apiFetch_default()({ path });
-  dispatch.receiveUserQuery(path, users);
+  const users = await external_wp_apifetch_default()({ path });
+  dispatch.receiveuserquery(path, users);
 };
-const getCurrentUser = () => async ({ dispatch }) => {
-  const currentUser = await external_wp_apiFetch_default()({ path: "/wp/v2/users/me" });
-  dispatch.receiveCurrentUser(currentUser);
+const getcurrentuser = () => async ({ dispatch }) => {
+  const currentuser = await external_wp_apifetch_default()({ path: "/wp/v2/users/me" });
+  dispatch.receivecurrentuser(currentuser);
 };
-const getEntityRecord = (kind, name, key = "", query) => async ({ select, dispatch, registry, resolveSelect }) => {
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+const getentityrecord = (kind, name, key = "", query) => async ({ select, dispatch, registry, resolveselect }) => {
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.name === name && config.kind === kind
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
-  const lock = await dispatch.__unstableAcquireStoreLock(
-    build_module_name/* STORE_NAME */.E,
+  const lock = await dispatch.__unstableacquirestorelock(
+    build_module_name/* store_name */.e,
     ["entities", "records", kind, name, key],
     { exclusive: false }
   );
@@ -4191,81 +4191,81 @@ const getEntityRecord = (kind, name, key = "", query) => async ({ select, dispat
       query = {
         ...query,
         _fields: [
-          .../* @__PURE__ */ new Set([
-            ...(0,get_normalized_comma_separable/* default */.A)(query._fields) || [],
-            entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_
+          .../* @__pure__ */ new set([
+            ...(0,get_normalized_comma_separable/* default */.a)(query._fields) || [],
+            entityconfig.key || entities/* default_entity_key */.c_
           ])
         ].join()
       };
     }
     if (query !== void 0 && query._fields) {
-      const hasRecord = select.hasEntityRecord(
+      const hasrecord = select.hasentityrecord(
         kind,
         name,
         key,
         query
       );
-      if (hasRecord) {
+      if (hasrecord) {
         return;
       }
     }
-    const path = (0,external_wp_url_.addQueryArgs)(
-      entityConfig.baseURL + (key ? "/" + key : ""),
+    const path = (0,external_wp_url_.addqueryargs)(
+      entityconfig.baseurl + (key ? "/" + key : ""),
       {
-        ...entityConfig.baseURLParams,
+        ...entityconfig.baseurlparams,
         ...query
       }
     );
-    const response = await external_wp_apiFetch_default()({ path, parse: false });
+    const response = await external_wp_apifetch_default()({ path, parse: false });
     const record = await response.json();
-    const permissions = (0,user_permissions/* getUserPermissionsFromAllowHeader */.qY)(
+    const permissions = (0,user_permissions/* getuserpermissionsfromallowheader */.qy)(
       response.headers?.get("allow")
     );
-    const canUserResolutionsArgs = [];
-    const receiveUserPermissionArgs = {};
-    for (const action of user_permissions/* ALLOWED_RESOURCE_ACTIONS */.CO) {
-      receiveUserPermissionArgs[(0,user_permissions/* getUserPermissionCacheKey */.kC)(action, {
+    const canuserresolutionsargs = [];
+    const receiveuserpermissionargs = {};
+    for (const action of user_permissions/* allowed_resource_actions */.co) {
+      receiveuserpermissionargs[(0,user_permissions/* getuserpermissioncachekey */.kc)(action, {
         kind,
         name,
         id: key
       })] = permissions[action];
-      canUserResolutionsArgs.push([
+      canuserresolutionsargs.push([
         action,
         { kind, name, id: key }
       ]);
     }
-    if (window.__experimentalEnableSync && entityConfig.syncConfig && !query) {
+    if (window.__experimentalenablesync && entityconfig.syncconfig && !query) {
       if (false) {}
     }
     registry.batch(() => {
-      dispatch.receiveEntityRecords(kind, name, record, query);
-      dispatch.receiveUserPermissions(receiveUserPermissionArgs);
-      dispatch.finishResolutions("canUser", canUserResolutionsArgs);
+      dispatch.receiveentityrecords(kind, name, record, query);
+      dispatch.receiveuserpermissions(receiveuserpermissionargs);
+      dispatch.finishresolutions("canuser", canuserresolutionsargs);
     });
   } finally {
-    dispatch.__unstableReleaseStoreLock(lock);
+    dispatch.__unstablereleasestorelock(lock);
   }
 };
-const getRawEntityRecord = forward_resolver_default("getEntityRecord");
-const getEditedEntityRecord = forward_resolver_default("getEntityRecord");
-const getEntityRecords = (kind, name, query = {}) => async ({ dispatch, registry, resolveSelect }) => {
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+const getrawentityrecord = forward_resolver_default("getentityrecord");
+const geteditedentityrecord = forward_resolver_default("getentityrecord");
+const getentityrecords = (kind, name, query = {}) => async ({ dispatch, registry, resolveselect }) => {
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.name === name && config.kind === kind
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
-  const lock = await dispatch.__unstableAcquireStoreLock(
-    build_module_name/* STORE_NAME */.E,
+  const lock = await dispatch.__unstableacquirestorelock(
+    build_module_name/* store_name */.e,
     ["entities", "records", kind, name],
     { exclusive: false }
   );
-  const rawQuery = { ...query };
-  const key = entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_;
-  function getResolutionsArgs(records, recordsQuery) {
-    const queryArgs = Object.fromEntries(
-      Object.entries(recordsQuery).filter(([k, v]) => {
+  const rawquery = { ...query };
+  const key = entityconfig.key || entities/* default_entity_key */.c_;
+  function getresolutionsargs(records, recordsquery) {
+    const queryargs = object.fromentries(
+      object.entries(recordsquery).filter(([k, v]) => {
         return ["context", "_fields"].includes(k) && !!v;
       })
     );
@@ -4273,7 +4273,7 @@ const getEntityRecords = (kind, name, query = {}) => async ({ dispatch, registry
       kind,
       name,
       record[key],
-      Object.keys(queryArgs).length > 0 ? queryArgs : void 0
+      object.keys(queryargs).length > 0 ? queryargs : void 0
     ]);
   }
   try {
@@ -4281,52 +4281,52 @@ const getEntityRecords = (kind, name, query = {}) => async ({ dispatch, registry
       query = {
         ...query,
         _fields: [
-          .../* @__PURE__ */ new Set([
-            ...(0,get_normalized_comma_separable/* default */.A)(query._fields) || [],
+          .../* @__pure__ */ new set([
+            ...(0,get_normalized_comma_separable/* default */.a)(query._fields) || [],
             key
           ])
         ].join()
       };
     }
-    const path = (0,external_wp_url_.addQueryArgs)(entityConfig.baseURL, {
-      ...entityConfig.baseURLParams,
+    const path = (0,external_wp_url_.addqueryargs)(entityconfig.baseurl, {
+      ...entityconfig.baseurlparams,
       ...query
     });
     let records = [], meta;
-    if (entityConfig.supportsPagination && query.per_page !== -1) {
-      const response = await external_wp_apiFetch_default()({ path, parse: false });
-      records = Object.values(await response.json());
+    if (entityconfig.supportspagination && query.per_page !== -1) {
+      const response = await external_wp_apifetch_default()({ path, parse: false });
+      records = object.values(await response.json());
       meta = {
-        totalItems: parseInt(
-          response.headers.get("X-WP-Total")
+        totalitems: parseint(
+          response.headers.get("x-wp-total")
         ),
-        totalPages: parseInt(
-          response.headers.get("X-WP-TotalPages")
+        totalpages: parseint(
+          response.headers.get("x-wp-totalpages")
         )
       };
-    } else if (query.per_page === -1 && query[receive_intermediate_results/* RECEIVE_INTERMEDIATE_RESULTS */.Z] === true) {
+    } else if (query.per_page === -1 && query[receive_intermediate_results/* receive_intermediate_results */.z] === true) {
       let page = 1;
-      let totalPages;
+      let totalpages;
       do {
-        const response = await external_wp_apiFetch_default()({
-          path: (0,external_wp_url_.addQueryArgs)(path, { page, per_page: 100 }),
+        const response = await external_wp_apifetch_default()({
+          path: (0,external_wp_url_.addqueryargs)(path, { page, per_page: 100 }),
           parse: false
         });
-        const pageRecords = Object.values(await response.json());
-        totalPages = parseInt(
-          response.headers.get("X-WP-TotalPages")
+        const pagerecords = object.values(await response.json());
+        totalpages = parseint(
+          response.headers.get("x-wp-totalpages")
         );
         if (!meta) {
           meta = {
-            totalItems: parseInt(
-              response.headers.get("X-WP-Total")
+            totalitems: parseint(
+              response.headers.get("x-wp-total")
             ),
-            totalPages: 1
+            totalpages: 1
           };
         }
-        records.push(...pageRecords);
+        records.push(...pagerecords);
         registry.batch(() => {
-          dispatch.receiveEntityRecords(
+          dispatch.receiveentityrecords(
             kind,
             name,
             records,
@@ -4335,24 +4335,24 @@ const getEntityRecords = (kind, name, query = {}) => async ({ dispatch, registry
             void 0,
             meta
           );
-          dispatch.finishResolutions(
-            "getEntityRecord",
-            getResolutionsArgs(pageRecords, rawQuery)
+          dispatch.finishresolutions(
+            "getentityrecord",
+            getresolutionsargs(pagerecords, rawquery)
           );
         });
         page++;
-      } while (page <= totalPages);
+      } while (page <= totalpages);
     } else {
-      records = Object.values(await external_wp_apiFetch_default()({ path }));
+      records = object.values(await external_wp_apifetch_default()({ path }));
       meta = {
-        totalItems: records.length,
-        totalPages: 1
+        totalitems: records.length,
+        totalpages: 1
       };
     }
     if (query._fields) {
       records = records.map((record) => {
-        query._fields.split(",").forEach((field) => {
-          if (!record.hasOwnProperty(field)) {
+        query._fields.split(",").foreach((field) => {
+          if (!record.hasownproperty(field)) {
             record[field] = void 0;
           }
         });
@@ -4360,7 +4360,7 @@ const getEntityRecords = (kind, name, query = {}) => async ({ dispatch, registry
       });
     }
     registry.batch(() => {
-      dispatch.receiveEntityRecords(
+      dispatch.receiveentityrecords(
         kind,
         name,
         records,
@@ -4369,127 +4369,127 @@ const getEntityRecords = (kind, name, query = {}) => async ({ dispatch, registry
         void 0,
         meta
       );
-      const targetHints = records.filter(
-        (record) => !!record?.[key] && !!record?._links?.self?.[0]?.targetHints?.allow
+      const targethints = records.filter(
+        (record) => !!record?.[key] && !!record?._links?.self?.[0]?.targethints?.allow
       ).map((record) => ({
         id: record[key],
-        permissions: (0,user_permissions/* getUserPermissionsFromAllowHeader */.qY)(
-          record._links.self[0].targetHints.allow
+        permissions: (0,user_permissions/* getuserpermissionsfromallowheader */.qy)(
+          record._links.self[0].targethints.allow
         )
       }));
-      const canUserResolutionsArgs = [];
-      const receiveUserPermissionArgs = {};
-      for (const targetHint of targetHints) {
-        for (const action of user_permissions/* ALLOWED_RESOURCE_ACTIONS */.CO) {
-          canUserResolutionsArgs.push([
+      const canuserresolutionsargs = [];
+      const receiveuserpermissionargs = {};
+      for (const targethint of targethints) {
+        for (const action of user_permissions/* allowed_resource_actions */.co) {
+          canuserresolutionsargs.push([
             action,
-            { kind, name, id: targetHint.id }
+            { kind, name, id: targethint.id }
           ]);
-          receiveUserPermissionArgs[(0,user_permissions/* getUserPermissionCacheKey */.kC)(action, {
+          receiveuserpermissionargs[(0,user_permissions/* getuserpermissioncachekey */.kc)(action, {
             kind,
             name,
-            id: targetHint.id
-          })] = targetHint.permissions[action];
+            id: targethint.id
+          })] = targethint.permissions[action];
         }
       }
-      if (targetHints.length > 0) {
-        dispatch.receiveUserPermissions(
-          receiveUserPermissionArgs
+      if (targethints.length > 0) {
+        dispatch.receiveuserpermissions(
+          receiveuserpermissionargs
         );
-        dispatch.finishResolutions(
-          "canUser",
-          canUserResolutionsArgs
+        dispatch.finishresolutions(
+          "canuser",
+          canuserresolutionsargs
         );
       }
-      dispatch.finishResolutions(
-        "getEntityRecord",
-        getResolutionsArgs(records, rawQuery)
+      dispatch.finishresolutions(
+        "getentityrecord",
+        getresolutionsargs(records, rawquery)
       );
-      dispatch.__unstableReleaseStoreLock(lock);
+      dispatch.__unstablereleasestorelock(lock);
     });
   } catch (e) {
-    dispatch.__unstableReleaseStoreLock(lock);
+    dispatch.__unstablereleasestorelock(lock);
   }
 };
-getEntityRecords.shouldInvalidate = (action, kind, name) => {
-  return (action.type === "RECEIVE_ITEMS" || action.type === "REMOVE_ITEMS") && action.invalidateCache && kind === action.kind && name === action.name;
+getentityrecords.shouldinvalidate = (action, kind, name) => {
+  return (action.type === "receive_items" || action.type === "remove_items") && action.invalidatecache && kind === action.kind && name === action.name;
 };
-const getEntityRecordsTotalItems = forward_resolver_default("getEntityRecords");
-const getEntityRecordsTotalPages = forward_resolver_default("getEntityRecords");
-const getCurrentTheme = () => async ({ dispatch, resolveSelect }) => {
-  const activeThemes = await resolveSelect.getEntityRecords(
+const getentityrecordstotalitems = forward_resolver_default("getentityrecords");
+const getentityrecordstotalpages = forward_resolver_default("getentityrecords");
+const getcurrenttheme = () => async ({ dispatch, resolveselect }) => {
+  const activethemes = await resolveselect.getentityrecords(
     "root",
     "theme",
     { status: "active" }
   );
-  dispatch.receiveCurrentTheme(activeThemes[0]);
+  dispatch.receivecurrenttheme(activethemes[0]);
 };
-const getThemeSupports = forward_resolver_default("getCurrentTheme");
-const getEmbedPreview = (url) => async ({ dispatch }) => {
+const getthemesupports = forward_resolver_default("getcurrenttheme");
+const getembedpreview = (url) => async ({ dispatch }) => {
   try {
-    const embedProxyResponse = await external_wp_apiFetch_default()({
-      path: (0,external_wp_url_.addQueryArgs)("/oembed/1.0/proxy", { url })
+    const embedproxyresponse = await external_wp_apifetch_default()({
+      path: (0,external_wp_url_.addqueryargs)("/oembed/1.0/proxy", { url })
     });
-    dispatch.receiveEmbedPreview(url, embedProxyResponse);
+    dispatch.receiveembedpreview(url, embedproxyresponse);
   } catch (error) {
-    dispatch.receiveEmbedPreview(url, false);
+    dispatch.receiveembedpreview(url, false);
   }
 };
-const canUser = (requestedAction, resource, id) => async ({ dispatch, registry, resolveSelect }) => {
-  if (!user_permissions/* ALLOWED_RESOURCE_ACTIONS */.CO.includes(requestedAction)) {
-    throw new Error(`'${requestedAction}' is not a valid action.`);
+const canuser = (requestedaction, resource, id) => async ({ dispatch, registry, resolveselect }) => {
+  if (!user_permissions/* allowed_resource_actions */.co.includes(requestedaction)) {
+    throw new error(`'${requestedaction}' is not a valid action.`);
   }
-  const { hasStartedResolution } = registry.select(build_module_name/* STORE_NAME */.E);
-  for (const relatedAction of user_permissions/* ALLOWED_RESOURCE_ACTIONS */.CO) {
-    if (relatedAction === requestedAction) {
+  const { hasstartedresolution } = registry.select(build_module_name/* store_name */.e);
+  for (const relatedaction of user_permissions/* allowed_resource_actions */.co) {
+    if (relatedaction === requestedaction) {
       continue;
     }
-    const isAlreadyResolving = hasStartedResolution("canUser", [
-      relatedAction,
+    const isalreadyresolving = hasstartedresolution("canuser", [
+      relatedaction,
       resource,
       id
     ]);
-    if (isAlreadyResolving) {
+    if (isalreadyresolving) {
       return;
     }
   }
-  let resourcePath = null;
+  let resourcepath = null;
   if (typeof resource === "object") {
     if (!resource.kind || !resource.name) {
-      throw new Error("The entity resource object is not valid.");
+      throw new error("the entity resource object is not valid.");
     }
-    const configs = await resolveSelect.getEntitiesConfig(
+    const configs = await resolveselect.getentitiesconfig(
       resource.kind
     );
-    const entityConfig = configs.find(
+    const entityconfig = configs.find(
       (config) => config.name === resource.name && config.kind === resource.kind
     );
-    if (!entityConfig) {
+    if (!entityconfig) {
       return;
     }
-    resourcePath = entityConfig.baseURL + (resource.id ? "/" + resource.id : "");
+    resourcepath = entityconfig.baseurl + (resource.id ? "/" + resource.id : "");
   } else {
-    resourcePath = `/wp/v2/${resource}` + (id ? "/" + id : "");
+    resourcepath = `/wp/v2/${resource}` + (id ? "/" + id : "");
   }
   let response;
   try {
-    response = await external_wp_apiFetch_default()({
-      path: resourcePath,
-      method: "OPTIONS",
+    response = await external_wp_apifetch_default()({
+      path: resourcepath,
+      method: "options",
       parse: false
     });
   } catch (error) {
     return;
   }
-  const permissions = (0,user_permissions/* getUserPermissionsFromAllowHeader */.qY)(
+  const permissions = (0,user_permissions/* getuserpermissionsfromallowheader */.qy)(
     response.headers?.get("allow")
   );
   registry.batch(() => {
-    for (const action of user_permissions/* ALLOWED_RESOURCE_ACTIONS */.CO) {
-      const key = (0,user_permissions/* getUserPermissionCacheKey */.kC)(action, resource, id);
-      dispatch.receiveUserPermission(key, permissions[action]);
-      if (action !== requestedAction) {
-        dispatch.finishResolution("canUser", [
+    for (const action of user_permissions/* allowed_resource_actions */.co) {
+      const key = (0,user_permissions/* getuserpermissioncachekey */.kc)(action, resource, id);
+      dispatch.receiveuserpermission(key, permissions[action]);
+      if (action !== requestedaction) {
+        dispatch.finishresolution("canuser", [
           action,
           resource,
           id
@@ -4498,105 +4498,105 @@ const canUser = (requestedAction, resource, id) => async ({ dispatch, registry, 
     }
   });
 };
-const canUserEditEntityRecord = (kind, name, recordId) => async ({ dispatch }) => {
-  await dispatch(canUser("update", { kind, name, id: recordId }));
+const canusereditentityrecord = (kind, name, recordid) => async ({ dispatch }) => {
+  await dispatch(canuser("update", { kind, name, id: recordid }));
 };
-const getAutosaves = (postType, postId) => async ({ dispatch, resolveSelect }) => {
+const getautosaves = (posttype, postid) => async ({ dispatch, resolveselect }) => {
   const {
-    rest_base: restBase,
-    rest_namespace: restNamespace = "wp/v2",
+    rest_base: restbase,
+    rest_namespace: restnamespace = "wp/v2",
     supports
-  } = await resolveSelect.getPostType(postType);
+  } = await resolveselect.getposttype(posttype);
   if (!supports?.autosave) {
     return;
   }
-  const autosaves = await external_wp_apiFetch_default()({
-    path: `/${restNamespace}/${restBase}/${postId}/autosaves?context=edit`
+  const autosaves = await external_wp_apifetch_default()({
+    path: `/${restnamespace}/${restbase}/${postid}/autosaves?context=edit`
   });
   if (autosaves && autosaves.length) {
-    dispatch.receiveAutosaves(postId, autosaves);
+    dispatch.receiveautosaves(postid, autosaves);
   }
 };
-const getAutosave = (postType, postId) => async ({ resolveSelect }) => {
-  await resolveSelect.getAutosaves(postType, postId);
+const getautosave = (posttype, postid) => async ({ resolveselect }) => {
+  await resolveselect.getautosaves(posttype, postid);
 };
-const __experimentalGetCurrentGlobalStylesId = () => async ({ dispatch, resolveSelect }) => {
-  const activeThemes = await resolveSelect.getEntityRecords(
+const __experimentalgetcurrentglobalstylesid = () => async ({ dispatch, resolveselect }) => {
+  const activethemes = await resolveselect.getentityrecords(
     "root",
     "theme",
     { status: "active" }
   );
-  const globalStylesURL = activeThemes?.[0]?._links?.["wp:user-global-styles"]?.[0]?.href;
-  if (!globalStylesURL) {
+  const globalstylesurl = activethemes?.[0]?._links?.["wp:user-global-styles"]?.[0]?.href;
+  if (!globalstylesurl) {
     return;
   }
-  const matches = globalStylesURL.match(/\/(\d+)(?:\?|$)/);
-  const id = matches ? Number(matches[1]) : null;
+  const matches = globalstylesurl.match(/\/(\d+)(?:\?|$)/);
+  const id = matches ? number(matches[1]) : null;
   if (id) {
-    dispatch.__experimentalReceiveCurrentGlobalStylesId(id);
+    dispatch.__experimentalreceivecurrentglobalstylesid(id);
   }
 };
-const __experimentalGetCurrentThemeBaseGlobalStyles = () => async ({ resolveSelect, dispatch }) => {
-  const currentTheme = await resolveSelect.getCurrentTheme();
-  const themeGlobalStyles = await external_wp_apiFetch_default()({
-    path: `/wp/v2/global-styles/themes/${currentTheme.stylesheet}?context=view`
+const __experimentalgetcurrentthemebaseglobalstyles = () => async ({ resolveselect, dispatch }) => {
+  const currenttheme = await resolveselect.getcurrenttheme();
+  const themeglobalstyles = await external_wp_apifetch_default()({
+    path: `/wp/v2/global-styles/themes/${currenttheme.stylesheet}?context=view`
   });
-  dispatch.__experimentalReceiveThemeBaseGlobalStyles(
-    currentTheme.stylesheet,
-    themeGlobalStyles
+  dispatch.__experimentalreceivethemebaseglobalstyles(
+    currenttheme.stylesheet,
+    themeglobalstyles
   );
 };
-const __experimentalGetCurrentThemeGlobalStylesVariations = () => async ({ resolveSelect, dispatch }) => {
-  const currentTheme = await resolveSelect.getCurrentTheme();
-  const variations = await external_wp_apiFetch_default()({
-    path: `/wp/v2/global-styles/themes/${currentTheme.stylesheet}/variations?context=view`
+const __experimentalgetcurrentthemeglobalstylesvariations = () => async ({ resolveselect, dispatch }) => {
+  const currenttheme = await resolveselect.getcurrenttheme();
+  const variations = await external_wp_apifetch_default()({
+    path: `/wp/v2/global-styles/themes/${currenttheme.stylesheet}/variations?context=view`
   });
-  dispatch.__experimentalReceiveThemeGlobalStyleVariations(
-    currentTheme.stylesheet,
+  dispatch.__experimentalreceivethemeglobalstylevariations(
+    currenttheme.stylesheet,
     variations
   );
 };
-const getCurrentThemeGlobalStylesRevisions = () => async ({ resolveSelect, dispatch }) => {
-  const globalStylesId = await resolveSelect.__experimentalGetCurrentGlobalStylesId();
-  const record = globalStylesId ? await resolveSelect.getEntityRecord(
+const getcurrentthemeglobalstylesrevisions = () => async ({ resolveselect, dispatch }) => {
+  const globalstylesid = await resolveselect.__experimentalgetcurrentglobalstylesid();
+  const record = globalstylesid ? await resolveselect.getentityrecord(
     "root",
-    "globalStyles",
-    globalStylesId
+    "globalstyles",
+    globalstylesid
   ) : void 0;
-  const revisionsURL = record?._links?.["version-history"]?.[0]?.href;
-  if (revisionsURL) {
-    const resetRevisions = await external_wp_apiFetch_default()({
-      url: revisionsURL
+  const revisionsurl = record?._links?.["version-history"]?.[0]?.href;
+  if (revisionsurl) {
+    const resetrevisions = await external_wp_apifetch_default()({
+      url: revisionsurl
     });
-    const revisions = resetRevisions?.map(
-      (revision) => Object.fromEntries(
-        Object.entries(revision).map(([key, value]) => [
-          (0,dist_es2015/* camelCase */.xQ)(key),
+    const revisions = resetrevisions?.map(
+      (revision) => object.fromentries(
+        object.entries(revision).map(([key, value]) => [
+          (0,dist_es2015/* camelcase */.xq)(key),
           value
         ])
       )
     );
-    dispatch.receiveThemeGlobalStyleRevisions(
-      globalStylesId,
+    dispatch.receivethemeglobalstylerevisions(
+      globalstylesid,
       revisions
     );
   }
 };
-getCurrentThemeGlobalStylesRevisions.shouldInvalidate = (action) => {
-  return action.type === "SAVE_ENTITY_RECORD_FINISH" && action.kind === "root" && !action.error && action.name === "globalStyles";
+getcurrentthemeglobalstylesrevisions.shouldinvalidate = (action) => {
+  return action.type === "save_entity_record_finish" && action.kind === "root" && !action.error && action.name === "globalstyles";
 };
-const getBlockPatterns = () => async ({ dispatch }) => {
-  const patterns = await (0,fetch/* fetchBlockPatterns */.l$)();
-  dispatch({ type: "RECEIVE_BLOCK_PATTERNS", patterns });
+const getblockpatterns = () => async ({ dispatch }) => {
+  const patterns = await (0,fetch/* fetchblockpatterns */.l$)();
+  dispatch({ type: "receive_block_patterns", patterns });
 };
-const getBlockPatternCategories = () => async ({ dispatch }) => {
-  const categories = await external_wp_apiFetch_default()({
+const getblockpatterncategories = () => async ({ dispatch }) => {
+  const categories = await external_wp_apifetch_default()({
     path: "/wp/v2/block-patterns/categories"
   });
-  dispatch({ type: "RECEIVE_BLOCK_PATTERN_CATEGORIES", categories });
+  dispatch({ type: "receive_block_pattern_categories", categories });
 };
-const getUserPatternCategories = () => async ({ dispatch, resolveSelect }) => {
-  const patternCategories = await resolveSelect.getEntityRecords(
+const getuserpatterncategories = () => async ({ dispatch, resolveselect }) => {
+  const patterncategories = await resolveselect.getentityrecords(
     "taxonomy",
     "wp_pattern_category",
     {
@@ -4605,111 +4605,111 @@ const getUserPatternCategories = () => async ({ dispatch, resolveSelect }) => {
       context: "view"
     }
   );
-  const mappedPatternCategories = patternCategories?.map((userCategory) => ({
-    ...userCategory,
-    label: (0,external_wp_htmlEntities_.decodeEntities)(userCategory.name),
-    name: userCategory.slug
+  const mappedpatterncategories = patterncategories?.map((usercategory) => ({
+    ...usercategory,
+    label: (0,external_wp_htmlentities_.decodeentities)(usercategory.name),
+    name: usercategory.slug
   })) || [];
   dispatch({
-    type: "RECEIVE_USER_PATTERN_CATEGORIES",
-    patternCategories: mappedPatternCategories
+    type: "receive_user_pattern_categories",
+    patterncategories: mappedpatterncategories
   });
 };
-const getNavigationFallbackId = () => async ({ dispatch, select, registry }) => {
-  const fallback = await external_wp_apiFetch_default()({
-    path: (0,external_wp_url_.addQueryArgs)("/wp-block-editor/v1/navigation-fallback", {
+const getnavigationfallbackid = () => async ({ dispatch, select, registry }) => {
+  const fallback = await external_wp_apifetch_default()({
+    path: (0,external_wp_url_.addqueryargs)("/wp-block-editor/v1/navigation-fallback", {
       _embed: true
     })
   });
   const record = fallback?._embedded?.self;
   registry.batch(() => {
-    dispatch.receiveNavigationFallbackId(fallback?.id);
+    dispatch.receivenavigationfallbackid(fallback?.id);
     if (!record) {
       return;
     }
-    const existingFallbackEntityRecord = select.getEntityRecord(
-      "postType",
+    const existingfallbackentityrecord = select.getentityrecord(
+      "posttype",
       "wp_navigation",
       fallback.id
     );
-    const invalidateNavigationQueries = !existingFallbackEntityRecord;
-    dispatch.receiveEntityRecords(
-      "postType",
+    const invalidatenavigationqueries = !existingfallbackentityrecord;
+    dispatch.receiveentityrecords(
+      "posttype",
       "wp_navigation",
       record,
       void 0,
-      invalidateNavigationQueries
+      invalidatenavigationqueries
     );
-    dispatch.finishResolution("getEntityRecord", [
-      "postType",
+    dispatch.finishresolution("getentityrecord", [
+      "posttype",
       "wp_navigation",
       fallback.id
     ]);
   });
 };
-const getDefaultTemplateId = (query) => async ({ dispatch, registry, resolveSelect }) => {
-  const template = await external_wp_apiFetch_default()({
-    path: (0,external_wp_url_.addQueryArgs)("/wp/v2/templates/lookup", query)
+const getdefaulttemplateid = (query) => async ({ dispatch, registry, resolveselect }) => {
+  const template = await external_wp_apifetch_default()({
+    path: (0,external_wp_url_.addqueryargs)("/wp/v2/templates/lookup", query)
   });
-  await resolveSelect.getEntitiesConfig("postType");
+  await resolveselect.getentitiesconfig("posttype");
   if (template?.id) {
     registry.batch(() => {
-      dispatch.receiveDefaultTemplateId(query, template.id);
-      dispatch.receiveEntityRecords("postType", "wp_template", [
+      dispatch.receivedefaulttemplateid(query, template.id);
+      dispatch.receiveentityrecords("posttype", "wp_template", [
         template
       ]);
-      dispatch.finishResolution("getEntityRecord", [
-        "postType",
+      dispatch.finishresolution("getentityrecord", [
+        "posttype",
         "wp_template",
         template.id
       ]);
     });
   }
 };
-const getRevisions = (kind, name, recordKey, query = {}) => async ({ dispatch, registry, resolveSelect }) => {
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+const getrevisions = (kind, name, recordkey, query = {}) => async ({ dispatch, registry, resolveselect }) => {
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.name === name && config.kind === kind
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
   if (query._fields) {
     query = {
       ...query,
       _fields: [
-        .../* @__PURE__ */ new Set([
-          ...(0,get_normalized_comma_separable/* default */.A)(query._fields) || [],
-          entityConfig.revisionKey || entities/* DEFAULT_ENTITY_KEY */.C_
+        .../* @__pure__ */ new set([
+          ...(0,get_normalized_comma_separable/* default */.a)(query._fields) || [],
+          entityconfig.revisionkey || entities/* default_entity_key */.c_
         ])
       ].join()
     };
   }
-  const path = (0,external_wp_url_.addQueryArgs)(
-    entityConfig.getRevisionsUrl(recordKey),
+  const path = (0,external_wp_url_.addqueryargs)(
+    entityconfig.getrevisionsurl(recordkey),
     query
   );
   let records, response;
   const meta = {};
-  const isPaginated = entityConfig.supportsPagination && query.per_page !== -1;
+  const ispaginated = entityconfig.supportspagination && query.per_page !== -1;
   try {
-    response = await external_wp_apiFetch_default()({ path, parse: !isPaginated });
+    response = await external_wp_apifetch_default()({ path, parse: !ispaginated });
   } catch (error) {
     return;
   }
   if (response) {
-    if (isPaginated) {
-      records = Object.values(await response.json());
-      meta.totalItems = parseInt(
-        response.headers.get("X-WP-Total")
+    if (ispaginated) {
+      records = object.values(await response.json());
+      meta.totalitems = parseint(
+        response.headers.get("x-wp-total")
       );
     } else {
-      records = Object.values(response);
+      records = object.values(response);
     }
     if (query._fields) {
       records = records.map((record) => {
-        query._fields.split(",").forEach((field) => {
-          if (!record.hasOwnProperty(field)) {
+        query._fields.split(",").foreach((field) => {
+          if (!record.hasownproperty(field)) {
             record[field] = void 0;
           }
         });
@@ -4717,99 +4717,99 @@ const getRevisions = (kind, name, recordKey, query = {}) => async ({ dispatch, r
       });
     }
     registry.batch(() => {
-      dispatch.receiveRevisions(
+      dispatch.receiverevisions(
         kind,
         name,
-        recordKey,
+        recordkey,
         records,
         query,
         false,
         meta
       );
       if (!query?._fields && !query.context) {
-        const key = entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_;
-        const resolutionsArgs = records.filter((record) => record[key]).map((record) => [
+        const key = entityconfig.key || entities/* default_entity_key */.c_;
+        const resolutionsargs = records.filter((record) => record[key]).map((record) => [
           kind,
           name,
-          recordKey,
+          recordkey,
           record[key]
         ]);
-        dispatch.finishResolutions(
-          "getRevision",
-          resolutionsArgs
+        dispatch.finishresolutions(
+          "getrevision",
+          resolutionsargs
         );
       }
     });
   }
 };
-getRevisions.shouldInvalidate = (action, kind, name, recordKey) => action.type === "SAVE_ENTITY_RECORD_FINISH" && name === action.name && kind === action.kind && !action.error && recordKey === action.recordId;
-const getRevision = (kind, name, recordKey, revisionKey, query) => async ({ dispatch, resolveSelect }) => {
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+getrevisions.shouldinvalidate = (action, kind, name, recordkey) => action.type === "save_entity_record_finish" && name === action.name && kind === action.kind && !action.error && recordkey === action.recordid;
+const getrevision = (kind, name, recordkey, revisionkey, query) => async ({ dispatch, resolveselect }) => {
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.name === name && config.kind === kind
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
   if (query !== void 0 && query._fields) {
     query = {
       ...query,
       _fields: [
-        .../* @__PURE__ */ new Set([
-          ...(0,get_normalized_comma_separable/* default */.A)(query._fields) || [],
-          entityConfig.revisionKey || entities/* DEFAULT_ENTITY_KEY */.C_
+        .../* @__pure__ */ new set([
+          ...(0,get_normalized_comma_separable/* default */.a)(query._fields) || [],
+          entityconfig.revisionkey || entities/* default_entity_key */.c_
         ])
       ].join()
     };
   }
-  const path = (0,external_wp_url_.addQueryArgs)(
-    entityConfig.getRevisionsUrl(recordKey, revisionKey),
+  const path = (0,external_wp_url_.addqueryargs)(
+    entityconfig.getrevisionsurl(recordkey, revisionkey),
     query
   );
   let record;
   try {
-    record = await external_wp_apiFetch_default()({ path });
+    record = await external_wp_apifetch_default()({ path });
   } catch (error) {
     return;
   }
   if (record) {
-    dispatch.receiveRevisions(kind, name, recordKey, record, query);
+    dispatch.receiverevisions(kind, name, recordkey, record, query);
   }
 };
-const getRegisteredPostMeta = (postType) => async ({ dispatch, resolveSelect }) => {
+const getregisteredpostmeta = (posttype) => async ({ dispatch, resolveselect }) => {
   let options;
   try {
     const {
-      rest_namespace: restNamespace = "wp/v2",
-      rest_base: restBase
-    } = await resolveSelect.getPostType(postType) || {};
-    options = await external_wp_apiFetch_default()({
-      path: `${restNamespace}/${restBase}/?context=edit`,
-      method: "OPTIONS"
+      rest_namespace: restnamespace = "wp/v2",
+      rest_base: restbase
+    } = await resolveselect.getposttype(posttype) || {};
+    options = await external_wp_apifetch_default()({
+      path: `${restnamespace}/${restbase}/?context=edit`,
+      method: "options"
     });
   } catch (error) {
     return;
   }
   if (options) {
-    dispatch.receiveRegisteredPostMeta(
-      postType,
+    dispatch.receiveregisteredpostmeta(
+      posttype,
       options?.schema?.properties?.meta?.properties
     );
   }
 };
-const getEntitiesConfig = (kind) => async ({ dispatch }) => {
-  const loader = entities/* additionalEntityConfigLoaders */.L2.find(
+const getentitiesconfig = (kind) => async ({ dispatch }) => {
+  const loader = entities/* additionalentityconfigloaders */.l2.find(
     (l) => l.kind === kind
   );
   if (!loader) {
     return;
   }
   try {
-    const configs = await loader.loadEntities();
+    const configs = await loader.loadentities();
     if (!configs.length) {
       return;
     }
-    dispatch.addEntities(configs);
+    dispatch.addentities(configs);
   } catch {
   }
 };
@@ -4823,49 +4823,49 @@ const getEntitiesConfig = (kind) => async ({ dispatch }) => {
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  Y3: () => (/* reexport */ fetchLinkSuggestions),
+  y3: () => (/* reexport */ fetchlinksuggestions),
   gr: () => (/* reexport */ experimental_fetch_url_data_default),
-  l$: () => (/* binding */ fetchBlockPatterns)
+  l$: () => (/* binding */ fetchblockpatterns)
 });
 
-// EXTERNAL MODULE: ./node_modules/camel-case/dist.es2015/index.js
+// external module: ./node_modules/camel-case/dist.es2015/index.js
 var dist_es2015 = __webpack_require__(5663);
-// EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(1455);
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
-// EXTERNAL MODULE: external ["wp","url"]
+// external module: external ["wp","apifetch"]
+var external_wp_apifetch_ = __webpack_require__(1455);
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_);
+// external module: external ["wp","url"]
 var external_wp_url_ = __webpack_require__(3832);
-// EXTERNAL MODULE: external ["wp","htmlEntities"]
-var external_wp_htmlEntities_ = __webpack_require__(8537);
-// EXTERNAL MODULE: external ["wp","i18n"]
+// external module: external ["wp","htmlentities"]
+var external_wp_htmlentities_ = __webpack_require__(8537);
+// external module: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(7723);
 ;// ./node_modules/@wordpress/core-data/build-module/fetch/__experimental-fetch-link-suggestions.js
 
 
 
 
-async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings = {}) {
-  const searchOptionsToUse = searchOptions.isInitialSuggestions && searchOptions.initialSuggestionsSearchOptions ? {
-    ...searchOptions,
-    ...searchOptions.initialSuggestionsSearchOptions
-  } : searchOptions;
+async function fetchlinksuggestions(search, searchoptions = {}, editorsettings = {}) {
+  const searchoptionstouse = searchoptions.isinitialsuggestions && searchoptions.initialsuggestionssearchoptions ? {
+    ...searchoptions,
+    ...searchoptions.initialsuggestionssearchoptions
+  } : searchoptions;
   const {
     type,
     subtype,
     page,
-    perPage = searchOptions.isInitialSuggestions ? 3 : 20
-  } = searchOptionsToUse;
-  const { disablePostFormats = false } = editorSettings;
+    perpage = searchoptions.isinitialsuggestions ? 3 : 20
+  } = searchoptionstouse;
+  const { disablepostformats = false } = editorsettings;
   const queries = [];
   if (!type || type === "post") {
     queries.push(
-      external_wp_apiFetch_default()({
-        path: (0,external_wp_url_.addQueryArgs)("/wp/v2/search", {
+      external_wp_apifetch_default()({
+        path: (0,external_wp_url_.addqueryargs)("/wp/v2/search", {
           search,
           page,
-          per_page: perPage,
+          per_page: perpage,
           type: "post",
           subtype
         })
@@ -4874,22 +4874,22 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           return {
             id: result.id,
             url: result.url,
-            title: (0,external_wp_htmlEntities_.decodeEntities)(result.title || "") || (0,external_wp_i18n_.__)("(no title)"),
+            title: (0,external_wp_htmlentities_.decodeentities)(result.title || "") || (0,external_wp_i18n_.__)("(no title)"),
             type: result.subtype || result.type,
             kind: "post-type"
           };
         });
       }).catch(() => [])
-      // Fail by returning no results.
+      // fail by returning no results.
     );
   }
   if (!type || type === "term") {
     queries.push(
-      external_wp_apiFetch_default()({
-        path: (0,external_wp_url_.addQueryArgs)("/wp/v2/search", {
+      external_wp_apifetch_default()({
+        path: (0,external_wp_url_.addqueryargs)("/wp/v2/search", {
           search,
           page,
-          per_page: perPage,
+          per_page: perpage,
           type: "term",
           subtype
         })
@@ -4898,22 +4898,22 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           return {
             id: result.id,
             url: result.url,
-            title: (0,external_wp_htmlEntities_.decodeEntities)(result.title || "") || (0,external_wp_i18n_.__)("(no title)"),
+            title: (0,external_wp_htmlentities_.decodeentities)(result.title || "") || (0,external_wp_i18n_.__)("(no title)"),
             type: result.subtype || result.type,
             kind: "taxonomy"
           };
         });
       }).catch(() => [])
-      // Fail by returning no results.
+      // fail by returning no results.
     );
   }
-  if (!disablePostFormats && (!type || type === "post-format")) {
+  if (!disablepostformats && (!type || type === "post-format")) {
     queries.push(
-      external_wp_apiFetch_default()({
-        path: (0,external_wp_url_.addQueryArgs)("/wp/v2/search", {
+      external_wp_apifetch_default()({
+        path: (0,external_wp_url_.addqueryargs)("/wp/v2/search", {
           search,
           page,
-          per_page: perPage,
+          per_page: perpage,
           type: "post-format",
           subtype
         })
@@ -4922,63 +4922,63 @@ async function fetchLinkSuggestions(search, searchOptions = {}, editorSettings =
           return {
             id: result.id,
             url: result.url,
-            title: (0,external_wp_htmlEntities_.decodeEntities)(result.title || "") || (0,external_wp_i18n_.__)("(no title)"),
+            title: (0,external_wp_htmlentities_.decodeentities)(result.title || "") || (0,external_wp_i18n_.__)("(no title)"),
             type: result.subtype || result.type,
             kind: "taxonomy"
           };
         });
       }).catch(() => [])
-      // Fail by returning no results.
+      // fail by returning no results.
     );
   }
   if (!type || type === "attachment") {
     queries.push(
-      external_wp_apiFetch_default()({
-        path: (0,external_wp_url_.addQueryArgs)("/wp/v2/media", {
+      external_wp_apifetch_default()({
+        path: (0,external_wp_url_.addqueryargs)("/wp/v2/media", {
           search,
           page,
-          per_page: perPage
+          per_page: perpage
         })
       }).then((results2) => {
         return results2.map((result) => {
           return {
             id: result.id,
             url: result.source_url,
-            title: (0,external_wp_htmlEntities_.decodeEntities)(result.title.rendered || "") || (0,external_wp_i18n_.__)("(no title)"),
+            title: (0,external_wp_htmlentities_.decodeentities)(result.title.rendered || "") || (0,external_wp_i18n_.__)("(no title)"),
             type: result.type,
             kind: "media"
           };
         });
       }).catch(() => [])
-      // Fail by returning no results.
+      // fail by returning no results.
     );
   }
-  const responses = await Promise.all(queries);
+  const responses = await promise.all(queries);
   let results = responses.flat();
   results = results.filter((result) => !!result.id);
-  results = sortResults(results, search);
-  results = results.slice(0, perPage);
+  results = sortresults(results, search);
+  results = results.slice(0, perpage);
   return results;
 }
-function sortResults(results, search) {
-  const searchTokens = tokenize(search);
+function sortresults(results, search) {
+  const searchtokens = tokenize(search);
   const scores = {};
   for (const result of results) {
     if (result.title) {
-      const titleTokens = tokenize(result.title);
-      const exactMatchingTokens = titleTokens.filter(
-        (titleToken) => searchTokens.some(
-          (searchToken) => titleToken === searchToken
+      const titletokens = tokenize(result.title);
+      const exactmatchingtokens = titletokens.filter(
+        (titletoken) => searchtokens.some(
+          (searchtoken) => titletoken === searchtoken
         )
       );
-      const subMatchingTokens = titleTokens.filter(
-        (titleToken) => searchTokens.some(
-          (searchToken) => titleToken !== searchToken && titleToken.includes(searchToken)
+      const submatchingtokens = titletokens.filter(
+        (titletoken) => searchtokens.some(
+          (searchtoken) => titletoken !== searchtoken && titletoken.includes(searchtoken)
         )
       );
-      const exactMatchScore = exactMatchingTokens.length / titleTokens.length * 10;
-      const subMatchScore = subMatchingTokens.length / titleTokens.length;
-      scores[result.id] = exactMatchScore + subMatchScore;
+      const exactmatchscore = exactmatchingtokens.length / titletokens.length * 10;
+      const submatchscore = submatchingtokens.length / titletokens.length;
+      scores[result.id] = exactmatchscore + submatchscore;
     } else {
       scores[result.id] = 0;
     }
@@ -4986,40 +4986,40 @@ function sortResults(results, search) {
   return results.sort((a, b) => scores[b.id] - scores[a.id]);
 }
 function tokenize(text) {
-  return text.toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
+  return text.tolowercase().match(/[\p{l}\p{n}]+/gu) || [];
 }
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/fetch/__experimental-fetch-url-data.js
 
 
-const CACHE = /* @__PURE__ */ new Map();
-const fetchUrlData = async (url, options = {}) => {
+const cache = /* @__pure__ */ new map();
+const fetchurldata = async (url, options = {}) => {
   const endpoint = "/wp-block-editor/v1/url-details";
   const args = {
-    url: (0,external_wp_url_.prependHTTP)(url)
+    url: (0,external_wp_url_.prependhttp)(url)
   };
-  if (!(0,external_wp_url_.isURL)(url)) {
-    return Promise.reject(`${url} is not a valid URL.`);
+  if (!(0,external_wp_url_.isurl)(url)) {
+    return promise.reject(`${url} is not a valid url.`);
   }
-  const protocol = (0,external_wp_url_.getProtocol)(url);
-  if (!protocol || !(0,external_wp_url_.isValidProtocol)(protocol) || !protocol.startsWith("http") || !/^https?:\/\/[^\/\s]/i.test(url)) {
-    return Promise.reject(
-      `${url} does not have a valid protocol. URLs must be "http" based`
+  const protocol = (0,external_wp_url_.getprotocol)(url);
+  if (!protocol || !(0,external_wp_url_.isvalidprotocol)(protocol) || !protocol.startswith("http") || !/^https?:\/\/[^\/\s]/i.test(url)) {
+    return promise.reject(
+      `${url} does not have a valid protocol. urls must be "http" based`
     );
   }
-  if (CACHE.has(url)) {
-    return CACHE.get(url);
+  if (cache.has(url)) {
+    return cache.get(url);
   }
-  return external_wp_apiFetch_default()({
-    path: (0,external_wp_url_.addQueryArgs)(endpoint, args),
+  return external_wp_apifetch_default()({
+    path: (0,external_wp_url_.addqueryargs)(endpoint, args),
     ...options
   }).then((res) => {
-    CACHE.set(url, res);
+    cache.set(url, res);
     return res;
   });
 };
-var experimental_fetch_url_data_default = fetchUrlData;
+var experimental_fetch_url_data_default = fetchurldata;
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/fetch/index.js
@@ -5027,17 +5027,17 @@ var experimental_fetch_url_data_default = fetchUrlData;
 
 
 
-async function fetchBlockPatterns() {
-  const restPatterns = await external_wp_apiFetch_default()({
+async function fetchblockpatterns() {
+  const restpatterns = await external_wp_apifetch_default()({
     path: "/wp/v2/block-patterns/patterns"
   });
-  if (!restPatterns) {
+  if (!restpatterns) {
     return [];
   }
-  return restPatterns.map(
-    (pattern) => Object.fromEntries(
-      Object.entries(pattern).map(([key, value]) => [
-        (0,dist_es2015/* camelCase */.xQ)(key),
+  return restpatterns.map(
+    (pattern) => object.fromentries(
+      object.entries(pattern).map(([key, value]) => [
+        (0,dist_es2015/* camelcase */.xq)(key),
         value
       ])
     )
@@ -5053,22 +5053,22 @@ async function fetchBlockPatterns() {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Ay: () => (/* binding */ useEntityRecords),
-/* harmony export */   bM: () => (/* binding */ __experimentalUseEntityRecords),
-/* harmony export */   pU: () => (/* binding */ useEntityRecordsWithPermissions)
+/* harmony export */   ay: () => (/* binding */ useentityrecords),
+/* harmony export */   bm: () => (/* binding */ __experimentaluseentityrecords),
+/* harmony export */   pu: () => (/* binding */ useentityrecordswithpermissions)
 /* harmony export */ });
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3832);
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4040);
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7143);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6087);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _use_query_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7541);
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4565);
-/* harmony import */ var _lock_unlock__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6378);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(533);
+/* harmony import */ var _wordpress_url__webpack_imported_module_0__ = __webpack_require__(3832);
+/* harmony import */ var _wordpress_url__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_wordpress_url__webpack_imported_module_0__);
+/* harmony import */ var _wordpress_deprecated__webpack_imported_module_1__ = __webpack_require__(4040);
+/* harmony import */ var _wordpress_deprecated__webpack_imported_module_1___default = /*#__pure__*/__webpack_require__.n(_wordpress_deprecated__webpack_imported_module_1__);
+/* harmony import */ var _wordpress_data__webpack_imported_module_2__ = __webpack_require__(7143);
+/* harmony import */ var _wordpress_data__webpack_imported_module_2___default = /*#__pure__*/__webpack_require__.n(_wordpress_data__webpack_imported_module_2__);
+/* harmony import */ var _wordpress_element__webpack_imported_module_3__ = __webpack_require__(6087);
+/* harmony import */ var _wordpress_element__webpack_imported_module_3___default = /*#__pure__*/__webpack_require__.n(_wordpress_element__webpack_imported_module_3__);
+/* harmony import */ var _use_query_select__webpack_imported_module_5__ = __webpack_require__(7541);
+/* harmony import */ var ___webpack_imported_module_4__ = __webpack_require__(4565);
+/* harmony import */ var _lock_unlock__webpack_imported_module_7__ = __webpack_require__(6378);
+/* harmony import */ var _utils__webpack_imported_module_6__ = __webpack_require__(533);
 
 
 
@@ -5077,74 +5077,74 @@ async function fetchBlockPatterns() {
 
 
 
-const EMPTY_ARRAY = [];
-function useEntityRecords(kind, name, queryArgs = {}, options = { enabled: true }) {
-  const queryAsString = (0,_wordpress_url__WEBPACK_IMPORTED_MODULE_0__.addQueryArgs)("", queryArgs);
-  const { data: records, ...rest } = (0,_use_query_select__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .A)(
+const empty_array = [];
+function useentityrecords(kind, name, queryargs = {}, options = { enabled: true }) {
+  const queryasstring = (0,_wordpress_url__webpack_imported_module_0__.addqueryargs)("", queryargs);
+  const { data: records, ...rest } = (0,_use_query_select__webpack_imported_module_5__/* ["default"] */ .a)(
     (query) => {
       if (!options.enabled) {
         return {
-          // Avoiding returning a new reference on every execution.
-          data: EMPTY_ARRAY
+          // avoiding returning a new reference on every execution.
+          data: empty_array
         };
       }
-      return query(___WEBPACK_IMPORTED_MODULE_4__.store).getEntityRecords(kind, name, queryArgs);
+      return query(___webpack_imported_module_4__.store).getentityrecords(kind, name, queryargs);
     },
-    [kind, name, queryAsString, options.enabled]
+    [kind, name, queryasstring, options.enabled]
   );
-  const { totalItems, totalPages } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(
+  const { totalitems, totalpages } = (0,_wordpress_data__webpack_imported_module_2__.useselect)(
     (select) => {
       if (!options.enabled) {
         return {
-          totalItems: null,
-          totalPages: null
+          totalitems: null,
+          totalpages: null
         };
       }
       return {
-        totalItems: select(___WEBPACK_IMPORTED_MODULE_4__.store).getEntityRecordsTotalItems(
+        totalitems: select(___webpack_imported_module_4__.store).getentityrecordstotalitems(
           kind,
           name,
-          queryArgs
+          queryargs
         ),
-        totalPages: select(___WEBPACK_IMPORTED_MODULE_4__.store).getEntityRecordsTotalPages(
+        totalpages: select(___webpack_imported_module_4__.store).getentityrecordstotalpages(
           kind,
           name,
-          queryArgs
+          queryargs
         )
       };
     },
-    [kind, name, queryAsString, options.enabled]
+    [kind, name, queryasstring, options.enabled]
   );
   return {
     records,
-    totalItems,
-    totalPages,
+    totalitems,
+    totalpages,
     ...rest
   };
 }
-function __experimentalUseEntityRecords(kind, name, queryArgs, options) {
-  _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_1___default()(`wp.data.__experimentalUseEntityRecords`, {
-    alternative: "wp.data.useEntityRecords",
+function __experimentaluseentityrecords(kind, name, queryargs, options) {
+  _wordpress_deprecated__webpack_imported_module_1___default()(`wp.data.__experimentaluseentityrecords`, {
+    alternative: "wp.data.useentityrecords",
     since: "6.1"
   });
-  return useEntityRecords(kind, name, queryArgs, options);
+  return useentityrecords(kind, name, queryargs, options);
 }
-function useEntityRecordsWithPermissions(kind, name, queryArgs = {}, options = { enabled: true }) {
-  const entityConfig = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(
-    (select) => select(___WEBPACK_IMPORTED_MODULE_4__.store).getEntityConfig(kind, name),
+function useentityrecordswithpermissions(kind, name, queryargs = {}, options = { enabled: true }) {
+  const entityconfig = (0,_wordpress_data__webpack_imported_module_2__.useselect)(
+    (select) => select(___webpack_imported_module_4__.store).getentityconfig(kind, name),
     [kind, name]
   );
-  const { records: data, ...ret } = useEntityRecords(
+  const { records: data, ...ret } = useentityrecords(
     kind,
     name,
     {
-      ...queryArgs,
-      // If _fields is provided, we need to include _links in the request for permission caching to work.
-      ...queryArgs._fields ? {
+      ...queryargs,
+      // if _fields is provided, we need to include _links in the request for permission caching to work.
+      ...queryargs._fields ? {
         _fields: [
-          .../* @__PURE__ */ new Set([
-            ...(0,_utils__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .A)(
-              queryArgs._fields
+          .../* @__pure__ */ new set([
+            ...(0,_utils__webpack_imported_module_6__/* ["default"] */ .a)(
+              queryargs._fields
             ) || [],
             "_links"
           ])
@@ -5153,23 +5153,23 @@ function useEntityRecordsWithPermissions(kind, name, queryArgs = {}, options = {
     },
     options
   );
-  const ids = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useMemo)(
+  const ids = (0,_wordpress_element__webpack_imported_module_3__.usememo)(
     () => data?.map(
       // @ts-ignore
-      (record) => record[entityConfig?.key ?? "id"]
+      (record) => record[entityconfig?.key ?? "id"]
     ) ?? [],
-    [data, entityConfig?.key]
+    [data, entityconfig?.key]
   );
-  const permissions = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(
+  const permissions = (0,_wordpress_data__webpack_imported_module_2__.useselect)(
     (select) => {
-      const { getEntityRecordsPermissions } = (0,_lock_unlock__WEBPACK_IMPORTED_MODULE_7__/* .unlock */ .T)(
-        select(___WEBPACK_IMPORTED_MODULE_4__.store)
+      const { getentityrecordspermissions } = (0,_lock_unlock__webpack_imported_module_7__/* .unlock */ .t)(
+        select(___webpack_imported_module_4__.store)
       );
-      return getEntityRecordsPermissions(kind, name, ids);
+      return getentityrecordspermissions(kind, name, ids);
     },
     [ids, kind, name]
   );
-  const dataWithPermissions = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useMemo)(
+  const datawithpermissions = (0,_wordpress_element__webpack_imported_module_3__.usememo)(
     () => data?.map((record, index) => ({
       // @ts-ignore
       ...record,
@@ -5177,7 +5177,7 @@ function useEntityRecordsWithPermissions(kind, name, queryArgs = {}, options = {
     })) ?? [],
     [data, permissions]
   );
-  return { records: dataWithPermissions, ...ret };
+  return { records: datawithpermissions, ...ret };
 }
 
 
@@ -5197,55 +5197,55 @@ module.exports = window["wp"]["data"];
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   g: () => (/* binding */ lowerCase)
+/* harmony export */   g: () => (/* binding */ lowercase)
 /* harmony export */ });
-/* unused harmony export localeLowerCase */
+/* unused harmony export localelowercase */
 /**
- * Source: ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt
+ * source: ftp://ftp.unicode.org/public/ucd/latest/ucd/specialcasing.txt
  */
-var SUPPORTED_LOCALE = {
+var supported_locale = {
     tr: {
         regexp: /\u0130|\u0049|\u0049\u0307/g,
         map: {
-            Ä°: "\u0069",
-            I: "\u0131",
-            IÌ‡: "\u0069",
+            ä°: "\u0069",
+            i: "\u0131",
+            iì‡: "\u0069",
         },
     },
     az: {
         regexp: /\u0130/g,
         map: {
-            Ä°: "\u0069",
-            I: "\u0131",
-            IÌ‡: "\u0069",
+            ä°: "\u0069",
+            i: "\u0131",
+            iì‡: "\u0069",
         },
     },
     lt: {
-        regexp: /\u0049|\u004A|\u012E|\u00CC|\u00CD|\u0128/g,
+        regexp: /\u0049|\u004a|\u012e|\u00cc|\u00cd|\u0128/g,
         map: {
-            I: "\u0069\u0307",
-            J: "\u006A\u0307",
-            Ä®: "\u012F\u0307",
-            ÃŒ: "\u0069\u0307\u0300",
-            Ã: "\u0069\u0307\u0301",
-            Ä¨: "\u0069\u0307\u0303",
+            i: "\u0069\u0307",
+            j: "\u006a\u0307",
+            ä®: "\u012f\u0307",
+            ãœ: "\u0069\u0307\u0300",
+            ã: "\u0069\u0307\u0301",
+            ä¨: "\u0069\u0307\u0303",
         },
     },
 };
 /**
- * Localized lower case.
+ * localized lower case.
  */
-function localeLowerCase(str, locale) {
-    var lang = SUPPORTED_LOCALE[locale.toLowerCase()];
+function localelowercase(str, locale) {
+    var lang = supported_locale[locale.tolowercase()];
     if (lang)
-        return lowerCase(str.replace(lang.regexp, function (m) { return lang.map[m]; }));
-    return lowerCase(str);
+        return lowercase(str.replace(lang.regexp, function (m) { return lang.map[m]; }));
+    return lowercase(str);
 }
 /**
- * Lower case as a function.
+ * lower case as a function.
  */
-function lowerCase(str) {
-    return str.toLowerCase();
+function lowercase(str) {
+    return str.tolowercase();
 }
 
 
@@ -5256,62 +5256,62 @@ function lowerCase(str) {
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  A: () => (/* binding */ useQuerySelect)
+  a: () => (/* binding */ usequeryselect)
 });
 
-// UNUSED EXPORTS: META_SELECTORS
+// unused exports: meta_selectors
 
-// EXTERNAL MODULE: external ["wp","data"]
+// external module: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7143);
 ;// ./node_modules/memize/dist/index.js
 /**
- * Memize options object.
+ * memize options object.
  *
- * @typedef MemizeOptions
+ * @typedef memizeoptions
  *
- * @property {number} [maxSize] Maximum size of the cache.
+ * @property {number} [maxsize] maximum size of the cache.
  */
 
 /**
- * Internal cache entry.
+ * internal cache entry.
  *
- * @typedef MemizeCacheNode
+ * @typedef memizecachenode
  *
- * @property {?MemizeCacheNode|undefined} [prev] Previous node.
- * @property {?MemizeCacheNode|undefined} [next] Next node.
- * @property {Array<*>}                   args   Function arguments for cache
+ * @property {?memizecachenode|undefined} [prev] previous node.
+ * @property {?memizecachenode|undefined} [next] next node.
+ * @property {array<*>}                   args   function arguments for cache
  *                                               entry.
- * @property {*}                          val    Function result.
+ * @property {*}                          val    function result.
  */
 
 /**
- * Properties of the enhanced function for controlling cache.
+ * properties of the enhanced function for controlling cache.
  *
- * @typedef MemizeMemoizedFunction
+ * @typedef memizememoizedfunction
  *
- * @property {()=>void} clear Clear the cache.
+ * @property {()=>void} clear clear the cache.
  */
 
 /**
- * Accepts a function to be memoized, and returns a new memoized function, with
+ * accepts a function to be memoized, and returns a new memoized function, with
  * optional options.
  *
- * @template {(...args: any[]) => any} F
+ * @template {(...args: any[]) => any} f
  *
- * @param {F}             fn        Function to memoize.
- * @param {MemizeOptions} [options] Options object.
+ * @param {f}             fn        function to memoize.
+ * @param {memizeoptions} [options] options object.
  *
- * @return {((...args: Parameters<F>) => ReturnType<F>) & MemizeMemoizedFunction} Memoized function.
+ * @return {((...args: parameters<f>) => returntype<f>) & memizememoizedfunction} memoized function.
  */
 function memize(fn, options) {
 	var size = 0;
 
-	/** @type {?MemizeCacheNode|undefined} */
+	/** @type {?memizecachenode|undefined} */
 	var head;
 
-	/** @type {?MemizeCacheNode|undefined} */
+	/** @type {?memizecachenode|undefined} */
 	var tail;
 
 	options = options || {};
@@ -5322,58 +5322,58 @@ function memize(fn, options) {
 			args,
 			i;
 
-		searchCache: while (node) {
-			// Perform a shallow equality test to confirm that whether the node
-			// under test is a candidate for the arguments passed. Two arrays
+		searchcache: while (node) {
+			// perform a shallow equality test to confirm that whether the node
+			// under test is a candidate for the arguments passed. two arrays
 			// are shallowly equal if their length matches and each entry is
-			// strictly equal between the two sets. Avoid abstracting to a
+			// strictly equal between the two sets. avoid abstracting to a
 			// function which could incur an arguments leaking deoptimization.
 
-			// Check whether node arguments match arguments length
+			// check whether node arguments match arguments length
 			if (node.args.length !== arguments.length) {
 				node = node.next;
 				continue;
 			}
 
-			// Check whether node arguments match arguments values
+			// check whether node arguments match arguments values
 			for (i = 0; i < len; i++) {
 				if (node.args[i] !== arguments[i]) {
 					node = node.next;
-					continue searchCache;
+					continue searchcache;
 				}
 			}
 
-			// At this point we can assume we've found a match
+			// at this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			// surface matched node to head if not already
 			if (node !== head) {
-				// As tail, shift to previous. Must only shift if not also
+				// as tail, shift to previous. must only shift if not also
 				// head, since if both head and tail, there is no previous.
 				if (node === tail) {
 					tail = node.prev;
 				}
 
-				// Adjust siblings to point to each other. If node was tail,
+				// adjust siblings to point to each other. if node was tail,
 				// this also handles new tail's empty `next` assignment.
-				/** @type {MemizeCacheNode} */ (node.prev).next = node.next;
+				/** @type {memizecachenode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = head;
 				node.prev = null;
-				/** @type {MemizeCacheNode} */ (head).prev = node;
+				/** @type {memizecachenode} */ (head).prev = node;
 				head = node;
 			}
 
-			// Return immediately
+			// return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		// no cached value found. continue to insertion phase:
 
-		// Create a copy of arguments (avoid leaking deoptimization)
-		args = new Array(len);
+		// create a copy of arguments (avoid leaking deoptimization)
+		args = new array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
 		}
@@ -5381,26 +5381,26 @@ function memize(fn, options) {
 		node = {
 			args: args,
 
-			// Generate the result from original function
+			// generate the result from original function
 			val: fn.apply(null, args),
 		};
 
-		// Don't need to check whether node is already head, since it would
+		// don't need to check whether node is already head, since it would
 		// have been returned above already if it was
 
-		// Shift existing head down list
+		// shift existing head down list
 		if (head) {
 			head.prev = node;
 			node.next = head;
 		} else {
-			// If no head, follows that there's no tail (at initial or reset)
+			// if no head, follows that there's no tail (at initial or reset)
 			tail = node;
 		}
 
-		// Trim tail if we're reached max size and are pending cache insertion
-		if (size === /** @type {MemizeOptions} */ (options).maxSize) {
-			tail = /** @type {MemizeCacheNode} */ (tail).prev;
-			/** @type {MemizeCacheNode} */ (tail).next = null;
+		// trim tail if we're reached max size and are pending cache insertion
+		if (size === /** @type {memizeoptions} */ (options).maxsize) {
+			tail = /** @type {memizecachenode} */ (tail).prev;
+			/** @type {memizecachenode} */ (tail).next = null;
 		} else {
 			size++;
 		}
@@ -5416,7 +5416,7 @@ function memize(fn, options) {
 		size = 0;
 	};
 
-	// Ignore reason: There's not a clear solution to create an intersection of
+	// ignore reason: there's not a clear solution to create an intersection of
 	// the function with additional properties, where the goal is to retain the
 	// function signature of the incoming argument and add control properties
 	// on the return value.
@@ -5432,59 +5432,59 @@ function memize(fn, options) {
 var memoize_default = memize;
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/hooks/constants.js
+// external module: ./node_modules/@wordpress/core-data/build-module/hooks/constants.js
 var constants = __webpack_require__(2859);
 ;// ./node_modules/@wordpress/core-data/build-module/hooks/use-query-select.js
 
 
 
-const META_SELECTORS = [
-  "getIsResolving",
-  "hasStartedResolution",
-  "hasFinishedResolution",
-  "isResolving",
-  "getCachedResolvers"
+const meta_selectors = [
+  "getisresolving",
+  "hasstartedresolution",
+  "hasfinishedresolution",
+  "isresolving",
+  "getcachedresolvers"
 ];
-function useQuerySelect(mapQuerySelect, deps) {
-  return (0,external_wp_data_.useSelect)((select, registry) => {
-    const resolve = (store) => enrichSelectors(select(store));
-    return mapQuerySelect(resolve, registry);
+function usequeryselect(mapqueryselect, deps) {
+  return (0,external_wp_data_.useselect)((select, registry) => {
+    const resolve = (store) => enrichselectors(select(store));
+    return mapqueryselect(resolve, registry);
   }, deps);
 }
-const enrichSelectors = memoize_default(((selectors) => {
+const enrichselectors = memoize_default(((selectors) => {
   const resolvers = {};
-  for (const selectorName in selectors) {
-    if (META_SELECTORS.includes(selectorName)) {
+  for (const selectorname in selectors) {
+    if (meta_selectors.includes(selectorname)) {
       continue;
     }
-    Object.defineProperty(resolvers, selectorName, {
+    object.defineproperty(resolvers, selectorname, {
       get: () => (...args) => {
-        const data = selectors[selectorName](...args);
-        const resolutionStatus = selectors.getResolutionState(
-          selectorName,
+        const data = selectors[selectorname](...args);
+        const resolutionstatus = selectors.getresolutionstate(
+          selectorname,
           args
         )?.status;
         let status;
-        switch (resolutionStatus) {
+        switch (resolutionstatus) {
           case "resolving":
-            status = constants/* Status */.n.Resolving;
+            status = constants/* status */.n.resolving;
             break;
           case "finished":
-            status = constants/* Status */.n.Success;
+            status = constants/* status */.n.success;
             break;
           case "error":
-            status = constants/* Status */.n.Error;
+            status = constants/* status */.n.error;
             break;
           case void 0:
-            status = constants/* Status */.n.Idle;
+            status = constants/* status */.n.idle;
             break;
         }
         return {
           data,
           status,
-          isResolving: status === constants/* Status */.n.Resolving,
-          hasStarted: status !== constants/* Status */.n.Idle,
-          hasResolved: status === constants/* Status */.n.Success || status === constants/* Status */.n.Error
+          isresolving: status === constants/* status */.n.resolving,
+          hasstarted: status !== constants/* status */.n.idle,
+          hasresolved: status === constants/* status */.n.success || status === constants/* status */.n.error
         };
       }
     });
@@ -5513,7 +5513,7 @@ module.exports = window["wp"]["i18n"];
 // do not edit .js files directly - edit src/index.jst
 
 
-  var envHasBigInt64Array = typeof BigInt64Array !== 'undefined';
+  var envhasbigint64array = typeof bigint64array !== 'undefined';
 
 
 module.exports = function equal(a, b) {
@@ -5523,7 +5523,7 @@ module.exports = function equal(a, b) {
     if (a.constructor !== b.constructor) return false;
 
     var length, i, keys;
-    if (Array.isArray(a)) {
+    if (array.isarray(a)) {
       length = a.length;
       if (length != b.length) return false;
       for (i = length; i-- !== 0;)
@@ -5532,7 +5532,7 @@ module.exports = function equal(a, b) {
     }
 
 
-    if ((a instanceof Map) && (b instanceof Map)) {
+    if ((a instanceof map) && (b instanceof map)) {
       if (a.size !== b.size) return false;
       for (i of a.entries())
         if (!b.has(i[0])) return false;
@@ -5541,14 +5541,14 @@ module.exports = function equal(a, b) {
       return true;
     }
 
-    if ((a instanceof Set) && (b instanceof Set)) {
+    if ((a instanceof set) && (b instanceof set)) {
       if (a.size !== b.size) return false;
       for (i of a.entries())
         if (!b.has(i[0])) return false;
       return true;
     }
 
-    if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+    if (arraybuffer.isview(a) && arraybuffer.isview(b)) {
       length = a.length;
       if (length != b.length) return false;
       for (i = length; i-- !== 0;)
@@ -5557,16 +5557,16 @@ module.exports = function equal(a, b) {
     }
 
 
-    if (a.constructor === RegExp) return a.source === b.source && a.flags === b.flags;
-    if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
-    if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+    if (a.constructor === regexp) return a.source === b.source && a.flags === b.flags;
+    if (a.valueof !== object.prototype.valueof) return a.valueof() === b.valueof();
+    if (a.tostring !== object.prototype.tostring) return a.tostring() === b.tostring();
 
-    keys = Object.keys(a);
+    keys = object.keys(a);
     length = keys.length;
-    if (length !== Object.keys(b).length) return false;
+    if (length !== object.keys(b).length) return false;
 
     for (i = length; i-- !== 0;)
-      if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
+      if (!object.prototype.hasownproperty.call(b, keys[i])) return false;
 
     for (i = length; i-- !== 0;) {
       var key = keys[i];
@@ -5577,7 +5577,7 @@ module.exports = function equal(a, b) {
     return true;
   }
 
-  // true if both NaN, false otherwise
+  // true if both nan, false otherwise
   return a!==a && b!==b;
 };
 
@@ -5589,18 +5589,18 @@ module.exports = function equal(a, b) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   j: () => (/* binding */ privateApis)
+/* harmony export */   j: () => (/* binding */ privateapis)
 /* harmony export */ });
-/* harmony import */ var _hooks_use_entity_records__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7078);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5101);
-/* harmony import */ var _lock_unlock__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6378);
+/* harmony import */ var _hooks_use_entity_records__webpack_imported_module_1__ = __webpack_require__(7078);
+/* harmony import */ var _utils__webpack_imported_module_2__ = __webpack_require__(5101);
+/* harmony import */ var _lock_unlock__webpack_imported_module_0__ = __webpack_require__(6378);
 
 
 
-const privateApis = {};
-(0,_lock_unlock__WEBPACK_IMPORTED_MODULE_0__/* .lock */ .s)(privateApis, {
-  useEntityRecordsWithPermissions: _hooks_use_entity_records__WEBPACK_IMPORTED_MODULE_1__/* .useEntityRecordsWithPermissions */ .pU,
-  RECEIVE_INTERMEDIATE_RESULTS: _utils__WEBPACK_IMPORTED_MODULE_2__/* .RECEIVE_INTERMEDIATE_RESULTS */ .Z
+const privateapis = {};
+(0,_lock_unlock__webpack_imported_module_0__/* .lock */ .s)(privateapis, {
+  useentityrecordswithpermissions: _hooks_use_entity_records__webpack_imported_module_1__/* .useentityrecordswithpermissions */ .pu,
+  receive_intermediate_results: _utils__webpack_imported_module_2__/* .receive_intermediate_results */ .z
 });
 
 
@@ -5611,175 +5611,175 @@ const privateApis = {};
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  __experimentalGetCurrentGlobalStylesId: () => (/* binding */ __experimentalGetCurrentGlobalStylesId),
-  __experimentalGetCurrentThemeBaseGlobalStyles: () => (/* binding */ __experimentalGetCurrentThemeBaseGlobalStyles),
-  __experimentalGetCurrentThemeGlobalStylesVariations: () => (/* binding */ __experimentalGetCurrentThemeGlobalStylesVariations),
-  __experimentalGetDirtyEntityRecords: () => (/* binding */ __experimentalGetDirtyEntityRecords),
-  __experimentalGetEntitiesBeingSaved: () => (/* binding */ __experimentalGetEntitiesBeingSaved),
-  __experimentalGetEntityRecordNoResolver: () => (/* binding */ __experimentalGetEntityRecordNoResolver),
-  canUser: () => (/* binding */ canUser),
-  canUserEditEntityRecord: () => (/* binding */ canUserEditEntityRecord),
-  getAuthors: () => (/* binding */ getAuthors),
-  getAutosave: () => (/* binding */ getAutosave),
-  getAutosaves: () => (/* binding */ getAutosaves),
-  getBlockPatternCategories: () => (/* binding */ getBlockPatternCategories),
-  getBlockPatterns: () => (/* binding */ getBlockPatterns),
-  getCurrentTheme: () => (/* binding */ getCurrentTheme),
-  getCurrentThemeGlobalStylesRevisions: () => (/* binding */ getCurrentThemeGlobalStylesRevisions),
-  getCurrentUser: () => (/* binding */ getCurrentUser),
-  getDefaultTemplateId: () => (/* binding */ getDefaultTemplateId),
-  getEditedEntityRecord: () => (/* binding */ getEditedEntityRecord),
-  getEmbedPreview: () => (/* binding */ getEmbedPreview),
-  getEntitiesByKind: () => (/* binding */ getEntitiesByKind),
-  getEntitiesConfig: () => (/* binding */ getEntitiesConfig),
-  getEntity: () => (/* binding */ getEntity),
-  getEntityConfig: () => (/* binding */ getEntityConfig),
-  getEntityRecord: () => (/* binding */ getEntityRecord),
-  getEntityRecordEdits: () => (/* binding */ getEntityRecordEdits),
-  getEntityRecordNonTransientEdits: () => (/* binding */ getEntityRecordNonTransientEdits),
-  getEntityRecords: () => (/* binding */ getEntityRecords),
-  getEntityRecordsTotalItems: () => (/* binding */ getEntityRecordsTotalItems),
-  getEntityRecordsTotalPages: () => (/* binding */ getEntityRecordsTotalPages),
-  getLastEntityDeleteError: () => (/* binding */ getLastEntityDeleteError),
-  getLastEntitySaveError: () => (/* binding */ getLastEntitySaveError),
-  getRawEntityRecord: () => (/* binding */ getRawEntityRecord),
-  getRedoEdit: () => (/* binding */ getRedoEdit),
-  getReferenceByDistinctEdits: () => (/* binding */ getReferenceByDistinctEdits),
-  getRevision: () => (/* binding */ getRevision),
-  getRevisions: () => (/* binding */ getRevisions),
-  getThemeSupports: () => (/* binding */ getThemeSupports),
-  getUndoEdit: () => (/* binding */ getUndoEdit),
-  getUserPatternCategories: () => (/* binding */ getUserPatternCategories),
-  getUserQueryResults: () => (/* binding */ getUserQueryResults),
-  hasEditsForEntityRecord: () => (/* binding */ hasEditsForEntityRecord),
-  hasEntityRecord: () => (/* binding */ hasEntityRecord),
-  hasEntityRecords: () => (/* binding */ hasEntityRecords),
-  hasFetchedAutosaves: () => (/* binding */ hasFetchedAutosaves),
-  hasRedo: () => (/* binding */ hasRedo),
-  hasUndo: () => (/* binding */ hasUndo),
-  isAutosavingEntityRecord: () => (/* binding */ isAutosavingEntityRecord),
-  isDeletingEntityRecord: () => (/* binding */ isDeletingEntityRecord),
-  isPreviewEmbedFallback: () => (/* binding */ isPreviewEmbedFallback),
-  isRequestingEmbedPreview: () => (/* binding */ isRequestingEmbedPreview),
-  isSavingEntityRecord: () => (/* binding */ isSavingEntityRecord)
+  __experimentalgetcurrentglobalstylesid: () => (/* binding */ __experimentalgetcurrentglobalstylesid),
+  __experimentalgetcurrentthemebaseglobalstyles: () => (/* binding */ __experimentalgetcurrentthemebaseglobalstyles),
+  __experimentalgetcurrentthemeglobalstylesvariations: () => (/* binding */ __experimentalgetcurrentthemeglobalstylesvariations),
+  __experimentalgetdirtyentityrecords: () => (/* binding */ __experimentalgetdirtyentityrecords),
+  __experimentalgetentitiesbeingsaved: () => (/* binding */ __experimentalgetentitiesbeingsaved),
+  __experimentalgetentityrecordnoresolver: () => (/* binding */ __experimentalgetentityrecordnoresolver),
+  canuser: () => (/* binding */ canuser),
+  canusereditentityrecord: () => (/* binding */ canusereditentityrecord),
+  getauthors: () => (/* binding */ getauthors),
+  getautosave: () => (/* binding */ getautosave),
+  getautosaves: () => (/* binding */ getautosaves),
+  getblockpatterncategories: () => (/* binding */ getblockpatterncategories),
+  getblockpatterns: () => (/* binding */ getblockpatterns),
+  getcurrenttheme: () => (/* binding */ getcurrenttheme),
+  getcurrentthemeglobalstylesrevisions: () => (/* binding */ getcurrentthemeglobalstylesrevisions),
+  getcurrentuser: () => (/* binding */ getcurrentuser),
+  getdefaulttemplateid: () => (/* binding */ getdefaulttemplateid),
+  geteditedentityrecord: () => (/* binding */ geteditedentityrecord),
+  getembedpreview: () => (/* binding */ getembedpreview),
+  getentitiesbykind: () => (/* binding */ getentitiesbykind),
+  getentitiesconfig: () => (/* binding */ getentitiesconfig),
+  getentity: () => (/* binding */ getentity),
+  getentityconfig: () => (/* binding */ getentityconfig),
+  getentityrecord: () => (/* binding */ getentityrecord),
+  getentityrecordedits: () => (/* binding */ getentityrecordedits),
+  getentityrecordnontransientedits: () => (/* binding */ getentityrecordnontransientedits),
+  getentityrecords: () => (/* binding */ getentityrecords),
+  getentityrecordstotalitems: () => (/* binding */ getentityrecordstotalitems),
+  getentityrecordstotalpages: () => (/* binding */ getentityrecordstotalpages),
+  getlastentitydeleteerror: () => (/* binding */ getlastentitydeleteerror),
+  getlastentitysaveerror: () => (/* binding */ getlastentitysaveerror),
+  getrawentityrecord: () => (/* binding */ getrawentityrecord),
+  getredoedit: () => (/* binding */ getredoedit),
+  getreferencebydistinctedits: () => (/* binding */ getreferencebydistinctedits),
+  getrevision: () => (/* binding */ getrevision),
+  getrevisions: () => (/* binding */ getrevisions),
+  getthemesupports: () => (/* binding */ getthemesupports),
+  getundoedit: () => (/* binding */ getundoedit),
+  getuserpatterncategories: () => (/* binding */ getuserpatterncategories),
+  getuserqueryresults: () => (/* binding */ getuserqueryresults),
+  haseditsforentityrecord: () => (/* binding */ haseditsforentityrecord),
+  hasentityrecord: () => (/* binding */ hasentityrecord),
+  hasentityrecords: () => (/* binding */ hasentityrecords),
+  hasfetchedautosaves: () => (/* binding */ hasfetchedautosaves),
+  hasredo: () => (/* binding */ hasredo),
+  hasundo: () => (/* binding */ hasundo),
+  isautosavingentityrecord: () => (/* binding */ isautosavingentityrecord),
+  isdeletingentityrecord: () => (/* binding */ isdeletingentityrecord),
+  ispreviewembedfallback: () => (/* binding */ ispreviewembedfallback),
+  isrequestingembedpreview: () => (/* binding */ isrequestingembedpreview),
+  issavingentityrecord: () => (/* binding */ issavingentityrecord)
 });
 
-// EXTERNAL MODULE: external ["wp","data"]
+// external module: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7143);
-// EXTERNAL MODULE: external ["wp","url"]
+// external module: external ["wp","url"]
 var external_wp_url_ = __webpack_require__(3832);
-// EXTERNAL MODULE: external ["wp","deprecated"]
+// external module: external ["wp","deprecated"]
 var external_wp_deprecated_ = __webpack_require__(4040);
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/name.js
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_);
+// external module: ./node_modules/@wordpress/core-data/build-module/name.js
 var build_module_name = __webpack_require__(2278);
-// EXTERNAL MODULE: ./node_modules/equivalent-key-map/equivalent-key-map.js
+// external module: ./node_modules/equivalent-key-map/equivalent-key-map.js
 var equivalent_key_map = __webpack_require__(3249);
-var equivalent_key_map_default = /*#__PURE__*/__webpack_require__.n(equivalent_key_map);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js + 1 modules
+var equivalent_key_map_default = /*#__pure__*/__webpack_require__.n(equivalent_key_map);
+// external module: ./node_modules/@wordpress/core-data/build-module/queried-data/get-query-parts.js + 1 modules
 var get_query_parts = __webpack_require__(4027);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/set-nested-value.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/set-nested-value.js
 var set_nested_value = __webpack_require__(5003);
 ;// ./node_modules/@wordpress/core-data/build-module/queried-data/selectors.js
 
 
 
 
-const queriedItemsCacheByState = /* @__PURE__ */ new WeakMap();
-function getQueriedItemsUncached(state, query) {
-  const { stableKey, page, perPage, include, fields, context } = (0,get_query_parts/* default */.A)(query);
-  let itemIds;
-  if (state.queries?.[context]?.[stableKey]) {
-    itemIds = state.queries[context][stableKey].itemIds;
+const querieditemscachebystate = /* @__pure__ */ new weakmap();
+function getquerieditemsuncached(state, query) {
+  const { stablekey, page, perpage, include, fields, context } = (0,get_query_parts/* default */.a)(query);
+  let itemids;
+  if (state.queries?.[context]?.[stablekey]) {
+    itemids = state.queries[context][stablekey].itemids;
   }
-  if (!itemIds) {
+  if (!itemids) {
     return null;
   }
-  const startOffset = perPage === -1 ? 0 : (page - 1) * perPage;
-  const endOffset = perPage === -1 ? itemIds.length : Math.min(startOffset + perPage, itemIds.length);
+  const startoffset = perpage === -1 ? 0 : (page - 1) * perpage;
+  const endoffset = perpage === -1 ? itemids.length : math.min(startoffset + perpage, itemids.length);
   const items = [];
-  for (let i = startOffset; i < endOffset; i++) {
-    const itemId = itemIds[i];
-    if (Array.isArray(include) && !include.includes(itemId)) {
+  for (let i = startoffset; i < endoffset; i++) {
+    const itemid = itemids[i];
+    if (array.isarray(include) && !include.includes(itemid)) {
       continue;
     }
-    if (itemId === void 0) {
+    if (itemid === void 0) {
       continue;
     }
-    if (!state.items[context]?.hasOwnProperty(itemId)) {
+    if (!state.items[context]?.hasownproperty(itemid)) {
       return null;
     }
-    const item = state.items[context][itemId];
-    let filteredItem;
-    if (Array.isArray(fields)) {
-      filteredItem = {};
+    const item = state.items[context][itemid];
+    let filtereditem;
+    if (array.isarray(fields)) {
+      filtereditem = {};
       for (let f = 0; f < fields.length; f++) {
         const field = fields[f].split(".");
         let value = item;
-        field.forEach((fieldName) => {
-          value = value?.[fieldName];
+        field.foreach((fieldname) => {
+          value = value?.[fieldname];
         });
-        (0,set_nested_value/* default */.A)(filteredItem, field, value);
+        (0,set_nested_value/* default */.a)(filtereditem, field, value);
       }
     } else {
-      if (!state.itemIsComplete[context]?.[itemId]) {
+      if (!state.itemiscomplete[context]?.[itemid]) {
         return null;
       }
-      filteredItem = item;
+      filtereditem = item;
     }
-    items.push(filteredItem);
+    items.push(filtereditem);
   }
   return items;
 }
-const getQueriedItems = (0,external_wp_data_.createSelector)((state, query = {}) => {
-  let queriedItemsCache = queriedItemsCacheByState.get(state);
-  if (queriedItemsCache) {
-    const queriedItems = queriedItemsCache.get(query);
-    if (queriedItems !== void 0) {
-      return queriedItems;
+const getquerieditems = (0,external_wp_data_.createselector)((state, query = {}) => {
+  let querieditemscache = querieditemscachebystate.get(state);
+  if (querieditemscache) {
+    const querieditems = querieditemscache.get(query);
+    if (querieditems !== void 0) {
+      return querieditems;
     }
   } else {
-    queriedItemsCache = new (equivalent_key_map_default())();
-    queriedItemsCacheByState.set(state, queriedItemsCache);
+    querieditemscache = new (equivalent_key_map_default())();
+    querieditemscachebystate.set(state, querieditemscache);
   }
-  const items = getQueriedItemsUncached(state, query);
-  queriedItemsCache.set(query, items);
+  const items = getquerieditemsuncached(state, query);
+  querieditemscache.set(query, items);
   return items;
 });
-function getQueriedTotalItems(state, query = {}) {
-  const { stableKey, context } = (0,get_query_parts/* default */.A)(query);
-  return state.queries?.[context]?.[stableKey]?.meta?.totalItems ?? null;
+function getqueriedtotalitems(state, query = {}) {
+  const { stablekey, context } = (0,get_query_parts/* default */.a)(query);
+  return state.queries?.[context]?.[stablekey]?.meta?.totalitems ?? null;
 }
-function getQueriedTotalPages(state, query = {}) {
-  const { stableKey, context } = (0,get_query_parts/* default */.A)(query);
-  return state.queries?.[context]?.[stableKey]?.meta?.totalPages ?? null;
+function getqueriedtotalpages(state, query = {}) {
+  const { stablekey, context } = (0,get_query_parts/* default */.a)(query);
+  return state.queries?.[context]?.[stablekey]?.meta?.totalpages ?? null;
 }
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
+// external module: ./node_modules/@wordpress/core-data/build-module/entities.js + 2 modules
 var entities = __webpack_require__(5914);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/get-normalized-comma-separable.js
 var get_normalized_comma_separable = __webpack_require__(533);
 ;// ./node_modules/@wordpress/core-data/build-module/utils/is-numeric-id.js
-function isNumericID(id) {
+function isnumericid(id) {
   return /^\s*\d+\s*$/.test(id);
 }
 
 
 ;// ./node_modules/@wordpress/core-data/build-module/utils/is-raw-attribute.js
-function isRawAttribute(entity, attribute) {
-  return (entity.rawAttributes || []).includes(attribute);
+function israwattribute(entity, attribute) {
+  return (entity.rawattributes || []).includes(attribute);
 }
 
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/user-permissions.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/user-permissions.js
 var user_permissions = __webpack_require__(2577);
-// EXTERNAL MODULE: ./node_modules/@wordpress/core-data/build-module/utils/log-entity-deprecation.js
+// external module: ./node_modules/@wordpress/core-data/build-module/utils/log-entity-deprecation.js
 var log_entity_deprecation = __webpack_require__(9410);
 ;// ./node_modules/@wordpress/core-data/build-module/selectors.js
 
@@ -5790,129 +5790,129 @@ var log_entity_deprecation = __webpack_require__(9410);
 
 
 
-const EMPTY_OBJECT = {};
-const isRequestingEmbedPreview = (0,external_wp_data_.createRegistrySelector)(
+const empty_object = {};
+const isrequestingembedpreview = (0,external_wp_data_.createregistryselector)(
   (select) => (state, url) => {
-    return select(build_module_name/* STORE_NAME */.E).isResolving("getEmbedPreview", [
+    return select(build_module_name/* store_name */.e).isresolving("getembedpreview", [
       url
     ]);
   }
 );
-function getAuthors(state, query) {
-  external_wp_deprecated_default()("select( 'core' ).getAuthors()", {
+function getauthors(state, query) {
+  external_wp_deprecated_default()("select( 'core' ).getauthors()", {
     since: "5.9",
-    alternative: "select( 'core' ).getUsers({ who: 'authors' })"
+    alternative: "select( 'core' ).getusers({ who: 'authors' })"
   });
-  const path = (0,external_wp_url_.addQueryArgs)(
+  const path = (0,external_wp_url_.addqueryargs)(
     "/wp/v2/users/?who=authors&per_page=100",
     query
   );
-  return getUserQueryResults(state, path);
+  return getuserqueryresults(state, path);
 }
-function getCurrentUser(state) {
-  return state.currentUser;
+function getcurrentuser(state) {
+  return state.currentuser;
 }
-const getUserQueryResults = (0,external_wp_data_.createSelector)(
-  (state, queryID) => {
-    const queryResults = state.users.queries[queryID] ?? [];
-    return queryResults.map((id) => state.users.byId[id]);
+const getuserqueryresults = (0,external_wp_data_.createselector)(
+  (state, queryid) => {
+    const queryresults = state.users.queries[queryid] ?? [];
+    return queryresults.map((id) => state.users.byid[id]);
   },
-  (state, queryID) => [
-    state.users.queries[queryID],
-    state.users.byId
+  (state, queryid) => [
+    state.users.queries[queryid],
+    state.users.byid
   ]
 );
-function getEntitiesByKind(state, kind) {
-  external_wp_deprecated_default()("wp.data.select( 'core' ).getEntitiesByKind()", {
+function getentitiesbykind(state, kind) {
+  external_wp_deprecated_default()("wp.data.select( 'core' ).getentitiesbykind()", {
     since: "6.0",
-    alternative: "wp.data.select( 'core' ).getEntitiesConfig()"
+    alternative: "wp.data.select( 'core' ).getentitiesconfig()"
   });
-  return getEntitiesConfig(state, kind);
+  return getentitiesconfig(state, kind);
 }
-const getEntitiesConfig = (0,external_wp_data_.createSelector)(
+const getentitiesconfig = (0,external_wp_data_.createselector)(
   (state, kind) => state.entities.config.filter((entity) => entity.kind === kind),
   /* eslint-disable @typescript-eslint/no-unused-vars */
   (state, kind) => state.entities.config
   /* eslint-enable @typescript-eslint/no-unused-vars */
 );
-function getEntity(state, kind, name) {
-  external_wp_deprecated_default()("wp.data.select( 'core' ).getEntity()", {
+function getentity(state, kind, name) {
+  external_wp_deprecated_default()("wp.data.select( 'core' ).getentity()", {
     since: "6.0",
-    alternative: "wp.data.select( 'core' ).getEntityConfig()"
+    alternative: "wp.data.select( 'core' ).getentityconfig()"
   });
-  return getEntityConfig(state, kind, name);
+  return getentityconfig(state, kind, name);
 }
-function getEntityConfig(state, kind, name) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityConfig");
+function getentityconfig(state, kind, name) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getentityconfig");
   return state.entities.config?.find(
     (config) => config.kind === kind && config.name === name
   );
 }
-const getEntityRecord = (0,external_wp_data_.createSelector)(
+const getentityrecord = (0,external_wp_data_.createselector)(
   ((state, kind, name, key, query) => {
-    (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityRecord");
-    const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
-    if (!queriedState) {
+    (0,log_entity_deprecation/* default */.a)(kind, name, "getentityrecord");
+    const queriedstate = state.entities.records?.[kind]?.[name]?.querieddata;
+    if (!queriedstate) {
       return void 0;
     }
     const context = query?.context ?? "default";
     if (!query || !query._fields) {
-      if (!queriedState.itemIsComplete[context]?.[key]) {
+      if (!queriedstate.itemiscomplete[context]?.[key]) {
         return void 0;
       }
-      return queriedState.items[context][key];
+      return queriedstate.items[context][key];
     }
-    const item = queriedState.items[context]?.[key];
+    const item = queriedstate.items[context]?.[key];
     if (!item) {
       return item;
     }
-    const filteredItem = {};
-    const fields = (0,get_normalized_comma_separable/* default */.A)(query._fields) ?? [];
+    const filtereditem = {};
+    const fields = (0,get_normalized_comma_separable/* default */.a)(query._fields) ?? [];
     for (let f = 0; f < fields.length; f++) {
       const field = fields[f].split(".");
       let value = item;
-      field.forEach((fieldName) => {
-        value = value?.[fieldName];
+      field.foreach((fieldname) => {
+        value = value?.[fieldname];
       });
-      (0,set_nested_value/* default */.A)(filteredItem, field, value);
+      (0,set_nested_value/* default */.a)(filtereditem, field, value);
     }
-    return filteredItem;
+    return filtereditem;
   }),
-  (state, kind, name, recordId, query) => {
+  (state, kind, name, recordid, query) => {
     const context = query?.context ?? "default";
-    const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
+    const queriedstate = state.entities.records?.[kind]?.[name]?.querieddata;
     return [
-      queriedState?.items[context]?.[recordId],
-      queriedState?.itemIsComplete[context]?.[recordId]
+      queriedstate?.items[context]?.[recordid],
+      queriedstate?.itemiscomplete[context]?.[recordid]
     ];
   }
 );
-getEntityRecord.__unstableNormalizeArgs = (args) => {
-  const newArgs = [...args];
-  const recordKey = newArgs?.[2];
-  newArgs[2] = isNumericID(recordKey) ? Number(recordKey) : recordKey;
-  return newArgs;
+getentityrecord.__unstablenormalizeargs = (args) => {
+  const newargs = [...args];
+  const recordkey = newargs?.[2];
+  newargs[2] = isnumericid(recordkey) ? number(recordkey) : recordkey;
+  return newargs;
 };
-function hasEntityRecord(state, kind, name, key, query) {
-  const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
-  if (!queriedState) {
+function hasentityrecord(state, kind, name, key, query) {
+  const queriedstate = state.entities.records?.[kind]?.[name]?.querieddata;
+  if (!queriedstate) {
     return false;
   }
   const context = query?.context ?? "default";
   if (!query || !query._fields) {
-    return !!queriedState.itemIsComplete[context]?.[key];
+    return !!queriedstate.itemiscomplete[context]?.[key];
   }
-  const item = queriedState.items[context]?.[key];
+  const item = queriedstate.items[context]?.[key];
   if (!item) {
     return false;
   }
-  const fields = (0,get_normalized_comma_separable/* default */.A)(query._fields) ?? [];
+  const fields = (0,get_normalized_comma_separable/* default */.a)(query._fields) ?? [];
   for (let i = 0; i < fields.length; i++) {
     const path = fields[i].split(".");
     let value = item;
     for (let p = 0; p < path.length; p++) {
       const part = path[p];
-      if (!value || !Object.hasOwn(value, part)) {
+      if (!value || !object.hasown(value, part)) {
         return false;
       }
       value = value[part];
@@ -5920,20 +5920,20 @@ function hasEntityRecord(state, kind, name, key, query) {
   }
   return true;
 }
-function __experimentalGetEntityRecordNoResolver(state, kind, name, key) {
-  return getEntityRecord(state, kind, name, key);
+function __experimentalgetentityrecordnoresolver(state, kind, name, key) {
+  return getentityrecord(state, kind, name, key);
 }
-const getRawEntityRecord = (0,external_wp_data_.createSelector)(
+const getrawentityrecord = (0,external_wp_data_.createselector)(
   (state, kind, name, key) => {
-    (0,log_entity_deprecation/* default */.A)(kind, name, "getRawEntityRecord");
-    const record = getEntityRecord(
+    (0,log_entity_deprecation/* default */.a)(kind, name, "getrawentityrecord");
+    const record = getentityrecord(
       state,
       kind,
       name,
       key
     );
-    return record && Object.keys(record).reduce((accumulator, _key) => {
-      if (isRawAttribute(getEntityConfig(state, kind, name), _key)) {
+    return record && object.keys(record).reduce((accumulator, _key) => {
+      if (israwattribute(getentityconfig(state, kind, name), _key)) {
         accumulator[_key] = record[_key]?.raw !== void 0 ? record[_key]?.raw : record[_key];
       } else {
         accumulator[_key] = record[_key];
@@ -5941,82 +5941,82 @@ const getRawEntityRecord = (0,external_wp_data_.createSelector)(
       return accumulator;
     }, {});
   },
-  (state, kind, name, recordId, query) => {
+  (state, kind, name, recordid, query) => {
     const context = query?.context ?? "default";
     return [
       state.entities.config,
-      state.entities.records?.[kind]?.[name]?.queriedData?.items[context]?.[recordId],
-      state.entities.records?.[kind]?.[name]?.queriedData?.itemIsComplete[context]?.[recordId]
+      state.entities.records?.[kind]?.[name]?.querieddata?.items[context]?.[recordid],
+      state.entities.records?.[kind]?.[name]?.querieddata?.itemiscomplete[context]?.[recordid]
     ];
   }
 );
-function hasEntityRecords(state, kind, name, query) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "hasEntityRecords");
-  return Array.isArray(getEntityRecords(state, kind, name, query));
+function hasentityrecords(state, kind, name, query) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "hasentityrecords");
+  return array.isarray(getentityrecords(state, kind, name, query));
 }
-const getEntityRecords = ((state, kind, name, query) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityRecords");
-  const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
-  if (!queriedState) {
+const getentityrecords = ((state, kind, name, query) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getentityrecords");
+  const queriedstate = state.entities.records?.[kind]?.[name]?.querieddata;
+  if (!queriedstate) {
     return null;
   }
-  return getQueriedItems(queriedState, query);
+  return getquerieditems(queriedstate, query);
 });
-const getEntityRecordsTotalItems = (state, kind, name, query) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityRecordsTotalItems");
-  const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
-  if (!queriedState) {
+const getentityrecordstotalitems = (state, kind, name, query) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getentityrecordstotalitems");
+  const queriedstate = state.entities.records?.[kind]?.[name]?.querieddata;
+  if (!queriedstate) {
     return null;
   }
-  return getQueriedTotalItems(queriedState, query);
+  return getqueriedtotalitems(queriedstate, query);
 };
-const getEntityRecordsTotalPages = (state, kind, name, query) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityRecordsTotalPages");
-  const queriedState = state.entities.records?.[kind]?.[name]?.queriedData;
-  if (!queriedState) {
+const getentityrecordstotalpages = (state, kind, name, query) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getentityrecordstotalpages");
+  const queriedstate = state.entities.records?.[kind]?.[name]?.querieddata;
+  if (!queriedstate) {
     return null;
   }
   if (query?.per_page === -1) {
     return 1;
   }
-  const totalItems = getQueriedTotalItems(queriedState, query);
-  if (!totalItems) {
-    return totalItems;
+  const totalitems = getqueriedtotalitems(queriedstate, query);
+  if (!totalitems) {
+    return totalitems;
   }
   if (!query?.per_page) {
-    return getQueriedTotalPages(queriedState, query);
+    return getqueriedtotalpages(queriedstate, query);
   }
-  return Math.ceil(totalItems / query.per_page);
+  return math.ceil(totalitems / query.per_page);
 };
-const __experimentalGetDirtyEntityRecords = (0,external_wp_data_.createSelector)(
+const __experimentalgetdirtyentityrecords = (0,external_wp_data_.createselector)(
   (state) => {
     const {
       entities: { records }
     } = state;
-    const dirtyRecords = [];
-    Object.keys(records).forEach((kind) => {
-      Object.keys(records[kind]).forEach((name) => {
-        const primaryKeys = Object.keys(records[kind][name].edits).filter(
-          (primaryKey) => (
-            // The entity record must exist (not be deleted),
+    const dirtyrecords = [];
+    object.keys(records).foreach((kind) => {
+      object.keys(records[kind]).foreach((name) => {
+        const primarykeys = object.keys(records[kind][name].edits).filter(
+          (primarykey) => (
+            // the entity record must exist (not be deleted),
             // and it must have edits.
-            getEntityRecord(state, kind, name, primaryKey) && hasEditsForEntityRecord(state, kind, name, primaryKey)
+            getentityrecord(state, kind, name, primarykey) && haseditsforentityrecord(state, kind, name, primarykey)
           )
         );
-        if (primaryKeys.length) {
-          const entityConfig = getEntityConfig(state, kind, name);
-          primaryKeys.forEach((primaryKey) => {
-            const entityRecord = getEditedEntityRecord(
+        if (primarykeys.length) {
+          const entityconfig = getentityconfig(state, kind, name);
+          primarykeys.foreach((primarykey) => {
+            const entityrecord = geteditedentityrecord(
               state,
               kind,
               name,
-              primaryKey
+              primarykey
             );
-            dirtyRecords.push({
-              // We avoid using primaryKey because it's transformed into a string
+            dirtyrecords.push({
+              // we avoid using primarykey because it's transformed into a string
               // when it's used as an object key.
-              key: entityRecord ? entityRecord[entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_] : void 0,
-              title: entityConfig?.getTitle?.(entityRecord) || "",
+              key: entityrecord ? entityrecord[entityconfig.key || entities/* default_entity_key */.c_] : void 0,
+              title: entityconfig?.gettitle?.(entityrecord) || "",
               name,
               kind
             });
@@ -6024,35 +6024,35 @@ const __experimentalGetDirtyEntityRecords = (0,external_wp_data_.createSelector)
         }
       });
     });
-    return dirtyRecords;
+    return dirtyrecords;
   },
   (state) => [state.entities.records]
 );
-const __experimentalGetEntitiesBeingSaved = (0,external_wp_data_.createSelector)(
+const __experimentalgetentitiesbeingsaved = (0,external_wp_data_.createselector)(
   (state) => {
     const {
       entities: { records }
     } = state;
-    const recordsBeingSaved = [];
-    Object.keys(records).forEach((kind) => {
-      Object.keys(records[kind]).forEach((name) => {
-        const primaryKeys = Object.keys(records[kind][name].saving).filter(
-          (primaryKey) => isSavingEntityRecord(state, kind, name, primaryKey)
+    const recordsbeingsaved = [];
+    object.keys(records).foreach((kind) => {
+      object.keys(records[kind]).foreach((name) => {
+        const primarykeys = object.keys(records[kind][name].saving).filter(
+          (primarykey) => issavingentityrecord(state, kind, name, primarykey)
         );
-        if (primaryKeys.length) {
-          const entityConfig = getEntityConfig(state, kind, name);
-          primaryKeys.forEach((primaryKey) => {
-            const entityRecord = getEditedEntityRecord(
+        if (primarykeys.length) {
+          const entityconfig = getentityconfig(state, kind, name);
+          primarykeys.foreach((primarykey) => {
+            const entityrecord = geteditedentityrecord(
               state,
               kind,
               name,
-              primaryKey
+              primarykey
             );
-            recordsBeingSaved.push({
-              // We avoid using primaryKey because it's transformed into a string
+            recordsbeingsaved.push({
+              // we avoid using primarykey because it's transformed into a string
               // when it's used as an object key.
-              key: entityRecord ? entityRecord[entityConfig.key || entities/* DEFAULT_ENTITY_KEY */.C_] : void 0,
-              title: entityConfig?.getTitle?.(entityRecord) || "",
+              key: entityrecord ? entityrecord[entityconfig.key || entities/* default_entity_key */.c_] : void 0,
+              title: entityconfig?.gettitle?.(entityrecord) || "",
               name,
               kind
             });
@@ -6060,45 +6060,45 @@ const __experimentalGetEntitiesBeingSaved = (0,external_wp_data_.createSelector)
         }
       });
     });
-    return recordsBeingSaved;
+    return recordsbeingsaved;
   },
   (state) => [state.entities.records]
 );
-function getEntityRecordEdits(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityRecordEdits");
-  return state.entities.records?.[kind]?.[name]?.edits?.[recordId];
+function getentityrecordedits(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getentityrecordedits");
+  return state.entities.records?.[kind]?.[name]?.edits?.[recordid];
 }
-const getEntityRecordNonTransientEdits = (0,external_wp_data_.createSelector)(
-  (state, kind, name, recordId) => {
-    (0,log_entity_deprecation/* default */.A)(kind, name, "getEntityRecordNonTransientEdits");
-    const { transientEdits } = getEntityConfig(state, kind, name) || {};
-    const edits = getEntityRecordEdits(state, kind, name, recordId) || {};
-    if (!transientEdits) {
+const getentityrecordnontransientedits = (0,external_wp_data_.createselector)(
+  (state, kind, name, recordid) => {
+    (0,log_entity_deprecation/* default */.a)(kind, name, "getentityrecordnontransientedits");
+    const { transientedits } = getentityconfig(state, kind, name) || {};
+    const edits = getentityrecordedits(state, kind, name, recordid) || {};
+    if (!transientedits) {
       return edits;
     }
-    return Object.keys(edits).reduce((acc, key) => {
-      if (!transientEdits[key]) {
+    return object.keys(edits).reduce((acc, key) => {
+      if (!transientedits[key]) {
         acc[key] = edits[key];
       }
       return acc;
     }, {});
   },
-  (state, kind, name, recordId) => [
+  (state, kind, name, recordid) => [
     state.entities.config,
-    state.entities.records?.[kind]?.[name]?.edits?.[recordId]
+    state.entities.records?.[kind]?.[name]?.edits?.[recordid]
   ]
 );
-function hasEditsForEntityRecord(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "hasEditsForEntityRecord");
-  return isSavingEntityRecord(state, kind, name, recordId) || Object.keys(
-    getEntityRecordNonTransientEdits(state, kind, name, recordId)
+function haseditsforentityrecord(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "haseditsforentityrecord");
+  return issavingentityrecord(state, kind, name, recordid) || object.keys(
+    getentityrecordnontransientedits(state, kind, name, recordid)
   ).length > 0;
 }
-const getEditedEntityRecord = (0,external_wp_data_.createSelector)(
-  (state, kind, name, recordId) => {
-    (0,log_entity_deprecation/* default */.A)(kind, name, "getEditedEntityRecord");
-    const raw = getRawEntityRecord(state, kind, name, recordId);
-    const edited = getEntityRecordEdits(state, kind, name, recordId);
+const geteditedentityrecord = (0,external_wp_data_.createselector)(
+  (state, kind, name, recordid) => {
+    (0,log_entity_deprecation/* default */.a)(kind, name, "geteditedentityrecord");
+    const raw = getrawentityrecord(state, kind, name, recordid);
+    const edited = getentityrecordedits(state, kind, name, recordid);
     if (!raw && !edited) {
       return false;
     }
@@ -6107,200 +6107,200 @@ const getEditedEntityRecord = (0,external_wp_data_.createSelector)(
       ...edited
     };
   },
-  (state, kind, name, recordId, query) => {
+  (state, kind, name, recordid, query) => {
     const context = query?.context ?? "default";
     return [
       state.entities.config,
-      state.entities.records?.[kind]?.[name]?.queriedData.items[context]?.[recordId],
-      state.entities.records?.[kind]?.[name]?.queriedData.itemIsComplete[context]?.[recordId],
-      state.entities.records?.[kind]?.[name]?.edits?.[recordId]
+      state.entities.records?.[kind]?.[name]?.querieddata.items[context]?.[recordid],
+      state.entities.records?.[kind]?.[name]?.querieddata.itemiscomplete[context]?.[recordid],
+      state.entities.records?.[kind]?.[name]?.edits?.[recordid]
     ];
   }
 );
-function isAutosavingEntityRecord(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "isAutosavingEntityRecord");
-  const { pending, isAutosave } = state.entities.records?.[kind]?.[name]?.saving?.[recordId] ?? {};
-  return Boolean(pending && isAutosave);
+function isautosavingentityrecord(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "isautosavingentityrecord");
+  const { pending, isautosave } = state.entities.records?.[kind]?.[name]?.saving?.[recordid] ?? {};
+  return boolean(pending && isautosave);
 }
-function isSavingEntityRecord(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "isSavingEntityRecord");
-  return state.entities.records?.[kind]?.[name]?.saving?.[recordId]?.pending ?? false;
+function issavingentityrecord(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "issavingentityrecord");
+  return state.entities.records?.[kind]?.[name]?.saving?.[recordid]?.pending ?? false;
 }
-function isDeletingEntityRecord(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "isDeletingEntityRecord");
-  return state.entities.records?.[kind]?.[name]?.deleting?.[recordId]?.pending ?? false;
+function isdeletingentityrecord(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "isdeletingentityrecord");
+  return state.entities.records?.[kind]?.[name]?.deleting?.[recordid]?.pending ?? false;
 }
-function getLastEntitySaveError(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getLastEntitySaveError");
-  return state.entities.records?.[kind]?.[name]?.saving?.[recordId]?.error;
+function getlastentitysaveerror(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getlastentitysaveerror");
+  return state.entities.records?.[kind]?.[name]?.saving?.[recordid]?.error;
 }
-function getLastEntityDeleteError(state, kind, name, recordId) {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getLastEntityDeleteError");
-  return state.entities.records?.[kind]?.[name]?.deleting?.[recordId]?.error;
+function getlastentitydeleteerror(state, kind, name, recordid) {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getlastentitydeleteerror");
+  return state.entities.records?.[kind]?.[name]?.deleting?.[recordid]?.error;
 }
-function getUndoEdit(state) {
-  external_wp_deprecated_default()("select( 'core' ).getUndoEdit()", {
+function getundoedit(state) {
+  external_wp_deprecated_default()("select( 'core' ).getundoedit()", {
     since: "6.3"
   });
   return void 0;
 }
-function getRedoEdit(state) {
-  external_wp_deprecated_default()("select( 'core' ).getRedoEdit()", {
+function getredoedit(state) {
+  external_wp_deprecated_default()("select( 'core' ).getredoedit()", {
     since: "6.3"
   });
   return void 0;
 }
-function hasUndo(state) {
-  return state.undoManager.hasUndo();
+function hasundo(state) {
+  return state.undomanager.hasundo();
 }
-function hasRedo(state) {
-  return state.undoManager.hasRedo();
+function hasredo(state) {
+  return state.undomanager.hasredo();
 }
-function getCurrentTheme(state) {
-  if (!state.currentTheme) {
+function getcurrenttheme(state) {
+  if (!state.currenttheme) {
     return null;
   }
-  return getEntityRecord(state, "root", "theme", state.currentTheme);
+  return getentityrecord(state, "root", "theme", state.currenttheme);
 }
-function __experimentalGetCurrentGlobalStylesId(state) {
-  return state.currentGlobalStylesId;
+function __experimentalgetcurrentglobalstylesid(state) {
+  return state.currentglobalstylesid;
 }
-function getThemeSupports(state) {
-  return getCurrentTheme(state)?.theme_supports ?? EMPTY_OBJECT;
+function getthemesupports(state) {
+  return getcurrenttheme(state)?.theme_supports ?? empty_object;
 }
-function getEmbedPreview(state, url) {
-  return state.embedPreviews[url];
+function getembedpreview(state, url) {
+  return state.embedpreviews[url];
 }
-function isPreviewEmbedFallback(state, url) {
-  const preview = state.embedPreviews[url];
-  const oEmbedLinkCheck = '<a href="' + url + '">' + url + "</a>";
+function ispreviewembedfallback(state, url) {
+  const preview = state.embedpreviews[url];
+  const oembedlinkcheck = '<a href="' + url + '">' + url + "</a>";
   if (!preview) {
     return false;
   }
-  return preview.html === oEmbedLinkCheck;
+  return preview.html === oembedlinkcheck;
 }
-function canUser(state, action, resource, id) {
-  const isEntity = typeof resource === "object";
-  if (isEntity && (!resource.kind || !resource.name)) {
+function canuser(state, action, resource, id) {
+  const isentity = typeof resource === "object";
+  if (isentity && (!resource.kind || !resource.name)) {
     return false;
   }
-  if (isEntity) {
-    (0,log_entity_deprecation/* default */.A)(resource.kind, resource.name, "canUser");
+  if (isentity) {
+    (0,log_entity_deprecation/* default */.a)(resource.kind, resource.name, "canuser");
   }
-  const key = (0,user_permissions/* getUserPermissionCacheKey */.kC)(action, resource, id);
-  return state.userPermissions[key];
+  const key = (0,user_permissions/* getuserpermissioncachekey */.kc)(action, resource, id);
+  return state.userpermissions[key];
 }
-function canUserEditEntityRecord(state, kind, name, recordId) {
-  external_wp_deprecated_default()(`wp.data.select( 'core' ).canUserEditEntityRecord()`, {
+function canusereditentityrecord(state, kind, name, recordid) {
+  external_wp_deprecated_default()(`wp.data.select( 'core' ).canusereditentityrecord()`, {
     since: "6.7",
-    alternative: `wp.data.select( 'core' ).canUser( 'update', { kind, name, id } )`
+    alternative: `wp.data.select( 'core' ).canuser( 'update', { kind, name, id } )`
   });
-  return canUser(state, "update", { kind, name, id: recordId });
+  return canuser(state, "update", { kind, name, id: recordid });
 }
-function getAutosaves(state, postType, postId) {
-  return state.autosaves[postId];
+function getautosaves(state, posttype, postid) {
+  return state.autosaves[postid];
 }
-function getAutosave(state, postType, postId, authorId) {
-  if (authorId === void 0) {
+function getautosave(state, posttype, postid, authorid) {
+  if (authorid === void 0) {
     return;
   }
-  const autosaves = state.autosaves[postId];
+  const autosaves = state.autosaves[postid];
   return autosaves?.find(
-    (autosave) => autosave.author === authorId
+    (autosave) => autosave.author === authorid
   );
 }
-const hasFetchedAutosaves = (0,external_wp_data_.createRegistrySelector)(
-  (select) => (state, postType, postId) => {
-    return select(build_module_name/* STORE_NAME */.E).hasFinishedResolution("getAutosaves", [
-      postType,
-      postId
+const hasfetchedautosaves = (0,external_wp_data_.createregistryselector)(
+  (select) => (state, posttype, postid) => {
+    return select(build_module_name/* store_name */.e).hasfinishedresolution("getautosaves", [
+      posttype,
+      postid
     ]);
   }
 );
-function getReferenceByDistinctEdits(state) {
-  return state.editsReference;
+function getreferencebydistinctedits(state) {
+  return state.editsreference;
 }
-function __experimentalGetCurrentThemeBaseGlobalStyles(state) {
-  const currentTheme = getCurrentTheme(state);
-  if (!currentTheme) {
+function __experimentalgetcurrentthemebaseglobalstyles(state) {
+  const currenttheme = getcurrenttheme(state);
+  if (!currenttheme) {
     return null;
   }
-  return state.themeBaseGlobalStyles[currentTheme.stylesheet];
+  return state.themebaseglobalstyles[currenttheme.stylesheet];
 }
-function __experimentalGetCurrentThemeGlobalStylesVariations(state) {
-  const currentTheme = getCurrentTheme(state);
-  if (!currentTheme) {
+function __experimentalgetcurrentthemeglobalstylesvariations(state) {
+  const currenttheme = getcurrenttheme(state);
+  if (!currenttheme) {
     return null;
   }
-  return state.themeGlobalStyleVariations[currentTheme.stylesheet];
+  return state.themeglobalstylevariations[currenttheme.stylesheet];
 }
-function getBlockPatterns(state) {
-  return state.blockPatterns;
+function getblockpatterns(state) {
+  return state.blockpatterns;
 }
-function getBlockPatternCategories(state) {
-  return state.blockPatternCategories;
+function getblockpatterncategories(state) {
+  return state.blockpatterncategories;
 }
-function getUserPatternCategories(state) {
-  return state.userPatternCategories;
+function getuserpatterncategories(state) {
+  return state.userpatterncategories;
 }
-function getCurrentThemeGlobalStylesRevisions(state) {
-  external_wp_deprecated_default()("select( 'core' ).getCurrentThemeGlobalStylesRevisions()", {
+function getcurrentthemeglobalstylesrevisions(state) {
+  external_wp_deprecated_default()("select( 'core' ).getcurrentthemeglobalstylesrevisions()", {
     since: "6.5.0",
-    alternative: "select( 'core' ).getRevisions( 'root', 'globalStyles', ${ recordKey } )"
+    alternative: "select( 'core' ).getrevisions( 'root', 'globalstyles', ${ recordkey } )"
   });
-  const currentGlobalStylesId = __experimentalGetCurrentGlobalStylesId(state);
-  if (!currentGlobalStylesId) {
+  const currentglobalstylesid = __experimentalgetcurrentglobalstylesid(state);
+  if (!currentglobalstylesid) {
     return null;
   }
-  return state.themeGlobalStyleRevisions[currentGlobalStylesId];
+  return state.themeglobalstylerevisions[currentglobalstylesid];
 }
-function getDefaultTemplateId(state, query) {
-  return state.defaultTemplates[JSON.stringify(query)];
+function getdefaulttemplateid(state, query) {
+  return state.defaulttemplates[json.stringify(query)];
 }
-const getRevisions = (state, kind, name, recordKey, query) => {
-  (0,log_entity_deprecation/* default */.A)(kind, name, "getRevisions");
-  const queriedStateRevisions = state.entities.records?.[kind]?.[name]?.revisions?.[recordKey];
-  if (!queriedStateRevisions) {
+const getrevisions = (state, kind, name, recordkey, query) => {
+  (0,log_entity_deprecation/* default */.a)(kind, name, "getrevisions");
+  const queriedstaterevisions = state.entities.records?.[kind]?.[name]?.revisions?.[recordkey];
+  if (!queriedstaterevisions) {
     return null;
   }
-  return getQueriedItems(queriedStateRevisions, query);
+  return getquerieditems(queriedstaterevisions, query);
 };
-const getRevision = (0,external_wp_data_.createSelector)(
-  (state, kind, name, recordKey, revisionKey, query) => {
-    (0,log_entity_deprecation/* default */.A)(kind, name, "getRevision");
-    const queriedState = state.entities.records?.[kind]?.[name]?.revisions?.[recordKey];
-    if (!queriedState) {
+const getrevision = (0,external_wp_data_.createselector)(
+  (state, kind, name, recordkey, revisionkey, query) => {
+    (0,log_entity_deprecation/* default */.a)(kind, name, "getrevision");
+    const queriedstate = state.entities.records?.[kind]?.[name]?.revisions?.[recordkey];
+    if (!queriedstate) {
       return void 0;
     }
     const context = query?.context ?? "default";
     if (!query || !query._fields) {
-      if (!queriedState.itemIsComplete[context]?.[revisionKey]) {
+      if (!queriedstate.itemiscomplete[context]?.[revisionkey]) {
         return void 0;
       }
-      return queriedState.items[context][revisionKey];
+      return queriedstate.items[context][revisionkey];
     }
-    const item = queriedState.items[context]?.[revisionKey];
+    const item = queriedstate.items[context]?.[revisionkey];
     if (!item) {
       return item;
     }
-    const filteredItem = {};
-    const fields = (0,get_normalized_comma_separable/* default */.A)(query._fields) ?? [];
+    const filtereditem = {};
+    const fields = (0,get_normalized_comma_separable/* default */.a)(query._fields) ?? [];
     for (let f = 0; f < fields.length; f++) {
       const field = fields[f].split(".");
       let value = item;
-      field.forEach((fieldName) => {
-        value = value?.[fieldName];
+      field.foreach((fieldname) => {
+        value = value?.[fieldname];
       });
-      (0,set_nested_value/* default */.A)(filteredItem, field, value);
+      (0,set_nested_value/* default */.a)(filtereditem, field, value);
     }
-    return filteredItem;
+    return filtereditem;
   },
-  (state, kind, name, recordKey, revisionKey, query) => {
+  (state, kind, name, recordkey, revisionkey, query) => {
     const context = query?.context ?? "default";
-    const queriedState = state.entities.records?.[kind]?.[name]?.revisions?.[recordKey];
+    const queriedstate = state.entities.records?.[kind]?.[name]?.revisions?.[recordkey];
     return [
-      queriedState?.items?.[context]?.[revisionKey],
-      queriedState?.itemIsComplete?.[context]?.[revisionKey]
+      queriedstate?.items?.[context]?.[revisionkey],
+      queriedstate?.itemiscomplete?.[context]?.[revisionkey]
     ];
   }
 );
@@ -6313,7 +6313,7 @@ const getRevision = (0,external_wp_data_.createSelector)(
 /***/ ((module) => {
 
 "use strict";
-module.exports = window["wp"]["htmlEntities"];
+module.exports = window["wp"]["htmlentities"];
 
 /***/ }),
 
@@ -6322,11 +6322,11 @@ module.exports = window["wp"]["htmlEntities"];
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (/* binding */ dynamicSelectors),
-/* harmony export */   B: () => (/* binding */ dynamicActions)
+/* harmony export */   a: () => (/* binding */ dynamicselectors),
+/* harmony export */   b: () => (/* binding */ dynamicactions)
 /* harmony export */ });
-let dynamicActions;
-let dynamicSelectors;
+let dynamicactions;
+let dynamicselectors;
 
 
 
@@ -6338,125 +6338,125 @@ let dynamicSelectors;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getBlockPatternsForPostType: () => (/* binding */ getBlockPatternsForPostType),
-/* harmony export */   getEntityRecordPermissions: () => (/* binding */ getEntityRecordPermissions),
-/* harmony export */   getEntityRecordsPermissions: () => (/* binding */ getEntityRecordsPermissions),
-/* harmony export */   getHomePage: () => (/* binding */ getHomePage),
-/* harmony export */   getNavigationFallbackId: () => (/* binding */ getNavigationFallbackId),
-/* harmony export */   getPostsPageId: () => (/* binding */ getPostsPageId),
-/* harmony export */   getRegisteredPostMeta: () => (/* binding */ getRegisteredPostMeta),
-/* harmony export */   getTemplateId: () => (/* binding */ getTemplateId),
-/* harmony export */   getUndoManager: () => (/* binding */ getUndoManager)
+/* harmony export */   getblockpatternsforposttype: () => (/* binding */ getblockpatternsforposttype),
+/* harmony export */   getentityrecordpermissions: () => (/* binding */ getentityrecordpermissions),
+/* harmony export */   getentityrecordspermissions: () => (/* binding */ getentityrecordspermissions),
+/* harmony export */   gethomepage: () => (/* binding */ gethomepage),
+/* harmony export */   getnavigationfallbackid: () => (/* binding */ getnavigationfallbackid),
+/* harmony export */   getpostspageid: () => (/* binding */ getpostspageid),
+/* harmony export */   getregisteredpostmeta: () => (/* binding */ getregisteredpostmeta),
+/* harmony export */   gettemplateid: () => (/* binding */ gettemplateid),
+/* harmony export */   getundomanager: () => (/* binding */ getundomanager)
 /* harmony export */ });
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7143);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8368);
-/* harmony import */ var _name__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2278);
-/* harmony import */ var _lock_unlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6378);
-/* harmony import */ var _utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9410);
+/* harmony import */ var _wordpress_data__webpack_imported_module_0__ = __webpack_require__(7143);
+/* harmony import */ var _wordpress_data__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_wordpress_data__webpack_imported_module_0__);
+/* harmony import */ var _selectors__webpack_imported_module_3__ = __webpack_require__(8368);
+/* harmony import */ var _name__webpack_imported_module_1__ = __webpack_require__(2278);
+/* harmony import */ var _lock_unlock__webpack_imported_module_4__ = __webpack_require__(6378);
+/* harmony import */ var _utils_log_entity_deprecation__webpack_imported_module_2__ = __webpack_require__(9410);
 
 
 
 
 
-function getUndoManager(state) {
-  return state.undoManager;
+function getundomanager(state) {
+  return state.undomanager;
 }
-function getNavigationFallbackId(state) {
-  return state.navigationFallbackId;
+function getnavigationfallbackid(state) {
+  return state.navigationfallbackid;
 }
-const getBlockPatternsForPostType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegistrySelector)(
-  (select) => (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
-    (state, postType) => select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getBlockPatterns().filter(
-      ({ postTypes }) => !postTypes || Array.isArray(postTypes) && postTypes.includes(postType)
+const getblockpatternsforposttype = (0,_wordpress_data__webpack_imported_module_0__.createregistryselector)(
+  (select) => (0,_wordpress_data__webpack_imported_module_0__.createselector)(
+    (state, posttype) => select(_name__webpack_imported_module_1__/* .store_name */ .e).getblockpatterns().filter(
+      ({ posttypes }) => !posttypes || array.isarray(posttypes) && posttypes.includes(posttype)
     ),
-    () => [select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getBlockPatterns()]
+    () => [select(_name__webpack_imported_module_1__/* .store_name */ .e).getblockpatterns()]
   )
 );
-const getEntityRecordsPermissions = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegistrySelector)(
-  (select) => (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
+const getentityrecordspermissions = (0,_wordpress_data__webpack_imported_module_0__.createregistryselector)(
+  (select) => (0,_wordpress_data__webpack_imported_module_0__.createselector)(
     (state, kind, name, ids) => {
-      const normalizedIds = Array.isArray(ids) ? ids : [ids];
-      return normalizedIds.map((id) => ({
-        delete: select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).canUser("delete", {
+      const normalizedids = array.isarray(ids) ? ids : [ids];
+      return normalizedids.map((id) => ({
+        delete: select(_name__webpack_imported_module_1__/* .store_name */ .e).canuser("delete", {
           kind,
           name,
           id
         }),
-        update: select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).canUser("update", {
+        update: select(_name__webpack_imported_module_1__/* .store_name */ .e).canuser("update", {
           kind,
           name,
           id
         })
       }));
     },
-    (state) => [state.userPermissions]
+    (state) => [state.userpermissions]
   )
 );
-function getEntityRecordPermissions(state, kind, name, id) {
-  (0,_utils_log_entity_deprecation__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .A)(kind, name, "getEntityRecordPermissions");
-  return getEntityRecordsPermissions(state, kind, name, id)[0];
+function getentityrecordpermissions(state, kind, name, id) {
+  (0,_utils_log_entity_deprecation__webpack_imported_module_2__/* ["default"] */ .a)(kind, name, "getentityrecordpermissions");
+  return getentityrecordspermissions(state, kind, name, id)[0];
 }
-function getRegisteredPostMeta(state, postType) {
-  return state.registeredPostMeta?.[postType] ?? {};
+function getregisteredpostmeta(state, posttype) {
+  return state.registeredpostmeta?.[posttype] ?? {};
 }
-function normalizePageId(value) {
+function normalizepageid(value) {
   if (!value || !["number", "string"].includes(typeof value)) {
     return null;
   }
-  if (Number(value) === 0) {
+  if (number(value) === 0) {
     return null;
   }
-  return value.toString();
+  return value.tostring();
 }
-const getHomePage = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegistrySelector)(
-  (select) => (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
+const gethomepage = (0,_wordpress_data__webpack_imported_module_0__.createregistryselector)(
+  (select) => (0,_wordpress_data__webpack_imported_module_0__.createselector)(
     () => {
-      const siteData = select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getEntityRecord(
+      const sitedata = select(_name__webpack_imported_module_1__/* .store_name */ .e).getentityrecord(
         "root",
-        "__unstableBase"
+        "__unstablebase"
       );
-      if (!siteData) {
+      if (!sitedata) {
         return null;
       }
-      const homepageId = siteData?.show_on_front === "page" ? normalizePageId(siteData.page_on_front) : null;
-      if (homepageId) {
-        return { postType: "page", postId: homepageId };
+      const homepageid = sitedata?.show_on_front === "page" ? normalizepageid(sitedata.page_on_front) : null;
+      if (homepageid) {
+        return { posttype: "page", postid: homepageid };
       }
-      const frontPageTemplateId = select(
-        _name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E
-      ).getDefaultTemplateId({
+      const frontpagetemplateid = select(
+        _name__webpack_imported_module_1__/* .store_name */ .e
+      ).getdefaulttemplateid({
         slug: "front-page"
       });
-      if (!frontPageTemplateId) {
+      if (!frontpagetemplateid) {
         return null;
       }
-      return { postType: "wp_template", postId: frontPageTemplateId };
+      return { posttype: "wp_template", postid: frontpagetemplateid };
     },
     (state) => [
-      (0,_selectors__WEBPACK_IMPORTED_MODULE_3__.getEntityRecord)(state, "root", "__unstableBase"),
-      (0,_selectors__WEBPACK_IMPORTED_MODULE_3__.getDefaultTemplateId)(state, {
+      (0,_selectors__webpack_imported_module_3__.getentityrecord)(state, "root", "__unstablebase"),
+      (0,_selectors__webpack_imported_module_3__.getdefaulttemplateid)(state, {
         slug: "front-page"
       })
     ]
   )
 );
-const getPostsPageId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegistrySelector)((select) => () => {
-  const siteData = select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getEntityRecord(
+const getpostspageid = (0,_wordpress_data__webpack_imported_module_0__.createregistryselector)((select) => () => {
+  const sitedata = select(_name__webpack_imported_module_1__/* .store_name */ .e).getentityrecord(
     "root",
-    "__unstableBase"
+    "__unstablebase"
   );
-  return siteData?.show_on_front === "page" ? normalizePageId(siteData.page_for_posts) : null;
+  return sitedata?.show_on_front === "page" ? normalizepageid(sitedata.page_for_posts) : null;
 });
-const getTemplateId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegistrySelector)(
-  (select) => (state, postType, postId) => {
-    const homepage = (0,_lock_unlock__WEBPACK_IMPORTED_MODULE_4__/* .unlock */ .T)(select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E)).getHomePage();
+const gettemplateid = (0,_wordpress_data__webpack_imported_module_0__.createregistryselector)(
+  (select) => (state, posttype, postid) => {
+    const homepage = (0,_lock_unlock__webpack_imported_module_4__/* .unlock */ .t)(select(_name__webpack_imported_module_1__/* .store_name */ .e)).gethomepage();
     if (!homepage) {
       return;
     }
-    if (postType === "page" && postType === homepage?.postType && postId.toString() === homepage?.postId) {
-      const templates = select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getEntityRecords(
-        "postType",
+    if (posttype === "page" && posttype === homepage?.posttype && postid.tostring() === homepage?.postid) {
+      const templates = select(_name__webpack_imported_module_1__/* .store_name */ .e).getentityrecords(
+        "posttype",
         "wp_template",
         {
           per_page: -1
@@ -6470,37 +6470,37 @@ const getTemplateId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegi
         return id;
       }
     }
-    const editedEntity = select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getEditedEntityRecord(
-      "postType",
-      postType,
-      postId
+    const editedentity = select(_name__webpack_imported_module_1__/* .store_name */ .e).geteditedentityrecord(
+      "posttype",
+      posttype,
+      postid
     );
-    if (!editedEntity) {
+    if (!editedentity) {
       return;
     }
-    const postsPageId = (0,_lock_unlock__WEBPACK_IMPORTED_MODULE_4__/* .unlock */ .T)(select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E)).getPostsPageId();
-    if (postType === "page" && postsPageId === postId.toString()) {
-      return select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getDefaultTemplateId({
+    const postspageid = (0,_lock_unlock__webpack_imported_module_4__/* .unlock */ .t)(select(_name__webpack_imported_module_1__/* .store_name */ .e)).getpostspageid();
+    if (posttype === "page" && postspageid === postid.tostring()) {
+      return select(_name__webpack_imported_module_1__/* .store_name */ .e).getdefaulttemplateid({
         slug: "home"
       });
     }
-    const currentTemplateSlug = editedEntity.template;
-    if (currentTemplateSlug) {
-      const currentTemplate = select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getEntityRecords("postType", "wp_template", {
+    const currenttemplateslug = editedentity.template;
+    if (currenttemplateslug) {
+      const currenttemplate = select(_name__webpack_imported_module_1__/* .store_name */ .e).getentityrecords("posttype", "wp_template", {
         per_page: -1
-      })?.find(({ slug }) => slug === currentTemplateSlug);
-      if (currentTemplate) {
-        return currentTemplate.id;
+      })?.find(({ slug }) => slug === currenttemplateslug);
+      if (currenttemplate) {
+        return currenttemplate.id;
       }
     }
-    let slugToCheck;
-    if (editedEntity.slug) {
-      slugToCheck = postType === "page" ? `${postType}-${editedEntity.slug}` : `single-${postType}-${editedEntity.slug}`;
+    let slugtocheck;
+    if (editedentity.slug) {
+      slugtocheck = posttype === "page" ? `${posttype}-${editedentity.slug}` : `single-${posttype}-${editedentity.slug}`;
     } else {
-      slugToCheck = postType === "page" ? "page" : `single-${postType}`;
+      slugtocheck = posttype === "page" ? "page" : `single-${posttype}`;
     }
-    return select(_name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E).getDefaultTemplateId({
-      slug: slugToCheck
+    return select(_name__webpack_imported_module_1__/* .store_name */ .e).getdefaulttemplateid({
+      slug: slugtocheck
     });
   }
 );
@@ -6514,13 +6514,13 @@ const getTemplateId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.createRegi
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   D: () => (/* binding */ EntityContext)
+/* harmony export */   d: () => (/* binding */ entitycontext)
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6087);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__webpack_imported_module_0__ = __webpack_require__(6087);
+/* harmony import */ var _wordpress_element__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_wordpress_element__webpack_imported_module_0__);
 
-const EntityContext = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createContext)({});
-EntityContext.displayName = "EntityContext";
+const entitycontext = (0,_wordpress_element__webpack_imported_module_0__.createcontext)({});
+entitycontext.displayname = "entitycontext";
 
 
 
@@ -6531,37 +6531,37 @@ EntityContext.displayName = "EntityContext";
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   A: () => (/* binding */ logEntityDeprecation)
+/* harmony export */   a: () => (/* binding */ logentitydeprecation)
 /* harmony export */ });
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4040);
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _entities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5914);
+/* harmony import */ var _wordpress_deprecated__webpack_imported_module_0__ = __webpack_require__(4040);
+/* harmony import */ var _wordpress_deprecated__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_wordpress_deprecated__webpack_imported_module_0__);
+/* harmony import */ var _entities__webpack_imported_module_1__ = __webpack_require__(5914);
 
 
-let loggedAlready = false;
-function logEntityDeprecation(kind, name, functionName, {
-  alternativeFunctionName,
-  isShorthandSelector = false
+let loggedalready = false;
+function logentitydeprecation(kind, name, functionname, {
+  alternativefunctionname,
+  isshorthandselector = false
 } = {}) {
-  const deprecation = _entities__WEBPACK_IMPORTED_MODULE_1__/* .deprecatedEntities */ .TK[kind]?.[name];
+  const deprecation = _entities__webpack_imported_module_1__/* .deprecatedentities */ .tk[kind]?.[name];
   if (!deprecation) {
     return;
   }
-  if (!loggedAlready) {
+  if (!loggedalready) {
     const { alternative } = deprecation;
-    const message = isShorthandSelector ? `'${functionName}'` : `The '${kind}', '${name}' entity (used via '${functionName}')`;
-    let alternativeMessage = `the '${alternative.kind}', '${alternative.name}' entity`;
-    if (alternativeFunctionName) {
-      alternativeMessage += ` via the '${alternativeFunctionName}' function`;
+    const message = isshorthandselector ? `'${functionname}'` : `the '${kind}', '${name}' entity (used via '${functionname}')`;
+    let alternativemessage = `the '${alternative.kind}', '${alternative.name}' entity`;
+    if (alternativefunctionname) {
+      alternativemessage += ` via the '${alternativefunctionname}' function`;
     }
-    _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_0___default()(message, {
+    _wordpress_deprecated__webpack_imported_module_0___default()(message, {
       ...deprecation,
-      alternative: alternativeMessage
+      alternative: alternativemessage
     });
   }
-  loggedAlready = true;
-  setTimeout(() => {
-    loggedAlready = false;
+  loggedalready = true;
+  settimeout(() => {
+    loggedalready = false;
   }, 0);
 }
 
@@ -6575,87 +6575,87 @@ function logEntityDeprecation(kind, name, functionName, {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   editMediaEntity: () => (/* binding */ editMediaEntity),
-/* harmony export */   receiveRegisteredPostMeta: () => (/* binding */ receiveRegisteredPostMeta)
+/* harmony export */   editmediaentity: () => (/* binding */ editmediaentity),
+/* harmony export */   receiveregisteredpostmeta: () => (/* binding */ receiveregisteredpostmeta)
 /* harmony export */ });
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1455);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _name__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2278);
+/* harmony import */ var _wordpress_api_fetch__webpack_imported_module_0__ = __webpack_require__(1455);
+/* harmony import */ var _wordpress_api_fetch__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_wordpress_api_fetch__webpack_imported_module_0__);
+/* harmony import */ var _name__webpack_imported_module_1__ = __webpack_require__(2278);
 
 
-function receiveRegisteredPostMeta(postType, registeredPostMeta) {
+function receiveregisteredpostmeta(posttype, registeredpostmeta) {
   return {
-    type: "RECEIVE_REGISTERED_POST_META",
-    postType,
-    registeredPostMeta
+    type: "receive_registered_post_meta",
+    posttype,
+    registeredpostmeta
   };
 }
-const editMediaEntity = (recordId, edits = {}, { __unstableFetch = (_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()), throwOnError = false } = {}) => async ({ dispatch, resolveSelect }) => {
-  if (!recordId) {
+const editmediaentity = (recordid, edits = {}, { __unstablefetch = (_wordpress_api_fetch__webpack_imported_module_0___default()), throwonerror = false } = {}) => async ({ dispatch, resolveselect }) => {
+  if (!recordid) {
     return;
   }
-  const kind = "postType";
+  const kind = "posttype";
   const name = "attachment";
-  const configs = await resolveSelect.getEntitiesConfig(kind);
-  const entityConfig = configs.find(
+  const configs = await resolveselect.getentitiesconfig(kind);
+  const entityconfig = configs.find(
     (config) => config.kind === kind && config.name === name
   );
-  if (!entityConfig) {
+  if (!entityconfig) {
     return;
   }
-  const lock = await dispatch.__unstableAcquireStoreLock(
-    _name__WEBPACK_IMPORTED_MODULE_1__/* .STORE_NAME */ .E,
-    ["entities", "records", kind, name, recordId],
+  const lock = await dispatch.__unstableacquirestorelock(
+    _name__webpack_imported_module_1__/* .store_name */ .e,
+    ["entities", "records", kind, name, recordid],
     { exclusive: true }
   );
-  let updatedRecord;
+  let updatedrecord;
   let error;
-  let hasError = false;
+  let haserror = false;
   try {
     dispatch({
-      type: "SAVE_ENTITY_RECORD_START",
+      type: "save_entity_record_start",
       kind,
       name,
-      recordId
+      recordid
     });
     try {
-      const path = `${entityConfig.baseURL}/${recordId}/edit`;
-      const newRecord = await __unstableFetch({
+      const path = `${entityconfig.baseurl}/${recordid}/edit`;
+      const newrecord = await __unstablefetch({
         path,
-        method: "POST",
+        method: "post",
         data: {
           ...edits
         }
       });
-      if (newRecord) {
-        dispatch.receiveEntityRecords(
+      if (newrecord) {
+        dispatch.receiveentityrecords(
           kind,
           name,
-          [newRecord],
+          [newrecord],
           void 0,
           true,
           void 0,
           void 0
         );
-        updatedRecord = newRecord;
+        updatedrecord = newrecord;
       }
     } catch (e) {
       error = e;
-      hasError = true;
+      haserror = true;
     }
     dispatch({
-      type: "SAVE_ENTITY_RECORD_FINISH",
+      type: "save_entity_record_finish",
       kind,
       name,
-      recordId,
+      recordid,
       error
     });
-    if (hasError && throwOnError) {
+    if (haserror && throwonerror) {
       throw error;
     }
-    return updatedRecord;
+    return updatedrecord;
   } finally {
-    dispatch.__unstableReleaseStoreLock(lock);
+    dispatch.__unstablereleasestorelock(lock);
   }
 };
 
@@ -6665,36 +6665,36 @@ const editMediaEntity = (recordId, edits = {}, { __unstableFetch = (_wordpress_a
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	// the module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
+/******/ 	// the require function
+/******/ 	function __webpack_require__(moduleid) {
+/******/ 		// check if module is in cache
+/******/ 		var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 		if (cachedmodule !== undefined) {
+/******/ 			return cachedmodule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleid] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		// execute the module function
+/******/ 		__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		// return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -6708,35 +6708,36 @@ const editMediaEntity = (recordId, edits = {}, { __unstableFetch = (_wordpress_a
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	// load entry module and return exports
+/******/ 	// this entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__(4565);
-/******/ 	(window.wp = window.wp || {}).coreData = __webpack_exports__;
+/******/ 	(window.wp = window.wp || {}).coredata = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;
+

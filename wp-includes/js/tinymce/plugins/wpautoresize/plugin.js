@@ -1,132 +1,132 @@
 /**
  * plugin.js
  *
- * Copyright, Moxiecode Systems AB
- * Released under LGPL License.
+ * copyright, moxiecode systems ab
+ * released under lgpl license.
  *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
+ * license: http://www.tinymce.com/license
+ * contributing: http://www.tinymce.com/contributing
  */
 
-// Forked for WordPress so it can be turned on/off after loading.
+// forked for wordpress so it can be turned on/off after loading.
 
 /*global tinymce:true */
 /*eslint no-nested-ternary:0 */
 
 /**
- * Auto Resize
+ * auto resize
  *
- * This plugin automatically resizes the content area to fit its content height.
- * It will retain a minimum height, which is the height of the content area when
+ * this plugin automatically resizes the content area to fit its content height.
+ * it will retain a minimum height, which is the height of the content area when
  * it's initialized.
  */
-tinymce.PluginManager.add( 'wpautoresize', function( editor ) {
+tinymce.pluginmanager.add( 'wpautoresize', function( editor ) {
 	var settings = editor.settings,
-		oldSize = 300,
-		isActive = false;
+		oldsize = 300,
+		isactive = false;
 
-	if ( editor.settings.inline || tinymce.Env.iOS ) {
+	if ( editor.settings.inline || tinymce.env.ios ) {
 		return;
 	}
 
-	function isFullscreen() {
-		return editor.plugins.fullscreen && editor.plugins.fullscreen.isFullscreen();
+	function isfullscreen() {
+		return editor.plugins.fullscreen && editor.plugins.fullscreen.isfullscreen();
 	}
 
-	function getInt( n ) {
-		return parseInt( n, 10 ) || 0;
+	function getint( n ) {
+		return parseint( n, 10 ) || 0;
 	}
 
 	/**
-	 * This method gets executed each time the editor needs to resize.
+	 * this method gets executed each time the editor needs to resize.
 	 */
 	function resize( e ) {
-		var deltaSize, doc, body, docElm, DOM = tinymce.DOM, resizeHeight, myHeight,
-			marginTop, marginBottom, paddingTop, paddingBottom, borderTop, borderBottom;
+		var deltasize, doc, body, docelm, dom = tinymce.dom, resizeheight, myheight,
+			margintop, marginbottom, paddingtop, paddingbottom, bordertop, borderbottom;
 
-		if ( ! isActive ) {
+		if ( ! isactive ) {
 			return;
 		}
 
-		doc = editor.getDoc();
+		doc = editor.getdoc();
 		if ( ! doc ) {
 			return;
 		}
 
 		e = e || {};
 		body = doc.body;
-		docElm = doc.documentElement;
-		resizeHeight = settings.autoresize_min_height;
+		docelm = doc.documentelement;
+		resizeheight = settings.autoresize_min_height;
 
-		if ( ! body || ( e && e.type === 'setcontent' && e.initial ) || isFullscreen() ) {
-			if ( body && docElm ) {
-				body.style.overflowY = 'auto';
-				docElm.style.overflowY = 'auto'; // Old IE.
+		if ( ! body || ( e && e.type === 'setcontent' && e.initial ) || isfullscreen() ) {
+			if ( body && docelm ) {
+				body.style.overflowy = 'auto';
+				docelm.style.overflowy = 'auto'; // old ie.
 			}
 
 			return;
 		}
 
-		// Calculate outer height of the body element using CSS styles.
-		marginTop = editor.dom.getStyle( body, 'margin-top', true );
-		marginBottom = editor.dom.getStyle( body, 'margin-bottom', true );
-		paddingTop = editor.dom.getStyle( body, 'padding-top', true );
-		paddingBottom = editor.dom.getStyle( body, 'padding-bottom', true );
-		borderTop = editor.dom.getStyle( body, 'border-top-width', true );
-		borderBottom = editor.dom.getStyle( body, 'border-bottom-width', true );
-		myHeight = body.offsetHeight + getInt( marginTop ) + getInt( marginBottom ) +
-			getInt( paddingTop ) + getInt( paddingBottom ) +
-			getInt( borderTop ) + getInt( borderBottom );
+		// calculate outer height of the body element using css styles.
+		margintop = editor.dom.getstyle( body, 'margin-top', true );
+		marginbottom = editor.dom.getstyle( body, 'margin-bottom', true );
+		paddingtop = editor.dom.getstyle( body, 'padding-top', true );
+		paddingbottom = editor.dom.getstyle( body, 'padding-bottom', true );
+		bordertop = editor.dom.getstyle( body, 'border-top-width', true );
+		borderbottom = editor.dom.getstyle( body, 'border-bottom-width', true );
+		myheight = body.offsetheight + getint( margintop ) + getint( marginbottom ) +
+			getint( paddingtop ) + getint( paddingbottom ) +
+			getint( bordertop ) + getint( borderbottom );
 
-		// IE < 11, other?
-		if ( myHeight && myHeight < docElm.offsetHeight ) {
-			myHeight = docElm.offsetHeight;
+		// ie < 11, other?
+		if ( myheight && myheight < docelm.offsetheight ) {
+			myheight = docelm.offsetheight;
 		}
 
-		// Make sure we have a valid height.
-		if ( isNaN( myHeight ) || myHeight <= 0 ) {
-			// Get height differently depending on the browser used.
-			myHeight = tinymce.Env.ie ? body.scrollHeight : ( tinymce.Env.webkit && body.clientHeight === 0 ? 0 : body.offsetHeight );
+		// make sure we have a valid height.
+		if ( isnan( myheight ) || myheight <= 0 ) {
+			// get height differently depending on the browser used.
+			myheight = tinymce.env.ie ? body.scrollheight : ( tinymce.env.webkit && body.clientheight === 0 ? 0 : body.offsetheight );
 		}
 
-		// Don't make it smaller than the minimum height.
-		if ( myHeight > settings.autoresize_min_height ) {
-			resizeHeight = myHeight;
+		// don't make it smaller than the minimum height.
+		if ( myheight > settings.autoresize_min_height ) {
+			resizeheight = myheight;
 		}
 
-		// If a maximum height has been defined don't exceed this height.
-		if ( settings.autoresize_max_height && myHeight > settings.autoresize_max_height ) {
-			resizeHeight = settings.autoresize_max_height;
-			body.style.overflowY = 'auto';
-			docElm.style.overflowY = 'auto'; // Old IE.
+		// if a maximum height has been defined don't exceed this height.
+		if ( settings.autoresize_max_height && myheight > settings.autoresize_max_height ) {
+			resizeheight = settings.autoresize_max_height;
+			body.style.overflowy = 'auto';
+			docelm.style.overflowy = 'auto'; // old ie.
 		} else {
-			body.style.overflowY = 'hidden';
-			docElm.style.overflowY = 'hidden'; // Old IE.
-			body.scrollTop = 0;
+			body.style.overflowy = 'hidden';
+			docelm.style.overflowy = 'hidden'; // old ie.
+			body.scrolltop = 0;
 		}
 
-		// Resize content element.
-		if (resizeHeight !== oldSize) {
-			deltaSize = resizeHeight - oldSize;
-			DOM.setStyle( editor.iframeElement, 'height', resizeHeight + 'px' );
-			oldSize = resizeHeight;
+		// resize content element.
+		if (resizeheight !== oldsize) {
+			deltasize = resizeheight - oldsize;
+			dom.setstyle( editor.iframeelement, 'height', resizeheight + 'px' );
+			oldsize = resizeheight;
 
-			// WebKit doesn't decrease the size of the body element until the iframe gets resized.
-			// So we need to continue to resize the iframe down until the size gets fixed.
-			if ( tinymce.isWebKit && deltaSize < 0 ) {
+			// webkit doesn't decrease the size of the body element until the iframe gets resized.
+			// so we need to continue to resize the iframe down until the size gets fixed.
+			if ( tinymce.iswebkit && deltasize < 0 ) {
 				resize( e );
 			}
 
-			editor.fire( 'wp-autoresize', { height: resizeHeight, deltaHeight: e.type === 'nodechange' ? deltaSize : null } );
+			editor.fire( 'wp-autoresize', { height: resizeheight, deltaheight: e.type === 'nodechange' ? deltasize : null } );
 		}
 	}
 
 	/**
-	 * Calls the resize x times in 100ms intervals. We can't wait for load events since
-	 * the CSS files might load async.
+	 * calls the resize x times in 100ms intervals. we can't wait for load events since
+	 * the css files might load async.
 	 */
 	function wait( times, interval, callback ) {
-		setTimeout( function() {
+		settimeout( function() {
 			resize();
 
 			if ( times-- ) {
@@ -137,18 +137,18 @@ tinymce.PluginManager.add( 'wpautoresize', function( editor ) {
 		}, interval );
 	}
 
-	// Define minimum height.
-	settings.autoresize_min_height = parseInt(editor.getParam( 'autoresize_min_height', editor.getElement().offsetHeight), 10 );
+	// define minimum height.
+	settings.autoresize_min_height = parseint(editor.getparam( 'autoresize_min_height', editor.getelement().offsetheight), 10 );
 
-	// Define maximum height.
-	settings.autoresize_max_height = parseInt(editor.getParam( 'autoresize_max_height', 0), 10 );
+	// define maximum height.
+	settings.autoresize_max_height = parseint(editor.getparam( 'autoresize_max_height', 0), 10 );
 
 	function on() {
-		if ( ! editor.dom.hasClass( editor.getBody(), 'wp-autoresize' ) ) {
-			isActive = true;
-			editor.dom.addClass( editor.getBody(), 'wp-autoresize' );
-			// Add appropriate listeners for resizing the content area.
-			editor.on( 'nodechange setcontent keyup FullscreenStateChanged', resize );
+		if ( ! editor.dom.hasclass( editor.getbody(), 'wp-autoresize' ) ) {
+			isactive = true;
+			editor.dom.addclass( editor.getbody(), 'wp-autoresize' );
+			// add appropriate listeners for resizing the content area.
+			editor.on( 'nodechange setcontent keyup fullscreenstatechanged', resize );
 			resize();
 		}
 	}
@@ -156,52 +156,54 @@ tinymce.PluginManager.add( 'wpautoresize', function( editor ) {
 	function off() {
 		var doc;
 
-		// Don't turn off if the setting is 'on'.
+		// don't turn off if the setting is 'on'.
 		if ( ! settings.wp_autoresize_on ) {
-			isActive = false;
-			doc = editor.getDoc();
-			editor.dom.removeClass( editor.getBody(), 'wp-autoresize' );
-			editor.off( 'nodechange setcontent keyup FullscreenStateChanged', resize );
-			doc.body.style.overflowY = 'auto';
-			doc.documentElement.style.overflowY = 'auto'; // Old IE.
-			oldSize = 0;
+			isactive = false;
+			doc = editor.getdoc();
+			editor.dom.removeclass( editor.getbody(), 'wp-autoresize' );
+			editor.off( 'nodechange setcontent keyup fullscreenstatechanged', resize );
+			doc.body.style.overflowy = 'auto';
+			doc.documentelement.style.overflowy = 'auto'; // old ie.
+			oldsize = 0;
 		}
 	}
 
 	if ( settings.wp_autoresize_on ) {
-		// Turn resizing on when the editor loads.
-		isActive = true;
+		// turn resizing on when the editor loads.
+		isactive = true;
 
 		editor.on( 'init', function() {
-			editor.dom.addClass( editor.getBody(), 'wp-autoresize' );
+			editor.dom.addclass( editor.getbody(), 'wp-autoresize' );
 		});
 
-		editor.on( 'nodechange keyup FullscreenStateChanged', resize );
+		editor.on( 'nodechange keyup fullscreenstatechanged', resize );
 
 		editor.on( 'setcontent', function() {
 			wait( 3, 100 );
 		});
 
-		if ( editor.getParam( 'autoresize_on_init', true ) ) {
+		if ( editor.getparam( 'autoresize_on_init', true ) ) {
 			editor.on( 'init', function() {
-				// Hit it 10 times in 200 ms intervals.
+				// hit it 10 times in 200 ms intervals.
 				wait( 10, 200, function() {
-					// Hit it 5 times in 1 sec intervals.
+					// hit it 5 times in 1 sec intervals.
 					wait( 5, 1000 );
 				});
 			});
 		}
 	}
 
-	// Reset the stored size.
+	// reset the stored size.
 	editor.on( 'show', function() {
-		oldSize = 0;
+		oldsize = 0;
 	});
 
-	// Register the command.
-	editor.addCommand( 'wpAutoResize', resize );
+	// register the command.
+	editor.addcommand( 'wpautoresize', resize );
 
-	// On/off.
-	editor.addCommand( 'wpAutoResizeOn', on );
-	editor.addCommand( 'wpAutoResizeOff', off );
+	// on/off.
+	editor.addcommand( 'wpautoresizeon', on );
+	editor.addcommand( 'wpautoresizeoff', off );
 });
+
+

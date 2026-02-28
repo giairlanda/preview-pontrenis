@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,95 +22,95 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  MoveToWidgetArea: () => (/* reexport */ MoveToWidgetArea),
-  addWidgetIdToBlock: () => (/* reexport */ addWidgetIdToBlock),
-  getWidgetIdFromBlock: () => (/* reexport */ getWidgetIdFromBlock),
-  registerLegacyWidgetBlock: () => (/* binding */ registerLegacyWidgetBlock),
-  registerLegacyWidgetVariations: () => (/* reexport */ registerLegacyWidgetVariations),
-  registerWidgetGroupBlock: () => (/* binding */ registerWidgetGroupBlock)
+  movetowidgetarea: () => (/* reexport */ movetowidgetarea),
+  addwidgetidtoblock: () => (/* reexport */ addwidgetidtoblock),
+  getwidgetidfromblock: () => (/* reexport */ getwidgetidfromblock),
+  registerlegacywidgetblock: () => (/* binding */ registerlegacywidgetblock),
+  registerlegacywidgetvariations: () => (/* reexport */ registerlegacywidgetvariations),
+  registerwidgetgroupblock: () => (/* binding */ registerwidgetgroupblock)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/index.js
-var legacy_widget_namespaceObject = {};
-__webpack_require__.r(legacy_widget_namespaceObject);
-__webpack_require__.d(legacy_widget_namespaceObject, {
-  yu: () => (block_namespaceObject),
-  UU: () => (legacy_widget_name),
-  W0: () => (settings)
+// namespace object: ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/index.js
+var legacy_widget_namespaceobject = {};
+__webpack_require__.r(legacy_widget_namespaceobject);
+__webpack_require__.d(legacy_widget_namespaceobject, {
+  yu: () => (block_namespaceobject),
+  uu: () => (legacy_widget_name),
+  w0: () => (settings)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/index.js
-var widget_group_namespaceObject = {};
-__webpack_require__.r(widget_group_namespaceObject);
-__webpack_require__.d(widget_group_namespaceObject, {
-  yu: () => (widget_group_block_namespaceObject),
-  UU: () => (widget_group_name),
-  W0: () => (widget_group_settings)
+// namespace object: ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/index.js
+var widget_group_namespaceobject = {};
+__webpack_require__.r(widget_group_namespaceobject);
+__webpack_require__.d(widget_group_namespaceobject, {
+  yu: () => (widget_group_block_namespaceobject),
+  uu: () => (widget_group_name),
+  w0: () => (widget_group_settings)
 });
 
 ;// external ["wp","blocks"]
-const external_wp_blocks_namespaceObject = window["wp"]["blocks"];
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
+const external_wp_blocks_namespaceobject = window["wp"]["blocks"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
 ;// external ["wp","primitives"]
-const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+const external_wp_primitives_namespaceobject = window["wp"]["primitives"];
 ;// ./node_modules/@wordpress/icons/build-module/library/widget.js
 
 
-var widget_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M6 3H8V5H16V3H18V5C19.1046 5 20 5.89543 20 7V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19V7C4 5.89543 4.89543 5 6 5V3ZM18 6.5H6C5.72386 6.5 5.5 6.72386 5.5 7V8H18.5V7C18.5 6.72386 18.2761 6.5 18 6.5ZM18.5 9.5H5.5V19C5.5 19.2761 5.72386 19.5 6 19.5H18C18.2761 19.5 18.5 19.2761 18.5 19V9.5ZM11 11H13V13H11V11ZM7 11V13H9V11H7ZM15 13V11H17V13H15Z" }) });
+var widget_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m6 3h8v5h16v3h18v5c19.1046 5 20 5.89543 20 7v19c20 20.1046 19.1046 21 18 21h6c4.89543 21 4 20.1046 4 19v7c4 5.89543 4.89543 5 6 5v3zm18 6.5h6c5.72386 6.5 5.5 6.72386 5.5 7v8h18.5v7c18.5 6.72386 18.2761 6.5 18 6.5zm18.5 9.5h5.5v19c5.5 19.2761 5.72386 19.5 6 19.5h18c18.2761 19.5 18.5 19.2761 18.5 19v9.5zm11 11h13v13h11v11zm7 11v13h9v11h7zm15 13v11h17v13h15z" }) });
 
 
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/block.json
-const block_namespaceObject = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"core/legacy-widget","title":"Legacy Widget","category":"widgets","description":"Display a legacy widget.","textdomain":"default","attributes":{"id":{"type":"string","default":null},"idBase":{"type":"string","default":null},"instance":{"type":"object","default":null}},"supports":{"html":false,"customClassName":false,"reusable":false},"editorStyle":"wp-block-legacy-widget-editor"}');
+const block_namespaceobject = /*#__pure__*/json.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiversion":3,"name":"core/legacy-widget","title":"legacy widget","category":"widgets","description":"display a legacy widget.","textdomain":"default","attributes":{"id":{"type":"string","default":null},"idbase":{"type":"string","default":null},"instance":{"type":"object","default":null}},"supports":{"html":false,"customclassname":false,"reusable":false},"editorstyle":"wp-block-legacy-widget-editor"}');
 ;// ./node_modules/clsx/dist/clsx.mjs
-function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
-;// external ["wp","blockEditor"]
-const external_wp_blockEditor_namespaceObject = window["wp"]["blockEditor"];
+function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(array.isarray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f)}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const dist_clsx = (clsx);
+;// external ["wp","blockeditor"]
+const external_wp_blockeditor_namespaceobject = window["wp"]["blockeditor"];
 ;// external ["wp","components"]
-const external_wp_components_namespaceObject = window["wp"]["components"];
+const external_wp_components_namespaceobject = window["wp"]["components"];
 ;// ./node_modules/@wordpress/icons/build-module/library/brush.js
 
 
-var brush_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M4 20h8v-1.5H4V20zM18.9 3.5c-.6-.6-1.5-.6-2.1 0l-7.2 7.2c-.4-.1-.7 0-1.1.1-.5.2-1.5.7-1.9 2.2-.4 1.7-.8 2.2-1.1 2.7-.1.1-.2.3-.3.4l-.6 1.1H6c2 0 3.4-.4 4.7-1.4.8-.6 1.2-1.4 1.3-2.3 0-.3 0-.5-.1-.7L19 5.7c.5-.6.5-1.6-.1-2.2zM9.7 14.7c-.7.5-1.5.8-2.4 1 .2-.5.5-1.2.8-2.3.2-.6.4-1 .8-1.1.5-.1 1 .1 1.3.3.2.2.3.5.2.8 0 .3-.1.9-.7 1.3z" }) });
+var brush_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m4 20h8v-1.5h4v20zm18.9 3.5c-.6-.6-1.5-.6-2.1 0l-7.2 7.2c-.4-.1-.7 0-1.1.1-.5.2-1.5.7-1.9 2.2-.4 1.7-.8 2.2-1.1 2.7-.1.1-.2.3-.3.4l-.6 1.1h6c2 0 3.4-.4 4.7-1.4.8-.6 1.2-1.4 1.3-2.3 0-.3 0-.5-.1-.7l19 5.7c.5-.6.5-1.6-.1-2.2zm9.7 14.7c-.7.5-1.5.8-2.4 1 .2-.5.5-1.2.8-2.3.2-.6.4-1 .8-1.1.5-.1 1 .1 1.3.3.2.2.3.5.2.8 0 .3-.1.9-.7 1.3z" }) });
 
 
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","coreData"]
-const external_wp_coreData_namespaceObject = window["wp"]["coreData"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
+;// external ["wp","coredata"]
+const external_wp_coredata_namespaceobject = window["wp"]["coredata"];
 ;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceobject = window["wp"]["data"];
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/widget-type-selector.js
 
 
@@ -118,42 +118,42 @@ const external_wp_data_namespaceObject = window["wp"]["data"];
 
 
 
-function WidgetTypeSelector({ selectedId, onSelect }) {
-  const widgetTypes = (0,external_wp_data_namespaceObject.useSelect)((select) => {
-    const hiddenIds = select(external_wp_blockEditor_namespaceObject.store).getSettings()?.widgetTypesToHideFromLegacyWidgetBlock ?? [];
-    return select(external_wp_coreData_namespaceObject.store).getWidgetTypes({ per_page: -1 })?.filter((widgetType) => !hiddenIds.includes(widgetType.id));
+function widgettypeselector({ selectedid, onselect }) {
+  const widgettypes = (0,external_wp_data_namespaceobject.useselect)((select) => {
+    const hiddenids = select(external_wp_blockeditor_namespaceobject.store).getsettings()?.widgettypestohidefromlegacywidgetblock ?? [];
+    return select(external_wp_coredata_namespaceobject.store).getwidgettypes({ per_page: -1 })?.filter((widgettype) => !hiddenids.includes(widgettype.id));
   }, []);
-  if (!widgetTypes) {
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {});
+  if (!widgettypes) {
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.spinner, {});
   }
-  if (widgetTypes.length === 0) {
-    return (0,external_wp_i18n_namespaceObject.__)("There are no widgets available.");
+  if (widgettypes.length === 0) {
+    return (0,external_wp_i18n_namespaceobject.__)("there are no widgets available.");
   }
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    external_wp_components_namespaceObject.SelectControl,
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    external_wp_components_namespaceobject.selectcontrol,
     {
-      __next40pxDefaultSize: true,
-      __nextHasNoMarginBottom: true,
-      label: (0,external_wp_i18n_namespaceObject.__)("Legacy widget"),
-      value: selectedId ?? "",
+      __next40pxdefaultsize: true,
+      __nexthasnomarginbottom: true,
+      label: (0,external_wp_i18n_namespaceobject.__)("legacy widget"),
+      value: selectedid ?? "",
       options: [
-        { value: "", label: (0,external_wp_i18n_namespaceObject.__)("Select widget") },
-        ...widgetTypes.map((widgetType) => ({
-          value: widgetType.id,
-          label: widgetType.name
+        { value: "", label: (0,external_wp_i18n_namespaceobject.__)("select widget") },
+        ...widgettypes.map((widgettype) => ({
+          value: widgettype.id,
+          label: widgettype.name
         }))
       ],
-      onChange: (value) => {
+      onchange: (value) => {
         if (value) {
-          const selected = widgetTypes.find(
-            (widgetType) => widgetType.id === value
+          const selected = widgettypes.find(
+            (widgettype) => widgettype.id === value
           );
-          onSelect({
-            selectedId: selected.id,
-            isMulti: selected.is_multi
+          onselect({
+            selectedid: selected.id,
+            ismulti: selected.is_multi
           });
         } else {
-          onSelect({ selectedId: null });
+          onselect({ selectedid: null });
         }
       }
     }
@@ -163,94 +163,94 @@ function WidgetTypeSelector({ selectedId, onSelect }) {
 
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/inspector-card.js
 
-function InspectorCard({ name, description }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)("div", { className: "wp-block-legacy-widget-inspector-card", children: [
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("h3", { className: "wp-block-legacy-widget-inspector-card__name", children: name }),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("span", { children: description })
+function inspectorcard({ name, description }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)("div", { classname: "wp-block-legacy-widget-inspector-card", children: [
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("h3", { classname: "wp-block-legacy-widget-inspector-card__name", children: name }),
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("span", { children: description })
   ] });
 }
 
 
 ;// external ["wp","notices"]
-const external_wp_notices_namespaceObject = window["wp"]["notices"];
+const external_wp_notices_namespaceobject = window["wp"]["notices"];
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
-;// external ["wp","apiFetch"]
-const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
+;// external ["wp","apifetch"]
+const external_wp_apifetch_namespaceobject = window["wp"]["apifetch"];
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_namespaceobject);
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/control.js
 
 
 
-class Control {
+class control {
   /**
-   * Creates and loads a new control.
+   * creates and loads a new control.
    *
    * @access public
-   * @param {Object}   params
+   * @param {object}   params
    * @param {string}   params.id
-   * @param {string}   params.idBase
-   * @param {Object}   params.instance
-   * @param {Function} params.onChangeInstance
-   * @param {Function} params.onChangeHasPreview
-   * @param {Function} params.onError
+   * @param {string}   params.idbase
+   * @param {object}   params.instance
+   * @param {function} params.onchangeinstance
+   * @param {function} params.onchangehaspreview
+   * @param {function} params.onerror
    */
   constructor({
     id,
-    idBase,
+    idbase,
     instance,
-    onChangeInstance,
-    onChangeHasPreview,
-    onError
+    onchangeinstance,
+    onchangehaspreview,
+    onerror
   }) {
     this.id = id;
-    this.idBase = idBase;
+    this.idbase = idbase;
     this._instance = instance;
-    this._hasPreview = null;
-    this.onChangeInstance = onChangeInstance;
-    this.onChangeHasPreview = onChangeHasPreview;
-    this.onError = onError;
-    this.number = ++lastNumber;
-    this.handleFormChange = (0,external_wp_compose_namespaceObject.debounce)(
-      this.handleFormChange.bind(this),
+    this._haspreview = null;
+    this.onchangeinstance = onchangeinstance;
+    this.onchangehaspreview = onchangehaspreview;
+    this.onerror = onerror;
+    this.number = ++lastnumber;
+    this.handleformchange = (0,external_wp_compose_namespaceobject.debounce)(
+      this.handleformchange.bind(this),
       200
     );
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.initDOM();
-    this.bindEvents();
-    this.loadContent();
+    this.handleformsubmit = this.handleformsubmit.bind(this);
+    this.initdom();
+    this.bindevents();
+    this.loadcontent();
   }
   /**
-   * Clean up the control so that it can be garbage collected.
+   * clean up the control so that it can be garbage collected.
    *
    * @access public
    */
   destroy() {
-    this.unbindEvents();
+    this.unbindevents();
     this.element.remove();
   }
   /**
-   * Creates the control's DOM structure.
+   * creates the control's dom structure.
    *
    * @access private
    */
-  initDOM() {
+  initdom() {
     this.element = el("div", { class: "widget open" }, [
       el("div", { class: "widget-inside" }, [
         this.form = el("form", { class: "form", method: "post" }, [
-          // These hidden form inputs are what most widgets' scripts
+          // these hidden form inputs are what most widgets' scripts
           // use to access data about the widget.
           el("input", {
             class: "widget-id",
             type: "hidden",
             name: "widget-id",
-            value: this.id ?? `${this.idBase}-${this.number}`
+            value: this.id ?? `${this.idbase}-${this.number}`
           }),
           el("input", {
             class: "id_base",
             type: "hidden",
             name: "id_base",
-            value: this.idBase ?? this.id
+            value: this.idbase ?? this.id
           }),
           el("input", {
             class: "widget-width",
@@ -268,148 +268,148 @@ class Control {
             class: "widget_number",
             type: "hidden",
             name: "widget_number",
-            value: this.idBase ? this.number.toString() : ""
+            value: this.idbase ? this.number.tostring() : ""
           }),
           this.content = el("div", { class: "widget-content" }),
-          // Non-multi widgets can be saved via a Save button.
+          // non-multi widgets can be saved via a save button.
           this.id && el(
             "button",
             {
               class: "button is-primary",
               type: "submit"
             },
-            (0,external_wp_i18n_namespaceObject.__)("Save")
+            (0,external_wp_i18n_namespaceobject.__)("save")
           )
         ])
       ])
     ]);
   }
   /**
-   * Adds the control's event listeners.
+   * adds the control's event listeners.
    *
    * @access private
    */
-  bindEvents() {
-    if (window.jQuery) {
-      const { jQuery: $ } = window;
-      $(this.form).on("change", null, this.handleFormChange);
-      $(this.form).on("input", null, this.handleFormChange);
-      $(this.form).on("submit", this.handleFormSubmit);
+  bindevents() {
+    if (window.jquery) {
+      const { jquery: $ } = window;
+      $(this.form).on("change", null, this.handleformchange);
+      $(this.form).on("input", null, this.handleformchange);
+      $(this.form).on("submit", this.handleformsubmit);
     } else {
-      this.form.addEventListener("change", this.handleFormChange);
-      this.form.addEventListener("input", this.handleFormChange);
-      this.form.addEventListener("submit", this.handleFormSubmit);
+      this.form.addeventlistener("change", this.handleformchange);
+      this.form.addeventlistener("input", this.handleformchange);
+      this.form.addeventlistener("submit", this.handleformsubmit);
     }
   }
   /**
-   * Removes the control's event listeners.
+   * removes the control's event listeners.
    *
    * @access private
    */
-  unbindEvents() {
-    if (window.jQuery) {
-      const { jQuery: $ } = window;
-      $(this.form).off("change", null, this.handleFormChange);
-      $(this.form).off("input", null, this.handleFormChange);
-      $(this.form).off("submit", this.handleFormSubmit);
+  unbindevents() {
+    if (window.jquery) {
+      const { jquery: $ } = window;
+      $(this.form).off("change", null, this.handleformchange);
+      $(this.form).off("input", null, this.handleformchange);
+      $(this.form).off("submit", this.handleformsubmit);
     } else {
-      this.form.removeEventListener("change", this.handleFormChange);
-      this.form.removeEventListener("input", this.handleFormChange);
-      this.form.removeEventListener("submit", this.handleFormSubmit);
+      this.form.removeeventlistener("change", this.handleformchange);
+      this.form.removeeventlistener("input", this.handleformchange);
+      this.form.removeeventlistener("submit", this.handleformsubmit);
     }
   }
   /**
-   * Fetches the widget's form HTML from the REST API and loads it into the
+   * fetches the widget's form html from the rest api and loads it into the
    * control's form.
    *
    * @access private
    */
-  async loadContent() {
+  async loadcontent() {
     try {
       if (this.id) {
-        const { form } = await saveWidget(this.id);
-        this.content.innerHTML = form;
-      } else if (this.idBase) {
-        const { form, preview } = await encodeWidget({
-          idBase: this.idBase,
+        const { form } = await savewidget(this.id);
+        this.content.innerhtml = form;
+      } else if (this.idbase) {
+        const { form, preview } = await encodewidget({
+          idbase: this.idbase,
           instance: this.instance,
           number: this.number
         });
-        this.content.innerHTML = form;
-        this.hasPreview = !isEmptyHTML(preview);
+        this.content.innerhtml = form;
+        this.haspreview = !isemptyhtml(preview);
         if (!this.instance.hash) {
-          const { instance } = await encodeWidget({
-            idBase: this.idBase,
+          const { instance } = await encodewidget({
+            idbase: this.idbase,
             instance: this.instance,
             number: this.number,
-            formData: serializeForm(this.form)
+            formdata: serializeform(this.form)
           });
           this.instance = instance;
         }
       }
-      if (window.jQuery) {
-        const { jQuery: $ } = window;
+      if (window.jquery) {
+        const { jquery: $ } = window;
         $(document).trigger("widget-added", [$(this.element)]);
       }
     } catch (error) {
-      this.onError(error);
+      this.onerror(error);
     }
   }
   /**
-   * Perform a save when a multi widget's form is changed. Non-multi widgets
+   * perform a save when a multi widget's form is changed. non-multi widgets
    * are saved manually.
    *
    * @access private
    */
-  handleFormChange() {
-    if (this.idBase) {
-      this.saveForm();
+  handleformchange() {
+    if (this.idbase) {
+      this.saveform();
     }
   }
   /**
-   * Perform a save when the control's form is manually submitted.
+   * perform a save when the control's form is manually submitted.
    *
    * @access private
-   * @param {Event} event
+   * @param {event} event
    */
-  handleFormSubmit(event) {
-    event.preventDefault();
-    this.saveForm();
+  handleformsubmit(event) {
+    event.preventdefault();
+    this.saveform();
   }
   /**
-   * Serialize the control's form, send it to the REST API, and update the
-   * instance with the encoded instance that the REST API returns.
+   * serialize the control's form, send it to the rest api, and update the
+   * instance with the encoded instance that the rest api returns.
    *
    * @access private
    */
-  async saveForm() {
-    const formData = serializeForm(this.form);
+  async saveform() {
+    const formdata = serializeform(this.form);
     try {
       if (this.id) {
-        const { form } = await saveWidget(this.id, formData);
-        this.content.innerHTML = form;
-        if (window.jQuery) {
-          const { jQuery: $ } = window;
+        const { form } = await savewidget(this.id, formdata);
+        this.content.innerhtml = form;
+        if (window.jquery) {
+          const { jquery: $ } = window;
           $(document).trigger("widget-updated", [
             $(this.element)
           ]);
         }
-      } else if (this.idBase) {
-        const { instance, preview } = await encodeWidget({
-          idBase: this.idBase,
+      } else if (this.idbase) {
+        const { instance, preview } = await encodewidget({
+          idbase: this.idbase,
           instance: this.instance,
           number: this.number,
-          formData
+          formdata
         });
         this.instance = instance;
-        this.hasPreview = !isEmptyHTML(preview);
+        this.haspreview = !isemptyhtml(preview);
       }
     } catch (error) {
-      this.onError(error);
+      this.onerror(error);
     }
   }
   /**
-   * The widget's instance object.
+   * the widget's instance object.
    *
    * @access private
    */
@@ -417,79 +417,79 @@ class Control {
     return this._instance;
   }
   /**
-   * The widget's instance object.
+   * the widget's instance object.
    *
    * @access private
    */
   set instance(instance) {
     if (this._instance !== instance) {
       this._instance = instance;
-      this.onChangeInstance(instance);
+      this.onchangeinstance(instance);
     }
   }
   /**
-   * Whether or not the widget can be previewed.
+   * whether or not the widget can be previewed.
    *
    * @access public
    */
-  get hasPreview() {
-    return this._hasPreview;
+  get haspreview() {
+    return this._haspreview;
   }
   /**
-   * Whether or not the widget can be previewed.
+   * whether or not the widget can be previewed.
    *
    * @access private
    */
-  set hasPreview(hasPreview) {
-    if (this._hasPreview !== hasPreview) {
-      this._hasPreview = hasPreview;
-      this.onChangeHasPreview(hasPreview);
+  set haspreview(haspreview) {
+    if (this._haspreview !== haspreview) {
+      this._haspreview = haspreview;
+      this.onchangehaspreview(haspreview);
     }
   }
 }
-let lastNumber = 0;
-function el(tagName, attributes = {}, content = null) {
-  const element = document.createElement(tagName);
-  for (const [attribute, value] of Object.entries(attributes)) {
-    element.setAttribute(attribute, value);
+let lastnumber = 0;
+function el(tagname, attributes = {}, content = null) {
+  const element = document.createelement(tagname);
+  for (const [attribute, value] of object.entries(attributes)) {
+    element.setattribute(attribute, value);
   }
-  if (Array.isArray(content)) {
+  if (array.isarray(content)) {
     for (const child of content) {
       if (child) {
-        element.appendChild(child);
+        element.appendchild(child);
       }
     }
   } else if (typeof content === "string") {
-    element.innerText = content;
+    element.innertext = content;
   }
   return element;
 }
-async function saveWidget(id, formData = null) {
+async function savewidget(id, formdata = null) {
   let widget;
-  if (formData) {
-    widget = await external_wp_apiFetch_default()({
+  if (formdata) {
+    widget = await external_wp_apifetch_default()({
       path: `/wp/v2/widgets/${id}?context=edit`,
-      method: "PUT",
+      method: "put",
       data: {
-        form_data: formData
+        form_data: formdata
       }
     });
   } else {
-    widget = await external_wp_apiFetch_default()({
+    widget = await external_wp_apifetch_default()({
       path: `/wp/v2/widgets/${id}?context=edit`,
-      method: "GET"
+      method: "get"
     });
   }
   return { form: widget.rendered_form };
 }
-async function encodeWidget({ idBase, instance, number, formData = null }) {
-  const response = await external_wp_apiFetch_default()({
-    path: `/wp/v2/widget-types/${idBase}/encode`,
-    method: "POST",
+async function encodewidget({ idbase, instance, number, formdata = null }) {
+  const response = await external_wp_apifetch_default()({
+    path: `/wp/v2/widget-types/${idbase}/encode`,
+    method: "post",
     data: {
       instance,
       number,
-      form_data: formData
+      form_data: formdata
     }
   });
   return {
@@ -498,41 +498,41 @@ async function encodeWidget({ idBase, instance, number, formData = null }) {
     preview: response.preview
   };
 }
-function isEmptyHTML(html) {
-  const element = document.createElement("div");
-  element.innerHTML = html;
-  return isEmptyNode(element);
+function isemptyhtml(html) {
+  const element = document.createelement("div");
+  element.innerhtml = html;
+  return isemptynode(element);
 }
-function isEmptyNode(node) {
-  switch (node.nodeType) {
-    case node.TEXT_NODE:
-      return node.nodeValue.trim() === "";
-    case node.ELEMENT_NODE:
+function isemptynode(node) {
+  switch (node.nodetype) {
+    case node.text_node:
+      return node.nodevalue.trim() === "";
+    case node.element_node:
       if ([
-        "AUDIO",
-        "CANVAS",
-        "EMBED",
-        "IFRAME",
-        "IMG",
-        "MATH",
-        "OBJECT",
-        "SVG",
-        "VIDEO"
-      ].includes(node.tagName)) {
+        "audio",
+        "canvas",
+        "embed",
+        "iframe",
+        "img",
+        "math",
+        "object",
+        "svg",
+        "video"
+      ].includes(node.tagname)) {
         return false;
       }
-      if (!node.hasChildNodes()) {
+      if (!node.haschildnodes()) {
         return true;
       }
-      return Array.from(node.childNodes).every(isEmptyNode);
+      return array.from(node.childnodes).every(isemptynode);
     default:
       return true;
   }
 }
-function serializeForm(form) {
-  return new window.URLSearchParams(
-    Array.from(new window.FormData(form))
-  ).toString();
+function serializeform(form) {
+  return new window.urlsearchparams(
+    array.from(new window.formdata(form))
+  ).tostring();
 }
 
 
@@ -546,90 +546,90 @@ function serializeForm(form) {
 
 
 
-function Form({
+function form({
   title,
-  isVisible,
+  isvisible,
   id,
-  idBase,
+  idbase,
   instance,
-  isWide,
-  onChangeInstance,
-  onChangeHasPreview
+  iswide,
+  onchangeinstance,
+  onchangehaspreview
 }) {
-  const ref = (0,external_wp_element_namespaceObject.useRef)();
-  const isMediumLargeViewport = (0,external_wp_compose_namespaceObject.useViewportMatch)("small");
-  const outgoingInstances = (0,external_wp_element_namespaceObject.useRef)(/* @__PURE__ */ new Set());
-  const incomingInstances = (0,external_wp_element_namespaceObject.useRef)(/* @__PURE__ */ new Set());
-  const { createNotice } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_notices_namespaceObject.store);
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    if (incomingInstances.current.has(instance)) {
-      incomingInstances.current.delete(instance);
+  const ref = (0,external_wp_element_namespaceobject.useref)();
+  const ismediumlargeviewport = (0,external_wp_compose_namespaceobject.useviewportmatch)("small");
+  const outgoinginstances = (0,external_wp_element_namespaceobject.useref)(/* @__pure__ */ new set());
+  const incominginstances = (0,external_wp_element_namespaceobject.useref)(/* @__pure__ */ new set());
+  const { createnotice } = (0,external_wp_data_namespaceobject.usedispatch)(external_wp_notices_namespaceobject.store);
+  (0,external_wp_element_namespaceobject.useeffect)(() => {
+    if (incominginstances.current.has(instance)) {
+      incominginstances.current.delete(instance);
       return;
     }
-    const control = new Control({
+    const control = new control({
       id,
-      idBase,
+      idbase,
       instance,
-      onChangeInstance(nextInstance) {
-        outgoingInstances.current.add(instance);
-        incomingInstances.current.add(nextInstance);
-        onChangeInstance(nextInstance);
+      onchangeinstance(nextinstance) {
+        outgoinginstances.current.add(instance);
+        incominginstances.current.add(nextinstance);
+        onchangeinstance(nextinstance);
       },
-      onChangeHasPreview,
-      onError(error) {
+      onchangehaspreview,
+      onerror(error) {
         window.console.error(error);
-        createNotice(
+        createnotice(
           "error",
-          (0,external_wp_i18n_namespaceObject.sprintf)(
+          (0,external_wp_i18n_namespaceobject.sprintf)(
             /* translators: %s: the name of the affected block. */
-            (0,external_wp_i18n_namespaceObject.__)(
-              'The "%s" block was affected by errors and may not function properly. Check the developer tools for more details.'
+            (0,external_wp_i18n_namespaceobject.__)(
+              'the "%s" block was affected by errors and may not function properly. check the developer tools for more details.'
             ),
-            idBase || id
+            idbase || id
           )
         );
       }
     });
-    ref.current.appendChild(control.element);
+    ref.current.appendchild(control.element);
     return () => {
-      if (outgoingInstances.current.has(instance)) {
-        outgoingInstances.current.delete(instance);
+      if (outgoinginstances.current.has(instance)) {
+        outgoinginstances.current.delete(instance);
         return;
       }
       control.destroy();
     };
   }, [
     id,
-    idBase,
+    idbase,
     instance,
-    onChangeInstance,
-    onChangeHasPreview,
-    isMediumLargeViewport
+    onchangeinstance,
+    onchangehaspreview,
+    ismediumlargeviewport
   ]);
-  if (isWide && isMediumLargeViewport) {
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(
+  if (iswide && ismediumlargeviewport) {
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(
       "div",
       {
-        className: dist_clsx({
-          "wp-block-legacy-widget__container": isVisible
+        classname: dist_clsx({
+          "wp-block-legacy-widget__container": isvisible
         }),
         children: [
-          isVisible && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("h3", { className: "wp-block-legacy-widget__edit-form-title", children: title }),
-          /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-            external_wp_components_namespaceObject.Popover,
+          isvisible && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("h3", { classname: "wp-block-legacy-widget__edit-form-title", children: title }),
+          /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+            external_wp_components_namespaceobject.popover,
             {
-              focusOnMount: false,
+              focusonmount: false,
               placement: "right",
               offset: 32,
               resize: false,
               flip: false,
               shift: true,
-              children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
+              children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
                 "div",
                 {
                   ref,
-                  className: "wp-block-legacy-widget__edit-form",
-                  hidden: !isVisible
+                  classname: "wp-block-legacy-widget__edit-form",
+                  hidden: !isvisible
                 }
               )
             }
@@ -638,13 +638,13 @@ function Form({
       }
     );
   }
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
     "div",
     {
       ref,
-      className: "wp-block-legacy-widget__edit-form",
-      hidden: !isVisible,
-      children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("h3", { className: "wp-block-legacy-widget__edit-form-title", children: title })
+      classname: "wp-block-legacy-widget__edit-form",
+      hidden: !isvisible,
+      children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("h3", { classname: "wp-block-legacy-widget__edit-form-title", children: title })
     }
   );
 }
@@ -658,81 +658,81 @@ function Form({
 
 
 
-function Preview({ idBase, instance, isVisible }) {
-  const [isLoaded, setIsLoaded] = (0,external_wp_element_namespaceObject.useState)(false);
-  const [srcDoc, setSrcDoc] = (0,external_wp_element_namespaceObject.useState)("");
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    const abortController = typeof window.AbortController === "undefined" ? void 0 : new window.AbortController();
-    async function fetchPreviewHTML() {
-      const restRoute = `/wp/v2/widget-types/${idBase}/render`;
-      return await external_wp_apiFetch_default()({
-        path: restRoute,
-        method: "POST",
-        signal: abortController?.signal,
+function preview({ idbase, instance, isvisible }) {
+  const [isloaded, setisloaded] = (0,external_wp_element_namespaceobject.usestate)(false);
+  const [srcdoc, setsrcdoc] = (0,external_wp_element_namespaceobject.usestate)("");
+  (0,external_wp_element_namespaceobject.useeffect)(() => {
+    const abortcontroller = typeof window.abortcontroller === "undefined" ? void 0 : new window.abortcontroller();
+    async function fetchpreviewhtml() {
+      const restroute = `/wp/v2/widget-types/${idbase}/render`;
+      return await external_wp_apifetch_default()({
+        path: restroute,
+        method: "post",
+        signal: abortcontroller?.signal,
         data: instance ? { instance } : {}
       });
     }
-    fetchPreviewHTML().then((response) => {
-      setSrcDoc(response.preview);
+    fetchpreviewhtml().then((response) => {
+      setsrcdoc(response.preview);
     }).catch((error) => {
-      if ("AbortError" === error.name) {
+      if ("aborterror" === error.name) {
         return;
       }
       throw error;
     });
-    return () => abortController?.abort();
-  }, [idBase, instance]);
-  const ref = (0,external_wp_compose_namespaceObject.useRefEffect)(
+    return () => abortcontroller?.abort();
+  }, [idbase, instance]);
+  const ref = (0,external_wp_compose_namespaceobject.userefeffect)(
     (iframe) => {
-      if (!isLoaded) {
+      if (!isloaded) {
         return;
       }
-      function setHeight() {
-        const height = Math.max(
-          iframe.contentDocument.documentElement?.offsetHeight ?? 0,
-          iframe.contentDocument.body?.offsetHeight ?? 0
+      function setheight() {
+        const height = math.max(
+          iframe.contentdocument.documentelement?.offsetheight ?? 0,
+          iframe.contentdocument.body?.offsetheight ?? 0
         );
         iframe.style.height = `${height !== 0 ? height : 100}px`;
       }
-      const { IntersectionObserver } = iframe.ownerDocument.defaultView;
-      const intersectionObserver = new IntersectionObserver(
+      const { intersectionobserver } = iframe.ownerdocument.defaultview;
+      const intersectionobserver = new intersectionobserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            setHeight();
+          if (entry.isintersecting) {
+            setheight();
           }
         },
         {
           threshold: 1
         }
       );
-      intersectionObserver.observe(iframe);
-      iframe.addEventListener("load", setHeight);
+      intersectionobserver.observe(iframe);
+      iframe.addeventlistener("load", setheight);
       return () => {
-        intersectionObserver.disconnect();
-        iframe.removeEventListener("load", setHeight);
+        intersectionobserver.disconnect();
+        iframe.removeeventlistener("load", setheight);
       };
     },
-    [isLoaded]
+    [isloaded]
   );
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-    isVisible && !isLoaded && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Placeholder, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {}) }),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+    isvisible && !isloaded && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.placeholder, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.spinner, {}) }),
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
       "div",
       {
-        className: dist_clsx("wp-block-legacy-widget__edit-preview", {
-          "is-offscreen": !isVisible || !isLoaded
+        classname: dist_clsx("wp-block-legacy-widget__edit-preview", {
+          "is-offscreen": !isvisible || !isloaded
         }),
-        children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Disabled, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
+        children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.disabled, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
           "iframe",
           {
             ref,
-            className: "wp-block-legacy-widget__edit-preview-iframe",
-            tabIndex: "-1",
-            title: (0,external_wp_i18n_namespaceObject.__)("Legacy Widget Preview"),
-            srcDoc,
-            onLoad: (event) => {
-              event.target.contentDocument.body.style.overflow = "hidden";
-              setIsLoaded(true);
+            classname: "wp-block-legacy-widget__edit-preview-iframe",
+            tabindex: "-1",
+            title: (0,external_wp_i18n_namespaceobject.__)("legacy widget preview"),
+            srcdoc,
+            onload: (event) => {
+              event.target.contentdocument.body.style.overflow = "hidden";
+              setisloaded(true);
             },
             height: 100
           }
@@ -746,10 +746,10 @@ function Preview({ idBase, instance, isVisible }) {
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/edit/no-preview.js
 
 
-function NoPreview({ name }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)("div", { className: "wp-block-legacy-widget__edit-no-preview", children: [
-    name && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("h3", { children: name }),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("p", { children: (0,external_wp_i18n_namespaceObject.__)("No preview available.") })
+function nopreview({ name }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)("div", { classname: "wp-block-legacy-widget__edit-no-preview", children: [
+    name && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("h3", { children: name }),
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("p", { children: (0,external_wp_i18n_namespaceobject.__)("no preview available.") })
   ] });
 }
 
@@ -761,27 +761,27 @@ function NoPreview({ name }) {
 
 
 
-function ConvertToBlocksButton({ clientId, rawInstance }) {
-  const { replaceBlocks } = (0,external_wp_data_namespaceObject.useDispatch)(external_wp_blockEditor_namespaceObject.store);
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    external_wp_components_namespaceObject.ToolbarButton,
+function converttoblocksbutton({ clientid, rawinstance }) {
+  const { replaceblocks } = (0,external_wp_data_namespaceobject.usedispatch)(external_wp_blockeditor_namespaceobject.store);
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    external_wp_components_namespaceobject.toolbarbutton,
     {
-      onClick: () => {
-        if (rawInstance.title) {
-          replaceBlocks(clientId, [
-            (0,external_wp_blocks_namespaceObject.createBlock)("core/heading", {
-              content: rawInstance.title
+      onclick: () => {
+        if (rawinstance.title) {
+          replaceblocks(clientid, [
+            (0,external_wp_blocks_namespaceobject.createblock)("core/heading", {
+              content: rawinstance.title
             }),
-            ...(0,external_wp_blocks_namespaceObject.rawHandler)({ HTML: rawInstance.text })
+            ...(0,external_wp_blocks_namespaceobject.rawhandler)({ html: rawinstance.text })
           ]);
         } else {
-          replaceBlocks(
-            clientId,
-            (0,external_wp_blocks_namespaceObject.rawHandler)({ HTML: rawInstance.text })
+          replaceblocks(
+            clientid,
+            (0,external_wp_blocks_namespaceobject.rawhandler)({ html: rawinstance.text })
           );
         }
       },
-      children: (0,external_wp_i18n_namespaceObject.__)("Convert to blocks")
+      children: (0,external_wp_i18n_namespaceobject.__)("convert to blocks")
     }
   );
 }
@@ -802,43 +802,43 @@ function ConvertToBlocksButton({ clientId, rawInstance }) {
 
 
 
-function Edit(props) {
-  const { id, idBase } = props.attributes;
-  const { isWide = false } = props;
-  const blockProps = (0,external_wp_blockEditor_namespaceObject.useBlockProps)({
-    className: dist_clsx({
-      "is-wide-widget": isWide
+function edit(props) {
+  const { id, idbase } = props.attributes;
+  const { iswide = false } = props;
+  const blockprops = (0,external_wp_blockeditor_namespaceobject.useblockprops)({
+    classname: dist_clsx({
+      "is-wide-widget": iswide
     })
   });
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", { ...blockProps, children: !id && !idBase ? /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(Empty, { ...props }) : /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(NotEmpty, { ...props }) });
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("div", { ...blockprops, children: !id && !idbase ? /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(empty, { ...props }) : /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(notempty, { ...props }) });
 }
-function Empty({ attributes: { id, idBase }, setAttributes }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    external_wp_components_namespaceObject.Placeholder,
+function empty({ attributes: { id, idbase }, setattributes }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    external_wp_components_namespaceobject.placeholder,
     {
-      icon: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.BlockIcon, { icon: brush_default }),
-      label: (0,external_wp_i18n_namespaceObject.__)("Legacy Widget"),
-      children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Flex, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.FlexBlock, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-        WidgetTypeSelector,
+      icon: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.blockicon, { icon: brush_default }),
+      label: (0,external_wp_i18n_namespaceobject.__)("legacy widget"),
+      children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.flex, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.flexblock, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+        widgettypeselector,
         {
-          selectedId: id ?? idBase,
-          onSelect: ({ selectedId, isMulti }) => {
-            if (!selectedId) {
-              setAttributes({
+          selectedid: id ?? idbase,
+          onselect: ({ selectedid, ismulti }) => {
+            if (!selectedid) {
+              setattributes({
                 id: null,
-                idBase: null,
+                idbase: null,
                 instance: null
               });
-            } else if (isMulti) {
-              setAttributes({
+            } else if (ismulti) {
+              setattributes({
                 id: null,
-                idBase: selectedId,
+                idbase: selectedid,
                 instance: {}
               });
             } else {
-              setAttributes({
-                id: selectedId,
-                idBase: null,
+              setattributes({
+                id: selectedid,
+                idbase: null,
                 instance: null
               });
             }
@@ -848,72 +848,72 @@ function Empty({ attributes: { id, idBase }, setAttributes }) {
     }
   );
 }
-function NotEmpty({
-  attributes: { id, idBase, instance },
-  setAttributes,
-  clientId,
-  isSelected,
-  isWide = false
+function notempty({
+  attributes: { id, idbase, instance },
+  setattributes,
+  clientid,
+  isselected,
+  iswide = false
 }) {
-  const [hasPreview, setHasPreview] = (0,external_wp_element_namespaceObject.useState)(null);
-  const widgetTypeId = id ?? idBase;
-  const { record: widgetType, hasResolved: hasResolvedWidgetType } = (0,external_wp_coreData_namespaceObject.useEntityRecord)("root", "widgetType", widgetTypeId);
-  const setInstance = (0,external_wp_element_namespaceObject.useCallback)((nextInstance) => {
-    setAttributes({ instance: nextInstance });
+  const [haspreview, sethaspreview] = (0,external_wp_element_namespaceobject.usestate)(null);
+  const widgettypeid = id ?? idbase;
+  const { record: widgettype, hasresolved: hasresolvedwidgettype } = (0,external_wp_coredata_namespaceobject.useentityrecord)("root", "widgettype", widgettypeid);
+  const setinstance = (0,external_wp_element_namespaceobject.usecallback)((nextinstance) => {
+    setattributes({ instance: nextinstance });
   }, []);
-  if (!widgetType && hasResolvedWidgetType) {
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      external_wp_components_namespaceObject.Placeholder,
+  if (!widgettype && hasresolvedwidgettype) {
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      external_wp_components_namespaceobject.placeholder,
       {
-        icon: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.BlockIcon, { icon: brush_default }),
-        label: (0,external_wp_i18n_namespaceObject.__)("Legacy Widget"),
-        children: (0,external_wp_i18n_namespaceObject.__)("Widget is missing.")
+        icon: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.blockicon, { icon: brush_default }),
+        label: (0,external_wp_i18n_namespaceobject.__)("legacy widget"),
+        children: (0,external_wp_i18n_namespaceobject.__)("widget is missing.")
       }
     );
   }
-  if (!hasResolvedWidgetType) {
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Placeholder, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {}) });
+  if (!hasresolvedwidgettype) {
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.placeholder, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.spinner, {}) });
   }
-  const mode = idBase && !isSelected ? "preview" : "edit";
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-    idBase === "text" && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.BlockControls, { group: "other", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      ConvertToBlocksButton,
+  const mode = idbase && !isselected ? "preview" : "edit";
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+    idbase === "text" && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.blockcontrols, { group: "other", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      converttoblocksbutton,
       {
-        clientId,
-        rawInstance: instance.raw
+        clientid,
+        rawinstance: instance.raw
       }
     ) }),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.InspectorControls, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      InspectorCard,
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.inspectorcontrols, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      inspectorcard,
       {
-        name: widgetType.name,
-        description: widgetType.description
+        name: widgettype.name,
+        description: widgettype.description
       }
     ) }),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      Form,
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      form,
       {
-        title: widgetType.name,
-        isVisible: mode === "edit",
+        title: widgettype.name,
+        isvisible: mode === "edit",
         id,
-        idBase,
+        idbase,
         instance,
-        isWide,
-        onChangeInstance: setInstance,
-        onChangeHasPreview: setHasPreview
+        iswide,
+        onchangeinstance: setinstance,
+        onchangehaspreview: sethaspreview
       }
     ),
-    idBase && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-      hasPreview === null && mode === "preview" && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Placeholder, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {}) }),
-      hasPreview === true && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-        Preview,
+    idbase && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+      haspreview === null && mode === "preview" && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.placeholder, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.spinner, {}) }),
+      haspreview === true && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+        preview,
         {
-          idBase,
+          idbase,
           instance,
-          isVisible: mode === "preview"
+          isvisible: mode === "preview"
         }
       ),
-      hasPreview === false && mode === "preview" && /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(NoPreview, { name: widgetType.name })
+      haspreview === false && mode === "preview" && /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(nopreview, { name: widgettype.name })
     ] })
   ] });
 }
@@ -921,7 +921,7 @@ function NotEmpty({
 
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/legacy-widget/transforms.js
 
-const legacyWidgetTransforms = [
+const legacywidgettransforms = [
   {
     block: "core/calendar",
     widget: "calendar"
@@ -942,18 +942,18 @@ const legacyWidgetTransforms = [
     widget: "archives",
     transform: ({ count, dropdown }) => {
       return {
-        displayAsDropdown: !!dropdown,
-        showPostCounts: !!count
+        displayasdropdown: !!dropdown,
+        showpostcounts: !!count
       };
     }
   },
   {
     block: "core/latest-posts",
     widget: "recent-posts",
-    transform: ({ show_date: displayPostDate, number }) => {
+    transform: ({ show_date: displaypostdate, number }) => {
       return {
-        displayPostDate: !!displayPostDate,
-        postsToShow: number
+        displaypostdate: !!displaypostdate,
+        poststoshow: number
       };
     }
   },
@@ -962,7 +962,7 @@ const legacyWidgetTransforms = [
     widget: "recent-comments",
     transform: ({ number }) => {
       return {
-        commentsToShow: number
+        commentstoshow: number
       };
     }
   },
@@ -971,7 +971,7 @@ const legacyWidgetTransforms = [
     widget: "tag_cloud",
     transform: ({ taxonomy, count }) => {
       return {
-        showTagCounts: !!count,
+        showtagcounts: !!count,
         taxonomy
       };
     }
@@ -981,9 +981,9 @@ const legacyWidgetTransforms = [
     widget: "categories",
     transform: ({ count, dropdown, hierarchical }) => {
       return {
-        displayAsDropdown: !!dropdown,
-        showPostCounts: !!count,
-        showHierarchy: !!hierarchical
+        displayasdropdown: !!dropdown,
+        showpostcounts: !!count,
+        showhierarchy: !!hierarchical
       };
     }
   },
@@ -1019,12 +1019,12 @@ const legacyWidgetTransforms = [
       attachment_id: id,
       caption,
       height,
-      link_classes: linkClass,
+      link_classes: linkclass,
       link_rel: rel,
-      link_target_blank: targetBlack,
-      link_type: linkDestination,
+      link_target_blank: targetblack,
+      link_type: linkdestination,
       link_url: link,
-      size: sizeSlug,
+      size: sizeslug,
       url,
       width
     }) => {
@@ -1034,11 +1034,11 @@ const legacyWidgetTransforms = [
         height,
         id,
         link,
-        linkClass,
-        linkDestination,
-        linkTarget: targetBlack ? "_blank" : void 0,
+        linkclass,
+        linkdestination,
+        linktarget: targetblack ? "_blank" : void 0,
         rel,
-        sizeSlug,
+        sizeslug,
         url,
         width
       };
@@ -1047,12 +1047,12 @@ const legacyWidgetTransforms = [
   {
     block: "core/gallery",
     widget: "media_gallery",
-    transform: ({ ids, link_type: linkTo, size, number }) => {
+    transform: ({ ids, link_type: linkto, size, number }) => {
       return {
         ids,
         columns: number,
-        linkTo,
-        sizeSlug: size,
+        linkto,
+        sizeslug: size,
         images: ids.map((id) => ({
           id
         }))
@@ -1064,17 +1064,17 @@ const legacyWidgetTransforms = [
     widget: "rss",
     transform: ({
       url,
-      show_author: displayAuthor,
-      show_date: displayDate,
-      show_summary: displayExcerpt,
+      show_author: displayauthor,
+      show_date: displaydate,
+      show_summary: displayexcerpt,
       items
     }) => {
       return {
-        feedURL: url,
-        displayAuthor: !!displayAuthor,
-        displayDate: !!displayDate,
-        displayExcerpt: !!displayExcerpt,
-        itemsToShow: items
+        feedurl: url,
+        displayauthor: !!displayauthor,
+        displaydate: !!displaydate,
+        displayexcerpt: !!displayexcerpt,
+        itemstoshow: items
       };
     }
   }
@@ -1082,28 +1082,28 @@ const legacyWidgetTransforms = [
   return {
     type: "block",
     blocks: [block],
-    isMatch: ({ idBase, instance }) => {
-      return idBase === widget && !!instance?.raw;
+    ismatch: ({ idbase, instance }) => {
+      return idbase === widget && !!instance?.raw;
     },
     transform: ({ instance }) => {
-      const transformedBlock = (0,external_wp_blocks_namespaceObject.createBlock)(
+      const transformedblock = (0,external_wp_blocks_namespaceobject.createblock)(
         block,
         transform ? transform(instance.raw) : void 0
       );
       if (!instance.raw?.title) {
-        return transformedBlock;
+        return transformedblock;
       }
       return [
-        (0,external_wp_blocks_namespaceObject.createBlock)("core/heading", {
+        (0,external_wp_blocks_namespaceobject.createblock)("core/heading", {
           content: instance.raw.title
         }),
-        transformedBlock
+        transformedblock
       ];
     }
   };
 });
 const transforms = {
-  to: legacyWidgetTransforms
+  to: legacywidgettransforms
 };
 var transforms_default = transforms;
 
@@ -1113,10 +1113,10 @@ var transforms_default = transforms;
 
 
 
-const { name: legacy_widget_name } = block_namespaceObject;
+const { name: legacy_widget_name } = block_namespaceobject;
 const settings = {
   icon: widget_default,
-  edit: Edit,
+  edit: edit,
   transforms: transforms_default
 };
 
@@ -1124,11 +1124,11 @@ const settings = {
 ;// ./node_modules/@wordpress/icons/build-module/library/group.js
 
 
-var group_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M18 4h-7c-1.1 0-2 .9-2 2v3H6c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h7c1.1 0 2-.9 2-2v-3h3c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-4.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5v-7c0-.3.2-.5.5-.5h3V13c0 1.1.9 2 2 2h2.5v3zm0-4.5H11c-.3 0-.5-.2-.5-.5v-2.5H13c.3 0 .5.2.5.5v2.5zm5-.5c0 .3-.2.5-.5.5h-3V11c0-1.1-.9-2-2-2h-2.5V6c0-.3.2-.5.5-.5h7c.3 0 .5.2.5.5v7z" }) });
+var group_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m18 4h-7c-1.1 0-2 .9-2 2v3h6c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h7c1.1 0 2-.9 2-2v-3h3c1.1 0 2-.9 2-2v6c0-1.1-.9-2-2-2zm-4.5 14c0 .3-.2.5-.5.5h6c-.3 0-.5-.2-.5-.5v-7c0-.3.2-.5.5-.5h3v13c0 1.1.9 2 2 2h2.5v3zm0-4.5h11c-.3 0-.5-.2-.5-.5v-2.5h13c.3 0 .5.2.5.5v2.5zm5-.5c0 .3-.2.5-.5.5h-3v11c0-1.1-.9-2-2-2h-2.5v6c0-.3.2-.5.5-.5h7c.3 0 .5.2.5.5v7z" }) });
 
 
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/block.json
-const widget_group_block_namespaceObject = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"core/widget-group","title":"Widget Group","category":"widgets","attributes":{"title":{"type":"string"}},"supports":{"html":false,"inserter":true,"customClassName":true,"reusable":false},"editorStyle":"wp-block-widget-group-editor","style":"wp-block-widget-group"}');
+const widget_group_block_namespaceobject = /*#__pure__*/json.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiversion":3,"name":"core/widget-group","title":"widget group","category":"widgets","attributes":{"title":{"type":"string"}},"supports":{"html":false,"inserter":true,"customclassname":true,"reusable":false},"editorstyle":"wp-block-widget-group-editor","style":"wp-block-widget-group"}');
 ;// ./node_modules/@wordpress/widgets/build-module/blocks/widget-group/edit.js
 
 
@@ -1136,43 +1136,43 @@ const widget_group_block_namespaceObject = /*#__PURE__*/JSON.parse('{"$schema":"
 
 
 
-function edit_Edit(props) {
-  const { clientId } = props;
-  const { innerBlocks } = (0,external_wp_data_namespaceObject.useSelect)(
-    (select) => select(external_wp_blockEditor_namespaceObject.store).getBlock(clientId),
-    [clientId]
+function edit_edit(props) {
+  const { clientid } = props;
+  const { innerblocks } = (0,external_wp_data_namespaceobject.useselect)(
+    (select) => select(external_wp_blockeditor_namespaceobject.store).getblock(clientid),
+    [clientid]
   );
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", { ...(0,external_wp_blockEditor_namespaceObject.useBlockProps)({ className: "widget" }), children: innerBlocks.length === 0 ? /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(PlaceholderContent, { ...props }) : /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(PreviewContent, { ...props }) });
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("div", { ...(0,external_wp_blockeditor_namespaceobject.useblockprops)({ classname: "widget" }), children: innerblocks.length === 0 ? /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(placeholdercontent, { ...props }) : /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(previewcontent, { ...props }) });
 }
-function PlaceholderContent({ clientId }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      external_wp_components_namespaceObject.Placeholder,
+function placeholdercontent({ clientid }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      external_wp_components_namespaceobject.placeholder,
       {
-        className: "wp-block-widget-group__placeholder",
-        icon: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.BlockIcon, { icon: group_default }),
-        label: (0,external_wp_i18n_namespaceObject.__)("Widget Group"),
-        children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.ButtonBlockAppender, { rootClientId: clientId })
+        classname: "wp-block-widget-group__placeholder",
+        icon: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.blockicon, { icon: group_default }),
+        label: (0,external_wp_i18n_namespaceobject.__)("widget group"),
+        children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.buttonblockappender, { rootclientid: clientid })
       }
     ),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.InnerBlocks, { renderAppender: false })
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.innerblocks, { renderappender: false })
   ] });
 }
-function PreviewContent({ attributes, setAttributes }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      external_wp_blockEditor_namespaceObject.RichText,
+function previewcontent({ attributes, setattributes }) {
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      external_wp_blockeditor_namespaceobject.richtext,
       {
-        tagName: "h2",
+        tagname: "h2",
         identifier: "title",
-        className: "widget-title",
-        allowedFormats: [],
-        placeholder: (0,external_wp_i18n_namespaceObject.__)("Title"),
+        classname: "widget-title",
+        allowedformats: [],
+        placeholder: (0,external_wp_i18n_namespaceobject.__)("title"),
         value: attributes.title ?? "",
-        onChange: (title) => setAttributes({ title })
+        onchange: (title) => setattributes({ title })
       }
     ),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.InnerBlocks, {})
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.innerblocks, {})
   ] });
 }
 
@@ -1181,16 +1181,16 @@ function PreviewContent({ attributes, setAttributes }) {
 
 
 function save({ attributes }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-      external_wp_blockEditor_namespaceObject.RichText.Content,
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+      external_wp_blockeditor_namespaceobject.richtext.content,
       {
-        tagName: "h2",
-        className: "widget-title",
+        tagname: "h2",
+        classname: "widget-title",
         value: attributes.title
       }
     ),
-    /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", { className: "wp-widget-group__inner-blocks", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.InnerBlocks.Content, {}) })
+    /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("div", { classname: "wp-widget-group__inner-blocks", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.innerblocks.content, {}) })
   ] });
 }
 
@@ -1207,20 +1207,20 @@ const v1 = {
   supports: {
     html: false,
     inserter: true,
-    customClassName: true,
+    customclassname: true,
     reusable: false
   },
   save({ attributes }) {
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, { children: [
-      /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-        external_wp_blockEditor_namespaceObject.RichText.Content,
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(external_reactjsxruntime_namespaceobject.fragment, { children: [
+      /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+        external_wp_blockeditor_namespaceobject.richtext.content,
         {
-          tagName: "h2",
-          className: "widget-title",
+          tagname: "h2",
+          classname: "widget-title",
           value: attributes.title
         }
       ),
-      /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_blockEditor_namespaceObject.InnerBlocks.Content, {})
+      /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_blockeditor_namespaceobject.innerblocks.content, {})
     ] });
   }
 };
@@ -1235,49 +1235,49 @@ var deprecated_default = [v1];
 
 
 
-const { name: widget_group_name } = widget_group_block_namespaceObject;
+const { name: widget_group_name } = widget_group_block_namespaceobject;
 const widget_group_settings = {
-  title: (0,external_wp_i18n_namespaceObject.__)("Widget Group"),
-  description: (0,external_wp_i18n_namespaceObject.__)(
-    "Create a classic widget layout with a title that\u2019s styled by your theme for your widget areas."
+  title: (0,external_wp_i18n_namespaceobject.__)("widget group"),
+  description: (0,external_wp_i18n_namespaceobject.__)(
+    "create a classic widget layout with a title that\u2019s styled by your theme for your widget areas."
   ),
   icon: group_default,
-  __experimentalLabel: ({ name: label }) => label,
-  edit: edit_Edit,
+  __experimentallabel: ({ name: label }) => label,
+  edit: edit_edit,
   save: save,
   transforms: {
     from: [
       {
         type: "block",
-        isMultiBlock: true,
+        ismultiblock: true,
         blocks: ["*"],
-        isMatch(attributes, blocks) {
+        ismatch(attributes, blocks) {
           return !blocks.some(
             (block) => block.name === "core/widget-group"
           );
         },
-        __experimentalConvert(blocks) {
-          let innerBlocks = [
+        __experimentalconvert(blocks) {
+          let innerblocks = [
             ...blocks.map((block) => {
-              return (0,external_wp_blocks_namespaceObject.createBlock)(
+              return (0,external_wp_blocks_namespaceobject.createblock)(
                 block.name,
                 block.attributes,
-                block.innerBlocks
+                block.innerblocks
               );
             })
           ];
-          const firstHeadingBlock = innerBlocks[0].name === "core/heading" ? innerBlocks[0] : null;
-          innerBlocks = innerBlocks.filter(
-            (block) => block !== firstHeadingBlock
+          const firstheadingblock = innerblocks[0].name === "core/heading" ? innerblocks[0] : null;
+          innerblocks = innerblocks.filter(
+            (block) => block !== firstheadingblock
           );
-          return (0,external_wp_blocks_namespaceObject.createBlock)(
+          return (0,external_wp_blocks_namespaceobject.createblock)(
             "core/widget-group",
             {
-              ...firstHeadingBlock && {
-                title: firstHeadingBlock.attributes.content
+              ...firstheadingblock && {
+                title: firstheadingblock.attributes.content
               }
             },
-            innerBlocks
+            innerblocks
           );
         }
       }
@@ -1290,7 +1290,7 @@ const widget_group_settings = {
 ;// ./node_modules/@wordpress/icons/build-module/library/move-to.js
 
 
-var move_to_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "M19.75 9c0-1.257-.565-2.197-1.39-2.858-.797-.64-1.827-1.017-2.815-1.247-1.802-.42-3.703-.403-4.383-.396L11 4.5V6l.177-.001c.696-.006 2.416-.02 4.028.356.887.207 1.67.518 2.216.957.52.416.829.945.829 1.688 0 .592-.167.966-.407 1.23-.255.281-.656.508-1.236.674-1.19.34-2.82.346-4.607.346h-.077c-1.692 0-3.527 0-4.942.404-.732.209-1.424.545-1.935 1.108-.526.579-.796 1.33-.796 2.238 0 1.257.565 2.197 1.39 2.858.797.64 1.827 1.017 2.815 1.247 1.802.42 3.703.403 4.383.396L13 19.5h.714V22L18 18.5 13.714 15v3H13l-.177.001c-.696.006-2.416.02-4.028-.356-.887-.207-1.67-.518-2.216-.957-.52-.416-.829-.945-.829-1.688 0-.592.167-.966.407-1.23.255-.281.656-.508 1.237-.674 1.189-.34 2.819-.346 4.606-.346h.077c1.692 0 3.527 0 4.941-.404.732-.209 1.425-.545 1.936-1.108.526-.579.796-1.33.796-2.238z" }) });
+var move_to_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m19.75 9c0-1.257-.565-2.197-1.39-2.858-.797-.64-1.827-1.017-2.815-1.247-1.802-.42-3.703-.403-4.383-.396l11 4.5v6l.177-.001c.696-.006 2.416-.02 4.028.356.887.207 1.67.518 2.216.957.52.416.829.945.829 1.688 0 .592-.167.966-.407 1.23-.255.281-.656.508-1.236.674-1.19.34-2.82.346-4.607.346h-.077c-1.692 0-3.527 0-4.942.404-.732.209-1.424.545-1.935 1.108-.526.579-.796 1.33-.796 2.238 0 1.257.565 2.197 1.39 2.858.797.64 1.827 1.017 2.815 1.247 1.802.42 3.703.403 4.383.396l13 19.5h.714v22l18 18.5 13.714 15v3h13l-.177.001c-.696.006-2.416.02-4.028-.356-.887-.207-1.67-.518-2.216-.957-.52-.416-.829-.945-.829-1.688 0-.592.167-.966.407-1.23.255-.281.656-.508 1.237-.674 1.189-.34 2.819-.346 4.606-.346h.077c1.692 0 3.527 0 4.941-.404.732-.209 1.425-.545 1.936-1.108.526-.579.796-1.33.796-2.238z" }) });
 
 
 ;// ./node_modules/@wordpress/widgets/build-module/components/move-to-widget-area/index.js
@@ -1298,31 +1298,31 @@ var move_to_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObjec
 
 
 
-function MoveToWidgetArea({
-  currentWidgetAreaId,
-  widgetAreas,
-  onSelect
+function movetowidgetarea({
+  currentwidgetareaid,
+  widgetareas,
+  onselect
 }) {
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.ToolbarGroup, { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.ToolbarItem, { children: (toggleProps) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-    external_wp_components_namespaceObject.DropdownMenu,
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.toolbargroup, { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.toolbaritem, { children: (toggleprops) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+    external_wp_components_namespaceobject.dropdownmenu,
     {
       icon: move_to_default,
-      label: (0,external_wp_i18n_namespaceObject.__)("Move to widget area"),
-      toggleProps,
-      children: ({ onClose }) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.MenuGroup, { label: (0,external_wp_i18n_namespaceObject.__)("Move to"), children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-        external_wp_components_namespaceObject.MenuItemsChoice,
+      label: (0,external_wp_i18n_namespaceobject.__)("move to widget area"),
+      toggleprops,
+      children: ({ onclose }) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_components_namespaceobject.menugroup, { label: (0,external_wp_i18n_namespaceobject.__)("move to"), children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+        external_wp_components_namespaceobject.menuitemschoice,
         {
-          choices: widgetAreas.map(
-            (widgetArea) => ({
-              value: widgetArea.id,
-              label: widgetArea.name,
-              info: widgetArea.description
+          choices: widgetareas.map(
+            (widgetarea) => ({
+              value: widgetarea.id,
+              label: widgetarea.name,
+              info: widgetarea.description
             })
           ),
-          value: currentWidgetAreaId,
-          onSelect: (value) => {
-            onSelect(value);
-            onClose();
+          value: currentwidgetareaid,
+          onselect: (value) => {
+            onselect(value);
+            onclose();
           }
         }
       ) })
@@ -1336,15 +1336,15 @@ function MoveToWidgetArea({
 
 
 ;// ./node_modules/@wordpress/widgets/build-module/utils.js
-function getWidgetIdFromBlock(block) {
-  return block.attributes.__internalWidgetId;
+function getwidgetidfromblock(block) {
+  return block.attributes.__internalwidgetid;
 }
-function addWidgetIdToBlock(block, widgetId) {
+function addwidgetidtoblock(block, widgetid) {
   return {
     ...block,
     attributes: {
       ...block.attributes || {},
-      __internalWidgetId: widgetId
+      __internalwidgetid: widgetid
     }
   };
 }
@@ -1354,23 +1354,23 @@ function addWidgetIdToBlock(block, widgetId) {
 
 
 
-function registerLegacyWidgetVariations(settings) {
-  const unsubscribe = (0,external_wp_data_namespaceObject.subscribe)(() => {
-    const hiddenIds = settings?.widgetTypesToHideFromLegacyWidgetBlock ?? [];
-    const widgetTypes = (0,external_wp_data_namespaceObject.select)(external_wp_coreData_namespaceObject.store).getWidgetTypes({ per_page: -1 })?.filter((widgetType) => !hiddenIds.includes(widgetType.id));
-    if (widgetTypes) {
+function registerlegacywidgetvariations(settings) {
+  const unsubscribe = (0,external_wp_data_namespaceobject.subscribe)(() => {
+    const hiddenids = settings?.widgettypestohidefromlegacywidgetblock ?? [];
+    const widgettypes = (0,external_wp_data_namespaceobject.select)(external_wp_coredata_namespaceobject.store).getwidgettypes({ per_page: -1 })?.filter((widgettype) => !hiddenids.includes(widgettype.id));
+    if (widgettypes) {
       unsubscribe();
-      (0,external_wp_data_namespaceObject.dispatch)(external_wp_blocks_namespaceObject.store).addBlockVariations(
+      (0,external_wp_data_namespaceobject.dispatch)(external_wp_blocks_namespaceobject.store).addblockvariations(
         "core/legacy-widget",
-        widgetTypes.map((widgetType) => ({
-          name: widgetType.id,
-          title: widgetType.name,
-          description: widgetType.description,
-          attributes: widgetType.is_multi ? {
-            idBase: widgetType.id,
+        widgettypes.map((widgettype) => ({
+          name: widgettype.id,
+          title: widgettype.name,
+          description: widgettype.description,
+          attributes: widgettype.is_multi ? {
+            idbase: widgettype.id,
             instance: {}
           } : {
-            id: widgetType.id
+            id: widgettype.id
           }
         }))
       );
@@ -1385,9 +1385,9 @@ function registerLegacyWidgetVariations(settings) {
 
 
 
-function registerLegacyWidgetBlock(supports = {}) {
-  const { /* metadata */ "yu": metadata, /* settings */ "W0": settings, /* name */ "UU": name } = legacy_widget_namespaceObject;
-  (0,external_wp_blocks_namespaceObject.registerBlockType)(
+function registerlegacywidgetblock(supports = {}) {
+  const { /* metadata */ "yu": metadata, /* settings */ "w0": settings, /* name */ "uu": name } = legacy_widget_namespaceobject;
+  (0,external_wp_blocks_namespaceobject.registerblocktype)(
     { name, ...metadata },
     {
       ...settings,
@@ -1398,9 +1398,9 @@ function registerLegacyWidgetBlock(supports = {}) {
     }
   );
 }
-function registerWidgetGroupBlock(supports = {}) {
-  const { /* metadata */ "yu": metadata, /* settings */ "W0": settings, /* name */ "UU": name } = widget_group_namespaceObject;
-  (0,external_wp_blocks_namespaceObject.registerBlockType)(
+function registerwidgetgroupblock(supports = {}) {
+  const { /* metadata */ "yu": metadata, /* settings */ "w0": settings, /* name */ "uu": name } = widget_group_namespaceobject;
+  (0,external_wp_blocks_namespaceobject.registerblocktype)(
     { name, ...metadata },
     {
       ...settings,
@@ -1417,3 +1417,4 @@ function registerWidgetGroupBlock(supports = {}) {
 (window.wp = window.wp || {}).widgets = __webpack_exports__;
 /******/ })()
 ;
+

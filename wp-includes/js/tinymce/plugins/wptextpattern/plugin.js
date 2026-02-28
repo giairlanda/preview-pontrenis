@@ -1,16 +1,16 @@
 /**
- * Text pattern plugin for TinyMCE
+ * text pattern plugin for tinymce
  *
  * @since 4.3.0
  *
- * This plugin can automatically format text patterns as you type. It includes several groups of patterns.
+ * this plugin can automatically format text patterns as you type. it includes several groups of patterns.
  *
- * Start of line patterns:
- *  As-you-type:
- *  - Unordered list (`* ` and `- `).
- *  - Ordered list (`1. ` and `1) `).
+ * start of line patterns:
+ *  as-you-type:
+ *  - unordered list (`* ` and `- `).
+ *  - ordered list (`1. ` and `1) `).
  *
- *  On enter:
+ *  on enter:
  *  - h2 (## ).
  *  - h3 (### ).
  *  - h4 (#### ).
@@ -19,15 +19,15 @@
  *  - blockquote (> ).
  *  - hr (---).
  *
- * Inline patterns:
+ * inline patterns:
  *  - <code> (`) (backtick).
  *
- * If the transformation in unwanted, the user can undo the change by pressing backspace,
+ * if the transformation in unwanted, the user can undo the change by pressing backspace,
  * using the undo shortcut, or the undo button in the toolbar.
  *
- * Setting for the patterns can be overridden by plugins by using the `tiny_mce_before_init` PHP filter.
- * The setting name is `wptextpattern` and the value is an object containing override arrays for each
- * patterns group. There are three groups: "space", "enter", and "inline". Example (PHP):
+ * setting for the patterns can be overridden by plugins by using the `tiny_mce_before_init` php filter.
+ * the setting name is `wptextpattern` and the value is an object containing override arrays for each
+ * patterns group. there are three groups: "space", "enter", and "inline". example (php):
  *
  * add_filter( 'tiny_mce_before_init', 'my_mce_init_wptextpattern' );
  * function my_mce_init_wptextpattern( $init ) {
@@ -41,125 +41,125 @@
  *   return $init;
  * }
  *
- * Note that setting this will override the default text patterns. You will need to include them
+ * note that setting this will override the default text patterns. you will need to include them
  * in your settings array if you want to keep them working.
  */
-( function( tinymce, setTimeout ) {
-	if ( tinymce.Env.ie && tinymce.Env.ie < 9 ) {
+( function( tinymce, settimeout ) {
+	if ( tinymce.env.ie && tinymce.env.ie < 9 ) {
 		return;
 	}
 
 	/**
-	 * Escapes characters for use in a Regular Expression.
+	 * escapes characters for use in a regular expression.
 	 *
-	 * @param {String} string Characters to escape
+	 * @param {string} string characters to escape
 	 *
-	 * @return {String} Escaped characters
+	 * @return {string} escaped characters
 	 */
-	function escapeRegExp( string ) {
+	function escaperegexp( string ) {
 		return string.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&' );
 	}
 
-	tinymce.PluginManager.add( 'wptextpattern', function( editor ) {
-		var VK = tinymce.util.VK;
+	tinymce.pluginmanager.add( 'wptextpattern', function( editor ) {
+		var vk = tinymce.util.vk;
 		var settings = editor.settings.wptextpattern || {};
 
-		var spacePatterns = settings.space || [
-			{ regExp: /^[*-]\s/, cmd: 'InsertUnorderedList' },
-			{ regExp: /^1[.)]\s/, cmd: 'InsertOrderedList' }
+		var spacepatterns = settings.space || [
+			{ regexp: /^[*-]\s/, cmd: 'insertunorderedlist' },
+			{ regexp: /^1[.)]\s/, cmd: 'insertorderedlist' }
 		];
 
-		var enterPatterns = settings.enter || [
+		var enterpatterns = settings.enter || [
 			{ start: '##', format: 'h2' },
 			{ start: '###', format: 'h3' },
 			{ start: '####', format: 'h4' },
 			{ start: '#####', format: 'h5' },
 			{ start: '######', format: 'h6' },
 			{ start: '>', format: 'blockquote' },
-			{ regExp: /^(-){3,}$/, element: 'hr' }
+			{ regexp: /^(-){3,}$/, element: 'hr' }
 		];
 
-		var inlinePatterns = settings.inline || [
+		var inlinepatterns = settings.inline || [
 			{ delimiter: '`', format: 'code' }
 		];
 
-		var canUndo;
+		var canundo;
 
 		editor.on( 'selectionchange', function() {
-			canUndo = null;
+			canundo = null;
 		} );
 
 		editor.on( 'keydown', function( event ) {
-			if ( ( canUndo && event.keyCode === 27 /* ESCAPE */ ) || ( canUndo === 'space' && event.keyCode === VK.BACKSPACE ) ) {
-				editor.undoManager.undo();
-				event.preventDefault();
-				event.stopImmediatePropagation();
+			if ( ( canundo && event.keycode === 27 /* escape */ ) || ( canundo === 'space' && event.keycode === vk.backspace ) ) {
+				editor.undomanager.undo();
+				event.preventdefault();
+				event.stopimmediatepropagation();
 			}
 
-			if ( VK.metaKeyPressed( event ) ) {
+			if ( vk.metakeypressed( event ) ) {
 				return;
 			}
 
-			if ( event.keyCode === VK.ENTER ) {
+			if ( event.keycode === vk.enter ) {
 				enter();
-			// Wait for the browser to insert the character.
-			} else if ( event.keyCode === VK.SPACEBAR ) {
-				setTimeout( space );
-			} else if ( event.keyCode > 47 && ! ( event.keyCode >= 91 && event.keyCode <= 93 ) ) {
-				setTimeout( inline );
+			// wait for the browser to insert the character.
+			} else if ( event.keycode === vk.spacebar ) {
+				settimeout( space );
+			} else if ( event.keycode > 47 && ! ( event.keycode >= 91 && event.keycode <= 93 ) ) {
+				settimeout( inline );
 			}
 		}, true );
 
 		function inline() {
-			var rng = editor.selection.getRng();
-			var node = rng.startContainer;
-			var offset = rng.startOffset;
-			var startOffset;
-			var endOffset;
+			var rng = editor.selection.getrng();
+			var node = rng.startcontainer;
+			var offset = rng.startoffset;
+			var startoffset;
+			var endoffset;
 			var pattern;
 			var format;
 			var zero;
 
-			// We need a non-empty text node with an offset greater than zero.
-			if ( ! node || node.nodeType !== 3 || ! node.data.length || ! offset ) {
+			// we need a non-empty text node with an offset greater than zero.
+			if ( ! node || node.nodetype !== 3 || ! node.data.length || ! offset ) {
 				return;
 			}
 
 			var string = node.data.slice( 0, offset );
-			var lastChar = node.data.charAt( offset - 1 );
+			var lastchar = node.data.charat( offset - 1 );
 
-			tinymce.each( inlinePatterns, function( p ) {
-				// Character before selection should be delimiter.
-				if ( lastChar !== p.delimiter.slice( -1 ) ) {
+			tinymce.each( inlinepatterns, function( p ) {
+				// character before selection should be delimiter.
+				if ( lastchar !== p.delimiter.slice( -1 ) ) {
 					return;
 				}
 
-				var escDelimiter = escapeRegExp( p.delimiter );
-				var delimiterFirstChar = p.delimiter.charAt( 0 );
-				var regExp = new RegExp( '(.*)' + escDelimiter + '.+' + escDelimiter + '$' );
-				var match = string.match( regExp );
+				var escdelimiter = escaperegexp( p.delimiter );
+				var delimiterfirstchar = p.delimiter.charat( 0 );
+				var regexp = new regexp( '(.*)' + escdelimiter + '.+' + escdelimiter + '$' );
+				var match = string.match( regexp );
 
 				if ( ! match ) {
 					return;
 				}
 
-				startOffset = match[1].length;
-				endOffset = offset - p.delimiter.length;
+				startoffset = match[1].length;
+				endoffset = offset - p.delimiter.length;
 
-				var before = string.charAt( startOffset - 1 );
-				var after = string.charAt( startOffset + p.delimiter.length );
+				var before = string.charat( startoffset - 1 );
+				var after = string.charat( startoffset + p.delimiter.length );
 
 				// test*test*  => format applied.
 				// test *test* => applied.
 				// test* test* => not applied.
-				if ( startOffset && /\S/.test( before ) ) {
-					if ( /\s/.test( after ) || before === delimiterFirstChar ) {
+				if ( startoffset && /\s/.test( before ) ) {
+					if ( /\s/.test( after ) || before === delimiterfirstchar ) {
 						return;
 					}
 				}
 
-				// Do not replace when only whitespace and delimiter characters.
-				if ( ( new RegExp( '^[\\s' + escapeRegExp( delimiterFirstChar ) + ']+$' ) ).test( string.slice( startOffset, endOffset ) ) ) {
+				// do not replace when only whitespace and delimiter characters.
+				if ( ( new regexp( '^[\\s' + escaperegexp( delimiterfirstchar ) + ']+$' ) ).test( string.slice( startoffset, endoffset ) ) ) {
 					return;
 				}
 
@@ -175,34 +175,34 @@
 			format = editor.formatter.get( pattern.format );
 
 			if ( format && format[0].inline ) {
-				editor.undoManager.add();
+				editor.undomanager.add();
 
-				editor.undoManager.transact( function() {
-					node.insertData( offset, '\uFEFF' );
+				editor.undomanager.transact( function() {
+					node.insertdata( offset, '\ufeff' );
 
-					node = node.splitText( startOffset );
-					zero = node.splitText( offset - startOffset );
+					node = node.splittext( startoffset );
+					zero = node.splittext( offset - startoffset );
 
-					node.deleteData( 0, pattern.delimiter.length );
-					node.deleteData( node.data.length - pattern.delimiter.length, pattern.delimiter.length );
+					node.deletedata( 0, pattern.delimiter.length );
+					node.deletedata( node.data.length - pattern.delimiter.length, pattern.delimiter.length );
 
 					editor.formatter.apply( pattern.format, {}, node );
 
-					editor.selection.setCursorLocation( zero, 1 );
+					editor.selection.setcursorlocation( zero, 1 );
 				} );
 
-				// We need to wait for native events to be triggered.
-				setTimeout( function() {
-					canUndo = 'space';
+				// we need to wait for native events to be triggered.
+				settimeout( function() {
+					canundo = 'space';
 
 					editor.once( 'selectionchange', function() {
 						var offset;
 
 						if ( zero ) {
-							offset = zero.data.indexOf( '\uFEFF' );
+							offset = zero.data.indexof( '\ufeff' );
 
 							if ( offset !== -1 ) {
-								zero.deleteData( offset, offset + 1 );
+								zero.deletedata( offset, offset + 1 );
 							}
 						}
 					} );
@@ -210,16 +210,16 @@
 			}
 		}
 
-		function firstTextNode( node ) {
-			var parent = editor.dom.getParent( node, 'p' ),
+		function firsttextnode( node ) {
+			var parent = editor.dom.getparent( node, 'p' ),
 				child;
 
 			if ( ! parent ) {
 				return;
 			}
 
-			while ( child = parent.firstChild ) {
-				if ( child.nodeType !== 3 ) {
+			while ( child = parent.firstchild ) {
+				if ( child.nodetype !== 3 ) {
 					parent = child;
 				} else {
 					break;
@@ -231,8 +231,8 @@
 			}
 
 			if ( ! child.data ) {
-				if ( child.nextSibling && child.nextSibling.nodeType === 3 ) {
-					child = child.nextSibling;
+				if ( child.nextsibling && child.nextsibling.nodetype === 3 ) {
+					child = child.nextsibling;
 				} else {
 					child = null;
 				}
@@ -242,41 +242,41 @@
 		}
 
 		function space() {
-			var rng = editor.selection.getRng(),
-				node = rng.startContainer,
+			var rng = editor.selection.getrng(),
+				node = rng.startcontainer,
 				parent,
 				text;
 
-			if ( ! node || firstTextNode( node ) !== node ) {
+			if ( ! node || firsttextnode( node ) !== node ) {
 				return;
 			}
 
-			parent = node.parentNode;
+			parent = node.parentnode;
 			text = node.data;
 
-			tinymce.each( spacePatterns, function( pattern ) {
-				var match = text.match( pattern.regExp );
+			tinymce.each( spacepatterns, function( pattern ) {
+				var match = text.match( pattern.regexp );
 
-				if ( ! match || rng.startOffset !== match[0].length ) {
+				if ( ! match || rng.startoffset !== match[0].length ) {
 					return;
 				}
 
-				editor.undoManager.add();
+				editor.undomanager.add();
 
-				editor.undoManager.transact( function() {
-					node.deleteData( 0, match[0].length );
+				editor.undomanager.transact( function() {
+					node.deletedata( 0, match[0].length );
 
-					if ( ! parent.innerHTML ) {
-						parent.appendChild( document.createElement( 'br' ) );
+					if ( ! parent.innerhtml ) {
+						parent.appendchild( document.createelement( 'br' ) );
 					}
 
-					editor.selection.setCursorLocation( parent );
-					editor.execCommand( pattern.cmd );
+					editor.selection.setcursorlocation( parent );
+					editor.execcommand( pattern.cmd );
 				} );
 
-				// We need to wait for native events to be triggered.
-				setTimeout( function() {
-					canUndo = 'space';
+				// we need to wait for native events to be triggered.
+				settimeout( function() {
+					canundo = 'space';
 				} );
 
 				return false;
@@ -284,10 +284,10 @@
 		}
 
 		function enter() {
-			var rng = editor.selection.getRng(),
-				start = rng.startContainer,
-				node = firstTextNode( start ),
-				i = enterPatterns.length,
+			var rng = editor.selection.getrng(),
+				start = rng.startcontainer,
+				node = firsttextnode( start ),
+				i = enterpatterns.length,
 				text, pattern, parent;
 
 			if ( ! node ) {
@@ -297,14 +297,14 @@
 			text = node.data;
 
 			while ( i-- ) {
-				if ( enterPatterns[ i ].start ) {
-					if ( text.indexOf( enterPatterns[ i ].start ) === 0 ) {
-						pattern = enterPatterns[ i ];
+				if ( enterpatterns[ i ].start ) {
+					if ( text.indexof( enterpatterns[ i ].start ) === 0 ) {
+						pattern = enterpatterns[ i ];
 						break;
 					}
-				} else if ( enterPatterns[ i ].regExp ) {
-					if ( enterPatterns[ i ].regExp.test( text ) ) {
-						pattern = enterPatterns[ i ];
+				} else if ( enterpatterns[ i ].regexp ) {
+					if ( enterpatterns[ i ].regexp.test( text ) ) {
+						pattern = enterpatterns[ i ];
 						break;
 					}
 				}
@@ -319,24 +319,24 @@
 			}
 
 			editor.once( 'keyup', function() {
-				editor.undoManager.add();
+				editor.undomanager.add();
 
-				editor.undoManager.transact( function() {
+				editor.undomanager.transact( function() {
 					if ( pattern.format ) {
 						editor.formatter.apply( pattern.format, {}, node );
-						node.replaceData( 0, node.data.length, ltrim( node.data.slice( pattern.start.length ) ) );
+						node.replacedata( 0, node.data.length, ltrim( node.data.slice( pattern.start.length ) ) );
 					} else if ( pattern.element ) {
-						parent = node.parentNode && node.parentNode.parentNode;
+						parent = node.parentnode && node.parentnode.parentnode;
 
 						if ( parent ) {
-							parent.replaceChild( document.createElement( pattern.element ), node.parentNode );
+							parent.replacechild( document.createelement( pattern.element ), node.parentnode );
 						}
 					}
 				} );
 
-				// We need to wait for native events to be triggered.
-				setTimeout( function() {
-					canUndo = 'enter';
+				// we need to wait for native events to be triggered.
+				settimeout( function() {
+					canundo = 'enter';
 				} );
 			} );
 		}
@@ -345,4 +345,6 @@
 			return text ? text.replace( /^\s+/, '' ) : '';
 		}
 	} );
-} )( window.tinymce, window.setTimeout );
+} )( window.tinymce, window.settimeout );
+
+

@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Blind 1.13.3
+ * jquery ui effects blind 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Blind Effect
-//>>group: Effects
-//>>description: Blinds the element.
+//>>label: blind effect
+//>>group: effects
+//>>description: blinds the element.
 //>>docs: https://api.jqueryui.com/blind-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,8 +26,8 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
@@ -43,23 +43,23 @@ return $.effects.define( "blind", "hide", function( options, done ) {
 		},
 		element = $( this ),
 		direction = options.direction || "up",
-		start = element.cssClip(),
+		start = element.cssclip(),
 		animate = { clip: $.extend( {}, start ) },
-		placeholder = $.effects.createPlaceholder( element );
+		placeholder = $.effects.createplaceholder( element );
 
 	animate.clip[ map[ direction ][ 0 ] ] = animate.clip[ map[ direction ][ 1 ] ];
 
 	if ( options.mode === "show" ) {
-		element.cssClip( animate.clip );
+		element.cssclip( animate.clip );
 		if ( placeholder ) {
-			placeholder.css( $.effects.clipToBox( animate ) );
+			placeholder.css( $.effects.cliptobox( animate ) );
 		}
 
 		animate.clip = start;
 	}
 
 	if ( placeholder ) {
-		placeholder.animate( $.effects.clipToBox( animate ), options.duration, options.easing );
+		placeholder.animate( $.effects.cliptobox( animate ), options.duration, options.easing );
 	}
 
 	element.animate( animate, {
@@ -71,3 +71,5 @@ return $.effects.define( "blind", "hide", function( options, done ) {
 } );
 
 } );
+
+

@@ -1,34 +1,34 @@
 /*!
- * hoverIntent v1.10.2 // 2020.04.28 // jQuery v1.7.0+
- * http://briancherne.github.io/jquery-hoverIntent/
+ * hoverintent v1.10.2 // 2020.04.28 // jquery v1.7.0+
+ * http://briancherne.github.io/jquery-hoverintent/
  *
- * You may use hoverIntent under the terms of the MIT license. Basically that
- * means you are free to use hoverIntent as long as this header is left intact.
- * Copyright 2007-2019 Brian Cherne
+ * you may use hoverintent under the terms of the mit license. basically that
+ * means you are free to use hoverintent as long as this header is left intact.
+ * copyright 2007-2019 brian cherne
  */
 
 /**
- * hoverIntent is similar to jQuery's built-in "hover" method except that
- * instead of firing the handlerIn function immediately, hoverIntent checks
+ * hoverintent is similar to jquery's built-in "hover" method except that
+ * instead of firing the handlerin function immediately, hoverintent checks
  * to see if the user's mouse has slowed down (beneath the sensitivity
- * threshold) before firing the event. The handlerOut function is only
- * called after a matching handlerIn.
+ * threshold) before firing the event. the handlerout function is only
+ * called after a matching handlerin.
  *
  * // basic usage ... just like .hover()
- * .hoverIntent( handlerIn, handlerOut )
- * .hoverIntent( handlerInOut )
+ * .hoverintent( handlerin, handlerout )
+ * .hoverintent( handlerinout )
  *
  * // basic usage ... with event delegation!
- * .hoverIntent( handlerIn, handlerOut, selector )
- * .hoverIntent( handlerInOut, selector )
+ * .hoverintent( handlerin, handlerout, selector )
+ * .hoverintent( handlerinout, selector )
  *
  * // using a basic configuration object
- * .hoverIntent( config )
+ * .hoverintent( config )
  *
- * @param  handlerIn   function OR configuration object
- * @param  handlerOut  function OR selector for delegation OR undefined
- * @param  selector    selector OR undefined
- * @author Brian Cherne <brian(at)cherne(dot)net>
+ * @param  handlerin   function or configuration object
+ * @param  handlerout  function or selector for delegation or undefined
+ * @param  selector    selector or undefined
+ * @author brian cherne <brian(at)cherne(dot)net>
  */
 
 ;(function(factory) {
@@ -37,8 +37,8 @@
         define(['jquery'], factory);
     } else if (typeof module === 'object' && module.exports) {
         module.exports = factory(require('jquery'));
-    } else if (jQuery && !jQuery.fn.hoverIntent) {
-        factory(jQuery);
+    } else if (jquery && !jquery.fn.hoverintent) {
+        factory(jquery);
     }
 })(function($) {
     'use strict';
@@ -50,42 +50,42 @@
         timeout: 0
     };
 
-    // counter used to generate an ID for each instance
-    var INSTANCE_COUNT = 0;
+    // counter used to generate an id for each instance
+    var instance_count = 0;
 
-    // current X and Y position of mouse, updated during mousemove tracking (shared across instances)
-    var cX, cY;
+    // current x and y position of mouse, updated during mousemove tracking (shared across instances)
+    var cx, cy;
 
     // saves the current pointer position coordinates based on the given mousemove event
     var track = function(ev) {
-        cX = ev.pageX;
-        cY = ev.pageY;
+        cx = ev.pagex;
+        cy = ev.pagey;
     };
 
     // compares current and previous mouse positions
     var compare = function(ev,$el,s,cfg) {
         // compare mouse positions to see if pointer has slowed enough to trigger `over` function
-        if ( Math.sqrt( (s.pX-cX)*(s.pX-cX) + (s.pY-cY)*(s.pY-cY) ) < cfg.sensitivity ) {
+        if ( math.sqrt( (s.px-cx)*(s.px-cx) + (s.py-cy)*(s.py-cy) ) < cfg.sensitivity ) {
             $el.off(s.event,track);
-            delete s.timeoutId;
-            // set hoverIntent state as active for this element (permits `out` handler to trigger)
-            s.isActive = true;
+            delete s.timeoutid;
+            // set hoverintent state as active for this element (permits `out` handler to trigger)
+            s.isactive = true;
             // overwrite old mouseenter event coordinates with most recent pointer position
-            ev.pageX = cX; ev.pageY = cY;
+            ev.pagex = cx; ev.pagey = cy;
             // clear coordinate data from state object
-            delete s.pX; delete s.pY;
+            delete s.px; delete s.py;
             return cfg.over.apply($el[0],[ev]);
         } else {
             // set previous coordinates for next comparison
-            s.pX = cX; s.pY = cY;
-            // use self-calling timeout, guarantees intervals are spaced out properly (avoids JavaScript timer bugs)
-            s.timeoutId = setTimeout( function(){compare(ev, $el, s, cfg);} , cfg.interval );
+            s.px = cx; s.py = cy;
+            // use self-calling timeout, guarantees intervals are spaced out properly (avoids javascript timer bugs)
+            s.timeoutid = settimeout( function(){compare(ev, $el, s, cfg);} , cfg.interval );
         }
     };
 
     // triggers given `out` function at configured `timeout` after a mouseleave and clears state
     var delay = function(ev,$el,s,out) {
-        var data = $el.data('hoverIntent');
+        var data = $el.data('hoverintent');
         if (data) {
             delete data[s.id];
         }
@@ -93,77 +93,79 @@
     };
 
     // checks if `value` is a function
-    var isFunction = function(value) {
+    var isfunction = function(value) {
         return typeof value === 'function';
     };
 
-    $.fn.hoverIntent = function(handlerIn,handlerOut,selector) {
-        // instance ID, used as a key to store and retrieve state information on an element
-        var instanceId = INSTANCE_COUNT++;
+    $.fn.hoverintent = function(handlerin,handlerout,selector) {
+        // instance id, used as a key to store and retrieve state information on an element
+        var instanceid = instance_count++;
 
         // extend the default configuration and parse parameters
         var cfg = $.extend({}, _cfg);
-        if ( $.isPlainObject(handlerIn) ) {
-            cfg = $.extend(cfg, handlerIn);
-            if ( !isFunction(cfg.out) ) {
+        if ( $.isplainobject(handlerin) ) {
+            cfg = $.extend(cfg, handlerin);
+            if ( !isfunction(cfg.out) ) {
                 cfg.out = cfg.over;
             }
-        } else if ( isFunction(handlerOut) ) {
-            cfg = $.extend(cfg, { over: handlerIn, out: handlerOut, selector: selector } );
+        } else if ( isfunction(handlerout) ) {
+            cfg = $.extend(cfg, { over: handlerin, out: handlerout, selector: selector } );
         } else {
-            cfg = $.extend(cfg, { over: handlerIn, out: handlerIn, selector: handlerOut } );
+            cfg = $.extend(cfg, { over: handlerin, out: handlerin, selector: handlerout } );
         }
 
-        // A private function for handling mouse 'hovering'
-        var handleHover = function(e) {
-            // cloned event to pass to handlers (copy required for event object to be passed in IE)
+        // a private function for handling mouse 'hovering'
+        var handlehover = function(e) {
+            // cloned event to pass to handlers (copy required for event object to be passed in ie)
             var ev = $.extend({},e);
 
-            // the current target of the mouse event, wrapped in a jQuery object
+            // the current target of the mouse event, wrapped in a jquery object
             var $el = $(this);
 
-            // read hoverIntent data from element (or initialize if not present)
-            var hoverIntentData = $el.data('hoverIntent');
-            if (!hoverIntentData) { $el.data('hoverIntent', (hoverIntentData = {})); }
+            // read hoverintent data from element (or initialize if not present)
+            var hoverintentdata = $el.data('hoverintent');
+            if (!hoverintentdata) { $el.data('hoverintent', (hoverintentdata = {})); }
 
             // read per-instance state from element (or initialize if not present)
-            var state = hoverIntentData[instanceId];
-            if (!state) { hoverIntentData[instanceId] = state = { id: instanceId }; }
+            var state = hoverintentdata[instanceid];
+            if (!state) { hoverintentdata[instanceid] = state = { id: instanceid }; }
 
             // state properties:
-            // id = instance ID, used to clean up data
-            // timeoutId = timeout ID, reused for tracking mouse position and delaying "out" handler
-            // isActive = plugin state, true after `over` is called just until `out` is called
-            // pX, pY = previously-measured pointer coordinates, updated at each polling interval
+            // id = instance id, used to clean up data
+            // timeoutid = timeout id, reused for tracking mouse position and delaying "out" handler
+            // isactive = plugin state, true after `over` is called just until `out` is called
+            // px, py = previously-measured pointer coordinates, updated at each polling interval
             // event = string representing the namespaced event used for mouse tracking
 
             // clear any existing timeout
-            if (state.timeoutId) { state.timeoutId = clearTimeout(state.timeoutId); }
+            if (state.timeoutid) { state.timeoutid = cleartimeout(state.timeoutid); }
 
             // namespaced event used to register and unregister mousemove tracking
-            var mousemove = state.event = 'mousemove.hoverIntent.hoverIntent'+instanceId;
+            var mousemove = state.event = 'mousemove.hoverintent.hoverintent'+instanceid;
 
             // handle the event, based on its type
             if (e.type === 'mouseenter') {
                 // do nothing if already active
-                if (state.isActive) { return; }
-                // set "previous" X and Y position based on initial entry point
-                state.pX = ev.pageX; state.pY = ev.pageY;
-                // update "current" X and Y position based on mousemove
+                if (state.isactive) { return; }
+                // set "previous" x and y position based on initial entry point
+                state.px = ev.pagex; state.py = ev.pagey;
+                // update "current" x and y position based on mousemove
                 $el.off(mousemove,track).on(mousemove,track);
                 // start polling interval (self-calling timeout) to compare mouse coordinates over time
-                state.timeoutId = setTimeout( function(){compare(ev,$el,state,cfg);} , cfg.interval );
+                state.timeoutid = settimeout( function(){compare(ev,$el,state,cfg);} , cfg.interval );
             } else { // "mouseleave"
                 // do nothing if not already active
-                if (!state.isActive) { return; }
+                if (!state.isactive) { return; }
                 // unbind expensive mousemove event
                 $el.off(mousemove,track);
-                // if hoverIntent state is true, then call the mouseOut function after the specified delay
-                state.timeoutId = setTimeout( function(){delay(ev,$el,state,cfg.out);} , cfg.timeout );
+                // if hoverintent state is true, then call the mouseout function after the specified delay
+                state.timeoutid = settimeout( function(){delay(ev,$el,state,cfg.out);} , cfg.timeout );
             }
         };
 
         // listen for mouseenter and mouseleave
-        return this.on({'mouseenter.hoverIntent':handleHover,'mouseleave.hoverIntent':handleHover}, cfg.selector);
+        return this.on({'mouseenter.hoverintent':handlehover,'mouseleave.hoverintent':handlehover}, cfg.selector);
     };
 });
+
+

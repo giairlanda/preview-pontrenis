@@ -1,28 +1,28 @@
 
-// DOMRect
+// domrect
 (function (global) {
 	function number(v) {
-		return v === undefined ? 0 : Number(v);
+		return v === undefined ? 0 : number(v);
 	}
 
 	function different(u, v) {
-		return u !== v && !(isNaN(u) && isNaN(v));
+		return u !== v && !(isnan(u) && isnan(v));
 	}
 
-	function DOMRect(xArg, yArg, wArg, hArg) {
+	function domrect(xarg, yarg, warg, harg) {
 		var x, y, width, height, left, right, top, bottom;
 
-		x = number(xArg);
-		y = number(yArg);
-		width = number(wArg);
-		height = number(hArg);
+		x = number(xarg);
+		y = number(yarg);
+		width = number(warg);
+		height = number(harg);
 
-		Object.defineProperties(this, {
+		object.defineproperties(this, {
 			x: {
 				get: function () { return x; },
-				set: function (newX) {
-					if (different(x, newX)) {
-						x = newX;
+				set: function (newx) {
+					if (different(x, newx)) {
+						x = newx;
 						left = right = undefined;
 					}
 				},
@@ -30,9 +30,9 @@
 			},
 			y: {
 				get: function () { return y; },
-				set: function (newY) {
-					if (different(y, newY)) {
-						y = newY;
+				set: function (newy) {
+					if (different(y, newy)) {
+						y = newy;
 						top = bottom = undefined;
 					}
 				},
@@ -40,9 +40,9 @@
 			},
 			width: {
 				get: function () { return width; },
-				set: function (newWidth) {
-					if (different(width, newWidth)) {
-						width = newWidth;
+				set: function (newwidth) {
+					if (different(width, newwidth)) {
+						width = newwidth;
 						left = right = undefined;
 					}
 				},
@@ -50,9 +50,9 @@
 			},
 			height: {
 				get: function () { return height; },
-				set: function (newHeight) {
-					if (different(height, newHeight)) {
-						height = newHeight;
+				set: function (newheight) {
+					if (different(height, newheight)) {
+						height = newheight;
 						top = bottom = undefined;
 					}
 				},
@@ -61,7 +61,7 @@
 			left: {
 				get: function () {
 					if (left === undefined) {
-						left = x + Math.min(0, width);
+						left = x + math.min(0, width);
 					}
 					return left;
 				},
@@ -70,7 +70,7 @@
 			right: {
 				get: function () {
 					if (right === undefined) {
-						right = x + Math.max(0, width);
+						right = x + math.max(0, width);
 					}
 					return right;
 				},
@@ -79,7 +79,7 @@
 			top: {
 				get: function () {
 					if (top === undefined) {
-						top = y + Math.min(0, height);
+						top = y + math.min(0, height);
 					}
 					return top;
 				},
@@ -88,7 +88,7 @@
 			bottom: {
 				get: function () {
 					if (bottom === undefined) {
-						bottom = y + Math.max(0, height);
+						bottom = y + math.max(0, height);
 					}
 					return bottom;
 				},
@@ -97,5 +97,7 @@
 		});
 	}
 
-	global.DOMRect = DOMRect;
+	global.domrect = domrect;
 }(self));
+
+

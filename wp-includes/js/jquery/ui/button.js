@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Button 1.13.3
+ * jquery ui button 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Button
-//>>group: Widgets
-//>>description: Enhances a form with themeable buttons.
+//>>label: button
+//>>group: widgets
+//>>description: enhances a form with themeable buttons.
 //>>docs: https://api.jqueryui.com/button/
 //>>demos: https://jqueryui.com/button/
 //>>css.structure: ../../themes/base/core.css
@@ -21,12 +21,12 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 
-			// These are only for backcompat
-			// TODO: Remove after 1.12
+			// these are only for backcompat
+			// todo: remove after 1.12
 			"./controlgroup",
 			"./checkboxradio",
 
@@ -35,82 +35,82 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 $.widget( "ui.button", {
 	version: "1.13.3",
-	defaultElement: "<button>",
+	defaultelement: "<button>",
 	options: {
 		classes: {
 			"ui-button": "ui-corner-all"
 		},
 		disabled: null,
 		icon: null,
-		iconPosition: "beginning",
+		iconposition: "beginning",
 		label: null,
-		showLabel: true
+		showlabel: true
 	},
 
-	_getCreateOptions: function() {
+	_getcreateoptions: function() {
 		var disabled,
 
-			// This is to support cases like in jQuery Mobile where the base widget does have
-			// an implementation of _getCreateOptions
+			// this is to support cases like in jquery mobile where the base widget does have
+			// an implementation of _getcreateoptions
 			options = this._super() || {};
 
-		this.isInput = this.element.is( "input" );
+		this.isinput = this.element.is( "input" );
 
 		disabled = this.element[ 0 ].disabled;
 		if ( disabled != null ) {
 			options.disabled = disabled;
 		}
 
-		this.originalLabel = this.isInput ? this.element.val() : this.element.html();
-		if ( this.originalLabel ) {
-			options.label = this.originalLabel;
+		this.originallabel = this.isinput ? this.element.val() : this.element.html();
+		if ( this.originallabel ) {
+			options.label = this.originallabel;
 		}
 
 		return options;
 	},
 
 	_create: function() {
-		if ( !this.option.showLabel & !this.options.icon ) {
-			this.options.showLabel = true;
+		if ( !this.option.showlabel & !this.options.icon ) {
+			this.options.showlabel = true;
 		}
 
-		// We have to check the option again here even though we did in _getCreateOptions,
+		// we have to check the option again here even though we did in _getcreateoptions,
 		// because null may have been passed on init which would override what was set in
-		// _getCreateOptions
+		// _getcreateoptions
 		if ( this.options.disabled == null ) {
 			this.options.disabled = this.element[ 0 ].disabled || false;
 		}
 
-		this.hasTitle = !!this.element.attr( "title" );
+		this.hastitle = !!this.element.attr( "title" );
 
-		// Check to see if the label needs to be set or if its already correct
-		if ( this.options.label && this.options.label !== this.originalLabel ) {
-			if ( this.isInput ) {
+		// check to see if the label needs to be set or if its already correct
+		if ( this.options.label && this.options.label !== this.originallabel ) {
+			if ( this.isinput ) {
 				this.element.val( this.options.label );
 			} else {
 				this.element.html( this.options.label );
 			}
 		}
-		this._addClass( "ui-button", "ui-widget" );
-		this._setOption( "disabled", this.options.disabled );
+		this._addclass( "ui-button", "ui-widget" );
+		this._setoption( "disabled", this.options.disabled );
 		this._enhance();
 
 		if ( this.element.is( "a" ) ) {
 			this._on( {
 				"keyup": function( event ) {
-					if ( event.keyCode === $.ui.keyCode.SPACE ) {
-						event.preventDefault();
+					if ( event.keycode === $.ui.keycode.space ) {
+						event.preventdefault();
 
-						// Support: PhantomJS <= 1.9, IE 8 Only
-						// If a native click is available use it so we actually cause navigation
+						// support: phantomjs <= 1.9, ie 8 only
+						// if a native click is available use it so we actually cause navigation
 						// otherwise just trigger a click event
 						if ( this.element[ 0 ].click ) {
 							this.element[ 0 ].click();
@@ -129,133 +129,133 @@ $.widget( "ui.button", {
 		}
 
 		if ( this.options.icon ) {
-			this._updateIcon( "icon", this.options.icon );
-			this._updateTooltip();
+			this._updateicon( "icon", this.options.icon );
+			this._updatetooltip();
 		}
 	},
 
-	_updateTooltip: function() {
+	_updatetooltip: function() {
 		this.title = this.element.attr( "title" );
 
-		if ( !this.options.showLabel && !this.title ) {
+		if ( !this.options.showlabel && !this.title ) {
 			this.element.attr( "title", this.options.label );
 		}
 	},
 
-	_updateIcon: function( option, value ) {
-		var icon = option !== "iconPosition",
-			position = icon ? this.options.iconPosition : value,
-			displayBlock = position === "top" || position === "bottom";
+	_updateicon: function( option, value ) {
+		var icon = option !== "iconposition",
+			position = icon ? this.options.iconposition : value,
+			displayblock = position === "top" || position === "bottom";
 
-		// Create icon
+		// create icon
 		if ( !this.icon ) {
 			this.icon = $( "<span>" );
 
-			this._addClass( this.icon, "ui-button-icon", "ui-icon" );
+			this._addclass( this.icon, "ui-button-icon", "ui-icon" );
 
-			if ( !this.options.showLabel ) {
-				this._addClass( "ui-button-icon-only" );
+			if ( !this.options.showlabel ) {
+				this._addclass( "ui-button-icon-only" );
 			}
 		} else if ( icon ) {
 
-			// If we are updating the icon remove the old icon class
-			this._removeClass( this.icon, null, this.options.icon );
+			// if we are updating the icon remove the old icon class
+			this._removeclass( this.icon, null, this.options.icon );
 		}
 
-		// If we are updating the icon add the new icon class
+		// if we are updating the icon add the new icon class
 		if ( icon ) {
-			this._addClass( this.icon, null, value );
+			this._addclass( this.icon, null, value );
 		}
 
-		this._attachIcon( position );
+		this._attachicon( position );
 
-		// If the icon is on top or bottom we need to add the ui-widget-icon-block class and remove
-		// the iconSpace if there is one.
-		if ( displayBlock ) {
-			this._addClass( this.icon, null, "ui-widget-icon-block" );
-			if ( this.iconSpace ) {
-				this.iconSpace.remove();
+		// if the icon is on top or bottom we need to add the ui-widget-icon-block class and remove
+		// the iconspace if there is one.
+		if ( displayblock ) {
+			this._addclass( this.icon, null, "ui-widget-icon-block" );
+			if ( this.iconspace ) {
+				this.iconspace.remove();
 			}
 		} else {
 
-			// Position is beginning or end so remove the ui-widget-icon-block class and add the
+			// position is beginning or end so remove the ui-widget-icon-block class and add the
 			// space if it does not exist
-			if ( !this.iconSpace ) {
-				this.iconSpace = $( "<span> </span>" );
-				this._addClass( this.iconSpace, "ui-button-icon-space" );
+			if ( !this.iconspace ) {
+				this.iconspace = $( "<span> </span>" );
+				this._addclass( this.iconspace, "ui-button-icon-space" );
 			}
-			this._removeClass( this.icon, null, "ui-wiget-icon-block" );
-			this._attachIconSpace( position );
+			this._removeclass( this.icon, null, "ui-wiget-icon-block" );
+			this._attachiconspace( position );
 		}
 	},
 
 	_destroy: function() {
-		this.element.removeAttr( "role" );
+		this.element.removeattr( "role" );
 
 		if ( this.icon ) {
 			this.icon.remove();
 		}
-		if ( this.iconSpace ) {
-			this.iconSpace.remove();
+		if ( this.iconspace ) {
+			this.iconspace.remove();
 		}
-		if ( !this.hasTitle ) {
-			this.element.removeAttr( "title" );
+		if ( !this.hastitle ) {
+			this.element.removeattr( "title" );
 		}
 	},
 
-	_attachIconSpace: function( iconPosition ) {
-		this.icon[ /^(?:end|bottom)/.test( iconPosition ) ? "before" : "after" ]( this.iconSpace );
+	_attachiconspace: function( iconposition ) {
+		this.icon[ /^(?:end|bottom)/.test( iconposition ) ? "before" : "after" ]( this.iconspace );
 	},
 
-	_attachIcon: function( iconPosition ) {
-		this.element[ /^(?:end|bottom)/.test( iconPosition ) ? "append" : "prepend" ]( this.icon );
+	_attachicon: function( iconposition ) {
+		this.element[ /^(?:end|bottom)/.test( iconposition ) ? "append" : "prepend" ]( this.icon );
 	},
 
-	_setOptions: function( options ) {
-		var newShowLabel = options.showLabel === undefined ?
-				this.options.showLabel :
-				options.showLabel,
-			newIcon = options.icon === undefined ? this.options.icon : options.icon;
+	_setoptions: function( options ) {
+		var newshowlabel = options.showlabel === undefined ?
+				this.options.showlabel :
+				options.showlabel,
+			newicon = options.icon === undefined ? this.options.icon : options.icon;
 
-		if ( !newShowLabel && !newIcon ) {
-			options.showLabel = true;
+		if ( !newshowlabel && !newicon ) {
+			options.showlabel = true;
 		}
 		this._super( options );
 	},
 
-	_setOption: function( key, value ) {
+	_setoption: function( key, value ) {
 		if ( key === "icon" ) {
 			if ( value ) {
-				this._updateIcon( key, value );
+				this._updateicon( key, value );
 			} else if ( this.icon ) {
 				this.icon.remove();
-				if ( this.iconSpace ) {
-					this.iconSpace.remove();
+				if ( this.iconspace ) {
+					this.iconspace.remove();
 				}
 			}
 		}
 
-		if ( key === "iconPosition" ) {
-			this._updateIcon( key, value );
+		if ( key === "iconposition" ) {
+			this._updateicon( key, value );
 		}
 
-		// Make sure we can't end up with a button that has neither text nor icon
-		if ( key === "showLabel" ) {
-				this._toggleClass( "ui-button-icon-only", null, !value );
-				this._updateTooltip();
+		// make sure we can't end up with a button that has neither text nor icon
+		if ( key === "showlabel" ) {
+				this._toggleclass( "ui-button-icon-only", null, !value );
+				this._updatetooltip();
 		}
 
 		if ( key === "label" ) {
-			if ( this.isInput ) {
+			if ( this.isinput ) {
 				this.element.val( value );
 			} else {
 
-				// If there is an icon, append it, else nothing then append the value
+				// if there is an icon, append it, else nothing then append the value
 				// this avoids removal of the icon when setting label text
 				this.element.html( value );
 				if ( this.icon ) {
-					this._attachIcon( this.options.iconPosition );
-					this._attachIconSpace( this.options.iconPosition );
+					this._attachicon( this.options.iconposition );
+					this._attachiconspace( this.options.iconposition );
 				}
 			}
 		}
@@ -263,7 +263,7 @@ $.widget( "ui.button", {
 		this._super( key, value );
 
 		if ( key === "disabled" ) {
-			this._toggleClass( null, "ui-state-disabled", value );
+			this._toggleclass( null, "ui-state-disabled", value );
 			this.element[ 0 ].disabled = value;
 			if ( value ) {
 				this.element.trigger( "blur" );
@@ -273,23 +273,23 @@ $.widget( "ui.button", {
 
 	refresh: function() {
 
-		// Make sure to only check disabled if its an element that supports this otherwise
+		// make sure to only check disabled if its an element that supports this otherwise
 		// check for the disabled class to determine state
-		var isDisabled = this.element.is( "input, button" ) ?
-			this.element[ 0 ].disabled : this.element.hasClass( "ui-button-disabled" );
+		var isdisabled = this.element.is( "input, button" ) ?
+			this.element[ 0 ].disabled : this.element.hasclass( "ui-button-disabled" );
 
-		if ( isDisabled !== this.options.disabled ) {
-			this._setOptions( { disabled: isDisabled } );
+		if ( isdisabled !== this.options.disabled ) {
+			this._setoptions( { disabled: isdisabled } );
 		}
 
-		this._updateTooltip();
+		this._updatetooltip();
 	}
 } );
 
-// DEPRECATED
-if ( $.uiBackCompat !== false ) {
+// deprecated
+if ( $.uibackcompat !== false ) {
 
-	// Text and Icons options
+	// text and icons options
 	$.widget( "ui.button", $.ui.button, {
 		options: {
 			text: true,
@@ -300,11 +300,11 @@ if ( $.uiBackCompat !== false ) {
 		},
 
 		_create: function() {
-			if ( this.options.showLabel && !this.options.text ) {
-				this.options.showLabel = this.options.text;
+			if ( this.options.showlabel && !this.options.text ) {
+				this.options.showlabel = this.options.text;
 			}
-			if ( !this.options.showLabel && this.options.text ) {
-				this.options.text = this.options.showLabel;
+			if ( !this.options.showlabel && this.options.text ) {
+				this.options.text = this.options.showlabel;
 			}
 			if ( !this.options.icon && ( this.options.icons.primary ||
 					this.options.icons.secondary ) ) {
@@ -312,7 +312,7 @@ if ( $.uiBackCompat !== false ) {
 					this.options.icon = this.options.icons.primary;
 				} else {
 					this.options.icon = this.options.icons.secondary;
-					this.options.iconPosition = "end";
+					this.options.iconposition = "end";
 				}
 			} else if ( this.options.icon ) {
 				this.options.icons.primary = this.options.icon;
@@ -320,12 +320,12 @@ if ( $.uiBackCompat !== false ) {
 			this._super();
 		},
 
-		_setOption: function( key, value ) {
+		_setoption: function( key, value ) {
 			if ( key === "text" ) {
-				this._super( "showLabel", value );
+				this._super( "showlabel", value );
 				return;
 			}
-			if ( key === "showLabel" ) {
+			if ( key === "showlabel" ) {
 				this.options.text = value;
 			}
 			if ( key === "icon" ) {
@@ -334,31 +334,31 @@ if ( $.uiBackCompat !== false ) {
 			if ( key === "icons" ) {
 				if ( value.primary ) {
 					this._super( "icon", value.primary );
-					this._super( "iconPosition", "beginning" );
+					this._super( "iconposition", "beginning" );
 				} else if ( value.secondary ) {
 					this._super( "icon", value.secondary );
-					this._super( "iconPosition", "end" );
+					this._super( "iconposition", "end" );
 				}
 			}
-			this._superApply( arguments );
+			this._superapply( arguments );
 		}
 	} );
 
 	$.fn.button = ( function( orig ) {
 		return function( options ) {
-			var isMethodCall = typeof options === "string";
-			var args = Array.prototype.slice.call( arguments, 1 );
-			var returnValue = this;
+			var ismethodcall = typeof options === "string";
+			var args = array.prototype.slice.call( arguments, 1 );
+			var returnvalue = this;
 
-			if ( isMethodCall ) {
+			if ( ismethodcall ) {
 
-				// If this is an empty collection, we need to have the instance method
-				// return undefined instead of the jQuery instance
+				// if this is an empty collection, we need to have the instance method
+				// return undefined instead of the jquery instance
 				if ( !this.length && options === "instance" ) {
-					returnValue = undefined;
+					returnvalue = undefined;
 				} else {
 					this.each( function() {
-						var methodValue;
+						var methodvalue;
 						var type = $( this ).attr( "type" );
 						var name = type !== "checkbox" && type !== "radio" ?
 							"button" :
@@ -366,7 +366,7 @@ if ( $.uiBackCompat !== false ) {
 						var instance = $.data( this, "ui-" + name );
 
 						if ( options === "instance" ) {
-							returnValue = instance;
+							returnvalue = instance;
 							return false;
 						}
 
@@ -377,24 +377,24 @@ if ( $.uiBackCompat !== false ) {
 						}
 
 						if ( typeof instance[ options ] !== "function" ||
-							options.charAt( 0 ) === "_" ) {
+							options.charat( 0 ) === "_" ) {
 							return $.error( "no such method '" + options + "' for button" +
 								" widget instance" );
 						}
 
-						methodValue = instance[ options ].apply( instance, args );
+						methodvalue = instance[ options ].apply( instance, args );
 
-						if ( methodValue !== instance && methodValue !== undefined ) {
-							returnValue = methodValue && methodValue.jquery ?
-								returnValue.pushStack( methodValue.get() ) :
-								methodValue;
+						if ( methodvalue !== instance && methodvalue !== undefined ) {
+							returnvalue = methodvalue && methodvalue.jquery ?
+								returnvalue.pushstack( methodvalue.get() ) :
+								methodvalue;
 							return false;
 						}
 					} );
 				}
 			} else {
 
-				// Allow multiple hashes to be passed on init
+				// allow multiple hashes to be passed on init
 				if ( args.length ) {
 					options = $.widget.extend.apply( null, [ options ].concat( args ) );
 				}
@@ -420,13 +420,13 @@ if ( $.uiBackCompat !== false ) {
 				} );
 			}
 
-			return returnValue;
+			return returnvalue;
 		};
 	} )( $.fn.button );
 
 	$.fn.buttonset = function() {
 		if ( !$.ui.controlgroup ) {
-			$.error( "Controlgroup widget missing" );
+			$.error( "controlgroup widget missing" );
 		}
 		if ( arguments[ 0 ] === "option" && arguments[ 1 ] === "items" && arguments[ 2 ] ) {
 			return this.controlgroup.apply( this,
@@ -447,3 +447,5 @@ if ( $.uiBackCompat !== false ) {
 return $.ui.button;
 
 } );
+
+

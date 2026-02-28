@@ -1,5 +1,5 @@
-import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
-/******/ // The require scope
+import * as __webpack_external_module__wordpress_interactivity_8e89b257__ from "@wordpress/interactivity";
+/******/ // the require scope
 /******/ var __webpack_require__ = {};
 /******/ 
 /************************************************************************/
@@ -9,15 +9,15 @@ import * as __WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__ from "
 /******/ 	__webpack_require__.d = (exports, definition) => {
 /******/ 		for(var key in definition) {
 /******/ 			if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 			}
 /******/ 		}
 /******/ 	};
 /******/ })();
 /******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ /* webpack/runtime/hasownproperty shorthand */
 /******/ (() => {
-/******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ })();
 /******/ 
 /************************************************************************/
@@ -28,124 +28,126 @@ var x = (y) => {
 	var x = {}; __webpack_require__.d(x, y); return x
 } 
 var y = (x) => (() => (x))
-const interactivity_namespaceObject = x({ ["getContext"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.getContext), ["store"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.store), ["withSyncEvent"]: () => (__WEBPACK_EXTERNAL_MODULE__wordpress_interactivity_8e89b257__.withSyncEvent) });
+const interactivity_namespaceobject = x({ ["getcontext"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.getcontext), ["store"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.store), ["withsyncevent"]: () => (__webpack_external_module__wordpress_interactivity_8e89b257__.withsyncevent) });
 ;// ./node_modules/@wordpress/block-library/build-module/accordion/view.js
 
-let hashHandled = false;
-const { actions } = (0,interactivity_namespaceObject.store)(
+let hashhandled = false;
+const { actions } = (0,interactivity_namespaceobject.store)(
   "core/accordion",
   {
     state: {
-      get isOpen() {
-        const { id, accordionItems } = (0,interactivity_namespaceObject.getContext)();
-        const accordionItem = accordionItems.find(
+      get isopen() {
+        const { id, accordionitems } = (0,interactivity_namespaceobject.getcontext)();
+        const accordionitem = accordionitems.find(
           (item) => item.id === id
         );
-        return accordionItem ? accordionItem.isOpen : false;
+        return accordionitem ? accordionitem.isopen : false;
       }
     },
     actions: {
       toggle: () => {
-        const context = (0,interactivity_namespaceObject.getContext)();
-        const { id, autoclose, accordionItems } = context;
-        const accordionItem = accordionItems.find(
+        const context = (0,interactivity_namespaceobject.getcontext)();
+        const { id, autoclose, accordionitems } = context;
+        const accordionitem = accordionitems.find(
           (item) => item.id === id
         );
         if (autoclose) {
-          accordionItems.forEach((item) => {
-            item.isOpen = item.id === id ? !accordionItem.isOpen : false;
+          accordionitems.foreach((item) => {
+            item.isopen = item.id === id ? !accordionitem.isopen : false;
           });
         } else {
-          accordionItem.isOpen = !accordionItem.isOpen;
+          accordionitem.isopen = !accordionitem.isopen;
         }
       },
-      handleKeyDown: (0,interactivity_namespaceObject.withSyncEvent)((event) => {
-        if (event.key !== "ArrowUp" && event.key !== "ArrowDown" && event.key !== "Home" && event.key !== "End") {
+      handlekeydown: (0,interactivity_namespaceobject.withsyncevent)((event) => {
+        if (event.key !== "arrowup" && event.key !== "arrowdown" && event.key !== "home" && event.key !== "end") {
           return;
         }
-        event.preventDefault();
-        const context = (0,interactivity_namespaceObject.getContext)();
-        const { id, accordionItems } = context;
-        const currentIndex = accordionItems.findIndex(
+        event.preventdefault();
+        const context = (0,interactivity_namespaceobject.getcontext)();
+        const { id, accordionitems } = context;
+        const currentindex = accordionitems.findindex(
           (item) => item.id === id
         );
-        let nextIndex;
+        let nextindex;
         switch (event.key) {
-          case "ArrowUp":
-            nextIndex = Math.max(0, currentIndex - 1);
+          case "arrowup":
+            nextindex = math.max(0, currentindex - 1);
             break;
-          case "ArrowDown":
-            nextIndex = Math.min(
-              currentIndex + 1,
-              accordionItems.length - 1
+          case "arrowdown":
+            nextindex = math.min(
+              currentindex + 1,
+              accordionitems.length - 1
             );
             break;
-          case "Home":
-            nextIndex = 0;
+          case "home":
+            nextindex = 0;
             break;
-          case "End":
-            nextIndex = accordionItems.length - 1;
+          case "end":
+            nextindex = accordionitems.length - 1;
             break;
         }
-        const nextId = accordionItems[nextIndex].id;
-        const nextButton = document.getElementById(nextId);
-        if (nextButton) {
-          nextButton.focus();
+        const nextid = accordionitems[nextindex].id;
+        const nextbutton = document.getelementbyid(nextid);
+        if (nextbutton) {
+          nextbutton.focus();
         }
       }),
-      openPanelByHash: () => {
-        if (hashHandled || !window.location?.hash?.length) {
+      openpanelbyhash: () => {
+        if (hashhandled || !window.location?.hash?.length) {
           return;
         }
-        const context = (0,interactivity_namespaceObject.getContext)();
-        const { id, accordionItems, autoclose } = context;
-        const hash = decodeURIComponent(
+        const context = (0,interactivity_namespaceobject.getcontext)();
+        const { id, accordionitems, autoclose } = context;
+        const hash = decodeuricomponent(
           window.location.hash.slice(1)
         );
-        const targetElement = window.document.getElementById(hash);
-        if (!targetElement) {
+        const targetelement = window.document.getelementbyid(hash);
+        if (!targetelement) {
           return;
         }
-        const panelElement = window.document.querySelector(
+        const panelelement = window.document.queryselector(
           '.wp-block-accordion-panel[aria-labelledby="' + id + '"]'
         );
-        if (!panelElement || !panelElement.contains(targetElement)) {
+        if (!panelelement || !panelelement.contains(targetelement)) {
           return;
         }
-        hashHandled = true;
+        hashhandled = true;
         if (autoclose) {
-          accordionItems.forEach((item) => {
-            item.isOpen = item.id === id;
+          accordionitems.foreach((item) => {
+            item.isopen = item.id === id;
           });
         } else {
-          const targetItem = accordionItems.find(
+          const targetitem = accordionitems.find(
             (item) => item.id === id
           );
-          if (targetItem) {
-            targetItem.isOpen = true;
+          if (targetitem) {
+            targetitem.isopen = true;
           }
         }
-        window.setTimeout(() => {
-          targetElement.scrollIntoView();
+        window.settimeout(() => {
+          targetelement.scrollintoview();
         }, 0);
       }
     },
     callbacks: {
-      initAccordionItems: () => {
-        const context = (0,interactivity_namespaceObject.getContext)();
-        const { id, openByDefault, accordionItems } = context;
-        accordionItems.push({
+      initaccordionitems: () => {
+        const context = (0,interactivity_namespaceobject.getcontext)();
+        const { id, openbydefault, accordionitems } = context;
+        accordionitems.push({
           id,
-          isOpen: openByDefault
+          isopen: openbydefault
         });
-        actions.openPanelByHash();
+        actions.openpanelbyhash();
       },
-      hashChange: () => {
-        hashHandled = false;
-        actions.openPanelByHash();
+      hashchange: () => {
+        hashhandled = false;
+        actions.openpanelbyhash();
       }
     }
   },
   { lock: true }
 );
+
+
 

@@ -1,30 +1,30 @@
 /*!
- * MediaElement.js
+ * mediaelement.js
  * http://www.mediaelementjs.com/
  *
- * Wrapper that mimics native HTML5 MediaElement (audio and video)
- * using a variety of technologies (pure JavaScript, Flash, iframe)
+ * wrapper that mimics native html5 mediaelement (audio and video)
+ * using a variety of technologies (pure javascript, flash, iframe)
  *
- * Copyright 2010-2017, John Dyer (http://j.hn/)
- * License: MIT
+ * copyright 2010-2017, john dyer (http://j.hn/)
+ * license: mit
  *
- */(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(_dereq_,module,exports){
+ */(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new error("cannot find module '"+o+"'");throw f.code="module_not_found",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(_dereq_,module,exports){
 
 },{}],2:[function(_dereq_,module,exports){
 (function (global){
-var topLevel = typeof global !== 'undefined' ? global :
+var toplevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
-var minDoc = _dereq_(1);
+var mindoc = _dereq_(1);
 
 var doccy;
 
 if (typeof document !== 'undefined') {
     doccy = document;
 } else {
-    doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'];
+    doccy = toplevel['__global_document_cache@4'];
 
     if (!doccy) {
-        doccy = topLevel['__GLOBAL_DOCUMENT_CACHE@4'] = minDoc;
+        doccy = toplevel['__global_document_cache@4'] = mindoc;
     }
 }
 
@@ -51,28 +51,28 @@ module.exports = win;
 },{}],4:[function(_dereq_,module,exports){
 (function (root) {
 
-  // Store setTimeout reference so promise-polyfill will be unaffected by
-  // other code modifying setTimeout (like sinon.useFakeTimers())
-  var setTimeoutFunc = setTimeout;
+  // store settimeout reference so promise-polyfill will be unaffected by
+  // other code modifying settimeout (like sinon.usefaketimers())
+  var settimeoutfunc = settimeout;
 
   function noop() {}
   
-  // Polyfill for Function.prototype.bind
-  function bind(fn, thisArg) {
+  // polyfill for function.prototype.bind
+  function bind(fn, thisarg) {
     return function () {
-      fn.apply(thisArg, arguments);
+      fn.apply(thisarg, arguments);
     };
   }
 
-  function Promise(fn) {
-    if (typeof this !== 'object') throw new TypeError('Promises must be constructed via new');
-    if (typeof fn !== 'function') throw new TypeError('not a function');
+  function promise(fn) {
+    if (typeof this !== 'object') throw new typeerror('promises must be constructed via new');
+    if (typeof fn !== 'function') throw new typeerror('not a function');
     this._state = 0;
     this._handled = false;
     this._value = undefined;
     this._deferreds = [];
 
-    doResolve(fn, this);
+    doresolve(fn, this);
   }
 
   function handle(self, deferred) {
@@ -84,8 +84,8 @@ module.exports = win;
       return;
     }
     self._handled = true;
-    Promise._immediateFn(function () {
-      var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
+    promise._immediatefn(function () {
+      var cb = self._state === 1 ? deferred.onfulfilled : deferred.onrejected;
       if (cb === null) {
         (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
         return;
@@ -101,41 +101,41 @@ module.exports = win;
     });
   }
 
-  function resolve(self, newValue) {
+  function resolve(self, newvalue) {
     try {
-      // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-      if (newValue === self) throw new TypeError('A promise cannot be resolved with itself.');
-      if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
-        var then = newValue.then;
-        if (newValue instanceof Promise) {
+      // promise resolution procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
+      if (newvalue === self) throw new typeerror('a promise cannot be resolved with itself.');
+      if (newvalue && (typeof newvalue === 'object' || typeof newvalue === 'function')) {
+        var then = newvalue.then;
+        if (newvalue instanceof promise) {
           self._state = 3;
-          self._value = newValue;
+          self._value = newvalue;
           finale(self);
           return;
         } else if (typeof then === 'function') {
-          doResolve(bind(then, newValue), self);
+          doresolve(bind(then, newvalue), self);
           return;
         }
       }
       self._state = 1;
-      self._value = newValue;
+      self._value = newvalue;
       finale(self);
     } catch (e) {
       reject(self, e);
     }
   }
 
-  function reject(self, newValue) {
+  function reject(self, newvalue) {
     self._state = 2;
-    self._value = newValue;
+    self._value = newvalue;
     finale(self);
   }
 
   function finale(self) {
     if (self._state === 2 && self._deferreds.length === 0) {
-      Promise._immediateFn(function() {
+      promise._immediatefn(function() {
         if (!self._handled) {
-          Promise._unhandledRejectionFn(self._value);
+          promise._unhandledrejectionfn(self._value);
         }
       });
     }
@@ -146,19 +146,19 @@ module.exports = win;
     self._deferreds = null;
   }
 
-  function Handler(onFulfilled, onRejected, promise) {
-    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
-    this.onRejected = typeof onRejected === 'function' ? onRejected : null;
+  function handler(onfulfilled, onrejected, promise) {
+    this.onfulfilled = typeof onfulfilled === 'function' ? onfulfilled : null;
+    this.onrejected = typeof onrejected === 'function' ? onrejected : null;
     this.promise = promise;
   }
 
   /**
-   * Take a potentially misbehaving resolver function and make sure
-   * onFulfilled and onRejected are only called once.
+   * take a potentially misbehaving resolver function and make sure
+   * onfulfilled and onrejected are only called once.
    *
-   * Makes no guarantees about asynchrony.
+   * makes no guarantees about asynchrony.
    */
-  function doResolve(fn, self) {
+  function doresolve(fn, self) {
     var done = false;
     try {
       fn(function (value) {
@@ -177,21 +177,21 @@ module.exports = win;
     }
   }
 
-  Promise.prototype['catch'] = function (onRejected) {
-    return this.then(null, onRejected);
+  promise.prototype['catch'] = function (onrejected) {
+    return this.then(null, onrejected);
   };
 
-  Promise.prototype.then = function (onFulfilled, onRejected) {
+  promise.prototype.then = function (onfulfilled, onrejected) {
     var prom = new (this.constructor)(noop);
 
-    handle(this, new Handler(onFulfilled, onRejected, prom));
+    handle(this, new handler(onfulfilled, onrejected, prom));
     return prom;
   };
 
-  Promise.all = function (arr) {
-    var args = Array.prototype.slice.call(arr);
+  promise.all = function (arr) {
+    var args = array.prototype.slice.call(arr);
 
-    return new Promise(function (resolve, reject) {
+    return new promise(function (resolve, reject) {
       if (args.length === 0) return resolve([]);
       var remaining = args.length;
 
@@ -221,64 +221,64 @@ module.exports = win;
     });
   };
 
-  Promise.resolve = function (value) {
-    if (value && typeof value === 'object' && value.constructor === Promise) {
+  promise.resolve = function (value) {
+    if (value && typeof value === 'object' && value.constructor === promise) {
       return value;
     }
 
-    return new Promise(function (resolve) {
+    return new promise(function (resolve) {
       resolve(value);
     });
   };
 
-  Promise.reject = function (value) {
-    return new Promise(function (resolve, reject) {
+  promise.reject = function (value) {
+    return new promise(function (resolve, reject) {
       reject(value);
     });
   };
 
-  Promise.race = function (values) {
-    return new Promise(function (resolve, reject) {
+  promise.race = function (values) {
+    return new promise(function (resolve, reject) {
       for (var i = 0, len = values.length; i < len; i++) {
         values[i].then(resolve, reject);
       }
     });
   };
 
-  // Use polyfill for setImmediate for performance gains
-  Promise._immediateFn = (typeof setImmediate === 'function' && function (fn) { setImmediate(fn); }) ||
+  // use polyfill for setimmediate for performance gains
+  promise._immediatefn = (typeof setimmediate === 'function' && function (fn) { setimmediate(fn); }) ||
     function (fn) {
-      setTimeoutFunc(fn, 0);
+      settimeoutfunc(fn, 0);
     };
 
-  Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
+  promise._unhandledrejectionfn = function _unhandledrejectionfn(err) {
     if (typeof console !== 'undefined' && console) {
-      console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
+      console.warn('possible unhandled promise rejection:', err); // eslint-disable-line no-console
     }
   };
 
   /**
-   * Set the immediate function to execute callbacks
-   * @param fn {function} Function to execute
+   * set the immediate function to execute callbacks
+   * @param fn {function} function to execute
    * @deprecated
    */
-  Promise._setImmediateFn = function _setImmediateFn(fn) {
-    Promise._immediateFn = fn;
+  promise._setimmediatefn = function _setimmediatefn(fn) {
+    promise._immediatefn = fn;
   };
 
   /**
-   * Change the function to execute on unhandled rejection
-   * @param {function} fn Function to execute on unhandled rejection
+   * change the function to execute on unhandled rejection
+   * @param {function} fn function to execute on unhandled rejection
    * @deprecated
    */
-  Promise._setUnhandledRejectionFn = function _setUnhandledRejectionFn(fn) {
-    Promise._unhandledRejectionFn = fn;
+  promise._setunhandledrejectionfn = function _setunhandledrejectionfn(fn) {
+    promise._unhandledrejectionfn = fn;
   };
   
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Promise;
-  } else if (!root.Promise) {
-    root.Promise = Promise;
+    module.exports = promise;
+  } else if (!root.promise) {
+    root.promise = promise;
   }
 
 })(this);
@@ -286,44 +286,44 @@ module.exports = win;
 },{}],5:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _en = _dereq_(15);
 
 var _general = _dereq_(27);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var i18n = { lang: 'en', en: _en.EN };
+var i18n = { lang: 'en', en: _en.en };
 
 i18n.language = function () {
-	for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	for (var _len = arguments.length, args = array(_len), _key = 0; _key < _len; _key++) {
 		args[_key] = arguments[_key];
 	}
 
 	if (args !== null && args !== undefined && args.length) {
 
 		if (typeof args[0] !== 'string') {
-			throw new TypeError('Language code must be a string value');
+			throw new typeerror('language code must be a string value');
 		}
 
 		if (!/^[a-z]{2,3}((\-|_)[a-z]{2})?$/i.test(args[0])) {
-			throw new TypeError('Language code must have format 2-3 letters and. optionally, hyphen, underscore followed by 2 more letters');
+			throw new typeerror('language code must have format 2-3 letters and. optionally, hyphen, underscore followed by 2 more letters');
 		}
 
 		i18n.lang = args[0];
 
 		if (i18n[args[0]] === undefined) {
 			args[1] = args[1] !== null && args[1] !== undefined && _typeof(args[1]) === 'object' ? args[1] : {};
-			i18n[args[0]] = !(0, _general.isObjectEmpty)(args[1]) ? args[1] : _en.EN;
+			i18n[args[0]] = !(0, _general.isobjectempty)(args[1]) ? args[1] : _en.en;
 		} else if (args[1] !== null && args[1] !== undefined && _typeof(args[1]) === 'object') {
 			i18n[args[0]] = args[1];
 		}
@@ -333,13 +333,13 @@ i18n.language = function () {
 };
 
 i18n.t = function (message) {
-	var pluralParam = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+	var pluralparam = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
 
 	if (typeof message === 'string' && message.length) {
 
 		var str = void 0,
-		    pluralForm = void 0;
+		    pluralform = void 0;
 
 		var language = i18n.language();
 
@@ -349,7 +349,7 @@ i18n.t = function (message) {
 				return input;
 			}
 
-			var _pluralForms = function () {
+			var _pluralforms = function () {
 				return [function () {
 					return arguments.length <= 1 ? undefined : arguments[1];
 				}, function () {
@@ -511,32 +511,32 @@ i18n.t = function (message) {
 				}];
 			}();
 
-			return _pluralForms[form].apply(null, [number].concat(input));
+			return _pluralforms[form].apply(null, [number].concat(input));
 		};
 
 		if (i18n[language] !== undefined) {
 			str = i18n[language][message];
-			if (pluralParam !== null && typeof pluralParam === 'number') {
-				pluralForm = i18n[language]['mejs.plural-form'];
-				str = _plural.apply(null, [str, pluralParam, pluralForm]);
+			if (pluralparam !== null && typeof pluralparam === 'number') {
+				pluralform = i18n[language]['mejs.plural-form'];
+				str = _plural.apply(null, [str, pluralparam, pluralform]);
 			}
 		}
 
 		if (!str && i18n.en) {
 			str = i18n.en[message];
-			if (pluralParam !== null && typeof pluralParam === 'number') {
-				pluralForm = i18n.en['mejs.plural-form'];
-				str = _plural.apply(null, [str, pluralParam, pluralForm]);
+			if (pluralparam !== null && typeof pluralparam === 'number') {
+				pluralform = i18n.en['mejs.plural-form'];
+				str = _plural.apply(null, [str, pluralparam, pluralform]);
 			}
 		}
 
 		str = str || message;
 
-		if (pluralParam !== null && typeof pluralParam === 'number') {
-			str = str.replace('%1', pluralParam);
+		if (pluralparam !== null && typeof pluralparam === 'number') {
+			str = str.replace('%1', pluralparam);
 		}
 
-		return (0, _general.escapeHTML)(str);
+		return (0, _general.escapehtml)(str);
 	}
 
 	return message;
@@ -544,8 +544,8 @@ i18n.t = function (message) {
 
 _mejs2.default.i18n = i18n;
 
-if (typeof mejsL10n !== 'undefined') {
-	_mejs2.default.i18n.language(mejsL10n.language, mejsL10n.strings);
+if (typeof mejsl10n !== 'undefined') {
+	_mejs2.default.i18n.language(mejsl10n.language, mejsl10n.strings);
 }
 
 exports.default = i18n;
@@ -553,23 +553,23 @@ exports.default = i18n;
 },{"15":15,"27":27,"7":7}],6:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _general = _dereq_(27);
 
@@ -579,180 +579,180 @@ var _renderer = _dereq_(8);
 
 var _constants = _dereq_(25);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classcallcheck(instance, constructor) { if (!(instance instanceof constructor)) { throw new typeerror("cannot call a class as a function"); } }
 
-var MediaElement = function MediaElement(idOrNode, options, sources) {
+var mediaelement = function mediaelement(idornode, options, sources) {
 	var _this = this;
 
-	_classCallCheck(this, MediaElement);
+	_classcallcheck(this, mediaelement);
 
 	var t = this;
 
-	sources = Array.isArray(sources) ? sources : null;
+	sources = array.isarray(sources) ? sources : null;
 
 	t.defaults = {
 		renderers: [],
 
-		fakeNodeName: 'mediaelementwrapper',
+		fakenodename: 'mediaelementwrapper',
 
-		pluginPath: 'build/',
+		pluginpath: 'build/',
 
-		shimScriptAccess: 'sameDomain'
+		shimscriptaccess: 'samedomain'
 	};
 
-	options = Object.assign(t.defaults, options);
+	options = object.assign(t.defaults, options);
 
-	t.mediaElement = _document2.default.createElement(options.fakeNodeName);
+	t.mediaelement = _document2.default.createelement(options.fakenodename);
 
-	var id = idOrNode,
+	var id = idornode,
 	    error = false;
 
-	if (typeof idOrNode === 'string') {
-		t.mediaElement.originalNode = _document2.default.getElementById(idOrNode);
+	if (typeof idornode === 'string') {
+		t.mediaelement.originalnode = _document2.default.getelementbyid(idornode);
 	} else {
-		t.mediaElement.originalNode = idOrNode;
-		id = idOrNode.id;
+		t.mediaelement.originalnode = idornode;
+		id = idornode.id;
 	}
 
-	if (t.mediaElement.originalNode === undefined || t.mediaElement.originalNode === null) {
+	if (t.mediaelement.originalnode === undefined || t.mediaelement.originalnode === null) {
 		return null;
 	}
 
-	t.mediaElement.options = options;
-	id = id || 'mejs_' + Math.random().toString().slice(2);
+	t.mediaelement.options = options;
+	id = id || 'mejs_' + math.random().tostring().slice(2);
 
-	t.mediaElement.originalNode.setAttribute('id', id + '_from_mejs');
+	t.mediaelement.originalnode.setattribute('id', id + '_from_mejs');
 
-	var tagName = t.mediaElement.originalNode.tagName.toLowerCase();
-	if (['video', 'audio'].indexOf(tagName) > -1 && !t.mediaElement.originalNode.getAttribute('preload')) {
-		t.mediaElement.originalNode.setAttribute('preload', 'none');
+	var tagname = t.mediaelement.originalnode.tagname.tolowercase();
+	if (['video', 'audio'].indexof(tagname) > -1 && !t.mediaelement.originalnode.getattribute('preload')) {
+		t.mediaelement.originalnode.setattribute('preload', 'none');
 	}
 
-	t.mediaElement.originalNode.parentNode.insertBefore(t.mediaElement, t.mediaElement.originalNode);
+	t.mediaelement.originalnode.parentnode.insertbefore(t.mediaelement, t.mediaelement.originalnode);
 
-	t.mediaElement.appendChild(t.mediaElement.originalNode);
+	t.mediaelement.appendchild(t.mediaelement.originalnode);
 
-	var processURL = function processURL(url, type) {
-		if (_window2.default.location.protocol === 'https:' && url.indexOf('http:') === 0 && _constants.IS_IOS && _mejs2.default.html5media.mediaTypes.indexOf(type) > -1) {
-			var xhr = new XMLHttpRequest();
+	var processurl = function processurl(url, type) {
+		if (_window2.default.location.protocol === 'https:' && url.indexof('http:') === 0 && _constants.is_ios && _mejs2.default.html5media.mediatypes.indexof(type) > -1) {
+			var xhr = new xmlhttprequest();
 			xhr.onreadystatechange = function () {
-				if (this.readyState === 4 && this.status === 200) {
-					var _url = _window2.default.URL || _window2.default.webkitURL,
-					    blobUrl = _url.createObjectURL(this.response);
-					t.mediaElement.originalNode.setAttribute('src', blobUrl);
-					return blobUrl;
+				if (this.readystate === 4 && this.status === 200) {
+					var _url = _window2.default.url || _window2.default.webkiturl,
+					    bloburl = _url.createobjecturl(this.response);
+					t.mediaelement.originalnode.setattribute('src', bloburl);
+					return bloburl;
 				}
 				return url;
 			};
-			xhr.open('GET', url);
-			xhr.responseType = 'blob';
+			xhr.open('get', url);
+			xhr.responsetype = 'blob';
 			xhr.send();
 		}
 
 		return url;
 	};
 
-	var mediaFiles = void 0;
+	var mediafiles = void 0;
 
 	if (sources !== null) {
-		mediaFiles = sources;
-	} else if (t.mediaElement.originalNode !== null) {
+		mediafiles = sources;
+	} else if (t.mediaelement.originalnode !== null) {
 
-		mediaFiles = [];
+		mediafiles = [];
 
-		switch (t.mediaElement.originalNode.nodeName.toLowerCase()) {
+		switch (t.mediaelement.originalnode.nodename.tolowercase()) {
 			case 'iframe':
-				mediaFiles.push({
+				mediafiles.push({
 					type: '',
-					src: t.mediaElement.originalNode.getAttribute('src')
+					src: t.mediaelement.originalnode.getattribute('src')
 				});
 				break;
 			case 'audio':
 			case 'video':
-				var _sources = t.mediaElement.originalNode.children.length,
-				    nodeSource = t.mediaElement.originalNode.getAttribute('src');
+				var _sources = t.mediaelement.originalnode.children.length,
+				    nodesource = t.mediaelement.originalnode.getattribute('src');
 
-				if (nodeSource) {
-					var node = t.mediaElement.originalNode,
-					    type = (0, _media2.formatType)(nodeSource, node.getAttribute('type'));
-					mediaFiles.push({
+				if (nodesource) {
+					var node = t.mediaelement.originalnode,
+					    type = (0, _media2.formattype)(nodesource, node.getattribute('type'));
+					mediafiles.push({
 						type: type,
-						src: processURL(nodeSource, type)
+						src: processurl(nodesource, type)
 					});
 				}
 
 				for (var i = 0; i < _sources; i++) {
-					var n = t.mediaElement.originalNode.children[i];
-					if (n.tagName.toLowerCase() === 'source') {
-						var src = n.getAttribute('src'),
-						    _type = (0, _media2.formatType)(src, n.getAttribute('type'));
-						mediaFiles.push({ type: _type, src: processURL(src, _type) });
+					var n = t.mediaelement.originalnode.children[i];
+					if (n.tagname.tolowercase() === 'source') {
+						var src = n.getattribute('src'),
+						    _type = (0, _media2.formattype)(src, n.getattribute('type'));
+						mediafiles.push({ type: _type, src: processurl(src, _type) });
 					}
 				}
 				break;
 		}
 	}
 
-	t.mediaElement.id = id;
-	t.mediaElement.renderers = {};
-	t.mediaElement.events = {};
-	t.mediaElement.promises = [];
-	t.mediaElement.renderer = null;
-	t.mediaElement.rendererName = null;
+	t.mediaelement.id = id;
+	t.mediaelement.renderers = {};
+	t.mediaelement.events = {};
+	t.mediaelement.promises = [];
+	t.mediaelement.renderer = null;
+	t.mediaelement.renderername = null;
 
-	t.mediaElement.changeRenderer = function (rendererName, mediaFiles) {
+	t.mediaelement.changerenderer = function (renderername, mediafiles) {
 
 		var t = _this,
-		    media = Object.keys(mediaFiles[0]).length > 2 ? mediaFiles[0] : mediaFiles[0].src;
+		    media = object.keys(mediafiles[0]).length > 2 ? mediafiles[0] : mediafiles[0].src;
 
-		if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null && t.mediaElement.renderer.name === rendererName) {
-			t.mediaElement.renderer.pause();
-			if (t.mediaElement.renderer.stop) {
-				t.mediaElement.renderer.stop();
+		if (t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null && t.mediaelement.renderer.name === renderername) {
+			t.mediaelement.renderer.pause();
+			if (t.mediaelement.renderer.stop) {
+				t.mediaelement.renderer.stop();
 			}
-			t.mediaElement.renderer.show();
-			t.mediaElement.renderer.setSrc(media);
+			t.mediaelement.renderer.show();
+			t.mediaelement.renderer.setsrc(media);
 			return true;
 		}
 
-		if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null) {
-			t.mediaElement.renderer.pause();
-			if (t.mediaElement.renderer.stop) {
-				t.mediaElement.renderer.stop();
+		if (t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null) {
+			t.mediaelement.renderer.pause();
+			if (t.mediaelement.renderer.stop) {
+				t.mediaelement.renderer.stop();
 			}
-			t.mediaElement.renderer.hide();
+			t.mediaelement.renderer.hide();
 		}
 
-		var newRenderer = t.mediaElement.renderers[rendererName],
-		    newRendererType = null;
+		var newrenderer = t.mediaelement.renderers[renderername],
+		    newrenderertype = null;
 
-		if (newRenderer !== undefined && newRenderer !== null) {
-			newRenderer.show();
-			newRenderer.setSrc(media);
-			t.mediaElement.renderer = newRenderer;
-			t.mediaElement.rendererName = rendererName;
+		if (newrenderer !== undefined && newrenderer !== null) {
+			newrenderer.show();
+			newrenderer.setsrc(media);
+			t.mediaelement.renderer = newrenderer;
+			t.mediaelement.renderername = renderername;
 			return true;
 		}
 
-		var rendererArray = t.mediaElement.options.renderers.length ? t.mediaElement.options.renderers : _renderer.renderer.order;
+		var rendererarray = t.mediaelement.options.renderers.length ? t.mediaelement.options.renderers : _renderer.renderer.order;
 
-		for (var _i = 0, total = rendererArray.length; _i < total; _i++) {
-			var index = rendererArray[_i];
+		for (var _i = 0, total = rendererarray.length; _i < total; _i++) {
+			var index = rendererarray[_i];
 
-			if (index === rendererName) {
-				var rendererList = _renderer.renderer.renderers;
-				newRendererType = rendererList[index];
+			if (index === renderername) {
+				var rendererlist = _renderer.renderer.renderers;
+				newrenderertype = rendererlist[index];
 
-				var renderOptions = Object.assign(newRendererType.options, t.mediaElement.options);
-				newRenderer = newRendererType.create(t.mediaElement, renderOptions, mediaFiles);
-				newRenderer.name = rendererName;
+				var renderoptions = object.assign(newrenderertype.options, t.mediaelement.options);
+				newrenderer = newrenderertype.create(t.mediaelement, renderoptions, mediafiles);
+				newrenderer.name = renderername;
 
-				t.mediaElement.renderers[newRendererType.name] = newRenderer;
-				t.mediaElement.renderer = newRenderer;
-				t.mediaElement.rendererName = rendererName;
-				newRenderer.show();
+				t.mediaelement.renderers[newrenderertype.name] = newrenderer;
+				t.mediaelement.renderer = newrenderer;
+				t.mediaelement.renderername = renderername;
+				newrenderer.show();
 				return true;
 			}
 		}
@@ -760,121 +760,121 @@ var MediaElement = function MediaElement(idOrNode, options, sources) {
 		return false;
 	};
 
-	t.mediaElement.setSize = function (width, height) {
-		if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null) {
-			t.mediaElement.renderer.setSize(width, height);
+	t.mediaelement.setsize = function (width, height) {
+		if (t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null) {
+			t.mediaelement.renderer.setsize(width, height);
 		}
 	};
 
-	t.mediaElement.generateError = function (message, urlList) {
+	t.mediaelement.generateerror = function (message, urllist) {
 		message = message || '';
-		urlList = Array.isArray(urlList) ? urlList : [];
-		var event = (0, _general.createEvent)('error', t.mediaElement);
+		urllist = array.isarray(urllist) ? urllist : [];
+		var event = (0, _general.createevent)('error', t.mediaelement);
 		event.message = message;
-		event.urls = urlList;
-		t.mediaElement.dispatchEvent(event);
+		event.urls = urllist;
+		t.mediaelement.dispatchevent(event);
 		error = true;
 	};
 
 	var props = _mejs2.default.html5media.properties,
 	    methods = _mejs2.default.html5media.methods,
-	    addProperty = function addProperty(obj, name, onGet, onSet) {
-		var oldValue = obj[name];
-		var getFn = function getFn() {
-			return onGet.apply(obj, [oldValue]);
+	    addproperty = function addproperty(obj, name, onget, onset) {
+		var oldvalue = obj[name];
+		var getfn = function getfn() {
+			return onget.apply(obj, [oldvalue]);
 		},
-		    setFn = function setFn(newValue) {
-			oldValue = onSet.apply(obj, [newValue]);
-			return oldValue;
+		    setfn = function setfn(newvalue) {
+			oldvalue = onset.apply(obj, [newvalue]);
+			return oldvalue;
 		};
 
-		Object.defineProperty(obj, name, {
-			get: getFn,
-			set: setFn
+		object.defineproperty(obj, name, {
+			get: getfn,
+			set: setfn
 		});
 	},
-	    assignGettersSetters = function assignGettersSetters(propName) {
-		if (propName !== 'src') {
+	    assigngetterssetters = function assigngetterssetters(propname) {
+		if (propname !== 'src') {
 
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1),
-			    getFn = function getFn() {
-				return t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null && typeof t.mediaElement.renderer['get' + capName] === 'function' ? t.mediaElement.renderer['get' + capName]() : null;
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1),
+			    getfn = function getfn() {
+				return t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null && typeof t.mediaelement.renderer['get' + capname] === 'function' ? t.mediaelement.renderer['get' + capname]() : null;
 			},
-			    setFn = function setFn(value) {
-				if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null && typeof t.mediaElement.renderer['set' + capName] === 'function') {
-					t.mediaElement.renderer['set' + capName](value);
+			    setfn = function setfn(value) {
+				if (t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null && typeof t.mediaelement.renderer['set' + capname] === 'function') {
+					t.mediaelement.renderer['set' + capname](value);
 				}
 			};
 
-			addProperty(t.mediaElement, propName, getFn, setFn);
-			t.mediaElement['get' + capName] = getFn;
-			t.mediaElement['set' + capName] = setFn;
+			addproperty(t.mediaelement, propname, getfn, setfn);
+			t.mediaelement['get' + capname] = getfn;
+			t.mediaelement['set' + capname] = setfn;
 		}
 	},
-	    getSrc = function getSrc() {
-		return t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null ? t.mediaElement.renderer.getSrc() : null;
+	    getsrc = function getsrc() {
+		return t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null ? t.mediaelement.renderer.getsrc() : null;
 	},
-	    setSrc = function setSrc(value) {
-		var mediaFiles = [];
+	    setsrc = function setsrc(value) {
+		var mediafiles = [];
 
 		if (typeof value === 'string') {
-			mediaFiles.push({
+			mediafiles.push({
 				src: value,
-				type: value ? (0, _media2.getTypeFromFile)(value) : ''
+				type: value ? (0, _media2.gettypefromfile)(value) : ''
 			});
 		} else if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.src !== undefined) {
-			var _src = (0, _media2.absolutizeUrl)(value.src),
+			var _src = (0, _media2.absolutizeurl)(value.src),
 			    _type2 = value.type,
-			    media = Object.assign(value, {
+			    media = object.assign(value, {
 				src: _src,
-				type: (_type2 === '' || _type2 === null || _type2 === undefined) && _src ? (0, _media2.getTypeFromFile)(_src) : _type2
+				type: (_type2 === '' || _type2 === null || _type2 === undefined) && _src ? (0, _media2.gettypefromfile)(_src) : _type2
 			});
-			mediaFiles.push(media);
-		} else if (Array.isArray(value)) {
+			mediafiles.push(media);
+		} else if (array.isarray(value)) {
 			for (var _i2 = 0, total = value.length; _i2 < total; _i2++) {
 
-				var _src2 = (0, _media2.absolutizeUrl)(value[_i2].src),
+				var _src2 = (0, _media2.absolutizeurl)(value[_i2].src),
 				    _type3 = value[_i2].type,
-				    _media = Object.assign(value[_i2], {
+				    _media = object.assign(value[_i2], {
 					src: _src2,
-					type: (_type3 === '' || _type3 === null || _type3 === undefined) && _src2 ? (0, _media2.getTypeFromFile)(_src2) : _type3
+					type: (_type3 === '' || _type3 === null || _type3 === undefined) && _src2 ? (0, _media2.gettypefromfile)(_src2) : _type3
 				});
 
-				mediaFiles.push(_media);
+				mediafiles.push(_media);
 			}
 		}
 
-		var renderInfo = _renderer.renderer.select(mediaFiles, t.mediaElement.options.renderers.length ? t.mediaElement.options.renderers : []),
+		var renderinfo = _renderer.renderer.select(mediafiles, t.mediaelement.options.renderers.length ? t.mediaelement.options.renderers : []),
 		    event = void 0;
 
-		if (!t.mediaElement.paused && !(t.mediaElement.src == null || t.mediaElement.src === '')) {
-			t.mediaElement.pause();
-			event = (0, _general.createEvent)('pause', t.mediaElement);
-			t.mediaElement.dispatchEvent(event);
+		if (!t.mediaelement.paused && !(t.mediaelement.src == null || t.mediaelement.src === '')) {
+			t.mediaelement.pause();
+			event = (0, _general.createevent)('pause', t.mediaelement);
+			t.mediaelement.dispatchevent(event);
 		}
-		t.mediaElement.originalNode.src = mediaFiles[0].src || '';
+		t.mediaelement.originalnode.src = mediafiles[0].src || '';
 
-		if (renderInfo === null && mediaFiles[0].src) {
-			t.mediaElement.generateError('No renderer found', mediaFiles);
+		if (renderinfo === null && mediafiles[0].src) {
+			t.mediaelement.generateerror('no renderer found', mediafiles);
 			return;
 		}
 
-		var shouldChangeRenderer = !(mediaFiles[0].src == null || mediaFiles[0].src === '');
-		return shouldChangeRenderer ? t.mediaElement.changeRenderer(renderInfo.rendererName, mediaFiles) : null;
+		var shouldchangerenderer = !(mediafiles[0].src == null || mediafiles[0].src === '');
+		return shouldchangerenderer ? t.mediaelement.changerenderer(renderinfo.renderername, mediafiles) : null;
 	},
-	    triggerAction = function triggerAction(methodName, args) {
+	    triggeraction = function triggeraction(methodname, args) {
 		try {
-			if (methodName === 'play' && (t.mediaElement.rendererName === 'native_dash' || t.mediaElement.rendererName === 'native_hls' || t.mediaElement.rendererName === 'vimeo_iframe')) {
-				var response = t.mediaElement.renderer[methodName](args);
+			if (methodname === 'play' && (t.mediaelement.renderername === 'native_dash' || t.mediaelement.renderername === 'native_hls' || t.mediaelement.renderername === 'vimeo_iframe')) {
+				var response = t.mediaelement.renderer[methodname](args);
 				if (response && typeof response.then === 'function') {
 					response.catch(function () {
-						if (t.mediaElement.paused) {
-							setTimeout(function () {
-								var tmpResponse = t.mediaElement.renderer.play();
-								if (tmpResponse !== undefined) {
-									tmpResponse.catch(function () {
-										if (!t.mediaElement.renderer.paused) {
-											t.mediaElement.renderer.pause();
+						if (t.mediaelement.paused) {
+							settimeout(function () {
+								var tmpresponse = t.mediaelement.renderer.play();
+								if (tmpresponse !== undefined) {
+									tmpresponse.catch(function () {
+										if (!t.mediaelement.renderer.paused) {
+											t.mediaelement.renderer.pause();
 										}
 									});
 								}
@@ -883,78 +883,78 @@ var MediaElement = function MediaElement(idOrNode, options, sources) {
 					});
 				}
 			} else {
-				t.mediaElement.renderer[methodName](args);
+				t.mediaelement.renderer[methodname](args);
 			}
 		} catch (e) {
-			t.mediaElement.generateError(e, mediaFiles);
+			t.mediaelement.generateerror(e, mediafiles);
 		}
 	},
-	    assignMethods = function assignMethods(methodName) {
-		t.mediaElement[methodName] = function () {
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	    assignmethods = function assignmethods(methodname) {
+		t.mediaelement[methodname] = function () {
+			for (var _len = arguments.length, args = array(_len), _key = 0; _key < _len; _key++) {
 				args[_key] = arguments[_key];
 			}
 
-			if (t.mediaElement.renderer !== undefined && t.mediaElement.renderer !== null && typeof t.mediaElement.renderer[methodName] === 'function') {
-				if (t.mediaElement.promises.length) {
-					Promise.all(t.mediaElement.promises).then(function () {
-						triggerAction(methodName, args);
+			if (t.mediaelement.renderer !== undefined && t.mediaelement.renderer !== null && typeof t.mediaelement.renderer[methodname] === 'function') {
+				if (t.mediaelement.promises.length) {
+					promise.all(t.mediaelement.promises).then(function () {
+						triggeraction(methodname, args);
 					}).catch(function (e) {
-						t.mediaElement.generateError(e, mediaFiles);
+						t.mediaelement.generateerror(e, mediafiles);
 					});
 				} else {
-					triggerAction(methodName, args);
+					triggeraction(methodname, args);
 				}
 			}
 			return null;
 		};
 	};
 
-	addProperty(t.mediaElement, 'src', getSrc, setSrc);
-	t.mediaElement.getSrc = getSrc;
-	t.mediaElement.setSrc = setSrc;
+	addproperty(t.mediaelement, 'src', getsrc, setsrc);
+	t.mediaelement.getsrc = getsrc;
+	t.mediaelement.setsrc = setsrc;
 
 	for (var _i3 = 0, total = props.length; _i3 < total; _i3++) {
-		assignGettersSetters(props[_i3]);
+		assigngetterssetters(props[_i3]);
 	}
 
 	for (var _i4 = 0, _total = methods.length; _i4 < _total; _i4++) {
-		assignMethods(methods[_i4]);
+		assignmethods(methods[_i4]);
 	}
 
-	t.mediaElement.addEventListener = function (eventName, callback) {
-		t.mediaElement.events[eventName] = t.mediaElement.events[eventName] || [];
+	t.mediaelement.addeventlistener = function (eventname, callback) {
+		t.mediaelement.events[eventname] = t.mediaelement.events[eventname] || [];
 
-		t.mediaElement.events[eventName].push(callback);
+		t.mediaelement.events[eventname].push(callback);
 	};
-	t.mediaElement.removeEventListener = function (eventName, callback) {
-		if (!eventName) {
-			t.mediaElement.events = {};
+	t.mediaelement.removeeventlistener = function (eventname, callback) {
+		if (!eventname) {
+			t.mediaelement.events = {};
 			return true;
 		}
 
-		var callbacks = t.mediaElement.events[eventName];
+		var callbacks = t.mediaelement.events[eventname];
 
 		if (!callbacks) {
 			return true;
 		}
 
 		if (!callback) {
-			t.mediaElement.events[eventName] = [];
+			t.mediaelement.events[eventname] = [];
 			return true;
 		}
 
 		for (var _i5 = 0; _i5 < callbacks.length; _i5++) {
 			if (callbacks[_i5] === callback) {
-				t.mediaElement.events[eventName].splice(_i5, 1);
+				t.mediaelement.events[eventname].splice(_i5, 1);
 				return true;
 			}
 		}
 		return false;
 	};
 
-	t.mediaElement.dispatchEvent = function (event) {
-		var callbacks = t.mediaElement.events[event.type];
+	t.mediaelement.dispatchevent = function (event) {
+		var callbacks = t.mediaelement.events[event.type];
 		if (callbacks) {
 			for (var _i6 = 0; _i6 < callbacks.length; _i6++) {
 				callbacks[_i6].apply(null, [event]);
@@ -962,73 +962,73 @@ var MediaElement = function MediaElement(idOrNode, options, sources) {
 		}
 	};
 
-	t.mediaElement.destroy = function () {
-		var mediaElement = t.mediaElement.originalNode.cloneNode(true);
-		var wrapper = t.mediaElement.parentElement;
-		mediaElement.removeAttribute('id');
-		mediaElement.remove();
-		t.mediaElement.remove();
-		wrapper.appendChild(mediaElement);
+	t.mediaelement.destroy = function () {
+		var mediaelement = t.mediaelement.originalnode.clonenode(true);
+		var wrapper = t.mediaelement.parentelement;
+		mediaelement.removeattribute('id');
+		mediaelement.remove();
+		t.mediaelement.remove();
+		wrapper.appendchild(mediaelement);
 	};
 
-	if (mediaFiles.length) {
-		t.mediaElement.src = mediaFiles;
+	if (mediafiles.length) {
+		t.mediaelement.src = mediafiles;
 	}
 
-	if (t.mediaElement.promises.length) {
-		Promise.all(t.mediaElement.promises).then(function () {
-			if (t.mediaElement.options.success) {
-				t.mediaElement.options.success(t.mediaElement, t.mediaElement.originalNode);
+	if (t.mediaelement.promises.length) {
+		promise.all(t.mediaelement.promises).then(function () {
+			if (t.mediaelement.options.success) {
+				t.mediaelement.options.success(t.mediaelement, t.mediaelement.originalnode);
 			}
 		}).catch(function () {
-			if (error && t.mediaElement.options.error) {
-				t.mediaElement.options.error(t.mediaElement, t.mediaElement.originalNode);
+			if (error && t.mediaelement.options.error) {
+				t.mediaelement.options.error(t.mediaelement, t.mediaelement.originalnode);
 			}
 		});
 	} else {
-		if (t.mediaElement.options.success) {
-			t.mediaElement.options.success(t.mediaElement, t.mediaElement.originalNode);
+		if (t.mediaelement.options.success) {
+			t.mediaelement.options.success(t.mediaelement, t.mediaelement.originalnode);
 		}
 
-		if (error && t.mediaElement.options.error) {
-			t.mediaElement.options.error(t.mediaElement, t.mediaElement.originalNode);
+		if (error && t.mediaelement.options.error) {
+			t.mediaelement.options.error(t.mediaelement, t.mediaelement.originalnode);
 		}
 	}
 
-	return t.mediaElement;
+	return t.mediaelement;
 };
 
-_window2.default.MediaElement = MediaElement;
-_mejs2.default.MediaElement = MediaElement;
+_window2.default.mediaelement = mediaelement;
+_mejs2.default.mediaelement = mediaelement;
 
-exports.default = MediaElement;
+exports.default = mediaelement;
 
 },{"2":2,"25":25,"27":27,"28":28,"3":3,"7":7,"8":8}],7:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
 var mejs = {};
 
 mejs.version = '4.2.17';
 
 mejs.html5media = {
-	properties: ['volume', 'src', 'currentTime', 'muted', 'duration', 'paused', 'ended', 'buffered', 'error', 'networkState', 'readyState', 'seeking', 'seekable', 'currentSrc', 'preload', 'bufferedBytes', 'bufferedTime', 'initialTime', 'startOffsetTime', 'defaultPlaybackRate', 'playbackRate', 'played', 'autoplay', 'loop', 'controls'],
-	readOnlyProperties: ['duration', 'paused', 'ended', 'buffered', 'error', 'networkState', 'readyState', 'seeking', 'seekable'],
+	properties: ['volume', 'src', 'currenttime', 'muted', 'duration', 'paused', 'ended', 'buffered', 'error', 'networkstate', 'readystate', 'seeking', 'seekable', 'currentsrc', 'preload', 'bufferedbytes', 'bufferedtime', 'initialtime', 'startoffsettime', 'defaultplaybackrate', 'playbackrate', 'played', 'autoplay', 'loop', 'controls'],
+	readonlyproperties: ['duration', 'paused', 'ended', 'buffered', 'error', 'networkstate', 'readystate', 'seeking', 'seekable'],
 
-	methods: ['load', 'play', 'pause', 'canPlayType'],
+	methods: ['load', 'play', 'pause', 'canplaytype'],
 
 	events: ['loadstart', 'durationchange', 'loadedmetadata', 'loadeddata', 'progress', 'canplay', 'canplaythrough', 'suspend', 'abort', 'error', 'emptied', 'stalled', 'play', 'playing', 'pause', 'waiting', 'seeking', 'seeked', 'timeupdate', 'ended', 'ratechange', 'volumechange'],
 
-	mediaTypes: ['audio/mp3', 'audio/ogg', 'audio/oga', 'audio/wav', 'audio/x-wav', 'audio/wave', 'audio/x-pn-wav', 'audio/mpeg', 'audio/mp4', 'video/mp4', 'video/webm', 'video/ogg', 'video/ogv']
+	mediatypes: ['audio/mp3', 'audio/ogg', 'audio/oga', 'audio/wav', 'audio/x-wav', 'audio/wave', 'audio/x-pn-wav', 'audio/mpeg', 'audio/mp4', 'video/mp4', 'video/webm', 'video/ogg', 'video/ogv']
 };
 
 _window2.default.mejs = mejs;
@@ -1038,36 +1038,36 @@ exports.default = mejs;
 },{"3":3}],8:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
 exports.renderer = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createclass = function () { function defineproperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; object.defineproperty(target, descriptor.key, descriptor); } } return function (constructor, protoprops, staticprops) { if (protoprops) defineproperties(constructor.prototype, protoprops); if (staticprops) defineproperties(constructor, staticprops); return constructor; }; }();
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classcallcheck(instance, constructor) { if (!(instance instanceof constructor)) { throw new typeerror("cannot call a class as a function"); } }
 
-var Renderer = function () {
-	function Renderer() {
-		_classCallCheck(this, Renderer);
+var renderer = function () {
+	function renderer() {
+		_classcallcheck(this, renderer);
 
 		this.renderers = {};
 		this.order = [];
 	}
 
-	_createClass(Renderer, [{
+	_createclass(renderer, [{
 		key: 'add',
 		value: function add(renderer) {
 			if (renderer.name === undefined) {
-				throw new TypeError('renderer must contain at least `name` property');
+				throw new typeerror('renderer must contain at least `name` property');
 			}
 
 			this.renderers[renderer.name] = renderer;
@@ -1075,26 +1075,26 @@ var Renderer = function () {
 		}
 	}, {
 		key: 'select',
-		value: function select(mediaFiles) {
+		value: function select(mediafiles) {
 			var renderers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
-			var renderersLength = renderers.length;
+			var rendererslength = renderers.length;
 
 			renderers = renderers.length ? renderers : this.order;
 
-			if (!renderersLength) {
-				var rendererIndicator = [/^(html5|native)/i, /^flash/i, /iframe$/i],
-				    rendererRanking = function rendererRanking(renderer) {
-					for (var i = 0, total = rendererIndicator.length; i < total; i++) {
-						if (rendererIndicator[i].test(renderer)) {
+			if (!rendererslength) {
+				var rendererindicator = [/^(html5|native)/i, /^flash/i, /iframe$/i],
+				    rendererranking = function rendererranking(renderer) {
+					for (var i = 0, total = rendererindicator.length; i < total; i++) {
+						if (rendererindicator[i].test(renderer)) {
 							return i;
 						}
 					}
-					return rendererIndicator.length;
+					return rendererindicator.length;
 				};
 
 				renderers.sort(function (a, b) {
-					return rendererRanking(a) - rendererRanking(b);
+					return rendererranking(a) - rendererranking(b);
 				});
 			}
 
@@ -1103,11 +1103,11 @@ var Renderer = function () {
 				    _renderer = this.renderers[key];
 
 				if (_renderer !== null && _renderer !== undefined) {
-					for (var j = 0, jl = mediaFiles.length; j < jl; j++) {
-						if (typeof _renderer.canPlayType === 'function' && typeof mediaFiles[j].type === 'string' && _renderer.canPlayType(mediaFiles[j].type)) {
+					for (var j = 0, jl = mediafiles.length; j < jl; j++) {
+						if (typeof _renderer.canplaytype === 'function' && typeof mediafiles[j].type === 'string' && _renderer.canplaytype(mediafiles[j].type)) {
 							return {
-								rendererName: _renderer.name,
-								src: mediaFiles[j].src
+								renderername: _renderer.name,
+								src: mediafiles[j].src
 							};
 						}
 					}
@@ -1119,8 +1119,8 @@ var Renderer = function () {
 	}, {
 		key: 'order',
 		set: function set(order) {
-			if (!Array.isArray(order)) {
-				throw new TypeError('order must be an array of strings.');
+			if (!array.isarray(order)) {
+				throw new typeerror('order must be an array of strings.');
 			}
 
 			this._order = order;
@@ -1132,7 +1132,7 @@ var Renderer = function () {
 		key: 'renderers',
 		set: function set(renderers) {
 			if (renderers !== null && (typeof renderers === 'undefined' ? 'undefined' : _typeof(renderers)) !== 'object') {
-				throw new TypeError('renderers must be an array of objects.');
+				throw new typeerror('renderers must be an array of objects.');
 			}
 
 			this._renderers = renderers;
@@ -1142,35 +1142,35 @@ var Renderer = function () {
 		}
 	}]);
 
-	return Renderer;
+	return renderer;
 }();
 
-var renderer = exports.renderer = new Renderer();
+var renderer = exports.renderer = new renderer();
 
-_mejs2.default.Renderers = renderer;
+_mejs2.default.renderers = renderer;
 
 },{"7":7}],9:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
 var _constants = _dereq_(25);
 
-var Features = _interopRequireWildcard(_constants);
+var features = _interoprequirewildcard(_constants);
 
 var _general = _dereq_(27);
 
@@ -1178,183 +1178,183 @@ var _dom = _dereq_(26);
 
 var _media = _dereq_(28);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interoprequirewildcard(obj) { if (obj && obj.__esmodule) { return obj; } else { var newobj = {}; if (obj != null) { for (var key in obj) { if (object.prototype.hasownproperty.call(obj, key)) newobj[key] = obj[key]; } } newobj.default = obj; return newobj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-Object.assign(_player.config, {
-	usePluginFullScreen: true,
+object.assign(_player.config, {
+	usepluginfullscreen: true,
 
-	fullscreenText: null,
+	fullscreentext: null,
 
-	useFakeFullscreen: false
+	usefakefullscreen: false
 });
 
-Object.assign(_player2.default.prototype, {
-	isFullScreen: false,
+object.assign(_player2.default.prototype, {
+	isfullscreen: false,
 
-	isNativeFullScreen: false,
+	isnativefullscreen: false,
 
-	isInIframe: false,
+	isiniframe: false,
 
-	isPluginClickThroughCreated: false,
+	ispluginclickthroughcreated: false,
 
-	fullscreenMode: '',
+	fullscreenmode: '',
 
-	containerSizeTimeout: null,
+	containersizetimeout: null,
 
 	buildfullscreen: function buildfullscreen(player) {
-		if (!player.isVideo) {
+		if (!player.isvideo) {
 			return;
 		}
 
-		player.isInIframe = _window2.default.location !== _window2.default.parent.location;
+		player.isiniframe = _window2.default.location !== _window2.default.parent.location;
 
-		player.detectFullscreenMode();
+		player.detectfullscreenmode();
 
 		var t = this,
-		    fullscreenTitle = (0, _general.isString)(t.options.fullscreenText) ? t.options.fullscreenText : _i18n2.default.t('mejs.fullscreen'),
-		    fullscreenBtn = _document2.default.createElement('div');
+		    fullscreentitle = (0, _general.isstring)(t.options.fullscreentext) ? t.options.fullscreentext : _i18n2.default.t('mejs.fullscreen'),
+		    fullscreenbtn = _document2.default.createelement('div');
 
-		fullscreenBtn.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'fullscreen-button';
-		fullscreenBtn.innerHTML = '<button type="button" aria-controls="' + t.id + '" title="' + fullscreenTitle + '" aria-label="' + fullscreenTitle + '" tabindex="0"></button>';
-		t.addControlElement(fullscreenBtn, 'fullscreen');
+		fullscreenbtn.classname = t.options.classprefix + 'button ' + t.options.classprefix + 'fullscreen-button';
+		fullscreenbtn.innerhtml = '<button type="button" aria-controls="' + t.id + '" title="' + fullscreentitle + '" aria-label="' + fullscreentitle + '" tabindex="0"></button>';
+		t.addcontrolelement(fullscreenbtn, 'fullscreen');
 
-		fullscreenBtn.addEventListener('click', function () {
-			var isFullScreen = Features.HAS_TRUE_NATIVE_FULLSCREEN && Features.IS_FULLSCREEN || player.isFullScreen;
+		fullscreenbtn.addeventlistener('click', function () {
+			var isfullscreen = features.has_true_native_fullscreen && features.is_fullscreen || player.isfullscreen;
 
-			if (isFullScreen) {
-				player.exitFullScreen();
+			if (isfullscreen) {
+				player.exitfullscreen();
 			} else {
-				player.enterFullScreen();
+				player.enterfullscreen();
 			}
 		});
 
-		player.fullscreenBtn = fullscreenBtn;
+		player.fullscreenbtn = fullscreenbtn;
 
-		t.options.keyActions.push({
+		t.options.keyactions.push({
 			keys: [70],
 			action: function action(player, media, key, event) {
-				if (!event.ctrlKey) {
-					if (typeof player.enterFullScreen !== 'undefined') {
-						if (player.isFullScreen) {
-							player.exitFullScreen();
+				if (!event.ctrlkey) {
+					if (typeof player.enterfullscreen !== 'undefined') {
+						if (player.isfullscreen) {
+							player.exitfullscreen();
 						} else {
-							player.enterFullScreen();
+							player.enterfullscreen();
 						}
 					}
 				}
 			}
 		});
 
-		t.exitFullscreenCallback = function (e) {
-			var key = e.which || e.keyCode || 0;
-			if (t.options.enableKeyboard && key === 27 && (Features.HAS_TRUE_NATIVE_FULLSCREEN && Features.IS_FULLSCREEN || t.isFullScreen)) {
-				player.exitFullScreen();
+		t.exitfullscreencallback = function (e) {
+			var key = e.which || e.keycode || 0;
+			if (t.options.enablekeyboard && key === 27 && (features.has_true_native_fullscreen && features.is_fullscreen || t.isfullscreen)) {
+				player.exitfullscreen();
 			}
 		};
 
-		t.globalBind('keydown', t.exitFullscreenCallback);
+		t.globalbind('keydown', t.exitfullscreencallback);
 
-		t.normalHeight = 0;
-		t.normalWidth = 0;
+		t.normalheight = 0;
+		t.normalwidth = 0;
 
-		if (Features.HAS_TRUE_NATIVE_FULLSCREEN) {
-			var fullscreenChanged = function fullscreenChanged() {
-				if (player.isFullScreen) {
-					if (Features.isFullScreen()) {
-						player.isNativeFullScreen = true;
+		if (features.has_true_native_fullscreen) {
+			var fullscreenchanged = function fullscreenchanged() {
+				if (player.isfullscreen) {
+					if (features.isfullscreen()) {
+						player.isnativefullscreen = true;
 
-						player.setControlsSize();
+						player.setcontrolssize();
 					} else {
-						player.isNativeFullScreen = false;
+						player.isnativefullscreen = false;
 
-						player.exitFullScreen();
+						player.exitfullscreen();
 					}
 				}
 			};
 
-			player.globalBind(Features.FULLSCREEN_EVENT_NAME, fullscreenChanged);
+			player.globalbind(features.fullscreen_event_name, fullscreenchanged);
 		}
 	},
 	cleanfullscreen: function cleanfullscreen(player) {
-		player.exitFullScreen();
-		player.globalUnbind('keydown', player.exitFullscreenCallback);
+		player.exitfullscreen();
+		player.globalunbind('keydown', player.exitfullscreencallback);
 	},
-	detectFullscreenMode: function detectFullscreenMode() {
+	detectfullscreenmode: function detectfullscreenmode() {
 		var t = this,
-		    isNative = t.media.rendererName !== null && /(native|html5)/i.test(t.media.rendererName);
+		    isnative = t.media.renderername !== null && /(native|html5)/i.test(t.media.renderername);
 
 		var mode = '';
 
-		if (Features.HAS_TRUE_NATIVE_FULLSCREEN && isNative) {
+		if (features.has_true_native_fullscreen && isnative) {
 			mode = 'native-native';
-		} else if (Features.HAS_TRUE_NATIVE_FULLSCREEN && !isNative) {
+		} else if (features.has_true_native_fullscreen && !isnative) {
 			mode = 'plugin-native';
-		} else if (t.usePluginFullScreen && Features.SUPPORT_POINTER_EVENTS) {
+		} else if (t.usepluginfullscreen && features.support_pointer_events) {
 			mode = 'plugin-click';
 		}
 
-		t.fullscreenMode = mode;
+		t.fullscreenmode = mode;
 		return mode;
 	},
-	enterFullScreen: function enterFullScreen() {
+	enterfullscreen: function enterfullscreen() {
 		var t = this,
-		    isNative = t.media.rendererName !== null && /(html5|native)/i.test(t.media.rendererName),
-		    containerStyles = getComputedStyle(t.getElement(t.container));
+		    isnative = t.media.renderername !== null && /(html5|native)/i.test(t.media.renderername),
+		    containerstyles = getcomputedstyle(t.getelement(t.container));
 
-		if (!t.isVideo) {
+		if (!t.isvideo) {
 			return;
 		}
 
-		if (t.options.useFakeFullscreen === false && (Features.IS_IOS || Features.IS_SAFARI) && Features.HAS_IOS_FULLSCREEN && typeof t.media.originalNode.webkitEnterFullscreen === 'function' && t.media.originalNode.canPlayType((0, _media.getTypeFromFile)(t.media.getSrc()))) {
-			t.media.originalNode.webkitEnterFullscreen();
+		if (t.options.usefakefullscreen === false && (features.is_ios || features.is_safari) && features.has_ios_fullscreen && typeof t.media.originalnode.webkitenterfullscreen === 'function' && t.media.originalnode.canplaytype((0, _media.gettypefromfile)(t.media.getsrc()))) {
+			t.media.originalnode.webkitenterfullscreen();
 			return;
 		}
 
-		(0, _dom.addClass)(_document2.default.documentElement, t.options.classPrefix + 'fullscreen');
-		(0, _dom.addClass)(t.getElement(t.container), t.options.classPrefix + 'container-fullscreen');
+		(0, _dom.addclass)(_document2.default.documentelement, t.options.classprefix + 'fullscreen');
+		(0, _dom.addclass)(t.getelement(t.container), t.options.classprefix + 'container-fullscreen');
 
-		t.normalHeight = parseFloat(containerStyles.height);
-		t.normalWidth = parseFloat(containerStyles.width);
+		t.normalheight = parsefloat(containerstyles.height);
+		t.normalwidth = parsefloat(containerstyles.width);
 
-		if (t.fullscreenMode === 'native-native' || t.fullscreenMode === 'plugin-native') {
-			Features.requestFullScreen(t.getElement(t.container));
+		if (t.fullscreenmode === 'native-native' || t.fullscreenmode === 'plugin-native') {
+			features.requestfullscreen(t.getelement(t.container));
 
-			if (t.isInIframe) {
-				setTimeout(function checkFullscreen() {
+			if (t.isiniframe) {
+				settimeout(function checkfullscreen() {
 
-					if (t.isNativeFullScreen) {
-						var percentErrorMargin = 0.002,
-						    windowWidth = _window2.default.innerWidth || _document2.default.documentElement.clientWidth || _document2.default.body.clientWidth,
-						    screenWidth = screen.width,
-						    absDiff = Math.abs(screenWidth - windowWidth),
-						    marginError = screenWidth * percentErrorMargin;
+					if (t.isnativefullscreen) {
+						var percenterrormargin = 0.002,
+						    windowwidth = _window2.default.innerwidth || _document2.default.documentelement.clientwidth || _document2.default.body.clientwidth,
+						    screenwidth = screen.width,
+						    absdiff = math.abs(screenwidth - windowwidth),
+						    marginerror = screenwidth * percenterrormargin;
 
-						if (absDiff > marginError) {
-							t.exitFullScreen();
+						if (absdiff > marginerror) {
+							t.exitfullscreen();
 						} else {
-							setTimeout(checkFullscreen, 500);
+							settimeout(checkfullscreen, 500);
 						}
 					}
 				}, 1000);
 			}
 		}
 
-		t.getElement(t.container).style.width = '100%';
-		t.getElement(t.container).style.height = '100%';
+		t.getelement(t.container).style.width = '100%';
+		t.getelement(t.container).style.height = '100%';
 
-		t.containerSizeTimeout = setTimeout(function () {
-			t.getElement(t.container).style.width = '100%';
-			t.getElement(t.container).style.height = '100%';
-			t.setControlsSize();
+		t.containersizetimeout = settimeout(function () {
+			t.getelement(t.container).style.width = '100%';
+			t.getelement(t.container).style.height = '100%';
+			t.setcontrolssize();
 		}, 500);
 
-		if (isNative) {
+		if (isnative) {
 			t.node.style.width = '100%';
 			t.node.style.height = '100%';
 		} else {
-			var elements = t.getElement(t.container).querySelectorAll('embed, object, video'),
+			var elements = t.getelement(t.container).queryselectorall('embed, object, video'),
 			    _total = elements.length;
 			for (var i = 0; i < _total; i++) {
 				elements[i].style.width = '100%';
@@ -1362,96 +1362,96 @@ Object.assign(_player2.default.prototype, {
 			}
 		}
 
-		if (t.options.setDimensions && typeof t.media.setSize === 'function') {
-			t.media.setSize(screen.width, screen.height);
+		if (t.options.setdimensions && typeof t.media.setsize === 'function') {
+			t.media.setsize(screen.width, screen.height);
 		}
 
-		var layers = t.getElement(t.layers).children,
+		var layers = t.getelement(t.layers).children,
 		    total = layers.length;
 		for (var _i = 0; _i < total; _i++) {
 			layers[_i].style.width = '100%';
 			layers[_i].style.height = '100%';
 		}
 
-		if (t.fullscreenBtn) {
-			(0, _dom.removeClass)(t.fullscreenBtn, t.options.classPrefix + 'fullscreen');
-			(0, _dom.addClass)(t.fullscreenBtn, t.options.classPrefix + 'unfullscreen');
+		if (t.fullscreenbtn) {
+			(0, _dom.removeclass)(t.fullscreenbtn, t.options.classprefix + 'fullscreen');
+			(0, _dom.addclass)(t.fullscreenbtn, t.options.classprefix + 'unfullscreen');
 		}
 
-		t.setControlsSize();
-		t.isFullScreen = true;
+		t.setcontrolssize();
+		t.isfullscreen = true;
 
-		var zoomFactor = Math.min(screen.width / t.width, screen.height / t.height),
-		    captionText = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'captions-text');
-		if (captionText) {
-			captionText.style.fontSize = zoomFactor * 100 + '%';
-			captionText.style.lineHeight = 'normal';
-			t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'captions-position').style.bottom = (screen.height - t.normalHeight) / 2 - t.getElement(t.controls).offsetHeight / 2 + zoomFactor + 15 + 'px';
+		var zoomfactor = math.min(screen.width / t.width, screen.height / t.height),
+		    captiontext = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'captions-text');
+		if (captiontext) {
+			captiontext.style.fontsize = zoomfactor * 100 + '%';
+			captiontext.style.lineheight = 'normal';
+			t.getelement(t.container).queryselector('.' + t.options.classprefix + 'captions-position').style.bottom = (screen.height - t.normalheight) / 2 - t.getelement(t.controls).offsetheight / 2 + zoomfactor + 15 + 'px';
 		}
-		var event = (0, _general.createEvent)('enteredfullscreen', t.getElement(t.container));
-		t.getElement(t.container).dispatchEvent(event);
+		var event = (0, _general.createevent)('enteredfullscreen', t.getelement(t.container));
+		t.getelement(t.container).dispatchevent(event);
 	},
-	exitFullScreen: function exitFullScreen() {
+	exitfullscreen: function exitfullscreen() {
 		var t = this,
-		    isNative = t.media.rendererName !== null && /(native|html5)/i.test(t.media.rendererName);
+		    isnative = t.media.renderername !== null && /(native|html5)/i.test(t.media.renderername);
 
-		if (!t.isVideo) {
+		if (!t.isvideo) {
 			return;
 		}
 
-		clearTimeout(t.containerSizeTimeout);
+		cleartimeout(t.containersizetimeout);
 
-		if (Features.HAS_TRUE_NATIVE_FULLSCREEN && (Features.IS_FULLSCREEN || t.isFullScreen)) {
-			Features.cancelFullScreen();
+		if (features.has_true_native_fullscreen && (features.is_fullscreen || t.isfullscreen)) {
+			features.cancelfullscreen();
 		}
 
-		(0, _dom.removeClass)(_document2.default.documentElement, t.options.classPrefix + 'fullscreen');
-		(0, _dom.removeClass)(t.getElement(t.container), t.options.classPrefix + 'container-fullscreen');
+		(0, _dom.removeclass)(_document2.default.documentelement, t.options.classprefix + 'fullscreen');
+		(0, _dom.removeclass)(t.getelement(t.container), t.options.classprefix + 'container-fullscreen');
 
-		if (t.options.setDimensions) {
-			t.getElement(t.container).style.width = t.normalWidth + 'px';
-			t.getElement(t.container).style.height = t.normalHeight + 'px';
+		if (t.options.setdimensions) {
+			t.getelement(t.container).style.width = t.normalwidth + 'px';
+			t.getelement(t.container).style.height = t.normalheight + 'px';
 
-			if (isNative) {
-				t.node.style.width = t.normalWidth + 'px';
-				t.node.style.height = t.normalHeight + 'px';
+			if (isnative) {
+				t.node.style.width = t.normalwidth + 'px';
+				t.node.style.height = t.normalheight + 'px';
 			} else {
-				var elements = t.getElement(t.container).querySelectorAll('embed, object, video'),
+				var elements = t.getelement(t.container).queryselectorall('embed, object, video'),
 				    _total2 = elements.length;
 				for (var i = 0; i < _total2; i++) {
-					elements[i].style.width = t.normalWidth + 'px';
-					elements[i].style.height = t.normalHeight + 'px';
+					elements[i].style.width = t.normalwidth + 'px';
+					elements[i].style.height = t.normalheight + 'px';
 				}
 			}
 
-			if (typeof t.media.setSize === 'function') {
-				t.media.setSize(t.normalWidth, t.normalHeight);
+			if (typeof t.media.setsize === 'function') {
+				t.media.setsize(t.normalwidth, t.normalheight);
 			}
 
-			var layers = t.getElement(t.layers).children,
+			var layers = t.getelement(t.layers).children,
 			    total = layers.length;
 			for (var _i2 = 0; _i2 < total; _i2++) {
-				layers[_i2].style.width = t.normalWidth + 'px';
-				layers[_i2].style.height = t.normalHeight + 'px';
+				layers[_i2].style.width = t.normalwidth + 'px';
+				layers[_i2].style.height = t.normalheight + 'px';
 			}
 		}
 
-		if (t.fullscreenBtn) {
-			(0, _dom.removeClass)(t.fullscreenBtn, t.options.classPrefix + 'unfullscreen');
-			(0, _dom.addClass)(t.fullscreenBtn, t.options.classPrefix + 'fullscreen');
+		if (t.fullscreenbtn) {
+			(0, _dom.removeclass)(t.fullscreenbtn, t.options.classprefix + 'unfullscreen');
+			(0, _dom.addclass)(t.fullscreenbtn, t.options.classprefix + 'fullscreen');
 		}
 
-		t.setControlsSize();
-		t.isFullScreen = false;
+		t.setcontrolssize();
+		t.isfullscreen = false;
 
-		var captionText = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'captions-text');
-		if (captionText) {
-			captionText.style.fontSize = '';
-			captionText.style.lineHeight = '';
-			t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'captions-position').style.bottom = '';
+		var captiontext = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'captions-text');
+		if (captiontext) {
+			captiontext.style.fontsize = '';
+			captiontext.style.lineheight = '';
+			t.getelement(t.container).queryselector('.' + t.options.classprefix + 'captions-position').style.bottom = '';
 		}
-		var event = (0, _general.createEvent)('exitedfullscreen', t.getElement(t.container));
-		t.getElement(t.container).dispatchEvent(event);
+		var event = (0, _general.createevent)('exitedfullscreen', t.getelement(t.container));
+		t.getelement(t.container).dispatchevent(event);
 	}
 });
 
@@ -1460,39 +1460,39 @@ Object.assign(_player2.default.prototype, {
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _general = _dereq_(27);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-Object.assign(_player.config, {
-	playText: null,
+object.assign(_player.config, {
+	playtext: null,
 
-	pauseText: null
+	pausetext: null
 });
 
-Object.assign(_player2.default.prototype, {
+object.assign(_player2.default.prototype, {
 	buildplaypause: function buildplaypause(player, controls, layers, media) {
 		var t = this,
 		    op = t.options,
-		    playTitle = (0, _general.isString)(op.playText) ? op.playText : _i18n2.default.t('mejs.play'),
-		    pauseTitle = (0, _general.isString)(op.pauseText) ? op.pauseText : _i18n2.default.t('mejs.pause'),
-		    play = _document2.default.createElement('div');
+		    playtitle = (0, _general.isstring)(op.playtext) ? op.playtext : _i18n2.default.t('mejs.play'),
+		    pausetitle = (0, _general.isstring)(op.pausetext) ? op.pausetext : _i18n2.default.t('mejs.pause'),
+		    play = _document2.default.createelement('div');
 
-		play.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'playpause-button ' + t.options.classPrefix + 'play';
-		play.innerHTML = '<button type="button" aria-controls="' + t.id + '" title="' + playTitle + '" aria-label="' + pauseTitle + '" tabindex="0"></button>';
-		play.addEventListener('click', function () {
+		play.classname = t.options.classprefix + 'button ' + t.options.classprefix + 'playpause-button ' + t.options.classprefix + 'play';
+		play.innerhtml = '<button type="button" aria-controls="' + t.id + '" title="' + playtitle + '" aria-label="' + pausetitle + '" tabindex="0"></button>';
+		play.addeventlistener('click', function () {
 			if (t.paused) {
 				t.play();
 			} else {
@@ -1500,49 +1500,49 @@ Object.assign(_player2.default.prototype, {
 			}
 		});
 
-		var playBtn = play.querySelector('button');
-		t.addControlElement(play, 'playpause');
+		var playbtn = play.queryselector('button');
+		t.addcontrolelement(play, 'playpause');
 
-		function togglePlayPause(which) {
+		function toggleplaypause(which) {
 			if ('play' === which) {
-				(0, _dom.removeClass)(play, t.options.classPrefix + 'play');
-				(0, _dom.removeClass)(play, t.options.classPrefix + 'replay');
-				(0, _dom.addClass)(play, t.options.classPrefix + 'pause');
-				playBtn.setAttribute('title', pauseTitle);
-				playBtn.setAttribute('aria-label', pauseTitle);
+				(0, _dom.removeclass)(play, t.options.classprefix + 'play');
+				(0, _dom.removeclass)(play, t.options.classprefix + 'replay');
+				(0, _dom.addclass)(play, t.options.classprefix + 'pause');
+				playbtn.setattribute('title', pausetitle);
+				playbtn.setattribute('aria-label', pausetitle);
 			} else {
 
-				(0, _dom.removeClass)(play, t.options.classPrefix + 'pause');
-				(0, _dom.removeClass)(play, t.options.classPrefix + 'replay');
-				(0, _dom.addClass)(play, t.options.classPrefix + 'play');
-				playBtn.setAttribute('title', playTitle);
-				playBtn.setAttribute('aria-label', playTitle);
+				(0, _dom.removeclass)(play, t.options.classprefix + 'pause');
+				(0, _dom.removeclass)(play, t.options.classprefix + 'replay');
+				(0, _dom.addclass)(play, t.options.classprefix + 'play');
+				playbtn.setattribute('title', playtitle);
+				playbtn.setattribute('aria-label', playtitle);
 			}
 		}
 
-		togglePlayPause('pse');
+		toggleplaypause('pse');
 
-		media.addEventListener('loadedmetadata', function () {
-			if (media.rendererName.indexOf('flash') === -1) {
-				togglePlayPause('pse');
+		media.addeventlistener('loadedmetadata', function () {
+			if (media.renderername.indexof('flash') === -1) {
+				toggleplaypause('pse');
 			}
 		});
-		media.addEventListener('play', function () {
-			togglePlayPause('play');
+		media.addeventlistener('play', function () {
+			toggleplaypause('play');
 		});
-		media.addEventListener('playing', function () {
-			togglePlayPause('play');
+		media.addeventlistener('playing', function () {
+			toggleplaypause('play');
 		});
-		media.addEventListener('pause', function () {
-			togglePlayPause('pse');
+		media.addeventlistener('pause', function () {
+			toggleplaypause('pse');
 		});
-		media.addEventListener('ended', function () {
+		media.addeventlistener('ended', function () {
 			if (!player.options.loop) {
-				(0, _dom.removeClass)(play, t.options.classPrefix + 'pause');
-				(0, _dom.removeClass)(play, t.options.classPrefix + 'play');
-				(0, _dom.addClass)(play, t.options.classPrefix + 'replay');
-				playBtn.setAttribute('title', playTitle);
-				playBtn.setAttribute('aria-label', playTitle);
+				(0, _dom.removeclass)(play, t.options.classprefix + 'pause');
+				(0, _dom.removeclass)(play, t.options.classprefix + 'play');
+				(0, _dom.addclass)(play, t.options.classprefix + 'replay');
+				playbtn.setattribute('title', playtitle);
+				playbtn.setattribute('aria-label', playtitle);
 			}
 		});
 	}
@@ -1553,15 +1553,15 @@ Object.assign(_player2.default.prototype, {
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _constants = _dereq_(25);
 
@@ -1569,58 +1569,58 @@ var _time = _dereq_(30);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-Object.assign(_player.config, {
-	enableProgressTooltip: true,
+object.assign(_player.config, {
+	enableprogresstooltip: true,
 
-	useSmoothHover: true,
+	usesmoothhover: true,
 
-	forceLive: false
+	forcelive: false
 });
 
-Object.assign(_player2.default.prototype, {
+object.assign(_player2.default.prototype, {
 	buildprogress: function buildprogress(player, controls, layers, media) {
 
-		var lastKeyPressTime = 0,
-		    mouseIsDown = false,
-		    startedPaused = false;
+		var lastkeypresstime = 0,
+		    mouseisdown = false,
+		    startedpaused = false;
 
 		var t = this,
-		    autoRewindInitial = player.options.autoRewind,
-		    tooltip = player.options.enableProgressTooltip ? '<span class="' + t.options.classPrefix + 'time-float">' + ('<span class="' + t.options.classPrefix + 'time-float-current">00:00</span>') + ('<span class="' + t.options.classPrefix + 'time-float-corner"></span>') + '</span>' : '',
-		    rail = _document2.default.createElement('div');
+		    autorewindinitial = player.options.autorewind,
+		    tooltip = player.options.enableprogresstooltip ? '<span class="' + t.options.classprefix + 'time-float">' + ('<span class="' + t.options.classprefix + 'time-float-current">00:00</span>') + ('<span class="' + t.options.classprefix + 'time-float-corner"></span>') + '</span>' : '',
+		    rail = _document2.default.createelement('div');
 
-		rail.className = t.options.classPrefix + 'time-rail';
-		rail.innerHTML = '<span class="' + t.options.classPrefix + 'time-total ' + t.options.classPrefix + 'time-slider">' + ('<span class="' + t.options.classPrefix + 'time-buffering"></span>') + ('<span class="' + t.options.classPrefix + 'time-loaded"></span>') + ('<span class="' + t.options.classPrefix + 'time-current"></span>') + ('<span class="' + t.options.classPrefix + 'time-hovered no-hover"></span>') + ('<span class="' + t.options.classPrefix + 'time-handle"><span class="' + t.options.classPrefix + 'time-handle-content"></span></span>') + ('' + tooltip) + '</span>';
+		rail.classname = t.options.classprefix + 'time-rail';
+		rail.innerhtml = '<span class="' + t.options.classprefix + 'time-total ' + t.options.classprefix + 'time-slider">' + ('<span class="' + t.options.classprefix + 'time-buffering"></span>') + ('<span class="' + t.options.classprefix + 'time-loaded"></span>') + ('<span class="' + t.options.classprefix + 'time-current"></span>') + ('<span class="' + t.options.classprefix + 'time-hovered no-hover"></span>') + ('<span class="' + t.options.classprefix + 'time-handle"><span class="' + t.options.classprefix + 'time-handle-content"></span></span>') + ('' + tooltip) + '</span>';
 
-		t.addControlElement(rail, 'progress');
+		t.addcontrolelement(rail, 'progress');
 
-		t.options.keyActions.push({
+		t.options.keyactions.push({
 			keys: [37, 227],
 			action: function action(player) {
-				if (!isNaN(player.duration) && player.duration > 0) {
-					if (player.isVideo) {
-						player.showControls();
-						player.startControlsTimer();
+				if (!isnan(player.duration) && player.duration > 0) {
+					if (player.isvideo) {
+						player.showcontrols();
+						player.startcontrolstimer();
 					}
 
-					var timeSlider = player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'time-total');
-					if (timeSlider) {
-						timeSlider.focus();
+					var timeslider = player.getelement(player.container).queryselector('.' + t.options.classprefix + 'time-total');
+					if (timeslider) {
+						timeslider.focus();
 					}
 
-					var newTime = Math.max(player.currentTime - player.options.defaultSeekBackwardInterval(player), 0);
+					var newtime = math.max(player.currenttime - player.options.defaultseekbackwardinterval(player), 0);
 
 					if (!player.paused) {
 						player.pause();
 					}
 
-					setTimeout(function () {
-						player.setCurrentTime(newTime);
+					settimeout(function () {
+						player.setcurrenttime(newtime);
 					}, 0);
 
-					setTimeout(function () {
+					settimeout(function () {
 						player.play();
 					}, 0);
 				}
@@ -1629,236 +1629,236 @@ Object.assign(_player2.default.prototype, {
 			keys: [39, 228],
 			action: function action(player) {
 
-				if (!isNaN(player.duration) && player.duration > 0) {
-					if (player.isVideo) {
-						player.showControls();
-						player.startControlsTimer();
+				if (!isnan(player.duration) && player.duration > 0) {
+					if (player.isvideo) {
+						player.showcontrols();
+						player.startcontrolstimer();
 					}
 
-					var timeSlider = player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'time-total');
-					if (timeSlider) {
-						timeSlider.focus();
+					var timeslider = player.getelement(player.container).queryselector('.' + t.options.classprefix + 'time-total');
+					if (timeslider) {
+						timeslider.focus();
 					}
 
-					var newTime = Math.min(player.currentTime + player.options.defaultSeekForwardInterval(player), player.duration);
+					var newtime = math.min(player.currenttime + player.options.defaultseekforwardinterval(player), player.duration);
 
 					if (!player.paused) {
 						player.pause();
 					}
 
-					setTimeout(function () {
-						player.setCurrentTime(newTime);
+					settimeout(function () {
+						player.setcurrenttime(newtime);
 					}, 0);
 
-					setTimeout(function () {
+					settimeout(function () {
 						player.play();
 					}, 0);
 				}
 			}
 		});
 
-		t.rail = controls.querySelector('.' + t.options.classPrefix + 'time-rail');
-		t.total = controls.querySelector('.' + t.options.classPrefix + 'time-total');
-		t.loaded = controls.querySelector('.' + t.options.classPrefix + 'time-loaded');
-		t.current = controls.querySelector('.' + t.options.classPrefix + 'time-current');
-		t.handle = controls.querySelector('.' + t.options.classPrefix + 'time-handle');
-		t.timefloat = controls.querySelector('.' + t.options.classPrefix + 'time-float');
-		t.timefloatcurrent = controls.querySelector('.' + t.options.classPrefix + 'time-float-current');
-		t.slider = controls.querySelector('.' + t.options.classPrefix + 'time-slider');
-		t.hovered = controls.querySelector('.' + t.options.classPrefix + 'time-hovered');
-		t.buffer = controls.querySelector('.' + t.options.classPrefix + 'time-buffering');
-		t.newTime = 0;
-		t.forcedHandlePause = false;
-		t.setTransformStyle = function (element, value) {
+		t.rail = controls.queryselector('.' + t.options.classprefix + 'time-rail');
+		t.total = controls.queryselector('.' + t.options.classprefix + 'time-total');
+		t.loaded = controls.queryselector('.' + t.options.classprefix + 'time-loaded');
+		t.current = controls.queryselector('.' + t.options.classprefix + 'time-current');
+		t.handle = controls.queryselector('.' + t.options.classprefix + 'time-handle');
+		t.timefloat = controls.queryselector('.' + t.options.classprefix + 'time-float');
+		t.timefloatcurrent = controls.queryselector('.' + t.options.classprefix + 'time-float-current');
+		t.slider = controls.queryselector('.' + t.options.classprefix + 'time-slider');
+		t.hovered = controls.queryselector('.' + t.options.classprefix + 'time-hovered');
+		t.buffer = controls.queryselector('.' + t.options.classprefix + 'time-buffering');
+		t.newtime = 0;
+		t.forcedhandlepause = false;
+		t.settransformstyle = function (element, value) {
 			element.style.transform = value;
-			element.style.webkitTransform = value;
-			element.style.MozTransform = value;
-			element.style.msTransform = value;
-			element.style.OTransform = value;
+			element.style.webkittransform = value;
+			element.style.moztransform = value;
+			element.style.mstransform = value;
+			element.style.otransform = value;
 		};
 
 		t.buffer.style.display = 'none';
 
-		var handleMouseMove = function handleMouseMove(e) {
-			var totalStyles = getComputedStyle(t.total),
-			    offsetStyles = (0, _dom.offset)(t.total),
-			    width = t.total.offsetWidth,
+		var handlemousemove = function handlemousemove(e) {
+			var totalstyles = getcomputedstyle(t.total),
+			    offsetstyles = (0, _dom.offset)(t.total),
+			    width = t.total.offsetwidth,
 			    transform = function () {
-				if (totalStyles.webkitTransform !== undefined) {
-					return 'webkitTransform';
-				} else if (totalStyles.mozTransform !== undefined) {
-					return 'mozTransform ';
-				} else if (totalStyles.oTransform !== undefined) {
-					return 'oTransform';
-				} else if (totalStyles.msTransform !== undefined) {
-					return 'msTransform';
+				if (totalstyles.webkittransform !== undefined) {
+					return 'webkittransform';
+				} else if (totalstyles.moztransform !== undefined) {
+					return 'moztransform ';
+				} else if (totalstyles.otransform !== undefined) {
+					return 'otransform';
+				} else if (totalstyles.mstransform !== undefined) {
+					return 'mstransform';
 				} else {
 					return 'transform';
 				}
 			}(),
-			    cssMatrix = function () {
-				if ('WebKitCSSMatrix' in window) {
-					return 'WebKitCSSMatrix';
-				} else if ('MSCSSMatrix' in window) {
-					return 'MSCSSMatrix';
-				} else if ('CSSMatrix' in window) {
-					return 'CSSMatrix';
+			    cssmatrix = function () {
+				if ('webkitcssmatrix' in window) {
+					return 'webkitcssmatrix';
+				} else if ('mscssmatrix' in window) {
+					return 'mscssmatrix';
+				} else if ('cssmatrix' in window) {
+					return 'cssmatrix';
 				}
 			}();
 
 			var percentage = 0,
-			    leftPos = 0,
+			    leftpos = 0,
 			    pos = 0,
 			    x = void 0;
 
-			if (e.originalEvent && e.originalEvent.changedTouches) {
-				x = e.originalEvent.changedTouches[0].pageX;
-			} else if (e.changedTouches) {
-				x = e.changedTouches[0].pageX;
+			if (e.originalevent && e.originalevent.changedtouches) {
+				x = e.originalevent.changedtouches[0].pagex;
+			} else if (e.changedtouches) {
+				x = e.changedtouches[0].pagex;
 			} else {
-				x = e.pageX;
+				x = e.pagex;
 			}
 
-			if (t.getDuration()) {
-				if (x < offsetStyles.left) {
-					x = offsetStyles.left;
-				} else if (x > width + offsetStyles.left) {
-					x = width + offsetStyles.left;
+			if (t.getduration()) {
+				if (x < offsetstyles.left) {
+					x = offsetstyles.left;
+				} else if (x > width + offsetstyles.left) {
+					x = width + offsetstyles.left;
 				}
 
-				pos = x - offsetStyles.left;
+				pos = x - offsetstyles.left;
 				percentage = pos / width;
-				t.newTime = percentage * t.getDuration();
+				t.newtime = percentage * t.getduration();
 
-				if (mouseIsDown && t.getCurrentTime() !== null && t.newTime.toFixed(4) !== t.getCurrentTime().toFixed(4)) {
-					t.setCurrentRailHandle(t.newTime);
-					t.updateCurrent(t.newTime);
+				if (mouseisdown && t.getcurrenttime() !== null && t.newtime.tofixed(4) !== t.getcurrenttime().tofixed(4)) {
+					t.setcurrentrailhandle(t.newtime);
+					t.updatecurrent(t.newtime);
 				}
 
-				if (!_constants.IS_IOS && !_constants.IS_ANDROID) {
+				if (!_constants.is_ios && !_constants.is_android) {
 					if (pos < 0) {
 						pos = 0;
 					}
-					if (t.options.useSmoothHover && cssMatrix !== null && typeof window[cssMatrix] !== 'undefined') {
-						var matrix = new window[cssMatrix](getComputedStyle(t.handle)[transform]),
-						    handleLocation = matrix.m41,
-						    hoverScaleX = pos / parseFloat(getComputedStyle(t.total).width) - handleLocation / parseFloat(getComputedStyle(t.total).width);
+					if (t.options.usesmoothhover && cssmatrix !== null && typeof window[cssmatrix] !== 'undefined') {
+						var matrix = new window[cssmatrix](getcomputedstyle(t.handle)[transform]),
+						    handlelocation = matrix.m41,
+						    hoverscalex = pos / parsefloat(getcomputedstyle(t.total).width) - handlelocation / parsefloat(getcomputedstyle(t.total).width);
 
-						t.hovered.style.left = handleLocation + 'px';
-						t.setTransformStyle(t.hovered, 'scaleX(' + hoverScaleX + ')');
-						t.hovered.setAttribute('pos', pos);
+						t.hovered.style.left = handlelocation + 'px';
+						t.settransformstyle(t.hovered, 'scalex(' + hoverscalex + ')');
+						t.hovered.setattribute('pos', pos);
 
-						if (hoverScaleX >= 0) {
-							(0, _dom.removeClass)(t.hovered, 'negative');
+						if (hoverscalex >= 0) {
+							(0, _dom.removeclass)(t.hovered, 'negative');
 						} else {
-							(0, _dom.addClass)(t.hovered, 'negative');
+							(0, _dom.addclass)(t.hovered, 'negative');
 						}
 					}
 
 					if (t.timefloat) {
-						var half = t.timefloat.offsetWidth / 2,
-						    offsetContainer = mejs.Utils.offset(t.getElement(t.container)),
-						    tooltipStyles = getComputedStyle(t.timefloat);
+						var half = t.timefloat.offsetwidth / 2,
+						    offsetcontainer = mejs.utils.offset(t.getelement(t.container)),
+						    tooltipstyles = getcomputedstyle(t.timefloat);
 
-						if (x - offsetContainer.left < t.timefloat.offsetWidth) {
-							leftPos = half;
-						} else if (x - offsetContainer.left >= t.getElement(t.container).offsetWidth - half) {
-							leftPos = t.total.offsetWidth - half;
+						if (x - offsetcontainer.left < t.timefloat.offsetwidth) {
+							leftpos = half;
+						} else if (x - offsetcontainer.left >= t.getelement(t.container).offsetwidth - half) {
+							leftpos = t.total.offsetwidth - half;
 						} else {
-							leftPos = pos;
+							leftpos = pos;
 						}
 
-						if ((0, _dom.hasClass)(t.getElement(t.container), t.options.classPrefix + 'long-video')) {
-							leftPos += parseFloat(tooltipStyles.marginLeft) / 2 + t.timefloat.offsetWidth / 2;
+						if ((0, _dom.hasclass)(t.getelement(t.container), t.options.classprefix + 'long-video')) {
+							leftpos += parsefloat(tooltipstyles.marginleft) / 2 + t.timefloat.offsetwidth / 2;
 						}
 
-						t.timefloat.style.left = leftPos + 'px';
-						t.timefloatcurrent.innerHTML = (0, _time.secondsToTimeCode)(t.newTime, player.options.alwaysShowHours, player.options.showTimecodeFrameCount, player.options.framesPerSecond, player.options.secondsDecimalLength, player.options.timeFormat);
+						t.timefloat.style.left = leftpos + 'px';
+						t.timefloatcurrent.innerhtml = (0, _time.secondstotimecode)(t.newtime, player.options.alwaysshowhours, player.options.showtimecodeframecount, player.options.framespersecond, player.options.secondsdecimallength, player.options.timeformat);
 						t.timefloat.style.display = 'block';
 					}
 				}
-			} else if (!_constants.IS_IOS && !_constants.IS_ANDROID && t.timefloat) {
-				leftPos = t.timefloat.offsetWidth + width >= t.getElement(t.container).offsetWidth ? t.timefloat.offsetWidth / 2 : 0;
-				t.timefloat.style.left = leftPos + 'px';
-				t.timefloat.style.left = leftPos + 'px';
+			} else if (!_constants.is_ios && !_constants.is_android && t.timefloat) {
+				leftpos = t.timefloat.offsetwidth + width >= t.getelement(t.container).offsetwidth ? t.timefloat.offsetwidth / 2 : 0;
+				t.timefloat.style.left = leftpos + 'px';
+				t.timefloat.style.left = leftpos + 'px';
 				t.timefloat.style.display = 'block';
 			}
 		},
-		    updateSlider = function updateSlider() {
-			var seconds = t.getCurrentTime(),
-			    timeSliderText = _i18n2.default.t('mejs.time-slider'),
-			    time = (0, _time.secondsToTimeCode)(seconds, player.options.alwaysShowHours, player.options.showTimecodeFrameCount, player.options.framesPerSecond, player.options.secondsDecimalLength, player.options.timeFormat),
-			    duration = t.getDuration();
+		    updateslider = function updateslider() {
+			var seconds = t.getcurrenttime(),
+			    timeslidertext = _i18n2.default.t('mejs.time-slider'),
+			    time = (0, _time.secondstotimecode)(seconds, player.options.alwaysshowhours, player.options.showtimecodeframecount, player.options.framespersecond, player.options.secondsdecimallength, player.options.timeformat),
+			    duration = t.getduration();
 
-			t.slider.setAttribute('role', 'slider');
-			t.slider.tabIndex = 0;
+			t.slider.setattribute('role', 'slider');
+			t.slider.tabindex = 0;
 
 			if (media.paused) {
-				t.slider.setAttribute('aria-label', timeSliderText);
-				t.slider.setAttribute('aria-valuemin', 0);
-				t.slider.setAttribute('aria-valuemax', isNaN(duration) ? 0 : duration);
-				t.slider.setAttribute('aria-valuenow', seconds);
-				t.slider.setAttribute('aria-valuetext', time);
+				t.slider.setattribute('aria-label', timeslidertext);
+				t.slider.setattribute('aria-valuemin', 0);
+				t.slider.setattribute('aria-valuemax', isnan(duration) ? 0 : duration);
+				t.slider.setattribute('aria-valuenow', seconds);
+				t.slider.setattribute('aria-valuetext', time);
 			} else {
-				t.slider.removeAttribute('aria-label');
-				t.slider.removeAttribute('aria-valuemin');
-				t.slider.removeAttribute('aria-valuemax');
-				t.slider.removeAttribute('aria-valuenow');
-				t.slider.removeAttribute('aria-valuetext');
+				t.slider.removeattribute('aria-label');
+				t.slider.removeattribute('aria-valuemin');
+				t.slider.removeattribute('aria-valuemax');
+				t.slider.removeattribute('aria-valuenow');
+				t.slider.removeattribute('aria-valuetext');
 			}
 		},
-		    restartPlayer = function restartPlayer() {
-			if (new Date() - lastKeyPressTime >= 1000) {
+		    restartplayer = function restartplayer() {
+			if (new date() - lastkeypresstime >= 1000) {
 				t.play();
 			}
 		},
-		    handleMouseup = function handleMouseup() {
-			if (mouseIsDown && t.getCurrentTime() !== null && t.newTime.toFixed(4) !== t.getCurrentTime().toFixed(4)) {
-				t.setCurrentTime(t.newTime);
-				t.setCurrentRailHandle(t.newTime);
-				t.updateCurrent(t.newTime);
+		    handlemouseup = function handlemouseup() {
+			if (mouseisdown && t.getcurrenttime() !== null && t.newtime.tofixed(4) !== t.getcurrenttime().tofixed(4)) {
+				t.setcurrenttime(t.newtime);
+				t.setcurrentrailhandle(t.newtime);
+				t.updatecurrent(t.newtime);
 			}
-			if (t.forcedHandlePause) {
+			if (t.forcedhandlepause) {
 				t.slider.focus();
 				t.play();
 			}
-			t.forcedHandlePause = false;
+			t.forcedhandlepause = false;
 		};
 
-		t.slider.addEventListener('focus', function () {
-			player.options.autoRewind = false;
+		t.slider.addeventlistener('focus', function () {
+			player.options.autorewind = false;
 		});
-		t.slider.addEventListener('blur', function () {
-			player.options.autoRewind = autoRewindInitial;
+		t.slider.addeventlistener('blur', function () {
+			player.options.autorewind = autorewindinitial;
 		});
-		t.slider.addEventListener('keydown', function (e) {
-			if (new Date() - lastKeyPressTime >= 1000) {
-				startedPaused = t.paused;
+		t.slider.addeventlistener('keydown', function (e) {
+			if (new date() - lastkeypresstime >= 1000) {
+				startedpaused = t.paused;
 			}
 
-			if (t.options.enableKeyboard && t.options.keyActions.length) {
+			if (t.options.enablekeyboard && t.options.keyactions.length) {
 
-				var keyCode = e.which || e.keyCode || 0,
-				    duration = t.getDuration(),
-				    seekForward = player.options.defaultSeekForwardInterval(media),
-				    seekBackward = player.options.defaultSeekBackwardInterval(media);
+				var keycode = e.which || e.keycode || 0,
+				    duration = t.getduration(),
+				    seekforward = player.options.defaultseekforwardinterval(media),
+				    seekbackward = player.options.defaultseekbackwardinterval(media);
 
-				var seekTime = t.getCurrentTime();
-				var volume = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'volume-slider');
+				var seektime = t.getcurrenttime();
+				var volume = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'volume-slider');
 
-				if (keyCode === 38 || keyCode === 40) {
+				if (keycode === 38 || keycode === 40) {
 					if (volume) {
 						volume.style.display = 'block';
 					}
-					if (t.isVideo) {
-						t.showControls();
-						t.startControlsTimer();
+					if (t.isvideo) {
+						t.showcontrols();
+						t.startcontrolstimer();
 					}
 
-					var newVolume = keyCode === 38 ? Math.min(t.volume + 0.1, 1) : Math.max(t.volume - 0.1, 0),
-					    mutePlayer = newVolume <= 0;
-					t.setVolume(newVolume);
-					t.setMuted(mutePlayer);
+					var newvolume = keycode === 38 ? math.min(t.volume + 0.1, 1) : math.max(t.volume - 0.1, 0),
+					    muteplayer = newvolume <= 0;
+					t.setvolume(newvolume);
+					t.setmuted(muteplayer);
 					return;
 				} else {
 					if (volume) {
@@ -1866,26 +1866,26 @@ Object.assign(_player2.default.prototype, {
 					}
 				}
 
-				switch (keyCode) {
+				switch (keycode) {
 					case 37:
-						if (t.getDuration() !== Infinity) {
-							seekTime -= seekBackward;
+						if (t.getduration() !== infinity) {
+							seektime -= seekbackward;
 						}
 						break;
 					case 39:
-						if (t.getDuration() !== Infinity) {
-							seekTime += seekForward;
+						if (t.getduration() !== infinity) {
+							seektime += seekforward;
 						}
 						break;
 					case 36:
-						seekTime = 0;
+						seektime = 0;
 						break;
 					case 35:
-						seekTime = duration;
+						seektime = duration;
 						break;
 					case 13:
 					case 32:
-						if (_constants.IS_FIREFOX) {
+						if (_constants.is_firefox) {
 							if (t.paused) {
 								t.play();
 							} else {
@@ -1897,220 +1897,220 @@ Object.assign(_player2.default.prototype, {
 						return;
 				}
 
-				seekTime = seekTime < 0 || isNaN(seekTime) ? 0 : seekTime >= duration ? duration : Math.floor(seekTime);
-				lastKeyPressTime = new Date();
-				if (!startedPaused) {
+				seektime = seektime < 0 || isnan(seektime) ? 0 : seektime >= duration ? duration : math.floor(seektime);
+				lastkeypresstime = new date();
+				if (!startedpaused) {
 					player.pause();
 				}
 
-				setTimeout(function () {
-					t.setCurrentTime(seekTime);
+				settimeout(function () {
+					t.setcurrenttime(seektime);
 				}, 0);
 
-				if (seekTime < t.getDuration() && !startedPaused) {
-					setTimeout(restartPlayer, 1100);
+				if (seektime < t.getduration() && !startedpaused) {
+					settimeout(restartplayer, 1100);
 				}
 
-				player.showControls();
+				player.showcontrols();
 
-				e.preventDefault();
-				e.stopPropagation();
+				e.preventdefault();
+				e.stoppropagation();
 			}
 		});
 
 		var events = ['mousedown', 'touchstart'];
 
-		t.slider.addEventListener('dragstart', function () {
+		t.slider.addeventlistener('dragstart', function () {
 			return false;
 		});
 
 		for (var i = 0, total = events.length; i < total; i++) {
-			t.slider.addEventListener(events[i], function (e) {
-				t.forcedHandlePause = false;
-				if (t.getDuration() !== Infinity) {
+			t.slider.addeventlistener(events[i], function (e) {
+				t.forcedhandlepause = false;
+				if (t.getduration() !== infinity) {
 					if (e.which === 1 || e.which === 0) {
 						if (!t.paused) {
 							t.pause();
-							t.forcedHandlePause = true;
+							t.forcedhandlepause = true;
 						}
 
-						mouseIsDown = true;
-						handleMouseMove(e);
-						var endEvents = ['mouseup', 'touchend'];
+						mouseisdown = true;
+						handlemousemove(e);
+						var endevents = ['mouseup', 'touchend'];
 
-						for (var j = 0, totalEvents = endEvents.length; j < totalEvents; j++) {
-							t.getElement(t.container).addEventListener(endEvents[j], function (event) {
+						for (var j = 0, totalevents = endevents.length; j < totalevents; j++) {
+							t.getelement(t.container).addeventlistener(endevents[j], function (event) {
 								var target = event.target;
-								if (target === t.slider || target.closest('.' + t.options.classPrefix + 'time-slider')) {
-									handleMouseMove(event);
+								if (target === t.slider || target.closest('.' + t.options.classprefix + 'time-slider')) {
+									handlemousemove(event);
 								}
 							});
 						}
-						t.globalBind('mouseup.dur touchend.dur', function () {
-							handleMouseup();
-							mouseIsDown = false;
+						t.globalbind('mouseup.dur touchend.dur', function () {
+							handlemouseup();
+							mouseisdown = false;
 							if (t.timefloat) {
 								t.timefloat.style.display = 'none';
 							}
 						});
 					}
 				}
-			}, _constants.SUPPORT_PASSIVE_EVENT && events[i] === 'touchstart' ? { passive: true } : false);
+			}, _constants.support_passive_event && events[i] === 'touchstart' ? { passive: true } : false);
 		}
-		t.slider.addEventListener('mouseenter', function (e) {
-			if (e.target === t.slider && t.getDuration() !== Infinity) {
-				t.getElement(t.container).addEventListener('mousemove', function (event) {
+		t.slider.addeventlistener('mouseenter', function (e) {
+			if (e.target === t.slider && t.getduration() !== infinity) {
+				t.getelement(t.container).addeventlistener('mousemove', function (event) {
 					var target = event.target;
-					if (target === t.slider || target.closest('.' + t.options.classPrefix + 'time-slider')) {
-						handleMouseMove(event);
+					if (target === t.slider || target.closest('.' + t.options.classprefix + 'time-slider')) {
+						handlemousemove(event);
 					}
 				});
-				if (t.timefloat && !_constants.IS_IOS && !_constants.IS_ANDROID) {
+				if (t.timefloat && !_constants.is_ios && !_constants.is_android) {
 					t.timefloat.style.display = 'block';
 				}
-				if (t.hovered && !_constants.IS_IOS && !_constants.IS_ANDROID && t.options.useSmoothHover) {
-					(0, _dom.removeClass)(t.hovered, 'no-hover');
+				if (t.hovered && !_constants.is_ios && !_constants.is_android && t.options.usesmoothhover) {
+					(0, _dom.removeclass)(t.hovered, 'no-hover');
 				}
 			}
 		});
-		t.slider.addEventListener('mouseleave', function () {
-			if (t.getDuration() !== Infinity) {
-				if (!mouseIsDown) {
+		t.slider.addeventlistener('mouseleave', function () {
+			if (t.getduration() !== infinity) {
+				if (!mouseisdown) {
 					if (t.timefloat) {
 						t.timefloat.style.display = 'none';
 					}
-					if (t.hovered && t.options.useSmoothHover) {
-						(0, _dom.addClass)(t.hovered, 'no-hover');
+					if (t.hovered && t.options.usesmoothhover) {
+						(0, _dom.addclass)(t.hovered, 'no-hover');
 					}
 				}
 			}
 		});
 
-		t.broadcastCallback = function (e) {
-			var broadcast = controls.querySelector('.' + t.options.classPrefix + 'broadcast');
-			if (!t.options.forceLive && t.getDuration() !== Infinity) {
+		t.broadcastcallback = function (e) {
+			var broadcast = controls.queryselector('.' + t.options.classprefix + 'broadcast');
+			if (!t.options.forcelive && t.getduration() !== infinity) {
 				if (broadcast) {
 					t.slider.style.display = '';
 					broadcast.remove();
 				}
 
-				player.setProgressRail(e);
-				if (!t.forcedHandlePause) {
-					player.setCurrentRail(e);
+				player.setprogressrail(e);
+				if (!t.forcedhandlepause) {
+					player.setcurrentrail(e);
 				}
-				updateSlider();
-			} else if (!broadcast && t.options.forceLive) {
-				var label = _document2.default.createElement('span');
-				label.className = t.options.classPrefix + 'broadcast';
-				label.innerText = _i18n2.default.t('mejs.live-broadcast');
+				updateslider();
+			} else if (!broadcast && t.options.forcelive) {
+				var label = _document2.default.createelement('span');
+				label.classname = t.options.classprefix + 'broadcast';
+				label.innertext = _i18n2.default.t('mejs.live-broadcast');
 				t.slider.style.display = 'none';
-				t.rail.appendChild(label);
+				t.rail.appendchild(label);
 			}
 		};
 
-		media.addEventListener('progress', t.broadcastCallback);
-		media.addEventListener('timeupdate', t.broadcastCallback);
-		media.addEventListener('play', function () {
+		media.addeventlistener('progress', t.broadcastcallback);
+		media.addeventlistener('timeupdate', t.broadcastcallback);
+		media.addeventlistener('play', function () {
 			t.buffer.style.display = 'none';
 		});
-		media.addEventListener('playing', function () {
+		media.addeventlistener('playing', function () {
 			t.buffer.style.display = 'none';
 		});
-		media.addEventListener('seeking', function () {
+		media.addeventlistener('seeking', function () {
 			t.buffer.style.display = '';
 		});
-		media.addEventListener('seeked', function () {
+		media.addeventlistener('seeked', function () {
 			t.buffer.style.display = 'none';
 		});
-		media.addEventListener('pause', function () {
+		media.addeventlistener('pause', function () {
 			t.buffer.style.display = 'none';
 		});
-		media.addEventListener('waiting', function () {
+		media.addeventlistener('waiting', function () {
 			t.buffer.style.display = '';
 		});
-		media.addEventListener('loadeddata', function () {
+		media.addeventlistener('loadeddata', function () {
 			t.buffer.style.display = '';
 		});
-		media.addEventListener('canplay', function () {
+		media.addeventlistener('canplay', function () {
 			t.buffer.style.display = 'none';
 		});
-		media.addEventListener('error', function () {
+		media.addeventlistener('error', function () {
 			t.buffer.style.display = 'none';
 		});
 
-		t.getElement(t.container).addEventListener('controlsresize', function (e) {
-			if (t.getDuration() !== Infinity) {
-				player.setProgressRail(e);
-				if (!t.forcedHandlePause) {
-					player.setCurrentRail(e);
+		t.getelement(t.container).addeventlistener('controlsresize', function (e) {
+			if (t.getduration() !== infinity) {
+				player.setprogressrail(e);
+				if (!t.forcedhandlepause) {
+					player.setcurrentrail(e);
 				}
 			}
 		});
 	},
 	cleanprogress: function cleanprogress(player, controls, layers, media) {
-		media.removeEventListener('progress', player.broadcastCallback);
-		media.removeEventListener('timeupdate', player.broadcastCallback);
+		media.removeeventlistener('progress', player.broadcastcallback);
+		media.removeeventlistener('timeupdate', player.broadcastcallback);
 		if (player.rail) {
 			player.rail.remove();
 		}
 	},
-	setProgressRail: function setProgressRail(e) {
+	setprogressrail: function setprogressrail(e) {
 		var t = this,
 		    target = e !== undefined ? e.detail.target || e.target : t.media;
 
 		var percent = null;
 
-		if (target && target.buffered && target.buffered.length > 0 && target.buffered.end && t.getDuration()) {
-			percent = target.buffered.end(target.buffered.length - 1) / t.getDuration();
-		} else if (target && target.bytesTotal !== undefined && target.bytesTotal > 0 && target.bufferedBytes !== undefined) {
-				percent = target.bufferedBytes / target.bytesTotal;
-			} else if (e && e.lengthComputable && e.total !== 0) {
+		if (target && target.buffered && target.buffered.length > 0 && target.buffered.end && t.getduration()) {
+			percent = target.buffered.end(target.buffered.length - 1) / t.getduration();
+		} else if (target && target.bytestotal !== undefined && target.bytestotal > 0 && target.bufferedbytes !== undefined) {
+				percent = target.bufferedbytes / target.bytestotal;
+			} else if (e && e.lengthcomputable && e.total !== 0) {
 					percent = e.loaded / e.total;
 				}
 
 		if (percent !== null) {
-			percent = Math.min(1, Math.max(0, percent));
+			percent = math.min(1, math.max(0, percent));
 
 			if (t.loaded) {
-				t.setTransformStyle(t.loaded, 'scaleX(' + percent + ')');
+				t.settransformstyle(t.loaded, 'scalex(' + percent + ')');
 			}
 		}
 	},
-	setCurrentRailHandle: function setCurrentRailHandle(fakeTime) {
+	setcurrentrailhandle: function setcurrentrailhandle(faketime) {
 		var t = this;
-		t.setCurrentRailMain(t, fakeTime);
+		t.setcurrentrailmain(t, faketime);
 	},
-	setCurrentRail: function setCurrentRail() {
+	setcurrentrail: function setcurrentrail() {
 		var t = this;
-		t.setCurrentRailMain(t);
+		t.setcurrentrailmain(t);
 	},
-	setCurrentRailMain: function setCurrentRailMain(t, fakeTime) {
-		if (t.getCurrentTime() !== undefined && t.getDuration()) {
-			var nTime = typeof fakeTime === 'undefined' ? t.getCurrentTime() : fakeTime;
+	setcurrentrailmain: function setcurrentrailmain(t, faketime) {
+		if (t.getcurrenttime() !== undefined && t.getduration()) {
+			var ntime = typeof faketime === 'undefined' ? t.getcurrenttime() : faketime;
 
 			if (t.total && t.handle) {
-				var tW = parseFloat(getComputedStyle(t.total).width);
+				var tw = parsefloat(getcomputedstyle(t.total).width);
 
-				var newWidth = Math.round(tW * nTime / t.getDuration()),
-				    handlePos = newWidth - Math.round(t.handle.offsetWidth / 2);
+				var newwidth = math.round(tw * ntime / t.getduration()),
+				    handlepos = newwidth - math.round(t.handle.offsetwidth / 2);
 
-				handlePos = handlePos < 0 ? 0 : handlePos;
-				t.setTransformStyle(t.current, 'scaleX(' + newWidth / tW + ')');
-				t.setTransformStyle(t.handle, 'translateX(' + handlePos + 'px)');
+				handlepos = handlepos < 0 ? 0 : handlepos;
+				t.settransformstyle(t.current, 'scalex(' + newwidth / tw + ')');
+				t.settransformstyle(t.handle, 'translatex(' + handlepos + 'px)');
 
-				if (t.options.useSmoothHover && !(0, _dom.hasClass)(t.hovered, 'no-hover')) {
-					var pos = parseInt(t.hovered.getAttribute('pos'), 10);
-					pos = isNaN(pos) ? 0 : pos;
+				if (t.options.usesmoothhover && !(0, _dom.hasclass)(t.hovered, 'no-hover')) {
+					var pos = parseint(t.hovered.getattribute('pos'), 10);
+					pos = isnan(pos) ? 0 : pos;
 
-					var hoverScaleX = pos / tW - handlePos / tW;
+					var hoverscalex = pos / tw - handlepos / tw;
 
-					t.hovered.style.left = handlePos + 'px';
-					t.setTransformStyle(t.hovered, 'scaleX(' + hoverScaleX + ')');
+					t.hovered.style.left = handlepos + 'px';
+					t.settransformstyle(t.hovered, 'scalex(' + hoverscalex + ')');
 
-					if (hoverScaleX >= 0) {
-						(0, _dom.removeClass)(t.hovered, 'negative');
+					if (hoverscalex >= 0) {
+						(0, _dom.removeclass)(t.hovered, 'negative');
 					} else {
-						(0, _dom.addClass)(t.hovered, 'negative');
+						(0, _dom.addclass)(t.hovered, 'negative');
 					}
 				}
 			}
@@ -2123,102 +2123,102 @@ Object.assign(_player2.default.prototype, {
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
 var _time = _dereq_(30);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-Object.assign(_player.config, {
+object.assign(_player.config, {
 	duration: 0,
 
-	timeAndDurationSeparator: '<span> | </span>'
+	timeanddurationseparator: '<span> | </span>'
 });
 
-Object.assign(_player2.default.prototype, {
+object.assign(_player2.default.prototype, {
 	buildcurrent: function buildcurrent(player, controls, layers, media) {
 		var t = this,
-		    time = _document2.default.createElement('div');
+		    time = _document2.default.createelement('div');
 
-		time.className = t.options.classPrefix + 'time';
-		time.setAttribute('role', 'timer');
-		time.setAttribute('aria-live', 'off');
-		time.innerHTML = '<span class="' + t.options.classPrefix + 'currenttime">' + (0, _time.secondsToTimeCode)(0, player.options.alwaysShowHours, player.options.showTimecodeFrameCount, player.options.framesPerSecond, player.options.secondsDecimalLength, player.options.timeFormat) + '</span>';
+		time.classname = t.options.classprefix + 'time';
+		time.setattribute('role', 'timer');
+		time.setattribute('aria-live', 'off');
+		time.innerhtml = '<span class="' + t.options.classprefix + 'currenttime">' + (0, _time.secondstotimecode)(0, player.options.alwaysshowhours, player.options.showtimecodeframecount, player.options.framespersecond, player.options.secondsdecimallength, player.options.timeformat) + '</span>';
 
-		t.addControlElement(time, 'current');
-		player.updateCurrent();
-		t.updateTimeCallback = function () {
-			if (t.controlsAreVisible) {
-				player.updateCurrent();
+		t.addcontrolelement(time, 'current');
+		player.updatecurrent();
+		t.updatetimecallback = function () {
+			if (t.controlsarevisible) {
+				player.updatecurrent();
 			}
 		};
-		media.addEventListener('timeupdate', t.updateTimeCallback);
+		media.addeventlistener('timeupdate', t.updatetimecallback);
 	},
 	cleancurrent: function cleancurrent(player, controls, layers, media) {
-		media.removeEventListener('timeupdate', player.updateTimeCallback);
+		media.removeeventlistener('timeupdate', player.updatetimecallback);
 	},
 	buildduration: function buildduration(player, controls, layers, media) {
 		var t = this,
-		    currTime = controls.lastChild.querySelector('.' + t.options.classPrefix + 'currenttime');
+		    currtime = controls.lastchild.queryselector('.' + t.options.classprefix + 'currenttime');
 
-		if (currTime) {
-			controls.querySelector('.' + t.options.classPrefix + 'time').innerHTML += t.options.timeAndDurationSeparator + '<span class="' + t.options.classPrefix + 'duration">' + ((0, _time.secondsToTimeCode)(t.options.duration, t.options.alwaysShowHours, t.options.showTimecodeFrameCount, t.options.framesPerSecond, t.options.secondsDecimalLength, t.options.timeFormat) + '</span>');
+		if (currtime) {
+			controls.queryselector('.' + t.options.classprefix + 'time').innerhtml += t.options.timeanddurationseparator + '<span class="' + t.options.classprefix + 'duration">' + ((0, _time.secondstotimecode)(t.options.duration, t.options.alwaysshowhours, t.options.showtimecodeframecount, t.options.framespersecond, t.options.secondsdecimallength, t.options.timeformat) + '</span>');
 		} else {
-			if (controls.querySelector('.' + t.options.classPrefix + 'currenttime')) {
-				(0, _dom.addClass)(controls.querySelector('.' + t.options.classPrefix + 'currenttime').parentNode, t.options.classPrefix + 'currenttime-container');
+			if (controls.queryselector('.' + t.options.classprefix + 'currenttime')) {
+				(0, _dom.addclass)(controls.queryselector('.' + t.options.classprefix + 'currenttime').parentnode, t.options.classprefix + 'currenttime-container');
 			}
 
-			var duration = _document2.default.createElement('div');
-			duration.className = t.options.classPrefix + 'time ' + t.options.classPrefix + 'duration-container';
-			duration.innerHTML = '<span class="' + t.options.classPrefix + 'duration">' + ((0, _time.secondsToTimeCode)(t.options.duration, t.options.alwaysShowHours, t.options.showTimecodeFrameCount, t.options.framesPerSecond, t.options.secondsDecimalLength, t.options.timeFormat) + '</span>');
+			var duration = _document2.default.createelement('div');
+			duration.classname = t.options.classprefix + 'time ' + t.options.classprefix + 'duration-container';
+			duration.innerhtml = '<span class="' + t.options.classprefix + 'duration">' + ((0, _time.secondstotimecode)(t.options.duration, t.options.alwaysshowhours, t.options.showtimecodeframecount, t.options.framespersecond, t.options.secondsdecimallength, t.options.timeformat) + '</span>');
 
-			t.addControlElement(duration, 'duration');
+			t.addcontrolelement(duration, 'duration');
 		}
 
-		t.updateDurationCallback = function () {
-			if (t.controlsAreVisible) {
-				player.updateDuration();
+		t.updatedurationcallback = function () {
+			if (t.controlsarevisible) {
+				player.updateduration();
 			}
 		};
 
-		media.addEventListener('timeupdate', t.updateDurationCallback);
+		media.addeventlistener('timeupdate', t.updatedurationcallback);
 	},
 	cleanduration: function cleanduration(player, controls, layers, media) {
-		media.removeEventListener('timeupdate', player.updateDurationCallback);
+		media.removeeventlistener('timeupdate', player.updatedurationcallback);
 	},
-	updateCurrent: function updateCurrent() {
+	updatecurrent: function updatecurrent() {
 		var t = this;
 
-		var currentTime = t.getCurrentTime();
+		var currenttime = t.getcurrenttime();
 
-		if (isNaN(currentTime)) {
-			currentTime = 0;
+		if (isnan(currenttime)) {
+			currenttime = 0;
 		}
 
-		var timecode = (0, _time.secondsToTimeCode)(currentTime, t.options.alwaysShowHours, t.options.showTimecodeFrameCount, t.options.framesPerSecond, t.options.secondsDecimalLength, t.options.timeFormat);
+		var timecode = (0, _time.secondstotimecode)(currenttime, t.options.alwaysshowhours, t.options.showtimecodeframecount, t.options.framespersecond, t.options.secondsdecimallength, t.options.timeformat);
 
 		if (timecode.length > 5) {
-			(0, _dom.addClass)(t.getElement(t.container), t.options.classPrefix + 'long-video');
+			(0, _dom.addclass)(t.getelement(t.container), t.options.classprefix + 'long-video');
 		} else {
-			(0, _dom.removeClass)(t.getElement(t.container), t.options.classPrefix + 'long-video');
+			(0, _dom.removeclass)(t.getelement(t.container), t.options.classprefix + 'long-video');
 		}
 
-		if (t.getElement(t.controls).querySelector('.' + t.options.classPrefix + 'currenttime')) {
-			t.getElement(t.controls).querySelector('.' + t.options.classPrefix + 'currenttime').innerText = timecode;
+		if (t.getelement(t.controls).queryselector('.' + t.options.classprefix + 'currenttime')) {
+			t.getelement(t.controls).queryselector('.' + t.options.classprefix + 'currenttime').innertext = timecode;
 		}
 	},
-	updateDuration: function updateDuration() {
+	updateduration: function updateduration() {
 		var t = this;
 
-		var duration = t.getDuration();
+		var duration = t.getduration();
 
-		if (t.media !== undefined && (isNaN(duration) || duration === Infinity || duration < 0)) {
+		if (t.media !== undefined && (isnan(duration) || duration === infinity || duration < 0)) {
 			t.media.duration = t.options.duration = duration = 0;
 		}
 
@@ -2226,16 +2226,16 @@ Object.assign(_player2.default.prototype, {
 			duration = t.options.duration;
 		}
 
-		var timecode = (0, _time.secondsToTimeCode)(duration, t.options.alwaysShowHours, t.options.showTimecodeFrameCount, t.options.framesPerSecond, t.options.secondsDecimalLength, t.options.timeFormat);
+		var timecode = (0, _time.secondstotimecode)(duration, t.options.alwaysshowhours, t.options.showtimecodeframecount, t.options.framespersecond, t.options.secondsdecimallength, t.options.timeformat);
 
 		if (timecode.length > 5) {
-			(0, _dom.addClass)(t.getElement(t.container), t.options.classPrefix + 'long-video');
+			(0, _dom.addclass)(t.getelement(t.container), t.options.classprefix + 'long-video');
 		} else {
-			(0, _dom.removeClass)(t.getElement(t.container), t.options.classPrefix + 'long-video');
+			(0, _dom.removeclass)(t.getelement(t.container), t.options.classprefix + 'long-video');
 		}
 
-		if (t.getElement(t.controls).querySelector('.' + t.options.classPrefix + 'duration') && duration > 0) {
-			t.getElement(t.controls).querySelector('.' + t.options.classPrefix + 'duration').innerHTML = timecode;
+		if (t.getelement(t.controls).queryselector('.' + t.options.classprefix + 'duration') && duration > 0) {
+			t.getelement(t.controls).queryselector('.' + t.options.classprefix + 'duration').innerhtml = timecode;
 		}
 	}
 });
@@ -2245,19 +2245,19 @@ Object.assign(_player2.default.prototype, {
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
 var _time = _dereq_(30);
 
@@ -2265,188 +2265,188 @@ var _general = _dereq_(27);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-Object.assign(_player.config, {
-	startLanguage: '',
+object.assign(_player.config, {
+	startlanguage: '',
 
-	tracksText: null,
+	trackstext: null,
 
-	chaptersText: null,
+	chapterstext: null,
 
-	tracksAriaLive: false,
+	tracksarialive: false,
 
-	hideCaptionsButtonWhenEmpty: true,
+	hidecaptionsbuttonwhenempty: true,
 
-	toggleCaptionsButtonWhenOnlyOne: false,
+	togglecaptionsbuttonwhenonlyone: false,
 
-	slidesSelector: ''
+	slidesselector: ''
 });
 
-Object.assign(_player2.default.prototype, {
-	hasChapters: false,
+object.assign(_player2.default.prototype, {
+	haschapters: false,
 
 	buildtracks: function buildtracks(player, controls, layers, media) {
 
-		this.findTracks();
+		this.findtracks();
 
-		if (!player.tracks.length && (!player.trackFiles || !player.trackFiles.length === 0)) {
+		if (!player.tracks.length && (!player.trackfiles || !player.trackfiles.length === 0)) {
 			return;
 		}
 
 		var t = this,
-		    attr = t.options.tracksAriaLive ? ' role="log" aria-live="assertive" aria-atomic="false"' : '',
-		    tracksTitle = (0, _general.isString)(t.options.tracksText) ? t.options.tracksText : _i18n2.default.t('mejs.captions-subtitles'),
-		    chaptersTitle = (0, _general.isString)(t.options.chaptersText) ? t.options.chaptersText : _i18n2.default.t('mejs.captions-chapters'),
-		    total = player.trackFiles === null ? player.tracks.length : player.trackFiles.length;
+		    attr = t.options.tracksarialive ? ' role="log" aria-live="assertive" aria-atomic="false"' : '',
+		    trackstitle = (0, _general.isstring)(t.options.trackstext) ? t.options.trackstext : _i18n2.default.t('mejs.captions-subtitles'),
+		    chapterstitle = (0, _general.isstring)(t.options.chapterstext) ? t.options.chapterstext : _i18n2.default.t('mejs.captions-chapters'),
+		    total = player.trackfiles === null ? player.tracks.length : player.trackfiles.length;
 
-		if (t.domNode.textTracks) {
-			for (var i = t.domNode.textTracks.length - 1; i >= 0; i--) {
-				t.domNode.textTracks[i].mode = 'hidden';
+		if (t.domnode.texttracks) {
+			for (var i = t.domnode.texttracks.length - 1; i >= 0; i--) {
+				t.domnode.texttracks[i].mode = 'hidden';
 			}
 		}
 
 		t.cleartracks(player);
 
-		player.captions = _document2.default.createElement('div');
-		player.captions.className = t.options.classPrefix + 'captions-layer ' + t.options.classPrefix + 'layer';
-		player.captions.innerHTML = '<div class="' + t.options.classPrefix + 'captions-position ' + t.options.classPrefix + 'captions-position-hover"' + attr + '>' + ('<span class="' + t.options.classPrefix + 'captions-text"></span>') + '</div>';
+		player.captions = _document2.default.createelement('div');
+		player.captions.classname = t.options.classprefix + 'captions-layer ' + t.options.classprefix + 'layer';
+		player.captions.innerhtml = '<div class="' + t.options.classprefix + 'captions-position ' + t.options.classprefix + 'captions-position-hover"' + attr + '>' + ('<span class="' + t.options.classprefix + 'captions-text"></span>') + '</div>';
 		player.captions.style.display = 'none';
-		layers.insertBefore(player.captions, layers.firstChild);
+		layers.insertbefore(player.captions, layers.firstchild);
 
-		player.captionsText = player.captions.querySelector('.' + t.options.classPrefix + 'captions-text');
+		player.captionstext = player.captions.queryselector('.' + t.options.classprefix + 'captions-text');
 
-		player.captionsButton = _document2.default.createElement('div');
-		player.captionsButton.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'captions-button';
-		player.captionsButton.innerHTML = '<button type="button" aria-controls="' + t.id + '" title="' + tracksTitle + '" aria-label="' + tracksTitle + '" tabindex="0"></button>' + ('<div class="' + t.options.classPrefix + 'captions-selector ' + t.options.classPrefix + 'offscreen">') + ('<ul class="' + t.options.classPrefix + 'captions-selector-list">') + ('<li class="' + t.options.classPrefix + 'captions-selector-list-item">') + ('<input type="radio" class="' + t.options.classPrefix + 'captions-selector-input" ') + ('name="' + player.id + '_captions" id="' + player.id + '_captions_none" ') + 'value="none" checked disabled>' + ('<label class="' + t.options.classPrefix + 'captions-selector-label ') + (t.options.classPrefix + 'captions-selected" ') + ('for="' + player.id + '_captions_none">' + _i18n2.default.t('mejs.none') + '</label>') + '</li>' + '</ul>' + '</div>';
+		player.captionsbutton = _document2.default.createelement('div');
+		player.captionsbutton.classname = t.options.classprefix + 'button ' + t.options.classprefix + 'captions-button';
+		player.captionsbutton.innerhtml = '<button type="button" aria-controls="' + t.id + '" title="' + trackstitle + '" aria-label="' + trackstitle + '" tabindex="0"></button>' + ('<div class="' + t.options.classprefix + 'captions-selector ' + t.options.classprefix + 'offscreen">') + ('<ul class="' + t.options.classprefix + 'captions-selector-list">') + ('<li class="' + t.options.classprefix + 'captions-selector-list-item">') + ('<input type="radio" class="' + t.options.classprefix + 'captions-selector-input" ') + ('name="' + player.id + '_captions" id="' + player.id + '_captions_none" ') + 'value="none" checked disabled>' + ('<label class="' + t.options.classprefix + 'captions-selector-label ') + (t.options.classprefix + 'captions-selected" ') + ('for="' + player.id + '_captions_none">' + _i18n2.default.t('mejs.none') + '</label>') + '</li>' + '</ul>' + '</div>';
 
-		t.addControlElement(player.captionsButton, 'tracks');
+		t.addcontrolelement(player.captionsbutton, 'tracks');
 
-		player.captionsButton.querySelector('.' + t.options.classPrefix + 'captions-selector-input').disabled = false;
+		player.captionsbutton.queryselector('.' + t.options.classprefix + 'captions-selector-input').disabled = false;
 
-		player.chaptersButton = _document2.default.createElement('div');
-		player.chaptersButton.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'chapters-button';
-		player.chaptersButton.innerHTML = '<button type="button" aria-controls="' + t.id + '" title="' + chaptersTitle + '" aria-label="' + chaptersTitle + '" tabindex="0"></button>' + ('<div class="' + t.options.classPrefix + 'chapters-selector ' + t.options.classPrefix + 'offscreen">') + ('<ul class="' + t.options.classPrefix + 'chapters-selector-list"></ul>') + '</div>';
+		player.chaptersbutton = _document2.default.createelement('div');
+		player.chaptersbutton.classname = t.options.classprefix + 'button ' + t.options.classprefix + 'chapters-button';
+		player.chaptersbutton.innerhtml = '<button type="button" aria-controls="' + t.id + '" title="' + chapterstitle + '" aria-label="' + chapterstitle + '" tabindex="0"></button>' + ('<div class="' + t.options.classprefix + 'chapters-selector ' + t.options.classprefix + 'offscreen">') + ('<ul class="' + t.options.classprefix + 'chapters-selector-list"></ul>') + '</div>';
 
-		var subtitleCount = 0;
+		var subtitlecount = 0;
 
 		for (var _i = 0; _i < total; _i++) {
 			var kind = player.tracks[_i].kind,
 			    src = player.tracks[_i].src;
 			if (src.trim()) {
 				if (kind === 'subtitles' || kind === 'captions') {
-					subtitleCount++;
-				} else if (kind === 'chapters' && !controls.querySelector('.' + t.options.classPrefix + 'chapter-selector')) {
-					player.captionsButton.parentNode.insertBefore(player.chaptersButton, player.captionsButton);
+					subtitlecount++;
+				} else if (kind === 'chapters' && !controls.queryselector('.' + t.options.classprefix + 'chapter-selector')) {
+					player.captionsbutton.parentnode.insertbefore(player.chaptersbutton, player.captionsbutton);
 				}
 			}
 		}
 
-		player.trackToLoad = -1;
-		player.selectedTrack = null;
-		player.isLoadingTrack = false;
+		player.tracktoload = -1;
+		player.selectedtrack = null;
+		player.isloadingtrack = false;
 
 		for (var _i2 = 0; _i2 < total; _i2++) {
 			var _kind = player.tracks[_i2].kind;
 			if (player.tracks[_i2].src.trim() && (_kind === 'subtitles' || _kind === 'captions')) {
-				player.addTrackButton(player.tracks[_i2].trackId, player.tracks[_i2].srclang, player.tracks[_i2].label);
+				player.addtrackbutton(player.tracks[_i2].trackid, player.tracks[_i2].srclang, player.tracks[_i2].label);
 			}
 		}
 
-		player.loadNextTrack();
+		player.loadnexttrack();
 
-		var inEvents = ['mouseenter', 'focusin'],
-		    outEvents = ['mouseleave', 'focusout'];
+		var inevents = ['mouseenter', 'focusin'],
+		    outevents = ['mouseleave', 'focusout'];
 
-		if (t.options.toggleCaptionsButtonWhenOnlyOne && subtitleCount === 1) {
-			player.captionsButton.addEventListener('click', function (e) {
-				var trackId = 'none';
-				if (player.selectedTrack === null) {
-					trackId = player.tracks[0].trackId;
+		if (t.options.togglecaptionsbuttonwhenonlyone && subtitlecount === 1) {
+			player.captionsbutton.addeventlistener('click', function (e) {
+				var trackid = 'none';
+				if (player.selectedtrack === null) {
+					trackid = player.tracks[0].trackid;
 				}
-				var keyboard = e.keyCode || e.which;
-				player.setTrack(trackId, typeof keyboard !== 'undefined');
+				var keyboard = e.keycode || e.which;
+				player.settrack(trackid, typeof keyboard !== 'undefined');
 			});
 		} else {
-			var labels = player.captionsButton.querySelectorAll('.' + t.options.classPrefix + 'captions-selector-label'),
-			    captions = player.captionsButton.querySelectorAll('input[type=radio]');
+			var labels = player.captionsbutton.queryselectorall('.' + t.options.classprefix + 'captions-selector-label'),
+			    captions = player.captionsbutton.queryselectorall('input[type=radio]');
 
-			for (var _i3 = 0, _total = inEvents.length; _i3 < _total; _i3++) {
-				player.captionsButton.addEventListener(inEvents[_i3], function () {
-					(0, _dom.removeClass)(this.querySelector('.' + t.options.classPrefix + 'captions-selector'), t.options.classPrefix + 'offscreen');
+			for (var _i3 = 0, _total = inevents.length; _i3 < _total; _i3++) {
+				player.captionsbutton.addeventlistener(inevents[_i3], function () {
+					(0, _dom.removeclass)(this.queryselector('.' + t.options.classprefix + 'captions-selector'), t.options.classprefix + 'offscreen');
 				});
 			}
 
-			for (var _i4 = 0, _total2 = outEvents.length; _i4 < _total2; _i4++) {
-				player.captionsButton.addEventListener(outEvents[_i4], function () {
-					(0, _dom.addClass)(this.querySelector('.' + t.options.classPrefix + 'captions-selector'), t.options.classPrefix + 'offscreen');
+			for (var _i4 = 0, _total2 = outevents.length; _i4 < _total2; _i4++) {
+				player.captionsbutton.addeventlistener(outevents[_i4], function () {
+					(0, _dom.addclass)(this.queryselector('.' + t.options.classprefix + 'captions-selector'), t.options.classprefix + 'offscreen');
 				});
 			}
 
 			for (var _i5 = 0, _total3 = captions.length; _i5 < _total3; _i5++) {
-				captions[_i5].addEventListener('click', function (e) {
-					var keyboard = e.keyCode || e.which;
-					player.setTrack(this.value, typeof keyboard !== 'undefined');
+				captions[_i5].addeventlistener('click', function (e) {
+					var keyboard = e.keycode || e.which;
+					player.settrack(this.value, typeof keyboard !== 'undefined');
 				});
 			}
 
 			for (var _i6 = 0, _total4 = labels.length; _i6 < _total4; _i6++) {
-				labels[_i6].addEventListener('click', function (e) {
+				labels[_i6].addeventlistener('click', function (e) {
 					var radio = (0, _dom.siblings)(this, function (el) {
-						return el.tagName === 'INPUT';
+						return el.tagname === 'input';
 					})[0],
-					    event = (0, _general.createEvent)('click', radio);
-					radio.dispatchEvent(event);
-					e.preventDefault();
+					    event = (0, _general.createevent)('click', radio);
+					radio.dispatchevent(event);
+					e.preventdefault();
 				});
 			}
 
-			player.captionsButton.addEventListener('keydown', function (e) {
-				e.stopPropagation();
+			player.captionsbutton.addeventlistener('keydown', function (e) {
+				e.stoppropagation();
 			});
 		}
 
-		for (var _i7 = 0, _total5 = inEvents.length; _i7 < _total5; _i7++) {
-			player.chaptersButton.addEventListener(inEvents[_i7], function () {
-				if (this.querySelector('.' + t.options.classPrefix + 'chapters-selector-list').children.length) {
-					(0, _dom.removeClass)(this.querySelector('.' + t.options.classPrefix + 'chapters-selector'), t.options.classPrefix + 'offscreen');
+		for (var _i7 = 0, _total5 = inevents.length; _i7 < _total5; _i7++) {
+			player.chaptersbutton.addeventlistener(inevents[_i7], function () {
+				if (this.queryselector('.' + t.options.classprefix + 'chapters-selector-list').children.length) {
+					(0, _dom.removeclass)(this.queryselector('.' + t.options.classprefix + 'chapters-selector'), t.options.classprefix + 'offscreen');
 				}
 			});
 		}
 
-		for (var _i8 = 0, _total6 = outEvents.length; _i8 < _total6; _i8++) {
-			player.chaptersButton.addEventListener(outEvents[_i8], function () {
-				(0, _dom.addClass)(this.querySelector('.' + t.options.classPrefix + 'chapters-selector'), t.options.classPrefix + 'offscreen');
+		for (var _i8 = 0, _total6 = outevents.length; _i8 < _total6; _i8++) {
+			player.chaptersbutton.addeventlistener(outevents[_i8], function () {
+				(0, _dom.addclass)(this.queryselector('.' + t.options.classprefix + 'chapters-selector'), t.options.classprefix + 'offscreen');
 			});
 		}
 
-		player.chaptersButton.addEventListener('keydown', function (e) {
-			e.stopPropagation();
+		player.chaptersbutton.addeventlistener('keydown', function (e) {
+			e.stoppropagation();
 		});
 
-		if (!player.options.alwaysShowControls) {
-			player.getElement(player.container).addEventListener('controlsshown', function () {
-				(0, _dom.addClass)(player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'captions-position'), t.options.classPrefix + 'captions-position-hover');
+		if (!player.options.alwaysshowcontrols) {
+			player.getelement(player.container).addeventlistener('controlsshown', function () {
+				(0, _dom.addclass)(player.getelement(player.container).queryselector('.' + t.options.classprefix + 'captions-position'), t.options.classprefix + 'captions-position-hover');
 			});
 
-			player.getElement(player.container).addEventListener('controlshidden', function () {
+			player.getelement(player.container).addeventlistener('controlshidden', function () {
 				if (!media.paused) {
-					(0, _dom.removeClass)(player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'captions-position'), t.options.classPrefix + 'captions-position-hover');
+					(0, _dom.removeclass)(player.getelement(player.container).queryselector('.' + t.options.classprefix + 'captions-position'), t.options.classprefix + 'captions-position-hover');
 				}
 			});
 		} else {
-			(0, _dom.addClass)(player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'captions-position'), t.options.classPrefix + 'captions-position-hover');
+			(0, _dom.addclass)(player.getelement(player.container).queryselector('.' + t.options.classprefix + 'captions-position'), t.options.classprefix + 'captions-position-hover');
 		}
 
-		media.addEventListener('timeupdate', function () {
-			player.displayCaptions();
+		media.addeventlistener('timeupdate', function () {
+			player.displaycaptions();
 		});
 
-		if (player.options.slidesSelector !== '') {
-			player.slidesContainer = _document2.default.querySelectorAll(player.options.slidesSelector);
+		if (player.options.slidesselector !== '') {
+			player.slidescontainer = _document2.default.queryselectorall(player.options.slidesselector);
 
-			media.addEventListener('timeupdate', function () {
-				player.displaySlides();
+			media.addeventlistener('timeupdate', function () {
+				player.displayslides();
 			});
 		}
 	},
@@ -2458,134 +2458,134 @@ Object.assign(_player2.default.prototype, {
 			if (player.chapters) {
 				player.chapters.remove();
 			}
-			if (player.captionsText) {
-				player.captionsText.remove();
+			if (player.captionstext) {
+				player.captionstext.remove();
 			}
-			if (player.captionsButton) {
-				player.captionsButton.remove();
+			if (player.captionsbutton) {
+				player.captionsbutton.remove();
 			}
-			if (player.chaptersButton) {
-				player.chaptersButton.remove();
+			if (player.chaptersbutton) {
+				player.chaptersbutton.remove();
 			}
 		}
 	},
 	rebuildtracks: function rebuildtracks() {
 		var t = this;
-		t.findTracks();
-		t.buildtracks(t, t.getElement(t.controls), t.getElement(t.layers), t.media);
+		t.findtracks();
+		t.buildtracks(t, t.getelement(t.controls), t.getelement(t.layers), t.media);
 	},
-	findTracks: function findTracks() {
+	findtracks: function findtracks() {
 		var t = this,
-		    tracktags = t.trackFiles === null ? t.node.querySelectorAll('track') : t.trackFiles,
+		    tracktags = t.trackfiles === null ? t.node.queryselectorall('track') : t.trackfiles,
 		    total = tracktags.length;
 
 		t.tracks = [];
 		for (var i = 0; i < total; i++) {
 			var track = tracktags[i],
-			    srclang = track.getAttribute('srclang').toLowerCase() || '',
-			    trackId = t.id + '_track_' + i + '_' + track.getAttribute('kind') + '_' + srclang;
+			    srclang = track.getattribute('srclang').tolowercase() || '',
+			    trackid = t.id + '_track_' + i + '_' + track.getattribute('kind') + '_' + srclang;
 			t.tracks.push({
-				trackId: trackId,
+				trackid: trackid,
 				srclang: srclang,
-				src: track.getAttribute('src'),
-				kind: track.getAttribute('kind'),
-				label: track.getAttribute('label') || '',
+				src: track.getattribute('src'),
+				kind: track.getattribute('kind'),
+				label: track.getattribute('label') || '',
 				entries: [],
-				isLoaded: false
+				isloaded: false
 			});
 		}
 	},
-	setTrack: function setTrack(trackId, setByKeyboard) {
+	settrack: function settrack(trackid, setbykeyboard) {
 
 		var t = this,
-		    radios = t.captionsButton.querySelectorAll('input[type="radio"]'),
-		    captions = t.captionsButton.querySelectorAll('.' + t.options.classPrefix + 'captions-selected'),
-		    track = t.captionsButton.querySelector('input[value="' + trackId + '"]');
+		    radios = t.captionsbutton.queryselectorall('input[type="radio"]'),
+		    captions = t.captionsbutton.queryselectorall('.' + t.options.classprefix + 'captions-selected'),
+		    track = t.captionsbutton.queryselector('input[value="' + trackid + '"]');
 
 		for (var i = 0, total = radios.length; i < total; i++) {
 			radios[i].checked = false;
 		}
 
 		for (var _i9 = 0, _total7 = captions.length; _i9 < _total7; _i9++) {
-			(0, _dom.removeClass)(captions[_i9], t.options.classPrefix + 'captions-selected');
+			(0, _dom.removeclass)(captions[_i9], t.options.classprefix + 'captions-selected');
 		}
 
 		track.checked = true;
 		var labels = (0, _dom.siblings)(track, function (el) {
-			return (0, _dom.hasClass)(el, t.options.classPrefix + 'captions-selector-label');
+			return (0, _dom.hasclass)(el, t.options.classprefix + 'captions-selector-label');
 		});
 		for (var _i10 = 0, _total8 = labels.length; _i10 < _total8; _i10++) {
-			(0, _dom.addClass)(labels[_i10], t.options.classPrefix + 'captions-selected');
+			(0, _dom.addclass)(labels[_i10], t.options.classprefix + 'captions-selected');
 		}
 
-		if (trackId === 'none') {
-			t.selectedTrack = null;
-			(0, _dom.removeClass)(t.captionsButton, t.options.classPrefix + 'captions-enabled');
+		if (trackid === 'none') {
+			t.selectedtrack = null;
+			(0, _dom.removeclass)(t.captionsbutton, t.options.classprefix + 'captions-enabled');
 		} else {
 			for (var _i11 = 0, _total9 = t.tracks.length; _i11 < _total9; _i11++) {
 				var _track = t.tracks[_i11];
-				if (_track.trackId === trackId) {
-					if (t.selectedTrack === null) {
-						(0, _dom.addClass)(t.captionsButton, t.options.classPrefix + 'captions-enabled');
+				if (_track.trackid === trackid) {
+					if (t.selectedtrack === null) {
+						(0, _dom.addclass)(t.captionsbutton, t.options.classprefix + 'captions-enabled');
 					}
-					t.selectedTrack = _track;
-					t.captions.setAttribute('lang', t.selectedTrack.srclang);
-					t.displayCaptions();
+					t.selectedtrack = _track;
+					t.captions.setattribute('lang', t.selectedtrack.srclang);
+					t.displaycaptions();
 					break;
 				}
 			}
 		}
 
-		var event = (0, _general.createEvent)('captionschange', t.media);
-		event.detail.caption = t.selectedTrack;
-		t.media.dispatchEvent(event);
+		var event = (0, _general.createevent)('captionschange', t.media);
+		event.detail.caption = t.selectedtrack;
+		t.media.dispatchevent(event);
 
-		if (!setByKeyboard) {
-			setTimeout(function () {
-				t.getElement(t.container).focus();
+		if (!setbykeyboard) {
+			settimeout(function () {
+				t.getelement(t.container).focus();
 			}, 500);
 		}
 	},
-	loadNextTrack: function loadNextTrack() {
+	loadnexttrack: function loadnexttrack() {
 		var t = this;
 
-		t.trackToLoad++;
-		if (t.trackToLoad < t.tracks.length) {
-			t.isLoadingTrack = true;
-			t.loadTrack(t.trackToLoad);
+		t.tracktoload++;
+		if (t.tracktoload < t.tracks.length) {
+			t.isloadingtrack = true;
+			t.loadtrack(t.tracktoload);
 		} else {
-			t.isLoadingTrack = false;
-			t.checkForTracks();
+			t.isloadingtrack = false;
+			t.checkfortracks();
 		}
 	},
-	loadTrack: function loadTrack(index) {
+	loadtrack: function loadtrack(index) {
 		var t = this,
 		    track = t.tracks[index];
 
 		if (track !== undefined && (track.src !== undefined || track.src !== "")) {
 			(0, _dom.ajax)(track.src, 'text', function (d) {
-				track.entries = typeof d === 'string' && /<tt\s+xml/ig.exec(d) ? _mejs2.default.TrackFormatParser.dfxp.parse(d) : _mejs2.default.TrackFormatParser.webvtt.parse(d);
+				track.entries = typeof d === 'string' && /<tt\s+xml/ig.exec(d) ? _mejs2.default.trackformatparser.dfxp.parse(d) : _mejs2.default.trackformatparser.webvtt.parse(d);
 
-				track.isLoaded = true;
-				t.enableTrackButton(track);
-				t.loadNextTrack();
+				track.isloaded = true;
+				t.enabletrackbutton(track);
+				t.loadnexttrack();
 
 				if (track.kind === 'slides') {
-					t.setupSlides(track);
-				} else if (track.kind === 'chapters' && !t.hasChapters) {
-						t.drawChapters(track);
-						t.hasChapters = true;
+					t.setupslides(track);
+				} else if (track.kind === 'chapters' && !t.haschapters) {
+						t.drawchapters(track);
+						t.haschapters = true;
 					}
 			}, function () {
-				t.removeTrackButton(track.trackId);
-				t.loadNextTrack();
+				t.removetrackbutton(track.trackid);
+				t.loadnexttrack();
 			});
 		}
 	},
-	enableTrackButton: function enableTrackButton(track) {
+	enabletrackbutton: function enabletrackbutton(track) {
 		var t = this,
 		    lang = track.srclang,
-		    target = _document2.default.getElementById('' + track.trackId);
+		    target = _document2.default.getelementbyid('' + track.trackid);
 
 		if (!target) {
 			return;
@@ -2597,21 +2597,21 @@ Object.assign(_player2.default.prototype, {
 			label = _i18n2.default.t(_mejs2.default.language.codes[lang]) || lang;
 		}
 		target.disabled = false;
-		var targetSiblings = (0, _dom.siblings)(target, function (el) {
-			return (0, _dom.hasClass)(el, t.options.classPrefix + 'captions-selector-label');
+		var targetsiblings = (0, _dom.siblings)(target, function (el) {
+			return (0, _dom.hasclass)(el, t.options.classprefix + 'captions-selector-label');
 		});
-		for (var i = 0, total = targetSiblings.length; i < total; i++) {
-			targetSiblings[i].innerHTML = label;
+		for (var i = 0, total = targetsiblings.length; i < total; i++) {
+			targetsiblings[i].innerhtml = label;
 		}
 
-		if (t.options.startLanguage === lang) {
+		if (t.options.startlanguage === lang) {
 			target.checked = true;
-			var event = (0, _general.createEvent)('click', target);
-			target.dispatchEvent(event);
+			var event = (0, _general.createevent)('click', target);
+			target.dispatchevent(event);
 		}
 	},
-	removeTrackButton: function removeTrackButton(trackId) {
-		var element = _document2.default.getElementById('' + trackId);
+	removetrackbutton: function removetrackbutton(trackid) {
+		var element = _document2.default.getelementbyid('' + trackid);
 		if (element) {
 			var button = element.closest('li');
 			if (button) {
@@ -2619,72 +2619,72 @@ Object.assign(_player2.default.prototype, {
 			}
 		}
 	},
-	addTrackButton: function addTrackButton(trackId, lang, label) {
+	addtrackbutton: function addtrackbutton(trackid, lang, label) {
 		var t = this;
 		if (label === '') {
 			label = _i18n2.default.t(_mejs2.default.language.codes[lang]) || lang;
 		}
 
-		t.captionsButton.querySelector('ul').innerHTML += '<li class="' + t.options.classPrefix + 'captions-selector-list-item">' + ('<input type="radio" class="' + t.options.classPrefix + 'captions-selector-input" ') + ('name="' + t.id + '_captions" id="' + trackId + '" value="' + trackId + '" disabled>') + ('<label class="' + t.options.classPrefix + 'captions-selector-label"') + ('for="' + trackId + '">' + label + ' (loading)</label>') + '</li>';
+		t.captionsbutton.queryselector('ul').innerhtml += '<li class="' + t.options.classprefix + 'captions-selector-list-item">' + ('<input type="radio" class="' + t.options.classprefix + 'captions-selector-input" ') + ('name="' + t.id + '_captions" id="' + trackid + '" value="' + trackid + '" disabled>') + ('<label class="' + t.options.classprefix + 'captions-selector-label"') + ('for="' + trackid + '">' + label + ' (loading)</label>') + '</li>';
 	},
-	checkForTracks: function checkForTracks() {
+	checkfortracks: function checkfortracks() {
 		var t = this;
 
-		var hasSubtitles = false;
+		var hassubtitles = false;
 
-		if (t.options.hideCaptionsButtonWhenEmpty) {
+		if (t.options.hidecaptionsbuttonwhenempty) {
 			for (var i = 0, total = t.tracks.length; i < total; i++) {
 				var kind = t.tracks[i].kind;
-				if ((kind === 'subtitles' || kind === 'captions') && t.tracks[i].isLoaded) {
-					hasSubtitles = true;
+				if ((kind === 'subtitles' || kind === 'captions') && t.tracks[i].isloaded) {
+					hassubtitles = true;
 					break;
 				}
 			}
 
-			t.captionsButton.style.display = hasSubtitles ? '' : 'none';
-			t.setControlsSize();
+			t.captionsbutton.style.display = hassubtitles ? '' : 'none';
+			t.setcontrolssize();
 		}
 	},
-	displayCaptions: function displayCaptions() {
+	displaycaptions: function displaycaptions() {
 		if (this.tracks === undefined) {
 			return;
 		}
 
 		var t = this,
-		    track = t.selectedTrack,
+		    track = t.selectedtrack,
 		    sanitize = function sanitize(html) {
-			var div = _document2.default.createElement('div');
-			div.innerHTML = html;
+			var div = _document2.default.createelement('div');
+			div.innerhtml = html;
 
-			var scripts = div.getElementsByTagName('script');
+			var scripts = div.getelementsbytagname('script');
 			var i = scripts.length;
 			while (i--) {
 				scripts[i].remove();
 			}
 
-			var allElements = div.getElementsByTagName('*');
-			for (var _i12 = 0, n = allElements.length; _i12 < n; _i12++) {
-				var attributesObj = allElements[_i12].attributes,
-				    attributes = Array.prototype.slice.call(attributesObj);
+			var allelements = div.getelementsbytagname('*');
+			for (var _i12 = 0, n = allelements.length; _i12 < n; _i12++) {
+				var attributesobj = allelements[_i12].attributes,
+				    attributes = array.prototype.slice.call(attributesobj);
 
 				for (var j = 0, total = attributes.length; j < total; j++) {
-					if (attributes[j].name.startsWith('on') || attributes[j].value.startsWith('javascript')) {
-						allElements[_i12].remove();
+					if (attributes[j].name.startswith('on') || attributes[j].value.startswith('javascript')) {
+						allelements[_i12].remove();
 					} else if (attributes[j].name === 'style') {
-						allElements[_i12].removeAttribute(attributes[j].name);
+						allelements[_i12].removeattribute(attributes[j].name);
 					}
 				}
 			}
-			return div.innerHTML;
+			return div.innerhtml;
 		};
 
-		if (track !== null && track.isLoaded) {
-			var i = t.searchTrackPosition(track.entries, t.media.currentTime);
+		if (track !== null && track.isloaded) {
+			var i = t.searchtrackposition(track.entries, t.media.currenttime);
 			if (i > -1) {
 				var text = track.entries[i].text;
-				if (typeof t.options.captionTextPreprocessor === 'function') text = t.options.captionTextPreprocessor(text);
-				t.captionsText.innerHTML = sanitize(text);
-				t.captionsText.className = t.options.classPrefix + 'captions-text ' + (track.entries[i].identifier || '');
+				if (typeof t.options.captiontextpreprocessor === 'function') text = t.options.captiontextpreprocessor(text);
+				t.captionstext.innerhtml = sanitize(text);
+				t.captionstext.classname = t.options.classprefix + 'captions-text ' + (track.entries[i].identifier || '');
 				t.captions.style.display = '';
 				t.captions.style.height = '0px';
 				return;
@@ -2694,18 +2694,18 @@ Object.assign(_player2.default.prototype, {
 			t.captions.style.display = 'none';
 		}
 	},
-	setupSlides: function setupSlides(track) {
+	setupslides: function setupslides(track) {
 		var t = this;
 		t.slides = track;
 		t.slides.entries.imgs = [t.slides.entries.length];
-		t.showSlide(0);
+		t.showslide(0);
 	},
-	showSlide: function showSlide(index) {
+	showslide: function showslide(index) {
 		var _this = this;
 
 		var t = this;
 
-		if (t.tracks === undefined || t.slidesContainer === undefined) {
+		if (t.tracks === undefined || t.slidescontainer === undefined) {
 			return;
 		}
 
@@ -2713,19 +2713,19 @@ Object.assign(_player2.default.prototype, {
 
 		var img = t.slides.entries[index].imgs;
 
-		if (img === undefined || img.fadeIn === undefined) {
-			var image = _document2.default.createElement('img');
+		if (img === undefined || img.fadein === undefined) {
+			var image = _document2.default.createelement('img');
 			image.src = url;
-			image.addEventListener('load', function () {
+			image.addeventlistener('load', function () {
 				var self = _this,
 				    visible = (0, _dom.siblings)(self, function (el) {
 					return visible(el);
 				});
 				self.style.display = 'none';
-				t.slidesContainer.innerHTML += self.innerHTML;
-				(0, _dom.fadeIn)(t.slidesContainer.querySelector(image));
+				t.slidescontainer.innerhtml += self.innerhtml;
+				(0, _dom.fadein)(t.slidescontainer.queryselector(image));
 				for (var i = 0, total = visible.length; i < total; i++) {
-					(0, _dom.fadeOut)(visible[i], 400);
+					(0, _dom.fadeout)(visible[i], 400);
 				}
 			});
 			t.slides.entries[index].imgs = img = image;
@@ -2733,13 +2733,13 @@ Object.assign(_player2.default.prototype, {
 			var _visible = (0, _dom.siblings)(self, function (el) {
 				return _visible(el);
 			});
-			(0, _dom.fadeIn)(t.slidesContainer.querySelector(img));
+			(0, _dom.fadein)(t.slidescontainer.queryselector(img));
 			for (var i = 0, total = _visible.length; i < total; i++) {
-				(0, _dom.fadeOut)(_visible[i]);
+				(0, _dom.fadeout)(_visible[i]);
 			}
 		}
 	},
-	displaySlides: function displaySlides() {
+	displayslides: function displayslides() {
 		var t = this;
 
 		if (this.slides === undefined) {
@@ -2747,13 +2747,13 @@ Object.assign(_player2.default.prototype, {
 		}
 
 		var slides = t.slides,
-		    i = t.searchTrackPosition(slides.entries, t.media.currentTime);
+		    i = t.searchtrackposition(slides.entries, t.media.currenttime);
 
 		if (i > -1) {
-			t.showSlide(i);
+			t.showslide(i);
 		}
 	},
-	drawChapters: function drawChapters(chapters) {
+	drawchapters: function drawchapters(chapters) {
 		var t = this,
 		    total = chapters.entries.length;
 
@@ -2761,42 +2761,42 @@ Object.assign(_player2.default.prototype, {
 			return;
 		}
 
-		t.chaptersButton.querySelector('ul').innerHTML = '';
+		t.chaptersbutton.queryselector('ul').innerhtml = '';
 
 		for (var i = 0; i < total; i++) {
-			t.chaptersButton.querySelector('ul').innerHTML += '<li class="' + t.options.classPrefix + 'chapters-selector-list-item" ' + 'role="menuitemcheckbox" aria-live="polite" aria-disabled="false" aria-checked="false">' + ('<input type="radio" class="' + t.options.classPrefix + 'captions-selector-input" ') + ('name="' + t.id + '_chapters" id="' + t.id + '_chapters_' + i + '" value="' + chapters.entries[i].start + '" disabled>') + ('<label class="' + t.options.classPrefix + 'chapters-selector-label"') + ('for="' + t.id + '_chapters_' + i + '">' + chapters.entries[i].text + '</label>') + '</li>';
+			t.chaptersbutton.queryselector('ul').innerhtml += '<li class="' + t.options.classprefix + 'chapters-selector-list-item" ' + 'role="menuitemcheckbox" aria-live="polite" aria-disabled="false" aria-checked="false">' + ('<input type="radio" class="' + t.options.classprefix + 'captions-selector-input" ') + ('name="' + t.id + '_chapters" id="' + t.id + '_chapters_' + i + '" value="' + chapters.entries[i].start + '" disabled>') + ('<label class="' + t.options.classprefix + 'chapters-selector-label"') + ('for="' + t.id + '_chapters_' + i + '">' + chapters.entries[i].text + '</label>') + '</li>';
 		}
 
-		var radios = t.chaptersButton.querySelectorAll('input[type="radio"]'),
-		    labels = t.chaptersButton.querySelectorAll('.' + t.options.classPrefix + 'chapters-selector-label');
+		var radios = t.chaptersbutton.queryselectorall('input[type="radio"]'),
+		    labels = t.chaptersbutton.queryselectorall('.' + t.options.classprefix + 'chapters-selector-label');
 
 		for (var _i13 = 0, _total10 = radios.length; _i13 < _total10; _i13++) {
 			radios[_i13].disabled = false;
 			radios[_i13].checked = false;
-			radios[_i13].addEventListener('click', function (e) {
+			radios[_i13].addeventlistener('click', function (e) {
 				var self = this,
-				    listItems = t.chaptersButton.querySelectorAll('li'),
+				    listitems = t.chaptersbutton.queryselectorall('li'),
 				    label = (0, _dom.siblings)(self, function (el) {
-					return (0, _dom.hasClass)(el, t.options.classPrefix + 'chapters-selector-label');
+					return (0, _dom.hasclass)(el, t.options.classprefix + 'chapters-selector-label');
 				})[0];
 
 				self.checked = true;
-				self.parentNode.setAttribute('aria-checked', true);
-				(0, _dom.addClass)(label, t.options.classPrefix + 'chapters-selected');
-				(0, _dom.removeClass)(t.chaptersButton.querySelector('.' + t.options.classPrefix + 'chapters-selected'), t.options.classPrefix + 'chapters-selected');
+				self.parentnode.setattribute('aria-checked', true);
+				(0, _dom.addclass)(label, t.options.classprefix + 'chapters-selected');
+				(0, _dom.removeclass)(t.chaptersbutton.queryselector('.' + t.options.classprefix + 'chapters-selected'), t.options.classprefix + 'chapters-selected');
 
-				for (var _i14 = 0, _total11 = listItems.length; _i14 < _total11; _i14++) {
-					listItems[_i14].setAttribute('aria-checked', false);
+				for (var _i14 = 0, _total11 = listitems.length; _i14 < _total11; _i14++) {
+					listitems[_i14].setattribute('aria-checked', false);
 				}
 
-				var keyboard = e.keyCode || e.which;
+				var keyboard = e.keycode || e.which;
 				if (typeof keyboard === 'undefined') {
-					setTimeout(function () {
-						t.getElement(t.container).focus();
+					settimeout(function () {
+						t.getelement(t.container).focus();
 					}, 500);
 				}
 
-				t.media.setCurrentTime(parseFloat(self.value));
+				t.media.setcurrenttime(parsefloat(self.value));
 				if (t.media.paused) {
 					t.media.play();
 				}
@@ -2804,17 +2804,17 @@ Object.assign(_player2.default.prototype, {
 		}
 
 		for (var _i15 = 0, _total12 = labels.length; _i15 < _total12; _i15++) {
-			labels[_i15].addEventListener('click', function (e) {
+			labels[_i15].addeventlistener('click', function (e) {
 				var radio = (0, _dom.siblings)(this, function (el) {
-					return el.tagName === 'INPUT';
+					return el.tagname === 'input';
 				})[0],
-				    event = (0, _general.createEvent)('click', radio);
-				radio.dispatchEvent(event);
-				e.preventDefault();
+				    event = (0, _general.createevent)('click', radio);
+				radio.dispatchevent(event);
+				e.preventdefault();
 			});
 		}
 	},
-	searchTrackPosition: function searchTrackPosition(tracks, currentTime) {
+	searchtrackposition: function searchtrackposition(tracks, currenttime) {
 		var lo = 0,
 		    hi = tracks.length - 1,
 		    mid = void 0,
@@ -2826,11 +2826,11 @@ Object.assign(_player2.default.prototype, {
 			start = tracks[mid].start;
 			stop = tracks[mid].stop;
 
-			if (currentTime >= start && currentTime < stop) {
+			if (currenttime >= start && currenttime < stop) {
 				return mid;
-			} else if (start < currentTime) {
+			} else if (start < currenttime) {
 				lo = mid + 1;
-			} else if (start > currentTime) {
+			} else if (start > currenttime) {
 				hi = mid - 1;
 			}
 		}
@@ -2899,12 +2899,12 @@ _mejs2.default.language = {
 	}
 };
 
-_mejs2.default.TrackFormatParser = {
+_mejs2.default.trackformatparser = {
 	webvtt: {
 		pattern: /^((?:[0-9]{1,2}:)?[0-9]{2}:[0-9]{2}([,.][0-9]{1,3})?) --\> ((?:[0-9]{1,2}:)?[0-9]{2}:[0-9]{2}([,.][0-9]{3})?)(.*)$/,
 
-		parse: function parse(trackText) {
-			var lines = trackText.split(/\r?\n/),
+		parse: function parse(tracktext) {
+			var lines = tracktext.split(/\r?\n/),
 			    entries = [];
 
 			var timecode = void 0,
@@ -2926,11 +2926,11 @@ _mejs2.default.TrackFormatParser = {
 						text = text + '\n' + lines[i];
 						i++;
 					}
-					text = text === null ? '' : text.trim().replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, "<a href='$1' target='_blank'>$1</a>");
+					text = text === null ? '' : text.trim().replace(/(\b(https?|ftp|file):\/\/[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|])/ig, "<a href='$1' target='_blank'>$1</a>");
 					entries.push({
 						identifier: identifier,
-						start: (0, _time.convertSMPTEtoSeconds)(timecode[1]) === 0 ? 0.200 : (0, _time.convertSMPTEtoSeconds)(timecode[1]),
-						stop: (0, _time.convertSMPTEtoSeconds)(timecode[3]),
+						start: (0, _time.convertsmptetoseconds)(timecode[1]) === 0 ? 0.200 : (0, _time.convertsmptetoseconds)(timecode[1]),
+						stop: (0, _time.convertsmptetoseconds)(timecode[3]),
 						text: text,
 						settings: timecode[5]
 					});
@@ -2942,18 +2942,18 @@ _mejs2.default.TrackFormatParser = {
 	},
 
 	dfxp: {
-		parse: function parse(trackText) {
-			var trackElem = _document2.default.adoptNode(new DOMParser().parseFromString(trackText, 'application/xml').documentElement),
-			    container = trackElem.querySelector('div'),
-			    lines = container.querySelectorAll('p'),
-			    styleNode = _document2.default.getElementById(container.getAttribute('style')),
+		parse: function parse(tracktext) {
+			var trackelem = _document2.default.adoptnode(new domparser().parsefromstring(tracktext, 'application/xml').documentelement),
+			    container = trackelem.queryselector('div'),
+			    lines = container.queryselectorall('p'),
+			    stylenode = _document2.default.getelementbyid(container.getattribute('style')),
 			    entries = [];
 
 			var styles = void 0;
 
-			if (styleNode) {
-				styleNode.removeAttribute('id');
-				var attributes = styleNode.attributes;
+			if (stylenode) {
+				stylenode.removeattribute('id');
+				var attributes = stylenode.attributes;
 				if (attributes.length) {
 					styles = {};
 					for (var i = 0, total = attributes.length; i < total; i++) {
@@ -2971,17 +2971,17 @@ _mejs2.default.TrackFormatParser = {
 					text: null
 				};
 
-				if (lines[_i16].getAttribute('begin')) {
-					_temp.start = (0, _time.convertSMPTEtoSeconds)(lines[_i16].getAttribute('begin'));
+				if (lines[_i16].getattribute('begin')) {
+					_temp.start = (0, _time.convertsmptetoseconds)(lines[_i16].getattribute('begin'));
 				}
-				if (!_temp.start && lines[_i16 - 1].getAttribute('end')) {
-					_temp.start = (0, _time.convertSMPTEtoSeconds)(lines[_i16 - 1].getAttribute('end'));
+				if (!_temp.start && lines[_i16 - 1].getattribute('end')) {
+					_temp.start = (0, _time.convertsmptetoseconds)(lines[_i16 - 1].getattribute('end'));
 				}
-				if (lines[_i16].getAttribute('end')) {
-					_temp.stop = (0, _time.convertSMPTEtoSeconds)(lines[_i16].getAttribute('end'));
+				if (lines[_i16].getattribute('end')) {
+					_temp.stop = (0, _time.convertsmptetoseconds)(lines[_i16].getattribute('end'));
 				}
-				if (!_temp.stop && lines[_i16 + 1].getAttribute('begin')) {
-					_temp.stop = (0, _time.convertSMPTEtoSeconds)(lines[_i16 + 1].getAttribute('begin'));
+				if (!_temp.stop && lines[_i16 + 1].getattribute('begin')) {
+					_temp.stop = (0, _time.convertsmptetoseconds)(lines[_i16 + 1].getattribute('begin'));
 				}
 
 				if (styles) {
@@ -2996,7 +2996,7 @@ _mejs2.default.TrackFormatParser = {
 				if (_temp.start === 0) {
 					_temp.start = 0.200;
 				}
-				_temp.text = lines[_i16].innerHTML.trim().replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_| !:, .; ]*[-A-Z0-9+&@#\/%=~_|])/ig, "<a href='$1' target='_blank'>$1</a>");
+				_temp.text = lines[_i16].innerhtml.trim().replace(/(\b(https?|ftp|file):\/\/[-a-z0-9+&@#\/%?=~_| !:, .; ]*[-a-z0-9+&@#\/%=~_|])/ig, "<a href='$1' target='_blank'>$1</a>");
 				entries.push(_temp);
 			}
 			return entries;
@@ -3009,15 +3009,15 @@ _mejs2.default.TrackFormatParser = {
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _constants = _dereq_(25);
 
@@ -3025,359 +3025,359 @@ var _general = _dereq_(27);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-Object.assign(_player.config, {
-	muteText: null,
+object.assign(_player.config, {
+	mutetext: null,
 
-	unmuteText: null,
+	unmutetext: null,
 
-	allyVolumeControlText: null,
+	allyvolumecontroltext: null,
 
-	hideVolumeOnTouchDevices: true,
+	hidevolumeontouchdevices: true,
 
-	audioVolume: 'horizontal',
+	audiovolume: 'horizontal',
 
-	videoVolume: 'vertical',
+	videovolume: 'vertical',
 
-	startVolume: 0.8
+	startvolume: 0.8
 });
 
-Object.assign(_player2.default.prototype, {
+object.assign(_player2.default.prototype, {
 	buildvolume: function buildvolume(player, controls, layers, media) {
-		if ((_constants.IS_ANDROID || _constants.IS_IOS) && this.options.hideVolumeOnTouchDevices) {
+		if ((_constants.is_android || _constants.is_ios) && this.options.hidevolumeontouchdevices) {
 			return;
 		}
 
 		var t = this,
-		    mode = t.isVideo ? t.options.videoVolume : t.options.audioVolume,
-		    muteText = (0, _general.isString)(t.options.muteText) ? t.options.muteText : _i18n2.default.t('mejs.mute'),
-		    unmuteText = (0, _general.isString)(t.options.unmuteText) ? t.options.unmuteText : _i18n2.default.t('mejs.unmute'),
-		    volumeControlText = (0, _general.isString)(t.options.allyVolumeControlText) ? t.options.allyVolumeControlText : _i18n2.default.t('mejs.volume-help-text'),
-		    mute = _document2.default.createElement('div');
+		    mode = t.isvideo ? t.options.videovolume : t.options.audiovolume,
+		    mutetext = (0, _general.isstring)(t.options.mutetext) ? t.options.mutetext : _i18n2.default.t('mejs.mute'),
+		    unmutetext = (0, _general.isstring)(t.options.unmutetext) ? t.options.unmutetext : _i18n2.default.t('mejs.unmute'),
+		    volumecontroltext = (0, _general.isstring)(t.options.allyvolumecontroltext) ? t.options.allyvolumecontroltext : _i18n2.default.t('mejs.volume-help-text'),
+		    mute = _document2.default.createelement('div');
 
-		mute.className = t.options.classPrefix + 'button ' + t.options.classPrefix + 'volume-button ' + t.options.classPrefix + 'mute';
-		mute.innerHTML = mode === 'horizontal' ? '<button type="button" aria-controls="' + t.id + '" title="' + muteText + '" aria-label="' + muteText + '" tabindex="0"></button>' : '<button type="button" aria-controls="' + t.id + '" title="' + muteText + '" aria-label="' + muteText + '" tabindex="0"></button>' + ('<a href="javascript:void(0);" class="' + t.options.classPrefix + 'volume-slider" ') + ('aria-label="' + _i18n2.default.t('mejs.volume-slider') + '" aria-valuemin="0" aria-valuemax="100" role="slider" ') + 'aria-orientation="vertical">' + ('<span class="' + t.options.classPrefix + 'offscreen">' + volumeControlText + '</span>') + ('<div class="' + t.options.classPrefix + 'volume-total">') + ('<div class="' + t.options.classPrefix + 'volume-current"></div>') + ('<div class="' + t.options.classPrefix + 'volume-handle"></div>') + '</div>' + '</a>';
+		mute.classname = t.options.classprefix + 'button ' + t.options.classprefix + 'volume-button ' + t.options.classprefix + 'mute';
+		mute.innerhtml = mode === 'horizontal' ? '<button type="button" aria-controls="' + t.id + '" title="' + mutetext + '" aria-label="' + mutetext + '" tabindex="0"></button>' : '<button type="button" aria-controls="' + t.id + '" title="' + mutetext + '" aria-label="' + mutetext + '" tabindex="0"></button>' + ('<a href="javascript:void(0);" class="' + t.options.classprefix + 'volume-slider" ') + ('aria-label="' + _i18n2.default.t('mejs.volume-slider') + '" aria-valuemin="0" aria-valuemax="100" role="slider" ') + 'aria-orientation="vertical">' + ('<span class="' + t.options.classprefix + 'offscreen">' + volumecontroltext + '</span>') + ('<div class="' + t.options.classprefix + 'volume-total">') + ('<div class="' + t.options.classprefix + 'volume-current"></div>') + ('<div class="' + t.options.classprefix + 'volume-handle"></div>') + '</div>' + '</a>';
 
-		t.addControlElement(mute, 'volume');
+		t.addcontrolelement(mute, 'volume');
 
-		t.options.keyActions.push({
+		t.options.keyactions.push({
 			keys: [38],
 			action: function action(player) {
-				var volumeSlider = player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'volume-slider');
-				if (volumeSlider && volumeSlider.matches(':focus')) {
-					volumeSlider.style.display = 'block';
+				var volumeslider = player.getelement(player.container).queryselector('.' + t.options.classprefix + 'volume-slider');
+				if (volumeslider && volumeslider.matches(':focus')) {
+					volumeslider.style.display = 'block';
 				}
-				if (player.isVideo) {
-					player.showControls();
-					player.startControlsTimer();
+				if (player.isvideo) {
+					player.showcontrols();
+					player.startcontrolstimer();
 				}
 
-				var newVolume = Math.min(player.volume + 0.1, 1);
-				player.setVolume(newVolume);
-				if (newVolume > 0) {
-					player.setMuted(false);
+				var newvolume = math.min(player.volume + 0.1, 1);
+				player.setvolume(newvolume);
+				if (newvolume > 0) {
+					player.setmuted(false);
 				}
 			}
 		}, {
 			keys: [40],
 			action: function action(player) {
-				var volumeSlider = player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'volume-slider');
-				if (volumeSlider) {
-					volumeSlider.style.display = 'block';
+				var volumeslider = player.getelement(player.container).queryselector('.' + t.options.classprefix + 'volume-slider');
+				if (volumeslider) {
+					volumeslider.style.display = 'block';
 				}
 
-				if (player.isVideo) {
-					player.showControls();
-					player.startControlsTimer();
+				if (player.isvideo) {
+					player.showcontrols();
+					player.startcontrolstimer();
 				}
 
-				var newVolume = Math.max(player.volume - 0.1, 0);
-				player.setVolume(newVolume);
+				var newvolume = math.max(player.volume - 0.1, 0);
+				player.setvolume(newvolume);
 
-				if (newVolume <= 0.1) {
-					player.setMuted(true);
+				if (newvolume <= 0.1) {
+					player.setmuted(true);
 				}
 			}
 		}, {
 			keys: [77],
 			action: function action(player) {
-				var volumeSlider = player.getElement(player.container).querySelector('.' + t.options.classPrefix + 'volume-slider');
-				if (volumeSlider) {
-					volumeSlider.style.display = 'block';
+				var volumeslider = player.getelement(player.container).queryselector('.' + t.options.classprefix + 'volume-slider');
+				if (volumeslider) {
+					volumeslider.style.display = 'block';
 				}
 
-				if (player.isVideo) {
-					player.showControls();
-					player.startControlsTimer();
+				if (player.isvideo) {
+					player.showcontrols();
+					player.startcontrolstimer();
 				}
 				if (player.media.muted) {
-					player.setMuted(false);
+					player.setmuted(false);
 				} else {
-					player.setMuted(true);
+					player.setmuted(true);
 				}
 			}
 		});
 
 		if (mode === 'horizontal') {
-			var anchor = _document2.default.createElement('a');
-			anchor.className = t.options.classPrefix + 'horizontal-volume-slider';
+			var anchor = _document2.default.createelement('a');
+			anchor.classname = t.options.classprefix + 'horizontal-volume-slider';
 			anchor.href = 'javascript:void(0);';
-			anchor.setAttribute('aria-label', _i18n2.default.t('mejs.volume-slider'));
-			anchor.setAttribute('aria-valuemin', 0);
-			anchor.setAttribute('aria-valuemax', 100);
-			anchor.setAttribute('aria-valuenow', 100);
-			anchor.setAttribute('role', 'slider');
-			anchor.innerHTML += '<span class="' + t.options.classPrefix + 'offscreen">' + volumeControlText + '</span>' + ('<div class="' + t.options.classPrefix + 'horizontal-volume-total">') + ('<div class="' + t.options.classPrefix + 'horizontal-volume-current"></div>') + ('<div class="' + t.options.classPrefix + 'horizontal-volume-handle"></div>') + '</div>';
-			mute.parentNode.insertBefore(anchor, mute.nextSibling);
+			anchor.setattribute('aria-label', _i18n2.default.t('mejs.volume-slider'));
+			anchor.setattribute('aria-valuemin', 0);
+			anchor.setattribute('aria-valuemax', 100);
+			anchor.setattribute('aria-valuenow', 100);
+			anchor.setattribute('role', 'slider');
+			anchor.innerhtml += '<span class="' + t.options.classprefix + 'offscreen">' + volumecontroltext + '</span>' + ('<div class="' + t.options.classprefix + 'horizontal-volume-total">') + ('<div class="' + t.options.classprefix + 'horizontal-volume-current"></div>') + ('<div class="' + t.options.classprefix + 'horizontal-volume-handle"></div>') + '</div>';
+			mute.parentnode.insertbefore(anchor, mute.nextsibling);
 		}
 
-		var mouseIsDown = false,
-		    mouseIsOver = false,
+		var mouseisdown = false,
+		    mouseisover = false,
 		    modified = false,
-		    updateVolumeSlider = function updateVolumeSlider() {
-			var volume = Math.floor(media.volume * 100);
-			volumeSlider.setAttribute('aria-valuenow', volume);
-			volumeSlider.setAttribute('aria-valuetext', volume + '%');
+		    updatevolumeslider = function updatevolumeslider() {
+			var volume = math.floor(media.volume * 100);
+			volumeslider.setattribute('aria-valuenow', volume);
+			volumeslider.setattribute('aria-valuetext', volume + '%');
 		};
 
-		var volumeSlider = mode === 'vertical' ? t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'volume-slider') : t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'horizontal-volume-slider'),
-		    volumeTotal = mode === 'vertical' ? t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'volume-total') : t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'horizontal-volume-total'),
-		    volumeCurrent = mode === 'vertical' ? t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'volume-current') : t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'horizontal-volume-current'),
-		    volumeHandle = mode === 'vertical' ? t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'volume-handle') : t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'horizontal-volume-handle'),
-		    positionVolumeHandle = function positionVolumeHandle(volume) {
+		var volumeslider = mode === 'vertical' ? t.getelement(t.container).queryselector('.' + t.options.classprefix + 'volume-slider') : t.getelement(t.container).queryselector('.' + t.options.classprefix + 'horizontal-volume-slider'),
+		    volumetotal = mode === 'vertical' ? t.getelement(t.container).queryselector('.' + t.options.classprefix + 'volume-total') : t.getelement(t.container).queryselector('.' + t.options.classprefix + 'horizontal-volume-total'),
+		    volumecurrent = mode === 'vertical' ? t.getelement(t.container).queryselector('.' + t.options.classprefix + 'volume-current') : t.getelement(t.container).queryselector('.' + t.options.classprefix + 'horizontal-volume-current'),
+		    volumehandle = mode === 'vertical' ? t.getelement(t.container).queryselector('.' + t.options.classprefix + 'volume-handle') : t.getelement(t.container).queryselector('.' + t.options.classprefix + 'horizontal-volume-handle'),
+		    positionvolumehandle = function positionvolumehandle(volume) {
 
-			if (volume === null || isNaN(volume) || volume === undefined) {
+			if (volume === null || isnan(volume) || volume === undefined) {
 				return;
 			}
 
-			volume = Math.max(0, volume);
-			volume = Math.min(volume, 1);
+			volume = math.max(0, volume);
+			volume = math.min(volume, 1);
 
 			if (volume === 0) {
-				(0, _dom.removeClass)(mute, t.options.classPrefix + 'mute');
-				(0, _dom.addClass)(mute, t.options.classPrefix + 'unmute');
-				var button = mute.firstElementChild;
-				button.setAttribute('title', unmuteText);
-				button.setAttribute('aria-label', unmuteText);
+				(0, _dom.removeclass)(mute, t.options.classprefix + 'mute');
+				(0, _dom.addclass)(mute, t.options.classprefix + 'unmute');
+				var button = mute.firstelementchild;
+				button.setattribute('title', unmutetext);
+				button.setattribute('aria-label', unmutetext);
 			} else {
-				(0, _dom.removeClass)(mute, t.options.classPrefix + 'unmute');
-				(0, _dom.addClass)(mute, t.options.classPrefix + 'mute');
-				var _button = mute.firstElementChild;
-				_button.setAttribute('title', muteText);
-				_button.setAttribute('aria-label', muteText);
+				(0, _dom.removeclass)(mute, t.options.classprefix + 'unmute');
+				(0, _dom.addclass)(mute, t.options.classprefix + 'mute');
+				var _button = mute.firstelementchild;
+				_button.setattribute('title', mutetext);
+				_button.setattribute('aria-label', mutetext);
 			}
 
-			var volumePercentage = volume * 100 + '%',
-			    volumeStyles = getComputedStyle(volumeHandle);
+			var volumepercentage = volume * 100 + '%',
+			    volumestyles = getcomputedstyle(volumehandle);
 
 			if (mode === 'vertical') {
-				volumeCurrent.style.bottom = 0;
-				volumeCurrent.style.height = volumePercentage;
-				volumeHandle.style.bottom = volumePercentage;
-				volumeHandle.style.marginBottom = -parseFloat(volumeStyles.height) / 2 + 'px';
+				volumecurrent.style.bottom = 0;
+				volumecurrent.style.height = volumepercentage;
+				volumehandle.style.bottom = volumepercentage;
+				volumehandle.style.marginbottom = -parsefloat(volumestyles.height) / 2 + 'px';
 			} else {
-				volumeCurrent.style.left = 0;
-				volumeCurrent.style.width = volumePercentage;
-				volumeHandle.style.left = volumePercentage;
-				volumeHandle.style.marginLeft = -parseFloat(volumeStyles.width) / 2 + 'px';
+				volumecurrent.style.left = 0;
+				volumecurrent.style.width = volumepercentage;
+				volumehandle.style.left = volumepercentage;
+				volumehandle.style.marginleft = -parsefloat(volumestyles.width) / 2 + 'px';
 			}
 		},
-		    handleVolumeMove = function handleVolumeMove(e) {
-			var totalOffset = (0, _dom.offset)(volumeTotal),
-			    volumeStyles = getComputedStyle(volumeTotal);
+		    handlevolumemove = function handlevolumemove(e) {
+			var totaloffset = (0, _dom.offset)(volumetotal),
+			    volumestyles = getcomputedstyle(volumetotal);
 
 			modified = true;
 
 			var volume = null;
 
 			if (mode === 'vertical') {
-				var railHeight = parseFloat(volumeStyles.height),
-				    newY = e.pageY - totalOffset.top;
+				var railheight = parsefloat(volumestyles.height),
+				    newy = e.pagey - totaloffset.top;
 
-				volume = (railHeight - newY) / railHeight;
+				volume = (railheight - newy) / railheight;
 
-				if (totalOffset.top === 0 || totalOffset.left === 0) {
+				if (totaloffset.top === 0 || totaloffset.left === 0) {
 					return;
 				}
 			} else {
-				var railWidth = parseFloat(volumeStyles.width),
-				    newX = e.pageX - totalOffset.left;
+				var railwidth = parsefloat(volumestyles.width),
+				    newx = e.pagex - totaloffset.left;
 
-				volume = newX / railWidth;
+				volume = newx / railwidth;
 			}
 
-			volume = Math.max(0, volume);
-			volume = Math.min(volume, 1);
+			volume = math.max(0, volume);
+			volume = math.min(volume, 1);
 
-			positionVolumeHandle(volume);
+			positionvolumehandle(volume);
 
-			t.setMuted(volume === 0);
-			t.setVolume(volume);
+			t.setmuted(volume === 0);
+			t.setvolume(volume);
 
-			e.preventDefault();
-			e.stopPropagation();
+			e.preventdefault();
+			e.stoppropagation();
 		},
-		    toggleMute = function toggleMute() {
+		    togglemute = function togglemute() {
 			if (t.muted) {
-				positionVolumeHandle(0);
-				(0, _dom.removeClass)(mute, t.options.classPrefix + 'mute');
-				(0, _dom.addClass)(mute, t.options.classPrefix + 'unmute');
+				positionvolumehandle(0);
+				(0, _dom.removeclass)(mute, t.options.classprefix + 'mute');
+				(0, _dom.addclass)(mute, t.options.classprefix + 'unmute');
 			} else {
 
-				positionVolumeHandle(media.volume);
-				(0, _dom.removeClass)(mute, t.options.classPrefix + 'unmute');
-				(0, _dom.addClass)(mute, t.options.classPrefix + 'mute');
+				positionvolumehandle(media.volume);
+				(0, _dom.removeclass)(mute, t.options.classprefix + 'unmute');
+				(0, _dom.addclass)(mute, t.options.classprefix + 'mute');
 			}
 		};
 
-		player.getElement(player.container).addEventListener('keydown', function (e) {
-			var hasFocus = !!e.target.closest('.' + t.options.classPrefix + 'container');
-			if (!hasFocus && mode === 'vertical') {
-				volumeSlider.style.display = 'none';
+		player.getelement(player.container).addeventlistener('keydown', function (e) {
+			var hasfocus = !!e.target.closest('.' + t.options.classprefix + 'container');
+			if (!hasfocus && mode === 'vertical') {
+				volumeslider.style.display = 'none';
 			}
 		});
 
-		mute.addEventListener('mouseenter', function (e) {
+		mute.addeventlistener('mouseenter', function (e) {
 			if (e.target === mute) {
-				volumeSlider.style.display = 'block';
-				mouseIsOver = true;
-				e.preventDefault();
-				e.stopPropagation();
+				volumeslider.style.display = 'block';
+				mouseisover = true;
+				e.preventdefault();
+				e.stoppropagation();
 			}
 		});
-		mute.addEventListener('focusin', function () {
-			volumeSlider.style.display = 'block';
-			mouseIsOver = true;
+		mute.addeventlistener('focusin', function () {
+			volumeslider.style.display = 'block';
+			mouseisover = true;
 		});
 
-		mute.addEventListener('focusout', function (e) {
-			if ((!e.relatedTarget || e.relatedTarget && !e.relatedTarget.matches('.' + t.options.classPrefix + 'volume-slider')) && mode === 'vertical') {
-				volumeSlider.style.display = 'none';
+		mute.addeventlistener('focusout', function (e) {
+			if ((!e.relatedtarget || e.relatedtarget && !e.relatedtarget.matches('.' + t.options.classprefix + 'volume-slider')) && mode === 'vertical') {
+				volumeslider.style.display = 'none';
 			}
 		});
-		mute.addEventListener('mouseleave', function () {
-			mouseIsOver = false;
-			if (!mouseIsDown && mode === 'vertical') {
-				volumeSlider.style.display = 'none';
+		mute.addeventlistener('mouseleave', function () {
+			mouseisover = false;
+			if (!mouseisdown && mode === 'vertical') {
+				volumeslider.style.display = 'none';
 			}
 		});
-		mute.addEventListener('focusout', function () {
-			mouseIsOver = false;
+		mute.addeventlistener('focusout', function () {
+			mouseisover = false;
 		});
-		mute.addEventListener('keydown', function (e) {
-			if (t.options.enableKeyboard && t.options.keyActions.length) {
-				var keyCode = e.which || e.keyCode || 0,
+		mute.addeventlistener('keydown', function (e) {
+			if (t.options.enablekeyboard && t.options.keyactions.length) {
+				var keycode = e.which || e.keycode || 0,
 				    volume = media.volume;
 
-				switch (keyCode) {
+				switch (keycode) {
 					case 38:
-						volume = Math.min(volume + 0.1, 1);
+						volume = math.min(volume + 0.1, 1);
 						break;
 					case 40:
-						volume = Math.max(0, volume - 0.1);
+						volume = math.max(0, volume - 0.1);
 						break;
 					default:
 						return true;
 				}
 
-				mouseIsDown = false;
-				positionVolumeHandle(volume);
-				media.setVolume(volume);
+				mouseisdown = false;
+				positionvolumehandle(volume);
+				media.setvolume(volume);
 
-				e.preventDefault();
-				e.stopPropagation();
+				e.preventdefault();
+				e.stoppropagation();
 			}
 		});
-		mute.querySelector('button').addEventListener('click', function () {
-			media.setMuted(!media.muted);
-			var event = (0, _general.createEvent)('volumechange', media);
-			media.dispatchEvent(event);
+		mute.queryselector('button').addeventlistener('click', function () {
+			media.setmuted(!media.muted);
+			var event = (0, _general.createevent)('volumechange', media);
+			media.dispatchevent(event);
 		});
 
-		volumeSlider.addEventListener('dragstart', function () {
+		volumeslider.addeventlistener('dragstart', function () {
 			return false;
 		});
 
-		volumeSlider.addEventListener('mouseover', function () {
-			mouseIsOver = true;
+		volumeslider.addeventlistener('mouseover', function () {
+			mouseisover = true;
 		});
-		volumeSlider.addEventListener('focusin', function () {
-			volumeSlider.style.display = 'block';
-			mouseIsOver = true;
+		volumeslider.addeventlistener('focusin', function () {
+			volumeslider.style.display = 'block';
+			mouseisover = true;
 		});
-		volumeSlider.addEventListener('focusout', function () {
-			mouseIsOver = false;
-			if (!mouseIsDown && mode === 'vertical') {
-				volumeSlider.style.display = 'none';
+		volumeslider.addeventlistener('focusout', function () {
+			mouseisover = false;
+			if (!mouseisdown && mode === 'vertical') {
+				volumeslider.style.display = 'none';
 			}
 		});
-		volumeSlider.addEventListener('mousedown', function (e) {
-			handleVolumeMove(e);
-			t.globalBind('mousemove.vol', function (event) {
+		volumeslider.addeventlistener('mousedown', function (e) {
+			handlevolumemove(e);
+			t.globalbind('mousemove.vol', function (event) {
 				var target = event.target;
-				if (mouseIsDown && (target === volumeSlider || target.closest(mode === 'vertical' ? '.' + t.options.classPrefix + 'volume-slider' : '.' + t.options.classPrefix + 'horizontal-volume-slider'))) {
-					handleVolumeMove(event);
+				if (mouseisdown && (target === volumeslider || target.closest(mode === 'vertical' ? '.' + t.options.classprefix + 'volume-slider' : '.' + t.options.classprefix + 'horizontal-volume-slider'))) {
+					handlevolumemove(event);
 				}
 			});
-			t.globalBind('mouseup.vol', function () {
-				mouseIsDown = false;
-				if (!mouseIsOver && mode === 'vertical') {
-					volumeSlider.style.display = 'none';
+			t.globalbind('mouseup.vol', function () {
+				mouseisdown = false;
+				if (!mouseisover && mode === 'vertical') {
+					volumeslider.style.display = 'none';
 				}
 			});
-			mouseIsDown = true;
-			e.preventDefault();
-			e.stopPropagation();
+			mouseisdown = true;
+			e.preventdefault();
+			e.stoppropagation();
 		});
 
-		media.addEventListener('volumechange', function (e) {
-			if (!mouseIsDown) {
-				toggleMute();
+		media.addeventlistener('volumechange', function (e) {
+			if (!mouseisdown) {
+				togglemute();
 			}
-			updateVolumeSlider(e);
+			updatevolumeslider(e);
 		});
 
 		var rendered = false;
-		media.addEventListener('rendererready', function () {
+		media.addeventlistener('rendererready', function () {
 			if (!modified) {
-				setTimeout(function () {
+				settimeout(function () {
 					rendered = true;
-					if (player.options.startVolume === 0 || media.originalNode.muted) {
-						media.setMuted(true);
+					if (player.options.startvolume === 0 || media.originalnode.muted) {
+						media.setmuted(true);
 					}
-					media.setVolume(player.options.startVolume);
-					t.setControlsSize();
+					media.setvolume(player.options.startvolume);
+					t.setcontrolssize();
 				}, 250);
 			}
 		});
 
-		media.addEventListener('loadedmetadata', function () {
-			setTimeout(function () {
+		media.addeventlistener('loadedmetadata', function () {
+			settimeout(function () {
 				if (!modified && !rendered) {
-					if (player.options.startVolume === 0 || media.originalNode.muted) {
-						media.setMuted(true);
+					if (player.options.startvolume === 0 || media.originalnode.muted) {
+						media.setmuted(true);
 					}
-					if (player.options.startVolume === 0) {
-						player.options.startVolume = 0;
+					if (player.options.startvolume === 0) {
+						player.options.startvolume = 0;
 					}
-					media.setVolume(player.options.startVolume);
-					t.setControlsSize();
+					media.setvolume(player.options.startvolume);
+					t.setcontrolssize();
 				}
 				rendered = false;
 			}, 250);
 		});
 
-		if (player.options.startVolume === 0 || media.originalNode.muted) {
-			media.setMuted(true);
-			if (player.options.startVolume === 0) {
-				player.options.startVolume = 0;
+		if (player.options.startvolume === 0 || media.originalnode.muted) {
+			media.setmuted(true);
+			if (player.options.startvolume === 0) {
+				player.options.startvolume = 0;
 			}
-			toggleMute();
+			togglemute();
 		}
 
-		t.getElement(t.container).addEventListener('controlsresize', function () {
-			toggleMute();
+		t.getelement(t.container).addeventlistener('controlsresize', function () {
+			togglemute();
 		});
 	}
 });
@@ -3385,128 +3385,128 @@ Object.assign(_player2.default.prototype, {
 },{"16":16,"2":2,"25":25,"26":26,"27":27,"5":5}],15:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-var EN = exports.EN = {
+var en = exports.en = {
 	'mejs.plural-form': 1,
 
-	'mejs.download-file': 'Download File',
+	'mejs.download-file': 'download file',
 
-	'mejs.install-flash': 'You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https://get.adobe.com/flashplayer/',
+	'mejs.install-flash': 'you are using a browser that does not have flash player enabled or installed. please turn on your flash player plugin or download the latest version from https://get.adobe.com/flashplayer/',
 
-	'mejs.fullscreen': 'Fullscreen',
+	'mejs.fullscreen': 'fullscreen',
 
-	'mejs.play': 'Play',
-	'mejs.pause': 'Pause',
+	'mejs.play': 'play',
+	'mejs.pause': 'pause',
 
-	'mejs.time-slider': 'Time Slider',
-	'mejs.time-help-text': 'Use Left/Right Arrow keys to advance one second, Up/Down arrows to advance ten seconds.',
-	'mejs.live-broadcast': 'Live Broadcast',
+	'mejs.time-slider': 'time slider',
+	'mejs.time-help-text': 'use left/right arrow keys to advance one second, up/down arrows to advance ten seconds.',
+	'mejs.live-broadcast': 'live broadcast',
 
-	'mejs.volume-help-text': 'Use Up/Down Arrow keys to increase or decrease volume.',
-	'mejs.unmute': 'Unmute',
-	'mejs.mute': 'Mute',
-	'mejs.volume-slider': 'Volume Slider',
+	'mejs.volume-help-text': 'use up/down arrow keys to increase or decrease volume.',
+	'mejs.unmute': 'unmute',
+	'mejs.mute': 'mute',
+	'mejs.volume-slider': 'volume slider',
 
-	'mejs.video-player': 'Video Player',
-	'mejs.audio-player': 'Audio Player',
+	'mejs.video-player': 'video player',
+	'mejs.audio-player': 'audio player',
 
-	'mejs.captions-subtitles': 'Captions/Subtitles',
-	'mejs.captions-chapters': 'Chapters',
-	'mejs.none': 'None',
-	'mejs.afrikaans': 'Afrikaans',
-	'mejs.albanian': 'Albanian',
-	'mejs.arabic': 'Arabic',
-	'mejs.belarusian': 'Belarusian',
-	'mejs.bulgarian': 'Bulgarian',
-	'mejs.catalan': 'Catalan',
-	'mejs.chinese': 'Chinese',
-	'mejs.chinese-simplified': 'Chinese (Simplified)',
-	'mejs.chinese-traditional': 'Chinese (Traditional)',
-	'mejs.croatian': 'Croatian',
-	'mejs.czech': 'Czech',
-	'mejs.danish': 'Danish',
-	'mejs.dutch': 'Dutch',
-	'mejs.english': 'English',
-	'mejs.estonian': 'Estonian',
-	'mejs.filipino': 'Filipino',
-	'mejs.finnish': 'Finnish',
-	'mejs.french': 'French',
-	'mejs.galician': 'Galician',
-	'mejs.german': 'German',
-	'mejs.greek': 'Greek',
-	'mejs.haitian-creole': 'Haitian Creole',
-	'mejs.hebrew': 'Hebrew',
-	'mejs.hindi': 'Hindi',
-	'mejs.hungarian': 'Hungarian',
-	'mejs.icelandic': 'Icelandic',
-	'mejs.indonesian': 'Indonesian',
-	'mejs.irish': 'Irish',
-	'mejs.italian': 'Italian',
-	'mejs.japanese': 'Japanese',
-	'mejs.korean': 'Korean',
-	'mejs.latvian': 'Latvian',
-	'mejs.lithuanian': 'Lithuanian',
-	'mejs.macedonian': 'Macedonian',
-	'mejs.malay': 'Malay',
-	'mejs.maltese': 'Maltese',
-	'mejs.norwegian': 'Norwegian',
-	'mejs.persian': 'Persian',
-	'mejs.polish': 'Polish',
-	'mejs.portuguese': 'Portuguese',
-	'mejs.romanian': 'Romanian',
-	'mejs.russian': 'Russian',
-	'mejs.serbian': 'Serbian',
-	'mejs.slovak': 'Slovak',
-	'mejs.slovenian': 'Slovenian',
-	'mejs.spanish': 'Spanish',
-	'mejs.swahili': 'Swahili',
-	'mejs.swedish': 'Swedish',
-	'mejs.tagalog': 'Tagalog',
-	'mejs.thai': 'Thai',
-	'mejs.turkish': 'Turkish',
-	'mejs.ukrainian': 'Ukrainian',
-	'mejs.vietnamese': 'Vietnamese',
-	'mejs.welsh': 'Welsh',
-	'mejs.yiddish': 'Yiddish'
+	'mejs.captions-subtitles': 'captions/subtitles',
+	'mejs.captions-chapters': 'chapters',
+	'mejs.none': 'none',
+	'mejs.afrikaans': 'afrikaans',
+	'mejs.albanian': 'albanian',
+	'mejs.arabic': 'arabic',
+	'mejs.belarusian': 'belarusian',
+	'mejs.bulgarian': 'bulgarian',
+	'mejs.catalan': 'catalan',
+	'mejs.chinese': 'chinese',
+	'mejs.chinese-simplified': 'chinese (simplified)',
+	'mejs.chinese-traditional': 'chinese (traditional)',
+	'mejs.croatian': 'croatian',
+	'mejs.czech': 'czech',
+	'mejs.danish': 'danish',
+	'mejs.dutch': 'dutch',
+	'mejs.english': 'english',
+	'mejs.estonian': 'estonian',
+	'mejs.filipino': 'filipino',
+	'mejs.finnish': 'finnish',
+	'mejs.french': 'french',
+	'mejs.galician': 'galician',
+	'mejs.german': 'german',
+	'mejs.greek': 'greek',
+	'mejs.haitian-creole': 'haitian creole',
+	'mejs.hebrew': 'hebrew',
+	'mejs.hindi': 'hindi',
+	'mejs.hungarian': 'hungarian',
+	'mejs.icelandic': 'icelandic',
+	'mejs.indonesian': 'indonesian',
+	'mejs.irish': 'irish',
+	'mejs.italian': 'italian',
+	'mejs.japanese': 'japanese',
+	'mejs.korean': 'korean',
+	'mejs.latvian': 'latvian',
+	'mejs.lithuanian': 'lithuanian',
+	'mejs.macedonian': 'macedonian',
+	'mejs.malay': 'malay',
+	'mejs.maltese': 'maltese',
+	'mejs.norwegian': 'norwegian',
+	'mejs.persian': 'persian',
+	'mejs.polish': 'polish',
+	'mejs.portuguese': 'portuguese',
+	'mejs.romanian': 'romanian',
+	'mejs.russian': 'russian',
+	'mejs.serbian': 'serbian',
+	'mejs.slovak': 'slovak',
+	'mejs.slovenian': 'slovenian',
+	'mejs.spanish': 'spanish',
+	'mejs.swahili': 'swahili',
+	'mejs.swedish': 'swedish',
+	'mejs.tagalog': 'tagalog',
+	'mejs.thai': 'thai',
+	'mejs.turkish': 'turkish',
+	'mejs.ukrainian': 'ukrainian',
+	'mejs.vietnamese': 'vietnamese',
+	'mejs.welsh': 'welsh',
+	'mejs.yiddish': 'yiddish'
 };
 
 },{}],16:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
 exports.config = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createclass = function () { function defineproperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; object.defineproperty(target, descriptor.key, descriptor); } } return function (constructor, protoprops, staticprops) { if (protoprops) defineproperties(constructor.prototype, protoprops); if (staticprops) defineproperties(constructor, staticprops); return constructor; }; }();
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _mediaelement = _dereq_(6);
 
-var _mediaelement2 = _interopRequireDefault(_mediaelement);
+var _mediaelement2 = _interoprequiredefault(_mediaelement);
 
 var _default = _dereq_(17);
 
-var _default2 = _interopRequireDefault(_default);
+var _default2 = _interoprequiredefault(_default);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _constants = _dereq_(25);
 
@@ -3518,108 +3518,108 @@ var _media = _dereq_(28);
 
 var _dom = _dereq_(26);
 
-var dom = _interopRequireWildcard(_dom);
+var dom = _interoprequirewildcard(_dom);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interoprequirewildcard(obj) { if (obj && obj.__esmodule) { return obj; } else { var newobj = {}; if (obj != null) { for (var key in obj) { if (object.prototype.hasownproperty.call(obj, key)) newobj[key] = obj[key]; } } newobj.default = obj; return newobj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classcallcheck(instance, constructor) { if (!(instance instanceof constructor)) { throw new typeerror("cannot call a class as a function"); } }
 
-_mejs2.default.mepIndex = 0;
+_mejs2.default.mepindex = 0;
 
 _mejs2.default.players = {};
 
 var config = exports.config = {
 	poster: '',
 
-	showPosterWhenEnded: false,
+	showposterwhenended: false,
 
-	showPosterWhenPaused: false,
+	showposterwhenpaused: false,
 
-	defaultVideoWidth: 480,
+	defaultvideowidth: 480,
 
-	defaultVideoHeight: 270,
+	defaultvideoheight: 270,
 
-	videoWidth: -1,
+	videowidth: -1,
 
-	videoHeight: -1,
+	videoheight: -1,
 
-	defaultAudioWidth: 400,
+	defaultaudiowidth: 400,
 
-	defaultAudioHeight: 40,
+	defaultaudioheight: 40,
 
-	defaultSeekBackwardInterval: function defaultSeekBackwardInterval(media) {
-		return media.getDuration() * 0.05;
+	defaultseekbackwardinterval: function defaultseekbackwardinterval(media) {
+		return media.getduration() * 0.05;
 	},
 
-	defaultSeekForwardInterval: function defaultSeekForwardInterval(media) {
-		return media.getDuration() * 0.05;
+	defaultseekforwardinterval: function defaultseekforwardinterval(media) {
+		return media.getduration() * 0.05;
 	},
 
-	setDimensions: true,
+	setdimensions: true,
 
-	audioWidth: -1,
+	audiowidth: -1,
 
-	audioHeight: -1,
+	audioheight: -1,
 
 	loop: false,
 
-	autoRewind: true,
+	autorewind: true,
 
-	enableAutosize: true,
+	enableautosize: true,
 
-	timeFormat: '',
+	timeformat: '',
 
-	alwaysShowHours: false,
+	alwaysshowhours: false,
 
-	showTimecodeFrameCount: false,
+	showtimecodeframecount: false,
 
-	framesPerSecond: 25,
+	framespersecond: 25,
 
-	alwaysShowControls: false,
+	alwaysshowcontrols: false,
 
-	hideVideoControlsOnLoad: false,
+	hidevideocontrolsonload: false,
 
-	hideVideoControlsOnPause: false,
+	hidevideocontrolsonpause: false,
 
-	clickToPlayPause: true,
+	clicktoplaypause: true,
 
-	controlsTimeoutDefault: 1500,
+	controlstimeoutdefault: 1500,
 
-	controlsTimeoutMouseEnter: 2500,
+	controlstimeoutmouseenter: 2500,
 
-	controlsTimeoutMouseLeave: 1000,
+	controlstimeoutmouseleave: 1000,
 
-	iPadUseNativeControls: false,
+	ipadusenativecontrols: false,
 
-	iPhoneUseNativeControls: false,
+	iphoneusenativecontrols: false,
 
-	AndroidUseNativeControls: false,
+	androidusenativecontrols: false,
 
 	features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'volume', 'fullscreen'],
 
-	useDefaultControls: false,
+	usedefaultcontrols: false,
 
-	isVideo: true,
+	isvideo: true,
 
 	stretching: 'auto',
 
-	classPrefix: 'mejs__',
+	classprefix: 'mejs__',
 
-	enableKeyboard: true,
+	enablekeyboard: true,
 
-	pauseOtherPlayers: true,
+	pauseotherplayers: true,
 
-	secondsDecimalLength: 0,
+	secondsdecimallength: 0,
 
-	customError: null,
+	customerror: null,
 
-	keyActions: [{
+	keyactions: [{
 		keys: [32, 179],
 		action: function action(player) {
 
-			if (!_constants.IS_FIREFOX) {
+			if (!_constants.is_firefox) {
 				if (player.paused || player.ended) {
 					player.play();
 				} else {
@@ -3630,17 +3630,17 @@ var config = exports.config = {
 	}]
 };
 
-_mejs2.default.MepDefaults = config;
+_mejs2.default.mepdefaults = config;
 
-var MediaElementPlayer = function () {
-	function MediaElementPlayer(node, o) {
-		_classCallCheck(this, MediaElementPlayer);
+var mediaelementplayer = function () {
+	function mediaelementplayer(node, o) {
+		_classcallcheck(this, mediaelementplayer);
 
 		var t = this,
-		    element = typeof node === 'string' ? _document2.default.getElementById(node) : node;
+		    element = typeof node === 'string' ? _document2.default.getelementbyid(node) : node;
 
-		if (!(t instanceof MediaElementPlayer)) {
-			return new MediaElementPlayer(element, o);
+		if (!(t instanceof mediaelementplayer)) {
+			return new mediaelementplayer(element, o);
 		}
 
 		t.node = t.media = element;
@@ -3653,45 +3653,45 @@ var MediaElementPlayer = function () {
 			return t.media.player;
 		}
 
-		t.hasFocus = false;
+		t.hasfocus = false;
 
-		t.controlsAreVisible = true;
+		t.controlsarevisible = true;
 
-		t.controlsEnabled = true;
+		t.controlsenabled = true;
 
-		t.controlsTimer = null;
+		t.controlstimer = null;
 
-		t.currentMediaTime = 0;
+		t.currentmediatime = 0;
 
 		t.proxy = null;
 
 		if (o === undefined) {
-			var options = t.node.getAttribute('data-mejsoptions');
-			o = options ? JSON.parse(options) : {};
+			var options = t.node.getattribute('data-mejsoptions');
+			o = options ? json.parse(options) : {};
 		}
 
-		t.options = Object.assign({}, config, o);
+		t.options = object.assign({}, config, o);
 
-		if (t.options.loop && !t.media.getAttribute('loop')) {
+		if (t.options.loop && !t.media.getattribute('loop')) {
 			t.media.loop = true;
 			t.node.loop = true;
 		} else if (t.media.loop) {
 			t.options.loop = true;
 		}
 
-		if (!t.options.timeFormat) {
-			t.options.timeFormat = 'mm:ss';
-			if (t.options.alwaysShowHours) {
-				t.options.timeFormat = 'hh:mm:ss';
+		if (!t.options.timeformat) {
+			t.options.timeformat = 'mm:ss';
+			if (t.options.alwaysshowhours) {
+				t.options.timeformat = 'hh:mm:ss';
 			}
-			if (t.options.showTimecodeFrameCount) {
-				t.options.timeFormat += ':ff';
+			if (t.options.showtimecodeframecount) {
+				t.options.timeformat += ':ff';
 			}
 		}
 
-		(0, _time.calculateTimeFormat)(0, t.options, t.options.framesPerSecond || 25);
+		(0, _time.calculatetimeformat)(0, t.options, t.options.framespersecond || 25);
 
-		t.id = 'mep_' + _mejs2.default.mepIndex++;
+		t.id = 'mep_' + _mejs2.default.mepindex++;
 
 		_mejs2.default.players[t.id] = t;
 
@@ -3700,165 +3700,165 @@ var MediaElementPlayer = function () {
 		return t;
 	}
 
-	_createClass(MediaElementPlayer, [{
-		key: 'getElement',
-		value: function getElement(element) {
+	_createclass(mediaelementplayer, [{
+		key: 'getelement',
+		value: function getelement(element) {
 			return element;
 		}
 	}, {
 		key: 'init',
 		value: function init() {
 			var t = this,
-			    playerOptions = Object.assign({}, t.options, {
-				success: function success(media, domNode) {
-					t._meReady(media, domNode);
+			    playeroptions = object.assign({}, t.options, {
+				success: function success(media, domnode) {
+					t._meready(media, domnode);
 				},
 				error: function error(e) {
-					t._handleError(e);
+					t._handleerror(e);
 				}
 			}),
-			    tagName = t.node.tagName.toLowerCase();
+			    tagname = t.node.tagname.tolowercase();
 
-			t.isDynamic = tagName !== 'audio' && tagName !== 'video' && tagName !== 'iframe';
-			t.isVideo = t.isDynamic ? t.options.isVideo : tagName !== 'audio' && t.options.isVideo;
-			t.mediaFiles = null;
-			t.trackFiles = null;
+			t.isdynamic = tagname !== 'audio' && tagname !== 'video' && tagname !== 'iframe';
+			t.isvideo = t.isdynamic ? t.options.isvideo : tagname !== 'audio' && t.options.isvideo;
+			t.mediafiles = null;
+			t.trackfiles = null;
 
-			if (_constants.IS_IPAD && t.options.iPadUseNativeControls || _constants.IS_IPHONE && t.options.iPhoneUseNativeControls) {
-				t.node.setAttribute('controls', true);
+			if (_constants.is_ipad && t.options.ipadusenativecontrols || _constants.is_iphone && t.options.iphoneusenativecontrols) {
+				t.node.setattribute('controls', true);
 
-				if (_constants.IS_IPAD && t.node.getAttribute('autoplay')) {
+				if (_constants.is_ipad && t.node.getattribute('autoplay')) {
 					t.play();
 				}
-			} else if ((t.isVideo || !t.isVideo && (t.options.features.length || t.options.useDefaultControls)) && !(_constants.IS_ANDROID && t.options.AndroidUseNativeControls)) {
-				t.node.removeAttribute('controls');
-				var videoPlayerTitle = t.isVideo ? _i18n2.default.t('mejs.video-player') : _i18n2.default.t('mejs.audio-player');
+			} else if ((t.isvideo || !t.isvideo && (t.options.features.length || t.options.usedefaultcontrols)) && !(_constants.is_android && t.options.androidusenativecontrols)) {
+				t.node.removeattribute('controls');
+				var videoplayertitle = t.isvideo ? _i18n2.default.t('mejs.video-player') : _i18n2.default.t('mejs.audio-player');
 
-				var offscreen = _document2.default.createElement('span');
-				offscreen.className = t.options.classPrefix + 'offscreen';
-				offscreen.innerText = videoPlayerTitle;
-				t.media.parentNode.insertBefore(offscreen, t.media);
+				var offscreen = _document2.default.createelement('span');
+				offscreen.classname = t.options.classprefix + 'offscreen';
+				offscreen.innertext = videoplayertitle;
+				t.media.parentnode.insertbefore(offscreen, t.media);
 
-				t.container = _document2.default.createElement('div');
-				t.getElement(t.container).id = t.id;
-				t.getElement(t.container).className = t.options.classPrefix + 'container ' + t.options.classPrefix + 'container-keyboard-inactive ' + t.media.className;
-				t.getElement(t.container).tabIndex = 0;
-				t.getElement(t.container).setAttribute('role', 'application');
-				t.getElement(t.container).setAttribute('aria-label', videoPlayerTitle);
-				t.getElement(t.container).innerHTML = '<div class="' + t.options.classPrefix + 'inner">' + ('<div class="' + t.options.classPrefix + 'mediaelement"></div>') + ('<div class="' + t.options.classPrefix + 'layers"></div>') + ('<div class="' + t.options.classPrefix + 'controls"></div>') + '</div>';
-				t.getElement(t.container).addEventListener('focus', function (e) {
-					if (!t.controlsAreVisible && !t.hasFocus && t.controlsEnabled) {
-						t.showControls(true);
+				t.container = _document2.default.createelement('div');
+				t.getelement(t.container).id = t.id;
+				t.getelement(t.container).classname = t.options.classprefix + 'container ' + t.options.classprefix + 'container-keyboard-inactive ' + t.media.classname;
+				t.getelement(t.container).tabindex = 0;
+				t.getelement(t.container).setattribute('role', 'application');
+				t.getelement(t.container).setattribute('aria-label', videoplayertitle);
+				t.getelement(t.container).innerhtml = '<div class="' + t.options.classprefix + 'inner">' + ('<div class="' + t.options.classprefix + 'mediaelement"></div>') + ('<div class="' + t.options.classprefix + 'layers"></div>') + ('<div class="' + t.options.classprefix + 'controls"></div>') + '</div>';
+				t.getelement(t.container).addeventlistener('focus', function (e) {
+					if (!t.controlsarevisible && !t.hasfocus && t.controlsenabled) {
+						t.showcontrols(true);
 
-						var btnSelector = (0, _general.isNodeAfter)(e.relatedTarget, t.getElement(t.container)) ? '.' + t.options.classPrefix + 'controls .' + t.options.classPrefix + 'button:last-child > button' : '.' + t.options.classPrefix + 'playpause-button > button',
-						    button = t.getElement(t.container).querySelector(btnSelector);
+						var btnselector = (0, _general.isnodeafter)(e.relatedtarget, t.getelement(t.container)) ? '.' + t.options.classprefix + 'controls .' + t.options.classprefix + 'button:last-child > button' : '.' + t.options.classprefix + 'playpause-button > button',
+						    button = t.getelement(t.container).queryselector(btnselector);
 
 						button.focus();
 					}
 				});
-				t.node.parentNode.insertBefore(t.getElement(t.container), t.node);
+				t.node.parentnode.insertbefore(t.getelement(t.container), t.node);
 
-				if (!t.options.features.length && !t.options.useDefaultControls) {
-					t.getElement(t.container).style.background = 'transparent';
-					t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'controls').style.display = 'none';
-				}
-
-				if (t.isVideo && t.options.stretching === 'fill' && !dom.hasClass(t.getElement(t.container).parentNode, t.options.classPrefix + 'fill-container')) {
-					t.outerContainer = t.media.parentNode;
-
-					var wrapper = _document2.default.createElement('div');
-					wrapper.className = t.options.classPrefix + 'fill-container';
-					t.getElement(t.container).parentNode.insertBefore(wrapper, t.getElement(t.container));
-					wrapper.appendChild(t.getElement(t.container));
+				if (!t.options.features.length && !t.options.usedefaultcontrols) {
+					t.getelement(t.container).style.background = 'transparent';
+					t.getelement(t.container).queryselector('.' + t.options.classprefix + 'controls').style.display = 'none';
 				}
 
-				if (_constants.IS_ANDROID) {
-					dom.addClass(t.getElement(t.container), t.options.classPrefix + 'android');
-				}
-				if (_constants.IS_IOS) {
-					dom.addClass(t.getElement(t.container), t.options.classPrefix + 'ios');
-				}
-				if (_constants.IS_IPAD) {
-					dom.addClass(t.getElement(t.container), t.options.classPrefix + 'ipad');
-				}
-				if (_constants.IS_IPHONE) {
-					dom.addClass(t.getElement(t.container), t.options.classPrefix + 'iphone');
-				}
-				dom.addClass(t.getElement(t.container), t.isVideo ? t.options.classPrefix + 'video' : t.options.classPrefix + 'audio');
+				if (t.isvideo && t.options.stretching === 'fill' && !dom.hasclass(t.getelement(t.container).parentnode, t.options.classprefix + 'fill-container')) {
+					t.outercontainer = t.media.parentnode;
 
-				t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'mediaelement').appendChild(t.node);
+					var wrapper = _document2.default.createelement('div');
+					wrapper.classname = t.options.classprefix + 'fill-container';
+					t.getelement(t.container).parentnode.insertbefore(wrapper, t.getelement(t.container));
+					wrapper.appendchild(t.getelement(t.container));
+				}
+
+				if (_constants.is_android) {
+					dom.addclass(t.getelement(t.container), t.options.classprefix + 'android');
+				}
+				if (_constants.is_ios) {
+					dom.addclass(t.getelement(t.container), t.options.classprefix + 'ios');
+				}
+				if (_constants.is_ipad) {
+					dom.addclass(t.getelement(t.container), t.options.classprefix + 'ipad');
+				}
+				if (_constants.is_iphone) {
+					dom.addclass(t.getelement(t.container), t.options.classprefix + 'iphone');
+				}
+				dom.addclass(t.getelement(t.container), t.isvideo ? t.options.classprefix + 'video' : t.options.classprefix + 'audio');
+
+				t.getelement(t.container).queryselector('.' + t.options.classprefix + 'mediaelement').appendchild(t.node);
 
 				t.media.player = t;
 
-				t.controls = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'controls');
-				t.layers = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'layers');
+				t.controls = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'controls');
+				t.layers = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'layers');
 
-				var tagType = t.isVideo ? 'video' : 'audio',
-				    capsTagName = tagType.substring(0, 1).toUpperCase() + tagType.substring(1);
+				var tagtype = t.isvideo ? 'video' : 'audio',
+				    capstagname = tagtype.substring(0, 1).touppercase() + tagtype.substring(1);
 
-				if (t.options[tagType + 'Width'] > 0 || t.options[tagType + 'Width'].toString().indexOf('%') > -1) {
-					t.width = t.options[tagType + 'Width'];
+				if (t.options[tagtype + 'width'] > 0 || t.options[tagtype + 'width'].tostring().indexof('%') > -1) {
+					t.width = t.options[tagtype + 'width'];
 				} else if (t.node.style.width !== '' && t.node.style.width !== null) {
 					t.width = t.node.style.width;
-				} else if (t.node.getAttribute('width')) {
-					t.width = t.node.getAttribute('width');
+				} else if (t.node.getattribute('width')) {
+					t.width = t.node.getattribute('width');
 				} else {
-					t.width = t.options['default' + capsTagName + 'Width'];
+					t.width = t.options['default' + capstagname + 'width'];
 				}
 
-				if (t.options[tagType + 'Height'] > 0 || t.options[tagType + 'Height'].toString().indexOf('%') > -1) {
-					t.height = t.options[tagType + 'Height'];
+				if (t.options[tagtype + 'height'] > 0 || t.options[tagtype + 'height'].tostring().indexof('%') > -1) {
+					t.height = t.options[tagtype + 'height'];
 				} else if (t.node.style.height !== '' && t.node.style.height !== null) {
 					t.height = t.node.style.height;
-				} else if (t.node.getAttribute('height')) {
-					t.height = t.node.getAttribute('height');
+				} else if (t.node.getattribute('height')) {
+					t.height = t.node.getattribute('height');
 				} else {
-					t.height = t.options['default' + capsTagName + 'Height'];
+					t.height = t.options['default' + capstagname + 'height'];
 				}
 
-				t.initialAspectRatio = t.height >= t.width ? t.width / t.height : t.height / t.width;
+				t.initialaspectratio = t.height >= t.width ? t.width / t.height : t.height / t.width;
 
-				t.setPlayerSize(t.width, t.height);
+				t.setplayersize(t.width, t.height);
 
-				playerOptions.pluginWidth = t.width;
-				playerOptions.pluginHeight = t.height;
-			} else if (!t.isVideo && !t.options.features.length && !t.options.useDefaultControls) {
+				playeroptions.pluginwidth = t.width;
+				playeroptions.pluginheight = t.height;
+			} else if (!t.isvideo && !t.options.features.length && !t.options.usedefaultcontrols) {
 					t.node.style.display = 'none';
 				}
 
-			_mejs2.default.MepDefaults = playerOptions;
+			_mejs2.default.mepdefaults = playeroptions;
 
-			new _mediaelement2.default(t.media, playerOptions, t.mediaFiles);
+			new _mediaelement2.default(t.media, playeroptions, t.mediafiles);
 
-			if (t.getElement(t.container) !== undefined && t.options.features.length && t.controlsAreVisible && !t.options.hideVideoControlsOnLoad) {
-				var event = (0, _general.createEvent)('controlsshown', t.getElement(t.container));
-				t.getElement(t.container).dispatchEvent(event);
+			if (t.getelement(t.container) !== undefined && t.options.features.length && t.controlsarevisible && !t.options.hidevideocontrolsonload) {
+				var event = (0, _general.createevent)('controlsshown', t.getelement(t.container));
+				t.getelement(t.container).dispatchevent(event);
 			}
 		}
 	}, {
-		key: 'showControls',
-		value: function showControls(doAnimation) {
+		key: 'showcontrols',
+		value: function showcontrols(doanimation) {
 			var t = this;
 
-			doAnimation = doAnimation === undefined || doAnimation;
+			doanimation = doanimation === undefined || doanimation;
 
-			if (t.controlsAreVisible || !t.isVideo) {
+			if (t.controlsarevisible || !t.isvideo) {
 				return;
 			}
 
-			if (doAnimation) {
+			if (doanimation) {
 				(function () {
-					dom.fadeIn(t.getElement(t.controls), 200, function () {
-						dom.removeClass(t.getElement(t.controls), t.options.classPrefix + 'offscreen');
-						var event = (0, _general.createEvent)('controlsshown', t.getElement(t.container));
-						t.getElement(t.container).dispatchEvent(event);
+					dom.fadein(t.getelement(t.controls), 200, function () {
+						dom.removeclass(t.getelement(t.controls), t.options.classprefix + 'offscreen');
+						var event = (0, _general.createevent)('controlsshown', t.getelement(t.container));
+						t.getelement(t.container).dispatchevent(event);
 					});
 
-					var controls = t.getElement(t.container).querySelectorAll('.' + t.options.classPrefix + 'control');
+					var controls = t.getelement(t.container).queryselectorall('.' + t.options.classprefix + 'control');
 
 					var _loop = function _loop(i, total) {
-						dom.fadeIn(controls[i], 200, function () {
-							dom.removeClass(controls[i], t.options.classPrefix + 'offscreen');
+						dom.fadein(controls[i], 200, function () {
+							dom.removeclass(controls[i], t.options.classprefix + 'offscreen');
 						});
 					};
 
@@ -3867,48 +3867,48 @@ var MediaElementPlayer = function () {
 					}
 				})();
 			} else {
-				dom.removeClass(t.getElement(t.controls), t.options.classPrefix + 'offscreen');
-				t.getElement(t.controls).style.display = '';
-				t.getElement(t.controls).style.opacity = 1;
+				dom.removeclass(t.getelement(t.controls), t.options.classprefix + 'offscreen');
+				t.getelement(t.controls).style.display = '';
+				t.getelement(t.controls).style.opacity = 1;
 
-				var controls = t.getElement(t.container).querySelectorAll('.' + t.options.classPrefix + 'control');
+				var controls = t.getelement(t.container).queryselectorall('.' + t.options.classprefix + 'control');
 				for (var i = 0, total = controls.length; i < total; i++) {
-					dom.removeClass(controls[i], t.options.classPrefix + 'offscreen');
+					dom.removeclass(controls[i], t.options.classprefix + 'offscreen');
 					controls[i].style.display = '';
 				}
 
-				var event = (0, _general.createEvent)('controlsshown', t.getElement(t.container));
-				t.getElement(t.container).dispatchEvent(event);
+				var event = (0, _general.createevent)('controlsshown', t.getelement(t.container));
+				t.getelement(t.container).dispatchevent(event);
 			}
 
-			t.controlsAreVisible = true;
-			t.setControlsSize();
+			t.controlsarevisible = true;
+			t.setcontrolssize();
 		}
 	}, {
-		key: 'hideControls',
-		value: function hideControls(doAnimation, forceHide) {
+		key: 'hidecontrols',
+		value: function hidecontrols(doanimation, forcehide) {
 			var t = this;
 
-			doAnimation = doAnimation === undefined || doAnimation;
+			doanimation = doanimation === undefined || doanimation;
 
-			if (forceHide !== true && (!t.controlsAreVisible || t.options.alwaysShowControls || t.paused && t.readyState === 4 && (!t.options.hideVideoControlsOnLoad && t.currentTime <= 0 || !t.options.hideVideoControlsOnPause && t.currentTime > 0) || t.isVideo && !t.options.hideVideoControlsOnLoad && !t.readyState || t.ended)) {
+			if (forcehide !== true && (!t.controlsarevisible || t.options.alwaysshowcontrols || t.paused && t.readystate === 4 && (!t.options.hidevideocontrolsonload && t.currenttime <= 0 || !t.options.hidevideocontrolsonpause && t.currenttime > 0) || t.isvideo && !t.options.hidevideocontrolsonload && !t.readystate || t.ended)) {
 				return;
 			}
 
-			if (doAnimation) {
+			if (doanimation) {
 				(function () {
-					dom.fadeOut(t.getElement(t.controls), 200, function () {
-						dom.addClass(t.getElement(t.controls), t.options.classPrefix + 'offscreen');
-						t.getElement(t.controls).style.display = '';
-						var event = (0, _general.createEvent)('controlshidden', t.getElement(t.container));
-						t.getElement(t.container).dispatchEvent(event);
+					dom.fadeout(t.getelement(t.controls), 200, function () {
+						dom.addclass(t.getelement(t.controls), t.options.classprefix + 'offscreen');
+						t.getelement(t.controls).style.display = '';
+						var event = (0, _general.createevent)('controlshidden', t.getelement(t.container));
+						t.getelement(t.container).dispatchevent(event);
 					});
 
-					var controls = t.getElement(t.container).querySelectorAll('.' + t.options.classPrefix + 'control');
+					var controls = t.getelement(t.container).queryselectorall('.' + t.options.classprefix + 'control');
 
 					var _loop2 = function _loop2(i, total) {
-						dom.fadeOut(controls[i], 200, function () {
-							dom.addClass(controls[i], t.options.classPrefix + 'offscreen');
+						dom.fadeout(controls[i], 200, function () {
+							dom.addclass(controls[i], t.options.classprefix + 'offscreen');
 							controls[i].style.display = '';
 						});
 					};
@@ -3918,95 +3918,95 @@ var MediaElementPlayer = function () {
 					}
 				})();
 			} else {
-				dom.addClass(t.getElement(t.controls), t.options.classPrefix + 'offscreen');
-				t.getElement(t.controls).style.display = '';
-				t.getElement(t.controls).style.opacity = 0;
+				dom.addclass(t.getelement(t.controls), t.options.classprefix + 'offscreen');
+				t.getelement(t.controls).style.display = '';
+				t.getelement(t.controls).style.opacity = 0;
 
-				var controls = t.getElement(t.container).querySelectorAll('.' + t.options.classPrefix + 'control');
+				var controls = t.getelement(t.container).queryselectorall('.' + t.options.classprefix + 'control');
 				for (var i = 0, total = controls.length; i < total; i++) {
-					dom.addClass(controls[i], t.options.classPrefix + 'offscreen');
+					dom.addclass(controls[i], t.options.classprefix + 'offscreen');
 					controls[i].style.display = '';
 				}
 
-				var event = (0, _general.createEvent)('controlshidden', t.getElement(t.container));
-				t.getElement(t.container).dispatchEvent(event);
+				var event = (0, _general.createevent)('controlshidden', t.getelement(t.container));
+				t.getelement(t.container).dispatchevent(event);
 			}
 
-			t.controlsAreVisible = false;
+			t.controlsarevisible = false;
 		}
 	}, {
-		key: 'startControlsTimer',
-		value: function startControlsTimer(timeout) {
+		key: 'startcontrolstimer',
+		value: function startcontrolstimer(timeout) {
 			var t = this;
 
-			timeout = typeof timeout !== 'undefined' ? timeout : t.options.controlsTimeoutDefault;
+			timeout = typeof timeout !== 'undefined' ? timeout : t.options.controlstimeoutdefault;
 
-			t.killControlsTimer('start');
+			t.killcontrolstimer('start');
 
-			t.controlsTimer = setTimeout(function () {
-				t.hideControls();
-				t.killControlsTimer('hide');
+			t.controlstimer = settimeout(function () {
+				t.hidecontrols();
+				t.killcontrolstimer('hide');
 			}, timeout);
 		}
 	}, {
-		key: 'killControlsTimer',
-		value: function killControlsTimer() {
+		key: 'killcontrolstimer',
+		value: function killcontrolstimer() {
 			var t = this;
 
-			if (t.controlsTimer !== null) {
-				clearTimeout(t.controlsTimer);
-				delete t.controlsTimer;
-				t.controlsTimer = null;
+			if (t.controlstimer !== null) {
+				cleartimeout(t.controlstimer);
+				delete t.controlstimer;
+				t.controlstimer = null;
 			}
 		}
 	}, {
-		key: 'disableControls',
-		value: function disableControls() {
+		key: 'disablecontrols',
+		value: function disablecontrols() {
 			var t = this;
 
-			t.killControlsTimer();
-			t.controlsEnabled = false;
-			t.hideControls(false, true);
+			t.killcontrolstimer();
+			t.controlsenabled = false;
+			t.hidecontrols(false, true);
 		}
 	}, {
-		key: 'enableControls',
-		value: function enableControls() {
+		key: 'enablecontrols',
+		value: function enablecontrols() {
 			var t = this;
 
-			t.controlsEnabled = true;
-			t.showControls(false);
+			t.controlsenabled = true;
+			t.showcontrols(false);
 		}
 	}, {
-		key: '_setDefaultPlayer',
-		value: function _setDefaultPlayer() {
+		key: '_setdefaultplayer',
+		value: function _setdefaultplayer() {
 			var t = this;
 			if (t.proxy) {
 				t.proxy.pause();
 			}
 			t.proxy = new _default2.default(t);
-			t.media.addEventListener('loadedmetadata', function () {
-				if (t.getCurrentTime() > 0 && t.currentMediaTime > 0) {
-					t.setCurrentTime(t.currentMediaTime);
-					if (!_constants.IS_IOS && !_constants.IS_ANDROID) {
+			t.media.addeventlistener('loadedmetadata', function () {
+				if (t.getcurrenttime() > 0 && t.currentmediatime > 0) {
+					t.setcurrenttime(t.currentmediatime);
+					if (!_constants.is_ios && !_constants.is_android) {
 						t.play();
 					}
 				}
 			});
 		}
 	}, {
-		key: '_meReady',
-		value: function _meReady(media, domNode) {
+		key: '_meready',
+		value: function _meready(media, domnode) {
 			var t = this,
-			    autoplayAttr = domNode.getAttribute('autoplay'),
-			    autoplay = !(autoplayAttr === undefined || autoplayAttr === null || autoplayAttr === 'false'),
-			    isNative = media.rendererName !== null && /(native|html5)/i.test(media.rendererName);
+			    autoplayattr = domnode.getattribute('autoplay'),
+			    autoplay = !(autoplayattr === undefined || autoplayattr === null || autoplayattr === 'false'),
+			    isnative = media.renderername !== null && /(native|html5)/i.test(media.renderername);
 
-			if (t.getElement(t.controls)) {
-				t.enableControls();
+			if (t.getelement(t.controls)) {
+				t.enablecontrols();
 			}
 
-			if (t.getElement(t.container) && t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'overlay-play')) {
-				t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'overlay-play').style.display = '';
+			if (t.getelement(t.container) && t.getelement(t.container).queryselector('.' + t.options.classprefix + 'overlay-play')) {
+				t.getelement(t.container).queryselector('.' + t.options.classprefix + 'overlay-play').style.display = '';
 			}
 
 			if (t.created) {
@@ -4015,55 +4015,55 @@ var MediaElementPlayer = function () {
 
 			t.created = true;
 			t.media = media;
-			t.domNode = domNode;
+			t.domnode = domnode;
 
-			if (!(_constants.IS_ANDROID && t.options.AndroidUseNativeControls) && !(_constants.IS_IPAD && t.options.iPadUseNativeControls) && !(_constants.IS_IPHONE && t.options.iPhoneUseNativeControls)) {
-				if (!t.isVideo && !t.options.features.length && !t.options.useDefaultControls) {
-					if (autoplay && isNative) {
+			if (!(_constants.is_android && t.options.androidusenativecontrols) && !(_constants.is_ipad && t.options.ipadusenativecontrols) && !(_constants.is_iphone && t.options.iphoneusenativecontrols)) {
+				if (!t.isvideo && !t.options.features.length && !t.options.usedefaultcontrols) {
+					if (autoplay && isnative) {
 						t.play();
 					}
 
 					if (t.options.success) {
 
 						if (typeof t.options.success === 'string') {
-							_window2.default[t.options.success](t.media, t.domNode, t);
+							_window2.default[t.options.success](t.media, t.domnode, t);
 						} else {
-							t.options.success(t.media, t.domNode, t);
+							t.options.success(t.media, t.domnode, t);
 						}
 					}
 
 					return;
 				}
 
-				t.featurePosition = {};
+				t.featureposition = {};
 
-				t._setDefaultPlayer();
+				t._setdefaultplayer();
 
-				t.buildposter(t, t.getElement(t.controls), t.getElement(t.layers), t.media);
-				t.buildkeyboard(t, t.getElement(t.controls), t.getElement(t.layers), t.media);
-				t.buildoverlays(t, t.getElement(t.controls), t.getElement(t.layers), t.media);
+				t.buildposter(t, t.getelement(t.controls), t.getelement(t.layers), t.media);
+				t.buildkeyboard(t, t.getelement(t.controls), t.getelement(t.layers), t.media);
+				t.buildoverlays(t, t.getelement(t.controls), t.getelement(t.layers), t.media);
 
-				if (t.options.useDefaultControls) {
-					var defaultControls = ['playpause', 'current', 'progress', 'duration', 'tracks', 'volume', 'fullscreen'];
-					t.options.features = defaultControls.concat(t.options.features.filter(function (item) {
-						return defaultControls.indexOf(item) === -1;
+				if (t.options.usedefaultcontrols) {
+					var defaultcontrols = ['playpause', 'current', 'progress', 'duration', 'tracks', 'volume', 'fullscreen'];
+					t.options.features = defaultcontrols.concat(t.options.features.filter(function (item) {
+						return defaultcontrols.indexof(item) === -1;
 					}));
 				}
 
-				t.buildfeatures(t, t.getElement(t.controls), t.getElement(t.layers), t.media);
+				t.buildfeatures(t, t.getelement(t.controls), t.getelement(t.layers), t.media);
 
-				var event = (0, _general.createEvent)('controlsready', t.getElement(t.container));
-				t.getElement(t.container).dispatchEvent(event);
+				var event = (0, _general.createevent)('controlsready', t.getelement(t.container));
+				t.getelement(t.container).dispatchevent(event);
 
-				t.setPlayerSize(t.width, t.height);
-				t.setControlsSize();
+				t.setplayersize(t.width, t.height);
+				t.setcontrolssize();
 
-				if (t.isVideo) {
-					t.clickToPlayPauseCallback = function () {
+				if (t.isvideo) {
+					t.clicktoplaypausecallback = function () {
 
-						if (t.options.clickToPlayPause) {
-							var button = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'overlay-button'),
-							    pressed = button.getAttribute('aria-pressed');
+						if (t.options.clicktoplaypause) {
+							var button = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'overlay-button'),
+							    pressed = button.getattribute('aria-pressed');
 
 							if (t.paused && pressed) {
 								t.pause();
@@ -4073,98 +4073,98 @@ var MediaElementPlayer = function () {
 								t.pause();
 							}
 
-							button.setAttribute('aria-pressed', !pressed);
-							t.getElement(t.container).focus();
+							button.setattribute('aria-pressed', !pressed);
+							t.getelement(t.container).focus();
 						}
 					};
 
-					t.createIframeLayer();
+					t.createiframelayer();
 
-					t.media.addEventListener('click', t.clickToPlayPauseCallback);
+					t.media.addeventlistener('click', t.clicktoplaypausecallback);
 
-					if ((_constants.IS_ANDROID || _constants.IS_IOS) && !t.options.alwaysShowControls) {
-						t.node.addEventListener('touchstart', function () {
-							if (t.controlsAreVisible) {
-								t.hideControls(false);
+					if ((_constants.is_android || _constants.is_ios) && !t.options.alwaysshowcontrols) {
+						t.node.addeventlistener('touchstart', function () {
+							if (t.controlsarevisible) {
+								t.hidecontrols(false);
 							} else {
-								if (t.controlsEnabled) {
-									t.showControls(false);
+								if (t.controlsenabled) {
+									t.showcontrols(false);
 								}
 							}
-						}, _constants.SUPPORT_PASSIVE_EVENT ? { passive: true } : false);
+						}, _constants.support_passive_event ? { passive: true } : false);
 					} else {
-						t.getElement(t.container).addEventListener('mouseenter', function () {
-							if (t.controlsEnabled) {
-								if (!t.options.alwaysShowControls) {
-									t.killControlsTimer('enter');
-									t.showControls();
-									t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+						t.getelement(t.container).addeventlistener('mouseenter', function () {
+							if (t.controlsenabled) {
+								if (!t.options.alwaysshowcontrols) {
+									t.killcontrolstimer('enter');
+									t.showcontrols();
+									t.startcontrolstimer(t.options.controlstimeoutmouseenter);
 								}
 							}
 						});
-						t.getElement(t.container).addEventListener('mousemove', function () {
-							if (t.controlsEnabled) {
-								if (!t.controlsAreVisible) {
-									t.showControls();
+						t.getelement(t.container).addeventlistener('mousemove', function () {
+							if (t.controlsenabled) {
+								if (!t.controlsarevisible) {
+									t.showcontrols();
 								}
-								if (!t.options.alwaysShowControls) {
-									t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+								if (!t.options.alwaysshowcontrols) {
+									t.startcontrolstimer(t.options.controlstimeoutmouseenter);
 								}
 							}
 						});
-						t.getElement(t.container).addEventListener('mouseleave', function () {
-							if (t.controlsEnabled) {
-								if (!t.paused && !t.options.alwaysShowControls) {
-									t.startControlsTimer(t.options.controlsTimeoutMouseLeave);
+						t.getelement(t.container).addeventlistener('mouseleave', function () {
+							if (t.controlsenabled) {
+								if (!t.paused && !t.options.alwaysshowcontrols) {
+									t.startcontrolstimer(t.options.controlstimeoutmouseleave);
 								}
 							}
 						});
 					}
 
-					if (t.options.hideVideoControlsOnLoad) {
-						t.hideControls(false);
+					if (t.options.hidevideocontrolsonload) {
+						t.hidecontrols(false);
 					}
 
-					if (t.options.enableAutosize) {
-						t.media.addEventListener('loadedmetadata', function (e) {
+					if (t.options.enableautosize) {
+						t.media.addeventlistener('loadedmetadata', function (e) {
 							var target = e !== undefined ? e.detail.target || e.target : t.media;
-							if (t.options.videoHeight <= 0 && !t.domNode.getAttribute('height') && !t.domNode.style.height && target !== null && !isNaN(target.videoHeight)) {
-								t.setPlayerSize(target.videoWidth, target.videoHeight);
-								t.setControlsSize();
-								t.media.setSize(target.videoWidth, target.videoHeight);
+							if (t.options.videoheight <= 0 && !t.domnode.getattribute('height') && !t.domnode.style.height && target !== null && !isnan(target.videoheight)) {
+								t.setplayersize(target.videowidth, target.videoheight);
+								t.setcontrolssize();
+								t.media.setsize(target.videowidth, target.videoheight);
 							}
 						});
 					}
 				}
 
-				t.media.addEventListener('play', function () {
-					t.hasFocus = true;
+				t.media.addeventlistener('play', function () {
+					t.hasfocus = true;
 
-					for (var playerIndex in _mejs2.default.players) {
-						if (_mejs2.default.players.hasOwnProperty(playerIndex)) {
-							var p = _mejs2.default.players[playerIndex];
+					for (var playerindex in _mejs2.default.players) {
+						if (_mejs2.default.players.hasownproperty(playerindex)) {
+							var p = _mejs2.default.players[playerindex];
 
-							if (p.id !== t.id && t.options.pauseOtherPlayers && !p.paused && !p.ended && p.options.ignorePauseOtherPlayersOption !== true) {
+							if (p.id !== t.id && t.options.pauseotherplayers && !p.paused && !p.ended && p.options.ignorepauseotherplayersoption !== true) {
 								p.pause();
-								p.hasFocus = false;
+								p.hasfocus = false;
 							}
 						}
 					}
 
-					if (!(_constants.IS_ANDROID || _constants.IS_IOS) && !t.options.alwaysShowControls && t.isVideo) {
-						t.hideControls();
+					if (!(_constants.is_android || _constants.is_ios) && !t.options.alwaysshowcontrols && t.isvideo) {
+						t.hidecontrols();
 					}
 				});
 
-				t.media.addEventListener('ended', function () {
-					if (t.options.autoRewind) {
+				t.media.addeventlistener('ended', function () {
+					if (t.options.autorewind) {
 						try {
-							t.setCurrentTime(0);
+							t.setcurrenttime(0);
 
-							setTimeout(function () {
-								var loadingElement = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'overlay-loading');
-								if (loadingElement && loadingElement.parentNode) {
-									loadingElement.parentNode.style.display = 'none';
+							settimeout(function () {
+								var loadingelement = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'overlay-loading');
+								if (loadingelement && loadingelement.parentnode) {
+									loadingelement.parentnode.style.display = 'none';
 								}
 							}, 20);
 						} catch (exp) {
@@ -4178,113 +4178,113 @@ var MediaElementPlayer = function () {
 						t.pause();
 					}
 
-					if (t.setProgressRail) {
-						t.setProgressRail();
+					if (t.setprogressrail) {
+						t.setprogressrail();
 					}
-					if (t.setCurrentRail) {
-						t.setCurrentRail();
+					if (t.setcurrentrail) {
+						t.setcurrentrail();
 					}
 
 					if (t.options.loop) {
 						t.play();
-					} else if (!t.options.alwaysShowControls && t.controlsEnabled) {
-						t.showControls();
+					} else if (!t.options.alwaysshowcontrols && t.controlsenabled) {
+						t.showcontrols();
 					}
 				});
 
-				t.media.addEventListener('loadedmetadata', function () {
+				t.media.addeventlistener('loadedmetadata', function () {
 
-					(0, _time.calculateTimeFormat)(t.getDuration(), t.options, t.options.framesPerSecond || 25);
+					(0, _time.calculatetimeformat)(t.getduration(), t.options, t.options.framespersecond || 25);
 
-					if (t.updateDuration) {
-						t.updateDuration();
+					if (t.updateduration) {
+						t.updateduration();
 					}
-					if (t.updateCurrent) {
-						t.updateCurrent();
+					if (t.updatecurrent) {
+						t.updatecurrent();
 					}
 
-					if (!t.isFullScreen) {
-						t.setPlayerSize(t.width, t.height);
-						t.setControlsSize();
+					if (!t.isfullscreen) {
+						t.setplayersize(t.width, t.height);
+						t.setcontrolssize();
 					}
 				});
 
 				var duration = null;
-				t.media.addEventListener('timeupdate', function () {
-					if (!isNaN(t.getDuration()) && duration !== t.getDuration()) {
-						duration = t.getDuration();
-						(0, _time.calculateTimeFormat)(duration, t.options, t.options.framesPerSecond || 25);
+				t.media.addeventlistener('timeupdate', function () {
+					if (!isnan(t.getduration()) && duration !== t.getduration()) {
+						duration = t.getduration();
+						(0, _time.calculatetimeformat)(duration, t.options, t.options.framespersecond || 25);
 
-						if (t.updateDuration) {
-							t.updateDuration();
+						if (t.updateduration) {
+							t.updateduration();
 						}
-						if (t.updateCurrent) {
-							t.updateCurrent();
+						if (t.updatecurrent) {
+							t.updatecurrent();
 						}
 
-						t.setControlsSize();
+						t.setcontrolssize();
 					}
 				});
 
-				t.getElement(t.container).addEventListener('click', function (e) {
-					dom.addClass(e.currentTarget, t.options.classPrefix + 'container-keyboard-inactive');
+				t.getelement(t.container).addeventlistener('click', function (e) {
+					dom.addclass(e.currenttarget, t.options.classprefix + 'container-keyboard-inactive');
 				});
 
-				t.getElement(t.container).addEventListener('focusin', function (e) {
-					dom.removeClass(e.currentTarget, t.options.classPrefix + 'container-keyboard-inactive');
-					if (t.isVideo && !_constants.IS_ANDROID && !_constants.IS_IOS && t.controlsEnabled && !t.options.alwaysShowControls) {
-						t.killControlsTimer('enter');
-						t.showControls();
-						t.startControlsTimer(t.options.controlsTimeoutMouseEnter);
+				t.getelement(t.container).addeventlistener('focusin', function (e) {
+					dom.removeclass(e.currenttarget, t.options.classprefix + 'container-keyboard-inactive');
+					if (t.isvideo && !_constants.is_android && !_constants.is_ios && t.controlsenabled && !t.options.alwaysshowcontrols) {
+						t.killcontrolstimer('enter');
+						t.showcontrols();
+						t.startcontrolstimer(t.options.controlstimeoutmouseenter);
 					}
 				});
 
-				t.getElement(t.container).addEventListener('focusout', function (e) {
-					setTimeout(function () {
-						if (e.relatedTarget) {
-							if (t.keyboardAction && !e.relatedTarget.closest('.' + t.options.classPrefix + 'container')) {
-								t.keyboardAction = false;
-								if (t.isVideo && !t.options.alwaysShowControls && !t.paused) {
-									t.startControlsTimer(t.options.controlsTimeoutMouseLeave);
+				t.getelement(t.container).addeventlistener('focusout', function (e) {
+					settimeout(function () {
+						if (e.relatedtarget) {
+							if (t.keyboardaction && !e.relatedtarget.closest('.' + t.options.classprefix + 'container')) {
+								t.keyboardaction = false;
+								if (t.isvideo && !t.options.alwaysshowcontrols && !t.paused) {
+									t.startcontrolstimer(t.options.controlstimeoutmouseleave);
 								}
 							}
 						}
 					}, 0);
 				});
 
-				setTimeout(function () {
-					t.setPlayerSize(t.width, t.height);
-					t.setControlsSize();
+				settimeout(function () {
+					t.setplayersize(t.width, t.height);
+					t.setcontrolssize();
 				}, 0);
 
-				t.globalResizeCallback = function () {
-					if (!(t.isFullScreen || _constants.HAS_TRUE_NATIVE_FULLSCREEN && _document2.default.webkitIsFullScreen)) {
-						t.setPlayerSize(t.width, t.height);
+				t.globalresizecallback = function () {
+					if (!(t.isfullscreen || _constants.has_true_native_fullscreen && _document2.default.webkitisfullscreen)) {
+						t.setplayersize(t.width, t.height);
 					}
 
-					t.setControlsSize();
+					t.setcontrolssize();
 				};
 
-				t.globalBind('resize', t.globalResizeCallback);
+				t.globalbind('resize', t.globalresizecallback);
 			}
 
-			if (autoplay && isNative) {
+			if (autoplay && isnative) {
 				t.play();
 			}
 
 			if (t.options.success) {
 				if (typeof t.options.success === 'string') {
-					_window2.default[t.options.success](t.media, t.domNode, t);
+					_window2.default[t.options.success](t.media, t.domnode, t);
 				} else {
-					t.options.success(t.media, t.domNode, t);
+					t.options.success(t.media, t.domnode, t);
 				}
 			}
 		}
 	}, {
-		key: '_handleError',
-		value: function _handleError(e, media, node) {
+		key: '_handleerror',
+		value: function _handleerror(e, media, node) {
 			var t = this,
-			    play = t.getElement(t.layers).querySelector('.' + t.options.classPrefix + 'overlay-play');
+			    play = t.getelement(t.layers).queryselector('.' + t.options.classprefix + 'overlay-play');
 
 			if (play) {
 				play.style.display = 'none';
@@ -4294,52 +4294,52 @@ var MediaElementPlayer = function () {
 				t.options.error(e, media, node);
 			}
 
-			if (t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'cannotplay')) {
-				t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'cannotplay').remove();
+			if (t.getelement(t.container).queryselector('.' + t.options.classprefix + 'cannotplay')) {
+				t.getelement(t.container).queryselector('.' + t.options.classprefix + 'cannotplay').remove();
 			}
 
-			var errorContainer = _document2.default.createElement('div');
-			errorContainer.className = t.options.classPrefix + 'cannotplay';
-			errorContainer.style.width = '100%';
-			errorContainer.style.height = '100%';
+			var errorcontainer = _document2.default.createelement('div');
+			errorcontainer.classname = t.options.classprefix + 'cannotplay';
+			errorcontainer.style.width = '100%';
+			errorcontainer.style.height = '100%';
 
-			var errorContent = typeof t.options.customError === 'function' ? t.options.customError(t.media, t.media.originalNode) : t.options.customError,
-			    imgError = '';
+			var errorcontent = typeof t.options.customerror === 'function' ? t.options.customerror(t.media, t.media.originalnode) : t.options.customerror,
+			    imgerror = '';
 
-			if (!errorContent) {
-				var poster = t.media.originalNode.getAttribute('poster');
+			if (!errorcontent) {
+				var poster = t.media.originalnode.getattribute('poster');
 				if (poster) {
-					imgError = '<img src="' + poster + '" alt="' + _mejs2.default.i18n.t('mejs.download-file') + '">';
+					imgerror = '<img src="' + poster + '" alt="' + _mejs2.default.i18n.t('mejs.download-file') + '">';
 				}
 
 				if (e.message) {
-					errorContent = '<p>' + e.message + '</p>';
+					errorcontent = '<p>' + e.message + '</p>';
 				}
 
 				if (e.urls) {
 					for (var i = 0, total = e.urls.length; i < total; i++) {
 						var url = e.urls[i];
-						errorContent += '<a href="' + url.src + '" data-type="' + url.type + '"><span>' + _mejs2.default.i18n.t('mejs.download-file') + ': ' + url.src + '</span></a>';
+						errorcontent += '<a href="' + url.src + '" data-type="' + url.type + '"><span>' + _mejs2.default.i18n.t('mejs.download-file') + ': ' + url.src + '</span></a>';
 					}
 				}
 			}
 
-			if (errorContent && t.getElement(t.layers).querySelector('.' + t.options.classPrefix + 'overlay-error')) {
-				errorContainer.innerHTML = errorContent;
-				t.getElement(t.layers).querySelector('.' + t.options.classPrefix + 'overlay-error').innerHTML = '' + imgError + errorContainer.outerHTML;
-				t.getElement(t.layers).querySelector('.' + t.options.classPrefix + 'overlay-error').parentNode.style.display = 'block';
+			if (errorcontent && t.getelement(t.layers).queryselector('.' + t.options.classprefix + 'overlay-error')) {
+				errorcontainer.innerhtml = errorcontent;
+				t.getelement(t.layers).queryselector('.' + t.options.classprefix + 'overlay-error').innerhtml = '' + imgerror + errorcontainer.outerhtml;
+				t.getelement(t.layers).queryselector('.' + t.options.classprefix + 'overlay-error').parentnode.style.display = 'block';
 			}
 
-			if (t.controlsEnabled) {
-				t.disableControls();
+			if (t.controlsenabled) {
+				t.disablecontrols();
 			}
 		}
 	}, {
-		key: 'setPlayerSize',
-		value: function setPlayerSize(width, height) {
+		key: 'setplayersize',
+		value: function setplayersize(width, height) {
 			var t = this;
 
-			if (!t.options.setDimensions) {
+			if (!t.options.setdimensions) {
 				return false;
 			}
 
@@ -4353,463 +4353,463 @@ var MediaElementPlayer = function () {
 
 			switch (t.options.stretching) {
 				case 'fill':
-					if (t.isVideo) {
-						t.setFillMode();
+					if (t.isvideo) {
+						t.setfillmode();
 					} else {
-						t.setDimensions(t.width, t.height);
+						t.setdimensions(t.width, t.height);
 					}
 					break;
 				case 'responsive':
-					t.setResponsiveMode();
+					t.setresponsivemode();
 					break;
 				case 'none':
-					t.setDimensions(t.width, t.height);
+					t.setdimensions(t.width, t.height);
 					break;
 
 				default:
-					if (t.hasFluidMode() === true) {
-						t.setResponsiveMode();
+					if (t.hasfluidmode() === true) {
+						t.setresponsivemode();
 					} else {
-						t.setDimensions(t.width, t.height);
+						t.setdimensions(t.width, t.height);
 					}
 					break;
 			}
 		}
 	}, {
-		key: 'hasFluidMode',
-		value: function hasFluidMode() {
+		key: 'hasfluidmode',
+		value: function hasfluidmode() {
 			var t = this;
 
-			return t.height.toString().indexOf('%') !== -1 || t.node && t.node.style.maxWidth && t.node.style.maxWidth !== 'none' && t.node.style.maxWidth !== t.width || t.node && t.node.currentStyle && t.node.currentStyle.maxWidth === '100%';
+			return t.height.tostring().indexof('%') !== -1 || t.node && t.node.style.maxwidth && t.node.style.maxwidth !== 'none' && t.node.style.maxwidth !== t.width || t.node && t.node.currentstyle && t.node.currentstyle.maxwidth === '100%';
 		}
 	}, {
-		key: 'setResponsiveMode',
-		value: function setResponsiveMode() {
+		key: 'setresponsivemode',
+		value: function setresponsivemode() {
 			var t = this,
 			    parent = function () {
 
-				var parentEl = void 0,
-				    el = t.getElement(t.container);
+				var parentel = void 0,
+				    el = t.getelement(t.container);
 
 				while (el) {
 					try {
-						if (_constants.IS_FIREFOX && el.tagName.toLowerCase() === 'html' && _window2.default.self !== _window2.default.top && _window2.default.frameElement !== null) {
-							return _window2.default.frameElement;
+						if (_constants.is_firefox && el.tagname.tolowercase() === 'html' && _window2.default.self !== _window2.default.top && _window2.default.frameelement !== null) {
+							return _window2.default.frameelement;
 						} else {
-							parentEl = el.parentElement;
+							parentel = el.parentelement;
 						}
 					} catch (e) {
-						parentEl = el.parentElement;
+						parentel = el.parentelement;
 					}
 
-					if (parentEl && dom.visible(parentEl)) {
-						return parentEl;
+					if (parentel && dom.visible(parentel)) {
+						return parentel;
 					}
-					el = parentEl;
+					el = parentel;
 				}
 
 				return null;
 			}(),
-			    parentStyles = parent ? getComputedStyle(parent, null) : getComputedStyle(_document2.default.body, null),
-			    nativeWidth = function () {
-				if (t.isVideo) {
-					if (t.node.videoWidth && t.node.videoWidth > 0) {
-						return t.node.videoWidth;
-					} else if (t.node.getAttribute('width')) {
-						return t.node.getAttribute('width');
+			    parentstyles = parent ? getcomputedstyle(parent, null) : getcomputedstyle(_document2.default.body, null),
+			    nativewidth = function () {
+				if (t.isvideo) {
+					if (t.node.videowidth && t.node.videowidth > 0) {
+						return t.node.videowidth;
+					} else if (t.node.getattribute('width')) {
+						return t.node.getattribute('width');
 					} else {
-						return t.options.defaultVideoWidth;
+						return t.options.defaultvideowidth;
 					}
 				} else {
-					return t.options.defaultAudioWidth;
+					return t.options.defaultaudiowidth;
 				}
 			}(),
-			    nativeHeight = function () {
-				if (t.isVideo) {
-					if (t.node.videoHeight && t.node.videoHeight > 0) {
-						return t.node.videoHeight;
-					} else if (t.node.getAttribute('height')) {
-						return t.node.getAttribute('height');
+			    nativeheight = function () {
+				if (t.isvideo) {
+					if (t.node.videoheight && t.node.videoheight > 0) {
+						return t.node.videoheight;
+					} else if (t.node.getattribute('height')) {
+						return t.node.getattribute('height');
 					} else {
-						return t.options.defaultVideoHeight;
+						return t.options.defaultvideoheight;
 					}
 				} else {
-					return t.options.defaultAudioHeight;
+					return t.options.defaultaudioheight;
 				}
 			}(),
-			    aspectRatio = function () {
-				if (!t.options.enableAutosize) {
-					return t.initialAspectRatio;
+			    aspectratio = function () {
+				if (!t.options.enableautosize) {
+					return t.initialaspectratio;
 				}
 				var ratio = 1;
-				if (!t.isVideo) {
+				if (!t.isvideo) {
 					return ratio;
 				}
 
-				if (t.node.videoWidth && t.node.videoWidth > 0 && t.node.videoHeight && t.node.videoHeight > 0) {
-					ratio = t.height >= t.width ? t.node.videoWidth / t.node.videoHeight : t.node.videoHeight / t.node.videoWidth;
+				if (t.node.videowidth && t.node.videowidth > 0 && t.node.videoheight && t.node.videoheight > 0) {
+					ratio = t.height >= t.width ? t.node.videowidth / t.node.videoheight : t.node.videoheight / t.node.videowidth;
 				} else {
-					ratio = t.initialAspectRatio;
+					ratio = t.initialaspectratio;
 				}
 
-				if (isNaN(ratio) || ratio < 0.01 || ratio > 100) {
+				if (isnan(ratio) || ratio < 0.01 || ratio > 100) {
 					ratio = 1;
 				}
 
 				return ratio;
 			}(),
-			    parentHeight = parseFloat(parentStyles.height);
+			    parentheight = parsefloat(parentstyles.height);
 
-			var newHeight = void 0,
-			    parentWidth = parseFloat(parentStyles.width);
+			var newheight = void 0,
+			    parentwidth = parsefloat(parentstyles.width);
 
-			if (t.isVideo) {
+			if (t.isvideo) {
 				if (t.height === '100%') {
-					newHeight = parseFloat(parentWidth * nativeHeight / nativeWidth, 10);
+					newheight = parsefloat(parentwidth * nativeheight / nativewidth, 10);
 				} else {
-					newHeight = t.height >= t.width ? parseFloat(parentWidth / aspectRatio, 10) : parseFloat(parentWidth * aspectRatio, 10);
+					newheight = t.height >= t.width ? parsefloat(parentwidth / aspectratio, 10) : parsefloat(parentwidth * aspectratio, 10);
 				}
 			} else {
-				newHeight = nativeHeight;
+				newheight = nativeheight;
 			}
 
-			if (isNaN(newHeight)) {
-				newHeight = parentHeight;
+			if (isnan(newheight)) {
+				newheight = parentheight;
 			}
 
-			if (t.getElement(t.container).parentNode.length > 0 && t.getElement(t.container).parentNode.tagName.toLowerCase() === 'body') {
-				parentWidth = _window2.default.innerWidth || _document2.default.documentElement.clientWidth || _document2.default.body.clientWidth;
-				newHeight = _window2.default.innerHeight || _document2.default.documentElement.clientHeight || _document2.default.body.clientHeight;
+			if (t.getelement(t.container).parentnode.length > 0 && t.getelement(t.container).parentnode.tagname.tolowercase() === 'body') {
+				parentwidth = _window2.default.innerwidth || _document2.default.documentelement.clientwidth || _document2.default.body.clientwidth;
+				newheight = _window2.default.innerheight || _document2.default.documentelement.clientheight || _document2.default.body.clientheight;
 			}
 
-			if (newHeight && parentWidth) {
-				t.getElement(t.container).style.width = parentWidth + 'px';
-				t.getElement(t.container).style.height = newHeight + 'px';
+			if (newheight && parentwidth) {
+				t.getelement(t.container).style.width = parentwidth + 'px';
+				t.getelement(t.container).style.height = newheight + 'px';
 
 				t.node.style.width = '100%';
 				t.node.style.height = '100%';
 
-				if (t.isVideo && t.media.setSize) {
-					t.media.setSize(parentWidth, newHeight);
+				if (t.isvideo && t.media.setsize) {
+					t.media.setsize(parentwidth, newheight);
 				}
 
-				var layerChildren = t.getElement(t.layers).children;
-				for (var i = 0, total = layerChildren.length; i < total; i++) {
-					layerChildren[i].style.width = '100%';
-					layerChildren[i].style.height = '100%';
+				var layerchildren = t.getelement(t.layers).children;
+				for (var i = 0, total = layerchildren.length; i < total; i++) {
+					layerchildren[i].style.width = '100%';
+					layerchildren[i].style.height = '100%';
 				}
 			}
 		}
 	}, {
-		key: 'setFillMode',
-		value: function setFillMode() {
+		key: 'setfillmode',
+		value: function setfillmode() {
 			var t = this;
-			var isIframe = _window2.default.self !== _window2.default.top && _window2.default.frameElement !== null;
+			var isiframe = _window2.default.self !== _window2.default.top && _window2.default.frameelement !== null;
 			var parent = function () {
-				var parentEl = void 0,
-				    el = t.getElement(t.container);
+				var parentel = void 0,
+				    el = t.getelement(t.container);
 
 				while (el) {
 					try {
-						if (_constants.IS_FIREFOX && el.tagName.toLowerCase() === 'html' && _window2.default.self !== _window2.default.top && _window2.default.frameElement !== null) {
-							return _window2.default.frameElement;
+						if (_constants.is_firefox && el.tagname.tolowercase() === 'html' && _window2.default.self !== _window2.default.top && _window2.default.frameelement !== null) {
+							return _window2.default.frameelement;
 						} else {
-							parentEl = el.parentElement;
+							parentel = el.parentelement;
 						}
 					} catch (e) {
-						parentEl = el.parentElement;
+						parentel = el.parentelement;
 					}
 
-					if (parentEl && dom.visible(parentEl)) {
-						return parentEl;
+					if (parentel && dom.visible(parentel)) {
+						return parentel;
 					}
-					el = parentEl;
+					el = parentel;
 				}
 
 				return null;
 			}();
-			var parentStyles = parent ? getComputedStyle(parent, null) : getComputedStyle(_document2.default.body, null);
+			var parentstyles = parent ? getcomputedstyle(parent, null) : getcomputedstyle(_document2.default.body, null);
 
 			if (t.node.style.height !== 'none' && t.node.style.height !== t.height) {
 				t.node.style.height = 'auto';
 			}
-			if (t.node.style.maxWidth !== 'none' && t.node.style.maxWidth !== t.width) {
-				t.node.style.maxWidth = 'none';
+			if (t.node.style.maxwidth !== 'none' && t.node.style.maxwidth !== t.width) {
+				t.node.style.maxwidth = 'none';
 			}
 
-			if (t.node.style.maxHeight !== 'none' && t.node.style.maxHeight !== t.height) {
-				t.node.style.maxHeight = 'none';
+			if (t.node.style.maxheight !== 'none' && t.node.style.maxheight !== t.height) {
+				t.node.style.maxheight = 'none';
 			}
 
-			if (t.node.currentStyle) {
-				if (t.node.currentStyle.height === '100%') {
-					t.node.currentStyle.height = 'auto';
+			if (t.node.currentstyle) {
+				if (t.node.currentstyle.height === '100%') {
+					t.node.currentstyle.height = 'auto';
 				}
-				if (t.node.currentStyle.maxWidth === '100%') {
-					t.node.currentStyle.maxWidth = 'none';
+				if (t.node.currentstyle.maxwidth === '100%') {
+					t.node.currentstyle.maxwidth = 'none';
 				}
-				if (t.node.currentStyle.maxHeight === '100%') {
-					t.node.currentStyle.maxHeight = 'none';
+				if (t.node.currentstyle.maxheight === '100%') {
+					t.node.currentstyle.maxheight = 'none';
 				}
 			}
 
-			if (!isIframe && !parseFloat(parentStyles.width)) {
-				parent.style.width = t.media.offsetWidth + 'px';
+			if (!isiframe && !parsefloat(parentstyles.width)) {
+				parent.style.width = t.media.offsetwidth + 'px';
 			}
 
-			if (!isIframe && !parseFloat(parentStyles.height)) {
-				parent.style.height = t.media.offsetHeight + 'px';
+			if (!isiframe && !parsefloat(parentstyles.height)) {
+				parent.style.height = t.media.offsetheight + 'px';
 			}
 
-			parentStyles = getComputedStyle(parent);
+			parentstyles = getcomputedstyle(parent);
 
-			var parentWidth = parseFloat(parentStyles.width),
-			    parentHeight = parseFloat(parentStyles.height);
+			var parentwidth = parsefloat(parentstyles.width),
+			    parentheight = parsefloat(parentstyles.height);
 
-			t.setDimensions('100%', '100%');
+			t.setdimensions('100%', '100%');
 
-			var poster = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'poster>img');
+			var poster = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'poster>img');
 			if (poster) {
 				poster.style.display = '';
 			}
 
-			var targetElement = t.getElement(t.container).querySelectorAll('object, embed, iframe, video'),
-			    initHeight = t.height,
-			    initWidth = t.width,
-			    scaleX1 = parentWidth,
-			    scaleY1 = initHeight * parentWidth / initWidth,
-			    scaleX2 = initWidth * parentHeight / initHeight,
-			    scaleY2 = parentHeight,
-			    bScaleOnWidth = scaleX2 > parentWidth === false,
-			    finalWidth = bScaleOnWidth ? Math.floor(scaleX1) : Math.floor(scaleX2),
-			    finalHeight = bScaleOnWidth ? Math.floor(scaleY1) : Math.floor(scaleY2),
-			    width = bScaleOnWidth ? parentWidth + 'px' : finalWidth + 'px',
-			    height = bScaleOnWidth ? finalHeight + 'px' : parentHeight + 'px';
+			var targetelement = t.getelement(t.container).queryselectorall('object, embed, iframe, video'),
+			    initheight = t.height,
+			    initwidth = t.width,
+			    scalex1 = parentwidth,
+			    scaley1 = initheight * parentwidth / initwidth,
+			    scalex2 = initwidth * parentheight / initheight,
+			    scaley2 = parentheight,
+			    bscaleonwidth = scalex2 > parentwidth === false,
+			    finalwidth = bscaleonwidth ? math.floor(scalex1) : math.floor(scalex2),
+			    finalheight = bscaleonwidth ? math.floor(scaley1) : math.floor(scaley2),
+			    width = bscaleonwidth ? parentwidth + 'px' : finalwidth + 'px',
+			    height = bscaleonwidth ? finalheight + 'px' : parentheight + 'px';
 
-			for (var i = 0, total = targetElement.length; i < total; i++) {
-				targetElement[i].style.height = height;
-				targetElement[i].style.width = width;
-				if (t.media.setSize) {
-					t.media.setSize(width, height);
+			for (var i = 0, total = targetelement.length; i < total; i++) {
+				targetelement[i].style.height = height;
+				targetelement[i].style.width = width;
+				if (t.media.setsize) {
+					t.media.setsize(width, height);
 				}
 
-				targetElement[i].style.marginLeft = Math.floor((parentWidth - finalWidth) / 2) + 'px';
-				targetElement[i].style.marginTop = 0;
+				targetelement[i].style.marginleft = math.floor((parentwidth - finalwidth) / 2) + 'px';
+				targetelement[i].style.margintop = 0;
 			}
 		}
 	}, {
-		key: 'setDimensions',
-		value: function setDimensions(width, height) {
+		key: 'setdimensions',
+		value: function setdimensions(width, height) {
 			var t = this;
 
-			width = (0, _general.isString)(width) && width.indexOf('%') > -1 ? width : parseFloat(width) + 'px';
-			height = (0, _general.isString)(height) && height.indexOf('%') > -1 ? height : parseFloat(height) + 'px';
+			width = (0, _general.isstring)(width) && width.indexof('%') > -1 ? width : parsefloat(width) + 'px';
+			height = (0, _general.isstring)(height) && height.indexof('%') > -1 ? height : parsefloat(height) + 'px';
 
-			t.getElement(t.container).style.width = width;
-			t.getElement(t.container).style.height = height;
+			t.getelement(t.container).style.width = width;
+			t.getelement(t.container).style.height = height;
 
-			var layers = t.getElement(t.layers).children;
+			var layers = t.getelement(t.layers).children;
 			for (var i = 0, total = layers.length; i < total; i++) {
 				layers[i].style.width = width;
 				layers[i].style.height = height;
 			}
 		}
 	}, {
-		key: 'setControlsSize',
-		value: function setControlsSize() {
+		key: 'setcontrolssize',
+		value: function setcontrolssize() {
 			var t = this;
 
-			if (!dom.visible(t.getElement(t.container))) {
+			if (!dom.visible(t.getelement(t.container))) {
 				return;
 			}
 
 			if (t.rail && dom.visible(t.rail)) {
-				var totalStyles = t.total ? getComputedStyle(t.total, null) : null,
-				    totalMargin = totalStyles ? parseFloat(totalStyles.marginLeft) + parseFloat(totalStyles.marginRight) : 0,
-				    railStyles = getComputedStyle(t.rail),
-				    railMargin = parseFloat(railStyles.marginLeft) + parseFloat(railStyles.marginRight);
+				var totalstyles = t.total ? getcomputedstyle(t.total, null) : null,
+				    totalmargin = totalstyles ? parsefloat(totalstyles.marginleft) + parsefloat(totalstyles.marginright) : 0,
+				    railstyles = getcomputedstyle(t.rail),
+				    railmargin = parsefloat(railstyles.marginleft) + parsefloat(railstyles.marginright);
 
-				var siblingsWidth = 0;
+				var siblingswidth = 0;
 
 				var siblings = dom.siblings(t.rail, function (el) {
 					return el !== t.rail;
 				}),
 				    total = siblings.length;
 				for (var i = 0; i < total; i++) {
-					siblingsWidth += siblings[i].offsetWidth;
+					siblingswidth += siblings[i].offsetwidth;
 				}
 
-				siblingsWidth += totalMargin + (totalMargin === 0 ? railMargin * 2 : railMargin) + 1;
+				siblingswidth += totalmargin + (totalmargin === 0 ? railmargin * 2 : railmargin) + 1;
 
-				t.getElement(t.container).style.minWidth = siblingsWidth + 'px';
+				t.getelement(t.container).style.minwidth = siblingswidth + 'px';
 
-				var event = (0, _general.createEvent)('controlsresize', t.getElement(t.container));
-				t.getElement(t.container).dispatchEvent(event);
+				var event = (0, _general.createevent)('controlsresize', t.getelement(t.container));
+				t.getelement(t.container).dispatchevent(event);
 			} else {
-				var children = t.getElement(t.controls).children;
-				var minWidth = 0;
+				var children = t.getelement(t.controls).children;
+				var minwidth = 0;
 
 				for (var _i = 0, _total = children.length; _i < _total; _i++) {
-					minWidth += children[_i].offsetWidth;
+					minwidth += children[_i].offsetwidth;
 				}
 
-				t.getElement(t.container).style.minWidth = minWidth + 'px';
+				t.getelement(t.container).style.minwidth = minwidth + 'px';
 			}
 		}
 	}, {
-		key: 'addControlElement',
-		value: function addControlElement(element, key) {
+		key: 'addcontrolelement',
+		value: function addcontrolelement(element, key) {
 
 			var t = this;
 
-			if (t.featurePosition[key] !== undefined) {
-				var child = t.getElement(t.controls).children[t.featurePosition[key] - 1];
-				child.parentNode.insertBefore(element, child.nextSibling);
+			if (t.featureposition[key] !== undefined) {
+				var child = t.getelement(t.controls).children[t.featureposition[key] - 1];
+				child.parentnode.insertbefore(element, child.nextsibling);
 			} else {
-				t.getElement(t.controls).appendChild(element);
-				var children = t.getElement(t.controls).children;
+				t.getelement(t.controls).appendchild(element);
+				var children = t.getelement(t.controls).children;
 				for (var i = 0, total = children.length; i < total; i++) {
 					if (element === children[i]) {
-						t.featurePosition[key] = i;
+						t.featureposition[key] = i;
 						break;
 					}
 				}
 			}
 		}
 	}, {
-		key: 'createIframeLayer',
-		value: function createIframeLayer() {
+		key: 'createiframelayer',
+		value: function createiframelayer() {
 			var t = this;
 
-			if (t.isVideo && t.media.rendererName !== null && t.media.rendererName.indexOf('iframe') > -1 && !_document2.default.getElementById(t.media.id + '-iframe-overlay')) {
+			if (t.isvideo && t.media.renderername !== null && t.media.renderername.indexof('iframe') > -1 && !_document2.default.getelementbyid(t.media.id + '-iframe-overlay')) {
 
-				var layer = _document2.default.createElement('div'),
-				    target = _document2.default.getElementById(t.media.id + '_' + t.media.rendererName);
+				var layer = _document2.default.createelement('div'),
+				    target = _document2.default.getelementbyid(t.media.id + '_' + t.media.renderername);
 
 				layer.id = t.media.id + '-iframe-overlay';
-				layer.className = t.options.classPrefix + 'iframe-overlay';
-				layer.addEventListener('click', function (e) {
-					if (t.options.clickToPlayPause) {
+				layer.classname = t.options.classprefix + 'iframe-overlay';
+				layer.addeventlistener('click', function (e) {
+					if (t.options.clicktoplaypause) {
 						if (t.paused) {
 							t.play();
 						} else {
 							t.pause();
 						}
 
-						e.preventDefault();
-						e.stopPropagation();
+						e.preventdefault();
+						e.stoppropagation();
 					}
 				});
 
-				target.parentNode.insertBefore(layer, target);
+				target.parentnode.insertbefore(layer, target);
 			}
 		}
 	}, {
-		key: 'resetSize',
-		value: function resetSize() {
+		key: 'resetsize',
+		value: function resetsize() {
 			var t = this;
 
-			setTimeout(function () {
-				t.setPlayerSize(t.width, t.height);
-				t.setControlsSize();
+			settimeout(function () {
+				t.setplayersize(t.width, t.height);
+				t.setcontrolssize();
 			}, 50);
 		}
 	}, {
-		key: 'setPoster',
-		value: function setPoster(url) {
+		key: 'setposter',
+		value: function setposter(url) {
 			var t = this;
 
-			if (t.getElement(t.container)) {
-				var posterDiv = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'poster');
+			if (t.getelement(t.container)) {
+				var posterdiv = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'poster');
 
-				if (!posterDiv) {
-					posterDiv = _document2.default.createElement('div');
-					posterDiv.className = t.options.classPrefix + 'poster ' + t.options.classPrefix + 'layer';
-					t.getElement(t.layers).appendChild(posterDiv);
+				if (!posterdiv) {
+					posterdiv = _document2.default.createelement('div');
+					posterdiv.classname = t.options.classprefix + 'poster ' + t.options.classprefix + 'layer';
+					t.getelement(t.layers).appendchild(posterdiv);
 				}
 
-				var posterImg = posterDiv.querySelector('img');
+				var posterimg = posterdiv.queryselector('img');
 
-				if (!posterImg && url) {
-					posterImg = _document2.default.createElement('img');
-					posterImg.className = t.options.classPrefix + 'poster-img';
-					posterImg.width = '100%';
-					posterImg.height = '100%';
-					posterDiv.style.display = '';
-					posterDiv.appendChild(posterImg);
+				if (!posterimg && url) {
+					posterimg = _document2.default.createelement('img');
+					posterimg.classname = t.options.classprefix + 'poster-img';
+					posterimg.width = '100%';
+					posterimg.height = '100%';
+					posterdiv.style.display = '';
+					posterdiv.appendchild(posterimg);
 				}
 
 				if (url) {
-					posterImg.setAttribute('src', url);
-					posterDiv.style.backgroundImage = 'url("' + url + '")';
-					posterDiv.style.display = '';
-				} else if (posterImg) {
-					posterDiv.style.backgroundImage = 'none';
-					posterDiv.style.display = 'none';
-					posterImg.remove();
+					posterimg.setattribute('src', url);
+					posterdiv.style.backgroundimage = 'url("' + url + '")';
+					posterdiv.style.display = '';
+				} else if (posterimg) {
+					posterdiv.style.backgroundimage = 'none';
+					posterdiv.style.display = 'none';
+					posterimg.remove();
 				} else {
-					posterDiv.style.display = 'none';
+					posterdiv.style.display = 'none';
 				}
-			} else if (_constants.IS_IPAD && t.options.iPadUseNativeControls || _constants.IS_IPHONE && t.options.iPhoneUseNativeControls || _constants.IS_ANDROID && t.options.AndroidUseNativeControls) {
-				t.media.originalNode.poster = url;
+			} else if (_constants.is_ipad && t.options.ipadusenativecontrols || _constants.is_iphone && t.options.iphoneusenativecontrols || _constants.is_android && t.options.androidusenativecontrols) {
+				t.media.originalnode.poster = url;
 			}
 		}
 	}, {
-		key: 'changeSkin',
-		value: function changeSkin(className) {
+		key: 'changeskin',
+		value: function changeskin(classname) {
 			var t = this;
 
-			t.getElement(t.container).className = t.options.classPrefix + 'container ' + className;
-			t.setPlayerSize(t.width, t.height);
-			t.setControlsSize();
+			t.getelement(t.container).classname = t.options.classprefix + 'container ' + classname;
+			t.setplayersize(t.width, t.height);
+			t.setcontrolssize();
 		}
 	}, {
-		key: 'globalBind',
-		value: function globalBind(events, callback) {
+		key: 'globalbind',
+		value: function globalbind(events, callback) {
 			var t = this,
-			    doc = t.node ? t.node.ownerDocument : _document2.default;
+			    doc = t.node ? t.node.ownerdocument : _document2.default;
 
-			events = (0, _general.splitEvents)(events, t.id);
+			events = (0, _general.splitevents)(events, t.id);
 			if (events.d) {
-				var eventList = events.d.split(' ');
-				for (var i = 0, total = eventList.length; i < total; i++) {
-					eventList[i].split('.').reduce(function (part, e) {
-						doc.addEventListener(e, callback, false);
+				var eventlist = events.d.split(' ');
+				for (var i = 0, total = eventlist.length; i < total; i++) {
+					eventlist[i].split('.').reduce(function (part, e) {
+						doc.addeventlistener(e, callback, false);
 						return e;
 					}, '');
 				}
 			}
 			if (events.w) {
-				var _eventList = events.w.split(' ');
-				for (var _i2 = 0, _total2 = _eventList.length; _i2 < _total2; _i2++) {
-					_eventList[_i2].split('.').reduce(function (part, e) {
-						_window2.default.addEventListener(e, callback, false);
+				var _eventlist = events.w.split(' ');
+				for (var _i2 = 0, _total2 = _eventlist.length; _i2 < _total2; _i2++) {
+					_eventlist[_i2].split('.').reduce(function (part, e) {
+						_window2.default.addeventlistener(e, callback, false);
 						return e;
 					}, '');
 				}
 			}
 		}
 	}, {
-		key: 'globalUnbind',
-		value: function globalUnbind(events, callback) {
+		key: 'globalunbind',
+		value: function globalunbind(events, callback) {
 			var t = this,
-			    doc = t.node ? t.node.ownerDocument : _document2.default;
+			    doc = t.node ? t.node.ownerdocument : _document2.default;
 
-			events = (0, _general.splitEvents)(events, t.id);
+			events = (0, _general.splitevents)(events, t.id);
 			if (events.d) {
-				var eventList = events.d.split(' ');
-				for (var i = 0, total = eventList.length; i < total; i++) {
-					eventList[i].split('.').reduce(function (part, e) {
-						doc.removeEventListener(e, callback, false);
+				var eventlist = events.d.split(' ');
+				for (var i = 0, total = eventlist.length; i < total; i++) {
+					eventlist[i].split('.').reduce(function (part, e) {
+						doc.removeeventlistener(e, callback, false);
 						return e;
 					}, '');
 				}
 			}
 			if (events.w) {
-				var _eventList2 = events.w.split(' ');
-				for (var _i3 = 0, _total3 = _eventList2.length; _i3 < _total3; _i3++) {
-					_eventList2[_i3].split('.').reduce(function (part, e) {
-						_window2.default.removeEventListener(e, callback, false);
+				var _eventlist2 = events.w.split(' ');
+				for (var _i3 = 0, _total3 = _eventlist2.length; _i3 < _total3; _i3++) {
+					_eventlist2[_i3].split('.').reduce(function (part, e) {
+						_window2.default.removeeventlistener(e, callback, false);
 						return e;
 					}, '');
 				}
@@ -4835,48 +4835,48 @@ var MediaElementPlayer = function () {
 		key: 'buildposter',
 		value: function buildposter(player, controls, layers, media) {
 			var t = this,
-			    poster = _document2.default.createElement('div');
+			    poster = _document2.default.createelement('div');
 
-			poster.className = t.options.classPrefix + 'poster ' + t.options.classPrefix + 'layer';
-			layers.appendChild(poster);
+			poster.classname = t.options.classprefix + 'poster ' + t.options.classprefix + 'layer';
+			layers.appendchild(poster);
 
-			var posterUrl = media.originalNode.getAttribute('poster');
+			var posterurl = media.originalnode.getattribute('poster');
 
 			if (player.options.poster !== '') {
-				if (posterUrl && _constants.IS_IOS) {
-					media.originalNode.removeAttribute('poster');
+				if (posterurl && _constants.is_ios) {
+					media.originalnode.removeattribute('poster');
 				}
-				posterUrl = player.options.poster;
+				posterurl = player.options.poster;
 			}
 
-			if (posterUrl) {
-				t.setPoster(posterUrl);
-			} else if (t.media.renderer !== null && typeof t.media.renderer.getPosterUrl === 'function') {
-				t.setPoster(t.media.renderer.getPosterUrl());
+			if (posterurl) {
+				t.setposter(posterurl);
+			} else if (t.media.renderer !== null && typeof t.media.renderer.getposterurl === 'function') {
+				t.setposter(t.media.renderer.getposterurl());
 			} else {
 				poster.style.display = 'none';
 			}
 
-			media.addEventListener('play', function () {
+			media.addeventlistener('play', function () {
 				poster.style.display = 'none';
 			});
 
-			media.addEventListener('playing', function () {
+			media.addeventlistener('playing', function () {
 				poster.style.display = 'none';
 			});
 
-			if (player.options.showPosterWhenEnded && player.options.autoRewind) {
-				media.addEventListener('ended', function () {
+			if (player.options.showposterwhenended && player.options.autorewind) {
+				media.addeventlistener('ended', function () {
 					poster.style.display = '';
 				});
 			}
 
-			media.addEventListener('error', function () {
+			media.addeventlistener('error', function () {
 				poster.style.display = 'none';
 			});
 
-			if (player.options.showPosterWhenPaused) {
-				media.addEventListener('pause', function () {
+			if (player.options.showposterwhenpaused) {
+				media.addeventlistener('pause', function () {
 					if (!player.ended) {
 						poster.style.display = '';
 					}
@@ -4887,32 +4887,32 @@ var MediaElementPlayer = function () {
 		key: 'buildoverlays',
 		value: function buildoverlays(player, controls, layers, media) {
 
-			if (!player.isVideo) {
+			if (!player.isvideo) {
 				return;
 			}
 
 			var t = this,
-			    loading = _document2.default.createElement('div'),
-			    error = _document2.default.createElement('div'),
-			    bigPlay = _document2.default.createElement('div');
+			    loading = _document2.default.createelement('div'),
+			    error = _document2.default.createelement('div'),
+			    bigplay = _document2.default.createelement('div');
 
 			loading.style.display = 'none';
-			loading.className = t.options.classPrefix + 'overlay ' + t.options.classPrefix + 'layer';
-			loading.innerHTML = '<div class="' + t.options.classPrefix + 'overlay-loading">' + ('<span class="' + t.options.classPrefix + 'overlay-loading-bg-img"></span>') + '</div>';
-			layers.appendChild(loading);
+			loading.classname = t.options.classprefix + 'overlay ' + t.options.classprefix + 'layer';
+			loading.innerhtml = '<div class="' + t.options.classprefix + 'overlay-loading">' + ('<span class="' + t.options.classprefix + 'overlay-loading-bg-img"></span>') + '</div>';
+			layers.appendchild(loading);
 
 			error.style.display = 'none';
-			error.className = t.options.classPrefix + 'overlay ' + t.options.classPrefix + 'layer';
-			error.innerHTML = '<div class="' + t.options.classPrefix + 'overlay-error"></div>';
-			layers.appendChild(error);
+			error.classname = t.options.classprefix + 'overlay ' + t.options.classprefix + 'layer';
+			error.innerhtml = '<div class="' + t.options.classprefix + 'overlay-error"></div>';
+			layers.appendchild(error);
 
-			bigPlay.className = t.options.classPrefix + 'overlay ' + t.options.classPrefix + 'layer ' + t.options.classPrefix + 'overlay-play';
-			bigPlay.innerHTML = '<div class="' + t.options.classPrefix + 'overlay-button" role="button" tabindex="0" ' + ('aria-label="' + _i18n2.default.t('mejs.play') + '" aria-pressed="false"></div>');
-			bigPlay.addEventListener('click', function () {
-				if (t.options.clickToPlayPause) {
+			bigplay.classname = t.options.classprefix + 'overlay ' + t.options.classprefix + 'layer ' + t.options.classprefix + 'overlay-play';
+			bigplay.innerhtml = '<div class="' + t.options.classprefix + 'overlay-button" role="button" tabindex="0" ' + ('aria-label="' + _i18n2.default.t('mejs.play') + '" aria-pressed="false"></div>');
+			bigplay.addeventlistener('click', function () {
+				if (t.options.clicktoplaypause) {
 
-					var button = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'overlay-button'),
-					    pressed = button.getAttribute('aria-pressed');
+					var button = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'overlay-button'),
+					    pressed = button.getattribute('aria-pressed');
 
 					if (t.paused) {
 						t.play();
@@ -4920,100 +4920,100 @@ var MediaElementPlayer = function () {
 						t.pause();
 					}
 
-					button.setAttribute('aria-pressed', !!pressed);
-					t.getElement(t.container).focus();
+					button.setattribute('aria-pressed', !!pressed);
+					t.getelement(t.container).focus();
 				}
 			});
 
-			bigPlay.addEventListener('keydown', function (e) {
-				var keyPressed = e.keyCode || e.which || 0;
+			bigplay.addeventlistener('keydown', function (e) {
+				var keypressed = e.keycode || e.which || 0;
 
-				if (keyPressed === 13 || _constants.IS_FIREFOX && keyPressed === 32) {
-					var event = (0, _general.createEvent)('click', bigPlay);
-					bigPlay.dispatchEvent(event);
+				if (keypressed === 13 || _constants.is_firefox && keypressed === 32) {
+					var event = (0, _general.createevent)('click', bigplay);
+					bigplay.dispatchevent(event);
 					return false;
 				}
 			});
 
-			layers.appendChild(bigPlay);
+			layers.appendchild(bigplay);
 
-			if (t.media.rendererName !== null && (/(youtube|facebook)/i.test(t.media.rendererName) && !(t.media.originalNode.getAttribute('poster') || player.options.poster || typeof t.media.renderer.getPosterUrl === 'function' && t.media.renderer.getPosterUrl()) || _constants.IS_STOCK_ANDROID || t.media.originalNode.getAttribute('autoplay'))) {
-				bigPlay.style.display = 'none';
+			if (t.media.renderername !== null && (/(youtube|facebook)/i.test(t.media.renderername) && !(t.media.originalnode.getattribute('poster') || player.options.poster || typeof t.media.renderer.getposterurl === 'function' && t.media.renderer.getposterurl()) || _constants.is_stock_android || t.media.originalnode.getattribute('autoplay'))) {
+				bigplay.style.display = 'none';
 			}
 
-			var hasError = false;
+			var haserror = false;
 
-			media.addEventListener('play', function () {
-				bigPlay.style.display = 'none';
+			media.addeventlistener('play', function () {
+				bigplay.style.display = 'none';
 				loading.style.display = 'none';
 				error.style.display = 'none';
-				hasError = false;
+				haserror = false;
 			});
-			media.addEventListener('playing', function () {
-				bigPlay.style.display = 'none';
+			media.addeventlistener('playing', function () {
+				bigplay.style.display = 'none';
 				loading.style.display = 'none';
 				error.style.display = 'none';
-				hasError = false;
+				haserror = false;
 			});
-			media.addEventListener('seeking', function () {
-				bigPlay.style.display = 'none';
+			media.addeventlistener('seeking', function () {
+				bigplay.style.display = 'none';
 				loading.style.display = '';
-				hasError = false;
+				haserror = false;
 			});
-			media.addEventListener('seeked', function () {
-				bigPlay.style.display = t.paused && !_constants.IS_STOCK_ANDROID ? '' : 'none';
+			media.addeventlistener('seeked', function () {
+				bigplay.style.display = t.paused && !_constants.is_stock_android ? '' : 'none';
 				loading.style.display = 'none';
-				hasError = false;
+				haserror = false;
 			});
-			media.addEventListener('pause', function () {
+			media.addeventlistener('pause', function () {
 				loading.style.display = 'none';
-				if (!_constants.IS_STOCK_ANDROID && !hasError) {
-					bigPlay.style.display = '';
+				if (!_constants.is_stock_android && !haserror) {
+					bigplay.style.display = '';
 				}
-				hasError = false;
+				haserror = false;
 			});
-			media.addEventListener('waiting', function () {
+			media.addeventlistener('waiting', function () {
 				loading.style.display = '';
-				hasError = false;
+				haserror = false;
 			});
 
-			media.addEventListener('loadeddata', function () {
+			media.addeventlistener('loadeddata', function () {
 				loading.style.display = '';
 
-				if (_constants.IS_ANDROID) {
-					media.canplayTimeout = setTimeout(function () {
-						if (_document2.default.createEvent) {
-							var evt = _document2.default.createEvent('HTMLEvents');
-							evt.initEvent('canplay', true, true);
-							return media.dispatchEvent(evt);
+				if (_constants.is_android) {
+					media.canplaytimeout = settimeout(function () {
+						if (_document2.default.createevent) {
+							var evt = _document2.default.createevent('htmlevents');
+							evt.initevent('canplay', true, true);
+							return media.dispatchevent(evt);
 						}
 					}, 300);
 				}
-				hasError = false;
+				haserror = false;
 			});
-			media.addEventListener('canplay', function () {
+			media.addeventlistener('canplay', function () {
 				loading.style.display = 'none';
 
-				clearTimeout(media.canplayTimeout);
-				hasError = false;
+				cleartimeout(media.canplaytimeout);
+				haserror = false;
 			});
 
-			media.addEventListener('error', function (e) {
-				t._handleError(e, t.media, t.node);
+			media.addeventlistener('error', function (e) {
+				t._handleerror(e, t.media, t.node);
 				loading.style.display = 'none';
-				bigPlay.style.display = 'none';
-				hasError = true;
+				bigplay.style.display = 'none';
+				haserror = true;
 			});
 
-			media.addEventListener('loadedmetadata', function () {
-				if (!t.controlsEnabled) {
-					t.enableControls();
+			media.addeventlistener('loadedmetadata', function () {
+				if (!t.controlsenabled) {
+					t.enablecontrols();
 				}
 			});
 
-			media.addEventListener('keydown', function (e) {
+			media.addeventlistener('keydown', function (e) {
 				t.onkeydown(player, media, e);
-				hasError = false;
+				haserror = false;
 			});
 		}
 	}, {
@@ -5022,38 +5022,38 @@ var MediaElementPlayer = function () {
 
 			var t = this;
 
-			t.getElement(t.container).addEventListener('keydown', function () {
-				t.keyboardAction = true;
+			t.getelement(t.container).addeventlistener('keydown', function () {
+				t.keyboardaction = true;
 			});
 
-			t.globalKeydownCallback = function (event) {
-				var container = _document2.default.activeElement.closest('.' + t.options.classPrefix + 'container'),
-				    target = t.media.closest('.' + t.options.classPrefix + 'container');
-				t.hasFocus = !!(container && target && container.id === target.id);
+			t.globalkeydowncallback = function (event) {
+				var container = _document2.default.activeelement.closest('.' + t.options.classprefix + 'container'),
+				    target = t.media.closest('.' + t.options.classprefix + 'container');
+				t.hasfocus = !!(container && target && container.id === target.id);
 				return t.onkeydown(player, media, event);
 			};
 
-			t.globalClickCallback = function (event) {
-				t.hasFocus = !!event.target.closest('.' + t.options.classPrefix + 'container');
+			t.globalclickcallback = function (event) {
+				t.hasfocus = !!event.target.closest('.' + t.options.classprefix + 'container');
 			};
 
-			t.globalBind('keydown', t.globalKeydownCallback);
+			t.globalbind('keydown', t.globalkeydowncallback);
 
-			t.globalBind('click', t.globalClickCallback);
+			t.globalbind('click', t.globalclickcallback);
 		}
 	}, {
 		key: 'onkeydown',
 		value: function onkeydown(player, media, e) {
 
-			if (player.hasFocus && player.options.enableKeyboard) {
-				for (var i = 0, total = player.options.keyActions.length; i < total; i++) {
-					var keyAction = player.options.keyActions[i];
+			if (player.hasfocus && player.options.enablekeyboard) {
+				for (var i = 0, total = player.options.keyactions.length; i < total; i++) {
+					var keyaction = player.options.keyactions[i];
 
-					for (var j = 0, jl = keyAction.keys.length; j < jl; j++) {
-						if (e.keyCode === keyAction.keys[j]) {
-							keyAction.action(player, media, e.keyCode, e);
-							e.preventDefault();
-							e.stopPropagation();
+					for (var j = 0, jl = keyaction.keys.length; j < jl; j++) {
+						if (e.keycode === keyaction.keys[j]) {
+							keyaction.action(player, media, e.keycode, e);
+							e.preventdefault();
+							e.stoppropagation();
 							return;
 						}
 					}
@@ -5078,156 +5078,156 @@ var MediaElementPlayer = function () {
 			this.proxy.load();
 		}
 	}, {
-		key: 'setCurrentTime',
-		value: function setCurrentTime(time) {
-			this.proxy.setCurrentTime(time);
+		key: 'setcurrenttime',
+		value: function setcurrenttime(time) {
+			this.proxy.setcurrenttime(time);
 		}
 	}, {
-		key: 'getCurrentTime',
-		value: function getCurrentTime() {
-			return this.proxy.currentTime;
+		key: 'getcurrenttime',
+		value: function getcurrenttime() {
+			return this.proxy.currenttime;
 		}
 	}, {
-		key: 'getDuration',
-		value: function getDuration() {
+		key: 'getduration',
+		value: function getduration() {
 			return this.proxy.duration;
 		}
 	}, {
-		key: 'setVolume',
-		value: function setVolume(volume) {
+		key: 'setvolume',
+		value: function setvolume(volume) {
 			this.proxy.volume = volume;
 		}
 	}, {
-		key: 'getVolume',
-		value: function getVolume() {
-			return this.proxy.getVolume();
+		key: 'getvolume',
+		value: function getvolume() {
+			return this.proxy.getvolume();
 		}
 	}, {
-		key: 'setMuted',
-		value: function setMuted(value) {
-			this.proxy.setMuted(value);
+		key: 'setmuted',
+		value: function setmuted(value) {
+			this.proxy.setmuted(value);
 		}
 	}, {
-		key: 'setSrc',
-		value: function setSrc(src) {
-			if (!this.controlsEnabled) {
-				this.enableControls();
+		key: 'setsrc',
+		value: function setsrc(src) {
+			if (!this.controlsenabled) {
+				this.enablecontrols();
 			}
-			this.proxy.setSrc(src);
+			this.proxy.setsrc(src);
 		}
 	}, {
-		key: 'getSrc',
-		value: function getSrc() {
-			return this.proxy.getSrc();
+		key: 'getsrc',
+		value: function getsrc() {
+			return this.proxy.getsrc();
 		}
 	}, {
-		key: 'canPlayType',
-		value: function canPlayType(type) {
-			return this.proxy.canPlayType(type);
+		key: 'canplaytype',
+		value: function canplaytype(type) {
+			return this.proxy.canplaytype(type);
 		}
 	}, {
 		key: 'remove',
 		value: function remove() {
 			var t = this,
-			    rendererName = t.media.rendererName,
-			    src = t.media.originalNode.src;
+			    renderername = t.media.renderername,
+			    src = t.media.originalnode.src;
 
-			for (var featureIndex in t.options.features) {
-				var feature = t.options.features[featureIndex];
+			for (var featureindex in t.options.features) {
+				var feature = t.options.features[featureindex];
 				if (t['clean' + feature]) {
 					try {
-						t['clean' + feature](t, t.getElement(t.layers), t.getElement(t.controls), t.media);
+						t['clean' + feature](t, t.getelement(t.layers), t.getelement(t.controls), t.media);
 					} catch (e) {
 						console.error('error cleaning ' + feature, e);
 					}
 				}
 			}
 
-			var nativeWidth = t.node.getAttribute('width'),
-			    nativeHeight = t.node.getAttribute('height');
+			var nativewidth = t.node.getattribute('width'),
+			    nativeheight = t.node.getattribute('height');
 
-			if (nativeWidth) {
-				if (nativeWidth.indexOf('%') === -1) {
-					nativeWidth = nativeWidth + 'px';
+			if (nativewidth) {
+				if (nativewidth.indexof('%') === -1) {
+					nativewidth = nativewidth + 'px';
 				}
 			} else {
-				nativeWidth = 'auto';
+				nativewidth = 'auto';
 			}
 
-			if (nativeHeight) {
-				if (nativeHeight.indexOf('%') === -1) {
-					nativeHeight = nativeHeight + 'px';
+			if (nativeheight) {
+				if (nativeheight.indexof('%') === -1) {
+					nativeheight = nativeheight + 'px';
 				}
 			} else {
-				nativeHeight = 'auto';
+				nativeheight = 'auto';
 			}
 
-			t.node.style.width = nativeWidth;
-			t.node.style.height = nativeHeight;
+			t.node.style.width = nativewidth;
+			t.node.style.height = nativeheight;
 
-			t.setPlayerSize(0, 0);
+			t.setplayersize(0, 0);
 
-			if (!t.isDynamic) {
+			if (!t.isdynamic) {
 				(function () {
-					t.node.setAttribute('controls', true);
-					t.node.setAttribute('id', t.node.getAttribute('id').replace('_' + rendererName, '').replace('_from_mejs', ''));
-					var poster = t.getElement(t.container).querySelector('.' + t.options.classPrefix + 'poster>img');
+					t.node.setattribute('controls', true);
+					t.node.setattribute('id', t.node.getattribute('id').replace('_' + renderername, '').replace('_from_mejs', ''));
+					var poster = t.getelement(t.container).queryselector('.' + t.options.classprefix + 'poster>img');
 					if (poster) {
-						t.node.setAttribute('poster', poster.src);
+						t.node.setattribute('poster', poster.src);
 					}
 
 					delete t.node.autoplay;
 
-					t.node.setAttribute('src', '');
-					if (t.media.canPlayType((0, _media.getTypeFromFile)(src)) !== '') {
-						t.node.setAttribute('src', src);
+					t.node.setattribute('src', '');
+					if (t.media.canplaytype((0, _media.gettypefromfile)(src)) !== '') {
+						t.node.setattribute('src', src);
 					}
 
-					if (rendererName && rendererName.indexOf('iframe') > -1) {
-						var layer = _document2.default.getElementById(t.media.id + '-iframe-overlay');
+					if (renderername && renderername.indexof('iframe') > -1) {
+						var layer = _document2.default.getelementbyid(t.media.id + '-iframe-overlay');
 						layer.remove();
 					}
 
-					var node = t.node.cloneNode();
+					var node = t.node.clonenode();
 					node.style.display = '';
-					t.getElement(t.container).parentNode.insertBefore(node, t.getElement(t.container));
+					t.getelement(t.container).parentnode.insertbefore(node, t.getelement(t.container));
 					t.node.remove();
 
-					if (t.mediaFiles) {
-						for (var i = 0, total = t.mediaFiles.length; i < total; i++) {
-							var source = _document2.default.createElement('source');
-							source.setAttribute('src', t.mediaFiles[i].src);
-							source.setAttribute('type', t.mediaFiles[i].type);
-							node.appendChild(source);
+					if (t.mediafiles) {
+						for (var i = 0, total = t.mediafiles.length; i < total; i++) {
+							var source = _document2.default.createelement('source');
+							source.setattribute('src', t.mediafiles[i].src);
+							source.setattribute('type', t.mediafiles[i].type);
+							node.appendchild(source);
 						}
 					}
-					if (t.trackFiles) {
+					if (t.trackfiles) {
 						var _loop3 = function _loop3(_i4, _total4) {
-							var track = t.trackFiles[_i4];
-							var newTrack = _document2.default.createElement('track');
-							newTrack.kind = track.kind;
-							newTrack.label = track.label;
-							newTrack.srclang = track.srclang;
-							newTrack.src = track.src;
+							var track = t.trackfiles[_i4];
+							var newtrack = _document2.default.createelement('track');
+							newtrack.kind = track.kind;
+							newtrack.label = track.label;
+							newtrack.srclang = track.srclang;
+							newtrack.src = track.src;
 
-							node.appendChild(newTrack);
-							newTrack.addEventListener('load', function () {
+							node.appendchild(newtrack);
+							newtrack.addeventlistener('load', function () {
 								this.mode = 'showing';
-								node.textTracks[_i4].mode = 'showing';
+								node.texttracks[_i4].mode = 'showing';
 							});
 						};
 
-						for (var _i4 = 0, _total4 = t.trackFiles.length; _i4 < _total4; _i4++) {
+						for (var _i4 = 0, _total4 = t.trackfiles.length; _i4 < _total4; _i4++) {
 							_loop3(_i4, _total4);
 						}
 					}
 
 					delete t.node;
-					delete t.mediaFiles;
-					delete t.trackFiles;
+					delete t.mediafiles;
+					delete t.trackfiles;
 				})();
 			} else {
-				t.getElement(t.container).parentNode.insertBefore(t.node, t.getElement(t.container));
+				t.getelement(t.container).parentnode.insertbefore(t.node, t.getelement(t.container));
 			}
 
 			if (t.media.renderer && typeof t.media.renderer.destroy === 'function') {
@@ -5236,16 +5236,16 @@ var MediaElementPlayer = function () {
 
 			delete _mejs2.default.players[t.id];
 
-			if (_typeof(t.getElement(t.container)) === 'object') {
-				var offscreen = t.getElement(t.container).parentNode.querySelector('.' + t.options.classPrefix + 'offscreen');
+			if (_typeof(t.getelement(t.container)) === 'object') {
+				var offscreen = t.getelement(t.container).parentnode.queryselector('.' + t.options.classprefix + 'offscreen');
 				if (offscreen) {
 					offscreen.remove();
 				}
-				t.getElement(t.container).remove();
+				t.getelement(t.container).remove();
 			}
-			t.globalUnbind('resize', t.globalResizeCallback);
-			t.globalUnbind('keydown', t.globalKeydownCallback);
-			t.globalUnbind('click', t.globalClickCallback);
+			t.globalunbind('resize', t.globalresizecallback);
+			t.globalunbind('keydown', t.globalkeydowncallback);
+			t.globalunbind('click', t.globalclickcallback);
 
 			delete t.media.player;
 		}
@@ -5260,7 +5260,7 @@ var MediaElementPlayer = function () {
 			return this.proxy.muted;
 		},
 		set: function set(muted) {
-			this.setMuted(muted);
+			this.setmuted(muted);
 		}
 	}, {
 		key: 'ended',
@@ -5268,83 +5268,83 @@ var MediaElementPlayer = function () {
 			return this.proxy.ended;
 		}
 	}, {
-		key: 'readyState',
+		key: 'readystate',
 		get: function get() {
-			return this.proxy.readyState;
+			return this.proxy.readystate;
 		}
 	}, {
-		key: 'currentTime',
+		key: 'currenttime',
 		set: function set(time) {
-			this.setCurrentTime(time);
+			this.setcurrenttime(time);
 		},
 		get: function get() {
-			return this.getCurrentTime();
+			return this.getcurrenttime();
 		}
 	}, {
 		key: 'duration',
 		get: function get() {
-			return this.getDuration();
+			return this.getduration();
 		}
 	}, {
 		key: 'volume',
 		set: function set(volume) {
-			this.setVolume(volume);
+			this.setvolume(volume);
 		},
 		get: function get() {
-			return this.getVolume();
+			return this.getvolume();
 		}
 	}, {
 		key: 'src',
 		set: function set(src) {
-			this.setSrc(src);
+			this.setsrc(src);
 		},
 		get: function get() {
-			return this.getSrc();
+			return this.getsrc();
 		}
 	}]);
 
-	return MediaElementPlayer;
+	return mediaelementplayer;
 }();
 
-_window2.default.MediaElementPlayer = MediaElementPlayer;
-_mejs2.default.MediaElementPlayer = MediaElementPlayer;
+_window2.default.mediaelementplayer = mediaelementplayer;
+_mejs2.default.mediaelementplayer = mediaelementplayer;
 
-exports.default = MediaElementPlayer;
+exports.default = mediaelementplayer;
 
 },{"17":17,"2":2,"25":25,"26":26,"27":27,"28":28,"3":3,"30":30,"5":5,"6":6,"7":7}],17:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createclass = function () { function defineproperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; object.defineproperty(target, descriptor.key, descriptor); } } return function (constructor, protoprops, staticprops) { if (protoprops) defineproperties(constructor.prototype, protoprops); if (staticprops) defineproperties(constructor, staticprops); return constructor; }; }();
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classcallcheck(instance, constructor) { if (!(instance instanceof constructor)) { throw new typeerror("cannot call a class as a function"); } }
 
-var DefaultPlayer = function () {
-	function DefaultPlayer(player) {
-		_classCallCheck(this, DefaultPlayer);
+var defaultplayer = function () {
+	function defaultplayer(player) {
+		_classcallcheck(this, defaultplayer);
 
 		this.media = player.media;
-		this.isVideo = player.isVideo;
-		this.classPrefix = player.options.classPrefix;
-		this.createIframeLayer = function () {
-			return player.createIframeLayer();
+		this.isvideo = player.isvideo;
+		this.classprefix = player.options.classprefix;
+		this.createiframelayer = function () {
+			return player.createiframelayer();
 		};
-		this.setPoster = function (url) {
-			return player.setPoster(url);
+		this.setposter = function (url) {
+			return player.setposter(url);
 		};
 		return this;
 	}
 
-	_createClass(DefaultPlayer, [{
+	_createclass(defaultplayer, [{
 		key: 'play',
 		value: function play() {
 			this.media.play();
@@ -5359,71 +5359,71 @@ var DefaultPlayer = function () {
 		value: function load() {
 			var t = this;
 
-			if (!t.isLoaded) {
+			if (!t.isloaded) {
 				t.media.load();
 			}
 
-			t.isLoaded = true;
+			t.isloaded = true;
 		}
 	}, {
-		key: 'setCurrentTime',
-		value: function setCurrentTime(time) {
-			this.media.setCurrentTime(time);
+		key: 'setcurrenttime',
+		value: function setcurrenttime(time) {
+			this.media.setcurrenttime(time);
 		}
 	}, {
-		key: 'getCurrentTime',
-		value: function getCurrentTime() {
-			return this.media.currentTime;
+		key: 'getcurrenttime',
+		value: function getcurrenttime() {
+			return this.media.currenttime;
 		}
 	}, {
-		key: 'getDuration',
-		value: function getDuration() {
-			var duration = this.media.getDuration();
-			if (duration === Infinity && this.media.seekable && this.media.seekable.length) {
+		key: 'getduration',
+		value: function getduration() {
+			var duration = this.media.getduration();
+			if (duration === infinity && this.media.seekable && this.media.seekable.length) {
 				duration = this.media.seekable.end(0);
 			}
 			return duration;
 		}
 	}, {
-		key: 'setVolume',
-		value: function setVolume(volume) {
-			this.media.setVolume(volume);
+		key: 'setvolume',
+		value: function setvolume(volume) {
+			this.media.setvolume(volume);
 		}
 	}, {
-		key: 'getVolume',
-		value: function getVolume() {
-			return this.media.getVolume();
+		key: 'getvolume',
+		value: function getvolume() {
+			return this.media.getvolume();
 		}
 	}, {
-		key: 'setMuted',
-		value: function setMuted(value) {
-			this.media.setMuted(value);
+		key: 'setmuted',
+		value: function setmuted(value) {
+			this.media.setmuted(value);
 		}
 	}, {
-		key: 'setSrc',
-		value: function setSrc(src) {
+		key: 'setsrc',
+		value: function setsrc(src) {
 			var t = this,
-			    layer = document.getElementById(t.media.id + '-iframe-overlay');
+			    layer = document.getelementbyid(t.media.id + '-iframe-overlay');
 
 			if (layer) {
 				layer.remove();
 			}
 
-			t.media.setSrc(src);
-			t.createIframeLayer();
-			if (t.media.renderer !== null && typeof t.media.renderer.getPosterUrl === 'function') {
-				t.setPoster(t.media.renderer.getPosterUrl());
+			t.media.setsrc(src);
+			t.createiframelayer();
+			if (t.media.renderer !== null && typeof t.media.renderer.getposterurl === 'function') {
+				t.setposter(t.media.renderer.getposterurl());
 			}
 		}
 	}, {
-		key: 'getSrc',
-		value: function getSrc() {
-			return this.media.getSrc();
+		key: 'getsrc',
+		value: function getsrc() {
+			return this.media.getsrc();
 		}
 	}, {
-		key: 'canPlayType',
-		value: function canPlayType(type) {
-			return this.media.canPlayType(type);
+		key: 'canplaytype',
+		value: function canplaytype(type) {
+			return this.media.canplaytype(type);
 		}
 	}, {
 		key: 'paused',
@@ -5433,7 +5433,7 @@ var DefaultPlayer = function () {
 	}, {
 		key: 'muted',
 		set: function set(muted) {
-			this.setMuted(muted);
+			this.setmuted(muted);
 		},
 		get: function get() {
 			return this.media.muted;
@@ -5444,75 +5444,75 @@ var DefaultPlayer = function () {
 			return this.media.ended;
 		}
 	}, {
-		key: 'readyState',
+		key: 'readystate',
 		get: function get() {
-			return this.media.readyState;
+			return this.media.readystate;
 		}
 	}, {
-		key: 'currentTime',
+		key: 'currenttime',
 		set: function set(time) {
-			this.setCurrentTime(time);
+			this.setcurrenttime(time);
 		},
 		get: function get() {
-			return this.getCurrentTime();
+			return this.getcurrenttime();
 		}
 	}, {
 		key: 'duration',
 		get: function get() {
-			return this.getDuration();
+			return this.getduration();
 		}
 	}, {
-		key: 'remainingTime',
+		key: 'remainingtime',
 		get: function get() {
-			return this.getDuration() - this.currentTime();
+			return this.getduration() - this.currenttime();
 		}
 	}, {
 		key: 'volume',
 		set: function set(volume) {
-			this.setVolume(volume);
+			this.setvolume(volume);
 		},
 		get: function get() {
-			return this.getVolume();
+			return this.getvolume();
 		}
 	}, {
 		key: 'src',
 		set: function set(src) {
-			this.setSrc(src);
+			this.setsrc(src);
 		},
 		get: function get() {
-			return this.getSrc();
+			return this.getsrc();
 		}
 	}]);
 
-	return DefaultPlayer;
+	return defaultplayer;
 }();
 
-exports.default = DefaultPlayer;
+exports.default = defaultplayer;
 
 
-_window2.default.DefaultPlayer = DefaultPlayer;
+_window2.default.defaultplayer = defaultplayer;
 
 },{"3":3}],18:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _player = _dereq_(16);
 
-var _player2 = _interopRequireDefault(_player);
+var _player2 = _interoprequiredefault(_player);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-if (typeof jQuery !== 'undefined') {
-	_mejs2.default.$ = jQuery;
-} else if (typeof Zepto !== 'undefined') {
-	_mejs2.default.$ = Zepto;
+if (typeof jquery !== 'undefined') {
+	_mejs2.default.$ = jquery;
+} else if (typeof zepto !== 'undefined') {
+	_mejs2.default.$ = zepto;
 } else if (typeof ender !== 'undefined') {
 	_mejs2.default.$ = ender;
 }
@@ -5526,7 +5526,7 @@ if (typeof jQuery !== 'undefined') {
 					if (player) {
 						player.remove();
 					}
-					$(this).removeData('mediaelementplayer');
+					$(this).removedata('mediaelementplayer');
 				});
 			} else {
 				this.each(function () {
@@ -5537,7 +5537,7 @@ if (typeof jQuery !== 'undefined') {
 		};
 
 		$(document).ready(function () {
-			$('.' + _mejs2.default.MepDefaults.classPrefix + 'player').mediaelementplayer();
+			$('.' + _mejs2.default.mepdefaults.classprefix + 'player').mediaelementplayer();
 		});
 	}
 })(_mejs2.default.$);
@@ -5545,15 +5545,15 @@ if (typeof jQuery !== 'undefined') {
 },{"16":16,"3":3,"7":7}],19:[function(_dereq_,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _renderer = _dereq_(8);
 
@@ -5565,39 +5565,39 @@ var _constants = _dereq_(25);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var NativeDash = {
+var nativedash = {
 
 	promise: null,
 
 	load: function load(settings) {
 		if (typeof dashjs !== 'undefined') {
-			NativeDash.promise = new Promise(function (resolve) {
+			nativedash.promise = new promise(function (resolve) {
 				resolve();
 			}).then(function () {
-				NativeDash._createPlayer(settings);
+				nativedash._createplayer(settings);
 			});
 		} else {
 			settings.options.path = typeof settings.options.path === 'string' ? settings.options.path : 'https://cdn.dashjs.org/latest/dash.all.min.js';
 
-			NativeDash.promise = NativeDash.promise || (0, _dom.loadScript)(settings.options.path);
-			NativeDash.promise.then(function () {
-				NativeDash._createPlayer(settings);
+			nativedash.promise = nativedash.promise || (0, _dom.loadscript)(settings.options.path);
+			nativedash.promise.then(function () {
+				nativedash._createplayer(settings);
 			});
 		}
 
-		return NativeDash.promise;
+		return nativedash.promise;
 	},
 
-	_createPlayer: function _createPlayer(settings) {
-		var player = dashjs.MediaPlayer().create();
+	_createplayer: function _createplayer(settings) {
+		var player = dashjs.mediaplayer().create();
 		_window2.default['__ready__' + settings.id](player);
 		return player;
 	}
 };
 
-var DashNativeRenderer = {
+var dashnativerenderer = {
 	name: 'native_dash',
 	options: {
 		prefix: 'native_dash',
@@ -5606,149 +5606,149 @@ var DashNativeRenderer = {
 			debug: false,
 			drm: {},
 
-			robustnessLevel: ''
+			robustnesslevel: ''
 		}
 	},
 
-	canPlayType: function canPlayType(type) {
-		return _constants.HAS_MSE && ['application/dash+xml'].indexOf(type.toLowerCase()) > -1;
+	canplaytype: function canplaytype(type) {
+		return _constants.has_mse && ['application/dash+xml'].indexof(type.tolowercase()) > -1;
 	},
 
-	create: function create(mediaElement, options, mediaFiles) {
+	create: function create(mediaelement, options, mediafiles) {
 
-		var originalNode = mediaElement.originalNode,
-		    id = mediaElement.id + '_' + options.prefix,
-		    autoplay = originalNode.autoplay,
-		    children = originalNode.children;
+		var originalnode = mediaelement.originalnode,
+		    id = mediaelement.id + '_' + options.prefix,
+		    autoplay = originalnode.autoplay,
+		    children = originalnode.children;
 
 		var node = null,
-		    dashPlayer = null;
+		    dashplayer = null;
 
-		originalNode.removeAttribute('type');
+		originalnode.removeattribute('type');
 		for (var i = 0, total = children.length; i < total; i++) {
-			children[i].removeAttribute('type');
+			children[i].removeattribute('type');
 		}
 
-		node = originalNode.cloneNode(true);
-		options = Object.assign(options, mediaElement.options);
+		node = originalnode.clonenode(true);
+		options = object.assign(options, mediaelement.options);
 
 		var props = _mejs2.default.html5media.properties,
 		    events = _mejs2.default.html5media.events.concat(['click', 'mouseover', 'mouseout']).filter(function (e) {
 			return e !== 'error';
 		}),
-		    attachNativeEvents = function attachNativeEvents(e) {
-			var event = (0, _general.createEvent)(e.type, mediaElement);
-			mediaElement.dispatchEvent(event);
+		    attachnativeevents = function attachnativeevents(e) {
+			var event = (0, _general.createevent)(e.type, mediaelement);
+			mediaelement.dispatchevent(event);
 		},
-		    assignGettersSetters = function assignGettersSetters(propName) {
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+		    assigngetterssetters = function assigngetterssetters(propname) {
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-			node['get' + capName] = function () {
-				return dashPlayer !== null ? node[propName] : null;
+			node['get' + capname] = function () {
+				return dashplayer !== null ? node[propname] : null;
 			};
 
-			node['set' + capName] = function (value) {
-				if (_mejs2.default.html5media.readOnlyProperties.indexOf(propName) === -1) {
-					if (propName === 'src') {
+			node['set' + capname] = function (value) {
+				if (_mejs2.default.html5media.readonlyproperties.indexof(propname) === -1) {
+					if (propname === 'src') {
 						var source = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.src ? value.src : value;
-						node[propName] = source;
-						if (dashPlayer !== null) {
-							dashPlayer.reset();
+						node[propname] = source;
+						if (dashplayer !== null) {
+							dashplayer.reset();
 							for (var _i = 0, _total = events.length; _i < _total; _i++) {
-								node.removeEventListener(events[_i], attachNativeEvents);
+								node.removeeventlistener(events[_i], attachnativeevents);
 							}
-							dashPlayer = NativeDash._createPlayer({
+							dashplayer = nativedash._createplayer({
 								options: options.dash,
 								id: id
 							});
 
 							if (value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && _typeof(value.drm) === 'object') {
-								dashPlayer.setProtectionData(value.drm);
-								if ((0, _general.isString)(options.dash.robustnessLevel) && options.dash.robustnessLevel) {
-									dashPlayer.getProtectionController().setRobustnessLevel(options.dash.robustnessLevel);
+								dashplayer.setprotectiondata(value.drm);
+								if ((0, _general.isstring)(options.dash.robustnesslevel) && options.dash.robustnesslevel) {
+									dashplayer.getprotectioncontroller().setrobustnesslevel(options.dash.robustnesslevel);
 								}
 							}
-							dashPlayer.attachSource(source);
+							dashplayer.attachsource(source);
 							if (autoplay) {
-								dashPlayer.play();
+								dashplayer.play();
 							}
 						}
 					} else {
-						node[propName] = value;
+						node[propname] = value;
 					}
 				}
 			};
 		};
 
 		for (var _i2 = 0, _total2 = props.length; _i2 < _total2; _i2++) {
-			assignGettersSetters(props[_i2]);
+			assigngetterssetters(props[_i2]);
 		}
 
-		_window2.default['__ready__' + id] = function (_dashPlayer) {
-			mediaElement.dashPlayer = dashPlayer = _dashPlayer;
+		_window2.default['__ready__' + id] = function (_dashplayer) {
+			mediaelement.dashplayer = dashplayer = _dashplayer;
 
-			var dashEvents = dashjs.MediaPlayer.events,
-			    assignEvents = function assignEvents(eventName) {
-				if (eventName === 'loadedmetadata') {
-					dashPlayer.initialize();
-					dashPlayer.attachView(node);
-					dashPlayer.setAutoPlay(false);
+			var dashevents = dashjs.mediaplayer.events,
+			    assignevents = function assignevents(eventname) {
+				if (eventname === 'loadedmetadata') {
+					dashplayer.initialize();
+					dashplayer.attachview(node);
+					dashplayer.setautoplay(false);
 
-					if (_typeof(options.dash.drm) === 'object' && !_mejs2.default.Utils.isObjectEmpty(options.dash.drm)) {
-						dashPlayer.setProtectionData(options.dash.drm);
-						if ((0, _general.isString)(options.dash.robustnessLevel) && options.dash.robustnessLevel) {
-							dashPlayer.getProtectionController().setRobustnessLevel(options.dash.robustnessLevel);
+					if (_typeof(options.dash.drm) === 'object' && !_mejs2.default.utils.isobjectempty(options.dash.drm)) {
+						dashplayer.setprotectiondata(options.dash.drm);
+						if ((0, _general.isstring)(options.dash.robustnesslevel) && options.dash.robustnesslevel) {
+							dashplayer.getprotectioncontroller().setrobustnesslevel(options.dash.robustnesslevel);
 						}
 					}
-					dashPlayer.attachSource(node.getSrc());
+					dashplayer.attachsource(node.getsrc());
 				}
 
-				node.addEventListener(eventName, attachNativeEvents);
+				node.addeventlistener(eventname, attachnativeevents);
 			};
 
 			for (var _i3 = 0, _total3 = events.length; _i3 < _total3; _i3++) {
-				assignEvents(events[_i3]);
+				assignevents(events[_i3]);
 			}
 
-			var assignMdashEvents = function assignMdashEvents(e) {
-				if (e.type.toLowerCase() === 'error') {
-					mediaElement.generateError(e.message, node.src);
+			var assignmdashevents = function assignmdashevents(e) {
+				if (e.type.tolowercase() === 'error') {
+					mediaelement.generateerror(e.message, node.src);
 					console.error(e);
 				} else {
-					var _event = (0, _general.createEvent)(e.type, mediaElement);
+					var _event = (0, _general.createevent)(e.type, mediaelement);
 					_event.data = e;
-					mediaElement.dispatchEvent(_event);
+					mediaelement.dispatchevent(_event);
 				}
 			};
 
-			for (var eventType in dashEvents) {
-				if (dashEvents.hasOwnProperty(eventType)) {
-					dashPlayer.on(dashEvents[eventType], function (e) {
-						return assignMdashEvents(e);
+			for (var eventtype in dashevents) {
+				if (dashevents.hasownproperty(eventtype)) {
+					dashplayer.on(dashevents[eventtype], function (e) {
+						return assignmdashevents(e);
 					});
 				}
 			}
 		};
 
-		if (mediaFiles && mediaFiles.length > 0) {
-			for (var _i4 = 0, _total4 = mediaFiles.length; _i4 < _total4; _i4++) {
-				if (_renderer.renderer.renderers[options.prefix].canPlayType(mediaFiles[_i4].type)) {
-					node.setAttribute('src', mediaFiles[_i4].src);
-					if (typeof mediaFiles[_i4].drm !== 'undefined') {
-						options.dash.drm = mediaFiles[_i4].drm;
+		if (mediafiles && mediafiles.length > 0) {
+			for (var _i4 = 0, _total4 = mediafiles.length; _i4 < _total4; _i4++) {
+				if (_renderer.renderer.renderers[options.prefix].canplaytype(mediafiles[_i4].type)) {
+					node.setattribute('src', mediafiles[_i4].src);
+					if (typeof mediafiles[_i4].drm !== 'undefined') {
+						options.dash.drm = mediafiles[_i4].drm;
 					}
 					break;
 				}
 			}
 		}
 
-		node.setAttribute('id', id);
+		node.setattribute('id', id);
 
-		originalNode.parentNode.insertBefore(node, originalNode);
-		originalNode.autoplay = false;
-		originalNode.style.display = 'none';
+		originalnode.parentnode.insertbefore(node, originalnode);
+		originalnode.autoplay = false;
+		originalnode.style.display = 'none';
 
-		node.setSize = function (width, height) {
+		node.setsize = function (width, height) {
 			node.style.width = width + 'px';
 			node.style.height = height + 'px';
 			return node;
@@ -5766,15 +5766,15 @@ var DashNativeRenderer = {
 		};
 
 		node.destroy = function () {
-			if (dashPlayer !== null) {
-				dashPlayer.reset();
+			if (dashplayer !== null) {
+				dashplayer.reset();
 			}
 		};
 
-		var event = (0, _general.createEvent)('rendererready', node);
-		mediaElement.dispatchEvent(event);
+		var event = (0, _general.createevent)('rendererready', node);
+		mediaelement.dispatchevent(event);
 
-		mediaElement.promises.push(NativeDash.load({
+		mediaelement.promises.push(nativedash.load({
 			options: options.dash,
 			id: id
 		}));
@@ -5783,37 +5783,37 @@ var DashNativeRenderer = {
 	}
 };
 
-_media.typeChecks.push(function (url) {
-	return ~url.toLowerCase().indexOf('.mpd') ? 'application/dash+xml' : null;
+_media.typechecks.push(function (url) {
+	return ~url.tolowercase().indexof('.mpd') ? 'application/dash+xml' : null;
 });
 
-_renderer.renderer.add(DashNativeRenderer);
+_renderer.renderer.add(dashnativerenderer);
 
 },{"25":25,"26":26,"27":27,"28":28,"3":3,"7":7,"8":8}],20:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-exports.PluginDetector = undefined;
+exports.plugindetector = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _i18n = _dereq_(5);
 
-var _i18n2 = _interopRequireDefault(_i18n);
+var _i18n2 = _interoprequiredefault(_i18n);
 
 var _renderer = _dereq_(8);
 
@@ -5823,41 +5823,41 @@ var _constants = _dereq_(25);
 
 var _media = _dereq_(28);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var PluginDetector = exports.PluginDetector = {
+var plugindetector = exports.plugindetector = {
 	plugins: [],
 
-	hasPluginVersion: function hasPluginVersion(plugin, v) {
-		var pv = PluginDetector.plugins[plugin];
+	haspluginversion: function haspluginversion(plugin, v) {
+		var pv = plugindetector.plugins[plugin];
 		v[1] = v[1] || 0;
 		v[2] = v[2] || 0;
 		return pv[0] > v[0] || pv[0] === v[0] && pv[1] > v[1] || pv[0] === v[0] && pv[1] === v[1] && pv[2] >= v[2];
 	},
 
-	addPlugin: function addPlugin(p, pluginName, mimeType, activeX, axDetect) {
-		PluginDetector.plugins[p] = PluginDetector.detectPlugin(pluginName, mimeType, activeX, axDetect);
+	addplugin: function addplugin(p, pluginname, mimetype, activex, axdetect) {
+		plugindetector.plugins[p] = plugindetector.detectplugin(pluginname, mimetype, activex, axdetect);
 	},
 
-	detectPlugin: function detectPlugin(pluginName, mimeType, activeX, axDetect) {
+	detectplugin: function detectplugin(pluginname, mimetype, activex, axdetect) {
 
 		var version = [0, 0, 0],
 		    description = void 0,
 		    ax = void 0;
 
-		if (_constants.NAV.plugins !== null && _constants.NAV.plugins !== undefined && _typeof(_constants.NAV.plugins[pluginName]) === 'object') {
-			description = _constants.NAV.plugins[pluginName].description;
-			if (description && !(typeof _constants.NAV.mimeTypes !== 'undefined' && _constants.NAV.mimeTypes[mimeType] && !_constants.NAV.mimeTypes[mimeType].enabledPlugin)) {
-				version = description.replace(pluginName, '').replace(/^\s+/, '').replace(/\sr/gi, '.').split('.');
+		if (_constants.nav.plugins !== null && _constants.nav.plugins !== undefined && _typeof(_constants.nav.plugins[pluginname]) === 'object') {
+			description = _constants.nav.plugins[pluginname].description;
+			if (description && !(typeof _constants.nav.mimetypes !== 'undefined' && _constants.nav.mimetypes[mimetype] && !_constants.nav.mimetypes[mimetype].enabledplugin)) {
+				version = description.replace(pluginname, '').replace(/^\s+/, '').replace(/\sr/gi, '.').split('.');
 				for (var i = 0, total = version.length; i < total; i++) {
-					version[i] = parseInt(version[i].match(/\d+/), 10);
+					version[i] = parseint(version[i].match(/\d+/), 10);
 				}
 			}
-		} else if (_window2.default.ActiveXObject !== undefined) {
+		} else if (_window2.default.activexobject !== undefined) {
 			try {
-				ax = new ActiveXObject(activeX);
+				ax = new activexobject(activex);
 				if (ax) {
-					version = axDetect(ax);
+					version = axdetect(ax);
 				}
 			} catch (e) {
 				
@@ -5867,42 +5867,42 @@ var PluginDetector = exports.PluginDetector = {
 	}
 };
 
-PluginDetector.addPlugin('flash', 'Shockwave Flash', 'application/x-shockwave-flash', 'ShockwaveFlash.ShockwaveFlash', function (ax) {
+plugindetector.addplugin('flash', 'shockwave flash', 'application/x-shockwave-flash', 'shockwaveflash.shockwaveflash', function (ax) {
 	var version = [],
-	    d = ax.GetVariable("$version");
+	    d = ax.getvariable("$version");
 
 	if (d) {
 		d = d.split(" ")[1].split(",");
-		version = [parseInt(d[0], 10), parseInt(d[1], 10), parseInt(d[2], 10)];
+		version = [parseint(d[0], 10), parseint(d[1], 10), parseint(d[2], 10)];
 	}
 	return version;
 });
 
-var FlashMediaElementRenderer = {
-	create: function create(mediaElement, options, mediaFiles) {
+var flashmediaelementrenderer = {
+	create: function create(mediaelement, options, mediafiles) {
 
 		var flash = {};
-		var isActive = false;
+		var isactive = false;
 
 		flash.options = options;
-		flash.id = mediaElement.id + '_' + flash.options.prefix;
-		flash.mediaElement = mediaElement;
-		flash.flashState = {};
-		flash.flashApi = null;
-		flash.flashApiStack = [];
+		flash.id = mediaelement.id + '_' + flash.options.prefix;
+		flash.mediaelement = mediaelement;
+		flash.flashstate = {};
+		flash.flashapi = null;
+		flash.flashapistack = [];
 
 		var props = _mejs2.default.html5media.properties,
-		    assignGettersSetters = function assignGettersSetters(propName) {
-			flash.flashState[propName] = null;
+		    assigngetterssetters = function assigngetterssetters(propname) {
+			flash.flashstate[propname] = null;
 
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-			flash['get' + capName] = function () {
-				if (flash.flashApi !== null) {
-					if (typeof flash.flashApi['get_' + propName] === 'function') {
-						var value = flash.flashApi['get_' + propName]();
+			flash['get' + capname] = function () {
+				if (flash.flashapi !== null) {
+					if (typeof flash.flashapi['get_' + propname] === 'function') {
+						var value = flash.flashapi['get_' + propname]();
 
-						if (propName === 'buffered') {
+						if (propname === 'buffered') {
 							return {
 								start: function start() {
 									return 0;
@@ -5922,21 +5922,21 @@ var FlashMediaElementRenderer = {
 				}
 			};
 
-			flash['set' + capName] = function (value) {
-				if (propName === 'src') {
-					value = (0, _media.absolutizeUrl)(value);
+			flash['set' + capname] = function (value) {
+				if (propname === 'src') {
+					value = (0, _media.absolutizeurl)(value);
 				}
 
-				if (flash.flashApi !== null && flash.flashApi['set_' + propName] !== undefined) {
+				if (flash.flashapi !== null && flash.flashapi['set_' + propname] !== undefined) {
 					try {
-						flash.flashApi['set_' + propName](value);
+						flash.flashapi['set_' + propname](value);
 					} catch (e) {
 						
 					}
 				} else {
-					flash.flashApiStack.push({
+					flash.flashapistack.push({
 						type: 'set',
-						propName: propName,
+						propname: propname,
 						value: value
 					});
 				}
@@ -5944,17 +5944,17 @@ var FlashMediaElementRenderer = {
 		};
 
 		for (var i = 0, total = props.length; i < total; i++) {
-			assignGettersSetters(props[i]);
+			assigngetterssetters(props[i]);
 		}
 
 		var methods = _mejs2.default.html5media.methods,
-		    assignMethods = function assignMethods(methodName) {
-			flash[methodName] = function () {
-				if (isActive) {
-					if (flash.flashApi !== null) {
-						if (flash.flashApi['fire_' + methodName]) {
+		    assignmethods = function assignmethods(methodname) {
+			flash[methodname] = function () {
+				if (isactive) {
+					if (flash.flashapi !== null) {
+						if (flash.flashapi['fire_' + methodname]) {
 							try {
-								flash.flashApi['fire_' + methodName]();
+								flash.flashapi['fire_' + methodname]();
 							} catch (e) {
 								
 							}
@@ -5962,9 +5962,9 @@ var FlashMediaElementRenderer = {
 							
 						}
 					} else {
-						flash.flashApiStack.push({
+						flash.flashapistack.push({
 							type: 'call',
-							methodName: methodName
+							methodname: methodname
 						});
 					}
 				}
@@ -5972,145 +5972,145 @@ var FlashMediaElementRenderer = {
 		};
 		methods.push('stop');
 		for (var _i = 0, _total = methods.length; _i < _total; _i++) {
-			assignMethods(methods[_i]);
+			assignmethods(methods[_i]);
 		}
 
-		var initEvents = ['rendererready'];
+		var initevents = ['rendererready'];
 
-		for (var _i2 = 0, _total2 = initEvents.length; _i2 < _total2; _i2++) {
-			var event = (0, _general.createEvent)(initEvents[_i2], flash);
-			mediaElement.dispatchEvent(event);
+		for (var _i2 = 0, _total2 = initevents.length; _i2 < _total2; _i2++) {
+			var event = (0, _general.createevent)(initevents[_i2], flash);
+			mediaelement.dispatchevent(event);
 		}
 
 		_window2.default['__ready__' + flash.id] = function () {
 
-			flash.flashReady = true;
-			flash.flashApi = _document2.default.getElementById('__' + flash.id);
+			flash.flashready = true;
+			flash.flashapi = _document2.default.getelementbyid('__' + flash.id);
 
-			if (flash.flashApiStack.length) {
-				for (var _i3 = 0, _total3 = flash.flashApiStack.length; _i3 < _total3; _i3++) {
-					var stackItem = flash.flashApiStack[_i3];
+			if (flash.flashapistack.length) {
+				for (var _i3 = 0, _total3 = flash.flashapistack.length; _i3 < _total3; _i3++) {
+					var stackitem = flash.flashapistack[_i3];
 
-					if (stackItem.type === 'set') {
-						var propName = stackItem.propName,
-						    capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+					if (stackitem.type === 'set') {
+						var propname = stackitem.propname,
+						    capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-						flash['set' + capName](stackItem.value);
-					} else if (stackItem.type === 'call') {
-						flash[stackItem.methodName]();
+						flash['set' + capname](stackitem.value);
+					} else if (stackitem.type === 'call') {
+						flash[stackitem.methodname]();
 					}
 				}
 			}
 		};
 
-		_window2.default['__event__' + flash.id] = function (eventName, message) {
-			var event = (0, _general.createEvent)(eventName, flash);
+		_window2.default['__event__' + flash.id] = function (eventname, message) {
+			var event = (0, _general.createevent)(eventname, flash);
 			if (message) {
 				try {
-					event.data = JSON.parse(message);
-					event.details.data = JSON.parse(message);
+					event.data = json.parse(message);
+					event.details.data = json.parse(message);
 				} catch (e) {
 					event.message = message;
 				}
 			}
 
-			flash.mediaElement.dispatchEvent(event);
+			flash.mediaelement.dispatchevent(event);
 		};
 
-		flash.flashWrapper = _document2.default.createElement('div');
+		flash.flashwrapper = _document2.default.createelement('div');
 
-		if (['always', 'sameDomain'].indexOf(flash.options.shimScriptAccess) === -1) {
-			flash.options.shimScriptAccess = 'sameDomain';
+		if (['always', 'samedomain'].indexof(flash.options.shimscriptaccess) === -1) {
+			flash.options.shimscriptaccess = 'samedomain';
 		}
 
-		var autoplay = mediaElement.originalNode.autoplay,
-		    flashVars = ['uid=' + flash.id, 'autoplay=' + autoplay, 'allowScriptAccess=' + flash.options.shimScriptAccess, 'preload=' + (mediaElement.originalNode.getAttribute('preload') || '')],
-		    isVideo = mediaElement.originalNode !== null && mediaElement.originalNode.tagName.toLowerCase() === 'video',
-		    flashHeight = isVideo ? mediaElement.originalNode.height : 1,
-		    flashWidth = isVideo ? mediaElement.originalNode.width : 1;
+		var autoplay = mediaelement.originalnode.autoplay,
+		    flashvars = ['uid=' + flash.id, 'autoplay=' + autoplay, 'allowscriptaccess=' + flash.options.shimscriptaccess, 'preload=' + (mediaelement.originalnode.getattribute('preload') || '')],
+		    isvideo = mediaelement.originalnode !== null && mediaelement.originalnode.tagname.tolowercase() === 'video',
+		    flashheight = isvideo ? mediaelement.originalnode.height : 1,
+		    flashwidth = isvideo ? mediaelement.originalnode.width : 1;
 
-		if (mediaElement.originalNode.getAttribute('src')) {
-			flashVars.push('src=' + mediaElement.originalNode.getAttribute('src'));
+		if (mediaelement.originalnode.getattribute('src')) {
+			flashvars.push('src=' + mediaelement.originalnode.getattribute('src'));
 		}
 
-		if (flash.options.enablePseudoStreaming === true) {
-			flashVars.push('pseudostreamstart=' + flash.options.pseudoStreamingStartQueryParam);
-			flashVars.push('pseudostreamtype=' + flash.options.pseudoStreamingType);
+		if (flash.options.enablepseudostreaming === true) {
+			flashvars.push('pseudostreamstart=' + flash.options.pseudostreamingstartqueryparam);
+			flashvars.push('pseudostreamtype=' + flash.options.pseudostreamingtype);
 		}
 
-		if (flash.options.streamDelimiter) {
-			flashVars.push('streamdelimiter=' + encodeURIComponent(flash.options.streamDelimiter));
+		if (flash.options.streamdelimiter) {
+			flashvars.push('streamdelimiter=' + encodeuricomponent(flash.options.streamdelimiter));
 		}
 
-		if (flash.options.proxyType) {
-			flashVars.push('proxytype=' + flash.options.proxyType);
+		if (flash.options.proxytype) {
+			flashvars.push('proxytype=' + flash.options.proxytype);
 		}
 
-		mediaElement.appendChild(flash.flashWrapper);
-		mediaElement.originalNode.style.display = 'none';
+		mediaelement.appendchild(flash.flashwrapper);
+		mediaelement.originalnode.style.display = 'none';
 
 		var settings = [];
 
-		if (_constants.IS_IE || _constants.IS_EDGE) {
-			var specialIEContainer = _document2.default.createElement('div');
-			flash.flashWrapper.appendChild(specialIEContainer);
+		if (_constants.is_ie || _constants.is_edge) {
+			var specialiecontainer = _document2.default.createelement('div');
+			flash.flashwrapper.appendchild(specialiecontainer);
 
-			if (_constants.IS_EDGE) {
-				settings = ['type="application/x-shockwave-flash"', 'data="' + flash.options.pluginPath + flash.options.filename + '"', 'id="__' + flash.id + '"', 'width="' + flashWidth + '"', 'height="' + flashHeight + '\'"'];
+			if (_constants.is_edge) {
+				settings = ['type="application/x-shockwave-flash"', 'data="' + flash.options.pluginpath + flash.options.filename + '"', 'id="__' + flash.id + '"', 'width="' + flashwidth + '"', 'height="' + flashheight + '\'"'];
 			} else {
-				settings = ['classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"', 'codebase="//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"', 'id="__' + flash.id + '"', 'width="' + flashWidth + '"', 'height="' + flashHeight + '"'];
+				settings = ['classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"', 'codebase="//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"', 'id="__' + flash.id + '"', 'width="' + flashwidth + '"', 'height="' + flashheight + '"'];
 			}
 
-			if (!isVideo) {
+			if (!isvideo) {
 				settings.push('style="clip: rect(0 0 0 0); position: absolute;"');
 			}
 
-			specialIEContainer.outerHTML = '<object ' + settings.join(' ') + '>' + ('<param name="movie" value="' + flash.options.pluginPath + flash.options.filename + '?x=' + new Date() + '" />') + ('<param name="flashvars" value="' + flashVars.join('&amp;') + '" />') + '<param name="quality" value="high" />' + '<param name="bgcolor" value="#000000" />' + '<param name="wmode" value="transparent" />' + ('<param name="allowScriptAccess" value="' + flash.options.shimScriptAccess + '" />') + '<param name="allowFullScreen" value="true" />' + ('<div>' + _i18n2.default.t('mejs.install-flash') + '</div>') + '</object>';
+			specialiecontainer.outerhtml = '<object ' + settings.join(' ') + '>' + ('<param name="movie" value="' + flash.options.pluginpath + flash.options.filename + '?x=' + new date() + '" />') + ('<param name="flashvars" value="' + flashvars.join('&amp;') + '" />') + '<param name="quality" value="high" />' + '<param name="bgcolor" value="#000000" />' + '<param name="wmode" value="transparent" />' + ('<param name="allowscriptaccess" value="' + flash.options.shimscriptaccess + '" />') + '<param name="allowfullscreen" value="true" />' + ('<div>' + _i18n2.default.t('mejs.install-flash') + '</div>') + '</object>';
 		} else {
 
-			settings = ['id="__' + flash.id + '"', 'name="__' + flash.id + '"', 'play="true"', 'loop="false"', 'quality="high"', 'bgcolor="#000000"', 'wmode="transparent"', 'allowScriptAccess="' + flash.options.shimScriptAccess + '"', 'allowFullScreen="true"', 'type="application/x-shockwave-flash"', 'pluginspage="//www.macromedia.com/go/getflashplayer"', 'src="' + flash.options.pluginPath + flash.options.filename + '"', 'flashvars="' + flashVars.join('&') + '"'];
+			settings = ['id="__' + flash.id + '"', 'name="__' + flash.id + '"', 'play="true"', 'loop="false"', 'quality="high"', 'bgcolor="#000000"', 'wmode="transparent"', 'allowscriptaccess="' + flash.options.shimscriptaccess + '"', 'allowfullscreen="true"', 'type="application/x-shockwave-flash"', 'pluginspage="//www.macromedia.com/go/getflashplayer"', 'src="' + flash.options.pluginpath + flash.options.filename + '"', 'flashvars="' + flashvars.join('&') + '"'];
 
-			if (isVideo) {
-				settings.push('width="' + flashWidth + '"');
-				settings.push('height="' + flashHeight + '"');
+			if (isvideo) {
+				settings.push('width="' + flashwidth + '"');
+				settings.push('height="' + flashheight + '"');
 			} else {
 				settings.push('style="position: fixed; left: -9999em; top: -9999em;"');
 			}
 
-			flash.flashWrapper.innerHTML = '<embed ' + settings.join(' ') + '>';
+			flash.flashwrapper.innerhtml = '<embed ' + settings.join(' ') + '>';
 		}
 
-		flash.flashNode = flash.flashWrapper.lastChild;
+		flash.flashnode = flash.flashwrapper.lastchild;
 
 		flash.hide = function () {
-			isActive = false;
-			if (isVideo) {
-				flash.flashNode.style.display = 'none';
+			isactive = false;
+			if (isvideo) {
+				flash.flashnode.style.display = 'none';
 			}
 		};
 		flash.show = function () {
-			isActive = true;
-			if (isVideo) {
-				flash.flashNode.style.display = '';
+			isactive = true;
+			if (isvideo) {
+				flash.flashnode.style.display = '';
 			}
 		};
-		flash.setSize = function (width, height) {
-			flash.flashNode.style.width = width + 'px';
-			flash.flashNode.style.height = height + 'px';
+		flash.setsize = function (width, height) {
+			flash.flashnode.style.width = width + 'px';
+			flash.flashnode.style.height = height + 'px';
 
-			if (flash.flashApi !== null && typeof flash.flashApi.fire_setSize === 'function') {
-				flash.flashApi.fire_setSize(width, height);
+			if (flash.flashapi !== null && typeof flash.flashapi.fire_setsize === 'function') {
+				flash.flashapi.fire_setsize(width, height);
 			}
 		};
 
 		flash.destroy = function () {
-			flash.flashNode.remove();
+			flash.flashnode.remove();
 		};
 
-		if (mediaFiles && mediaFiles.length > 0) {
-			for (var _i4 = 0, _total4 = mediaFiles.length; _i4 < _total4; _i4++) {
-				if (_renderer.renderer.renderers[options.prefix].canPlayType(mediaFiles[_i4].type)) {
-					flash.setSrc(mediaFiles[_i4].src);
+		if (mediafiles && mediafiles.length > 0) {
+			for (var _i4 = 0, _total4 = mediafiles.length; _i4 < _total4; _i4++) {
+				if (_renderer.renderer.renderers[options.prefix].canplaytype(mediafiles[_i4].type)) {
+					flash.setsrc(mediafiles[_i4].src);
 					break;
 				}
 			}
@@ -6120,129 +6120,129 @@ var FlashMediaElementRenderer = {
 	}
 };
 
-var hasFlash = PluginDetector.hasPluginVersion('flash', [10, 0, 0]);
+var hasflash = plugindetector.haspluginversion('flash', [10, 0, 0]);
 
-if (hasFlash) {
-	_media.typeChecks.push(function (url) {
-		url = url.toLowerCase();
+if (hasflash) {
+	_media.typechecks.push(function (url) {
+		url = url.tolowercase();
 
-		if (url.startsWith('rtmp')) {
-			if (~url.indexOf('.mp3')) {
+		if (url.startswith('rtmp')) {
+			if (~url.indexof('.mp3')) {
 				return 'audio/rtmp';
 			} else {
 				return 'video/rtmp';
 			}
 		} else if (/\.og(a|g)/i.test(url)) {
 			return 'audio/ogg';
-		} else if (~url.indexOf('.m3u8')) {
-			return 'application/x-mpegURL';
-		} else if (~url.indexOf('.mpd')) {
+		} else if (~url.indexof('.m3u8')) {
+			return 'application/x-mpegurl';
+		} else if (~url.indexof('.mpd')) {
 			return 'application/dash+xml';
-		} else if (~url.indexOf('.flv')) {
+		} else if (~url.indexof('.flv')) {
 			return 'video/flv';
 		} else {
 			return null;
 		}
 	});
 
-	var FlashMediaElementVideoRenderer = {
+	var flashmediaelementvideorenderer = {
 		name: 'flash_video',
 		options: {
 			prefix: 'flash_video',
 			filename: 'mediaelement-flash-video.swf',
-			enablePseudoStreaming: false,
+			enablepseudostreaming: false,
 
-			pseudoStreamingStartQueryParam: 'start',
+			pseudostreamingstartqueryparam: 'start',
 
-			pseudoStreamingType: 'byte',
+			pseudostreamingtype: 'byte',
 
-			proxyType: '',
+			proxytype: '',
 
-			streamDelimiter: ''
+			streamdelimiter: ''
 		},
 
-		canPlayType: function canPlayType(type) {
-			return ~['video/mp4', 'video/rtmp', 'audio/rtmp', 'rtmp/mp4', 'audio/mp4', 'video/flv', 'video/x-flv'].indexOf(type.toLowerCase());
+		canplaytype: function canplaytype(type) {
+			return ~['video/mp4', 'video/rtmp', 'audio/rtmp', 'rtmp/mp4', 'audio/mp4', 'video/flv', 'video/x-flv'].indexof(type.tolowercase());
 		},
 
-		create: FlashMediaElementRenderer.create
+		create: flashmediaelementrenderer.create
 
 	};
-	_renderer.renderer.add(FlashMediaElementVideoRenderer);
+	_renderer.renderer.add(flashmediaelementvideorenderer);
 
-	var FlashMediaElementHlsVideoRenderer = {
+	var flashmediaelementhlsvideorenderer = {
 		name: 'flash_hls',
 		options: {
 			prefix: 'flash_hls',
 			filename: 'mediaelement-flash-video-hls.swf'
 		},
 
-		canPlayType: function canPlayType(type) {
-			return ~['application/x-mpegurl', 'application/vnd.apple.mpegurl', 'audio/mpegurl', 'audio/hls', 'video/hls'].indexOf(type.toLowerCase());
+		canplaytype: function canplaytype(type) {
+			return ~['application/x-mpegurl', 'application/vnd.apple.mpegurl', 'audio/mpegurl', 'audio/hls', 'video/hls'].indexof(type.tolowercase());
 		},
 
-		create: FlashMediaElementRenderer.create
+		create: flashmediaelementrenderer.create
 	};
-	_renderer.renderer.add(FlashMediaElementHlsVideoRenderer);
+	_renderer.renderer.add(flashmediaelementhlsvideorenderer);
 
-	var FlashMediaElementMdashVideoRenderer = {
+	var flashmediaelementmdashvideorenderer = {
 		name: 'flash_dash',
 		options: {
 			prefix: 'flash_dash',
 			filename: 'mediaelement-flash-video-mdash.swf'
 		},
 
-		canPlayType: function canPlayType(type) {
-			return ~['application/dash+xml'].indexOf(type.toLowerCase());
+		canplaytype: function canplaytype(type) {
+			return ~['application/dash+xml'].indexof(type.tolowercase());
 		},
 
-		create: FlashMediaElementRenderer.create
+		create: flashmediaelementrenderer.create
 	};
-	_renderer.renderer.add(FlashMediaElementMdashVideoRenderer);
+	_renderer.renderer.add(flashmediaelementmdashvideorenderer);
 
-	var FlashMediaElementAudioRenderer = {
+	var flashmediaelementaudiorenderer = {
 		name: 'flash_audio',
 		options: {
 			prefix: 'flash_audio',
 			filename: 'mediaelement-flash-audio.swf'
 		},
 
-		canPlayType: function canPlayType(type) {
-			return ~['audio/mp3'].indexOf(type.toLowerCase());
+		canplaytype: function canplaytype(type) {
+			return ~['audio/mp3'].indexof(type.tolowercase());
 		},
 
-		create: FlashMediaElementRenderer.create
+		create: flashmediaelementrenderer.create
 	};
-	_renderer.renderer.add(FlashMediaElementAudioRenderer);
+	_renderer.renderer.add(flashmediaelementaudiorenderer);
 
-	var FlashMediaElementAudioOggRenderer = {
+	var flashmediaelementaudiooggrenderer = {
 		name: 'flash_audio_ogg',
 		options: {
 			prefix: 'flash_audio_ogg',
 			filename: 'mediaelement-flash-audio-ogg.swf'
 		},
 
-		canPlayType: function canPlayType(type) {
-			return ~['audio/ogg', 'audio/oga', 'audio/ogv'].indexOf(type.toLowerCase());
+		canplaytype: function canplaytype(type) {
+			return ~['audio/ogg', 'audio/oga', 'audio/ogv'].indexof(type.tolowercase());
 		},
 
-		create: FlashMediaElementRenderer.create
+		create: flashmediaelementrenderer.create
 	};
-	_renderer.renderer.add(FlashMediaElementAudioOggRenderer);
+	_renderer.renderer.add(flashmediaelementaudiooggrenderer);
 }
 
 },{"2":2,"25":25,"27":27,"28":28,"3":3,"5":5,"7":7,"8":8}],21:[function(_dereq_,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _renderer = _dereq_(8);
 
@@ -6254,41 +6254,41 @@ var _media = _dereq_(28);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var NativeFlv = {
+var nativeflv = {
 
 	promise: null,
 
 	load: function load(settings) {
 		if (typeof flvjs !== 'undefined') {
-			NativeFlv.promise = new Promise(function (resolve) {
+			nativeflv.promise = new promise(function (resolve) {
 				resolve();
 			}).then(function () {
-				NativeFlv._createPlayer(settings);
+				nativeflv._createplayer(settings);
 			});
 		} else {
 			settings.options.path = typeof settings.options.path === 'string' ? settings.options.path : 'https://cdn.jsdelivr.net/npm/flv.js@latest';
 
-			NativeFlv.promise = NativeFlv.promise || (0, _dom.loadScript)(settings.options.path);
-			NativeFlv.promise.then(function () {
-				NativeFlv._createPlayer(settings);
+			nativeflv.promise = nativeflv.promise || (0, _dom.loadscript)(settings.options.path);
+			nativeflv.promise.then(function () {
+				nativeflv._createplayer(settings);
 			});
 		}
 
-		return NativeFlv.promise;
+		return nativeflv.promise;
 	},
 
-	_createPlayer: function _createPlayer(settings) {
-		flvjs.LoggingControl.enableDebug = settings.options.debug;
-		flvjs.LoggingControl.enableVerbose = settings.options.debug;
-		var player = flvjs.createPlayer(settings.options, settings.configs);
+	_createplayer: function _createplayer(settings) {
+		flvjs.loggingcontrol.enabledebug = settings.options.debug;
+		flvjs.loggingcontrol.enableverbose = settings.options.debug;
+		var player = flvjs.createplayer(settings.options, settings.configs);
 		_window2.default['__ready__' + settings.id](player);
 		return player;
 	}
 };
 
-var FlvNativeRenderer = {
+var flvnativerenderer = {
 	name: 'native_flv',
 	options: {
 		prefix: 'native_flv',
@@ -6300,151 +6300,151 @@ var FlvNativeRenderer = {
 		}
 	},
 
-	canPlayType: function canPlayType(type) {
-		return _constants.HAS_MSE && ['video/x-flv', 'video/flv'].indexOf(type.toLowerCase()) > -1;
+	canplaytype: function canplaytype(type) {
+		return _constants.has_mse && ['video/x-flv', 'video/flv'].indexof(type.tolowercase()) > -1;
 	},
 
-	create: function create(mediaElement, options, mediaFiles) {
+	create: function create(mediaelement, options, mediafiles) {
 
-		var originalNode = mediaElement.originalNode,
-		    id = mediaElement.id + '_' + options.prefix;
+		var originalnode = mediaelement.originalnode,
+		    id = mediaelement.id + '_' + options.prefix;
 
 		var node = null,
-		    flvPlayer = null;
+		    flvplayer = null;
 
-		node = originalNode.cloneNode(true);
-		options = Object.assign(options, mediaElement.options);
+		node = originalnode.clonenode(true);
+		options = object.assign(options, mediaelement.options);
 
 		var props = _mejs2.default.html5media.properties,
 		    events = _mejs2.default.html5media.events.concat(['click', 'mouseover', 'mouseout']).filter(function (e) {
 			return e !== 'error';
 		}),
-		    attachNativeEvents = function attachNativeEvents(e) {
-			var event = (0, _general.createEvent)(e.type, mediaElement);
-			mediaElement.dispatchEvent(event);
+		    attachnativeevents = function attachnativeevents(e) {
+			var event = (0, _general.createevent)(e.type, mediaelement);
+			mediaelement.dispatchevent(event);
 		},
-		    assignGettersSetters = function assignGettersSetters(propName) {
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+		    assigngetterssetters = function assigngetterssetters(propname) {
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-			node['get' + capName] = function () {
-				return flvPlayer !== null ? node[propName] : null;
+			node['get' + capname] = function () {
+				return flvplayer !== null ? node[propname] : null;
 			};
 
-			node['set' + capName] = function (value) {
-				if (_mejs2.default.html5media.readOnlyProperties.indexOf(propName) === -1) {
-					if (propName === 'src') {
-						node[propName] = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.src ? value.src : value;
-						if (flvPlayer !== null) {
-							var _flvOptions = {};
-							_flvOptions.type = 'flv';
-							_flvOptions.url = value;
-							_flvOptions.cors = options.flv.cors;
-							_flvOptions.debug = options.flv.debug;
-							_flvOptions.path = options.flv.path;
-							var _flvConfigs = options.flv.configs;
+			node['set' + capname] = function (value) {
+				if (_mejs2.default.html5media.readonlyproperties.indexof(propname) === -1) {
+					if (propname === 'src') {
+						node[propname] = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.src ? value.src : value;
+						if (flvplayer !== null) {
+							var _flvoptions = {};
+							_flvoptions.type = 'flv';
+							_flvoptions.url = value;
+							_flvoptions.cors = options.flv.cors;
+							_flvoptions.debug = options.flv.debug;
+							_flvoptions.path = options.flv.path;
+							var _flvconfigs = options.flv.configs;
 
-							flvPlayer.destroy();
+							flvplayer.destroy();
 							for (var i = 0, total = events.length; i < total; i++) {
-								node.removeEventListener(events[i], attachNativeEvents);
+								node.removeeventlistener(events[i], attachnativeevents);
 							}
-							flvPlayer = NativeFlv._createPlayer({
-								options: _flvOptions,
-								configs: _flvConfigs,
+							flvplayer = nativeflv._createplayer({
+								options: _flvoptions,
+								configs: _flvconfigs,
 								id: id
 							});
-							flvPlayer.attachMediaElement(node);
-							flvPlayer.load();
+							flvplayer.attachmediaelement(node);
+							flvplayer.load();
 						}
 					} else {
-						node[propName] = value;
+						node[propname] = value;
 					}
 				}
 			};
 		};
 
 		for (var i = 0, total = props.length; i < total; i++) {
-			assignGettersSetters(props[i]);
+			assigngetterssetters(props[i]);
 		}
 
-		_window2.default['__ready__' + id] = function (_flvPlayer) {
-			mediaElement.flvPlayer = flvPlayer = _flvPlayer;
+		_window2.default['__ready__' + id] = function (_flvplayer) {
+			mediaelement.flvplayer = flvplayer = _flvplayer;
 
-			var flvEvents = flvjs.Events,
-			    assignEvents = function assignEvents(eventName) {
-				if (eventName === 'loadedmetadata') {
-					flvPlayer.unload();
-					flvPlayer.detachMediaElement();
-					flvPlayer.attachMediaElement(node);
-					flvPlayer.load();
+			var flvevents = flvjs.events,
+			    assignevents = function assignevents(eventname) {
+				if (eventname === 'loadedmetadata') {
+					flvplayer.unload();
+					flvplayer.detachmediaelement();
+					flvplayer.attachmediaelement(node);
+					flvplayer.load();
 				}
 
-				node.addEventListener(eventName, attachNativeEvents);
+				node.addeventlistener(eventname, attachnativeevents);
 			};
 
 			for (var _i = 0, _total = events.length; _i < _total; _i++) {
-				assignEvents(events[_i]);
+				assignevents(events[_i]);
 			}
 
-			var assignFlvEvents = function assignFlvEvents(name, data) {
+			var assignflvevents = function assignflvevents(name, data) {
 				if (name === 'error') {
 					var message = data[0] + ': ' + data[1] + ' ' + data[2].msg;
-					mediaElement.generateError(message, node.src);
+					mediaelement.generateerror(message, node.src);
 				} else {
-					var _event = (0, _general.createEvent)(name, mediaElement);
+					var _event = (0, _general.createevent)(name, mediaelement);
 					_event.data = data;
-					mediaElement.dispatchEvent(_event);
+					mediaelement.dispatchevent(_event);
 				}
 			};
 
-			var _loop = function _loop(eventType) {
-				if (flvEvents.hasOwnProperty(eventType)) {
-					flvPlayer.on(flvEvents[eventType], function () {
-						for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			var _loop = function _loop(eventtype) {
+				if (flvevents.hasownproperty(eventtype)) {
+					flvplayer.on(flvevents[eventtype], function () {
+						for (var _len = arguments.length, args = array(_len), _key = 0; _key < _len; _key++) {
 							args[_key] = arguments[_key];
 						}
 
-						return assignFlvEvents(flvEvents[eventType], args);
+						return assignflvevents(flvevents[eventtype], args);
 					});
 				}
 			};
 
-			for (var eventType in flvEvents) {
-				_loop(eventType);
+			for (var eventtype in flvevents) {
+				_loop(eventtype);
 			}
 		};
 
-		if (mediaFiles && mediaFiles.length > 0) {
-			for (var _i2 = 0, _total2 = mediaFiles.length; _i2 < _total2; _i2++) {
-				if (_renderer.renderer.renderers[options.prefix].canPlayType(mediaFiles[_i2].type)) {
-					node.setAttribute('src', mediaFiles[_i2].src);
+		if (mediafiles && mediafiles.length > 0) {
+			for (var _i2 = 0, _total2 = mediafiles.length; _i2 < _total2; _i2++) {
+				if (_renderer.renderer.renderers[options.prefix].canplaytype(mediafiles[_i2].type)) {
+					node.setattribute('src', mediafiles[_i2].src);
 					break;
 				}
 			}
 		}
 
-		node.setAttribute('id', id);
+		node.setattribute('id', id);
 
-		originalNode.parentNode.insertBefore(node, originalNode);
-		originalNode.autoplay = false;
-		originalNode.style.display = 'none';
+		originalnode.parentnode.insertbefore(node, originalnode);
+		originalnode.autoplay = false;
+		originalnode.style.display = 'none';
 
-		var flvOptions = {};
-		flvOptions.type = 'flv';
-		flvOptions.url = node.src;
-		flvOptions.cors = options.flv.cors;
-		flvOptions.debug = options.flv.debug;
-		flvOptions.path = options.flv.path;
-		var flvConfigs = options.flv.configs;
+		var flvoptions = {};
+		flvoptions.type = 'flv';
+		flvoptions.url = node.src;
+		flvoptions.cors = options.flv.cors;
+		flvoptions.debug = options.flv.debug;
+		flvoptions.path = options.flv.path;
+		var flvconfigs = options.flv.configs;
 
-		node.setSize = function (width, height) {
+		node.setsize = function (width, height) {
 			node.style.width = width + 'px';
 			node.style.height = height + 'px';
 			return node;
 		};
 
 		node.hide = function () {
-			if (flvPlayer !== null) {
-				flvPlayer.pause();
+			if (flvplayer !== null) {
+				flvplayer.pause();
 			}
 			node.style.display = 'none';
 			return node;
@@ -6456,17 +6456,17 @@ var FlvNativeRenderer = {
 		};
 
 		node.destroy = function () {
-			if (flvPlayer !== null) {
-				flvPlayer.destroy();
+			if (flvplayer !== null) {
+				flvplayer.destroy();
 			}
 		};
 
-		var event = (0, _general.createEvent)('rendererready', node);
-		mediaElement.dispatchEvent(event);
+		var event = (0, _general.createevent)('rendererready', node);
+		mediaelement.dispatchevent(event);
 
-		mediaElement.promises.push(NativeFlv.load({
-			options: flvOptions,
-			configs: flvConfigs,
+		mediaelement.promises.push(nativeflv.load({
+			options: flvoptions,
+			configs: flvconfigs,
 			id: id
 		}));
 
@@ -6474,24 +6474,24 @@ var FlvNativeRenderer = {
 	}
 };
 
-_media.typeChecks.push(function (url) {
-	return ~url.toLowerCase().indexOf('.flv') ? 'video/flv' : null;
+_media.typechecks.push(function (url) {
+	return ~url.tolowercase().indexof('.flv') ? 'video/flv' : null;
 });
 
-_renderer.renderer.add(FlvNativeRenderer);
+_renderer.renderer.add(flvnativerenderer);
 
 },{"25":25,"26":26,"27":27,"28":28,"3":3,"7":7,"8":8}],22:[function(_dereq_,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof = typeof symbol === "function" && typeof symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj; };
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _renderer = _dereq_(8);
 
@@ -6503,231 +6503,231 @@ var _media = _dereq_(28);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var NativeHls = {
+var nativehls = {
 
 	promise: null,
 
 	load: function load(settings) {
-		if (typeof Hls !== 'undefined') {
-			NativeHls.promise = new Promise(function (resolve) {
+		if (typeof hls !== 'undefined') {
+			nativehls.promise = new promise(function (resolve) {
 				resolve();
 			}).then(function () {
-				NativeHls._createPlayer(settings);
+				nativehls._createplayer(settings);
 			});
 		} else {
 			settings.options.path = typeof settings.options.path === 'string' ? settings.options.path : 'https://cdn.jsdelivr.net/npm/hls.js@latest';
 
-			NativeHls.promise = NativeHls.promise || (0, _dom.loadScript)(settings.options.path);
-			NativeHls.promise.then(function () {
-				NativeHls._createPlayer(settings);
+			nativehls.promise = nativehls.promise || (0, _dom.loadscript)(settings.options.path);
+			nativehls.promise.then(function () {
+				nativehls._createplayer(settings);
 			});
 		}
 
-		return NativeHls.promise;
+		return nativehls.promise;
 	},
 
-	_createPlayer: function _createPlayer(settings) {
-		var player = new Hls(settings.options);
+	_createplayer: function _createplayer(settings) {
+		var player = new hls(settings.options);
 		_window2.default['__ready__' + settings.id](player);
 		return player;
 	}
 };
 
-var HlsNativeRenderer = {
+var hlsnativerenderer = {
 	name: 'native_hls',
 	options: {
 		prefix: 'native_hls',
 		hls: {
 			path: 'https://cdn.jsdelivr.net/npm/hls.js@latest',
 
-			autoStartLoad: false,
+			autostartload: false,
 			debug: false
 		}
 	},
 
-	canPlayType: function canPlayType(type) {
-		return _constants.HAS_MSE && ['application/x-mpegurl', 'application/vnd.apple.mpegurl', 'audio/mpegurl', 'audio/hls', 'video/hls'].indexOf(type.toLowerCase()) > -1;
+	canplaytype: function canplaytype(type) {
+		return _constants.has_mse && ['application/x-mpegurl', 'application/vnd.apple.mpegurl', 'audio/mpegurl', 'audio/hls', 'video/hls'].indexof(type.tolowercase()) > -1;
 	},
 
-	create: function create(mediaElement, options, mediaFiles) {
+	create: function create(mediaelement, options, mediafiles) {
 
-		var originalNode = mediaElement.originalNode,
-		    id = mediaElement.id + '_' + options.prefix,
-		    preload = originalNode.getAttribute('preload'),
-		    autoplay = originalNode.autoplay;
+		var originalnode = mediaelement.originalnode,
+		    id = mediaelement.id + '_' + options.prefix,
+		    preload = originalnode.getattribute('preload'),
+		    autoplay = originalnode.autoplay;
 
-		var hlsPlayer = null,
+		var hlsplayer = null,
 		    node = null,
 		    index = 0,
-		    total = mediaFiles.length;
+		    total = mediafiles.length;
 
-		node = originalNode.cloneNode(true);
-		options = Object.assign(options, mediaElement.options);
-		options.hls.autoStartLoad = preload && preload !== 'none' || autoplay;
+		node = originalnode.clonenode(true);
+		options = object.assign(options, mediaelement.options);
+		options.hls.autostartload = preload && preload !== 'none' || autoplay;
 
 		var props = _mejs2.default.html5media.properties,
 		    events = _mejs2.default.html5media.events.concat(['click', 'mouseover', 'mouseout']).filter(function (e) {
 			return e !== 'error';
 		}),
-		    attachNativeEvents = function attachNativeEvents(e) {
-			var event = (0, _general.createEvent)(e.type, mediaElement);
-			mediaElement.dispatchEvent(event);
+		    attachnativeevents = function attachnativeevents(e) {
+			var event = (0, _general.createevent)(e.type, mediaelement);
+			mediaelement.dispatchevent(event);
 		},
-		    assignGettersSetters = function assignGettersSetters(propName) {
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+		    assigngetterssetters = function assigngetterssetters(propname) {
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-			node['get' + capName] = function () {
-				return hlsPlayer !== null ? node[propName] : null;
+			node['get' + capname] = function () {
+				return hlsplayer !== null ? node[propname] : null;
 			};
 
-			node['set' + capName] = function (value) {
-				if (_mejs2.default.html5media.readOnlyProperties.indexOf(propName) === -1) {
-					if (propName === 'src') {
-						node[propName] = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.src ? value.src : value;
-						if (hlsPlayer !== null) {
-							hlsPlayer.destroy();
+			node['set' + capname] = function (value) {
+				if (_mejs2.default.html5media.readonlyproperties.indexof(propname) === -1) {
+					if (propname === 'src') {
+						node[propname] = (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value.src ? value.src : value;
+						if (hlsplayer !== null) {
+							hlsplayer.destroy();
 							for (var i = 0, _total = events.length; i < _total; i++) {
-								node.removeEventListener(events[i], attachNativeEvents);
+								node.removeeventlistener(events[i], attachnativeevents);
 							}
-							hlsPlayer = NativeHls._createPlayer({
+							hlsplayer = nativehls._createplayer({
 								options: options.hls,
 								id: id
 							});
-							hlsPlayer.loadSource(value);
-							hlsPlayer.attachMedia(node);
+							hlsplayer.loadsource(value);
+							hlsplayer.attachmedia(node);
 						}
 					} else {
-						node[propName] = value;
+						node[propname] = value;
 					}
 				}
 			};
 		};
 
 		for (var i = 0, _total2 = props.length; i < _total2; i++) {
-			assignGettersSetters(props[i]);
+			assigngetterssetters(props[i]);
 		}
 
-		_window2.default['__ready__' + id] = function (_hlsPlayer) {
-			mediaElement.hlsPlayer = hlsPlayer = _hlsPlayer;
-			var hlsEvents = Hls.Events,
-			    assignEvents = function assignEvents(eventName) {
-				if (eventName === 'loadedmetadata') {
-					var url = mediaElement.originalNode.src;
-					hlsPlayer.detachMedia();
-					hlsPlayer.loadSource(url);
-					hlsPlayer.attachMedia(node);
+		_window2.default['__ready__' + id] = function (_hlsplayer) {
+			mediaelement.hlsplayer = hlsplayer = _hlsplayer;
+			var hlsevents = hls.events,
+			    assignevents = function assignevents(eventname) {
+				if (eventname === 'loadedmetadata') {
+					var url = mediaelement.originalnode.src;
+					hlsplayer.detachmedia();
+					hlsplayer.loadsource(url);
+					hlsplayer.attachmedia(node);
 				}
 
-				node.addEventListener(eventName, attachNativeEvents);
+				node.addeventlistener(eventname, attachnativeevents);
 			};
 
 			for (var _i = 0, _total3 = events.length; _i < _total3; _i++) {
-				assignEvents(events[_i]);
+				assignevents(events[_i]);
 			}
 
-			var recoverDecodingErrorDate = void 0,
-			    recoverSwapAudioCodecDate = void 0;
-			var assignHlsEvents = function assignHlsEvents(name, data) {
-				if (name === 'hlsError') {
+			var recoverdecodingerrordate = void 0,
+			    recoverswapaudiocodecdate = void 0;
+			var assignhlsevents = function assignhlsevents(name, data) {
+				if (name === 'hlserror') {
 					console.warn(data);
 					data = data[1];
 
 					if (data.fatal) {
 						switch (data.type) {
-							case 'mediaError':
-								var now = new Date().getTime();
-								if (!recoverDecodingErrorDate || now - recoverDecodingErrorDate > 3000) {
-									recoverDecodingErrorDate = new Date().getTime();
-									hlsPlayer.recoverMediaError();
-								} else if (!recoverSwapAudioCodecDate || now - recoverSwapAudioCodecDate > 3000) {
-									recoverSwapAudioCodecDate = new Date().getTime();
-									console.warn('Attempting to swap Audio Codec and recover from media error');
-									hlsPlayer.swapAudioCodec();
-									hlsPlayer.recoverMediaError();
+							case 'mediaerror':
+								var now = new date().gettime();
+								if (!recoverdecodingerrordate || now - recoverdecodingerrordate > 3000) {
+									recoverdecodingerrordate = new date().gettime();
+									hlsplayer.recovermediaerror();
+								} else if (!recoverswapaudiocodecdate || now - recoverswapaudiocodecdate > 3000) {
+									recoverswapaudiocodecdate = new date().gettime();
+									console.warn('attempting to swap audio codec and recover from media error');
+									hlsplayer.swapaudiocodec();
+									hlsplayer.recovermediaerror();
 								} else {
-									var message = 'Cannot recover, last media error recovery failed';
-									mediaElement.generateError(message, node.src);
+									var message = 'cannot recover, last media error recovery failed';
+									mediaelement.generateerror(message, node.src);
 									console.error(message);
 								}
 								break;
-							case 'networkError':
-								if (data.details === 'manifestLoadError') {
-									if (index < total && mediaFiles[index + 1] !== undefined) {
-										node.setSrc(mediaFiles[index++].src);
+							case 'networkerror':
+								if (data.details === 'manifestloaderror') {
+									if (index < total && mediafiles[index + 1] !== undefined) {
+										node.setsrc(mediafiles[index++].src);
 										node.load();
 										node.play();
 									} else {
-										var _message = 'Network error';
-										mediaElement.generateError(_message, mediaFiles);
+										var _message = 'network error';
+										mediaelement.generateerror(_message, mediafiles);
 										console.error(_message);
 									}
 								} else {
-									var _message2 = 'Network error';
-									mediaElement.generateError(_message2, mediaFiles);
+									var _message2 = 'network error';
+									mediaelement.generateerror(_message2, mediafiles);
 									console.error(_message2);
 								}
 								break;
 							default:
-								hlsPlayer.destroy();
+								hlsplayer.destroy();
 								break;
 						}
 						return;
 					}
 				}
-				var event = (0, _general.createEvent)(name, mediaElement);
+				var event = (0, _general.createevent)(name, mediaelement);
 				event.data = data;
-				mediaElement.dispatchEvent(event);
+				mediaelement.dispatchevent(event);
 			};
 
-			var _loop = function _loop(eventType) {
-				if (hlsEvents.hasOwnProperty(eventType)) {
-					hlsPlayer.on(hlsEvents[eventType], function () {
-						for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			var _loop = function _loop(eventtype) {
+				if (hlsevents.hasownproperty(eventtype)) {
+					hlsplayer.on(hlsevents[eventtype], function () {
+						for (var _len = arguments.length, args = array(_len), _key = 0; _key < _len; _key++) {
 							args[_key] = arguments[_key];
 						}
 
-						return assignHlsEvents(hlsEvents[eventType], args);
+						return assignhlsevents(hlsevents[eventtype], args);
 					});
 				}
 			};
 
-			for (var eventType in hlsEvents) {
-				_loop(eventType);
+			for (var eventtype in hlsevents) {
+				_loop(eventtype);
 			}
 		};
 
 		if (total > 0) {
 			for (; index < total; index++) {
-				if (_renderer.renderer.renderers[options.prefix].canPlayType(mediaFiles[index].type)) {
-					node.setAttribute('src', mediaFiles[index].src);
+				if (_renderer.renderer.renderers[options.prefix].canplaytype(mediafiles[index].type)) {
+					node.setattribute('src', mediafiles[index].src);
 					break;
 				}
 			}
 		}
 
 		if (preload !== 'auto' && !autoplay) {
-			node.addEventListener('play', function () {
-				if (hlsPlayer !== null) {
-					hlsPlayer.startLoad();
+			node.addeventlistener('play', function () {
+				if (hlsplayer !== null) {
+					hlsplayer.startload();
 				}
 			});
 
-			node.addEventListener('pause', function () {
-				if (hlsPlayer !== null) {
-					hlsPlayer.stopLoad();
+			node.addeventlistener('pause', function () {
+				if (hlsplayer !== null) {
+					hlsplayer.stopload();
 				}
 			});
 		}
 
-		node.setAttribute('id', id);
+		node.setattribute('id', id);
 
-		originalNode.parentNode.insertBefore(node, originalNode);
-		originalNode.autoplay = false;
-		originalNode.style.display = 'none';
+		originalnode.parentnode.insertbefore(node, originalnode);
+		originalnode.autoplay = false;
+		originalnode.style.display = 'none';
 
-		node.setSize = function (width, height) {
+		node.setsize = function (width, height) {
 			node.style.width = width + 'px';
 			node.style.height = height + 'px';
 			return node;
@@ -6745,16 +6745,16 @@ var HlsNativeRenderer = {
 		};
 
 		node.destroy = function () {
-			if (hlsPlayer !== null) {
-				hlsPlayer.stopLoad();
-				hlsPlayer.destroy();
+			if (hlsplayer !== null) {
+				hlsplayer.stopload();
+				hlsplayer.destroy();
 			}
 		};
 
-		var event = (0, _general.createEvent)('rendererready', node);
-		mediaElement.dispatchEvent(event);
+		var event = (0, _general.createevent)('rendererready', node);
+		mediaelement.dispatchevent(event);
 
-		mediaElement.promises.push(NativeHls.load({
+		mediaelement.promises.push(nativehls.load({
 			options: options.hls,
 			id: id
 		}));
@@ -6763,26 +6763,26 @@ var HlsNativeRenderer = {
 	}
 };
 
-_media.typeChecks.push(function (url) {
-	return ~url.toLowerCase().indexOf('.m3u8') ? 'application/x-mpegURL' : null;
+_media.typechecks.push(function (url) {
+	return ~url.tolowercase().indexof('.m3u8') ? 'application/x-mpegurl' : null;
 });
 
-_renderer.renderer.add(HlsNativeRenderer);
+_renderer.renderer.add(hlsnativerenderer);
 
 },{"25":25,"26":26,"27":27,"28":28,"3":3,"7":7,"8":8}],23:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _renderer = _dereq_(8);
 
@@ -6790,146 +6790,146 @@ var _general = _dereq_(27);
 
 var _constants = _dereq_(25);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var HtmlMediaElement = {
+var htmlmediaelement = {
 	name: 'html5',
 	options: {
 		prefix: 'html5'
 	},
 
-	canPlayType: function canPlayType(type) {
+	canplaytype: function canplaytype(type) {
 
-		var mediaElement = _document2.default.createElement('video');
+		var mediaelement = _document2.default.createelement('video');
 
-		if (_constants.IS_ANDROID && /\/mp(3|4)$/i.test(type) || ~['application/x-mpegurl', 'vnd.apple.mpegurl', 'audio/mpegurl', 'audio/hls', 'video/hls'].indexOf(type.toLowerCase()) && _constants.SUPPORTS_NATIVE_HLS) {
+		if (_constants.is_android && /\/mp(3|4)$/i.test(type) || ~['application/x-mpegurl', 'vnd.apple.mpegurl', 'audio/mpegurl', 'audio/hls', 'video/hls'].indexof(type.tolowercase()) && _constants.supports_native_hls) {
 			return 'yes';
-		} else if (mediaElement.canPlayType) {
-			return mediaElement.canPlayType(type.toLowerCase()).replace(/no/, '');
+		} else if (mediaelement.canplaytype) {
+			return mediaelement.canplaytype(type.tolowercase()).replace(/no/, '');
 		} else {
 			return '';
 		}
 	},
 
-	create: function create(mediaElement, options, mediaFiles) {
+	create: function create(mediaelement, options, mediafiles) {
 
-		var id = mediaElement.id + '_' + options.prefix;
-		var isActive = false;
+		var id = mediaelement.id + '_' + options.prefix;
+		var isactive = false;
 
 		var node = null;
 
-		if (mediaElement.originalNode === undefined || mediaElement.originalNode === null) {
-			node = _document2.default.createElement('audio');
-			mediaElement.appendChild(node);
+		if (mediaelement.originalnode === undefined || mediaelement.originalnode === null) {
+			node = _document2.default.createelement('audio');
+			mediaelement.appendchild(node);
 		} else {
-			node = mediaElement.originalNode;
+			node = mediaelement.originalnode;
 		}
 
-		node.setAttribute('id', id);
+		node.setattribute('id', id);
 
 		var props = _mejs2.default.html5media.properties,
-		    assignGettersSetters = function assignGettersSetters(propName) {
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+		    assigngetterssetters = function assigngetterssetters(propname) {
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-			node['get' + capName] = function () {
-				return node[propName];
+			node['get' + capname] = function () {
+				return node[propname];
 			};
 
-			node['set' + capName] = function (value) {
-				if (_mejs2.default.html5media.readOnlyProperties.indexOf(propName) === -1) {
-					node[propName] = value;
+			node['set' + capname] = function (value) {
+				if (_mejs2.default.html5media.readonlyproperties.indexof(propname) === -1) {
+					node[propname] = value;
 				}
 			};
 		};
 
 		for (var i = 0, _total = props.length; i < _total; i++) {
-			assignGettersSetters(props[i]);
+			assigngetterssetters(props[i]);
 		}
 
 		var events = _mejs2.default.html5media.events.concat(['click', 'mouseover', 'mouseout']).filter(function (e) {
 			return e !== 'error';
 		}),
-		    assignEvents = function assignEvents(eventName) {
-			node.addEventListener(eventName, function (e) {
-				if (isActive) {
-					var _event = (0, _general.createEvent)(e.type, e.target);
-					mediaElement.dispatchEvent(_event);
+		    assignevents = function assignevents(eventname) {
+			node.addeventlistener(eventname, function (e) {
+				if (isactive) {
+					var _event = (0, _general.createevent)(e.type, e.target);
+					mediaelement.dispatchevent(_event);
 				}
 			});
 		};
 
 		for (var _i = 0, _total2 = events.length; _i < _total2; _i++) {
-			assignEvents(events[_i]);
+			assignevents(events[_i]);
 		}
 
-		node.setSize = function (width, height) {
+		node.setsize = function (width, height) {
 			node.style.width = width + 'px';
 			node.style.height = height + 'px';
 			return node;
 		};
 
 		node.hide = function () {
-			isActive = false;
+			isactive = false;
 			node.style.display = 'none';
 
 			return node;
 		};
 
 		node.show = function () {
-			isActive = true;
+			isactive = true;
 			node.style.display = '';
 
 			return node;
 		};
 
 		var index = 0,
-		    total = mediaFiles.length;
+		    total = mediafiles.length;
 		if (total > 0) {
 			for (; index < total; index++) {
-				if (_renderer.renderer.renderers[options.prefix].canPlayType(mediaFiles[index].type)) {
-					node.setAttribute('src', mediaFiles[index].src);
+				if (_renderer.renderer.renderers[options.prefix].canplaytype(mediafiles[index].type)) {
+					node.setattribute('src', mediafiles[index].src);
 					break;
 				}
 			}
 		}
 
-		node.addEventListener('error', function (e) {
-			if (e && e.target && e.target.error && e.target.error.code === 4 && isActive) {
-				if (index < total && mediaFiles[index + 1] !== undefined) {
-					node.src = mediaFiles[index++].src;
+		node.addeventlistener('error', function (e) {
+			if (e && e.target && e.target.error && e.target.error.code === 4 && isactive) {
+				if (index < total && mediafiles[index + 1] !== undefined) {
+					node.src = mediafiles[index++].src;
 					node.load();
 					node.play();
 				} else {
-					mediaElement.generateError('Media error: Format(s) not supported or source(s) not found', mediaFiles);
+					mediaelement.generateerror('media error: format(s) not supported or source(s) not found', mediafiles);
 				}
 			}
 		});
 
-		var event = (0, _general.createEvent)('rendererready', node);
-		mediaElement.dispatchEvent(event);
+		var event = (0, _general.createevent)('rendererready', node);
+		mediaelement.dispatchevent(event);
 
 		return node;
 	}
 };
 
-_window2.default.HtmlMediaElement = _mejs2.default.HtmlMediaElement = HtmlMediaElement;
+_window2.default.htmlmediaelement = _mejs2.default.htmlmediaelement = htmlmediaelement;
 
-_renderer.renderer.add(HtmlMediaElement);
+_renderer.renderer.add(htmlmediaelement);
 
 },{"2":2,"25":25,"27":27,"3":3,"7":7,"8":8}],24:[function(_dereq_,module,exports){
 'use strict';
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _renderer = _dereq_(8);
 
@@ -6939,68 +6939,68 @@ var _media = _dereq_(28);
 
 var _dom = _dereq_(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var YouTubeApi = {
-	isIframeStarted: false,
+var youtubeapi = {
+	isiframestarted: false,
 
-	isIframeLoaded: false,
+	isiframeloaded: false,
 
-	iframeQueue: [],
+	iframequeue: [],
 
-	enqueueIframe: function enqueueIframe(settings) {
-		YouTubeApi.isLoaded = typeof YT !== 'undefined' && YT.loaded;
+	enqueueiframe: function enqueueiframe(settings) {
+		youtubeapi.isloaded = typeof yt !== 'undefined' && yt.loaded;
 
-		if (YouTubeApi.isLoaded) {
-			YouTubeApi.createIframe(settings);
+		if (youtubeapi.isloaded) {
+			youtubeapi.createiframe(settings);
 		} else {
-			YouTubeApi.loadIframeApi();
-			YouTubeApi.iframeQueue.push(settings);
+			youtubeapi.loadiframeapi();
+			youtubeapi.iframequeue.push(settings);
 		}
 	},
 
-	loadIframeApi: function loadIframeApi() {
-		if (!YouTubeApi.isIframeStarted) {
-			(0, _dom.loadScript)('https://www.youtube.com/player_api');
-			YouTubeApi.isIframeStarted = true;
+	loadiframeapi: function loadiframeapi() {
+		if (!youtubeapi.isiframestarted) {
+			(0, _dom.loadscript)('https://www.youtube.com/player_api');
+			youtubeapi.isiframestarted = true;
 		}
 	},
 
-	iFrameReady: function iFrameReady() {
+	iframeready: function iframeready() {
 
-		YouTubeApi.isLoaded = true;
-		YouTubeApi.isIframeLoaded = true;
+		youtubeapi.isloaded = true;
+		youtubeapi.isiframeloaded = true;
 
-		while (YouTubeApi.iframeQueue.length > 0) {
-			var settings = YouTubeApi.iframeQueue.pop();
-			YouTubeApi.createIframe(settings);
+		while (youtubeapi.iframequeue.length > 0) {
+			var settings = youtubeapi.iframequeue.pop();
+			youtubeapi.createiframe(settings);
 		}
 	},
 
-	createIframe: function createIframe(settings) {
-		return new YT.Player(settings.containerId, settings);
+	createiframe: function createiframe(settings) {
+		return new yt.player(settings.containerid, settings);
 	},
 
-	getYouTubeId: function getYouTubeId(url) {
+	getyoutubeid: function getyoutubeid(url) {
 
-		var youTubeId = '';
+		var youtubeid = '';
 
-		if (url.indexOf('?') > 0) {
-			youTubeId = YouTubeApi.getYouTubeIdFromParam(url);
+		if (url.indexof('?') > 0) {
+			youtubeid = youtubeapi.getyoutubeidfromparam(url);
 
-			if (youTubeId === '') {
-				youTubeId = YouTubeApi.getYouTubeIdFromUrl(url);
+			if (youtubeid === '') {
+				youtubeid = youtubeapi.getyoutubeidfromurl(url);
 			}
 		} else {
-			youTubeId = YouTubeApi.getYouTubeIdFromUrl(url);
+			youtubeid = youtubeapi.getyoutubeidfromurl(url);
 		}
 
-		var id = youTubeId.substring(youTubeId.lastIndexOf('/') + 1);
-		youTubeId = id.split('?');
-		return youTubeId[0];
+		var id = youtubeid.substring(youtubeid.lastindexof('/') + 1);
+		youtubeid = id.split('?');
+		return youtubeid[0];
 	},
 
-	getYouTubeIdFromParam: function getYouTubeIdFromParam(url) {
+	getyoutubeidfromparam: function getyoutubeidfromparam(url) {
 
 		if (url === undefined || url === null || !url.trim().length) {
 			return null;
@@ -7009,20 +7009,20 @@ var YouTubeApi = {
 		var parts = url.split('?'),
 		    parameters = parts[1].split('&');
 
-		var youTubeId = '';
+		var youtubeid = '';
 
 		for (var i = 0, total = parameters.length; i < total; i++) {
-			var paramParts = parameters[i].split('=');
-			if (paramParts[0] === 'v') {
-				youTubeId = paramParts[1];
+			var paramparts = parameters[i].split('=');
+			if (paramparts[0] === 'v') {
+				youtubeid = paramparts[1];
 				break;
 			}
 		}
 
-		return youTubeId;
+		return youtubeid;
 	},
 
-	getYouTubeIdFromUrl: function getYouTubeIdFromUrl(url) {
+	getyoutubeidfromurl: function getyoutubeidfromurl(url) {
 
 		if (url === undefined || url === null || !url.trim().length) {
 			return null;
@@ -7030,11 +7030,11 @@ var YouTubeApi = {
 
 		var parts = url.split('?');
 		url = parts[0];
-		return url.substring(url.lastIndexOf('/') + 1);
+		return url.substring(url.lastindexof('/') + 1);
 	},
 
-	getYouTubeNoCookieUrl: function getYouTubeNoCookieUrl(url) {
-		if (url === undefined || url === null || !url.trim().length || url.indexOf('//www.youtube') === -1) {
+	getyoutubenocookieurl: function getyoutubenocookieurl(url) {
+		if (url === undefined || url === null || !url.trim().length || url.indexof('//www.youtube') === -1) {
 			return url;
 		}
 
@@ -7044,7 +7044,7 @@ var YouTubeApi = {
 	}
 };
 
-var YouTubeIframeRenderer = {
+var youtubeiframerenderer = {
 	name: 'youtube_iframe',
 
 	options: {
@@ -7065,71 +7065,71 @@ var YouTubeIframeRenderer = {
 
 			nocookie: false,
 
-			imageQuality: null
+			imagequality: null
 		}
 	},
 
-	canPlayType: function canPlayType(type) {
-		return ~['video/youtube', 'video/x-youtube'].indexOf(type.toLowerCase());
+	canplaytype: function canplaytype(type) {
+		return ~['video/youtube', 'video/x-youtube'].indexof(type.tolowercase());
 	},
 
-	create: function create(mediaElement, options, mediaFiles) {
+	create: function create(mediaelement, options, mediafiles) {
 
 		var youtube = {},
-		    apiStack = [],
-		    readyState = 4;
+		    apistack = [],
+		    readystate = 4;
 
-		var youTubeApi = null,
+		var youtubeapi = null,
 		    paused = true,
 		    ended = false,
-		    youTubeIframe = null,
+		    youtubeiframe = null,
 		    volume = 1;
 
 		youtube.options = options;
-		youtube.id = mediaElement.id + '_' + options.prefix;
-		youtube.mediaElement = mediaElement;
+		youtube.id = mediaelement.id + '_' + options.prefix;
+		youtube.mediaelement = mediaelement;
 
 		var props = _mejs2.default.html5media.properties,
-		    assignGettersSetters = function assignGettersSetters(propName) {
+		    assigngetterssetters = function assigngetterssetters(propname) {
 
-			var capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+			var capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-			youtube['get' + capName] = function () {
-				if (youTubeApi !== null) {
+			youtube['get' + capname] = function () {
+				if (youtubeapi !== null) {
 					var value = null;
 
-					switch (propName) {
-						case 'currentTime':
-							return youTubeApi.getCurrentTime();
+					switch (propname) {
+						case 'currenttime':
+							return youtubeapi.getcurrenttime();
 						case 'duration':
-							return youTubeApi.getDuration();
+							return youtubeapi.getduration();
 						case 'volume':
-							volume = youTubeApi.getVolume() / 100;
+							volume = youtubeapi.getvolume() / 100;
 							return volume;
-						case 'playbackRate':
-							return youTubeApi.getPlaybackRate();
+						case 'playbackrate':
+							return youtubeapi.getplaybackrate();
 						case 'paused':
 							return paused;
 						case 'ended':
 							return ended;
 						case 'muted':
-							return youTubeApi.isMuted();
+							return youtubeapi.ismuted();
 						case 'buffered':
-							var percentLoaded = youTubeApi.getVideoLoadedFraction(),
-							    duration = youTubeApi.getDuration();
+							var percentloaded = youtubeapi.getvideoloadedfraction(),
+							    duration = youtubeapi.getduration();
 							return {
 								start: function start() {
 									return 0;
 								},
 								end: function end() {
-									return percentLoaded * duration;
+									return percentloaded * duration;
 								},
 								length: 1
 							};
 						case 'src':
-							return youTubeApi.getVideoUrl();
-						case 'readyState':
-							return readyState;
+							return youtubeapi.getvideourl();
+						case 'readystate':
+							return readystate;
 					}
 
 					return value;
@@ -7138,135 +7138,135 @@ var YouTubeIframeRenderer = {
 				}
 			};
 
-			youtube['set' + capName] = function (value) {
-				if (youTubeApi !== null) {
-					switch (propName) {
+			youtube['set' + capname] = function (value) {
+				if (youtubeapi !== null) {
+					switch (propname) {
 						case 'src':
 							var url = typeof value === 'string' ? value : value[0].src,
-							    _videoId = YouTubeApi.getYouTubeId(url);
+							    _videoid = youtubeapi.getyoutubeid(url);
 
-							if (mediaElement.originalNode.autoplay) {
-								youTubeApi.loadVideoById(_videoId);
+							if (mediaelement.originalnode.autoplay) {
+								youtubeapi.loadvideobyid(_videoid);
 							} else {
-								youTubeApi.cueVideoById(_videoId);
+								youtubeapi.cuevideobyid(_videoid);
 							}
 							break;
-						case 'currentTime':
-							youTubeApi.seekTo(value);
+						case 'currenttime':
+							youtubeapi.seekto(value);
 							break;
 						case 'muted':
 							if (value) {
-								youTubeApi.mute();
+								youtubeapi.mute();
 							} else {
-								youTubeApi.unMute();
+								youtubeapi.unmute();
 							}
-							setTimeout(function () {
-								var event = (0, _general.createEvent)('volumechange', youtube);
-								mediaElement.dispatchEvent(event);
+							settimeout(function () {
+								var event = (0, _general.createevent)('volumechange', youtube);
+								mediaelement.dispatchevent(event);
 							}, 50);
 							break;
 						case 'volume':
 							volume = value;
-							youTubeApi.setVolume(value * 100);
-							setTimeout(function () {
-								var event = (0, _general.createEvent)('volumechange', youtube);
-								mediaElement.dispatchEvent(event);
+							youtubeapi.setvolume(value * 100);
+							settimeout(function () {
+								var event = (0, _general.createevent)('volumechange', youtube);
+								mediaelement.dispatchevent(event);
 							}, 50);
 							break;
-						case 'playbackRate':
-							youTubeApi.setPlaybackRate(value);
-							setTimeout(function () {
-								var event = (0, _general.createEvent)('ratechange', youtube);
-								mediaElement.dispatchEvent(event);
+						case 'playbackrate':
+							youtubeapi.setplaybackrate(value);
+							settimeout(function () {
+								var event = (0, _general.createevent)('ratechange', youtube);
+								mediaelement.dispatchevent(event);
 							}, 50);
 							break;
-						case 'readyState':
-							var event = (0, _general.createEvent)('canplay', youtube);
-							mediaElement.dispatchEvent(event);
+						case 'readystate':
+							var event = (0, _general.createevent)('canplay', youtube);
+							mediaelement.dispatchevent(event);
 							break;
 						default:
 							
 							break;
 					}
 				} else {
-					apiStack.push({ type: 'set', propName: propName, value: value });
+					apistack.push({ type: 'set', propname: propname, value: value });
 				}
 			};
 		};
 
 		for (var i = 0, total = props.length; i < total; i++) {
-			assignGettersSetters(props[i]);
+			assigngetterssetters(props[i]);
 		}
 
 		var methods = _mejs2.default.html5media.methods,
-		    assignMethods = function assignMethods(methodName) {
-			youtube[methodName] = function () {
-				if (youTubeApi !== null) {
-					switch (methodName) {
+		    assignmethods = function assignmethods(methodname) {
+			youtube[methodname] = function () {
+				if (youtubeapi !== null) {
+					switch (methodname) {
 						case 'play':
 							paused = false;
-							return youTubeApi.playVideo();
+							return youtubeapi.playvideo();
 						case 'pause':
 							paused = true;
-							return youTubeApi.pauseVideo();
+							return youtubeapi.pausevideo();
 						case 'load':
 							return null;
 					}
 				} else {
-					apiStack.push({ type: 'call', methodName: methodName });
+					apistack.push({ type: 'call', methodname: methodname });
 				}
 			};
 		};
 
 		for (var _i = 0, _total = methods.length; _i < _total; _i++) {
-			assignMethods(methods[_i]);
+			assignmethods(methods[_i]);
 		}
 
-		var errorHandler = function errorHandler(error) {
+		var errorhandler = function errorhandler(error) {
 			var message = '';
 			switch (error.data) {
 				case 2:
-					message = 'The request contains an invalid parameter value. Verify that video ID has 11 characters and that contains no invalid characters, such as exclamation points or asterisks.';
+					message = 'the request contains an invalid parameter value. verify that video id has 11 characters and that contains no invalid characters, such as exclamation points or asterisks.';
 					break;
 				case 5:
-					message = 'The requested content cannot be played in an HTML5 player or another error related to the HTML5 player has occurred.';
+					message = 'the requested content cannot be played in an html5 player or another error related to the html5 player has occurred.';
 					break;
 				case 100:
-					message = 'The video requested was not found. Either video has been removed or has been marked as private.';
+					message = 'the video requested was not found. either video has been removed or has been marked as private.';
 					break;
 				case 101:
 				case 105:
-					message = 'The owner of the requested video does not allow it to be played in embedded players.';
+					message = 'the owner of the requested video does not allow it to be played in embedded players.';
 					break;
 				default:
-					message = 'Unknown error.';
+					message = 'unknown error.';
 					break;
 			}
-			mediaElement.generateError('Code ' + error.data + ': ' + message, mediaFiles);
+			mediaelement.generateerror('code ' + error.data + ': ' + message, mediafiles);
 		};
 
-		var youtubeContainer = _document2.default.createElement('div');
-		youtubeContainer.id = youtube.id;
+		var youtubecontainer = _document2.default.createelement('div');
+		youtubecontainer.id = youtube.id;
 
 		if (youtube.options.youtube.nocookie) {
-			mediaElement.originalNode.src = YouTubeApi.getYouTubeNoCookieUrl(mediaFiles[0].src);
+			mediaelement.originalnode.src = youtubeapi.getyoutubenocookieurl(mediafiles[0].src);
 		}
 
-		mediaElement.originalNode.parentNode.insertBefore(youtubeContainer, mediaElement.originalNode);
-		mediaElement.originalNode.style.display = 'none';
+		mediaelement.originalnode.parentnode.insertbefore(youtubecontainer, mediaelement.originalnode);
+		mediaelement.originalnode.style.display = 'none';
 
-		var isAudio = mediaElement.originalNode.tagName.toLowerCase() === 'audio',
-		    height = isAudio ? '1' : mediaElement.originalNode.height,
-		    width = isAudio ? '1' : mediaElement.originalNode.width,
-		    videoId = YouTubeApi.getYouTubeId(mediaFiles[0].src),
-		    youtubeSettings = {
+		var isaudio = mediaelement.originalnode.tagname.tolowercase() === 'audio',
+		    height = isaudio ? '1' : mediaelement.originalnode.height,
+		    width = isaudio ? '1' : mediaelement.originalnode.width,
+		    videoid = youtubeapi.getyoutubeid(mediafiles[0].src),
+		    youtubesettings = {
 			id: youtube.id,
-			containerId: youtubeContainer.id,
-			videoId: videoId,
+			containerid: youtubecontainer.id,
+			videoid: videoid,
 			height: height,
 			width: width,
 			host: youtube.options.youtube && youtube.options.youtube.nocookie ? 'https://www.youtube-nocookie.com' : undefined,
-			playerVars: Object.assign({
+			playervars: object.assign({
 				controls: 0,
 				rel: 0,
 				disablekb: 1,
@@ -7277,53 +7277,53 @@ var YouTubeIframeRenderer = {
 			}, youtube.options.youtube),
 			origin: _window2.default.location.host,
 			events: {
-				onReady: function onReady(e) {
-					mediaElement.youTubeApi = youTubeApi = e.target;
-					mediaElement.youTubeState = {
+				onready: function onready(e) {
+					mediaelement.youtubeapi = youtubeapi = e.target;
+					mediaelement.youtubestate = {
 						paused: true,
 						ended: false
 					};
 
-					if (apiStack.length) {
-						for (var _i2 = 0, _total2 = apiStack.length; _i2 < _total2; _i2++) {
+					if (apistack.length) {
+						for (var _i2 = 0, _total2 = apistack.length; _i2 < _total2; _i2++) {
 
-							var stackItem = apiStack[_i2];
+							var stackitem = apistack[_i2];
 
-							if (stackItem.type === 'set') {
-								var propName = stackItem.propName,
-								    capName = '' + propName.substring(0, 1).toUpperCase() + propName.substring(1);
+							if (stackitem.type === 'set') {
+								var propname = stackitem.propname,
+								    capname = '' + propname.substring(0, 1).touppercase() + propname.substring(1);
 
-								youtube['set' + capName](stackItem.value);
-							} else if (stackItem.type === 'call') {
-								youtube[stackItem.methodName]();
+								youtube['set' + capname](stackitem.value);
+							} else if (stackitem.type === 'call') {
+								youtube[stackitem.methodname]();
 							}
 						}
 					}
 
-					youTubeIframe = youTubeApi.getIframe();
+					youtubeiframe = youtubeapi.getiframe();
 
-					if (mediaElement.originalNode.muted) {
-						youTubeApi.mute();
+					if (mediaelement.originalnode.muted) {
+						youtubeapi.mute();
 					}
 
 					var events = ['mouseover', 'mouseout'],
-					    assignEvents = function assignEvents(e) {
-						var newEvent = (0, _general.createEvent)(e.type, youtube);
-						mediaElement.dispatchEvent(newEvent);
+					    assignevents = function assignevents(e) {
+						var newevent = (0, _general.createevent)(e.type, youtube);
+						mediaelement.dispatchevent(newevent);
 					};
 
 					for (var _i3 = 0, _total3 = events.length; _i3 < _total3; _i3++) {
-						youTubeIframe.addEventListener(events[_i3], assignEvents, false);
+						youtubeiframe.addeventlistener(events[_i3], assignevents, false);
 					}
 
-					var initEvents = ['rendererready', 'loadedmetadata', 'loadeddata', 'canplay'];
+					var initevents = ['rendererready', 'loadedmetadata', 'loadeddata', 'canplay'];
 
-					for (var _i4 = 0, _total4 = initEvents.length; _i4 < _total4; _i4++) {
-						var event = (0, _general.createEvent)(initEvents[_i4], youtube);
-						mediaElement.dispatchEvent(event);
+					for (var _i4 = 0, _total4 = initevents.length; _i4 < _total4; _i4++) {
+						var event = (0, _general.createevent)(initevents[_i4], youtube);
+						mediaelement.dispatchevent(event);
 					}
 				},
-				onStateChange: function onStateChange(e) {
+				onstatechange: function onstatechange(e) {
 					var events = [];
 
 					switch (e.data) {
@@ -7337,20 +7337,20 @@ var YouTubeIframeRenderer = {
 							paused = false;
 							ended = !youtube.options.youtube.loop;
 							if (!youtube.options.youtube.loop) {
-								youtube.stopInterval();
+								youtube.stopinterval();
 							}
 							break;
 						case 1:
 							events = ['play', 'playing'];
 							paused = false;
 							ended = false;
-							youtube.startInterval();
+							youtube.startinterval();
 							break;
 						case 2:
 							events = ['pause'];
 							paused = true;
 							ended = false;
-							youtube.stopInterval();
+							youtube.stopinterval();
 							break;
 						case 3:
 							events = ['progress'];
@@ -7364,316 +7364,316 @@ var YouTubeIframeRenderer = {
 					}
 
 					for (var _i5 = 0, _total5 = events.length; _i5 < _total5; _i5++) {
-						var event = (0, _general.createEvent)(events[_i5], youtube);
-						mediaElement.dispatchEvent(event);
+						var event = (0, _general.createevent)(events[_i5], youtube);
+						mediaelement.dispatchevent(event);
 					}
 				},
-				onError: function onError(e) {
-					return errorHandler(e);
+				onerror: function onerror(e) {
+					return errorhandler(e);
 				}
 			}
 		};
 
-		if (isAudio || mediaElement.originalNode.hasAttribute('playsinline')) {
-			youtubeSettings.playerVars.playsinline = 1;
+		if (isaudio || mediaelement.originalnode.hasattribute('playsinline')) {
+			youtubesettings.playervars.playsinline = 1;
 		}
 
-		if (mediaElement.originalNode.controls) {
-			youtubeSettings.playerVars.controls = 1;
+		if (mediaelement.originalnode.controls) {
+			youtubesettings.playervars.controls = 1;
 		}
-		if (mediaElement.originalNode.autoplay) {
-			youtubeSettings.playerVars.autoplay = 1;
+		if (mediaelement.originalnode.autoplay) {
+			youtubesettings.playervars.autoplay = 1;
 		}
-		if (mediaElement.originalNode.loop) {
-			youtubeSettings.playerVars.loop = 1;
-		}
-
-		if ((youtubeSettings.playerVars.loop && parseInt(youtubeSettings.playerVars.loop, 10) === 1 || mediaElement.originalNode.src.indexOf('loop=') > -1) && !youtubeSettings.playerVars.playlist && mediaElement.originalNode.src.indexOf('playlist=') === -1) {
-			youtubeSettings.playerVars.playlist = YouTubeApi.getYouTubeId(mediaElement.originalNode.src);
+		if (mediaelement.originalnode.loop) {
+			youtubesettings.playervars.loop = 1;
 		}
 
-		YouTubeApi.enqueueIframe(youtubeSettings);
+		if ((youtubesettings.playervars.loop && parseint(youtubesettings.playervars.loop, 10) === 1 || mediaelement.originalnode.src.indexof('loop=') > -1) && !youtubesettings.playervars.playlist && mediaelement.originalnode.src.indexof('playlist=') === -1) {
+			youtubesettings.playervars.playlist = youtubeapi.getyoutubeid(mediaelement.originalnode.src);
+		}
 
-		youtube.onEvent = function (eventName, player, _youTubeState) {
-			if (_youTubeState !== null && _youTubeState !== undefined) {
-				mediaElement.youTubeState = _youTubeState;
+		youtubeapi.enqueueiframe(youtubesettings);
+
+		youtube.onevent = function (eventname, player, _youtubestate) {
+			if (_youtubestate !== null && _youtubestate !== undefined) {
+				mediaelement.youtubestate = _youtubestate;
 			}
 		};
 
-		youtube.setSize = function (width, height) {
-			if (youTubeApi !== null) {
-				youTubeApi.setSize(width, height);
+		youtube.setsize = function (width, height) {
+			if (youtubeapi !== null) {
+				youtubeapi.setsize(width, height);
 			}
 		};
 		youtube.hide = function () {
-			youtube.stopInterval();
+			youtube.stopinterval();
 			youtube.pause();
-			if (youTubeIframe) {
-				youTubeIframe.style.display = 'none';
+			if (youtubeiframe) {
+				youtubeiframe.style.display = 'none';
 			}
 		};
 		youtube.show = function () {
-			if (youTubeIframe) {
-				youTubeIframe.style.display = '';
+			if (youtubeiframe) {
+				youtubeiframe.style.display = '';
 			}
 		};
 		youtube.destroy = function () {
-			youTubeApi.destroy();
+			youtubeapi.destroy();
 		};
 		youtube.interval = null;
 
-		youtube.startInterval = function () {
-			youtube.interval = setInterval(function () {
-				var event = (0, _general.createEvent)('timeupdate', youtube);
-				mediaElement.dispatchEvent(event);
+		youtube.startinterval = function () {
+			youtube.interval = setinterval(function () {
+				var event = (0, _general.createevent)('timeupdate', youtube);
+				mediaelement.dispatchevent(event);
 			}, 250);
 		};
-		youtube.stopInterval = function () {
+		youtube.stopinterval = function () {
 			if (youtube.interval) {
-				clearInterval(youtube.interval);
+				clearinterval(youtube.interval);
 			}
 		};
-		youtube.getPosterUrl = function () {
-			var quality = options.youtube.imageQuality,
+		youtube.getposterurl = function () {
+			var quality = options.youtube.imagequality,
 			    resolutions = ['default', 'hqdefault', 'mqdefault', 'sddefault', 'maxresdefault'],
-			    id = YouTubeApi.getYouTubeId(mediaElement.originalNode.src);
-			return quality && resolutions.indexOf(quality) > -1 && id ? 'https://img.youtube.com/vi/' + id + '/' + quality + '.jpg' : '';
+			    id = youtubeapi.getyoutubeid(mediaelement.originalnode.src);
+			return quality && resolutions.indexof(quality) > -1 && id ? 'https://img.youtube.com/vi/' + id + '/' + quality + '.jpg' : '';
 		};
 
 		return youtube;
 	}
 };
 
-_window2.default.onYouTubePlayerAPIReady = function () {
-	YouTubeApi.iFrameReady();
+_window2.default.onyoutubeplayerapiready = function () {
+	youtubeapi.iframeready();
 };
 
-_media.typeChecks.push(function (url) {
+_media.typechecks.push(function (url) {
 	return (/\/\/(www\.youtube|youtu\.?be)/i.test(url) ? 'video/x-youtube' : null
 	);
 });
 
-_renderer.renderer.add(YouTubeIframeRenderer);
+_renderer.renderer.add(youtubeiframerenderer);
 
 },{"2":2,"26":26,"27":27,"28":28,"3":3,"7":7,"8":8}],25:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-exports.cancelFullScreen = exports.requestFullScreen = exports.isFullScreen = exports.FULLSCREEN_EVENT_NAME = exports.HAS_NATIVE_FULLSCREEN_ENABLED = exports.HAS_TRUE_NATIVE_FULLSCREEN = exports.HAS_IOS_FULLSCREEN = exports.HAS_MS_NATIVE_FULLSCREEN = exports.HAS_MOZ_NATIVE_FULLSCREEN = exports.HAS_WEBKIT_NATIVE_FULLSCREEN = exports.HAS_NATIVE_FULLSCREEN = exports.SUPPORTS_NATIVE_HLS = exports.SUPPORT_PASSIVE_EVENT = exports.SUPPORT_POINTER_EVENTS = exports.HAS_MSE = exports.IS_STOCK_ANDROID = exports.IS_SAFARI = exports.IS_FIREFOX = exports.IS_CHROME = exports.IS_EDGE = exports.IS_IE = exports.IS_ANDROID = exports.IS_IOS = exports.IS_IPOD = exports.IS_IPHONE = exports.IS_IPAD = exports.UA = exports.NAV = undefined;
+exports.cancelfullscreen = exports.requestfullscreen = exports.isfullscreen = exports.fullscreen_event_name = exports.has_native_fullscreen_enabled = exports.has_true_native_fullscreen = exports.has_ios_fullscreen = exports.has_ms_native_fullscreen = exports.has_moz_native_fullscreen = exports.has_webkit_native_fullscreen = exports.has_native_fullscreen = exports.supports_native_hls = exports.support_passive_event = exports.support_pointer_events = exports.has_mse = exports.is_stock_android = exports.is_safari = exports.is_firefox = exports.is_chrome = exports.is_edge = exports.is_ie = exports.is_android = exports.is_ios = exports.is_ipod = exports.is_iphone = exports.is_ipad = exports.ua = exports.nav = undefined;
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var NAV = exports.NAV = _window2.default.navigator;
-var UA = exports.UA = NAV.userAgent.toLowerCase();
-var IS_IPAD = exports.IS_IPAD = /ipad/i.test(UA) && !_window2.default.MSStream;
-var IS_IPHONE = exports.IS_IPHONE = /iphone/i.test(UA) && !_window2.default.MSStream;
-var IS_IPOD = exports.IS_IPOD = /ipod/i.test(UA) && !_window2.default.MSStream;
-var IS_IOS = exports.IS_IOS = /ipad|iphone|ipod/i.test(UA) && !_window2.default.MSStream;
-var IS_ANDROID = exports.IS_ANDROID = /android/i.test(UA);
-var IS_IE = exports.IS_IE = /(trident|microsoft)/i.test(NAV.appName);
-var IS_EDGE = exports.IS_EDGE = 'msLaunchUri' in NAV && !('documentMode' in _document2.default);
-var IS_CHROME = exports.IS_CHROME = /chrome/i.test(UA);
-var IS_FIREFOX = exports.IS_FIREFOX = /firefox/i.test(UA);
-var IS_SAFARI = exports.IS_SAFARI = /safari/i.test(UA) && !IS_CHROME;
-var IS_STOCK_ANDROID = exports.IS_STOCK_ANDROID = /^mozilla\/\d+\.\d+\s\(linux;\su;/i.test(UA);
-var HAS_MSE = exports.HAS_MSE = 'MediaSource' in _window2.default;
-var SUPPORT_POINTER_EVENTS = exports.SUPPORT_POINTER_EVENTS = function () {
-	var element = _document2.default.createElement('x'),
-	    documentElement = _document2.default.documentElement,
-	    getComputedStyle = _window2.default.getComputedStyle;
+var nav = exports.nav = _window2.default.navigator;
+var ua = exports.ua = nav.useragent.tolowercase();
+var is_ipad = exports.is_ipad = /ipad/i.test(ua) && !_window2.default.msstream;
+var is_iphone = exports.is_iphone = /iphone/i.test(ua) && !_window2.default.msstream;
+var is_ipod = exports.is_ipod = /ipod/i.test(ua) && !_window2.default.msstream;
+var is_ios = exports.is_ios = /ipad|iphone|ipod/i.test(ua) && !_window2.default.msstream;
+var is_android = exports.is_android = /android/i.test(ua);
+var is_ie = exports.is_ie = /(trident|microsoft)/i.test(nav.appname);
+var is_edge = exports.is_edge = 'mslaunchuri' in nav && !('documentmode' in _document2.default);
+var is_chrome = exports.is_chrome = /chrome/i.test(ua);
+var is_firefox = exports.is_firefox = /firefox/i.test(ua);
+var is_safari = exports.is_safari = /safari/i.test(ua) && !is_chrome;
+var is_stock_android = exports.is_stock_android = /^mozilla\/\d+\.\d+\s\(linux;\su;/i.test(ua);
+var has_mse = exports.has_mse = 'mediasource' in _window2.default;
+var support_pointer_events = exports.support_pointer_events = function () {
+	var element = _document2.default.createelement('x'),
+	    documentelement = _document2.default.documentelement,
+	    getcomputedstyle = _window2.default.getcomputedstyle;
 
-	if (!('pointerEvents' in element.style)) {
+	if (!('pointerevents' in element.style)) {
 		return false;
 	}
 
-	element.style.pointerEvents = 'auto';
-	element.style.pointerEvents = 'x';
-	documentElement.appendChild(element);
-	var supports = getComputedStyle && (getComputedStyle(element, '') || {}).pointerEvents === 'auto';
+	element.style.pointerevents = 'auto';
+	element.style.pointerevents = 'x';
+	documentelement.appendchild(element);
+	var supports = getcomputedstyle && (getcomputedstyle(element, '') || {}).pointerevents === 'auto';
 	element.remove();
 	return !!supports;
 }();
 
-var SUPPORT_PASSIVE_EVENT = exports.SUPPORT_PASSIVE_EVENT = function () {
-	var supportsPassive = false;
+var support_passive_event = exports.support_passive_event = function () {
+	var supportspassive = false;
 	try {
-		var opts = Object.defineProperty({}, 'passive', {
+		var opts = object.defineproperty({}, 'passive', {
 			get: function get() {
-				supportsPassive = true;
+				supportspassive = true;
 			}
 		});
-		_window2.default.addEventListener('test', null, opts);
+		_window2.default.addeventlistener('test', null, opts);
 	} catch (e) {}
 
-	return supportsPassive;
+	return supportspassive;
 }();
 
-var html5Elements = ['source', 'track', 'audio', 'video'];
+var html5elements = ['source', 'track', 'audio', 'video'];
 var video = void 0;
 
-for (var i = 0, total = html5Elements.length; i < total; i++) {
-	video = _document2.default.createElement(html5Elements[i]);
+for (var i = 0, total = html5elements.length; i < total; i++) {
+	video = _document2.default.createelement(html5elements[i]);
 }
 
-var SUPPORTS_NATIVE_HLS = exports.SUPPORTS_NATIVE_HLS = IS_SAFARI || IS_IE && /edge/i.test(UA);
+var supports_native_hls = exports.supports_native_hls = is_safari || is_ie && /edge/i.test(ua);
 
-var hasiOSFullScreen = video.webkitEnterFullscreen !== undefined;
+var hasiosfullscreen = video.webkitenterfullscreen !== undefined;
 
-var hasNativeFullscreen = video.requestFullscreen !== undefined;
+var hasnativefullscreen = video.requestfullscreen !== undefined;
 
-if (hasiOSFullScreen && /mac os x 10_5/i.test(UA)) {
-	hasNativeFullscreen = false;
-	hasiOSFullScreen = false;
+if (hasiosfullscreen && /mac os x 10_5/i.test(ua)) {
+	hasnativefullscreen = false;
+	hasiosfullscreen = false;
 }
 
-var hasWebkitNativeFullScreen = video.webkitRequestFullScreen !== undefined;
-var hasMozNativeFullScreen = video.mozRequestFullScreen !== undefined;
-var hasMsNativeFullScreen = video.msRequestFullscreen !== undefined;
-var hasTrueNativeFullScreen = hasWebkitNativeFullScreen || hasMozNativeFullScreen || hasMsNativeFullScreen;
-var nativeFullScreenEnabled = hasTrueNativeFullScreen;
-var fullScreenEventName = '';
-var isFullScreen = void 0,
-    requestFullScreen = void 0,
-    cancelFullScreen = void 0;
+var haswebkitnativefullscreen = video.webkitrequestfullscreen !== undefined;
+var hasmoznativefullscreen = video.mozrequestfullscreen !== undefined;
+var hasmsnativefullscreen = video.msrequestfullscreen !== undefined;
+var hastruenativefullscreen = haswebkitnativefullscreen || hasmoznativefullscreen || hasmsnativefullscreen;
+var nativefullscreenenabled = hastruenativefullscreen;
+var fullscreeneventname = '';
+var isfullscreen = void 0,
+    requestfullscreen = void 0,
+    cancelfullscreen = void 0;
 
-if (hasMozNativeFullScreen) {
-	nativeFullScreenEnabled = _document2.default.mozFullScreenEnabled;
-} else if (hasMsNativeFullScreen) {
-	nativeFullScreenEnabled = _document2.default.msFullscreenEnabled;
+if (hasmoznativefullscreen) {
+	nativefullscreenenabled = _document2.default.mozfullscreenenabled;
+} else if (hasmsnativefullscreen) {
+	nativefullscreenenabled = _document2.default.msfullscreenenabled;
 }
 
-if (IS_CHROME) {
-	hasiOSFullScreen = false;
+if (is_chrome) {
+	hasiosfullscreen = false;
 }
 
-if (hasTrueNativeFullScreen) {
-	if (hasWebkitNativeFullScreen) {
-		fullScreenEventName = 'webkitfullscreenchange';
-	} else if (hasMozNativeFullScreen) {
-		fullScreenEventName = 'fullscreenchange';
-	} else if (hasMsNativeFullScreen) {
-		fullScreenEventName = 'MSFullscreenChange';
+if (hastruenativefullscreen) {
+	if (haswebkitnativefullscreen) {
+		fullscreeneventname = 'webkitfullscreenchange';
+	} else if (hasmoznativefullscreen) {
+		fullscreeneventname = 'fullscreenchange';
+	} else if (hasmsnativefullscreen) {
+		fullscreeneventname = 'msfullscreenchange';
 	}
 
-	exports.isFullScreen = isFullScreen = function isFullScreen() {
-		if (hasMozNativeFullScreen) {
-			return _document2.default.mozFullScreen;
-		} else if (hasWebkitNativeFullScreen) {
-			return _document2.default.webkitIsFullScreen;
-		} else if (hasMsNativeFullScreen) {
-			return _document2.default.msFullscreenElement !== null;
+	exports.isfullscreen = isfullscreen = function isfullscreen() {
+		if (hasmoznativefullscreen) {
+			return _document2.default.mozfullscreen;
+		} else if (haswebkitnativefullscreen) {
+			return _document2.default.webkitisfullscreen;
+		} else if (hasmsnativefullscreen) {
+			return _document2.default.msfullscreenelement !== null;
 		}
 	};
 
-	exports.requestFullScreen = requestFullScreen = function requestFullScreen(el) {
-		if (hasWebkitNativeFullScreen) {
-			el.webkitRequestFullScreen();
-		} else if (hasMozNativeFullScreen) {
-			el.mozRequestFullScreen();
-		} else if (hasMsNativeFullScreen) {
-			el.msRequestFullscreen();
+	exports.requestfullscreen = requestfullscreen = function requestfullscreen(el) {
+		if (haswebkitnativefullscreen) {
+			el.webkitrequestfullscreen();
+		} else if (hasmoznativefullscreen) {
+			el.mozrequestfullscreen();
+		} else if (hasmsnativefullscreen) {
+			el.msrequestfullscreen();
 		}
 	};
 
-	exports.cancelFullScreen = cancelFullScreen = function cancelFullScreen() {
-		if (hasWebkitNativeFullScreen) {
-			_document2.default.webkitCancelFullScreen();
-		} else if (hasMozNativeFullScreen) {
-			_document2.default.mozCancelFullScreen();
-		} else if (hasMsNativeFullScreen) {
-			_document2.default.msExitFullscreen();
+	exports.cancelfullscreen = cancelfullscreen = function cancelfullscreen() {
+		if (haswebkitnativefullscreen) {
+			_document2.default.webkitcancelfullscreen();
+		} else if (hasmoznativefullscreen) {
+			_document2.default.mozcancelfullscreen();
+		} else if (hasmsnativefullscreen) {
+			_document2.default.msexitfullscreen();
 		}
 	};
 }
 
-var HAS_NATIVE_FULLSCREEN = exports.HAS_NATIVE_FULLSCREEN = hasNativeFullscreen;
-var HAS_WEBKIT_NATIVE_FULLSCREEN = exports.HAS_WEBKIT_NATIVE_FULLSCREEN = hasWebkitNativeFullScreen;
-var HAS_MOZ_NATIVE_FULLSCREEN = exports.HAS_MOZ_NATIVE_FULLSCREEN = hasMozNativeFullScreen;
-var HAS_MS_NATIVE_FULLSCREEN = exports.HAS_MS_NATIVE_FULLSCREEN = hasMsNativeFullScreen;
-var HAS_IOS_FULLSCREEN = exports.HAS_IOS_FULLSCREEN = hasiOSFullScreen;
-var HAS_TRUE_NATIVE_FULLSCREEN = exports.HAS_TRUE_NATIVE_FULLSCREEN = hasTrueNativeFullScreen;
-var HAS_NATIVE_FULLSCREEN_ENABLED = exports.HAS_NATIVE_FULLSCREEN_ENABLED = nativeFullScreenEnabled;
-var FULLSCREEN_EVENT_NAME = exports.FULLSCREEN_EVENT_NAME = fullScreenEventName;
-exports.isFullScreen = isFullScreen;
-exports.requestFullScreen = requestFullScreen;
-exports.cancelFullScreen = cancelFullScreen;
+var has_native_fullscreen = exports.has_native_fullscreen = hasnativefullscreen;
+var has_webkit_native_fullscreen = exports.has_webkit_native_fullscreen = haswebkitnativefullscreen;
+var has_moz_native_fullscreen = exports.has_moz_native_fullscreen = hasmoznativefullscreen;
+var has_ms_native_fullscreen = exports.has_ms_native_fullscreen = hasmsnativefullscreen;
+var has_ios_fullscreen = exports.has_ios_fullscreen = hasiosfullscreen;
+var has_true_native_fullscreen = exports.has_true_native_fullscreen = hastruenativefullscreen;
+var has_native_fullscreen_enabled = exports.has_native_fullscreen_enabled = nativefullscreenenabled;
+var fullscreen_event_name = exports.fullscreen_event_name = fullscreeneventname;
+exports.isfullscreen = isfullscreen;
+exports.requestfullscreen = requestfullscreen;
+exports.cancelfullscreen = cancelfullscreen;
 
 
-_mejs2.default.Features = _mejs2.default.Features || {};
-_mejs2.default.Features.isiPad = IS_IPAD;
-_mejs2.default.Features.isiPod = IS_IPOD;
-_mejs2.default.Features.isiPhone = IS_IPHONE;
-_mejs2.default.Features.isiOS = _mejs2.default.Features.isiPhone || _mejs2.default.Features.isiPad;
-_mejs2.default.Features.isAndroid = IS_ANDROID;
-_mejs2.default.Features.isIE = IS_IE;
-_mejs2.default.Features.isEdge = IS_EDGE;
-_mejs2.default.Features.isChrome = IS_CHROME;
-_mejs2.default.Features.isFirefox = IS_FIREFOX;
-_mejs2.default.Features.isSafari = IS_SAFARI;
-_mejs2.default.Features.isStockAndroid = IS_STOCK_ANDROID;
-_mejs2.default.Features.hasMSE = HAS_MSE;
-_mejs2.default.Features.supportsNativeHLS = SUPPORTS_NATIVE_HLS;
-_mejs2.default.Features.supportsPointerEvents = SUPPORT_POINTER_EVENTS;
-_mejs2.default.Features.supportsPassiveEvent = SUPPORT_PASSIVE_EVENT;
-_mejs2.default.Features.hasiOSFullScreen = HAS_IOS_FULLSCREEN;
-_mejs2.default.Features.hasNativeFullscreen = HAS_NATIVE_FULLSCREEN;
-_mejs2.default.Features.hasWebkitNativeFullScreen = HAS_WEBKIT_NATIVE_FULLSCREEN;
-_mejs2.default.Features.hasMozNativeFullScreen = HAS_MOZ_NATIVE_FULLSCREEN;
-_mejs2.default.Features.hasMsNativeFullScreen = HAS_MS_NATIVE_FULLSCREEN;
-_mejs2.default.Features.hasTrueNativeFullScreen = HAS_TRUE_NATIVE_FULLSCREEN;
-_mejs2.default.Features.nativeFullScreenEnabled = HAS_NATIVE_FULLSCREEN_ENABLED;
-_mejs2.default.Features.fullScreenEventName = FULLSCREEN_EVENT_NAME;
-_mejs2.default.Features.isFullScreen = isFullScreen;
-_mejs2.default.Features.requestFullScreen = requestFullScreen;
-_mejs2.default.Features.cancelFullScreen = cancelFullScreen;
+_mejs2.default.features = _mejs2.default.features || {};
+_mejs2.default.features.isipad = is_ipad;
+_mejs2.default.features.isipod = is_ipod;
+_mejs2.default.features.isiphone = is_iphone;
+_mejs2.default.features.isios = _mejs2.default.features.isiphone || _mejs2.default.features.isipad;
+_mejs2.default.features.isandroid = is_android;
+_mejs2.default.features.isie = is_ie;
+_mejs2.default.features.isedge = is_edge;
+_mejs2.default.features.ischrome = is_chrome;
+_mejs2.default.features.isfirefox = is_firefox;
+_mejs2.default.features.issafari = is_safari;
+_mejs2.default.features.isstockandroid = is_stock_android;
+_mejs2.default.features.hasmse = has_mse;
+_mejs2.default.features.supportsnativehls = supports_native_hls;
+_mejs2.default.features.supportspointerevents = support_pointer_events;
+_mejs2.default.features.supportspassiveevent = support_passive_event;
+_mejs2.default.features.hasiosfullscreen = has_ios_fullscreen;
+_mejs2.default.features.hasnativefullscreen = has_native_fullscreen;
+_mejs2.default.features.haswebkitnativefullscreen = has_webkit_native_fullscreen;
+_mejs2.default.features.hasmoznativefullscreen = has_moz_native_fullscreen;
+_mejs2.default.features.hasmsnativefullscreen = has_ms_native_fullscreen;
+_mejs2.default.features.hastruenativefullscreen = has_true_native_fullscreen;
+_mejs2.default.features.nativefullscreenenabled = has_native_fullscreen_enabled;
+_mejs2.default.features.fullscreeneventname = fullscreen_event_name;
+_mejs2.default.features.isfullscreen = isfullscreen;
+_mejs2.default.features.requestfullscreen = requestfullscreen;
+_mejs2.default.features.cancelfullscreen = cancelfullscreen;
 
 },{"2":2,"3":3,"7":7}],26:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-exports.removeClass = exports.addClass = exports.hasClass = undefined;
-exports.loadScript = loadScript;
+exports.removeclass = exports.addclass = exports.hasclass = undefined;
+exports.loadscript = loadscript;
 exports.offset = offset;
-exports.toggleClass = toggleClass;
-exports.fadeOut = fadeOut;
-exports.fadeIn = fadeIn;
+exports.toggleclass = toggleclass;
+exports.fadeout = fadeout;
+exports.fadein = fadein;
 exports.siblings = siblings;
 exports.visible = visible;
 exports.ajax = ajax;
 
 var _window = _dereq_(3);
 
-var _window2 = _interopRequireDefault(_window);
+var _window2 = _interoprequiredefault(_window);
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function loadScript(url) {
-	return new Promise(function (resolve, reject) {
-		var script = _document2.default.createElement('script');
+function loadscript(url) {
+	return new promise(function (resolve, reject) {
+		var script = _document2.default.createelement('script');
 		script.src = url;
 		script.async = true;
 		script.onload = function () {
@@ -7684,54 +7684,54 @@ function loadScript(url) {
 			script.remove();
 			reject();
 		};
-		_document2.default.head.appendChild(script);
+		_document2.default.head.appendchild(script);
 	});
 }
 
 function offset(el) {
-	var rect = el.getBoundingClientRect(),
-	    scrollLeft = _window2.default.pageXOffset || _document2.default.documentElement.scrollLeft,
-	    scrollTop = _window2.default.pageYOffset || _document2.default.documentElement.scrollTop;
-	return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+	var rect = el.getboundingclientrect(),
+	    scrollleft = _window2.default.pagexoffset || _document2.default.documentelement.scrollleft,
+	    scrolltop = _window2.default.pageyoffset || _document2.default.documentelement.scrolltop;
+	return { top: rect.top + scrolltop, left: rect.left + scrollleft };
 }
 
-var hasClassMethod = void 0,
-    addClassMethod = void 0,
-    removeClassMethod = void 0;
+var hasclassmethod = void 0,
+    addclassmethod = void 0,
+    removeclassmethod = void 0;
 
-if ('classList' in _document2.default.documentElement) {
-	hasClassMethod = function hasClassMethod(el, className) {
-		return el.classList !== undefined && el.classList.contains(className);
+if ('classlist' in _document2.default.documentelement) {
+	hasclassmethod = function hasclassmethod(el, classname) {
+		return el.classlist !== undefined && el.classlist.contains(classname);
 	};
-	addClassMethod = function addClassMethod(el, className) {
-		return el.classList.add(className);
+	addclassmethod = function addclassmethod(el, classname) {
+		return el.classlist.add(classname);
 	};
-	removeClassMethod = function removeClassMethod(el, className) {
-		return el.classList.remove(className);
+	removeclassmethod = function removeclassmethod(el, classname) {
+		return el.classlist.remove(classname);
 	};
 } else {
-	hasClassMethod = function hasClassMethod(el, className) {
-		return new RegExp('\\b' + className + '\\b').test(el.className);
+	hasclassmethod = function hasclassmethod(el, classname) {
+		return new regexp('\\b' + classname + '\\b').test(el.classname);
 	};
-	addClassMethod = function addClassMethod(el, className) {
-		if (!hasClass(el, className)) {
-			el.className += ' ' + className;
+	addclassmethod = function addclassmethod(el, classname) {
+		if (!hasclass(el, classname)) {
+			el.classname += ' ' + classname;
 		}
 	};
-	removeClassMethod = function removeClassMethod(el, className) {
-		el.className = el.className.replace(new RegExp('\\b' + className + '\\b', 'g'), '');
+	removeclassmethod = function removeclassmethod(el, classname) {
+		el.classname = el.classname.replace(new regexp('\\b' + classname + '\\b', 'g'), '');
 	};
 }
 
-var hasClass = exports.hasClass = hasClassMethod;
-var addClass = exports.addClass = addClassMethod;
-var removeClass = exports.removeClass = removeClassMethod;
+var hasclass = exports.hasclass = hasclassmethod;
+var addclass = exports.addclass = addclassmethod;
+var removeclass = exports.removeclass = removeclassmethod;
 
-function toggleClass(el, className) {
-	hasClass(el, className) ? removeClass(el, className) : addClass(el, className);
+function toggleclass(el, classname) {
+	hasclass(el, classname) ? removeclass(el, classname) : addclass(el, classname);
 }
 
-function fadeOut(el) {
+function fadeout(el) {
 	var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 400;
 	var callback = arguments[2];
 
@@ -7740,22 +7740,22 @@ function fadeOut(el) {
 	}
 
 	var start = null;
-	_window2.default.requestAnimationFrame(function animate(timestamp) {
+	_window2.default.requestanimationframe(function animate(timestamp) {
 		start = start || timestamp;
 		var progress = timestamp - start;
-		var opacity = parseFloat(1 - progress / duration, 2);
+		var opacity = parsefloat(1 - progress / duration, 2);
 		el.style.opacity = opacity < 0 ? 0 : opacity;
 		if (progress > duration) {
 			if (callback && typeof callback === 'function') {
 				callback();
 			}
 		} else {
-			_window2.default.requestAnimationFrame(animate);
+			_window2.default.requestanimationframe(animate);
 		}
 	});
 }
 
-function fadeIn(el) {
+function fadein(el) {
 	var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 400;
 	var callback = arguments[2];
 
@@ -7764,47 +7764,47 @@ function fadeIn(el) {
 	}
 
 	var start = null;
-	_window2.default.requestAnimationFrame(function animate(timestamp) {
+	_window2.default.requestanimationframe(function animate(timestamp) {
 		start = start || timestamp;
 		var progress = timestamp - start;
-		var opacity = parseFloat(progress / duration, 2);
+		var opacity = parsefloat(progress / duration, 2);
 		el.style.opacity = opacity > 1 ? 1 : opacity;
 		if (progress > duration) {
 			if (callback && typeof callback === 'function') {
 				callback();
 			}
 		} else {
-			_window2.default.requestAnimationFrame(animate);
+			_window2.default.requestanimationframe(animate);
 		}
 	});
 }
 
 function siblings(el, filter) {
 	var siblings = [];
-	el = el.parentNode.firstChild;
+	el = el.parentnode.firstchild;
 	do {
 		if (!filter || filter(el)) {
 			siblings.push(el);
 		}
-	} while (el = el.nextSibling);
+	} while (el = el.nextsibling);
 	return siblings;
 }
 
 function visible(elem) {
-	if (elem.getClientRects !== undefined && elem.getClientRects === 'function') {
-		return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+	if (elem.getclientrects !== undefined && elem.getclientrects === 'function') {
+		return !!(elem.offsetwidth || elem.offsetheight || elem.getclientrects().length);
 	}
-	return !!(elem.offsetWidth || elem.offsetHeight);
+	return !!(elem.offsetwidth || elem.offsetheight);
 }
 
-function ajax(url, dataType, success, error) {
-	var xhr = _window2.default.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+function ajax(url, datatype, success, error) {
+	var xhr = _window2.default.xmlhttprequest ? new xmlhttprequest() : new activexobject('microsoft.xmlhttp');
 
-	var type = 'application/x-www-form-urlencoded; charset=UTF-8',
+	var type = 'application/x-www-form-urlencoded; charset=utf-8',
 	    completed = false,
 	    accept = '*/'.concat('*');
 
-	switch (dataType) {
+	switch (datatype) {
 		case 'text':
 			type = 'text/plain';
 			break;
@@ -7824,26 +7824,26 @@ function ajax(url, dataType, success, error) {
 	}
 
 	if (xhr) {
-		xhr.open('GET', url, true);
-		xhr.setRequestHeader('Accept', accept);
+		xhr.open('get', url, true);
+		xhr.setrequestheader('accept', accept);
 		xhr.onreadystatechange = function () {
 			if (completed) {
 				return;
 			}
 
-			if (xhr.readyState === 4) {
+			if (xhr.readystate === 4) {
 				if (xhr.status === 200) {
 					completed = true;
 					var data = void 0;
-					switch (dataType) {
+					switch (datatype) {
 						case 'json':
-							data = JSON.parse(xhr.responseText);
+							data = json.parse(xhr.responsetext);
 							break;
 						case 'xml':
-							data = xhr.responseXML;
+							data = xhr.responsexml;
 							break;
 						default:
-							data = xhr.responseText;
+							data = xhr.responsetext;
 							break;
 					}
 					success(data);
@@ -7857,43 +7857,43 @@ function ajax(url, dataType, success, error) {
 	}
 }
 
-_mejs2.default.Utils = _mejs2.default.Utils || {};
-_mejs2.default.Utils.offset = offset;
-_mejs2.default.Utils.hasClass = hasClass;
-_mejs2.default.Utils.addClass = addClass;
-_mejs2.default.Utils.removeClass = removeClass;
-_mejs2.default.Utils.toggleClass = toggleClass;
-_mejs2.default.Utils.fadeIn = fadeIn;
-_mejs2.default.Utils.fadeOut = fadeOut;
-_mejs2.default.Utils.siblings = siblings;
-_mejs2.default.Utils.visible = visible;
-_mejs2.default.Utils.ajax = ajax;
-_mejs2.default.Utils.loadScript = loadScript;
+_mejs2.default.utils = _mejs2.default.utils || {};
+_mejs2.default.utils.offset = offset;
+_mejs2.default.utils.hasclass = hasclass;
+_mejs2.default.utils.addclass = addclass;
+_mejs2.default.utils.removeclass = removeclass;
+_mejs2.default.utils.toggleclass = toggleclass;
+_mejs2.default.utils.fadein = fadein;
+_mejs2.default.utils.fadeout = fadeout;
+_mejs2.default.utils.siblings = siblings;
+_mejs2.default.utils.visible = visible;
+_mejs2.default.utils.ajax = ajax;
+_mejs2.default.utils.loadscript = loadscript;
 
 },{"2":2,"3":3,"7":7}],27:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-exports.escapeHTML = escapeHTML;
+exports.escapehtml = escapehtml;
 exports.debounce = debounce;
-exports.isObjectEmpty = isObjectEmpty;
-exports.splitEvents = splitEvents;
-exports.createEvent = createEvent;
-exports.isNodeAfter = isNodeAfter;
-exports.isString = isString;
+exports.isobjectempty = isobjectempty;
+exports.splitevents = splitevents;
+exports.createevent = createevent;
+exports.isnodeafter = isnodeafter;
+exports.isstring = isstring;
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function escapeHTML(input) {
+function escapehtml(input) {
 
 	if (typeof input !== 'string') {
-		throw new Error('Argument passed must be a string');
+		throw new error('argument passed must be a string');
 	}
 
 	var map = {
@@ -7916,11 +7916,11 @@ function debounce(func, wait) {
 
 
 	if (typeof func !== 'function') {
-		throw new Error('First argument must be a function');
+		throw new error('first argument must be a function');
 	}
 
 	if (typeof wait !== 'number') {
-		throw new Error('Second argument must be a numeric value');
+		throw new error('second argument must be a numeric value');
 	}
 
 	var timeout = void 0;
@@ -7933,32 +7933,32 @@ function debounce(func, wait) {
 				func.apply(context, args);
 			}
 		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
+		var callnow = immediate && !timeout;
+		cleartimeout(timeout);
+		timeout = settimeout(later, wait);
 
-		if (callNow) {
+		if (callnow) {
 			func.apply(context, args);
 		}
 	};
 }
 
-function isObjectEmpty(instance) {
-	return Object.getOwnPropertyNames(instance).length <= 0;
+function isobjectempty(instance) {
+	return object.getownpropertynames(instance).length <= 0;
 }
 
-function splitEvents(events, id) {
+function splitevents(events, id) {
 	var rwindow = /^((after|before)print|(before)?unload|hashchange|message|o(ff|n)line|page(hide|show)|popstate|resize|storage)\b/;
 
 	var ret = { d: [], w: [] };
-	(events || '').split(' ').forEach(function (v) {
-		var eventName = '' + v + (id ? '.' + id : '');
+	(events || '').split(' ').foreach(function (v) {
+		var eventname = '' + v + (id ? '.' + id : '');
 
-		if (eventName.startsWith('.')) {
-			ret.d.push(eventName);
-			ret.w.push(eventName);
+		if (eventname.startswith('.')) {
+			ret.d.push(eventname);
+			ret.w.push(eventname);
 		} else {
-			ret[rwindow.test(v) ? 'w' : 'd'].push(eventName);
+			ret[rwindow.test(v) ? 'w' : 'd'].push(eventname);
 		}
 	});
 
@@ -7967,142 +7967,142 @@ function splitEvents(events, id) {
 	return ret;
 }
 
-function createEvent(eventName, target) {
+function createevent(eventname, target) {
 
-	if (typeof eventName !== 'string') {
-		throw new Error('Event name must be a string');
+	if (typeof eventname !== 'string') {
+		throw new error('event name must be a string');
 	}
 
-	var eventFrags = eventName.match(/([a-z]+\.([a-z]+))/i),
+	var eventfrags = eventname.match(/([a-z]+\.([a-z]+))/i),
 	    detail = {
 		target: target
 	};
 
-	if (eventFrags !== null) {
-		eventName = eventFrags[1];
-		detail.namespace = eventFrags[2];
+	if (eventfrags !== null) {
+		eventname = eventfrags[1];
+		detail.namespace = eventfrags[2];
 	}
 
-	return new window.CustomEvent(eventName, {
+	return new window.customevent(eventname, {
 		detail: detail
 	});
 }
 
-function isNodeAfter(sourceNode, targetNode) {
+function isnodeafter(sourcenode, targetnode) {
 
-	return !!(sourceNode && targetNode && sourceNode.compareDocumentPosition(targetNode) & 2);
+	return !!(sourcenode && targetnode && sourcenode.comparedocumentposition(targetnode) & 2);
 }
 
-function isString(value) {
+function isstring(value) {
 	return typeof value === 'string';
 }
 
-_mejs2.default.Utils = _mejs2.default.Utils || {};
-_mejs2.default.Utils.escapeHTML = escapeHTML;
-_mejs2.default.Utils.debounce = debounce;
-_mejs2.default.Utils.isObjectEmpty = isObjectEmpty;
-_mejs2.default.Utils.splitEvents = splitEvents;
-_mejs2.default.Utils.createEvent = createEvent;
-_mejs2.default.Utils.isNodeAfter = isNodeAfter;
-_mejs2.default.Utils.isString = isString;
+_mejs2.default.utils = _mejs2.default.utils || {};
+_mejs2.default.utils.escapehtml = escapehtml;
+_mejs2.default.utils.debounce = debounce;
+_mejs2.default.utils.isobjectempty = isobjectempty;
+_mejs2.default.utils.splitevents = splitevents;
+_mejs2.default.utils.createevent = createevent;
+_mejs2.default.utils.isnodeafter = isnodeafter;
+_mejs2.default.utils.isstring = isstring;
 
 },{"7":7}],28:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-exports.typeChecks = undefined;
-exports.absolutizeUrl = absolutizeUrl;
-exports.formatType = formatType;
-exports.getMimeFromType = getMimeFromType;
-exports.getTypeFromFile = getTypeFromFile;
-exports.getExtension = getExtension;
-exports.normalizeExtension = normalizeExtension;
+exports.typechecks = undefined;
+exports.absolutizeurl = absolutizeurl;
+exports.formattype = formattype;
+exports.getmimefromtype = getmimefromtype;
+exports.gettypefromfile = gettypefromfile;
+exports.getextension = getextension;
+exports.normalizeextension = normalizeextension;
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
 var _general = _dereq_(27);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-var typeChecks = exports.typeChecks = [];
+var typechecks = exports.typechecks = [];
 
-function absolutizeUrl(url) {
+function absolutizeurl(url) {
 
 	if (typeof url !== 'string') {
-		throw new Error('`url` argument must be a string');
+		throw new error('`url` argument must be a string');
 	}
 
-	var el = document.createElement('div');
-	el.innerHTML = '<a href="' + (0, _general.escapeHTML)(url) + '">x</a>';
-	return el.firstChild.href;
+	var el = document.createelement('div');
+	el.innerhtml = '<a href="' + (0, _general.escapehtml)(url) + '">x</a>';
+	return el.firstchild.href;
 }
 
-function formatType(url) {
+function formattype(url) {
 	var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-	return url && !type ? getTypeFromFile(url) : type;
+	return url && !type ? gettypefromfile(url) : type;
 }
 
-function getMimeFromType(type) {
+function getmimefromtype(type) {
 
 	if (typeof type !== 'string') {
-		throw new Error('`type` argument must be a string');
+		throw new error('`type` argument must be a string');
 	}
 
-	return type && type.indexOf(';') > -1 ? type.substr(0, type.indexOf(';')) : type;
+	return type && type.indexof(';') > -1 ? type.substr(0, type.indexof(';')) : type;
 }
 
-function getTypeFromFile(url) {
+function gettypefromfile(url) {
 
 	if (typeof url !== 'string') {
-		throw new Error('`url` argument must be a string');
+		throw new error('`url` argument must be a string');
 	}
 
-	for (var i = 0, total = typeChecks.length; i < total; i++) {
-		var type = typeChecks[i](url);
+	for (var i = 0, total = typechecks.length; i < total; i++) {
+		var type = typechecks[i](url);
 
 		if (type) {
 			return type;
 		}
 	}
 
-	var ext = getExtension(url),
-	    normalizedExt = normalizeExtension(ext);
+	var ext = getextension(url),
+	    normalizedext = normalizeextension(ext);
 
 	var mime = 'video/mp4';
 
-	if (normalizedExt) {
-		if (~['mp4', 'm4v', 'ogg', 'ogv', 'webm', 'flv', 'mpeg'].indexOf(normalizedExt)) {
-			mime = 'video/' + normalizedExt;
-		} else if ('mov' === normalizedExt) {
+	if (normalizedext) {
+		if (~['mp4', 'm4v', 'ogg', 'ogv', 'webm', 'flv', 'mpeg'].indexof(normalizedext)) {
+			mime = 'video/' + normalizedext;
+		} else if ('mov' === normalizedext) {
 			mime = 'video/quicktime';
-		} else if (~['mp3', 'oga', 'wav', 'mid', 'midi'].indexOf(normalizedExt)) {
-			mime = 'audio/' + normalizedExt;
+		} else if (~['mp3', 'oga', 'wav', 'mid', 'midi'].indexof(normalizedext)) {
+			mime = 'audio/' + normalizedext;
 		}
 	}
 
 	return mime;
 }
 
-function getExtension(url) {
+function getextension(url) {
 
 	if (typeof url !== 'string') {
-		throw new Error('`url` argument must be a string');
+		throw new error('`url` argument must be a string');
 	}
 
-	var baseUrl = url.split('?')[0],
-	    baseName = baseUrl.split('\\').pop().split('/').pop();
-	return ~baseName.indexOf('.') ? baseName.substring(baseName.lastIndexOf('.') + 1) : '';
+	var baseurl = url.split('?')[0],
+	    basename = baseurl.split('\\').pop().split('/').pop();
+	return ~basename.indexof('.') ? basename.substring(basename.lastindexof('.') + 1) : '';
 }
 
-function normalizeExtension(extension) {
+function normalizeextension(extension) {
 
 	if (typeof extension !== 'string') {
-		throw new Error('`extension` argument must be a string');
+		throw new error('`extension` argument must be a string');
 	}
 
 	switch (extension) {
@@ -8122,77 +8122,77 @@ function normalizeExtension(extension) {
 	}
 }
 
-_mejs2.default.Utils = _mejs2.default.Utils || {};
-_mejs2.default.Utils.typeChecks = typeChecks;
-_mejs2.default.Utils.absolutizeUrl = absolutizeUrl;
-_mejs2.default.Utils.formatType = formatType;
-_mejs2.default.Utils.getMimeFromType = getMimeFromType;
-_mejs2.default.Utils.getTypeFromFile = getTypeFromFile;
-_mejs2.default.Utils.getExtension = getExtension;
-_mejs2.default.Utils.normalizeExtension = normalizeExtension;
+_mejs2.default.utils = _mejs2.default.utils || {};
+_mejs2.default.utils.typechecks = typechecks;
+_mejs2.default.utils.absolutizeurl = absolutizeurl;
+_mejs2.default.utils.formattype = formattype;
+_mejs2.default.utils.getmimefromtype = getmimefromtype;
+_mejs2.default.utils.gettypefromfile = gettypefromfile;
+_mejs2.default.utils.getextension = getextension;
+_mejs2.default.utils.normalizeextension = normalizeextension;
 
 },{"27":27,"7":7}],29:[function(_dereq_,module,exports){
 'use strict';
 
 var _document = _dereq_(2);
 
-var _document2 = _interopRequireDefault(_document);
+var _document2 = _interoprequiredefault(_document);
 
-var _promisePolyfill = _dereq_(4);
+var _promisepolyfill = _dereq_(4);
 
-var _promisePolyfill2 = _interopRequireDefault(_promisePolyfill);
+var _promisepolyfill2 = _interoprequiredefault(_promisepolyfill);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
 (function (arr) {
-	arr.forEach(function (item) {
-		if (item.hasOwnProperty('remove')) {
+	arr.foreach(function (item) {
+		if (item.hasownproperty('remove')) {
 			return;
 		}
-		Object.defineProperty(item, 'remove', {
+		object.defineproperty(item, 'remove', {
 			configurable: true,
 			enumerable: true,
 			writable: true,
 			value: function remove() {
-				this.parentNode.removeChild(this);
+				this.parentnode.removechild(this);
 			}
 		});
 	});
-})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+})([element.prototype, characterdata.prototype, documenttype.prototype]);
 
 (function () {
 
-	if (typeof window.CustomEvent === 'function') {
+	if (typeof window.customevent === 'function') {
 		return false;
 	}
 
-	function CustomEvent(event, params) {
+	function customevent(event, params) {
 		params = params || { bubbles: false, cancelable: false, detail: undefined };
-		var evt = _document2.default.createEvent('CustomEvent');
-		evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+		var evt = _document2.default.createevent('customevent');
+		evt.initcustomevent(event, params.bubbles, params.cancelable, params.detail);
 		return evt;
 	}
 
-	CustomEvent.prototype = window.Event.prototype;
-	window.CustomEvent = CustomEvent;
+	customevent.prototype = window.event.prototype;
+	window.customevent = customevent;
 })();
 
-if (typeof Object.assign !== 'function') {
-	Object.assign = function (target) {
+if (typeof object.assign !== 'function') {
+	object.assign = function (target) {
 
 		if (target === null || target === undefined) {
-			throw new TypeError('Cannot convert undefined or null to object');
+			throw new typeerror('cannot convert undefined or null to object');
 		}
 
-		var to = Object(target);
+		var to = object(target);
 
 		for (var index = 1, total = arguments.length; index < total; index++) {
-			var nextSource = arguments[index];
+			var nextsource = arguments[index];
 
-			if (nextSource !== null) {
-				for (var nextKey in nextSource) {
-					if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-						to[nextKey] = nextSource[nextKey];
+			if (nextsource !== null) {
+				for (var nextkey in nextsource) {
+					if (object.prototype.hasownproperty.call(nextsource, nextkey)) {
+						to[nextkey] = nextsource[nextkey];
 					}
 				}
 			}
@@ -8201,80 +8201,80 @@ if (typeof Object.assign !== 'function') {
 	};
 }
 
-if (!String.prototype.startsWith) {
-	String.prototype.startsWith = function (searchString, position) {
+if (!string.prototype.startswith) {
+	string.prototype.startswith = function (searchstring, position) {
 		position = position || 0;
-		return this.substr(position, searchString.length) === searchString;
+		return this.substr(position, searchstring.length) === searchstring;
 	};
 }
 
-if (!Element.prototype.matches) {
-	Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
-		var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+if (!element.prototype.matches) {
+	element.prototype.matches = element.prototype.matchesselector || element.prototype.mozmatchesselector || element.prototype.msmatchesselector || element.prototype.omatchesselector || element.prototype.webkitmatchesselector || function (s) {
+		var matches = (this.document || this.ownerdocument).queryselectorall(s),
 		    i = matches.length - 1;
 		while (--i >= 0 && matches.item(i) !== this) {}
 		return i > -1;
 	};
 }
 
-if (window.Element && !Element.prototype.closest) {
-	Element.prototype.closest = function (s) {
-		var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+if (window.element && !element.prototype.closest) {
+	element.prototype.closest = function (s) {
+		var matches = (this.document || this.ownerdocument).queryselectorall(s),
 		    i = void 0,
 		    el = this;
 		do {
 			i = matches.length;
 			while (--i >= 0 && matches.item(i) !== el) {}
-		} while (i < 0 && (el = el.parentElement));
+		} while (i < 0 && (el = el.parentelement));
 		return el;
 	};
 }
 
 (function () {
-	var lastTime = 0;
+	var lasttime = 0;
 	var vendors = ['ms', 'moz', 'webkit', 'o'];
-	for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-		window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-		window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+	for (var x = 0; x < vendors.length && !window.requestanimationframe; ++x) {
+		window.requestanimationframe = window[vendors[x] + 'requestanimationframe'];
+		window.cancelanimationframe = window[vendors[x] + 'cancelanimationframe'] || window[vendors[x] + 'cancelrequestanimationframe'];
 	}
 
-	if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback) {
-		var currTime = new Date().getTime();
-		var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-		var id = window.setTimeout(function () {
-			callback(currTime + timeToCall);
-		}, timeToCall);
-		lastTime = currTime + timeToCall;
+	if (!window.requestanimationframe) window.requestanimationframe = function (callback) {
+		var currtime = new date().gettime();
+		var timetocall = math.max(0, 16 - (currtime - lasttime));
+		var id = window.settimeout(function () {
+			callback(currtime + timetocall);
+		}, timetocall);
+		lasttime = currtime + timetocall;
 		return id;
 	};
 
-	if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
-		clearTimeout(id);
+	if (!window.cancelanimationframe) window.cancelanimationframe = function (id) {
+		cleartimeout(id);
 	};
 })();
 
-if (/firefox/i.test(navigator.userAgent)) {
-	var getComputedStyle = window.getComputedStyle;
-	window.getComputedStyle = function (el, pseudoEl) {
-		var t = getComputedStyle(el, pseudoEl);
-		return t === null ? { getPropertyValue: function getPropertyValue() {} } : t;
+if (/firefox/i.test(navigator.useragent)) {
+	var getcomputedstyle = window.getcomputedstyle;
+	window.getcomputedstyle = function (el, pseudoel) {
+		var t = getcomputedstyle(el, pseudoel);
+		return t === null ? { getpropertyvalue: function getpropertyvalue() {} } : t;
 	};
 }
 
-if (!window.Promise) {
-	window.Promise = _promisePolyfill2.default;
+if (!window.promise) {
+	window.promise = _promisepolyfill2.default;
 }
 
 (function (constructor) {
 	if (constructor && constructor.prototype && constructor.prototype.children === null) {
-		Object.defineProperty(constructor.prototype, 'children', {
+		object.defineproperty(constructor.prototype, 'children', {
 			get: function get() {
 				var i = 0,
 				    node = void 0,
-				    nodes = this.childNodes,
+				    nodes = this.childnodes,
 				    children = [];
 				while (node = nodes[i++]) {
-					if (node.nodeType === 1) {
+					if (node.nodetype === 1) {
 						children.push(node);
 					}
 				}
@@ -8282,84 +8282,84 @@ if (!window.Promise) {
 			}
 		});
 	}
-})(window.Node || window.Element);
+})(window.node || window.element);
 
 },{"2":2,"4":4}],30:[function(_dereq_,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+object.defineproperty(exports, "__esmodule", {
 	value: true
 });
-exports.isDropFrame = isDropFrame;
-exports.secondsToTimeCode = secondsToTimeCode;
-exports.timeCodeToSeconds = timeCodeToSeconds;
-exports.calculateTimeFormat = calculateTimeFormat;
-exports.convertSMPTEtoSeconds = convertSMPTEtoSeconds;
+exports.isdropframe = isdropframe;
+exports.secondstotimecode = secondstotimecode;
+exports.timecodetoseconds = timecodetoseconds;
+exports.calculatetimeformat = calculatetimeformat;
+exports.convertsmptetoseconds = convertsmptetoseconds;
 
 var _mejs = _dereq_(7);
 
-var _mejs2 = _interopRequireDefault(_mejs);
+var _mejs2 = _interoprequiredefault(_mejs);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interoprequiredefault(obj) { return obj && obj.__esmodule ? obj : { default: obj }; }
 
-function isDropFrame() {
+function isdropframe() {
 	var fps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 25;
 
 	return !(fps % 1 === 0);
 }
-function secondsToTimeCode(time) {
-	var forceHours = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-	var showFrameCount = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+function secondstotimecode(time) {
+	var forcehours = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+	var showframecount = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 	var fps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 25;
-	var secondsDecimalLength = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
-	var timeFormat = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'hh:mm:ss';
+	var secondsdecimallength = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+	var timeformat = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'hh:mm:ss';
 
 
 	time = !time || typeof time !== 'number' || time < 0 ? 0 : time;
 
-	var dropFrames = Math.round(fps * 0.066666),
-	    timeBase = Math.round(fps),
-	    framesPer24Hours = Math.round(fps * 3600) * 24,
-	    framesPer10Minutes = Math.round(fps * 600),
-	    frameSep = isDropFrame(fps) ? ';' : ':',
+	var dropframes = math.round(fps * 0.066666),
+	    timebase = math.round(fps),
+	    framesper24hours = math.round(fps * 3600) * 24,
+	    framesper10minutes = math.round(fps * 600),
+	    framesep = isdropframe(fps) ? ';' : ':',
 	    hours = void 0,
 	    minutes = void 0,
 	    seconds = void 0,
 	    frames = void 0,
-	    f = Math.round(time * fps);
+	    f = math.round(time * fps);
 
-	if (isDropFrame(fps)) {
+	if (isdropframe(fps)) {
 
 		if (f < 0) {
-			f = framesPer24Hours + f;
+			f = framesper24hours + f;
 		}
 
-		f = f % framesPer24Hours;
+		f = f % framesper24hours;
 
-		var d = Math.floor(f / framesPer10Minutes);
-		var m = f % framesPer10Minutes;
-		f = f + dropFrames * 9 * d;
-		if (m > dropFrames) {
-			f = f + dropFrames * Math.floor((m - dropFrames) / Math.round(timeBase * 60 - dropFrames));
+		var d = math.floor(f / framesper10minutes);
+		var m = f % framesper10minutes;
+		f = f + dropframes * 9 * d;
+		if (m > dropframes) {
+			f = f + dropframes * math.floor((m - dropframes) / math.round(timebase * 60 - dropframes));
 		}
 
-		var timeBaseDivision = Math.floor(f / timeBase);
+		var timebasedivision = math.floor(f / timebase);
 
-		hours = Math.floor(Math.floor(timeBaseDivision / 60) / 60);
-		minutes = Math.floor(timeBaseDivision / 60) % 60;
+		hours = math.floor(math.floor(timebasedivision / 60) / 60);
+		minutes = math.floor(timebasedivision / 60) % 60;
 
-		if (showFrameCount) {
-			seconds = timeBaseDivision % 60;
+		if (showframecount) {
+			seconds = timebasedivision % 60;
 		} else {
-			seconds = Math.floor(f / timeBase % 60).toFixed(secondsDecimalLength);
+			seconds = math.floor(f / timebase % 60).tofixed(secondsdecimallength);
 		}
 	} else {
-		hours = Math.floor(time / 3600) % 24;
-		minutes = Math.floor(time / 60) % 60;
-		if (showFrameCount) {
-			seconds = Math.floor(time % 60);
+		hours = math.floor(time / 3600) % 24;
+		minutes = math.floor(time / 60) % 60;
+		if (showframecount) {
+			seconds = math.floor(time % 60);
 		} else {
-			seconds = Math.floor(time % 60).toFixed(secondsDecimalLength);
+			seconds = math.floor(time % 60).tofixed(secondsdecimallength);
 		}
 	}
 	hours = hours <= 0 ? 0 : hours;
@@ -8369,47 +8369,47 @@ function secondsToTimeCode(time) {
 	seconds = seconds === 60 ? 0 : seconds;
 	minutes = minutes === 60 ? 0 : minutes;
 
-	var timeFormatFrags = timeFormat.split(':');
-	var timeFormatSettings = {};
-	for (var i = 0, total = timeFormatFrags.length; i < total; ++i) {
+	var timeformatfrags = timeformat.split(':');
+	var timeformatsettings = {};
+	for (var i = 0, total = timeformatfrags.length; i < total; ++i) {
 		var unique = '';
-		for (var j = 0, t = timeFormatFrags[i].length; j < t; j++) {
-			if (unique.indexOf(timeFormatFrags[i][j]) < 0) {
-				unique += timeFormatFrags[i][j];
+		for (var j = 0, t = timeformatfrags[i].length; j < t; j++) {
+			if (unique.indexof(timeformatfrags[i][j]) < 0) {
+				unique += timeformatfrags[i][j];
 			}
 		}
-		if (~['f', 's', 'm', 'h'].indexOf(unique)) {
-			timeFormatSettings[unique] = timeFormatFrags[i].length;
+		if (~['f', 's', 'm', 'h'].indexof(unique)) {
+			timeformatsettings[unique] = timeformatfrags[i].length;
 		}
 	}
 
-	var result = forceHours || hours > 0 ? (hours < 10 && timeFormatSettings.h > 1 ? '0' + hours : hours) + ':' : '';
-	result += (minutes < 10 && timeFormatSettings.m > 1 ? '0' + minutes : minutes) + ':';
-	result += '' + (seconds < 10 && timeFormatSettings.s > 1 ? '0' + seconds : seconds);
+	var result = forcehours || hours > 0 ? (hours < 10 && timeformatsettings.h > 1 ? '0' + hours : hours) + ':' : '';
+	result += (minutes < 10 && timeformatsettings.m > 1 ? '0' + minutes : minutes) + ':';
+	result += '' + (seconds < 10 && timeformatsettings.s > 1 ? '0' + seconds : seconds);
 
-	if (showFrameCount) {
-		frames = (f % timeBase).toFixed(0);
+	if (showframecount) {
+		frames = (f % timebase).tofixed(0);
 		frames = frames <= 0 ? 0 : frames;
-		result += frames < 10 && timeFormatSettings.f ? frameSep + '0' + frames : '' + frameSep + frames;
+		result += frames < 10 && timeformatsettings.f ? framesep + '0' + frames : '' + framesep + frames;
 	}
 
 	return result;
 }
 
-function timeCodeToSeconds(time) {
+function timecodetoseconds(time) {
 	var fps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 25;
 
 
 	if (typeof time !== 'string') {
-		throw new TypeError('Time must be a string');
+		throw new typeerror('time must be a string');
 	}
 
-	if (time.indexOf(';') > 0) {
+	if (time.indexof(';') > 0) {
 		time = time.replace(';', ':');
 	}
 
 	if (!/\d{2}(\:\d{2}){0,3}/i.test(time)) {
-		throw new TypeError('Time code must have the format `00:00:00`');
+		throw new typeerror('time code must have the format `00:00:00`');
 	}
 
 	var parts = time.split(':');
@@ -8419,122 +8419,124 @@ function timeCodeToSeconds(time) {
 	    minutes = 0,
 	    seconds = 0,
 	    frames = 0,
-	    totalMinutes = 0,
-	    dropFrames = Math.round(fps * 0.066666),
-	    timeBase = Math.round(fps),
-	    hFrames = timeBase * 3600,
-	    mFrames = timeBase * 60;
+	    totalminutes = 0,
+	    dropframes = math.round(fps * 0.066666),
+	    timebase = math.round(fps),
+	    hframes = timebase * 3600,
+	    mframes = timebase * 60;
 
 	switch (parts.length) {
 		default:
 		case 1:
-			seconds = parseInt(parts[0], 10);
+			seconds = parseint(parts[0], 10);
 			break;
 		case 2:
-			minutes = parseInt(parts[0], 10);
-			seconds = parseInt(parts[1], 10);
+			minutes = parseint(parts[0], 10);
+			seconds = parseint(parts[1], 10);
 			break;
 		case 3:
-			hours = parseInt(parts[0], 10);
-			minutes = parseInt(parts[1], 10);
-			seconds = parseInt(parts[2], 10);
+			hours = parseint(parts[0], 10);
+			minutes = parseint(parts[1], 10);
+			seconds = parseint(parts[2], 10);
 			break;
 		case 4:
-			hours = parseInt(parts[0], 10);
-			minutes = parseInt(parts[1], 10);
-			seconds = parseInt(parts[2], 10);
-			frames = parseInt(parts[3], 10);
+			hours = parseint(parts[0], 10);
+			minutes = parseint(parts[1], 10);
+			seconds = parseint(parts[2], 10);
+			frames = parseint(parts[3], 10);
 			break;
 	}
 
-	if (isDropFrame(fps)) {
-		totalMinutes = 60 * hours + minutes;
-		output = hFrames * hours + mFrames * minutes + timeBase * seconds + frames - dropFrames * (totalMinutes - Math.floor(totalMinutes / 10));
+	if (isdropframe(fps)) {
+		totalminutes = 60 * hours + minutes;
+		output = hframes * hours + mframes * minutes + timebase * seconds + frames - dropframes * (totalminutes - math.floor(totalminutes / 10));
 	} else {
-		output = (hFrames * hours + mFrames * minutes + fps * seconds + frames) / fps;
+		output = (hframes * hours + mframes * minutes + fps * seconds + frames) / fps;
 	}
 
-	return parseFloat(output.toFixed(3));
+	return parsefloat(output.tofixed(3));
 }
 
-function calculateTimeFormat(time, options) {
+function calculatetimeformat(time, options) {
 	var fps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 25;
 
 
 	time = !time || typeof time !== 'number' || time < 0 ? 0 : time;
 
-	var hours = Math.floor(time / 3600) % 24,
-	    minutes = Math.floor(time / 60) % 60,
-	    seconds = Math.floor(time % 60),
-	    frames = Math.floor((time % 1 * fps).toFixed(3)),
+	var hours = math.floor(time / 3600) % 24,
+	    minutes = math.floor(time / 60) % 60,
+	    seconds = math.floor(time % 60),
+	    frames = math.floor((time % 1 * fps).tofixed(3)),
 	    lis = [[frames, 'f'], [seconds, 's'], [minutes, 'm'], [hours, 'h']];
 
-	var format = options.timeFormat,
-	    firstTwoPlaces = format[1] === format[0],
-	    separatorIndex = firstTwoPlaces ? 2 : 1,
-	    separator = format.length < separatorIndex ? format[separatorIndex] : ':',
-	    firstChar = format[0],
+	var format = options.timeformat,
+	    firsttwoplaces = format[1] === format[0],
+	    separatorindex = firsttwoplaces ? 2 : 1,
+	    separator = format.length < separatorindex ? format[separatorindex] : ':',
+	    firstchar = format[0],
 	    required = false;
 
 	for (var i = 0, len = lis.length; i < len; i++) {
-		if (~format.indexOf(lis[i][1])) {
+		if (~format.indexof(lis[i][1])) {
 			required = true;
 		} else if (required) {
-			var hasNextValue = false;
+			var hasnextvalue = false;
 			for (var j = i; j < len; j++) {
 				if (lis[j][0] > 0) {
-					hasNextValue = true;
+					hasnextvalue = true;
 					break;
 				}
 			}
 
-			if (!hasNextValue) {
+			if (!hasnextvalue) {
 				break;
 			}
 
-			if (!firstTwoPlaces) {
-				format = firstChar + format;
+			if (!firsttwoplaces) {
+				format = firstchar + format;
 			}
 			format = lis[i][1] + separator + format;
-			if (firstTwoPlaces) {
+			if (firsttwoplaces) {
 				format = lis[i][1] + format;
 			}
-			firstChar = lis[i][1];
+			firstchar = lis[i][1];
 		}
 	}
 
-	options.timeFormat = format;
+	options.timeformat = format;
 }
 
-function convertSMPTEtoSeconds(SMPTE) {
+function convertsmptetoseconds(smpte) {
 
-	if (typeof SMPTE !== 'string') {
-		throw new TypeError('Argument must be a string value');
+	if (typeof smpte !== 'string') {
+		throw new typeerror('argument must be a string value');
 	}
 
-	SMPTE = SMPTE.replace(',', '.');
+	smpte = smpte.replace(',', '.');
 
-	var decimalLen = ~SMPTE.indexOf('.') ? SMPTE.split('.')[1].length : 0;
+	var decimallen = ~smpte.indexof('.') ? smpte.split('.')[1].length : 0;
 
 	var secs = 0,
 	    multiplier = 1;
 
-	SMPTE = SMPTE.split(':').reverse();
+	smpte = smpte.split(':').reverse();
 
-	for (var i = 0, total = SMPTE.length; i < total; i++) {
+	for (var i = 0, total = smpte.length; i < total; i++) {
 		multiplier = 1;
 		if (i > 0) {
-			multiplier = Math.pow(60, i);
+			multiplier = math.pow(60, i);
 		}
-		secs += Number(SMPTE[i]) * multiplier;
+		secs += number(smpte[i]) * multiplier;
 	}
-	return Number(secs.toFixed(decimalLen));
+	return number(secs.tofixed(decimallen));
 }
 
-_mejs2.default.Utils = _mejs2.default.Utils || {};
-_mejs2.default.Utils.secondsToTimeCode = secondsToTimeCode;
-_mejs2.default.Utils.timeCodeToSeconds = timeCodeToSeconds;
-_mejs2.default.Utils.calculateTimeFormat = calculateTimeFormat;
-_mejs2.default.Utils.convertSMPTEtoSeconds = convertSMPTEtoSeconds;
+_mejs2.default.utils = _mejs2.default.utils || {};
+_mejs2.default.utils.secondstotimecode = secondstotimecode;
+_mejs2.default.utils.timecodetoseconds = timecodetoseconds;
+_mejs2.default.utils.calculatetimeformat = calculatetimeformat;
+_mejs2.default.utils.convertsmptetoseconds = convertsmptetoseconds;
 
 },{"7":7}]},{},[29,6,5,15,23,20,19,21,22,24,16,18,17,9,10,11,12,13,14]);
+
+

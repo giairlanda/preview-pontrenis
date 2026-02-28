@@ -1,16 +1,16 @@
-// JSHINT has some GPL Compatability issues, so we are faking it out and using esprima for validation
-// Based on https://github.com/jquery/esprima/blob/gh-pages/demo/validate.js which is MIT licensed
+// jshint has some gpl compatability issues, so we are faking it out and using esprima for validation
+// based on https://github.com/jquery/esprima/blob/gh-pages/demo/validate.js which is mit licensed
 
-var fakeJSHINT = new function() {
+var fakejshint = new function() {
 	var syntax, errors;
 	var that = this;
 	this.data = [];
-	this.convertError = function( error ){
+	this.converterror = function( error ){
 		return {
-			line: error.lineNumber,
+			line: error.linenumber,
 			character: error.column,
 			reason: error.description,
-			code: 'E'
+			code: 'e'
 		};
 	};
 	this.parse = function( code ){
@@ -20,24 +20,26 @@ var fakeJSHINT = new function() {
 			if ( errors.length > 0 ) {
 				for ( var i = 0; i < errors.length; i++) {
 					var error = errors[i];
-					that.data.push( that.convertError( error ) );
+					that.data.push( that.converterror( error ) );
 				}
 			} else {
 				that.data = [];
 			}
 		} catch (e) {
-			that.data.push( that.convertError( e ) );
+			that.data.push( that.converterror( e ) );
 		}
 	};
 };
 
-window.JSHINT = function( text ){
-	fakeJSHINT.parse( text );
+window.jshint = function( text ){
+	fakejshint.parse( text );
 };
-window.JSHINT.data = function(){
+window.jshint.data = function(){
 	return {
-		errors: fakeJSHINT.data
+		errors: fakejshint.data
 	};
 };
+
+
 
 

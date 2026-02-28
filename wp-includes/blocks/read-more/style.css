@@ -8,3 +8,4 @@
 .wp-block-read-more:where(:not([style*=text-decoration])):active,.wp-block-read-more:where(:not([style*=text-decoration])):focus{
   text-decoration:none;
 }
+

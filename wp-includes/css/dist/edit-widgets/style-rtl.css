@@ -47,7 +47,7 @@
 }
 .admin-ui-page__header-subtitle{
   color:#757575;
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   line-height:20px;
@@ -425,11 +425,11 @@ body.is-fullscreen-mode .interface-interface-skeleton{
 }
 .wp-block[data-type="core/widget-area"] .components-panel__body>.components-panel__body-title{
   background:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   height:48px;
   margin:0;
   position:relative;
-  transform:translateZ(0);
+  transform:translatez(0);
   z-index:1;
 }
 .wp-block[data-type="core/widget-area"] .components-panel__body>.components-panel__body-title:hover{
@@ -742,7 +742,7 @@ body.is-fullscreen-mode .edit-widgets-notices__snackbar{
   object-fit:cover;
 }
 .edit-widgets-welcome-guide__heading{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:24px;
   line-height:1.4;
   margin:16px 0;
@@ -760,7 +760,7 @@ body.is-fullscreen-mode .edit-widgets-notices__snackbar{
 }
 
 .edit-widgets-block-editor{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   position:relative;
 }
 .edit-widgets-block-editor,.edit-widgets-block-editor .block-editor-writing-flow,.edit-widgets-block-editor>div:last-of-type{
@@ -772,7 +772,7 @@ body.is-fullscreen-mode .edit-widgets-notices__snackbar{
   height:100%;
 }
 .edit-widgets-block-editor .components-button{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
 }
 .edit-widgets-block-editor .components-button.has-icon,.edit-widgets-block-editor .components-button.is-tertiary{
@@ -983,3 +983,4 @@ body.admin-color-sunrise{
     --wp-admin-border-width-focus:1.5px;
   }
 }
+

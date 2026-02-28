@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "utf-8";
 .admin-ui-page{
   background-color:#fff;
   color:#2f2f2f;
@@ -30,7 +30,7 @@
 }
 .admin-ui-page__header-subtitle{
   color:#757575;
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   line-height:20px;
@@ -327,7 +327,7 @@
   position:absolute;
   right:4px;
   top:50%;
-  transform:translateY(-50%);
+  transform:translatey(-50%);
   width:24px;
 }
 
@@ -378,7 +378,7 @@
   box-sizing:border-box;
   cursor:default;
   display:flex;
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   gap:8px;
@@ -518,7 +518,7 @@
   border:1px solid #949494;
   border-radius:2px;
   box-shadow:0 0 0 #0000;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:16px;
   line-height:normal;
   margin-right:12px;
@@ -658,7 +658,7 @@
   border:1px solid #949494;
   border-radius:2px;
   box-shadow:0 0 0 #0000;
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   line-height:normal;
   padding:6px 8px;
 }
@@ -732,7 +732,7 @@
 }
 
 .dataviews-filters__search-widget-filter-combobox__wrapper .dataviews-filters__search-widget-filter-combobox__icon:dir(ltr){
-  transform:scaleX(-1);
+  transform:scalex(-1);
 }
 
 .dataviews-filters__container-visibility-toggle{
@@ -1880,7 +1880,7 @@ div.dataviews-view-list{
 }
 
 .dataforms-layouts-card__field-header-label{
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:15px;
   font-weight:500;
   line-height:20px;
@@ -1908,7 +1908,7 @@ div.dataviews-view-list{
 }
 
 .dataforms-layouts__wrapper{
-  font-family:-apple-system,"system-ui",Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,"system-ui",segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:13px;
   font-weight:400;
   line-height:20px;
@@ -1994,7 +1994,7 @@ input[type=radio]:focus-visible~.fields-create-template-part-modal__area-radio-l
 }
 
 .fields-create-template-part-modal__area-radio-checkmark,.fields-create-template-part-modal__area-radio-icon{
-  fill:currentColor;
+  fill:currentcolor;
 }
 
 input[type=radio]:not(:checked)~.fields-create-template-part-modal__area-radio-checkmark{
@@ -2446,7 +2446,7 @@ fieldset.fields-controls__featured-image .fields-controls__featured-image-remove
 }
 
 .edit-site-global-styles-icon-with-current-color{
-  fill:currentColor;
+  fill:currentcolor;
 }
 
 .edit-site-global-styles__color-indicator-wrapper{
@@ -2579,7 +2579,7 @@ fieldset.fields-controls__featured-image .fields-controls__featured-image-remove
 }
 
 .edit-site-global-styles-sidebar__panel .block-editor-block-icon svg{
-  fill:currentColor;
+  fill:currentcolor;
 }
 
 .edit-site-global-styles-screen-root__active-style-tile.edit-site-global-styles-screen-root__active-style-tile,.edit-site-global-styles-screen-root__active-style-tile.edit-site-global-styles-screen-root__active-style-tile .edit-site-global-styles-screen-root__active-style-tile-preview{
@@ -2966,7 +2966,7 @@ fieldset.fields-controls__featured-image .fields-controls__featured-image-remove
 }
 .page-templates-author-field__icon svg{
   margin-left:-4px;
-  fill:currentColor;
+  fill:currentcolor;
 }
 
 .page-templates-author-field__name{
@@ -3048,7 +3048,7 @@ fieldset.fields-controls__featured-image .fields-controls__featured-image-remove
   width:64px;
 }
 .edit-site-editor__back-icon svg{
-  fill:currentColor;
+  fill:currentcolor;
 }
 .edit-site-editor__back-icon.has-site-icon{
   backdrop-filter:saturate(180%) blur(15px);
@@ -3078,7 +3078,7 @@ fieldset.fields-controls__featured-image .fields-controls__featured-image-remove
   object-fit:cover;
 }
 .edit-site-welcome-guide__heading{
-  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+  font-family:-apple-system,blinkmacsystemfont,segoe ui,roboto,oxygen-sans,ubuntu,cantarell,helvetica neue,sans-serif;
   font-size:24px;
   line-height:1.4;
   margin:16px 0;
@@ -3373,7 +3373,7 @@ html.canvas-mode-edit-transition::view-transition-group(toggle){
 @keyframes local--slide-from-right{
   0%{
     opacity:0;
-    transform:translateX(50px);
+    transform:translatex(50px);
   }
   to{
     opacity:1;
@@ -3383,7 +3383,7 @@ html.canvas-mode-edit-transition::view-transition-group(toggle){
 @keyframes local--slide-from-left{
   0%{
     opacity:0;
-    transform:translateX(-50px);
+    transform:translatex(-50px);
   }
   to{
     opacity:1;
@@ -3482,7 +3482,7 @@ html.canvas-mode-edit-transition::view-transition-group(toggle){
   font-weight:500;
 }
 .edit-site-sidebar-navigation-item.components-item:focus-visible{
-  transform:translateZ(0);
+  transform:translatez(0);
 }
 .edit-site-sidebar-navigation-item.components-item .edit-site-sidebar-navigation-item__drilldown-indicator{
   fill:#949494;
@@ -3772,7 +3772,7 @@ html.canvas-mode-edit-transition::view-transition-group(toggle){
 }
 
 .edit-site-site-icon__icon{
-  fill:currentColor;
+  fill:currentcolor;
   height:100%;
   width:100%;
 }
@@ -3949,7 +3949,7 @@ html.canvas-mode-edit-transition::view-transition-group(toggle){
   width:24px;
 }
 .edit-site-post-list__status-icon svg{
-  fill:currentColor;
+  fill:currentcolor;
   margin-left:-4px;
 }
 
@@ -4443,3 +4443,4 @@ body.admin-color-sunrise{
     --wp-admin-border-width-focus:1.5px;
   }
 }
+

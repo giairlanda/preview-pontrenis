@@ -1,46 +1,48 @@
 var __webpack_exports__ = {};
-let formSettings;
+let formsettings;
 try {
-  formSettings = JSON.parse(
-    document.getElementById(
+  formsettings = json.parse(
+    document.getelementbyid(
       "wp-script-module-data-@wordpress/block-library/form/view"
-    )?.textContent
+    )?.textcontent
   );
 } catch {
 }
-document.querySelectorAll("form.wp-block-form").forEach(function(form) {
-  if (!formSettings || !form.action || !form.action.startsWith("mailto:")) {
+document.queryselectorall("form.wp-block-form").foreach(function(form) {
+  if (!formsettings || !form.action || !form.action.startswith("mailto:")) {
     return;
   }
-  const redirectNotification = (status) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.append("wp-form-result", status);
-    window.location.search = urlParams.toString();
+  const redirectnotification = (status) => {
+    const urlparams = new urlsearchparams(window.location.search);
+    urlparams.append("wp-form-result", status);
+    window.location.search = urlparams.tostring();
   };
-  form.addEventListener("submit", async function(event) {
-    event.preventDefault();
-    const formData = Object.fromEntries(new FormData(form).entries());
-    formData.formAction = form.action;
-    formData._ajax_nonce = formSettings.nonce;
-    formData.action = formSettings.action;
-    formData._wp_http_referer = window.location.href;
-    formData.formAction = form.action;
+  form.addeventlistener("submit", async function(event) {
+    event.preventdefault();
+    const formdata = object.fromentries(new formdata(form).entries());
+    formdata.formaction = form.action;
+    formdata._ajax_nonce = formsettings.nonce;
+    formdata.action = formsettings.action;
+    formdata._wp_http_referer = window.location.href;
+    formdata.formaction = form.action;
     try {
-      const response = await fetch(formSettings.ajaxUrl, {
-        method: "POST",
+      const response = await fetch(formsettings.ajaxurl, {
+        method: "post",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "content-type": "application/x-www-form-urlencoded"
         },
-        body: new URLSearchParams(formData).toString()
+        body: new urlsearchparams(formdata).tostring()
       });
       if (response.ok) {
-        redirectNotification("success");
+        redirectnotification("success");
       } else {
-        redirectNotification("error");
+        redirectnotification("error");
       }
     } catch (error) {
-      redirectNotification("error");
+      redirectnotification("error");
     }
   });
 });
+
+
 

@@ -1,1 +1,2 @@
-// Deprecated in WordPress 6.9.
+// deprecated in wordpress 6.9.
+

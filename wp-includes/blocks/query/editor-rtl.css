@@ -16,7 +16,7 @@
   padding:16px 0;
   position:sticky;
   top:0;
-  transform:translateY(-4px);
+  transform:translatey(-4px);
   z-index:2;
 }
 
@@ -57,3 +57,4 @@
 .wp-block-query>.block-editor-media-placeholder.is-small{
   min-height:60px;
 }
+

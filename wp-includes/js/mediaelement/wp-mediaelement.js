@@ -1,18 +1,18 @@
-/* global _wpmejsSettings, mejsL10n */
+/* global _wpmejssettings, mejsl10n */
 (function( window, $ ) {
 
 	window.wp = window.wp || {};
 
-	function wpMediaElement() {
+	function wpmediaelement() {
 		var settings = {};
 
 		/**
-		 * Initialize media elements.
+		 * initialize media elements.
 		 *
-		 * Ensures media elements that have already been initialized won't be
+		 * ensures media elements that have already been initialized won't be
 		 * processed again.
 		 *
-		 * @memberOf wp.mediaelement
+		 * @memberof wp.mediaelement
 		 *
 		 * @since 4.4.0
 		 *
@@ -21,25 +21,25 @@
 		function initialize() {
 			var selectors = [];
 
-			if ( typeof _wpmejsSettings !== 'undefined' ) {
-				settings = $.extend( true, {}, _wpmejsSettings );
+			if ( typeof _wpmejssettings !== 'undefined' ) {
+				settings = $.extend( true, {}, _wpmejssettings );
 			}
-			settings.classPrefix = 'mejs-';
+			settings.classprefix = 'mejs-';
 			settings.success = settings.success || function ( mejs ) {
 				var autoplay, loop;
 
-				if ( mejs.rendererName && -1 !== mejs.rendererName.indexOf( 'flash' ) ) {
+				if ( mejs.renderername && -1 !== mejs.renderername.indexof( 'flash' ) ) {
 					autoplay = mejs.attributes.autoplay && 'false' !== mejs.attributes.autoplay;
 					loop = mejs.attributes.loop && 'false' !== mejs.attributes.loop;
 
 					if ( autoplay ) {
-						mejs.addEventListener( 'canplay', function() {
+						mejs.addeventlistener( 'canplay', function() {
 							mejs.play();
 						}, false );
 					}
 
 					if ( loop ) {
-						mejs.addEventListener( 'ended', function() {
+						mejs.addeventlistener( 'ended', function() {
 							mejs.play();
 						}, false );
 					}
@@ -47,39 +47,39 @@
 			};
 
 			/**
-			 * Custom error handler.
+			 * custom error handler.
 			 *
-			 * Sets up a custom error handler in case a video render fails, and provides a download
+			 * sets up a custom error handler in case a video render fails, and provides a download
 			 * link as the fallback.
 			 *
 			 * @since 4.9.3
 			 *
-			 * @param {object} media The wrapper that mimics all the native events/properties/methods for all renderers.
-			 * @param {object} node  The original HTML video, audio, or iframe tag where the media was loaded.
+			 * @param {object} media the wrapper that mimics all the native events/properties/methods for all renderers.
+			 * @param {object} node  the original html video, audio, or iframe tag where the media was loaded.
 			 * @return {string}
 			 */
-			settings.customError = function ( media, node ) {
-				// Make sure we only fall back to a download link for flash files.
-				if ( -1 !== media.rendererName.indexOf( 'flash' ) || -1 !== media.rendererName.indexOf( 'flv' ) ) {
-					return '<a href="' + node.src + '">' + mejsL10n.strings['mejs.download-file'] + '</a>';
+			settings.customerror = function ( media, node ) {
+				// make sure we only fall back to a download link for flash files.
+				if ( -1 !== media.renderername.indexof( 'flash' ) || -1 !== media.renderername.indexof( 'flv' ) ) {
+					return '<a href="' + node.src + '">' + mejsl10n.strings['mejs.download-file'] + '</a>';
 				}
 			};
 
-			if ( 'undefined' === typeof settings.videoShortcodeLibrary || 'mediaelement' === settings.videoShortcodeLibrary ) {
+			if ( 'undefined' === typeof settings.videoshortcodelibrary || 'mediaelement' === settings.videoshortcodelibrary ) {
 				selectors.push( '.wp-video-shortcode' );
 			}
-			if ( 'undefined' === typeof settings.audioShortcodeLibrary || 'mediaelement' === settings.audioShortcodeLibrary ) {
+			if ( 'undefined' === typeof settings.audioshortcodelibrary || 'mediaelement' === settings.audioshortcodelibrary ) {
 				selectors.push( '.wp-audio-shortcode' );
 			}
 			if ( ! selectors.length ) {
 				return;
 			}
 
-			// Only initialize new media elements.
+			// only initialize new media elements.
 			$( selectors.join( ', ' ) )
 				.not( '.mejs-container' )
 				.filter(function () {
-					return ! $( this ).parent().hasClass( 'mejs-mediaelement' );
+					return ! $( this ).parent().hasclass( 'mejs-mediaelement' );
 				})
 				.mediaelementplayer( settings );
 		}
@@ -91,10 +91,12 @@
 
 	/**
 	 * @namespace wp.mediaelement
-	 * @memberOf wp
+	 * @memberof wp
 	 */
-	window.wp.mediaelement = new wpMediaElement();
+	window.wp.mediaelement = new wpmediaelement();
 
 	$( window.wp.mediaelement.initialize );
 
-})( window, jQuery );
+})( window, jquery );
+
+

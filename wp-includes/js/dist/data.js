@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -7,68 +7,68 @@
 
 
 
-var isMergeableObject = function isMergeableObject(value) {
-	return isNonNullObject(value)
-		&& !isSpecial(value)
+var ismergeableobject = function ismergeableobject(value) {
+	return isnonnullobject(value)
+		&& !isspecial(value)
 };
 
-function isNonNullObject(value) {
+function isnonnullobject(value) {
 	return !!value && typeof value === 'object'
 }
 
-function isSpecial(value) {
-	var stringValue = Object.prototype.toString.call(value);
+function isspecial(value) {
+	var stringvalue = object.prototype.tostring.call(value);
 
-	return stringValue === '[object RegExp]'
-		|| stringValue === '[object Date]'
-		|| isReactElement(value)
+	return stringvalue === '[object regexp]'
+		|| stringvalue === '[object date]'
+		|| isreactelement(value)
 }
 
-// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/ReactElement.js#L21-L25
-var canUseSymbol = typeof Symbol === 'function' && Symbol.for;
-var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for('react.element') : 0xeac7;
+// see https://github.com/facebook/react/blob/b5ac963fb791d1298e7f396236383bc955f916c1/src/isomorphic/classic/element/reactelement.js#l21-l25
+var canusesymbol = typeof symbol === 'function' && symbol.for;
+var react_element_type = canusesymbol ? symbol.for('react.element') : 0xeac7;
 
-function isReactElement(value) {
-	return value.$$typeof === REACT_ELEMENT_TYPE
+function isreactelement(value) {
+	return value.$$typeof === react_element_type
 }
 
-function emptyTarget(val) {
-	return Array.isArray(val) ? [] : {}
+function emptytarget(val) {
+	return array.isarray(val) ? [] : {}
 }
 
-function cloneUnlessOtherwiseSpecified(value, options) {
-	return (options.clone !== false && options.isMergeableObject(value))
-		? deepmerge(emptyTarget(value), value, options)
+function cloneunlessotherwisespecified(value, options) {
+	return (options.clone !== false && options.ismergeableobject(value))
+		? deepmerge(emptytarget(value), value, options)
 		: value
 }
 
-function defaultArrayMerge(target, source, options) {
+function defaultarraymerge(target, source, options) {
 	return target.concat(source).map(function(element) {
-		return cloneUnlessOtherwiseSpecified(element, options)
+		return cloneunlessotherwisespecified(element, options)
 	})
 }
 
-function getMergeFunction(key, options) {
-	if (!options.customMerge) {
+function getmergefunction(key, options) {
+	if (!options.custommerge) {
 		return deepmerge
 	}
-	var customMerge = options.customMerge(key);
-	return typeof customMerge === 'function' ? customMerge : deepmerge
+	var custommerge = options.custommerge(key);
+	return typeof custommerge === 'function' ? custommerge : deepmerge
 }
 
-function getEnumerableOwnPropertySymbols(target) {
-	return Object.getOwnPropertySymbols
-		? Object.getOwnPropertySymbols(target).filter(function(symbol) {
-			return Object.propertyIsEnumerable.call(target, symbol)
+function getenumerableownpropertysymbols(target) {
+	return object.getownpropertysymbols
+		? object.getownpropertysymbols(target).filter(function(symbol) {
+			return object.propertyisenumerable.call(target, symbol)
 		})
 		: []
 }
 
-function getKeys(target) {
-	return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target))
+function getkeys(target) {
+	return object.keys(target).concat(getenumerableownpropertysymbols(target))
 }
 
-function propertyIsOnObject(object, property) {
+function propertyisonobject(object, property) {
 	try {
 		return property in object
 	} catch(_) {
@@ -76,29 +76,29 @@ function propertyIsOnObject(object, property) {
 	}
 }
 
-// Protects from prototype poisoning and unexpected merging up the prototype chain.
-function propertyIsUnsafe(target, key) {
-	return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
-		&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
-			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
+// protects from prototype poisoning and unexpected merging up the prototype chain.
+function propertyisunsafe(target, key) {
+	return propertyisonobject(target, key) // properties are safe to merge if they don't exist in the target yet,
+		&& !(object.hasownproperty.call(target, key) // unsafe if they exist up the prototype chain,
+			&& object.propertyisenumerable.call(target, key)) // and also unsafe if they're nonenumerable.
 }
 
-function mergeObject(target, source, options) {
+function mergeobject(target, source, options) {
 	var destination = {};
-	if (options.isMergeableObject(target)) {
-		getKeys(target).forEach(function(key) {
-			destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
+	if (options.ismergeableobject(target)) {
+		getkeys(target).foreach(function(key) {
+			destination[key] = cloneunlessotherwisespecified(target[key], options);
 		});
 	}
-	getKeys(source).forEach(function(key) {
-		if (propertyIsUnsafe(target, key)) {
+	getkeys(source).foreach(function(key) {
+		if (propertyisunsafe(target, key)) {
 			return
 		}
 
-		if (propertyIsOnObject(target, key) && options.isMergeableObject(source[key])) {
-			destination[key] = getMergeFunction(key, options)(target[key], source[key], options);
+		if (propertyisonobject(target, key) && options.ismergeableobject(source[key])) {
+			destination[key] = getmergefunction(key, options)(target[key], source[key], options);
 		} else {
-			destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
+			destination[key] = cloneunlessotherwisespecified(source[key], options);
 		}
 	});
 	return destination
@@ -106,28 +106,28 @@ function mergeObject(target, source, options) {
 
 function deepmerge(target, source, options) {
 	options = options || {};
-	options.arrayMerge = options.arrayMerge || defaultArrayMerge;
-	options.isMergeableObject = options.isMergeableObject || isMergeableObject;
-	// cloneUnlessOtherwiseSpecified is added to `options` so that custom arrayMerge()
-	// implementations can use it. The caller may not replace it.
-	options.cloneUnlessOtherwiseSpecified = cloneUnlessOtherwiseSpecified;
+	options.arraymerge = options.arraymerge || defaultarraymerge;
+	options.ismergeableobject = options.ismergeableobject || ismergeableobject;
+	// cloneunlessotherwisespecified is added to `options` so that custom arraymerge()
+	// implementations can use it. the caller may not replace it.
+	options.cloneunlessotherwisespecified = cloneunlessotherwisespecified;
 
-	var sourceIsArray = Array.isArray(source);
-	var targetIsArray = Array.isArray(target);
-	var sourceAndTargetTypesMatch = sourceIsArray === targetIsArray;
+	var sourceisarray = array.isarray(source);
+	var targetisarray = array.isarray(target);
+	var sourceandtargettypesmatch = sourceisarray === targetisarray;
 
-	if (!sourceAndTargetTypesMatch) {
-		return cloneUnlessOtherwiseSpecified(source, options)
-	} else if (sourceIsArray) {
-		return options.arrayMerge(target, source, options)
+	if (!sourceandtargettypesmatch) {
+		return cloneunlessotherwisespecified(source, options)
+	} else if (sourceisarray) {
+		return options.arraymerge(target, source, options)
 	} else {
-		return mergeObject(target, source, options)
+		return mergeobject(target, source, options)
 	}
 }
 
-deepmerge.all = function deepmergeAll(array, options) {
-	if (!Array.isArray(array)) {
-		throw new Error('first argument should be an array')
+deepmerge.all = function deepmergeall(array, options) {
+	if (!array.isarray(array)) {
+		throw new error('first argument should be an array')
 	}
 
 	return array.reduce(function(prev, next) {
@@ -148,66 +148,66 @@ module.exports = deepmerge_1;
 
 
 function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+  if (typeof symbol === "function" && typeof symbol.iterator === "symbol") {
     _typeof = function (obj) {
       return typeof obj;
     };
   } else {
     _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      return obj && typeof symbol === "function" && obj.constructor === symbol && obj !== symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
   return _typeof(obj);
 }
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+function _classcallcheck(instance, constructor) {
+  if (!(instance instanceof constructor)) {
+    throw new typeerror("cannot call a class as a function");
   }
 }
 
-function _defineProperties(target, props) {
+function _defineproperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
     if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
+    object.defineproperty(target, descriptor.key, descriptor);
   }
 }
 
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
+function _createclass(constructor, protoprops, staticprops) {
+  if (protoprops) _defineproperties(constructor.prototype, protoprops);
+  if (staticprops) _defineproperties(constructor, staticprops);
+  return constructor;
 }
 
 /**
- * Given an instance of EquivalentKeyMap, returns its internal value pair tuple
- * for a key, if one exists. The tuple members consist of the last reference
+ * given an instance of equivalentkeymap, returns its internal value pair tuple
+ * for a key, if one exists. the tuple members consist of the last reference
  * value for the key (used in efficient subsequent lookups) and the value
  * assigned for the key at the leaf node.
  *
- * @param {EquivalentKeyMap} instance EquivalentKeyMap instance.
- * @param {*} key                     The key for which to return value pair.
+ * @param {equivalentkeymap} instance equivalentkeymap instance.
+ * @param {*} key                     the key for which to return value pair.
  *
- * @return {?Array} Value pair, if exists.
+ * @return {?array} value pair, if exists.
  */
-function getValuePair(instance, key) {
+function getvaluepair(instance, key) {
   var _map = instance._map,
-      _arrayTreeMap = instance._arrayTreeMap,
-      _objectTreeMap = instance._objectTreeMap; // Map keeps a reference to the last object-like key used to set the
+      _arraytreemap = instance._arraytreemap,
+      _objecttreemap = instance._objecttreemap; // map keeps a reference to the last object-like key used to set the
   // value, which can be used to shortcut immediately to the value.
 
   if (_map.has(key)) {
     return _map.get(key);
-  } // Sort keys to ensure stable retrieval from tree.
+  } // sort keys to ensure stable retrieval from tree.
 
 
-  var properties = Object.keys(key).sort(); // Tree by type to avoid conflicts on numeric object keys, empty value.
+  var properties = object.keys(key).sort(); // tree by type to avoid conflicts on numeric object keys, empty value.
 
-  var map = Array.isArray(key) ? _arrayTreeMap : _objectTreeMap;
+  var map = array.isarray(key) ? _arraytreemap : _objecttreemap;
 
   for (var i = 0; i < properties.length; i++) {
     var property = properties[i];
@@ -217,57 +217,57 @@ function getValuePair(instance, key) {
       return;
     }
 
-    var propertyValue = key[property];
-    map = map.get(propertyValue);
+    var propertyvalue = key[property];
+    map = map.get(propertyvalue);
 
     if (map === undefined) {
       return;
     }
   }
 
-  var valuePair = map.get('_ekm_value');
+  var valuepair = map.get('_ekm_value');
 
-  if (!valuePair) {
+  if (!valuepair) {
     return;
-  } // If reached, it implies that an object-like key was set with another
+  } // if reached, it implies that an object-like key was set with another
   // reference, so delete the reference and replace with the current.
 
 
-  _map.delete(valuePair[0]);
+  _map.delete(valuepair[0]);
 
-  valuePair[0] = key;
-  map.set('_ekm_value', valuePair);
+  valuepair[0] = key;
+  map.set('_ekm_value', valuepair);
 
-  _map.set(key, valuePair);
+  _map.set(key, valuepair);
 
-  return valuePair;
+  return valuepair;
 }
 /**
- * Variant of a Map object which enables lookup by equivalent (deeply equal)
+ * variant of a map object which enables lookup by equivalent (deeply equal)
  * object and array keys.
  */
 
 
-var EquivalentKeyMap =
-/*#__PURE__*/
+var equivalentkeymap =
+/*#__pure__*/
 function () {
   /**
-   * Constructs a new instance of EquivalentKeyMap.
+   * constructs a new instance of equivalentkeymap.
    *
-   * @param {Iterable.<*>} iterable Initial pair of key, value for map.
+   * @param {iterable.<*>} iterable initial pair of key, value for map.
    */
-  function EquivalentKeyMap(iterable) {
-    _classCallCheck(this, EquivalentKeyMap);
+  function equivalentkeymap(iterable) {
+    _classcallcheck(this, equivalentkeymap);
 
     this.clear();
 
-    if (iterable instanceof EquivalentKeyMap) {
-      // Map#forEach is only means of iterating with support for IE11.
-      var iterablePairs = [];
-      iterable.forEach(function (value, key) {
-        iterablePairs.push([key, value]);
+    if (iterable instanceof equivalentkeymap) {
+      // map#foreach is only means of iterating with support for ie11.
+      var iterablepairs = [];
+      iterable.foreach(function (value, key) {
+        iterablepairs.push([key, value]);
       });
-      iterable = iterablePairs;
+      iterable = iterablepairs;
     }
 
     if (iterable != null) {
@@ -277,100 +277,100 @@ function () {
     }
   }
   /**
-   * Accessor property returning the number of elements.
+   * accessor property returning the number of elements.
    *
-   * @return {number} Number of elements.
+   * @return {number} number of elements.
    */
 
 
-  _createClass(EquivalentKeyMap, [{
+  _createclass(equivalentkeymap, [{
     key: "set",
 
     /**
-     * Add or update an element with a specified key and value.
+     * add or update an element with a specified key and value.
      *
-     * @param {*} key   The key of the element to add.
-     * @param {*} value The value of the element to add.
+     * @param {*} key   the key of the element to add.
+     * @param {*} value the value of the element to add.
      *
-     * @return {EquivalentKeyMap} Map instance.
+     * @return {equivalentkeymap} map instance.
      */
     value: function set(key, value) {
-      // Shortcut non-object-like to set on internal Map.
+      // shortcut non-object-like to set on internal map.
       if (key === null || _typeof(key) !== 'object') {
         this._map.set(key, value);
 
         return this;
-      } // Sort keys to ensure stable assignment into tree.
+      } // sort keys to ensure stable assignment into tree.
 
 
-      var properties = Object.keys(key).sort();
-      var valuePair = [key, value]; // Tree by type to avoid conflicts on numeric object keys, empty value.
+      var properties = object.keys(key).sort();
+      var valuepair = [key, value]; // tree by type to avoid conflicts on numeric object keys, empty value.
 
-      var map = Array.isArray(key) ? this._arrayTreeMap : this._objectTreeMap;
+      var map = array.isarray(key) ? this._arraytreemap : this._objecttreemap;
 
       for (var i = 0; i < properties.length; i++) {
         var property = properties[i];
 
         if (!map.has(property)) {
-          map.set(property, new EquivalentKeyMap());
+          map.set(property, new equivalentkeymap());
         }
 
         map = map.get(property);
-        var propertyValue = key[property];
+        var propertyvalue = key[property];
 
-        if (!map.has(propertyValue)) {
-          map.set(propertyValue, new EquivalentKeyMap());
+        if (!map.has(propertyvalue)) {
+          map.set(propertyvalue, new equivalentkeymap());
         }
 
-        map = map.get(propertyValue);
-      } // If an _ekm_value exists, there was already an equivalent key. Before
+        map = map.get(propertyvalue);
+      } // if an _ekm_value exists, there was already an equivalent key. before
       // overriding, ensure that the old key reference is removed from map to
-      // avoid memory leak of accumulating equivalent keys. This is, in a
-      // sense, a poor man's WeakMap, while still enabling iterability.
+      // avoid memory leak of accumulating equivalent keys. this is, in a
+      // sense, a poor man's weakmap, while still enabling iterability.
 
 
-      var previousValuePair = map.get('_ekm_value');
+      var previousvaluepair = map.get('_ekm_value');
 
-      if (previousValuePair) {
-        this._map.delete(previousValuePair[0]);
+      if (previousvaluepair) {
+        this._map.delete(previousvaluepair[0]);
       }
 
-      map.set('_ekm_value', valuePair);
+      map.set('_ekm_value', valuepair);
 
-      this._map.set(key, valuePair);
+      this._map.set(key, valuepair);
 
       return this;
     }
     /**
-     * Returns a specified element.
+     * returns a specified element.
      *
-     * @param {*} key The key of the element to return.
+     * @param {*} key the key of the element to return.
      *
-     * @return {?*} The element associated with the specified key or undefined
+     * @return {?*} the element associated with the specified key or undefined
      *              if the key can't be found.
      */
 
   }, {
     key: "get",
     value: function get(key) {
-      // Shortcut non-object-like to get from internal Map.
+      // shortcut non-object-like to get from internal map.
       if (key === null || _typeof(key) !== 'object') {
         return this._map.get(key);
       }
 
-      var valuePair = getValuePair(this, key);
+      var valuepair = getvaluepair(this, key);
 
-      if (valuePair) {
-        return valuePair[1];
+      if (valuepair) {
+        return valuepair[1];
       }
     }
     /**
-     * Returns a boolean indicating whether an element with the specified key
+     * returns a boolean indicating whether an element with the specified key
      * exists or not.
      *
-     * @param {*} key The key of the element to test for presence.
+     * @param {*} key the key of the element to test for presence.
      *
-     * @return {boolean} Whether an element with the specified key exists.
+     * @return {boolean} whether an element with the specified key exists.
      */
 
   }, {
@@ -378,18 +378,18 @@ function () {
     value: function has(key) {
       if (key === null || _typeof(key) !== 'object') {
         return this._map.has(key);
-      } // Test on the _presence_ of the pair, not its value, as even undefined
+      } // test on the _presence_ of the pair, not its value, as even undefined
       // can be a valid member value for a key.
 
 
-      return getValuePair(this, key) !== undefined;
+      return getvaluepair(this, key) !== undefined;
     }
     /**
-     * Removes the specified element.
+     * removes the specified element.
      *
-     * @param {*} key The key of the element to remove.
+     * @param {*} key the key of the element to remove.
      *
-     * @return {boolean} Returns true if an element existed and has been
+     * @return {boolean} returns true if an element existed and has been
      *                   removed, or false if the element does not exist.
      */
 
@@ -398,7 +398,7 @@ function () {
     value: function _delete(key) {
       if (!this.has(key)) {
         return false;
-      } // This naive implementation will leave orphaned child trees. A better
+      } // this naive implementation will leave orphaned child trees. a better
       // implementation should traverse and remove orphans.
 
 
@@ -406,40 +406,40 @@ function () {
       return true;
     }
     /**
-     * Executes a provided function once per each key/value pair, in insertion
+     * executes a provided function once per each key/value pair, in insertion
      * order.
      *
-     * @param {Function} callback Function to execute for each element.
-     * @param {*}        thisArg  Value to use as `this` when executing
+     * @param {function} callback function to execute for each element.
+     * @param {*}        thisarg  value to use as `this` when executing
      *                            `callback`.
      */
 
   }, {
-    key: "forEach",
-    value: function forEach(callback) {
+    key: "foreach",
+    value: function foreach(callback) {
       var _this = this;
 
-      var thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this;
+      var thisarg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this;
 
-      this._map.forEach(function (value, key) {
-        // Unwrap value from object-like value pair.
+      this._map.foreach(function (value, key) {
+        // unwrap value from object-like value pair.
         if (key !== null && _typeof(key) === 'object') {
           value = value[1];
         }
 
-        callback.call(thisArg, value, key, _this);
+        callback.call(thisarg, value, key, _this);
       });
     }
     /**
-     * Removes all elements.
+     * removes all elements.
      */
 
   }, {
     key: "clear",
     value: function clear() {
-      this._map = new Map();
-      this._arrayTreeMap = new Map();
-      this._objectTreeMap = new Map();
+      this._map = new map();
+      this._arraytreemap = new map();
+      this._objecttreemap = new map();
     }
   }, {
     key: "size",
@@ -448,46 +448,46 @@ function () {
     }
   }]);
 
-  return EquivalentKeyMap;
+  return equivalentkeymap;
 }();
 
-module.exports = EquivalentKeyMap;
+module.exports = equivalentkeymap;
 
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	// the module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
+/******/ 	// the require function
+/******/ 	function __webpack_require__(moduleid) {
+/******/ 		// check if module is in cache
+/******/ 		var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 		if (cachedmodule !== undefined) {
+/******/ 			return cachedmodule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleid] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		// execute the module function
+/******/ 		__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		// return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -501,137 +501,137 @@ module.exports = EquivalentKeyMap;
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  AsyncModeProvider: () => (/* reexport */ context_context_default),
-  RegistryConsumer: () => (/* reexport */ RegistryConsumer),
-  RegistryProvider: () => (/* reexport */ context_default),
-  combineReducers: () => (/* binding */ build_module_combineReducers),
+  asyncmodeprovider: () => (/* reexport */ context_context_default),
+  registryconsumer: () => (/* reexport */ registryconsumer),
+  registryprovider: () => (/* reexport */ context_default),
+  combinereducers: () => (/* binding */ build_module_combinereducers),
   controls: () => (/* reexport */ controls),
-  createReduxStore: () => (/* reexport */ createReduxStore),
-  createRegistry: () => (/* reexport */ createRegistry),
-  createRegistryControl: () => (/* reexport */ createRegistryControl),
-  createRegistrySelector: () => (/* reexport */ createRegistrySelector),
-  createSelector: () => (/* reexport */ rememo),
+  createreduxstore: () => (/* reexport */ createreduxstore),
+  createregistry: () => (/* reexport */ createregistry),
+  createregistrycontrol: () => (/* reexport */ createregistrycontrol),
+  createregistryselector: () => (/* reexport */ createregistryselector),
+  createselector: () => (/* reexport */ rememo),
   dispatch: () => (/* reexport */ dispatch_dispatch),
-  plugins: () => (/* reexport */ plugins_namespaceObject),
+  plugins: () => (/* reexport */ plugins_namespaceobject),
   register: () => (/* binding */ register),
-  registerGenericStore: () => (/* binding */ registerGenericStore),
-  registerStore: () => (/* binding */ registerStore),
-  resolveSelect: () => (/* binding */ build_module_resolveSelect),
+  registergenericstore: () => (/* binding */ registergenericstore),
+  registerstore: () => (/* binding */ registerstore),
+  resolveselect: () => (/* binding */ build_module_resolveselect),
   select: () => (/* reexport */ select_select),
   subscribe: () => (/* binding */ subscribe),
-  suspendSelect: () => (/* binding */ suspendSelect),
+  suspendselect: () => (/* binding */ suspendselect),
   use: () => (/* binding */ use),
-  useDispatch: () => (/* reexport */ use_dispatch_default),
-  useRegistry: () => (/* reexport */ useRegistry),
-  useSelect: () => (/* reexport */ useSelect),
-  useSuspenseSelect: () => (/* reexport */ useSuspenseSelect),
-  withDispatch: () => (/* reexport */ with_dispatch_default),
-  withRegistry: () => (/* reexport */ with_registry_default),
-  withSelect: () => (/* reexport */ with_select_default)
+  usedispatch: () => (/* reexport */ use_dispatch_default),
+  useregistry: () => (/* reexport */ useregistry),
+  useselect: () => (/* reexport */ useselect),
+  usesuspenseselect: () => (/* reexport */ usesuspenseselect),
+  withdispatch: () => (/* reexport */ with_dispatch_default),
+  withregistry: () => (/* reexport */ with_registry_default),
+  withselect: () => (/* reexport */ with_select_default)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/data/build-module/redux-store/metadata/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, {
-  countSelectorsByStatus: () => (countSelectorsByStatus),
-  getCachedResolvers: () => (getCachedResolvers),
-  getIsResolving: () => (getIsResolving),
-  getResolutionError: () => (getResolutionError),
-  getResolutionState: () => (getResolutionState),
-  hasFinishedResolution: () => (hasFinishedResolution),
-  hasResolutionFailed: () => (hasResolutionFailed),
-  hasResolvingSelectors: () => (hasResolvingSelectors),
-  hasStartedResolution: () => (hasStartedResolution),
-  isResolving: () => (isResolving)
+// namespace object: ./node_modules/@wordpress/data/build-module/redux-store/metadata/selectors.js
+var selectors_namespaceobject = {};
+__webpack_require__.r(selectors_namespaceobject);
+__webpack_require__.d(selectors_namespaceobject, {
+  countselectorsbystatus: () => (countselectorsbystatus),
+  getcachedresolvers: () => (getcachedresolvers),
+  getisresolving: () => (getisresolving),
+  getresolutionerror: () => (getresolutionerror),
+  getresolutionstate: () => (getresolutionstate),
+  hasfinishedresolution: () => (hasfinishedresolution),
+  hasresolutionfailed: () => (hasresolutionfailed),
+  hasresolvingselectors: () => (hasresolvingselectors),
+  hasstartedresolution: () => (hasstartedresolution),
+  isresolving: () => (isresolving)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/data/build-module/redux-store/metadata/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, {
-  failResolution: () => (failResolution),
-  failResolutions: () => (failResolutions),
-  finishResolution: () => (finishResolution),
-  finishResolutions: () => (finishResolutions),
-  invalidateResolution: () => (invalidateResolution),
-  invalidateResolutionForStore: () => (invalidateResolutionForStore),
-  invalidateResolutionForStoreSelector: () => (invalidateResolutionForStoreSelector),
-  startResolution: () => (startResolution),
-  startResolutions: () => (startResolutions)
+// namespace object: ./node_modules/@wordpress/data/build-module/redux-store/metadata/actions.js
+var actions_namespaceobject = {};
+__webpack_require__.r(actions_namespaceobject);
+__webpack_require__.d(actions_namespaceobject, {
+  failresolution: () => (failresolution),
+  failresolutions: () => (failresolutions),
+  finishresolution: () => (finishresolution),
+  finishresolutions: () => (finishresolutions),
+  invalidateresolution: () => (invalidateresolution),
+  invalidateresolutionforstore: () => (invalidateresolutionforstore),
+  invalidateresolutionforstoreselector: () => (invalidateresolutionforstoreselector),
+  startresolution: () => (startresolution),
+  startresolutions: () => (startresolutions)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/data/build-module/plugins/index.js
-var plugins_namespaceObject = {};
-__webpack_require__.r(plugins_namespaceObject);
-__webpack_require__.d(plugins_namespaceObject, {
+// namespace object: ./node_modules/@wordpress/data/build-module/plugins/index.js
+var plugins_namespaceobject = {};
+__webpack_require__.r(plugins_namespaceobject);
+__webpack_require__.d(plugins_namespaceobject, {
   persistence: () => (persistence_default)
 });
 
 ;// external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
+const external_wp_deprecated_namespaceobject = window["wp"]["deprecated"];
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_namespaceobject);
 ;// ./node_modules/redux/dist/redux.mjs
-// src/utils/formatProdErrorMessage.ts
-function formatProdErrorMessage(code) {
-  return `Minified Redux error #${code}; visit https://redux.js.org/Errors?code=${code} for the full message or use the non-minified dev environment for full errors. `;
+// src/utils/formatproderrormessage.ts
+function formatproderrormessage(code) {
+  return `minified redux error #${code}; visit https://redux.js.org/errors?code=${code} for the full message or use the non-minified dev environment for full errors. `;
 }
 
 // src/utils/symbol-observable.ts
-var $$observable = /* @__PURE__ */ (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
+var $$observable = /* @__pure__ */ (() => typeof symbol === "function" && symbol.observable || "@@observable")();
 var symbol_observable_default = $$observable;
 
-// src/utils/actionTypes.ts
-var randomString = () => Math.random().toString(36).substring(7).split("").join(".");
-var ActionTypes = {
-  INIT: `@@redux/INIT${/* @__PURE__ */ randomString()}`,
-  REPLACE: `@@redux/REPLACE${/* @__PURE__ */ randomString()}`,
-  PROBE_UNKNOWN_ACTION: () => `@@redux/PROBE_UNKNOWN_ACTION${randomString()}`
+// src/utils/actiontypes.ts
+var randomstring = () => math.random().tostring(36).substring(7).split("").join(".");
+var actiontypes = {
+  init: `@@redux/init${/* @__pure__ */ randomstring()}`,
+  replace: `@@redux/replace${/* @__pure__ */ randomstring()}`,
+  probe_unknown_action: () => `@@redux/probe_unknown_action${randomstring()}`
 };
-var actionTypes_default = ActionTypes;
+var actiontypes_default = actiontypes;
 
-// src/utils/isPlainObject.ts
-function isPlainObject(obj) {
+// src/utils/isplainobject.ts
+function isplainobject(obj) {
   if (typeof obj !== "object" || obj === null)
     return false;
   let proto = obj;
-  while (Object.getPrototypeOf(proto) !== null) {
-    proto = Object.getPrototypeOf(proto);
+  while (object.getprototypeof(proto) !== null) {
+    proto = object.getprototypeof(proto);
   }
-  return Object.getPrototypeOf(obj) === proto || Object.getPrototypeOf(obj) === null;
+  return object.getprototypeof(obj) === proto || object.getprototypeof(obj) === null;
 }
 
-// src/utils/kindOf.ts
-function miniKindOf(val) {
+// src/utils/kindof.ts
+function minikindof(val) {
   if (val === void 0)
     return "undefined";
   if (val === null)
@@ -646,160 +646,160 @@ function miniKindOf(val) {
       return type;
     }
   }
-  if (Array.isArray(val))
+  if (array.isarray(val))
     return "array";
-  if (isDate(val))
+  if (isdate(val))
     return "date";
-  if (isError(val))
+  if (iserror(val))
     return "error";
-  const constructorName = ctorName(val);
-  switch (constructorName) {
-    case "Symbol":
-    case "Promise":
-    case "WeakMap":
-    case "WeakSet":
-    case "Map":
-    case "Set":
-      return constructorName;
+  const constructorname = ctorname(val);
+  switch (constructorname) {
+    case "symbol":
+    case "promise":
+    case "weakmap":
+    case "weakset":
+    case "map":
+    case "set":
+      return constructorname;
   }
-  return Object.prototype.toString.call(val).slice(8, -1).toLowerCase().replace(/\s/g, "");
+  return object.prototype.tostring.call(val).slice(8, -1).tolowercase().replace(/\s/g, "");
 }
-function ctorName(val) {
+function ctorname(val) {
   return typeof val.constructor === "function" ? val.constructor.name : null;
 }
-function isError(val) {
-  return val instanceof Error || typeof val.message === "string" && val.constructor && typeof val.constructor.stackTraceLimit === "number";
+function iserror(val) {
+  return val instanceof error || typeof val.message === "string" && val.constructor && typeof val.constructor.stacktracelimit === "number";
 }
-function isDate(val) {
-  if (val instanceof Date)
+function isdate(val) {
+  if (val instanceof date)
     return true;
-  return typeof val.toDateString === "function" && typeof val.getDate === "function" && typeof val.setDate === "function";
+  return typeof val.todatestring === "function" && typeof val.getdate === "function" && typeof val.setdate === "function";
 }
-function kindOf(val) {
-  let typeOfVal = typeof val;
+function kindof(val) {
+  let typeofval = typeof val;
   if (false) {}
-  return typeOfVal;
+  return typeofval;
 }
 
-// src/createStore.ts
-function createStore(reducer, preloadedState, enhancer) {
+// src/createstore.ts
+function createstore(reducer, preloadedstate, enhancer) {
   if (typeof reducer !== "function") {
-    throw new Error( true ? formatProdErrorMessage(2) : 0);
+    throw new error( true ? formatproderrormessage(2) : 0);
   }
-  if (typeof preloadedState === "function" && typeof enhancer === "function" || typeof enhancer === "function" && typeof arguments[3] === "function") {
-    throw new Error( true ? formatProdErrorMessage(0) : 0);
+  if (typeof preloadedstate === "function" && typeof enhancer === "function" || typeof enhancer === "function" && typeof arguments[3] === "function") {
+    throw new error( true ? formatproderrormessage(0) : 0);
   }
-  if (typeof preloadedState === "function" && typeof enhancer === "undefined") {
-    enhancer = preloadedState;
-    preloadedState = void 0;
+  if (typeof preloadedstate === "function" && typeof enhancer === "undefined") {
+    enhancer = preloadedstate;
+    preloadedstate = void 0;
   }
   if (typeof enhancer !== "undefined") {
     if (typeof enhancer !== "function") {
-      throw new Error( true ? formatProdErrorMessage(1) : 0);
+      throw new error( true ? formatproderrormessage(1) : 0);
     }
-    return enhancer(createStore)(reducer, preloadedState);
+    return enhancer(createstore)(reducer, preloadedstate);
   }
-  let currentReducer = reducer;
-  let currentState = preloadedState;
-  let currentListeners = /* @__PURE__ */ new Map();
-  let nextListeners = currentListeners;
-  let listenerIdCounter = 0;
-  let isDispatching = false;
-  function ensureCanMutateNextListeners() {
-    if (nextListeners === currentListeners) {
-      nextListeners = /* @__PURE__ */ new Map();
-      currentListeners.forEach((listener, key) => {
-        nextListeners.set(key, listener);
+  let currentreducer = reducer;
+  let currentstate = preloadedstate;
+  let currentlisteners = /* @__pure__ */ new map();
+  let nextlisteners = currentlisteners;
+  let listeneridcounter = 0;
+  let isdispatching = false;
+  function ensurecanmutatenextlisteners() {
+    if (nextlisteners === currentlisteners) {
+      nextlisteners = /* @__pure__ */ new map();
+      currentlisteners.foreach((listener, key) => {
+        nextlisteners.set(key, listener);
       });
     }
   }
-  function getState() {
-    if (isDispatching) {
-      throw new Error( true ? formatProdErrorMessage(3) : 0);
+  function getstate() {
+    if (isdispatching) {
+      throw new error( true ? formatproderrormessage(3) : 0);
     }
-    return currentState;
+    return currentstate;
   }
   function subscribe(listener) {
     if (typeof listener !== "function") {
-      throw new Error( true ? formatProdErrorMessage(4) : 0);
+      throw new error( true ? formatproderrormessage(4) : 0);
     }
-    if (isDispatching) {
-      throw new Error( true ? formatProdErrorMessage(5) : 0);
+    if (isdispatching) {
+      throw new error( true ? formatproderrormessage(5) : 0);
     }
-    let isSubscribed = true;
-    ensureCanMutateNextListeners();
-    const listenerId = listenerIdCounter++;
-    nextListeners.set(listenerId, listener);
+    let issubscribed = true;
+    ensurecanmutatenextlisteners();
+    const listenerid = listeneridcounter++;
+    nextlisteners.set(listenerid, listener);
     return function unsubscribe() {
-      if (!isSubscribed) {
+      if (!issubscribed) {
         return;
       }
-      if (isDispatching) {
-        throw new Error( true ? formatProdErrorMessage(6) : 0);
+      if (isdispatching) {
+        throw new error( true ? formatproderrormessage(6) : 0);
       }
-      isSubscribed = false;
-      ensureCanMutateNextListeners();
-      nextListeners.delete(listenerId);
-      currentListeners = null;
+      issubscribed = false;
+      ensurecanmutatenextlisteners();
+      nextlisteners.delete(listenerid);
+      currentlisteners = null;
     };
   }
   function dispatch(action) {
-    if (!isPlainObject(action)) {
-      throw new Error( true ? formatProdErrorMessage(7) : 0);
+    if (!isplainobject(action)) {
+      throw new error( true ? formatproderrormessage(7) : 0);
     }
     if (typeof action.type === "undefined") {
-      throw new Error( true ? formatProdErrorMessage(8) : 0);
+      throw new error( true ? formatproderrormessage(8) : 0);
     }
     if (typeof action.type !== "string") {
-      throw new Error( true ? formatProdErrorMessage(17) : 0);
+      throw new error( true ? formatproderrormessage(17) : 0);
     }
-    if (isDispatching) {
-      throw new Error( true ? formatProdErrorMessage(9) : 0);
+    if (isdispatching) {
+      throw new error( true ? formatproderrormessage(9) : 0);
     }
     try {
-      isDispatching = true;
-      currentState = currentReducer(currentState, action);
+      isdispatching = true;
+      currentstate = currentreducer(currentstate, action);
     } finally {
-      isDispatching = false;
+      isdispatching = false;
     }
-    const listeners = currentListeners = nextListeners;
-    listeners.forEach((listener) => {
+    const listeners = currentlisteners = nextlisteners;
+    listeners.foreach((listener) => {
       listener();
     });
     return action;
   }
-  function replaceReducer(nextReducer) {
-    if (typeof nextReducer !== "function") {
-      throw new Error( true ? formatProdErrorMessage(10) : 0);
+  function replacereducer(nextreducer) {
+    if (typeof nextreducer !== "function") {
+      throw new error( true ? formatproderrormessage(10) : 0);
     }
-    currentReducer = nextReducer;
+    currentreducer = nextreducer;
     dispatch({
-      type: actionTypes_default.REPLACE
+      type: actiontypes_default.replace
     });
   }
   function observable() {
-    const outerSubscribe = subscribe;
+    const outersubscribe = subscribe;
     return {
       /**
-       * The minimal observable subscription method.
-       * @param observer Any object that can be used as an observer.
-       * The observer object should have a `next` method.
-       * @returns An object with an `unsubscribe` method that can
+       * the minimal observable subscription method.
+       * @param observer any object that can be used as an observer.
+       * the observer object should have a `next` method.
+       * @returns an object with an `unsubscribe` method that can
        * be used to unsubscribe the observable from the store, and prevent further
        * emission of values from the observable.
        */
       subscribe(observer) {
         if (typeof observer !== "object" || observer === null) {
-          throw new Error( true ? formatProdErrorMessage(11) : 0);
+          throw new error( true ? formatproderrormessage(11) : 0);
         }
-        function observeState() {
-          const observerAsObserver = observer;
-          if (observerAsObserver.next) {
-            observerAsObserver.next(getState());
+        function observestate() {
+          const observerasobserver = observer;
+          if (observerasobserver.next) {
+            observerasobserver.next(getstate());
           }
         }
-        observeState();
-        const unsubscribe = outerSubscribe(observeState);
+        observestate();
+        const unsubscribe = outersubscribe(observestate);
         return {
           unsubscribe
         };
@@ -810,19 +810,19 @@ function createStore(reducer, preloadedState, enhancer) {
     };
   }
   dispatch({
-    type: actionTypes_default.INIT
+    type: actiontypes_default.init
   });
   const store = {
     dispatch,
     subscribe,
-    getState,
-    replaceReducer,
+    getstate,
+    replacereducer,
     [symbol_observable_default]: observable
   };
   return store;
 }
-function legacy_createStore(reducer, preloadedState, enhancer) {
-  return createStore(reducer, preloadedState, enhancer);
+function legacy_createstore(reducer, preloadedstate, enhancer) {
+  return createstore(reducer, preloadedstate, enhancer);
 }
 
 // src/utils/warning.ts
@@ -831,111 +831,111 @@ function warning(message) {
     console.error(message);
   }
   try {
-    throw new Error(message);
+    throw new error(message);
   } catch (e) {
   }
 }
 
-// src/combineReducers.ts
-function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
-  const reducerKeys = Object.keys(reducers);
-  const argumentName = action && action.type === actionTypes_default.INIT ? "preloadedState argument passed to createStore" : "previous state received by the reducer";
-  if (reducerKeys.length === 0) {
-    return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
+// src/combinereducers.ts
+function getunexpectedstateshapewarningmessage(inputstate, reducers, action, unexpectedkeycache) {
+  const reducerkeys = object.keys(reducers);
+  const argumentname = action && action.type === actiontypes_default.init ? "preloadedstate argument passed to createstore" : "previous state received by the reducer";
+  if (reducerkeys.length === 0) {
+    return "store does not have a valid reducer. make sure the argument passed to combinereducers is an object whose values are reducers.";
   }
-  if (!isPlainObject(inputState)) {
-    return `The ${argumentName} has unexpected type of "${kindOf(inputState)}". Expected argument to be an object with the following keys: "${reducerKeys.join('", "')}"`;
+  if (!isplainobject(inputstate)) {
+    return `the ${argumentname} has unexpected type of "${kindof(inputstate)}". expected argument to be an object with the following keys: "${reducerkeys.join('", "')}"`;
   }
-  const unexpectedKeys = Object.keys(inputState).filter((key) => !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key]);
-  unexpectedKeys.forEach((key) => {
-    unexpectedKeyCache[key] = true;
+  const unexpectedkeys = object.keys(inputstate).filter((key) => !reducers.hasownproperty(key) && !unexpectedkeycache[key]);
+  unexpectedkeys.foreach((key) => {
+    unexpectedkeycache[key] = true;
   });
-  if (action && action.type === actionTypes_default.REPLACE)
+  if (action && action.type === actiontypes_default.replace)
     return;
-  if (unexpectedKeys.length > 0) {
-    return `Unexpected ${unexpectedKeys.length > 1 ? "keys" : "key"} "${unexpectedKeys.join('", "')}" found in ${argumentName}. Expected to find one of the known reducer keys instead: "${reducerKeys.join('", "')}". Unexpected keys will be ignored.`;
+  if (unexpectedkeys.length > 0) {
+    return `unexpected ${unexpectedkeys.length > 1 ? "keys" : "key"} "${unexpectedkeys.join('", "')}" found in ${argumentname}. expected to find one of the known reducer keys instead: "${reducerkeys.join('", "')}". unexpected keys will be ignored.`;
   }
 }
-function assertReducerShape(reducers) {
-  Object.keys(reducers).forEach((key) => {
+function assertreducershape(reducers) {
+  object.keys(reducers).foreach((key) => {
     const reducer = reducers[key];
-    const initialState = reducer(void 0, {
-      type: actionTypes_default.INIT
+    const initialstate = reducer(void 0, {
+      type: actiontypes_default.init
     });
-    if (typeof initialState === "undefined") {
-      throw new Error( true ? formatProdErrorMessage(12) : 0);
+    if (typeof initialstate === "undefined") {
+      throw new error( true ? formatproderrormessage(12) : 0);
     }
     if (typeof reducer(void 0, {
-      type: actionTypes_default.PROBE_UNKNOWN_ACTION()
+      type: actiontypes_default.probe_unknown_action()
     }) === "undefined") {
-      throw new Error( true ? formatProdErrorMessage(13) : 0);
+      throw new error( true ? formatproderrormessage(13) : 0);
     }
   });
 }
-function combineReducers(reducers) {
-  const reducerKeys = Object.keys(reducers);
-  const finalReducers = {};
-  for (let i = 0; i < reducerKeys.length; i++) {
-    const key = reducerKeys[i];
+function combinereducers(reducers) {
+  const reducerkeys = object.keys(reducers);
+  const finalreducers = {};
+  for (let i = 0; i < reducerkeys.length; i++) {
+    const key = reducerkeys[i];
     if (false) {}
     if (typeof reducers[key] === "function") {
-      finalReducers[key] = reducers[key];
+      finalreducers[key] = reducers[key];
     }
   }
-  const finalReducerKeys = Object.keys(finalReducers);
-  let unexpectedKeyCache;
+  const finalreducerkeys = object.keys(finalreducers);
+  let unexpectedkeycache;
   if (false) {}
-  let shapeAssertionError;
+  let shapeassertionerror;
   try {
-    assertReducerShape(finalReducers);
+    assertreducershape(finalreducers);
   } catch (e) {
-    shapeAssertionError = e;
+    shapeassertionerror = e;
   }
   return function combination(state = {}, action) {
-    if (shapeAssertionError) {
-      throw shapeAssertionError;
+    if (shapeassertionerror) {
+      throw shapeassertionerror;
     }
     if (false) {}
-    let hasChanged = false;
-    const nextState = {};
-    for (let i = 0; i < finalReducerKeys.length; i++) {
-      const key = finalReducerKeys[i];
-      const reducer = finalReducers[key];
-      const previousStateForKey = state[key];
-      const nextStateForKey = reducer(previousStateForKey, action);
-      if (typeof nextStateForKey === "undefined") {
-        const actionType = action && action.type;
-        throw new Error( true ? formatProdErrorMessage(14) : 0);
+    let haschanged = false;
+    const nextstate = {};
+    for (let i = 0; i < finalreducerkeys.length; i++) {
+      const key = finalreducerkeys[i];
+      const reducer = finalreducers[key];
+      const previousstateforkey = state[key];
+      const nextstateforkey = reducer(previousstateforkey, action);
+      if (typeof nextstateforkey === "undefined") {
+        const actiontype = action && action.type;
+        throw new error( true ? formatproderrormessage(14) : 0);
       }
-      nextState[key] = nextStateForKey;
-      hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+      nextstate[key] = nextstateforkey;
+      haschanged = haschanged || nextstateforkey !== previousstateforkey;
     }
-    hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
-    return hasChanged ? nextState : state;
+    haschanged = haschanged || finalreducerkeys.length !== object.keys(state).length;
+    return haschanged ? nextstate : state;
   };
 }
 
-// src/bindActionCreators.ts
-function bindActionCreator(actionCreator, dispatch) {
+// src/bindactioncreators.ts
+function bindactioncreator(actioncreator, dispatch) {
   return function(...args) {
-    return dispatch(actionCreator.apply(this, args));
+    return dispatch(actioncreator.apply(this, args));
   };
 }
-function bindActionCreators(actionCreators, dispatch) {
-  if (typeof actionCreators === "function") {
-    return bindActionCreator(actionCreators, dispatch);
+function bindactioncreators(actioncreators, dispatch) {
+  if (typeof actioncreators === "function") {
+    return bindactioncreator(actioncreators, dispatch);
   }
-  if (typeof actionCreators !== "object" || actionCreators === null) {
-    throw new Error( true ? formatProdErrorMessage(16) : 0);
+  if (typeof actioncreators !== "object" || actioncreators === null) {
+    throw new error( true ? formatproderrormessage(16) : 0);
   }
-  const boundActionCreators = {};
-  for (const key in actionCreators) {
-    const actionCreator = actionCreators[key];
-    if (typeof actionCreator === "function") {
-      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+  const boundactioncreators = {};
+  for (const key in actioncreators) {
+    const actioncreator = actioncreators[key];
+    if (typeof actioncreator === "function") {
+      boundactioncreators[key] = bindactioncreator(actioncreator, dispatch);
     }
   }
-  return boundActionCreators;
+  return boundactioncreators;
 }
 
 // src/compose.ts
@@ -949,18 +949,18 @@ function compose(...funcs) {
   return funcs.reduce((a, b) => (...args) => a(b(...args)));
 }
 
-// src/applyMiddleware.ts
-function applyMiddleware(...middlewares) {
-  return (createStore2) => (reducer, preloadedState) => {
-    const store = createStore2(reducer, preloadedState);
+// src/applymiddleware.ts
+function applymiddleware(...middlewares) {
+  return (createstore2) => (reducer, preloadedstate) => {
+    const store = createstore2(reducer, preloadedstate);
     let dispatch = () => {
-      throw new Error( true ? formatProdErrorMessage(15) : 0);
+      throw new error( true ? formatproderrormessage(15) : 0);
     };
-    const middlewareAPI = {
-      getState: store.getState,
+    const middlewareapi = {
+      getstate: store.getstate,
       dispatch: (action, ...args) => dispatch(action, ...args)
     };
-    const chain = middlewares.map((middleware) => middleware(middlewareAPI));
+    const chain = middlewares.map((middleware) => middleware(middlewareapi));
     dispatch = compose(...chain)(store.dispatch);
     return {
       ...store,
@@ -969,168 +969,168 @@ function applyMiddleware(...middlewares) {
   };
 }
 
-// src/utils/isAction.ts
-function isAction(action) {
-  return isPlainObject(action) && "type" in action && typeof action.type === "string";
+// src/utils/isaction.ts
+function isaction(action) {
+  return isplainobject(action) && "type" in action && typeof action.type === "string";
 }
 
-//# sourceMappingURL=redux.mjs.map
-// EXTERNAL MODULE: ./node_modules/equivalent-key-map/equivalent-key-map.js
+//# sourcemappingurl=redux.mjs.map
+// external module: ./node_modules/equivalent-key-map/equivalent-key-map.js
 var equivalent_key_map = __webpack_require__(3249);
-var equivalent_key_map_default = /*#__PURE__*/__webpack_require__.n(equivalent_key_map);
-;// external ["wp","reduxRoutine"]
-const external_wp_reduxRoutine_namespaceObject = window["wp"]["reduxRoutine"];
-var external_wp_reduxRoutine_default = /*#__PURE__*/__webpack_require__.n(external_wp_reduxRoutine_namespaceObject);
+var equivalent_key_map_default = /*#__pure__*/__webpack_require__.n(equivalent_key_map);
+;// external ["wp","reduxroutine"]
+const external_wp_reduxroutine_namespaceobject = window["wp"]["reduxroutine"];
+var external_wp_reduxroutine_default = /*#__pure__*/__webpack_require__.n(external_wp_reduxroutine_namespaceobject);
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
 ;// ./node_modules/@wordpress/data/build-module/redux-store/combine-reducers.js
-function combine_reducers_combineReducers(reducers) {
-  const keys = Object.keys(reducers);
-  return function combinedReducer(state = {}, action) {
-    const nextState = {};
-    let hasChanged = false;
+function combine_reducers_combinereducers(reducers) {
+  const keys = object.keys(reducers);
+  return function combinedreducer(state = {}, action) {
+    const nextstate = {};
+    let haschanged = false;
     for (const key of keys) {
       const reducer = reducers[key];
-      const prevStateForKey = state[key];
-      const nextStateForKey = reducer(prevStateForKey, action);
-      nextState[key] = nextStateForKey;
-      hasChanged = hasChanged || nextStateForKey !== prevStateForKey;
+      const prevstateforkey = state[key];
+      const nextstateforkey = reducer(prevstateforkey, action);
+      nextstate[key] = nextstateforkey;
+      haschanged = haschanged || nextstateforkey !== prevstateforkey;
     }
-    return hasChanged ? nextState : state;
+    return haschanged ? nextstate : state;
   };
 }
 
 
 ;// ./node_modules/@wordpress/data/build-module/factory.js
-function createRegistrySelector(registrySelector) {
-  const selectorsByRegistry = /* @__PURE__ */ new WeakMap();
-  const wrappedSelector = (...args) => {
-    let selector = selectorsByRegistry.get(wrappedSelector.registry);
+function createregistryselector(registryselector) {
+  const selectorsbyregistry = /* @__pure__ */ new weakmap();
+  const wrappedselector = (...args) => {
+    let selector = selectorsbyregistry.get(wrappedselector.registry);
     if (!selector) {
-      selector = registrySelector(wrappedSelector.registry.select);
-      selectorsByRegistry.set(wrappedSelector.registry, selector);
+      selector = registryselector(wrappedselector.registry.select);
+      selectorsbyregistry.set(wrappedselector.registry, selector);
     }
     return selector(...args);
   };
-  wrappedSelector.isRegistrySelector = true;
-  return wrappedSelector;
+  wrappedselector.isregistryselector = true;
+  return wrappedselector;
 }
-function createRegistryControl(registryControl) {
-  registryControl.isRegistryControl = true;
-  return registryControl;
+function createregistrycontrol(registrycontrol) {
+  registrycontrol.isregistrycontrol = true;
+  return registrycontrol;
 }
 
 
 ;// ./node_modules/@wordpress/data/build-module/controls.js
 
-const SELECT = "@@data/SELECT";
-const RESOLVE_SELECT = "@@data/RESOLVE_SELECT";
-const DISPATCH = "@@data/DISPATCH";
-function isObject(object) {
+const select = "@@data/select";
+const resolve_select = "@@data/resolve_select";
+const dispatch = "@@data/dispatch";
+function isobject(object) {
   return object !== null && typeof object === "object";
 }
-function controls_select(storeNameOrDescriptor, selectorName, ...args) {
+function controls_select(storenameordescriptor, selectorname, ...args) {
   return {
-    type: SELECT,
-    storeKey: isObject(storeNameOrDescriptor) ? storeNameOrDescriptor.name : storeNameOrDescriptor,
-    selectorName,
+    type: select,
+    storekey: isobject(storenameordescriptor) ? storenameordescriptor.name : storenameordescriptor,
+    selectorname,
     args
   };
 }
-function resolveSelect(storeNameOrDescriptor, selectorName, ...args) {
+function resolveselect(storenameordescriptor, selectorname, ...args) {
   return {
-    type: RESOLVE_SELECT,
-    storeKey: isObject(storeNameOrDescriptor) ? storeNameOrDescriptor.name : storeNameOrDescriptor,
-    selectorName,
+    type: resolve_select,
+    storekey: isobject(storenameordescriptor) ? storenameordescriptor.name : storenameordescriptor,
+    selectorname,
     args
   };
 }
-function dispatch(storeNameOrDescriptor, actionName, ...args) {
+function dispatch(storenameordescriptor, actionname, ...args) {
   return {
-    type: DISPATCH,
-    storeKey: isObject(storeNameOrDescriptor) ? storeNameOrDescriptor.name : storeNameOrDescriptor,
-    actionName,
+    type: dispatch,
+    storekey: isobject(storenameordescriptor) ? storenameordescriptor.name : storenameordescriptor,
+    actionname,
     args
   };
 }
-const controls = { select: controls_select, resolveSelect, dispatch };
-const builtinControls = {
-  [SELECT]: createRegistryControl(
-    (registry) => ({ storeKey, selectorName, args }) => registry.select(storeKey)[selectorName](...args)
+const controls = { select: controls_select, resolveselect, dispatch };
+const builtincontrols = {
+  [select]: createregistrycontrol(
+    (registry) => ({ storekey, selectorname, args }) => registry.select(storekey)[selectorname](...args)
   ),
-  [RESOLVE_SELECT]: createRegistryControl(
-    (registry) => ({ storeKey, selectorName, args }) => {
-      const method = registry.select(storeKey)[selectorName].hasResolver ? "resolveSelect" : "select";
-      return registry[method](storeKey)[selectorName](
+  [resolve_select]: createregistrycontrol(
+    (registry) => ({ storekey, selectorname, args }) => {
+      const method = registry.select(storekey)[selectorname].hasresolver ? "resolveselect" : "select";
+      return registry[method](storekey)[selectorname](
         ...args
       );
     }
   ),
-  [DISPATCH]: createRegistryControl(
-    (registry) => ({ storeKey, actionName, args }) => registry.dispatch(storeKey)[actionName](...args)
+  [dispatch]: createregistrycontrol(
+    (registry) => ({ storekey, actionname, args }) => registry.dispatch(storekey)[actionname](...args)
   )
 };
 
 
-;// external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+;// external ["wp","privateapis"]
+const external_wp_privateapis_namespaceobject = window["wp"]["privateapis"];
 ;// ./node_modules/@wordpress/data/build-module/lock-unlock.js
 
-const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)(
-  "I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.",
+const { lock, unlock } = (0,external_wp_privateapis_namespaceobject.__dangerousoptintounstableapisonlyforcoremodules)(
+  "i acknowledge private features are not for use in themes or plugins and doing so will break in the next version of wordpress.",
   "@wordpress/data"
 );
 
 
 ;// ./node_modules/is-promise/index.mjs
-function isPromise(obj) {
+function ispromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 
 ;// ./node_modules/@wordpress/data/build-module/promise-middleware.js
 
-const promiseMiddleware = () => (next) => (action) => {
-  if (isPromise(action)) {
-    return action.then((resolvedAction) => {
-      if (resolvedAction) {
-        return next(resolvedAction);
+const promisemiddleware = () => (next) => (action) => {
+  if (ispromise(action)) {
+    return action.then((resolvedaction) => {
+      if (resolvedaction) {
+        return next(resolvedaction);
       }
     });
   }
   return next(action);
 };
-var promise_middleware_default = promiseMiddleware;
+var promise_middleware_default = promisemiddleware;
 
 
 ;// ./node_modules/@wordpress/data/build-module/resolvers-cache-middleware.js
-const createResolversCacheMiddleware = (registry, storeName) => () => (next) => (action) => {
-  const resolvers = registry.select(storeName).getCachedResolvers();
-  const resolverEntries = Object.entries(resolvers);
-  resolverEntries.forEach(([selectorName, resolversByArgs]) => {
-    const resolver = registry.stores[storeName]?.resolvers?.[selectorName];
-    if (!resolver || !resolver.shouldInvalidate) {
+const createresolverscachemiddleware = (registry, storename) => () => (next) => (action) => {
+  const resolvers = registry.select(storename).getcachedresolvers();
+  const resolverentries = object.entries(resolvers);
+  resolverentries.foreach(([selectorname, resolversbyargs]) => {
+    const resolver = registry.stores[storename]?.resolvers?.[selectorname];
+    if (!resolver || !resolver.shouldinvalidate) {
       return;
     }
-    resolversByArgs.forEach((value, args) => {
+    resolversbyargs.foreach((value, args) => {
       if (value === void 0) {
         return;
       }
       if (value.status !== "finished" && value.status !== "error") {
         return;
       }
-      if (!resolver.shouldInvalidate(action, ...args)) {
+      if (!resolver.shouldinvalidate(action, ...args)) {
         return;
       }
-      registry.dispatch(storeName).invalidateResolution(selectorName, args);
+      registry.dispatch(storename).invalidateresolution(selectorname, args);
     });
   });
   return next(action);
 };
-var resolvers_cache_middleware_default = createResolversCacheMiddleware;
+var resolvers_cache_middleware_default = createresolverscachemiddleware;
 
 
 ;// ./node_modules/@wordpress/data/build-module/redux-store/thunk-middleware.js
-function createThunkMiddleware(args) {
+function createthunkmiddleware(args) {
   return () => (next) => (action) => {
     if (typeof action === "function") {
       return action(args);
@@ -1141,21 +1141,21 @@ function createThunkMiddleware(args) {
 
 
 ;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/utils.js
-const onSubKey = (actionProperty) => (reducer) => (state = {}, action) => {
-  const key = action[actionProperty];
+const onsubkey = (actionproperty) => (reducer) => (state = {}, action) => {
+  const key = action[actionproperty];
   if (key === void 0) {
     return state;
   }
-  const nextKeyState = reducer(state[key], action);
-  if (nextKeyState === state[key]) {
+  const nextkeystate = reducer(state[key], action);
+  if (nextkeystate === state[key]) {
     return state;
   }
   return {
     ...state,
-    [key]: nextKeyState
+    [key]: nextkeystate
   };
 };
-function selectorArgsToStateKey(args) {
+function selectorargstostatekey(args) {
   if (args === void 0 || args === null) {
     return [];
   }
@@ -1171,177 +1171,177 @@ function selectorArgsToStateKey(args) {
 ;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/reducer.js
 
 
-const subKeysIsResolved = onSubKey("selectorName")((state = new (equivalent_key_map_default())(), action) => {
+const subkeysisresolved = onsubkey("selectorname")((state = new (equivalent_key_map_default())(), action) => {
   switch (action.type) {
-    case "START_RESOLUTION": {
-      const nextState = new (equivalent_key_map_default())(state);
-      nextState.set(selectorArgsToStateKey(action.args), {
+    case "start_resolution": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      nextstate.set(selectorargstostatekey(action.args), {
         status: "resolving"
       });
-      return nextState;
+      return nextstate;
     }
-    case "FINISH_RESOLUTION": {
-      const nextState = new (equivalent_key_map_default())(state);
-      nextState.set(selectorArgsToStateKey(action.args), {
+    case "finish_resolution": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      nextstate.set(selectorargstostatekey(action.args), {
         status: "finished"
       });
-      return nextState;
+      return nextstate;
     }
-    case "FAIL_RESOLUTION": {
-      const nextState = new (equivalent_key_map_default())(state);
-      nextState.set(selectorArgsToStateKey(action.args), {
+    case "fail_resolution": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      nextstate.set(selectorargstostatekey(action.args), {
         status: "error",
         error: action.error
       });
-      return nextState;
+      return nextstate;
     }
-    case "START_RESOLUTIONS": {
-      const nextState = new (equivalent_key_map_default())(state);
-      for (const resolutionArgs of action.args) {
-        nextState.set(selectorArgsToStateKey(resolutionArgs), {
+    case "start_resolutions": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      for (const resolutionargs of action.args) {
+        nextstate.set(selectorargstostatekey(resolutionargs), {
           status: "resolving"
         });
       }
-      return nextState;
+      return nextstate;
     }
-    case "FINISH_RESOLUTIONS": {
-      const nextState = new (equivalent_key_map_default())(state);
-      for (const resolutionArgs of action.args) {
-        nextState.set(selectorArgsToStateKey(resolutionArgs), {
+    case "finish_resolutions": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      for (const resolutionargs of action.args) {
+        nextstate.set(selectorargstostatekey(resolutionargs), {
           status: "finished"
         });
       }
-      return nextState;
+      return nextstate;
     }
-    case "FAIL_RESOLUTIONS": {
-      const nextState = new (equivalent_key_map_default())(state);
-      action.args.forEach((resolutionArgs, idx) => {
-        const resolutionState = {
+    case "fail_resolutions": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      action.args.foreach((resolutionargs, idx) => {
+        const resolutionstate = {
           status: "error",
           error: void 0
         };
         const error = action.errors[idx];
         if (error) {
-          resolutionState.error = error;
+          resolutionstate.error = error;
         }
-        nextState.set(
-          selectorArgsToStateKey(resolutionArgs),
-          resolutionState
+        nextstate.set(
+          selectorargstostatekey(resolutionargs),
+          resolutionstate
         );
       });
-      return nextState;
+      return nextstate;
     }
-    case "INVALIDATE_RESOLUTION": {
-      const nextState = new (equivalent_key_map_default())(state);
-      nextState.delete(selectorArgsToStateKey(action.args));
-      return nextState;
+    case "invalidate_resolution": {
+      const nextstate = new (equivalent_key_map_default())(state);
+      nextstate.delete(selectorargstostatekey(action.args));
+      return nextstate;
     }
   }
   return state;
 });
-const isResolved = (state = {}, action) => {
+const isresolved = (state = {}, action) => {
   switch (action.type) {
-    case "INVALIDATE_RESOLUTION_FOR_STORE":
+    case "invalidate_resolution_for_store":
       return {};
-    case "INVALIDATE_RESOLUTION_FOR_STORE_SELECTOR": {
-      if (action.selectorName in state) {
+    case "invalidate_resolution_for_store_selector": {
+      if (action.selectorname in state) {
         const {
-          [action.selectorName]: removedSelector,
-          ...restState
+          [action.selectorname]: removedselector,
+          ...reststate
         } = state;
-        return restState;
+        return reststate;
       }
       return state;
     }
-    case "START_RESOLUTION":
-    case "FINISH_RESOLUTION":
-    case "FAIL_RESOLUTION":
-    case "START_RESOLUTIONS":
-    case "FINISH_RESOLUTIONS":
-    case "FAIL_RESOLUTIONS":
-    case "INVALIDATE_RESOLUTION":
-      return subKeysIsResolved(state, action);
+    case "start_resolution":
+    case "finish_resolution":
+    case "fail_resolution":
+    case "start_resolutions":
+    case "finish_resolutions":
+    case "fail_resolutions":
+    case "invalidate_resolution":
+      return subkeysisresolved(state, action);
   }
   return state;
 };
-var reducer_default = isResolved;
+var reducer_default = isresolved;
 
 
 ;// ./node_modules/rememo/rememo.js
 
 
-/** @typedef {(...args: any[]) => *[]} GetDependants */
+/** @typedef {(...args: any[]) => *[]} getdependants */
 
-/** @typedef {() => void} Clear */
+/** @typedef {() => void} clear */
 
 /**
  * @typedef {{
- *   getDependants: GetDependants,
- *   clear: Clear
- * }} EnhancedSelector
+ *   getdependants: getdependants,
+ *   clear: clear
+ * }} enhancedselector
  */
 
 /**
- * Internal cache entry.
+ * internal cache entry.
  *
- * @typedef CacheNode
+ * @typedef cachenode
  *
- * @property {?CacheNode|undefined} [prev] Previous node.
- * @property {?CacheNode|undefined} [next] Next node.
- * @property {*[]} args Function arguments for cache entry.
- * @property {*} val Function result.
+ * @property {?cachenode|undefined} [prev] previous node.
+ * @property {?cachenode|undefined} [next] next node.
+ * @property {*[]} args function arguments for cache entry.
+ * @property {*} val function result.
  */
 
 /**
- * @typedef Cache
+ * @typedef cache
  *
- * @property {Clear} clear Function to clear cache.
- * @property {boolean} [isUniqueByDependants] Whether dependants are valid in
- * considering cache uniqueness. A cache is unique if dependents are all arrays
+ * @property {clear} clear function to clear cache.
+ * @property {boolean} [isuniquebydependants] whether dependants are valid in
+ * considering cache uniqueness. a cache is unique if dependents are all arrays
  * or objects.
- * @property {CacheNode?} [head] Cache head.
- * @property {*[]} [lastDependants] Dependants from previous invocation.
+ * @property {cachenode?} [head] cache head.
+ * @property {*[]} [lastdependants] dependants from previous invocation.
  */
 
 /**
- * Arbitrary value used as key for referencing cache object in WeakMap tree.
+ * arbitrary value used as key for referencing cache object in weakmap tree.
  *
  * @type {{}}
  */
-var LEAF_KEY = {};
+var leaf_key = {};
 
 /**
- * Returns the first argument as the sole entry in an array.
+ * returns the first argument as the sole entry in an array.
  *
- * @template T
+ * @template t
  *
- * @param {T} value Value to return.
+ * @param {t} value value to return.
  *
- * @return {[T]} Value returned as entry in array.
+ * @return {[t]} value returned as entry in array.
  */
-function arrayOf(value) {
+function arrayof(value) {
 	return [value];
 }
 
 /**
- * Returns true if the value passed is object-like, or false otherwise. A value
+ * returns true if the value passed is object-like, or false otherwise. a value
  * is object-like if it can support property assignment, e.g. object or array.
  *
- * @param {*} value Value to test.
+ * @param {*} value value to test.
  *
- * @return {boolean} Whether value is object-like.
+ * @return {boolean} whether value is object-like.
  */
-function isObjectLike(value) {
+function isobjectlike(value) {
 	return !!value && 'object' === typeof value;
 }
 
 /**
- * Creates and returns a new cache object.
+ * creates and returns a new cache object.
  *
- * @return {Cache} Cache object.
+ * @return {cache} cache object.
  */
-function createCache() {
-	/** @type {Cache} */
+function createcache() {
+	/** @type {cache} */
 	var cache = {
 		clear: function () {
 			cache.head = null;
@@ -1352,23 +1352,23 @@ function createCache() {
 }
 
 /**
- * Returns true if entries within the two arrays are strictly equal by
+ * returns true if entries within the two arrays are strictly equal by
  * reference from a starting index.
  *
- * @param {*[]} a First array.
- * @param {*[]} b Second array.
- * @param {number} fromIndex Index from which to start comparison.
+ * @param {*[]} a first array.
+ * @param {*[]} b second array.
+ * @param {number} fromindex index from which to start comparison.
  *
- * @return {boolean} Whether arrays are shallowly equal.
+ * @return {boolean} whether arrays are shallowly equal.
  */
-function isShallowEqual(a, b, fromIndex) {
+function isshallowequal(a, b, fromindex) {
 	var i;
 
 	if (a.length !== b.length) {
 		return false;
 	}
 
-	for (i = fromIndex; i < a.length; i++) {
+	for (i = fromindex; i < a.length; i++) {
 		if (a[i] !== b[i]) {
 			return false;
 		}
@@ -1378,47 +1378,47 @@ function isShallowEqual(a, b, fromIndex) {
 }
 
 /**
- * Returns a memoized selector function. The getDependants function argument is
+ * returns a memoized selector function. the getdependants function argument is
  * called before the memoized selector and is expected to return an immutable
  * reference or array of references on which the selector depends for computing
- * its own return value. The memoize cache is preserved only as long as those
- * dependant references remain the same. If getDependants returns a different
+ * its own return value. the memoize cache is preserved only as long as those
+ * dependant references remain the same. if getdependants returns a different
  * reference(s), the cache is cleared and the selector value regenerated.
  *
- * @template {(...args: *[]) => *} S
+ * @template {(...args: *[]) => *} s
  *
- * @param {S} selector Selector function.
- * @param {GetDependants=} getDependants Dependant getter returning an array of
+ * @param {s} selector selector function.
+ * @param {getdependants=} getdependants dependant getter returning an array of
  * references used in cache bust consideration.
  */
-/* harmony default export */ function rememo(selector, getDependants) {
-	/** @type {WeakMap<*,*>} */
-	var rootCache;
+/* harmony default export */ function rememo(selector, getdependants) {
+	/** @type {weakmap<*,*>} */
+	var rootcache;
 
-	/** @type {GetDependants} */
-	var normalizedGetDependants = getDependants ? getDependants : arrayOf;
+	/** @type {getdependants} */
+	var normalizedgetdependants = getdependants ? getdependants : arrayof;
 
 	/**
-	 * Returns the cache for a given dependants array. When possible, a WeakMap
-	 * will be used to create a unique cache for each set of dependants. This
-	 * is feasible due to the nature of WeakMap in allowing garbage collection
-	 * to occur on entries where the key object is no longer referenced. Since
-	 * WeakMap requires the key to be an object, this is only possible when the
-	 * dependant is object-like. The root cache is created as a hierarchy where
+	 * returns the cache for a given dependants array. when possible, a weakmap
+	 * will be used to create a unique cache for each set of dependants. this
+	 * is feasible due to the nature of weakmap in allowing garbage collection
+	 * to occur on entries where the key object is no longer referenced. since
+	 * weakmap requires the key to be an object, this is only possible when the
+	 * dependant is object-like. the root cache is created as a hierarchy where
 	 * each top-level key is the first entry in a dependants set, the value a
-	 * WeakMap where each key is the next dependant, and so on. This continues
-	 * so long as the dependants are object-like. If no dependants are object-
+	 * weakmap where each key is the next dependant, and so on. this continues
+	 * so long as the dependants are object-like. if no dependants are object-
 	 * like, then the cache is shared across all invocations.
 	 *
-	 * @see isObjectLike
+	 * @see isobjectlike
 	 *
-	 * @param {*[]} dependants Selector dependants.
+	 * @param {*[]} dependants selector dependants.
 	 *
-	 * @return {Cache} Cache object.
+	 * @return {cache} cache object.
 	 */
-	function getCache(dependants) {
-		var caches = rootCache,
-			isUniqueByDependants = true,
+	function getcache(dependants) {
+		var caches = rootcache,
+			isuniquebydependants = true,
 			i,
 			dependant,
 			map,
@@ -1427,54 +1427,54 @@ function isShallowEqual(a, b, fromIndex) {
 		for (i = 0; i < dependants.length; i++) {
 			dependant = dependants[i];
 
-			// Can only compose WeakMap from object-like key.
-			if (!isObjectLike(dependant)) {
-				isUniqueByDependants = false;
+			// can only compose weakmap from object-like key.
+			if (!isobjectlike(dependant)) {
+				isuniquebydependants = false;
 				break;
 			}
 
-			// Does current segment of cache already have a WeakMap?
+			// does current segment of cache already have a weakmap?
 			if (caches.has(dependant)) {
-				// Traverse into nested WeakMap.
+				// traverse into nested weakmap.
 				caches = caches.get(dependant);
 			} else {
-				// Create, set, and traverse into a new one.
-				map = new WeakMap();
+				// create, set, and traverse into a new one.
+				map = new weakmap();
 				caches.set(dependant, map);
 				caches = map;
 			}
 		}
 
-		// We use an arbitrary (but consistent) object as key for the last item
-		// in the WeakMap to serve as our running cache.
-		if (!caches.has(LEAF_KEY)) {
-			cache = createCache();
-			cache.isUniqueByDependants = isUniqueByDependants;
-			caches.set(LEAF_KEY, cache);
+		// we use an arbitrary (but consistent) object as key for the last item
+		// in the weakmap to serve as our running cache.
+		if (!caches.has(leaf_key)) {
+			cache = createcache();
+			cache.isuniquebydependants = isuniquebydependants;
+			caches.set(leaf_key, cache);
 		}
 
-		return caches.get(LEAF_KEY);
+		return caches.get(leaf_key);
 	}
 
 	/**
-	 * Resets root memoization cache.
+	 * resets root memoization cache.
 	 */
 	function clear() {
-		rootCache = new WeakMap();
+		rootcache = new weakmap();
 	}
 
 	/* eslint-disable jsdoc/check-param-names */
 	/**
-	 * The augmented selector call, considering first whether dependants have
+	 * the augmented selector call, considering first whether dependants have
 	 * changed before passing it to underlying memoize function.
 	 *
-	 * @param {*}    source    Source object for derivation.
-	 * @param {...*} extraArgs Additional arguments to pass to selector.
+	 * @param {*}    source    source object for derivation.
+	 * @param {...*} extraargs additional arguments to pass to selector.
 	 *
-	 * @return {*} Selector result.
+	 * @return {*} selector result.
 	 */
 	/* eslint-enable jsdoc/check-param-names */
-	function callSelector(/* source, ...extraArgs */) {
+	function callselector(/* source, ...extraargs */) {
 		var len = arguments.length,
 			cache,
 			node,
@@ -1482,72 +1482,72 @@ function isShallowEqual(a, b, fromIndex) {
 			args,
 			dependants;
 
-		// Create copy of arguments (avoid leaking deoptimization).
-		args = new Array(len);
+		// create copy of arguments (avoid leaking deoptimization).
+		args = new array(len);
 		for (i = 0; i < len; i++) {
 			args[i] = arguments[i];
 		}
 
-		dependants = normalizedGetDependants.apply(null, args);
-		cache = getCache(dependants);
+		dependants = normalizedgetdependants.apply(null, args);
+		cache = getcache(dependants);
 
-		// If not guaranteed uniqueness by dependants (primitive type), shallow
+		// if not guaranteed uniqueness by dependants (primitive type), shallow
 		// compare against last dependants and, if references have changed,
 		// destroy cache to recalculate result.
-		if (!cache.isUniqueByDependants) {
+		if (!cache.isuniquebydependants) {
 			if (
-				cache.lastDependants &&
-				!isShallowEqual(dependants, cache.lastDependants, 0)
+				cache.lastdependants &&
+				!isshallowequal(dependants, cache.lastdependants, 0)
 			) {
 				cache.clear();
 			}
 
-			cache.lastDependants = dependants;
+			cache.lastdependants = dependants;
 		}
 
 		node = cache.head;
 		while (node) {
-			// Check whether node arguments match arguments
-			if (!isShallowEqual(node.args, args, 1)) {
+			// check whether node arguments match arguments
+			if (!isshallowequal(node.args, args, 1)) {
 				node = node.next;
 				continue;
 			}
 
-			// At this point we can assume we've found a match
+			// at this point we can assume we've found a match
 
-			// Surface matched node to head if not already
+			// surface matched node to head if not already
 			if (node !== cache.head) {
-				// Adjust siblings to point to each other.
-				/** @type {CacheNode} */ (node.prev).next = node.next;
+				// adjust siblings to point to each other.
+				/** @type {cachenode} */ (node.prev).next = node.next;
 				if (node.next) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = cache.head;
 				node.prev = null;
-				/** @type {CacheNode} */ (cache.head).prev = node;
+				/** @type {cachenode} */ (cache.head).prev = node;
 				cache.head = node;
 			}
 
-			// Return immediately
+			// return immediately
 			return node.val;
 		}
 
-		// No cached value found. Continue to insertion phase:
+		// no cached value found. continue to insertion phase:
 
-		node = /** @type {CacheNode} */ ({
-			// Generate the result from original function
+		node = /** @type {cachenode} */ ({
+			// generate the result from original function
 			val: selector.apply(null, args),
 		});
 
-		// Avoid including the source object in the cache.
+		// avoid including the source object in the cache.
 		args[0] = null;
 		node.args = args;
 
-		// Don't need to check whether node is already head, since it would
+		// don't need to check whether node is already head, since it would
 		// have been returned above already if it was
 
-		// Shift existing head down list
+		// shift existing head down list
 		if (cache.head) {
 			cache.head.prev = node;
 			node.next = cache.head;
@@ -1558,159 +1558,159 @@ function isShallowEqual(a, b, fromIndex) {
 		return node.val;
 	}
 
-	callSelector.getDependants = normalizedGetDependants;
-	callSelector.clear = clear;
+	callselector.getdependants = normalizedgetdependants;
+	callselector.clear = clear;
 	clear();
 
-	return /** @type {S & EnhancedSelector} */ (callSelector);
+	return /** @type {s & enhancedselector} */ (callselector);
 }
 
 ;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/selectors.js
 
 
 
-function getResolutionState(state, selectorName, args) {
-  const map = state[selectorName];
+function getresolutionstate(state, selectorname, args) {
+  const map = state[selectorname];
   if (!map) {
     return;
   }
-  return map.get(selectorArgsToStateKey(args));
+  return map.get(selectorargstostatekey(args));
 }
-function getIsResolving(state, selectorName, args) {
-  external_wp_deprecated_default()("wp.data.select( store ).getIsResolving", {
+function getisresolving(state, selectorname, args) {
+  external_wp_deprecated_default()("wp.data.select( store ).getisresolving", {
     since: "6.6",
     version: "6.8",
-    alternative: "wp.data.select( store ).getResolutionState"
+    alternative: "wp.data.select( store ).getresolutionstate"
   });
-  const resolutionState = getResolutionState(state, selectorName, args);
-  return resolutionState && resolutionState.status === "resolving";
+  const resolutionstate = getresolutionstate(state, selectorname, args);
+  return resolutionstate && resolutionstate.status === "resolving";
 }
-function hasStartedResolution(state, selectorName, args) {
-  return getResolutionState(state, selectorName, args) !== void 0;
+function hasstartedresolution(state, selectorname, args) {
+  return getresolutionstate(state, selectorname, args) !== void 0;
 }
-function hasFinishedResolution(state, selectorName, args) {
-  const status = getResolutionState(state, selectorName, args)?.status;
+function hasfinishedresolution(state, selectorname, args) {
+  const status = getresolutionstate(state, selectorname, args)?.status;
   return status === "finished" || status === "error";
 }
-function hasResolutionFailed(state, selectorName, args) {
-  return getResolutionState(state, selectorName, args)?.status === "error";
+function hasresolutionfailed(state, selectorname, args) {
+  return getresolutionstate(state, selectorname, args)?.status === "error";
 }
-function getResolutionError(state, selectorName, args) {
-  const resolutionState = getResolutionState(state, selectorName, args);
-  return resolutionState?.status === "error" ? resolutionState.error : null;
+function getresolutionerror(state, selectorname, args) {
+  const resolutionstate = getresolutionstate(state, selectorname, args);
+  return resolutionstate?.status === "error" ? resolutionstate.error : null;
 }
-function isResolving(state, selectorName, args) {
-  return getResolutionState(state, selectorName, args)?.status === "resolving";
+function isresolving(state, selectorname, args) {
+  return getresolutionstate(state, selectorname, args)?.status === "resolving";
 }
-function getCachedResolvers(state) {
+function getcachedresolvers(state) {
   return state;
 }
-function hasResolvingSelectors(state) {
-  return Object.values(state).some(
-    (selectorState) => (
+function hasresolvingselectors(state) {
+  return object.values(state).some(
+    (selectorstate) => (
       /**
-       * This uses the internal `_map` property of `EquivalentKeyMap` for
-       * optimization purposes, since the `EquivalentKeyMap` implementation
+       * this uses the internal `_map` property of `equivalentkeymap` for
+       * optimization purposes, since the `equivalentkeymap` implementation
        * does not support a `.values()` implementation.
        *
        * @see https://github.com/aduth/equivalent-key-map
        */
-      Array.from(selectorState._map.values()).some(
+      array.from(selectorstate._map.values()).some(
         (resolution) => resolution[1]?.status === "resolving"
       )
     )
   );
 }
-const countSelectorsByStatus = rememo(
+const countselectorsbystatus = rememo(
   (state) => {
-    const selectorsByStatus = {};
-    Object.values(state).forEach(
-      (selectorState) => (
+    const selectorsbystatus = {};
+    object.values(state).foreach(
+      (selectorstate) => (
         /**
-         * This uses the internal `_map` property of `EquivalentKeyMap` for
-         * optimization purposes, since the `EquivalentKeyMap` implementation
+         * this uses the internal `_map` property of `equivalentkeymap` for
+         * optimization purposes, since the `equivalentkeymap` implementation
          * does not support a `.values()` implementation.
          *
          * @see https://github.com/aduth/equivalent-key-map
          */
-        Array.from(selectorState._map.values()).forEach(
+        array.from(selectorstate._map.values()).foreach(
           (resolution) => {
-            const currentStatus = resolution[1]?.status ?? "error";
-            if (!selectorsByStatus[currentStatus]) {
-              selectorsByStatus[currentStatus] = 0;
+            const currentstatus = resolution[1]?.status ?? "error";
+            if (!selectorsbystatus[currentstatus]) {
+              selectorsbystatus[currentstatus] = 0;
             }
-            selectorsByStatus[currentStatus]++;
+            selectorsbystatus[currentstatus]++;
           }
         )
       )
     );
-    return selectorsByStatus;
+    return selectorsbystatus;
   },
   (state) => [state]
 );
 
 
 ;// ./node_modules/@wordpress/data/build-module/redux-store/metadata/actions.js
-function startResolution(selectorName, args) {
+function startresolution(selectorname, args) {
   return {
-    type: "START_RESOLUTION",
-    selectorName,
+    type: "start_resolution",
+    selectorname,
     args
   };
 }
-function finishResolution(selectorName, args) {
+function finishresolution(selectorname, args) {
   return {
-    type: "FINISH_RESOLUTION",
-    selectorName,
+    type: "finish_resolution",
+    selectorname,
     args
   };
 }
-function failResolution(selectorName, args, error) {
+function failresolution(selectorname, args, error) {
   return {
-    type: "FAIL_RESOLUTION",
-    selectorName,
+    type: "fail_resolution",
+    selectorname,
     args,
     error
   };
 }
-function startResolutions(selectorName, args) {
+function startresolutions(selectorname, args) {
   return {
-    type: "START_RESOLUTIONS",
-    selectorName,
+    type: "start_resolutions",
+    selectorname,
     args
   };
 }
-function finishResolutions(selectorName, args) {
+function finishresolutions(selectorname, args) {
   return {
-    type: "FINISH_RESOLUTIONS",
-    selectorName,
+    type: "finish_resolutions",
+    selectorname,
     args
   };
 }
-function failResolutions(selectorName, args, errors) {
+function failresolutions(selectorname, args, errors) {
   return {
-    type: "FAIL_RESOLUTIONS",
-    selectorName,
+    type: "fail_resolutions",
+    selectorname,
     args,
     errors
   };
 }
-function invalidateResolution(selectorName, args) {
+function invalidateresolution(selectorname, args) {
   return {
-    type: "INVALIDATE_RESOLUTION",
-    selectorName,
+    type: "invalidate_resolution",
+    selectorname,
     args
   };
 }
-function invalidateResolutionForStore() {
+function invalidateresolutionforstore() {
   return {
-    type: "INVALIDATE_RESOLUTION_FOR_STORE"
+    type: "invalidate_resolution_for_store"
   };
 }
-function invalidateResolutionForStoreSelector(selectorName) {
+function invalidateresolutionforstoreselector(selectorname) {
   return {
-    type: "INVALIDATE_RESOLUTION_FOR_STORE_SELECTOR",
-    selectorName
+    type: "invalidate_resolution_for_store_selector",
+    selectorname
   };
 }
 
@@ -1729,7 +1729,7 @@ function invalidateResolutionForStoreSelector(selectorName) {
 
 
 
-const trimUndefinedValues = (array) => {
+const trimundefinedvalues = (array) => {
   const result = [...array];
   for (let i = result.length - 1; i >= 0; i--) {
     if (result[i] === void 0) {
@@ -1738,243 +1738,243 @@ const trimUndefinedValues = (array) => {
   }
   return result;
 };
-const mapValues = (obj, callback) => Object.fromEntries(
-  Object.entries(obj ?? {}).map(([key, value]) => [
+const mapvalues = (obj, callback) => object.fromentries(
+  object.entries(obj ?? {}).map(([key, value]) => [
     key,
     callback(value, key)
   ])
 );
-const devToolsReplacer = (key, state) => {
-  if (state instanceof Map) {
-    return Object.fromEntries(state);
+const devtoolsreplacer = (key, state) => {
+  if (state instanceof map) {
+    return object.fromentries(state);
   }
-  if (state instanceof window.HTMLElement) {
+  if (state instanceof window.htmlelement) {
     return null;
   }
   return state;
 };
-function createResolversCache() {
+function createresolverscache() {
   const cache = {};
   return {
-    isRunning(selectorName, args) {
-      return cache[selectorName] && cache[selectorName].get(trimUndefinedValues(args));
+    isrunning(selectorname, args) {
+      return cache[selectorname] && cache[selectorname].get(trimundefinedvalues(args));
     },
-    clear(selectorName, args) {
-      if (cache[selectorName]) {
-        cache[selectorName].delete(trimUndefinedValues(args));
+    clear(selectorname, args) {
+      if (cache[selectorname]) {
+        cache[selectorname].delete(trimundefinedvalues(args));
       }
     },
-    markAsRunning(selectorName, args) {
-      if (!cache[selectorName]) {
-        cache[selectorName] = new (equivalent_key_map_default())();
+    markasrunning(selectorname, args) {
+      if (!cache[selectorname]) {
+        cache[selectorname] = new (equivalent_key_map_default())();
       }
-      cache[selectorName].set(trimUndefinedValues(args), true);
+      cache[selectorname].set(trimundefinedvalues(args), true);
     }
   };
 }
-function createBindingCache(getItem, bindItem) {
-  const cache = /* @__PURE__ */ new WeakMap();
+function createbindingcache(getitem, binditem) {
+  const cache = /* @__pure__ */ new weakmap();
   return {
-    get(itemName) {
-      const item = getItem(itemName);
+    get(itemname) {
+      const item = getitem(itemname);
       if (!item) {
         return null;
       }
-      let boundItem = cache.get(item);
-      if (!boundItem) {
-        boundItem = bindItem(item, itemName);
-        cache.set(item, boundItem);
+      let bounditem = cache.get(item);
+      if (!bounditem) {
+        bounditem = binditem(item, itemname);
+        cache.set(item, bounditem);
       }
-      return boundItem;
+      return bounditem;
     }
   };
 }
-function createPrivateProxy(publicItems, privateItems) {
-  return new Proxy(publicItems, {
-    get: (target, itemName) => privateItems.get(itemName) || Reflect.get(target, itemName)
+function createprivateproxy(publicitems, privateitems) {
+  return new proxy(publicitems, {
+    get: (target, itemname) => privateitems.get(itemname) || reflect.get(target, itemname)
   });
 }
-function createReduxStore(key, options) {
-  const privateActions = {};
-  const privateSelectors = {};
-  const privateRegistrationFunctions = {
-    privateActions,
-    registerPrivateActions: (actions) => {
-      Object.assign(privateActions, actions);
+function createreduxstore(key, options) {
+  const privateactions = {};
+  const privateselectors = {};
+  const privateregistrationfunctions = {
+    privateactions,
+    registerprivateactions: (actions) => {
+      object.assign(privateactions, actions);
     },
-    privateSelectors,
-    registerPrivateSelectors: (selectors) => {
-      Object.assign(privateSelectors, selectors);
+    privateselectors,
+    registerprivateselectors: (selectors) => {
+      object.assign(privateselectors, selectors);
     }
   };
-  const storeDescriptor = {
+  const storedescriptor = {
     name: key,
     instantiate: (registry) => {
-      const listeners = /* @__PURE__ */ new Set();
+      const listeners = /* @__pure__ */ new set();
       const reducer = options.reducer;
-      const thunkArgs = {
+      const thunkargs = {
         registry,
         get dispatch() {
-          return thunkDispatch;
+          return thunkdispatch;
         },
         get select() {
-          return thunkSelect;
+          return thunkselect;
         },
-        get resolveSelect() {
-          return resolveSelectors;
+        get resolveselect() {
+          return resolveselectors;
         }
       };
-      const store = instantiateReduxStore(
+      const store = instantiatereduxstore(
         key,
         options,
         registry,
-        thunkArgs
+        thunkargs
       );
-      lock(store, privateRegistrationFunctions);
-      const resolversCache = createResolversCache();
-      function bindAction(action) {
-        return (...args) => Promise.resolve(store.dispatch(action(...args)));
+      lock(store, privateregistrationfunctions);
+      const resolverscache = createresolverscache();
+      function bindaction(action) {
+        return (...args) => promise.resolve(store.dispatch(action(...args)));
       }
       const actions = {
-        ...mapValues(actions_namespaceObject, bindAction),
-        ...mapValues(options.actions, bindAction)
+        ...mapvalues(actions_namespaceobject, bindaction),
+        ...mapvalues(options.actions, bindaction)
       };
-      const allActions = createPrivateProxy(
+      const allactions = createprivateproxy(
         actions,
-        createBindingCache(
-          (name) => privateActions[name],
-          bindAction
+        createbindingcache(
+          (name) => privateactions[name],
+          bindaction
         )
       );
-      const thunkDispatch = new Proxy(
+      const thunkdispatch = new proxy(
         (action) => store.dispatch(action),
-        { get: (target, name) => allActions[name] }
+        { get: (target, name) => allactions[name] }
       );
-      lock(actions, allActions);
-      const resolvers = options.resolvers ? mapValues(options.resolvers, mapResolver) : {};
-      function bindSelector(selector, selectorName) {
-        if (selector.isRegistrySelector) {
+      lock(actions, allactions);
+      const resolvers = options.resolvers ? mapvalues(options.resolvers, mapresolver) : {};
+      function bindselector(selector, selectorname) {
+        if (selector.isregistryselector) {
           selector.registry = registry;
         }
-        const boundSelector = (...args) => {
+        const boundselector = (...args) => {
           args = normalize(selector, args);
-          const state = store.__unstableOriginalGetState();
-          if (selector.isRegistrySelector) {
+          const state = store.__unstableoriginalgetstate();
+          if (selector.isregistryselector) {
             selector.registry = registry;
           }
           return selector(state.root, ...args);
         };
-        boundSelector.__unstableNormalizeArgs = selector.__unstableNormalizeArgs;
-        const resolver = resolvers[selectorName];
+        boundselector.__unstablenormalizeargs = selector.__unstablenormalizeargs;
+        const resolver = resolvers[selectorname];
         if (!resolver) {
-          boundSelector.hasResolver = false;
-          return boundSelector;
+          boundselector.hasresolver = false;
+          return boundselector;
         }
-        return mapSelectorWithResolver(
-          boundSelector,
-          selectorName,
+        return mapselectorwithresolver(
+          boundselector,
+          selectorname,
           resolver,
           store,
-          resolversCache,
-          boundMetadataSelectors
+          resolverscache,
+          boundmetadataselectors
         );
       }
-      function bindMetadataSelector(metaDataSelector) {
-        const boundSelector = (selectorName, selectorArgs, ...args) => {
-          if (selectorName) {
-            const targetSelector = options.selectors?.[selectorName];
-            if (targetSelector) {
-              selectorArgs = normalize(
-                targetSelector,
-                selectorArgs
+      function bindmetadataselector(metadataselector) {
+        const boundselector = (selectorname, selectorargs, ...args) => {
+          if (selectorname) {
+            const targetselector = options.selectors?.[selectorname];
+            if (targetselector) {
+              selectorargs = normalize(
+                targetselector,
+                selectorargs
               );
             }
           }
-          const state = store.__unstableOriginalGetState();
-          return metaDataSelector(
+          const state = store.__unstableoriginalgetstate();
+          return metadataselector(
             state.metadata,
-            selectorName,
-            selectorArgs,
+            selectorname,
+            selectorargs,
             ...args
           );
         };
-        boundSelector.hasResolver = false;
-        return boundSelector;
+        boundselector.hasresolver = false;
+        return boundselector;
       }
-      const boundMetadataSelectors = mapValues(
-        selectors_namespaceObject,
-        bindMetadataSelector
+      const boundmetadataselectors = mapvalues(
+        selectors_namespaceobject,
+        bindmetadataselector
       );
-      const boundSelectors = mapValues(options.selectors, bindSelector);
+      const boundselectors = mapvalues(options.selectors, bindselector);
       const selectors = {
-        ...boundMetadataSelectors,
-        ...boundSelectors
+        ...boundmetadataselectors,
+        ...boundselectors
       };
-      const boundPrivateSelectors = createBindingCache(
-        (name) => privateSelectors[name],
-        bindSelector
+      const boundprivateselectors = createbindingcache(
+        (name) => privateselectors[name],
+        bindselector
       );
-      const allSelectors = createPrivateProxy(
+      const allselectors = createprivateproxy(
         selectors,
-        boundPrivateSelectors
+        boundprivateselectors
       );
-      for (const selectorName of Object.keys(privateSelectors)) {
-        boundPrivateSelectors.get(selectorName);
+      for (const selectorname of object.keys(privateselectors)) {
+        boundprivateselectors.get(selectorname);
       }
-      const thunkSelect = new Proxy(
-        (selector) => selector(store.__unstableOriginalGetState()),
-        { get: (target, name) => allSelectors[name] }
+      const thunkselect = new proxy(
+        (selector) => selector(store.__unstableoriginalgetstate()),
+        { get: (target, name) => allselectors[name] }
       );
-      lock(selectors, allSelectors);
-      const bindResolveSelector = mapResolveSelector(
+      lock(selectors, allselectors);
+      const bindresolveselector = mapresolveselector(
         store,
-        boundMetadataSelectors
+        boundmetadataselectors
       );
-      const resolveSelectors = mapValues(
-        boundSelectors,
-        bindResolveSelector
+      const resolveselectors = mapvalues(
+        boundselectors,
+        bindresolveselector
       );
-      const allResolveSelectors = createPrivateProxy(
-        resolveSelectors,
-        createBindingCache(
-          (name) => boundPrivateSelectors.get(name),
-          bindResolveSelector
+      const allresolveselectors = createprivateproxy(
+        resolveselectors,
+        createbindingcache(
+          (name) => boundprivateselectors.get(name),
+          bindresolveselector
         )
       );
-      lock(resolveSelectors, allResolveSelectors);
-      const bindSuspendSelector = mapSuspendSelector(
+      lock(resolveselectors, allresolveselectors);
+      const bindsuspendselector = mapsuspendselector(
         store,
-        boundMetadataSelectors
+        boundmetadataselectors
       );
-      const suspendSelectors = {
-        ...boundMetadataSelectors,
+      const suspendselectors = {
+        ...boundmetadataselectors,
         // no special suspense behavior
-        ...mapValues(boundSelectors, bindSuspendSelector)
+        ...mapvalues(boundselectors, bindsuspendselector)
       };
-      const allSuspendSelectors = createPrivateProxy(
-        suspendSelectors,
-        createBindingCache(
-          (name) => boundPrivateSelectors.get(name),
-          bindSuspendSelector
+      const allsuspendselectors = createprivateproxy(
+        suspendselectors,
+        createbindingcache(
+          (name) => boundprivateselectors.get(name),
+          bindsuspendselector
         )
       );
-      lock(suspendSelectors, allSuspendSelectors);
-      const getSelectors = () => selectors;
-      const getActions = () => actions;
-      const getResolveSelectors = () => resolveSelectors;
-      const getSuspendSelectors = () => suspendSelectors;
-      store.__unstableOriginalGetState = store.getState;
-      store.getState = () => store.__unstableOriginalGetState().root;
+      lock(suspendselectors, allsuspendselectors);
+      const getselectors = () => selectors;
+      const getactions = () => actions;
+      const getresolveselectors = () => resolveselectors;
+      const getsuspendselectors = () => suspendselectors;
+      store.__unstableoriginalgetstate = store.getstate;
+      store.getstate = () => store.__unstableoriginalgetstate().root;
       const subscribe = store && ((listener) => {
         listeners.add(listener);
         return () => listeners.delete(listener);
       });
-      let lastState = store.__unstableOriginalGetState();
+      let laststate = store.__unstableoriginalgetstate();
       store.subscribe(() => {
-        const state = store.__unstableOriginalGetState();
-        const hasChanged = state !== lastState;
-        lastState = state;
-        if (hasChanged) {
+        const state = store.__unstableoriginalgetstate();
+        const haschanged = state !== laststate;
+        laststate = state;
+        if (haschanged) {
           for (const listener of listeners) {
             listener();
           }
@@ -1986,75 +1986,75 @@ function createReduxStore(key, options) {
         actions,
         selectors,
         resolvers,
-        getSelectors,
-        getResolveSelectors,
-        getSuspendSelectors,
-        getActions,
+        getselectors,
+        getresolveselectors,
+        getsuspendselectors,
+        getactions,
         subscribe
       };
     }
   };
-  lock(storeDescriptor, privateRegistrationFunctions);
-  return storeDescriptor;
+  lock(storedescriptor, privateregistrationfunctions);
+  return storedescriptor;
 }
-function instantiateReduxStore(key, options, registry, thunkArgs) {
+function instantiatereduxstore(key, options, registry, thunkargs) {
   const controls = {
     ...options.controls,
-    ...builtinControls
+    ...builtincontrols
   };
-  const normalizedControls = mapValues(
+  const normalizedcontrols = mapvalues(
     controls,
-    (control) => control.isRegistryControl ? control(registry) : control
+    (control) => control.isregistrycontrol ? control(registry) : control
   );
   const middlewares = [
     resolvers_cache_middleware_default(registry, key),
     promise_middleware_default,
-    external_wp_reduxRoutine_default()(normalizedControls),
-    createThunkMiddleware(thunkArgs)
+    external_wp_reduxroutine_default()(normalizedcontrols),
+    createthunkmiddleware(thunkargs)
   ];
-  const enhancers = [applyMiddleware(...middlewares)];
-  if (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__) {
+  const enhancers = [applymiddleware(...middlewares)];
+  if (typeof window !== "undefined" && window.__redux_devtools_extension__) {
     enhancers.push(
-      window.__REDUX_DEVTOOLS_EXTENSION__({
+      window.__redux_devtools_extension__({
         name: key,
-        instanceId: key,
+        instanceid: key,
         serialize: {
-          replacer: devToolsReplacer
+          replacer: devtoolsreplacer
         }
       })
     );
   }
-  const { reducer, initialState } = options;
-  const enhancedReducer = combine_reducers_combineReducers({
+  const { reducer, initialstate } = options;
+  const enhancedreducer = combine_reducers_combinereducers({
     metadata: reducer_default,
     root: reducer
   });
-  return createStore(
-    enhancedReducer,
-    { root: initialState },
-    (0,external_wp_compose_namespaceObject.compose)(enhancers)
+  return createstore(
+    enhancedreducer,
+    { root: initialstate },
+    (0,external_wp_compose_namespaceobject.compose)(enhancers)
   );
 }
-function mapResolveSelector(store, boundMetadataSelectors) {
-  return (selector, selectorName) => {
-    if (!selector.hasResolver) {
+function mapresolveselector(store, boundmetadataselectors) {
+  return (selector, selectorname) => {
+    if (!selector.hasresolver) {
       return async (...args) => selector.apply(null, args);
     }
-    return (...args) => new Promise((resolve, reject) => {
-      const hasFinished = () => {
-        return boundMetadataSelectors.hasFinishedResolution(
-          selectorName,
+    return (...args) => new promise((resolve, reject) => {
+      const hasfinished = () => {
+        return boundmetadataselectors.hasfinishedresolution(
+          selectorname,
           args
         );
       };
       const finalize = (result2) => {
-        const hasFailed = boundMetadataSelectors.hasResolutionFailed(
-          selectorName,
+        const hasfailed = boundmetadataselectors.hasresolutionfailed(
+          selectorname,
           args
         );
-        if (hasFailed) {
-          const error = boundMetadataSelectors.getResolutionError(
-            selectorName,
+        if (hasfailed) {
+          const error = boundmetadataselectors.getresolutionerror(
+            selectorname,
             args
           );
           reject(error);
@@ -2062,46 +2062,46 @@ function mapResolveSelector(store, boundMetadataSelectors) {
           resolve(result2);
         }
       };
-      const getResult = () => selector.apply(null, args);
-      const result = getResult();
-      if (hasFinished()) {
+      const getresult = () => selector.apply(null, args);
+      const result = getresult();
+      if (hasfinished()) {
         return finalize(result);
       }
       const unsubscribe = store.subscribe(() => {
-        if (hasFinished()) {
+        if (hasfinished()) {
           unsubscribe();
-          finalize(getResult());
+          finalize(getresult());
         }
       });
     });
   };
 }
-function mapSuspendSelector(store, boundMetadataSelectors) {
-  return (selector, selectorName) => {
-    if (!selector.hasResolver) {
+function mapsuspendselector(store, boundmetadataselectors) {
+  return (selector, selectorname) => {
+    if (!selector.hasresolver) {
       return selector;
     }
     return (...args) => {
       const result = selector.apply(null, args);
-      if (boundMetadataSelectors.hasFinishedResolution(
-        selectorName,
+      if (boundmetadataselectors.hasfinishedresolution(
+        selectorname,
         args
       )) {
-        if (boundMetadataSelectors.hasResolutionFailed(
-          selectorName,
+        if (boundmetadataselectors.hasresolutionfailed(
+          selectorname,
           args
         )) {
-          throw boundMetadataSelectors.getResolutionError(
-            selectorName,
+          throw boundmetadataselectors.getresolutionerror(
+            selectorname,
             args
           );
         }
         return result;
       }
-      throw new Promise((resolve) => {
+      throw new promise((resolve) => {
         const unsubscribe = store.subscribe(() => {
-          if (boundMetadataSelectors.hasFinishedResolution(
-            selectorName,
+          if (boundmetadataselectors.hasfinishedresolution(
+            selectorname,
             args
           )) {
             resolve();
@@ -2112,31 +2112,31 @@ function mapSuspendSelector(store, boundMetadataSelectors) {
     };
   };
 }
-function mapResolver(resolver) {
+function mapresolver(resolver) {
   if (resolver.fulfill) {
     return resolver;
   }
   return {
     ...resolver,
-    // Copy the enumerable properties of the resolver function.
+    // copy the enumerable properties of the resolver function.
     fulfill: resolver
-    // Add the fulfill method.
+    // add the fulfill method.
   };
 }
-function mapSelectorWithResolver(selector, selectorName, resolver, store, resolversCache, boundMetadataSelectors) {
-  function fulfillSelector(args) {
-    const state = store.getState();
-    if (resolversCache.isRunning(selectorName, args) || typeof resolver.isFulfilled === "function" && resolver.isFulfilled(state, ...args)) {
+function mapselectorwithresolver(selector, selectorname, resolver, store, resolverscache, boundmetadataselectors) {
+  function fulfillselector(args) {
+    const state = store.getstate();
+    if (resolverscache.isrunning(selectorname, args) || typeof resolver.isfulfilled === "function" && resolver.isfulfilled(state, ...args)) {
       return;
     }
-    if (boundMetadataSelectors.hasStartedResolution(selectorName, args)) {
+    if (boundmetadataselectors.hasstartedresolution(selectorname, args)) {
       return;
     }
-    resolversCache.markAsRunning(selectorName, args);
-    setTimeout(async () => {
-      resolversCache.clear(selectorName, args);
+    resolverscache.markasrunning(selectorname, args);
+    settimeout(async () => {
+      resolverscache.clear(selectorname, args);
       store.dispatch(
-        startResolution(selectorName, args)
+        startresolution(selectorname, args)
       );
       try {
         const action = resolver.fulfill(...args);
@@ -2144,67 +2144,67 @@ function mapSelectorWithResolver(selector, selectorName, resolver, store, resolv
           await store.dispatch(action);
         }
         store.dispatch(
-          finishResolution(selectorName, args)
+          finishresolution(selectorname, args)
         );
       } catch (error) {
         store.dispatch(
-          failResolution(selectorName, args, error)
+          failresolution(selectorname, args, error)
         );
       }
     }, 0);
   }
-  const selectorResolver = (...args) => {
+  const selectorresolver = (...args) => {
     args = normalize(selector, args);
-    fulfillSelector(args);
+    fulfillselector(args);
     return selector(...args);
   };
-  selectorResolver.hasResolver = true;
-  return selectorResolver;
+  selectorresolver.hasresolver = true;
+  return selectorresolver;
 }
 function normalize(selector, args) {
-  if (selector.__unstableNormalizeArgs && typeof selector.__unstableNormalizeArgs === "function" && args?.length) {
-    return selector.__unstableNormalizeArgs(args);
+  if (selector.__unstablenormalizeargs && typeof selector.__unstablenormalizeargs === "function" && args?.length) {
+    return selector.__unstablenormalizeargs(args);
   }
   return args;
 }
 
 
 ;// ./node_modules/@wordpress/data/build-module/store/index.js
-const coreDataStore = {
+const coredatastore = {
   name: "core/data",
   instantiate(registry) {
-    const getCoreDataSelector = (selectorName) => (key, ...args) => {
-      return registry.select(key)[selectorName](...args);
+    const getcoredataselector = (selectorname) => (key, ...args) => {
+      return registry.select(key)[selectorname](...args);
     };
-    const getCoreDataAction = (actionName) => (key, ...args) => {
-      return registry.dispatch(key)[actionName](...args);
+    const getcoredataaction = (actionname) => (key, ...args) => {
+      return registry.dispatch(key)[actionname](...args);
     };
     return {
-      getSelectors() {
-        return Object.fromEntries(
+      getselectors() {
+        return object.fromentries(
           [
-            "getIsResolving",
-            "hasStartedResolution",
-            "hasFinishedResolution",
-            "isResolving",
-            "getCachedResolvers"
-          ].map((selectorName) => [
-            selectorName,
-            getCoreDataSelector(selectorName)
+            "getisresolving",
+            "hasstartedresolution",
+            "hasfinishedresolution",
+            "isresolving",
+            "getcachedresolvers"
+          ].map((selectorname) => [
+            selectorname,
+            getcoredataselector(selectorname)
           ])
         );
       },
-      getActions() {
-        return Object.fromEntries(
+      getactions() {
+        return object.fromentries(
           [
-            "startResolution",
-            "finishResolution",
-            "invalidateResolution",
-            "invalidateResolutionForStore",
-            "invalidateResolutionForStoreSelector"
-          ].map((actionName) => [
-            actionName,
-            getCoreDataAction(actionName)
+            "startresolution",
+            "finishresolution",
+            "invalidateresolution",
+            "invalidateresolutionforstore",
+            "invalidateresolutionforstoreselector"
+          ].map((actionname) => [
+            actionname,
+            getcoredataaction(actionname)
           ])
         );
       },
@@ -2215,44 +2215,44 @@ const coreDataStore = {
     };
   }
 };
-var store_default = coreDataStore;
+var store_default = coredatastore;
 
 
 ;// ./node_modules/@wordpress/data/build-module/utils/emitter.js
-function createEmitter() {
-  let isPaused = false;
-  let isPending = false;
-  const listeners = /* @__PURE__ */ new Set();
-  const notifyListeners = () => (
-    // We use Array.from to clone the listeners Set
-    // This ensures that we don't run a listener
+function createemitter() {
+  let ispaused = false;
+  let ispending = false;
+  const listeners = /* @__pure__ */ new set();
+  const notifylisteners = () => (
+    // we use array.from to clone the listeners set
+    // this ensures that we don't run a listener
     // that was added as a response to another listener.
-    Array.from(listeners).forEach((listener) => listener())
+    array.from(listeners).foreach((listener) => listener())
   );
   return {
-    get isPaused() {
-      return isPaused;
+    get ispaused() {
+      return ispaused;
     },
     subscribe(listener) {
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
     pause() {
-      isPaused = true;
+      ispaused = true;
     },
     resume() {
-      isPaused = false;
-      if (isPending) {
-        isPending = false;
-        notifyListeners();
+      ispaused = false;
+      if (ispending) {
+        ispending = false;
+        notifylisteners();
       }
     },
     emit() {
-      if (isPaused) {
-        isPending = true;
+      if (ispaused) {
+        ispending = true;
         return;
       }
-      notifyListeners();
+      notifylisteners();
     }
   };
 }
@@ -2264,77 +2264,77 @@ function createEmitter() {
 
 
 
-function getStoreName(storeNameOrDescriptor) {
-  return typeof storeNameOrDescriptor === "string" ? storeNameOrDescriptor : storeNameOrDescriptor.name;
+function getstorename(storenameordescriptor) {
+  return typeof storenameordescriptor === "string" ? storenameordescriptor : storenameordescriptor.name;
 }
-function createRegistry(storeConfigs = {}, parent = null) {
+function createregistry(storeconfigs = {}, parent = null) {
   const stores = {};
-  const emitter = createEmitter();
-  let listeningStores = null;
-  function globalListener() {
+  const emitter = createemitter();
+  let listeningstores = null;
+  function globallistener() {
     emitter.emit();
   }
-  const subscribe = (listener, storeNameOrDescriptor) => {
-    if (!storeNameOrDescriptor) {
+  const subscribe = (listener, storenameordescriptor) => {
+    if (!storenameordescriptor) {
       return emitter.subscribe(listener);
     }
-    const storeName = getStoreName(storeNameOrDescriptor);
-    const store = stores[storeName];
+    const storename = getstorename(storenameordescriptor);
+    const store = stores[storename];
     if (store) {
       return store.subscribe(listener);
     }
     if (!parent) {
       return emitter.subscribe(listener);
     }
-    return parent.subscribe(listener, storeNameOrDescriptor);
+    return parent.subscribe(listener, storenameordescriptor);
   };
-  function select(storeNameOrDescriptor) {
-    const storeName = getStoreName(storeNameOrDescriptor);
-    listeningStores?.add(storeName);
-    const store = stores[storeName];
+  function select(storenameordescriptor) {
+    const storename = getstorename(storenameordescriptor);
+    listeningstores?.add(storename);
+    const store = stores[storename];
     if (store) {
-      return store.getSelectors();
+      return store.getselectors();
     }
-    return parent?.select(storeName);
+    return parent?.select(storename);
   }
-  function __unstableMarkListeningStores(callback, ref) {
-    listeningStores = /* @__PURE__ */ new Set();
+  function __unstablemarklisteningstores(callback, ref) {
+    listeningstores = /* @__pure__ */ new set();
     try {
       return callback.call(this);
     } finally {
-      ref.current = Array.from(listeningStores);
-      listeningStores = null;
+      ref.current = array.from(listeningstores);
+      listeningstores = null;
     }
   }
-  function resolveSelect(storeNameOrDescriptor) {
-    const storeName = getStoreName(storeNameOrDescriptor);
-    listeningStores?.add(storeName);
-    const store = stores[storeName];
+  function resolveselect(storenameordescriptor) {
+    const storename = getstorename(storenameordescriptor);
+    listeningstores?.add(storename);
+    const store = stores[storename];
     if (store) {
-      return store.getResolveSelectors();
+      return store.getresolveselectors();
     }
-    return parent && parent.resolveSelect(storeName);
+    return parent && parent.resolveselect(storename);
   }
-  function suspendSelect(storeNameOrDescriptor) {
-    const storeName = getStoreName(storeNameOrDescriptor);
-    listeningStores?.add(storeName);
-    const store = stores[storeName];
+  function suspendselect(storenameordescriptor) {
+    const storename = getstorename(storenameordescriptor);
+    listeningstores?.add(storename);
+    const store = stores[storename];
     if (store) {
-      return store.getSuspendSelectors();
+      return store.getsuspendselectors();
     }
-    return parent && parent.suspendSelect(storeName);
+    return parent && parent.suspendselect(storename);
   }
-  function dispatch(storeNameOrDescriptor) {
-    const storeName = getStoreName(storeNameOrDescriptor);
-    const store = stores[storeName];
+  function dispatch(storenameordescriptor) {
+    const storename = getstorename(storenameordescriptor);
+    const store = stores[storename];
     if (store) {
-      return store.getActions();
+      return store.getactions();
     }
-    return parent && parent.dispatch(storeName);
+    return parent && parent.dispatch(storename);
   }
-  function withPlugins(attributes) {
-    return Object.fromEntries(
-      Object.entries(attributes).map(([key, attribute]) => {
+  function withplugins(attributes) {
+    return object.fromentries(
+      object.entries(attributes).map(([key, attribute]) => {
         if (typeof attribute !== "function") {
           return [key, attribute];
         }
@@ -2347,46 +2347,46 @@ function createRegistry(storeConfigs = {}, parent = null) {
       })
     );
   }
-  function registerStoreInstance(name, createStore) {
+  function registerstoreinstance(name, createstore) {
     if (stores[name]) {
-      console.error('Store "' + name + '" is already registered.');
+      console.error('store "' + name + '" is already registered.');
       return stores[name];
     }
-    const store = createStore();
-    if (typeof store.getSelectors !== "function") {
-      throw new TypeError("store.getSelectors must be a function");
+    const store = createstore();
+    if (typeof store.getselectors !== "function") {
+      throw new typeerror("store.getselectors must be a function");
     }
-    if (typeof store.getActions !== "function") {
-      throw new TypeError("store.getActions must be a function");
+    if (typeof store.getactions !== "function") {
+      throw new typeerror("store.getactions must be a function");
     }
     if (typeof store.subscribe !== "function") {
-      throw new TypeError("store.subscribe must be a function");
+      throw new typeerror("store.subscribe must be a function");
     }
-    store.emitter = createEmitter();
-    const currentSubscribe = store.subscribe;
+    store.emitter = createemitter();
+    const currentsubscribe = store.subscribe;
     store.subscribe = (listener) => {
-      const unsubscribeFromEmitter = store.emitter.subscribe(listener);
-      const unsubscribeFromStore = currentSubscribe(() => {
-        if (store.emitter.isPaused) {
+      const unsubscribefromemitter = store.emitter.subscribe(listener);
+      const unsubscribefromstore = currentsubscribe(() => {
+        if (store.emitter.ispaused) {
           store.emitter.emit();
           return;
         }
         listener();
       });
       return () => {
-        unsubscribeFromStore?.();
-        unsubscribeFromEmitter?.();
+        unsubscribefromstore?.();
+        unsubscribefromemitter?.();
       };
     };
     stores[name] = store;
-    store.subscribe(globalListener);
+    store.subscribe(globallistener);
     if (parent) {
       try {
-        unlock(store.store).registerPrivateActions(
-          unlock(parent).privateActionsOf(name)
+        unlock(store.store).registerprivateactions(
+          unlock(parent).privateactionsof(name)
         );
-        unlock(store.store).registerPrivateSelectors(
-          unlock(parent).privateSelectorsOf(name)
+        unlock(store.store).registerprivateselectors(
+          unlock(parent).privateselectorsof(name)
         );
       } catch (e) {
       }
@@ -2394,40 +2394,40 @@ function createRegistry(storeConfigs = {}, parent = null) {
     return store;
   }
   function register(store) {
-    registerStoreInstance(
+    registerstoreinstance(
       store.name,
       () => store.instantiate(registry)
     );
   }
-  function registerGenericStore(name, store) {
-    external_wp_deprecated_default()("wp.data.registerGenericStore", {
+  function registergenericstore(name, store) {
+    external_wp_deprecated_default()("wp.data.registergenericstore", {
       since: "5.9",
-      alternative: "wp.data.register( storeDescriptor )"
+      alternative: "wp.data.register( storedescriptor )"
     });
-    registerStoreInstance(name, () => store);
+    registerstoreinstance(name, () => store);
   }
-  function registerStore(storeName, options) {
+  function registerstore(storename, options) {
     if (!options.reducer) {
-      throw new TypeError("Must specify store reducer");
+      throw new typeerror("must specify store reducer");
     }
-    const store = registerStoreInstance(
-      storeName,
-      () => createReduxStore(storeName, options).instantiate(registry)
+    const store = registerstoreinstance(
+      storename,
+      () => createreduxstore(storename, options).instantiate(registry)
     );
     return store.store;
   }
   function batch(callback) {
-    if (emitter.isPaused) {
+    if (emitter.ispaused) {
       callback();
       return;
     }
     emitter.pause();
-    Object.values(stores).forEach((store) => store.emitter.pause());
+    object.values(stores).foreach((store) => store.emitter.pause());
     try {
       callback();
     } finally {
       emitter.resume();
-      Object.values(stores).forEach(
+      object.values(stores).foreach(
         (store) => store.emitter.resume()
       );
     }
@@ -2436,17 +2436,17 @@ function createRegistry(storeConfigs = {}, parent = null) {
     batch,
     stores,
     namespaces: stores,
-    // TODO: Deprecate/remove this.
+    // todo: deprecate/remove this.
     subscribe,
     select,
-    resolveSelect,
-    suspendSelect,
+    resolveselect,
+    suspendselect,
     dispatch,
     use,
     register,
-    registerGenericStore,
-    registerStore,
-    __unstableMarkListeningStores
+    registergenericstore,
+    registerstore,
+    __unstablemarklisteningstores
   };
   function use(plugin, options) {
     if (!plugin) {
@@ -2459,94 +2459,94 @@ function createRegistry(storeConfigs = {}, parent = null) {
     return registry;
   }
   registry.register(store_default);
-  for (const [name, config] of Object.entries(storeConfigs)) {
-    registry.register(createReduxStore(name, config));
+  for (const [name, config] of object.entries(storeconfigs)) {
+    registry.register(createreduxstore(name, config));
   }
   if (parent) {
-    parent.subscribe(globalListener);
+    parent.subscribe(globallistener);
   }
-  const registryWithPlugins = withPlugins(registry);
-  lock(registryWithPlugins, {
-    privateActionsOf: (name) => {
+  const registrywithplugins = withplugins(registry);
+  lock(registrywithplugins, {
+    privateactionsof: (name) => {
       try {
-        return unlock(stores[name].store).privateActions;
+        return unlock(stores[name].store).privateactions;
       } catch (e) {
         return {};
       }
     },
-    privateSelectorsOf: (name) => {
+    privateselectorsof: (name) => {
       try {
-        return unlock(stores[name].store).privateSelectors;
+        return unlock(stores[name].store).privateselectors;
       } catch (e) {
         return {};
       }
     }
   });
-  return registryWithPlugins;
+  return registrywithplugins;
 }
 
 
 ;// ./node_modules/@wordpress/data/build-module/default-registry.js
 
-var default_registry_default = createRegistry();
+var default_registry_default = createregistry();
 
 
 ;// ./node_modules/is-plain-object/dist/is-plain-object.mjs
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
- * Copyright (c) 2014-2017, Jon Schlinkert.
- * Released under the MIT License.
+ * copyright (c) 2014-2017, jon schlinkert.
+ * released under the mit license.
  */
 
-function is_plain_object_isObject(o) {
-  return Object.prototype.toString.call(o) === '[object Object]';
+function is_plain_object_isobject(o) {
+  return object.prototype.tostring.call(o) === '[object object]';
 }
 
-function is_plain_object_isPlainObject(o) {
+function is_plain_object_isplainobject(o) {
   var ctor,prot;
 
-  if (is_plain_object_isObject(o) === false) return false;
+  if (is_plain_object_isobject(o) === false) return false;
 
-  // If has modified constructor
+  // if has modified constructor
   ctor = o.constructor;
   if (ctor === undefined) return true;
 
-  // If has modified prototype
+  // if has modified prototype
   prot = ctor.prototype;
-  if (is_plain_object_isObject(prot) === false) return false;
+  if (is_plain_object_isobject(prot) === false) return false;
 
-  // If constructor does not have an Object-specific method
-  if (prot.hasOwnProperty('isPrototypeOf') === false) {
+  // if constructor does not have an object-specific method
+  if (prot.hasownproperty('isprototypeof') === false) {
     return false;
   }
 
-  // Most likely a plain Object
+  // most likely a plain object
   return true;
 }
 
 
 
-// EXTERNAL MODULE: ./node_modules/deepmerge/dist/cjs.js
+// external module: ./node_modules/deepmerge/dist/cjs.js
 var cjs = __webpack_require__(66);
-var cjs_default = /*#__PURE__*/__webpack_require__.n(cjs);
+var cjs_default = /*#__pure__*/__webpack_require__.n(cjs);
 ;// ./node_modules/@wordpress/data/build-module/plugins/persistence/storage/object.js
-let objectStorage;
+let objectstorage;
 const storage = {
-  getItem(key) {
-    if (!objectStorage || !objectStorage[key]) {
+  getitem(key) {
+    if (!objectstorage || !objectstorage[key]) {
       return null;
     }
-    return objectStorage[key];
+    return objectstorage[key];
   },
-  setItem(key, value) {
-    if (!objectStorage) {
+  setitem(key, value) {
+    if (!objectstorage) {
       storage.clear();
     }
-    objectStorage[key] = String(value);
+    objectstorage[key] = string(value);
   },
   clear() {
-    objectStorage = /* @__PURE__ */ Object.create(null);
+    objectstorage = /* @__pure__ */ object.create(null);
   }
 };
 var object_default = storage;
@@ -2556,9 +2556,9 @@ var object_default = storage;
 
 let default_storage;
 try {
-  default_storage = window.localStorage;
-  default_storage.setItem("__wpDataTestLocalStorage", "");
-  default_storage.removeItem("__wpDataTestLocalStorage");
+  default_storage = window.localstorage;
+  default_storage.setitem("__wpdatatestlocalstorage", "");
+  default_storage.removeitem("__wpdatatestlocalstorage");
 } catch (error) {
   default_storage = object_default;
 }
@@ -2570,25 +2570,25 @@ var default_default = default_storage;
 
 
 
-const DEFAULT_STORAGE = default_default;
-const DEFAULT_STORAGE_KEY = "WP_DATA";
-const withLazySameState = (reducer) => (state, action) => {
-  if (action.nextState === state) {
+const default_storage = default_default;
+const default_storage_key = "wp_data";
+const withlazysamestate = (reducer) => (state, action) => {
+  if (action.nextstate === state) {
     return state;
   }
   return reducer(state, action);
 };
-function createPersistenceInterface(options) {
-  const { storage = DEFAULT_STORAGE, storageKey = DEFAULT_STORAGE_KEY } = options;
+function createpersistenceinterface(options) {
+  const { storage = default_storage, storagekey = default_storage_key } = options;
   let data;
-  function getData() {
+  function getdata() {
     if (data === void 0) {
-      const persisted = storage.getItem(storageKey);
+      const persisted = storage.getitem(storagekey);
       if (persisted === null) {
         data = {};
       } else {
         try {
-          data = JSON.parse(persisted);
+          data = json.parse(persisted);
         } catch (error) {
           data = {};
         }
@@ -2596,72 +2596,72 @@ function createPersistenceInterface(options) {
     }
     return data;
   }
-  function setData(key, value) {
+  function setdata(key, value) {
     data = { ...data, [key]: value };
-    storage.setItem(storageKey, JSON.stringify(data));
+    storage.setitem(storagekey, json.stringify(data));
   }
   return {
-    get: getData,
-    set: setData
+    get: getdata,
+    set: setdata
   };
 }
-function persistencePlugin(registry, pluginOptions) {
-  const persistence = createPersistenceInterface(pluginOptions);
-  function createPersistOnChange(getState, storeName, keys) {
-    let getPersistedState;
-    if (Array.isArray(keys)) {
+function persistenceplugin(registry, pluginoptions) {
+  const persistence = createpersistenceinterface(pluginoptions);
+  function createpersistonchange(getstate, storename, keys) {
+    let getpersistedstate;
+    if (array.isarray(keys)) {
       const reducers = keys.reduce(
-        (accumulator, key) => Object.assign(accumulator, {
-          [key]: (state, action) => action.nextState[key]
+        (accumulator, key) => object.assign(accumulator, {
+          [key]: (state, action) => action.nextstate[key]
         }),
         {}
       );
-      getPersistedState = withLazySameState(
-        build_module_combineReducers(reducers)
+      getpersistedstate = withlazysamestate(
+        build_module_combinereducers(reducers)
       );
     } else {
-      getPersistedState = (state, action) => action.nextState;
+      getpersistedstate = (state, action) => action.nextstate;
     }
-    let lastState = getPersistedState(void 0, {
-      nextState: getState()
+    let laststate = getpersistedstate(void 0, {
+      nextstate: getstate()
     });
     return () => {
-      const state = getPersistedState(lastState, {
-        nextState: getState()
+      const state = getpersistedstate(laststate, {
+        nextstate: getstate()
       });
-      if (state !== lastState) {
-        persistence.set(storeName, state);
-        lastState = state;
+      if (state !== laststate) {
+        persistence.set(storename, state);
+        laststate = state;
       }
     };
   }
   return {
-    registerStore(storeName, options) {
+    registerstore(storename, options) {
       if (!options.persist) {
-        return registry.registerStore(storeName, options);
+        return registry.registerstore(storename, options);
       }
-      const persistedState = persistence.get()[storeName];
-      if (persistedState !== void 0) {
-        let initialState = options.reducer(options.initialState, {
-          type: "@@WP/PERSISTENCE_RESTORE"
+      const persistedstate = persistence.get()[storename];
+      if (persistedstate !== void 0) {
+        let initialstate = options.reducer(options.initialstate, {
+          type: "@@wp/persistence_restore"
         });
-        if (is_plain_object_isPlainObject(initialState) && is_plain_object_isPlainObject(persistedState)) {
-          initialState = cjs_default()(initialState, persistedState, {
-            isMergeableObject: is_plain_object_isPlainObject
+        if (is_plain_object_isplainobject(initialstate) && is_plain_object_isplainobject(persistedstate)) {
+          initialstate = cjs_default()(initialstate, persistedstate, {
+            ismergeableobject: is_plain_object_isplainobject
           });
         } else {
-          initialState = persistedState;
+          initialstate = persistedstate;
         }
         options = {
           ...options,
-          initialState
+          initialstate
         };
       }
-      const store = registry.registerStore(storeName, options);
+      const store = registry.registerstore(storename, options);
       store.subscribe(
-        createPersistOnChange(
-          store.getState,
-          storeName,
+        createpersistonchange(
+          store.getstate,
+          storename,
           options.persist
         )
       );
@@ -2669,56 +2669,56 @@ function persistencePlugin(registry, pluginOptions) {
     }
   };
 }
-persistencePlugin.__unstableMigrate = () => {
+persistenceplugin.__unstablemigrate = () => {
 };
-var persistence_default = persistencePlugin;
+var persistence_default = persistenceplugin;
 
 
 ;// ./node_modules/@wordpress/data/build-module/plugins/index.js
 
 
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
-;// external ["wp","priorityQueue"]
-const external_wp_priorityQueue_namespaceObject = window["wp"]["priorityQueue"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
+;// external ["wp","priorityqueue"]
+const external_wp_priorityqueue_namespaceobject = window["wp"]["priorityqueue"];
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
-;// external ["wp","isShallowEqual"]
-const external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
-var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
+const external_wp_element_namespaceobject = window["wp"]["element"];
+;// external ["wp","isshallowequal"]
+const external_wp_isshallowequal_namespaceobject = window["wp"]["isshallowequal"];
+var external_wp_isshallowequal_default = /*#__pure__*/__webpack_require__.n(external_wp_isshallowequal_namespaceobject);
 ;// ./node_modules/@wordpress/data/build-module/components/registry-provider/context.js
 
 
-const Context = (0,external_wp_element_namespaceObject.createContext)(default_registry_default);
-Context.displayName = "RegistryProviderContext";
-const { Consumer, Provider } = Context;
-const RegistryConsumer = Consumer;
-var context_default = Provider;
+const context = (0,external_wp_element_namespaceobject.createcontext)(default_registry_default);
+context.displayname = "registryprovidercontext";
+const { consumer, provider } = context;
+const registryconsumer = consumer;
+var context_default = provider;
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/registry-provider/use-registry.js
 
 
-function useRegistry() {
-  return (0,external_wp_element_namespaceObject.useContext)(Context);
+function useregistry() {
+  return (0,external_wp_element_namespaceobject.usecontext)(context);
 }
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/async-mode-provider/context.js
 
-const context_Context = (0,external_wp_element_namespaceObject.createContext)(false);
-context_Context.displayName = "AsyncModeContext";
-const { Consumer: context_Consumer, Provider: context_Provider } = context_Context;
-const AsyncModeConsumer = (/* unused pure expression or super */ null && (context_Consumer));
-var context_context_default = context_Provider;
+const context_context = (0,external_wp_element_namespaceobject.createcontext)(false);
+context_context.displayname = "asyncmodecontext";
+const { consumer: context_consumer, provider: context_provider } = context_context;
+const asyncmodeconsumer = (/* unused pure expression or super */ null && (context_consumer));
+var context_context_default = context_provider;
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/async-mode-provider/use-async-mode.js
 
 
-function useAsyncMode() {
-  return (0,external_wp_element_namespaceObject.useContext)(context_Context);
+function useasyncmode() {
+  return (0,external_wp_element_namespaceobject.usecontext)(context_context);
 }
 
 
@@ -2728,158 +2728,158 @@ function useAsyncMode() {
 
 
 
-const renderQueue = (0,external_wp_priorityQueue_namespaceObject.createQueue)();
-function warnOnUnstableReference(a, b) {
+const renderqueue = (0,external_wp_priorityqueue_namespaceobject.createqueue)();
+function warnonunstablereference(a, b) {
   if (!a || !b) {
     return;
   }
-  const keys = typeof a === "object" && typeof b === "object" ? Object.keys(a).filter((k) => a[k] !== b[k]) : [];
+  const keys = typeof a === "object" && typeof b === "object" ? object.keys(a).filter((k) => a[k] !== b[k]) : [];
   console.warn(
-    "The `useSelect` hook returns different values when called with the same state and parameters.\nThis can lead to unnecessary re-renders and performance issues if not fixed.\n\nNon-equal value keys: %s\n\n",
+    "the `useselect` hook returns different values when called with the same state and parameters.\nthis can lead to unnecessary re-renders and performance issues if not fixed.\n\nnon-equal value keys: %s\n\n",
     keys.join(", ")
   );
 }
-function Store(registry, suspense) {
-  const select = suspense ? registry.suspendSelect : registry.select;
-  const queueContext = {};
-  let lastMapSelect;
-  let lastMapResult;
-  let lastMapResultValid = false;
-  let lastIsAsync;
+function store(registry, suspense) {
+  const select = suspense ? registry.suspendselect : registry.select;
+  const queuecontext = {};
+  let lastmapselect;
+  let lastmapresult;
+  let lastmapresultvalid = false;
+  let lastisasync;
   let subscriber;
-  let didWarnUnstableReference;
-  const storeStatesOnMount = /* @__PURE__ */ new Map();
-  function getStoreState(name) {
-    return registry.stores[name]?.store?.getState?.() ?? {};
+  let didwarnunstablereference;
+  const storestatesonmount = /* @__pure__ */ new map();
+  function getstorestate(name) {
+    return registry.stores[name]?.store?.getstate?.() ?? {};
   }
-  const createSubscriber = (stores) => {
-    const activeStores = [...stores];
-    const activeSubscriptions = /* @__PURE__ */ new Set();
+  const createsubscriber = (stores) => {
+    const activestores = [...stores];
+    const activesubscriptions = /* @__pure__ */ new set();
     function subscribe(listener) {
-      if (lastMapResultValid) {
-        for (const name of activeStores) {
-          if (storeStatesOnMount.get(name) !== getStoreState(name)) {
-            lastMapResultValid = false;
+      if (lastmapresultvalid) {
+        for (const name of activestores) {
+          if (storestatesonmount.get(name) !== getstorestate(name)) {
+            lastmapresultvalid = false;
           }
         }
       }
-      storeStatesOnMount.clear();
-      const onStoreChange = () => {
-        lastMapResultValid = false;
+      storestatesonmount.clear();
+      const onstorechange = () => {
+        lastmapresultvalid = false;
         listener();
       };
-      const onChange = () => {
-        if (lastIsAsync) {
-          renderQueue.add(queueContext, onStoreChange);
+      const onchange = () => {
+        if (lastisasync) {
+          renderqueue.add(queuecontext, onstorechange);
         } else {
-          onStoreChange();
+          onstorechange();
         }
       };
       const unsubs = [];
-      function subscribeStore(storeName) {
-        unsubs.push(registry.subscribe(onChange, storeName));
+      function subscribestore(storename) {
+        unsubs.push(registry.subscribe(onchange, storename));
       }
-      for (const storeName of activeStores) {
-        subscribeStore(storeName);
+      for (const storename of activestores) {
+        subscribestore(storename);
       }
-      activeSubscriptions.add(subscribeStore);
+      activesubscriptions.add(subscribestore);
       return () => {
-        activeSubscriptions.delete(subscribeStore);
+        activesubscriptions.delete(subscribestore);
         for (const unsub of unsubs.values()) {
           unsub?.();
         }
-        renderQueue.cancel(queueContext);
+        renderqueue.cancel(queuecontext);
       };
     }
-    function updateStores(newStores) {
-      for (const newStore of newStores) {
-        if (activeStores.includes(newStore)) {
+    function updatestores(newstores) {
+      for (const newstore of newstores) {
+        if (activestores.includes(newstore)) {
           continue;
         }
-        activeStores.push(newStore);
-        for (const subscription of activeSubscriptions) {
-          subscription(newStore);
+        activestores.push(newstore);
+        for (const subscription of activesubscriptions) {
+          subscription(newstore);
         }
       }
     }
-    return { subscribe, updateStores };
+    return { subscribe, updatestores };
   };
-  return (mapSelect, isAsync) => {
-    function updateValue() {
-      if (lastMapResultValid && mapSelect === lastMapSelect) {
-        return lastMapResult;
+  return (mapselect, isasync) => {
+    function updatevalue() {
+      if (lastmapresultvalid && mapselect === lastmapselect) {
+        return lastmapresult;
       }
-      const listeningStores = { current: null };
-      const mapResult = registry.__unstableMarkListeningStores(
-        () => mapSelect(select, registry),
-        listeningStores
+      const listeningstores = { current: null };
+      const mapresult = registry.__unstablemarklisteningstores(
+        () => mapselect(select, registry),
+        listeningstores
       );
       if (true) {
-        if (!didWarnUnstableReference) {
-          const secondMapResult = mapSelect(select, registry);
-          if (!external_wp_isShallowEqual_default()(mapResult, secondMapResult)) {
-            warnOnUnstableReference(mapResult, secondMapResult);
-            didWarnUnstableReference = true;
+        if (!didwarnunstablereference) {
+          const secondmapresult = mapselect(select, registry);
+          if (!external_wp_isshallowequal_default()(mapresult, secondmapresult)) {
+            warnonunstablereference(mapresult, secondmapresult);
+            didwarnunstablereference = true;
           }
         }
       }
       if (!subscriber) {
-        for (const name of listeningStores.current) {
-          storeStatesOnMount.set(name, getStoreState(name));
+        for (const name of listeningstores.current) {
+          storestatesonmount.set(name, getstorestate(name));
         }
-        subscriber = createSubscriber(listeningStores.current);
+        subscriber = createsubscriber(listeningstores.current);
       } else {
-        subscriber.updateStores(listeningStores.current);
+        subscriber.updatestores(listeningstores.current);
       }
-      if (!external_wp_isShallowEqual_default()(lastMapResult, mapResult)) {
-        lastMapResult = mapResult;
+      if (!external_wp_isshallowequal_default()(lastmapresult, mapresult)) {
+        lastmapresult = mapresult;
       }
-      lastMapSelect = mapSelect;
-      lastMapResultValid = true;
+      lastmapselect = mapselect;
+      lastmapresultvalid = true;
     }
-    function getValue() {
-      updateValue();
-      return lastMapResult;
+    function getvalue() {
+      updatevalue();
+      return lastmapresult;
     }
-    if (lastIsAsync && !isAsync) {
-      lastMapResultValid = false;
-      renderQueue.cancel(queueContext);
+    if (lastisasync && !isasync) {
+      lastmapresultvalid = false;
+      renderqueue.cancel(queuecontext);
     }
-    updateValue();
-    lastIsAsync = isAsync;
-    return { subscribe: subscriber.subscribe, getValue };
+    updatevalue();
+    lastisasync = isasync;
+    return { subscribe: subscriber.subscribe, getvalue };
   };
 }
-function _useStaticSelect(storeName) {
-  return useRegistry().select(storeName);
+function _usestaticselect(storename) {
+  return useregistry().select(storename);
 }
-function _useMappingSelect(suspense, mapSelect, deps) {
-  const registry = useRegistry();
-  const isAsync = useAsyncMode();
-  const store = (0,external_wp_element_namespaceObject.useMemo)(
-    () => Store(registry, suspense),
+function _usemappingselect(suspense, mapselect, deps) {
+  const registry = useregistry();
+  const isasync = useasyncmode();
+  const store = (0,external_wp_element_namespaceobject.usememo)(
+    () => store(registry, suspense),
     [registry, suspense]
   );
-  const selector = (0,external_wp_element_namespaceObject.useCallback)(mapSelect, deps);
-  const { subscribe, getValue } = store(selector, isAsync);
-  const result = (0,external_wp_element_namespaceObject.useSyncExternalStore)(subscribe, getValue, getValue);
-  (0,external_wp_element_namespaceObject.useDebugValue)(result);
+  const selector = (0,external_wp_element_namespaceobject.usecallback)(mapselect, deps);
+  const { subscribe, getvalue } = store(selector, isasync);
+  const result = (0,external_wp_element_namespaceobject.usesyncexternalstore)(subscribe, getvalue, getvalue);
+  (0,external_wp_element_namespaceobject.usedebugvalue)(result);
   return result;
 }
-function useSelect(mapSelect, deps) {
-  const staticSelectMode = typeof mapSelect !== "function";
-  const staticSelectModeRef = (0,external_wp_element_namespaceObject.useRef)(staticSelectMode);
-  if (staticSelectMode !== staticSelectModeRef.current) {
-    const prevMode = staticSelectModeRef.current ? "static" : "mapping";
-    const nextMode = staticSelectMode ? "static" : "mapping";
-    throw new Error(
-      `Switching useSelect from ${prevMode} to ${nextMode} is not allowed`
+function useselect(mapselect, deps) {
+  const staticselectmode = typeof mapselect !== "function";
+  const staticselectmoderef = (0,external_wp_element_namespaceobject.useref)(staticselectmode);
+  if (staticselectmode !== staticselectmoderef.current) {
+    const prevmode = staticselectmoderef.current ? "static" : "mapping";
+    const nextmode = staticselectmode ? "static" : "mapping";
+    throw new error(
+      `switching useselect from ${prevmode} to ${nextmode} is not allowed`
     );
   }
-  return staticSelectMode ? _useStaticSelect(mapSelect) : _useMappingSelect(false, mapSelect, deps);
+  return staticselectmode ? _usestaticselect(mapselect) : _usemappingselect(false, mapselect, deps);
 }
-function useSuspenseSelect(mapSelect, deps) {
-  return _useMappingSelect(true, mapSelect, deps);
+function usesuspenseselect(mapselect, deps) {
+  return _usemappingselect(true, mapselect, deps);
 }
 
 
@@ -2887,98 +2887,98 @@ function useSuspenseSelect(mapSelect, deps) {
 
 
 
-const withSelect = (mapSelectToProps) => (0,external_wp_compose_namespaceObject.createHigherOrderComponent)(
-  (WrappedComponent) => (0,external_wp_compose_namespaceObject.pure)((ownProps) => {
-    const mapSelect = (select, registry) => mapSelectToProps(select, ownProps, registry);
-    const mergeProps = useSelect(mapSelect);
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(WrappedComponent, { ...ownProps, ...mergeProps });
+const withselect = (mapselecttoprops) => (0,external_wp_compose_namespaceobject.createhigherordercomponent)(
+  (wrappedcomponent) => (0,external_wp_compose_namespaceobject.pure)((ownprops) => {
+    const mapselect = (select, registry) => mapselecttoprops(select, ownprops, registry);
+    const mergeprops = useselect(mapselect);
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(wrappedcomponent, { ...ownprops, ...mergeprops });
   }),
-  "withSelect"
+  "withselect"
 );
-var with_select_default = withSelect;
+var with_select_default = withselect;
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/use-dispatch/use-dispatch-with-map.js
 
 
 
-const useDispatchWithMap = (dispatchMap, deps) => {
-  const registry = useRegistry();
-  const currentDispatchMapRef = (0,external_wp_element_namespaceObject.useRef)(dispatchMap);
-  (0,external_wp_compose_namespaceObject.useIsomorphicLayoutEffect)(() => {
-    currentDispatchMapRef.current = dispatchMap;
+const usedispatchwithmap = (dispatchmap, deps) => {
+  const registry = useregistry();
+  const currentdispatchmapref = (0,external_wp_element_namespaceobject.useref)(dispatchmap);
+  (0,external_wp_compose_namespaceobject.useisomorphiclayouteffect)(() => {
+    currentdispatchmapref.current = dispatchmap;
   });
-  return (0,external_wp_element_namespaceObject.useMemo)(() => {
-    const currentDispatchProps = currentDispatchMapRef.current(
+  return (0,external_wp_element_namespaceobject.usememo)(() => {
+    const currentdispatchprops = currentdispatchmapref.current(
       registry.dispatch,
       registry
     );
-    return Object.fromEntries(
-      Object.entries(currentDispatchProps).map(
-        ([propName, dispatcher]) => {
+    return object.fromentries(
+      object.entries(currentdispatchprops).map(
+        ([propname, dispatcher]) => {
           if (typeof dispatcher !== "function") {
             console.warn(
-              `Property ${propName} returned from dispatchMap in useDispatchWithMap must be a function.`
+              `property ${propname} returned from dispatchmap in usedispatchwithmap must be a function.`
             );
           }
           return [
-            propName,
-            (...args) => currentDispatchMapRef.current(registry.dispatch, registry)[propName](...args)
+            propname,
+            (...args) => currentdispatchmapref.current(registry.dispatch, registry)[propname](...args)
           ];
         }
       )
     );
   }, [registry, ...deps]);
 };
-var use_dispatch_with_map_default = useDispatchWithMap;
+var use_dispatch_with_map_default = usedispatchwithmap;
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/with-dispatch/index.js
 
 
 
-const withDispatch = (mapDispatchToProps) => (0,external_wp_compose_namespaceObject.createHigherOrderComponent)(
-  (WrappedComponent) => (ownProps) => {
-    const mapDispatch = (dispatch, registry) => mapDispatchToProps(dispatch, ownProps, registry);
-    const dispatchProps = use_dispatch_with_map_default(mapDispatch, []);
-    return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(WrappedComponent, { ...ownProps, ...dispatchProps });
+const withdispatch = (mapdispatchtoprops) => (0,external_wp_compose_namespaceobject.createhigherordercomponent)(
+  (wrappedcomponent) => (ownprops) => {
+    const mapdispatch = (dispatch, registry) => mapdispatchtoprops(dispatch, ownprops, registry);
+    const dispatchprops = use_dispatch_with_map_default(mapdispatch, []);
+    return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(wrappedcomponent, { ...ownprops, ...dispatchprops });
   },
-  "withDispatch"
+  "withdispatch"
 );
-var with_dispatch_default = withDispatch;
+var with_dispatch_default = withdispatch;
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/with-registry/index.js
 
 
 
-const withRegistry = (0,external_wp_compose_namespaceObject.createHigherOrderComponent)(
-  (OriginalComponent) => (props) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(RegistryConsumer, { children: (registry) => /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(OriginalComponent, { ...props, registry }) }),
-  "withRegistry"
+const withregistry = (0,external_wp_compose_namespaceobject.createhigherordercomponent)(
+  (originalcomponent) => (props) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(registryconsumer, { children: (registry) => /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(originalcomponent, { ...props, registry }) }),
+  "withregistry"
 );
-var with_registry_default = withRegistry;
+var with_registry_default = withregistry;
 
 
 ;// ./node_modules/@wordpress/data/build-module/components/use-dispatch/use-dispatch.js
 
-const useDispatch = (storeNameOrDescriptor) => {
-  const { dispatch } = useRegistry();
-  return storeNameOrDescriptor === void 0 ? dispatch : dispatch(storeNameOrDescriptor);
+const usedispatch = (storenameordescriptor) => {
+  const { dispatch } = useregistry();
+  return storenameordescriptor === void 0 ? dispatch : dispatch(storenameordescriptor);
 };
-var use_dispatch_default = useDispatch;
+var use_dispatch_default = usedispatch;
 
 
 ;// ./node_modules/@wordpress/data/build-module/dispatch.js
 
-function dispatch_dispatch(storeNameOrDescriptor) {
-  return default_registry_default.dispatch(storeNameOrDescriptor);
+function dispatch_dispatch(storenameordescriptor) {
+  return default_registry_default.dispatch(storenameordescriptor);
 }
 
 
 ;// ./node_modules/@wordpress/data/build-module/select.js
 
-function select_select(storeNameOrDescriptor) {
-  return default_registry_default.select(storeNameOrDescriptor);
+function select_select(storenameordescriptor) {
+  return default_registry_default.select(storenameordescriptor);
 }
 
 
@@ -3000,12 +3000,12 @@ function select_select(storeNameOrDescriptor) {
 
 
 
-const build_module_combineReducers = combine_reducers_combineReducers;
-const build_module_resolveSelect = default_registry_default.resolveSelect;
-const suspendSelect = default_registry_default.suspendSelect;
+const build_module_combinereducers = combine_reducers_combinereducers;
+const build_module_resolveselect = default_registry_default.resolveselect;
+const suspendselect = default_registry_default.suspendselect;
 const subscribe = default_registry_default.subscribe;
-const registerGenericStore = default_registry_default.registerGenericStore;
-const registerStore = default_registry_default.registerStore;
+const registergenericstore = default_registry_default.registergenericstore;
+const registerstore = default_registry_default.registerstore;
 const use = default_registry_default.use;
 const register = default_registry_default.register;
 
@@ -3013,3 +3013,4 @@ const register = default_registry_default.register;
 (window.wp = window.wp || {}).data = __webpack_exports__;
 /******/ })()
 ;
+

@@ -83,10 +83,10 @@ figure.wp-block-image:not(.wp-block){
   position:relative;
   width:100%;
 }
-.wp-block-image__crop-area .reactEasyCrop_Container{
+.wp-block-image__crop-area .reacteasycrop_container{
   pointer-events:auto;
 }
-.wp-block-image__crop-area .reactEasyCrop_Container .reactEasyCrop_Image{
+.wp-block-image__crop-area .reacteasycrop_container .reacteasycrop_image{
   border:none;
   border-radius:0;
 }
@@ -99,7 +99,7 @@ figure.wp-block-image:not(.wp-block){
   padding:0 8px;
 }
 .wp-block-image__crop-icon svg{
-  fill:currentColor;
+  fill:currentcolor;
 }
 
 .wp-block-image__zoom .components-popover__content{
@@ -114,3 +114,4 @@ figure.wp-block-image:not(.wp-block){
 .wp-block-image__toolbar_content_textarea{
   width:250px;
 }
+

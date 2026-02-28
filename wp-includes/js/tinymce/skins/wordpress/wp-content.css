@@ -1,4 +1,4 @@
-/* Additional default styles for the editor */
+/* additional default styles for the editor */
 
 html {
 	cursor: text;
@@ -10,7 +10,7 @@ html.ios {
 }
 
 body {
-	font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif;
+	font-family: georgia, "times new roman", "bitstream charter", times, serif;
 	font-size: 16px;
 	line-height: 1.5;
 	color: #333;
@@ -18,36 +18,36 @@ body {
 	max-width: 100%;
 	-webkit-font-smoothing: antialiased !important;
 	overflow-wrap: break-word;
-	word-wrap: break-word; /* Old syntax */
+	word-wrap: break-word; /* old syntax */
 }
 
 body.rtl {
-	font-family: Tahoma, "Times New Roman", "Bitstream Charter", Times, serif;
+	font-family: tahoma, "times new roman", "bitstream charter", times, serif;
 }
 
 body.locale-he-il,
 body.locale-vi {
-	font-family: Arial, "Times New Roman", "Bitstream Charter", Times, serif;
+	font-family: arial, "times new roman", "bitstream charter", times, serif;
 }
 
 body.wp-autoresize {
 	overflow: visible !important;
-	/* The padding ensures margins of the children are contained in the body. */
+	/* the padding ensures margins of the children are contained in the body. */
 	padding-top: 1px !important;
 	padding-bottom: 1px !important;
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 }
 
-/* When font-weight is different than the default browser style,
-Chrome and Safari replace <strong> and <b> with spans with inline styles on pasting?! */
+/* when font-weight is different than the default browser style,
+chrome and safari replace <strong> and <b> with spans with inline styles on pasting?! */
 body.webkit strong,
 body.webkit b {
 	font-weight: bold !important;
 }
 
 pre {
-	font-family: Consolas, Monaco, monospace;
+	font-family: consolas, monaco, monospace;
 }
 
 td,
@@ -56,7 +56,7 @@ th {
 	font-size: inherit;
 }
 
-/* For emoji replacement images */
+/* for emoji replacement images */
 img.emoji {
 	display: inline !important;
 	border: none !important;
@@ -70,7 +70,7 @@ img.emoji {
 	box-shadow: none !important;
 }
 
-.mceIEcenter {
+.mceiecenter {
 	text-align: center;
 }
 
@@ -84,7 +84,7 @@ img {
 	max-width: 100%;
 }
 
-/* iOS does not obey max-width if width is set. */
+/* ios does not obey max-width if width is set. */
 .ios .wp-caption {
 	width: auto !important;
 }
@@ -94,7 +94,7 @@ dl.wp-caption dt.wp-caption-dt img {
 	margin-bottom: -1ex;
 }
 
-div.mceTemp {
+div.mcetemp {
 	-ms-user-select: element;
 }
 
@@ -125,12 +125,12 @@ dl.wp-caption * {
 	margin: 0.5em 0 0.5em 1em;
 }
 
-/* Remove blue highlighting of selected images in WebKit */
+/* remove blue highlighting of selected images in webkit */
 img[data-mce-selected]::selection {
 	background-color: transparent;
 }
 
-/* Styles for the WordPress plugins */
+/* styles for the wordpress plugins */
 .mce-content-body img[data-mce-placeholder] {
 	border-radius: 0;
 	padding: 0;
@@ -168,7 +168,7 @@ img[data-mce-selected]::selection {
 	background-image: url(/wp-includes/js/tinymce/skins/wordpress/images/script.svg);
 }
 
-/* Styles for formatting the boundaries of anchors and code elements */
+/* styles for formatting the boundaries of anchors and code elements */
 .mce-content-body a[data-mce-selected] {
 	padding: 0 2px;
 	margin: 0 -2px;
@@ -197,7 +197,7 @@ img[data-mce-selected]::selection {
 	background: #e9ebec;
 }
 
-/* Gallery, audio, video placeholders */
+/* gallery, audio, video placeholders */
 .mce-content-body img.wp-media {
 	border: 1px solid #aaa;
 	background-color: #f2f2f2;
@@ -223,7 +223,7 @@ img[data-mce-selected]::selection {
 	background-image: url(/wp-includes/js/tinymce/skins/wordpress/images/gallery.png);
 }
 
-/* Image resize handles */
+/* image resize handles */
 .mce-content-body div.mce-resizehandle {
 	border-color: #72777c;
 	width: 7px;
@@ -249,7 +249,7 @@ audio {
 	visibility: hidden;
 }
 
-/* Fix for proprietary Mozilla display attribute, see #38757 */
+/* fix for proprietary mozilla display attribute, see #38757 */
 [_moz_abspos] {
 	outline: none;
 }
@@ -274,11 +274,11 @@ a[data-wplink-url-error]:before {
 }
 
 /**
- * WP Views
+ * wp views
  */
 
 .wpview {
-	width: 99.99%; /* All IE need hasLayout, incl. 11 (ugh, not again!!) */
+	width: 99.99%; /* all ie need haslayout, incl. 11 (ugh, not again!!) */
 	position: relative;
 	clear: both;
 	margin-bottom: 16px;
@@ -306,7 +306,7 @@ a[data-wplink-url-error]:before {
 	border-color: transparent;
 }
 
-/* A little "loading" animation, not showing in IE < 10 */
+/* a little "loading" animation, not showing in ie < 10 */
 .wpview .wpview-loading {
 	width: 60px;
 	height: 5px;
@@ -371,7 +371,7 @@ a[data-wplink-url-error]:before {
 .wpview-error p {
 	margin: 0;
 	text-align: center;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", sans-serif;
 }
 
 .wpview-type-gallery:after {
@@ -501,3 +501,5 @@ img.wp-oembed {
 		background-size: 1900px 20px;
 	}
 }
+
+

@@ -2,37 +2,37 @@
 var directionality = (function () {
     'use strict';
 
-    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+    var global = tinymce.util.tools.resolve('tinymce.pluginmanager');
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+    var global$1 = tinymce.util.tools.resolve('tinymce.util.tools');
 
-    var setDir = function (editor, dir) {
+    var setdir = function (editor, dir) {
       var dom = editor.dom;
-      var curDir;
-      var blocks = editor.selection.getSelectedBlocks();
+      var curdir;
+      var blocks = editor.selection.getselectedblocks();
       if (blocks.length) {
-        curDir = dom.getAttrib(blocks[0], 'dir');
+        curdir = dom.getattrib(blocks[0], 'dir');
         global$1.each(blocks, function (block) {
-          if (!dom.getParent(block.parentNode, '*[dir="' + dir + '"]', dom.getRoot())) {
-            dom.setAttrib(block, 'dir', curDir !== dir ? dir : null);
+          if (!dom.getparent(block.parentnode, '*[dir="' + dir + '"]', dom.getroot())) {
+            dom.setattrib(block, 'dir', curdir !== dir ? dir : null);
           }
         });
-        editor.nodeChanged();
+        editor.nodechanged();
       }
     };
-    var Direction = { setDir: setDir };
+    var direction = { setdir: setdir };
 
     var register = function (editor) {
-      editor.addCommand('mceDirectionLTR', function () {
-        Direction.setDir(editor, 'ltr');
+      editor.addcommand('mcedirectionltr', function () {
+        direction.setdir(editor, 'ltr');
       });
-      editor.addCommand('mceDirectionRTL', function () {
-        Direction.setDir(editor, 'rtl');
+      editor.addcommand('mcedirectionrtl', function () {
+        direction.setdir(editor, 'rtl');
       });
     };
-    var Commands = { register: register };
+    var commands = { register: register };
 
-    var generateSelector = function (dir) {
+    var generateselector = function (dir) {
       var selector = [];
       global$1.each('h1 h2 h3 h4 h5 h6 div p'.split(' '), function (name) {
         selector.push(name + '[dir=' + dir + ']');
@@ -40,27 +40,29 @@ var directionality = (function () {
       return selector.join(',');
     };
     var register$1 = function (editor) {
-      editor.addButton('ltr', {
-        title: 'Left to right',
-        cmd: 'mceDirectionLTR',
-        stateSelector: generateSelector('ltr')
+      editor.addbutton('ltr', {
+        title: 'left to right',
+        cmd: 'mcedirectionltr',
+        stateselector: generateselector('ltr')
       });
-      editor.addButton('rtl', {
-        title: 'Right to left',
-        cmd: 'mceDirectionRTL',
-        stateSelector: generateSelector('rtl')
+      editor.addbutton('rtl', {
+        title: 'right to left',
+        cmd: 'mcedirectionrtl',
+        stateselector: generateselector('rtl')
       });
     };
-    var Buttons = { register: register$1 };
+    var buttons = { register: register$1 };
 
     global.add('directionality', function (editor) {
-      Commands.register(editor);
-      Buttons.register(editor);
+      commands.register(editor);
+      buttons.register(editor);
     });
-    function Plugin () {
+    function plugin () {
     }
 
-    return Plugin;
+    return plugin;
 
 }());
 })();
+
+

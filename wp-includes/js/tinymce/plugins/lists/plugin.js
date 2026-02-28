@@ -1,111 +1,111 @@
 (function () {
-var lists = (function (domGlobals) {
+var lists = (function (domglobals) {
     'use strict';
 
-    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+    var global = tinymce.util.tools.resolve('tinymce.pluginmanager');
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.dom.RangeUtils');
+    var global$1 = tinymce.util.tools.resolve('tinymce.dom.rangeutils');
 
-    var global$2 = tinymce.util.Tools.resolve('tinymce.dom.TreeWalker');
+    var global$2 = tinymce.util.tools.resolve('tinymce.dom.treewalker');
 
-    var global$3 = tinymce.util.Tools.resolve('tinymce.util.VK');
+    var global$3 = tinymce.util.tools.resolve('tinymce.util.vk');
 
-    var global$4 = tinymce.util.Tools.resolve('tinymce.dom.BookmarkManager');
+    var global$4 = tinymce.util.tools.resolve('tinymce.dom.bookmarkmanager');
 
-    var global$5 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+    var global$5 = tinymce.util.tools.resolve('tinymce.util.tools');
 
-    var global$6 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+    var global$6 = tinymce.util.tools.resolve('tinymce.dom.domutils');
 
-    var isTextNode = function (node) {
-      return node && node.nodeType === 3;
+    var istextnode = function (node) {
+      return node && node.nodetype === 3;
     };
-    var isListNode = function (node) {
-      return node && /^(OL|UL|DL)$/.test(node.nodeName);
+    var islistnode = function (node) {
+      return node && /^(ol|ul|dl)$/.test(node.nodename);
     };
-    var isOlUlNode = function (node) {
-      return node && /^(OL|UL)$/.test(node.nodeName);
+    var isolulnode = function (node) {
+      return node && /^(ol|ul)$/.test(node.nodename);
     };
-    var isListItemNode = function (node) {
-      return node && /^(LI|DT|DD)$/.test(node.nodeName);
+    var islistitemnode = function (node) {
+      return node && /^(li|dt|dd)$/.test(node.nodename);
     };
-    var isDlItemNode = function (node) {
-      return node && /^(DT|DD)$/.test(node.nodeName);
+    var isdlitemnode = function (node) {
+      return node && /^(dt|dd)$/.test(node.nodename);
     };
-    var isTableCellNode = function (node) {
-      return node && /^(TH|TD)$/.test(node.nodeName);
+    var istablecellnode = function (node) {
+      return node && /^(th|td)$/.test(node.nodename);
     };
-    var isBr = function (node) {
-      return node && node.nodeName === 'BR';
+    var isbr = function (node) {
+      return node && node.nodename === 'br';
     };
-    var isFirstChild = function (node) {
-      return node.parentNode.firstChild === node;
+    var isfirstchild = function (node) {
+      return node.parentnode.firstchild === node;
     };
-    var isLastChild = function (node) {
-      return node.parentNode.lastChild === node;
+    var islastchild = function (node) {
+      return node.parentnode.lastchild === node;
     };
-    var isTextBlock = function (editor, node) {
-      return node && !!editor.schema.getTextBlockElements()[node.nodeName];
+    var istextblock = function (editor, node) {
+      return node && !!editor.schema.gettextblockelements()[node.nodename];
     };
-    var isBlock = function (node, blockElements) {
-      return node && node.nodeName in blockElements;
+    var isblock = function (node, blockelements) {
+      return node && node.nodename in blockelements;
     };
-    var isBogusBr = function (dom, node) {
-      if (!isBr(node)) {
+    var isbogusbr = function (dom, node) {
+      if (!isbr(node)) {
         return false;
       }
-      if (dom.isBlock(node.nextSibling) && !isBr(node.previousSibling)) {
+      if (dom.isblock(node.nextsibling) && !isbr(node.previoussibling)) {
         return true;
       }
       return false;
     };
-    var isEmpty = function (dom, elm, keepBookmarks) {
-      var empty = dom.isEmpty(elm);
-      if (keepBookmarks && dom.select('span[data-mce-type=bookmark]', elm).length > 0) {
+    var isempty = function (dom, elm, keepbookmarks) {
+      var empty = dom.isempty(elm);
+      if (keepbookmarks && dom.select('span[data-mce-type=bookmark]', elm).length > 0) {
         return false;
       }
       return empty;
     };
-    var isChildOfBody = function (dom, elm) {
-      return dom.isChildOf(elm, dom.getRoot());
+    var ischildofbody = function (dom, elm) {
+      return dom.ischildof(elm, dom.getroot());
     };
-    var NodeType = {
-      isTextNode: isTextNode,
-      isListNode: isListNode,
-      isOlUlNode: isOlUlNode,
-      isDlItemNode: isDlItemNode,
-      isListItemNode: isListItemNode,
-      isTableCellNode: isTableCellNode,
-      isBr: isBr,
-      isFirstChild: isFirstChild,
-      isLastChild: isLastChild,
-      isTextBlock: isTextBlock,
-      isBlock: isBlock,
-      isBogusBr: isBogusBr,
-      isEmpty: isEmpty,
-      isChildOfBody: isChildOfBody
+    var nodetype = {
+      istextnode: istextnode,
+      islistnode: islistnode,
+      isolulnode: isolulnode,
+      isdlitemnode: isdlitemnode,
+      islistitemnode: islistitemnode,
+      istablecellnode: istablecellnode,
+      isbr: isbr,
+      isfirstchild: isfirstchild,
+      islastchild: islastchild,
+      istextblock: istextblock,
+      isblock: isblock,
+      isbogusbr: isbogusbr,
+      isempty: isempty,
+      ischildofbody: ischildofbody
     };
 
-    var getNormalizedPoint = function (container, offset) {
-      if (NodeType.isTextNode(container)) {
+    var getnormalizedpoint = function (container, offset) {
+      if (nodetype.istextnode(container)) {
         return {
           container: container,
           offset: offset
         };
       }
-      var node = global$1.getNode(container, offset);
-      if (NodeType.isTextNode(node)) {
+      var node = global$1.getnode(container, offset);
+      if (nodetype.istextnode(node)) {
         return {
           container: node,
-          offset: offset >= container.childNodes.length ? node.data.length : 0
+          offset: offset >= container.childnodes.length ? node.data.length : 0
         };
-      } else if (node.previousSibling && NodeType.isTextNode(node.previousSibling)) {
+      } else if (node.previoussibling && nodetype.istextnode(node.previoussibling)) {
         return {
-          container: node.previousSibling,
-          offset: node.previousSibling.data.length
+          container: node.previoussibling,
+          offset: node.previoussibling.data.length
         };
-      } else if (node.nextSibling && NodeType.isTextNode(node.nextSibling)) {
+      } else if (node.nextsibling && nodetype.istextnode(node.nextsibling)) {
         return {
-          container: node.nextSibling,
+          container: node.nextsibling,
           offset: 0
         };
       }
@@ -114,94 +114,94 @@ var lists = (function (domGlobals) {
         offset: offset
       };
     };
-    var normalizeRange = function (rng) {
-      var outRng = rng.cloneRange();
-      var rangeStart = getNormalizedPoint(rng.startContainer, rng.startOffset);
-      outRng.setStart(rangeStart.container, rangeStart.offset);
-      var rangeEnd = getNormalizedPoint(rng.endContainer, rng.endOffset);
-      outRng.setEnd(rangeEnd.container, rangeEnd.offset);
-      return outRng;
+    var normalizerange = function (rng) {
+      var outrng = rng.clonerange();
+      var rangestart = getnormalizedpoint(rng.startcontainer, rng.startoffset);
+      outrng.setstart(rangestart.container, rangestart.offset);
+      var rangeend = getnormalizedpoint(rng.endcontainer, rng.endoffset);
+      outrng.setend(rangeend.container, rangeend.offset);
+      return outrng;
     };
-    var Range = {
-      getNormalizedPoint: getNormalizedPoint,
-      normalizeRange: normalizeRange
+    var range = {
+      getnormalizedpoint: getnormalizedpoint,
+      normalizerange: normalizerange
     };
 
-    var DOM = global$6.DOM;
-    var createBookmark = function (rng) {
+    var dom = global$6.dom;
+    var createbookmark = function (rng) {
       var bookmark = {};
-      var setupEndPoint = function (start) {
-        var offsetNode, container, offset;
-        container = rng[start ? 'startContainer' : 'endContainer'];
-        offset = rng[start ? 'startOffset' : 'endOffset'];
-        if (container.nodeType === 1) {
-          offsetNode = DOM.create('span', { 'data-mce-type': 'bookmark' });
-          if (container.hasChildNodes()) {
-            offset = Math.min(offset, container.childNodes.length - 1);
+      var setupendpoint = function (start) {
+        var offsetnode, container, offset;
+        container = rng[start ? 'startcontainer' : 'endcontainer'];
+        offset = rng[start ? 'startoffset' : 'endoffset'];
+        if (container.nodetype === 1) {
+          offsetnode = dom.create('span', { 'data-mce-type': 'bookmark' });
+          if (container.haschildnodes()) {
+            offset = math.min(offset, container.childnodes.length - 1);
             if (start) {
-              container.insertBefore(offsetNode, container.childNodes[offset]);
+              container.insertbefore(offsetnode, container.childnodes[offset]);
             } else {
-              DOM.insertAfter(offsetNode, container.childNodes[offset]);
+              dom.insertafter(offsetnode, container.childnodes[offset]);
             }
           } else {
-            container.appendChild(offsetNode);
+            container.appendchild(offsetnode);
           }
-          container = offsetNode;
+          container = offsetnode;
           offset = 0;
         }
-        bookmark[start ? 'startContainer' : 'endContainer'] = container;
-        bookmark[start ? 'startOffset' : 'endOffset'] = offset;
+        bookmark[start ? 'startcontainer' : 'endcontainer'] = container;
+        bookmark[start ? 'startoffset' : 'endoffset'] = offset;
       };
-      setupEndPoint(true);
+      setupendpoint(true);
       if (!rng.collapsed) {
-        setupEndPoint();
+        setupendpoint();
       }
       return bookmark;
     };
-    var resolveBookmark = function (bookmark) {
-      function restoreEndPoint(start) {
+    var resolvebookmark = function (bookmark) {
+      function restoreendpoint(start) {
         var container, offset, node;
-        var nodeIndex = function (container) {
-          var node = container.parentNode.firstChild, idx = 0;
+        var nodeindex = function (container) {
+          var node = container.parentnode.firstchild, idx = 0;
           while (node) {
             if (node === container) {
               return idx;
             }
-            if (node.nodeType !== 1 || node.getAttribute('data-mce-type') !== 'bookmark') {
+            if (node.nodetype !== 1 || node.getattribute('data-mce-type') !== 'bookmark') {
               idx++;
             }
-            node = node.nextSibling;
+            node = node.nextsibling;
           }
           return -1;
         };
-        container = node = bookmark[start ? 'startContainer' : 'endContainer'];
-        offset = bookmark[start ? 'startOffset' : 'endOffset'];
+        container = node = bookmark[start ? 'startcontainer' : 'endcontainer'];
+        offset = bookmark[start ? 'startoffset' : 'endoffset'];
         if (!container) {
           return;
         }
-        if (container.nodeType === 1) {
-          offset = nodeIndex(container);
-          container = container.parentNode;
-          DOM.remove(node);
-          if (!container.hasChildNodes() && DOM.isBlock(container)) {
-            container.appendChild(DOM.create('br'));
+        if (container.nodetype === 1) {
+          offset = nodeindex(container);
+          container = container.parentnode;
+          dom.remove(node);
+          if (!container.haschildnodes() && dom.isblock(container)) {
+            container.appendchild(dom.create('br'));
           }
         }
-        bookmark[start ? 'startContainer' : 'endContainer'] = container;
-        bookmark[start ? 'startOffset' : 'endOffset'] = offset;
+        bookmark[start ? 'startcontainer' : 'endcontainer'] = container;
+        bookmark[start ? 'startoffset' : 'endoffset'] = offset;
       }
-      restoreEndPoint(true);
-      restoreEndPoint();
-      var rng = DOM.createRng();
-      rng.setStart(bookmark.startContainer, bookmark.startOffset);
-      if (bookmark.endContainer) {
-        rng.setEnd(bookmark.endContainer, bookmark.endOffset);
+      restoreendpoint(true);
+      restoreendpoint();
+      var rng = dom.createrng();
+      rng.setstart(bookmark.startcontainer, bookmark.startoffset);
+      if (bookmark.endcontainer) {
+        rng.setend(bookmark.endcontainer, bookmark.endoffset);
       }
-      return Range.normalizeRange(rng);
+      return range.normalizerange(rng);
     };
-    var Bookmark = {
-      createBookmark: createBookmark,
-      resolveBookmark: resolveBookmark
+    var bookmark = {
+      createbookmark: createbookmark,
+      resolvebookmark: resolvebookmark
     };
 
     var noop = function () {
@@ -224,11 +224,11 @@ var lists = (function (domGlobals) {
     var always = constant(true);
 
     var none = function () {
-      return NONE;
+      return none;
     };
-    var NONE = function () {
+    var none = function () {
       var eq = function (o) {
-        return o.isNone();
+        return o.isnone();
       };
       var call = function (thunk) {
         return thunk();
@@ -241,17 +241,17 @@ var lists = (function (domGlobals) {
           return n();
         },
         is: never,
-        isSome: never,
-        isNone: always,
-        getOr: id,
-        getOrThunk: call,
-        getOrDie: function (msg) {
-          throw new Error(msg || 'error: getOrDie called on none.');
+        issome: never,
+        isnone: always,
+        getor: id,
+        getorthunk: call,
+        getordie: function (msg) {
+          throw new error(msg || 'error: getordie called on none.');
         },
-        getOrNull: constant(null),
-        getOrUndefined: constant(undefined),
+        getornull: constant(null),
+        getorundefined: constant(undefined),
         or: id,
-        orThunk: call,
+        orthunk: call,
         map: none,
         each: noop,
         bind: none,
@@ -260,13 +260,13 @@ var lists = (function (domGlobals) {
         filter: none,
         equals: eq,
         equals_: eq,
-        toArray: function () {
+        toarray: function () {
           return [];
         },
-        toString: constant('none()')
+        tostring: constant('none()')
       };
-      if (Object.freeze) {
-        Object.freeze(me);
+      if (object.freeze) {
+        object.freeze(me);
       }
       return me;
     }();
@@ -285,15 +285,15 @@ var lists = (function (domGlobals) {
         is: function (v) {
           return a === v;
         },
-        isSome: always,
-        isNone: never,
-        getOr: constant_a,
-        getOrThunk: constant_a,
-        getOrDie: constant_a,
-        getOrNull: constant_a,
-        getOrUndefined: constant_a,
+        issome: always,
+        isnone: never,
+        getor: constant_a,
+        getorthunk: constant_a,
+        getordie: constant_a,
+        getornull: constant_a,
+        getorundefined: constant_a,
         or: self,
-        orThunk: self,
+        orthunk: self,
         map: function (f) {
           return some(f(a));
         },
@@ -304,63 +304,63 @@ var lists = (function (domGlobals) {
         exists: bind,
         forall: bind,
         filter: function (f) {
-          return f(a) ? me : NONE;
+          return f(a) ? me : none;
         },
-        toArray: function () {
+        toarray: function () {
           return [a];
         },
-        toString: function () {
+        tostring: function () {
           return 'some(' + a + ')';
         },
         equals: function (o) {
           return o.is(a);
         },
-        equals_: function (o, elementEq) {
+        equals_: function (o, elementeq) {
           return o.fold(never, function (b) {
-            return elementEq(a, b);
+            return elementeq(a, b);
           });
         }
       };
       return me;
     };
     var from = function (value) {
-      return value === null || value === undefined ? NONE : some(value);
+      return value === null || value === undefined ? none : some(value);
     };
-    var Option = {
+    var option = {
       some: some,
       none: none,
       from: from
     };
 
-    var typeOf = function (x) {
+    var typeof = function (x) {
       if (x === null) {
         return 'null';
       }
       var t = typeof x;
-      if (t === 'object' && (Array.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'Array')) {
+      if (t === 'object' && (array.prototype.isprototypeof(x) || x.constructor && x.constructor.name === 'array')) {
         return 'array';
       }
-      if (t === 'object' && (String.prototype.isPrototypeOf(x) || x.constructor && x.constructor.name === 'String')) {
+      if (t === 'object' && (string.prototype.isprototypeof(x) || x.constructor && x.constructor.name === 'string')) {
         return 'string';
       }
       return t;
     };
-    var isType = function (type) {
+    var istype = function (type) {
       return function (value) {
-        return typeOf(value) === type;
+        return typeof(value) === type;
       };
     };
-    var isString = isType('string');
-    var isArray = isType('array');
-    var isBoolean = isType('boolean');
-    var isFunction = isType('function');
-    var isNumber = isType('number');
+    var isstring = istype('string');
+    var isarray = istype('array');
+    var isboolean = istype('boolean');
+    var isfunction = istype('function');
+    var isnumber = istype('number');
 
-    var nativeSlice = Array.prototype.slice;
-    var nativePush = Array.prototype.push;
+    var nativeslice = array.prototype.slice;
+    var nativepush = array.prototype.push;
     var map = function (xs, f) {
       var len = xs.length;
-      var r = new Array(len);
+      var r = new array(len);
       for (var i = 0; i < len; i++) {
         var x = xs[i];
         r[i] = f(x, i);
@@ -383,21 +383,21 @@ var lists = (function (domGlobals) {
       }
       return r;
     };
-    var groupBy = function (xs, f) {
+    var groupby = function (xs, f) {
       if (xs.length === 0) {
         return [];
       } else {
-        var wasType = f(xs[0]);
+        var wastype = f(xs[0]);
         var r = [];
         var group = [];
         for (var i = 0, len = xs.length; i < len; i++) {
           var x = xs[i];
           var type = f(x);
-          if (type !== wasType) {
+          if (type !== wastype) {
             r.push(group);
             group = [];
           }
-          wasType = type;
+          wastype = type;
           group.push(x);
         }
         if (group.length !== 0) {
@@ -416,18 +416,18 @@ var lists = (function (domGlobals) {
       for (var i = 0, len = xs.length; i < len; i++) {
         var x = xs[i];
         if (pred(x, i)) {
-          return Option.some(x);
+          return option.some(x);
         }
       }
-      return Option.none();
+      return option.none();
     };
     var flatten = function (xs) {
       var r = [];
       for (var i = 0, len = xs.length; i < len; ++i) {
-        if (!isArray(xs[i])) {
-          throw new Error('Arr.flatten item ' + i + ' was not an array, input: ' + xs);
+        if (!isarray(xs[i])) {
+          throw new error('arr.flatten item ' + i + ' was not an array, input: ' + xs);
         }
-        nativePush.apply(r, xs[i]);
+        nativepush.apply(r, xs[i]);
       }
       return r;
     };
@@ -436,24 +436,24 @@ var lists = (function (domGlobals) {
       return flatten(output);
     };
     var reverse = function (xs) {
-      var r = nativeSlice.call(xs, 0);
+      var r = nativeslice.call(xs, 0);
       r.reverse();
       return r;
     };
     var head = function (xs) {
-      return xs.length === 0 ? Option.none() : Option.some(xs[0]);
+      return xs.length === 0 ? option.none() : option.some(xs[0]);
     };
     var last = function (xs) {
-      return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
+      return xs.length === 0 ? option.none() : option.some(xs[xs.length - 1]);
     };
-    var from$1 = isFunction(Array.from) ? Array.from : function (x) {
-      return nativeSlice.call(x);
+    var from$1 = isfunction(array.from) ? array.from : function (x) {
+      return nativeslice.call(x);
     };
 
-    var Global = typeof domGlobals.window !== 'undefined' ? domGlobals.window : Function('return this;')();
+    var global = typeof domglobals.window !== 'undefined' ? domglobals.window : function('return this;')();
 
     var path = function (parts, scope) {
-      var o = scope !== undefined && scope !== null ? scope : Global;
+      var o = scope !== undefined && scope !== null ? scope : global;
       for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i) {
         o = o[parts[i]];
       }
@@ -467,155 +467,155 @@ var lists = (function (domGlobals) {
     var unsafe = function (name, scope) {
       return resolve(name, scope);
     };
-    var getOrDie = function (name, scope) {
+    var getordie = function (name, scope) {
       var actual = unsafe(name, scope);
       if (actual === undefined || actual === null) {
-        throw new Error(name + ' not available on this browser');
+        throw new error(name + ' not available on this browser');
       }
       return actual;
     };
-    var Global$1 = { getOrDie: getOrDie };
+    var global$1 = { getordie: getordie };
 
-    var htmlElement = function (scope) {
-      return Global$1.getOrDie('HTMLElement', scope);
+    var htmlelement = function (scope) {
+      return global$1.getordie('htmlelement', scope);
     };
-    var isPrototypeOf = function (x) {
-      var scope = resolve('ownerDocument.defaultView', x);
-      return htmlElement(scope).prototype.isPrototypeOf(x);
+    var isprototypeof = function (x) {
+      var scope = resolve('ownerdocument.defaultview', x);
+      return htmlelement(scope).prototype.isprototypeof(x);
     };
-    var HTMLElement = { isPrototypeOf: isPrototypeOf };
+    var htmlelement = { isprototypeof: isprototypeof };
 
-    var global$7 = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
+    var global$7 = tinymce.util.tools.resolve('tinymce.dom.domquery');
 
-    var getParentList = function (editor) {
-      var selectionStart = editor.selection.getStart(true);
-      return editor.dom.getParent(selectionStart, 'OL,UL,DL', getClosestListRootElm(editor, selectionStart));
+    var getparentlist = function (editor) {
+      var selectionstart = editor.selection.getstart(true);
+      return editor.dom.getparent(selectionstart, 'ol,ul,dl', getclosestlistrootelm(editor, selectionstart));
     };
-    var isParentListSelected = function (parentList, selectedBlocks) {
-      return parentList && selectedBlocks.length === 1 && selectedBlocks[0] === parentList;
+    var isparentlistselected = function (parentlist, selectedblocks) {
+      return parentlist && selectedblocks.length === 1 && selectedblocks[0] === parentlist;
     };
-    var findSubLists = function (parentList) {
-      return global$5.grep(parentList.querySelectorAll('ol,ul,dl'), function (elm) {
-        return NodeType.isListNode(elm);
+    var findsublists = function (parentlist) {
+      return global$5.grep(parentlist.queryselectorall('ol,ul,dl'), function (elm) {
+        return nodetype.islistnode(elm);
       });
     };
-    var getSelectedSubLists = function (editor) {
-      var parentList = getParentList(editor);
-      var selectedBlocks = editor.selection.getSelectedBlocks();
-      if (isParentListSelected(parentList, selectedBlocks)) {
-        return findSubLists(parentList);
+    var getselectedsublists = function (editor) {
+      var parentlist = getparentlist(editor);
+      var selectedblocks = editor.selection.getselectedblocks();
+      if (isparentlistselected(parentlist, selectedblocks)) {
+        return findsublists(parentlist);
       } else {
-        return global$5.grep(selectedBlocks, function (elm) {
-          return NodeType.isListNode(elm) && parentList !== elm;
+        return global$5.grep(selectedblocks, function (elm) {
+          return nodetype.islistnode(elm) && parentlist !== elm;
         });
       }
     };
-    var findParentListItemsNodes = function (editor, elms) {
-      var listItemsElms = global$5.map(elms, function (elm) {
-        var parentLi = editor.dom.getParent(elm, 'li,dd,dt', getClosestListRootElm(editor, elm));
-        return parentLi ? parentLi : elm;
+    var findparentlistitemsnodes = function (editor, elms) {
+      var listitemselms = global$5.map(elms, function (elm) {
+        var parentli = editor.dom.getparent(elm, 'li,dd,dt', getclosestlistrootelm(editor, elm));
+        return parentli ? parentli : elm;
       });
-      return global$7.unique(listItemsElms);
+      return global$7.unique(listitemselms);
     };
-    var getSelectedListItems = function (editor) {
-      var selectedBlocks = editor.selection.getSelectedBlocks();
-      return global$5.grep(findParentListItemsNodes(editor, selectedBlocks), function (block) {
-        return NodeType.isListItemNode(block);
+    var getselectedlistitems = function (editor) {
+      var selectedblocks = editor.selection.getselectedblocks();
+      return global$5.grep(findparentlistitemsnodes(editor, selectedblocks), function (block) {
+        return nodetype.islistitemnode(block);
       });
     };
-    var getSelectedDlItems = function (editor) {
-      return filter(getSelectedListItems(editor), NodeType.isDlItemNode);
+    var getselecteddlitems = function (editor) {
+      return filter(getselectedlistitems(editor), nodetype.isdlitemnode);
     };
-    var getClosestListRootElm = function (editor, elm) {
-      var parentTableCell = editor.dom.getParents(elm, 'TD,TH');
-      var root = parentTableCell.length > 0 ? parentTableCell[0] : editor.getBody();
+    var getclosestlistrootelm = function (editor, elm) {
+      var parenttablecell = editor.dom.getparents(elm, 'td,th');
+      var root = parenttablecell.length > 0 ? parenttablecell[0] : editor.getbody();
       return root;
     };
-    var findLastParentListNode = function (editor, elm) {
-      var parentLists = editor.dom.getParents(elm, 'ol,ul', getClosestListRootElm(editor, elm));
-      return last(parentLists);
+    var findlastparentlistnode = function (editor, elm) {
+      var parentlists = editor.dom.getparents(elm, 'ol,ul', getclosestlistrootelm(editor, elm));
+      return last(parentlists);
     };
-    var getSelectedLists = function (editor) {
-      var firstList = findLastParentListNode(editor, editor.selection.getStart());
-      var subsequentLists = filter(editor.selection.getSelectedBlocks(), NodeType.isOlUlNode);
-      return firstList.toArray().concat(subsequentLists);
+    var getselectedlists = function (editor) {
+      var firstlist = findlastparentlistnode(editor, editor.selection.getstart());
+      var subsequentlists = filter(editor.selection.getselectedblocks(), nodetype.isolulnode);
+      return firstlist.toarray().concat(subsequentlists);
     };
-    var getSelectedListRoots = function (editor) {
-      var selectedLists = getSelectedLists(editor);
-      return getUniqueListRoots(editor, selectedLists);
+    var getselectedlistroots = function (editor) {
+      var selectedlists = getselectedlists(editor);
+      return getuniquelistroots(editor, selectedlists);
     };
-    var getUniqueListRoots = function (editor, lists) {
-      var listRoots = map(lists, function (list) {
-        return findLastParentListNode(editor, list).getOr(list);
+    var getuniquelistroots = function (editor, lists) {
+      var listroots = map(lists, function (list) {
+        return findlastparentlistnode(editor, list).getor(list);
       });
-      return global$7.unique(listRoots);
+      return global$7.unique(listroots);
     };
-    var isList = function (editor) {
-      var list = getParentList(editor);
-      return HTMLElement.isPrototypeOf(list);
+    var islist = function (editor) {
+      var list = getparentlist(editor);
+      return htmlelement.isprototypeof(list);
     };
-    var Selection = {
-      isList: isList,
-      getParentList: getParentList,
-      getSelectedSubLists: getSelectedSubLists,
-      getSelectedListItems: getSelectedListItems,
-      getClosestListRootElm: getClosestListRootElm,
-      getSelectedDlItems: getSelectedDlItems,
-      getSelectedListRoots: getSelectedListRoots
+    var selection = {
+      islist: islist,
+      getparentlist: getparentlist,
+      getselectedsublists: getselectedsublists,
+      getselectedlistitems: getselectedlistitems,
+      getclosestlistrootelm: getclosestlistrootelm,
+      getselecteddlitems: getselecteddlitems,
+      getselectedlistroots: getselectedlistroots
     };
 
-    var fromHtml = function (html, scope) {
-      var doc = scope || domGlobals.document;
-      var div = doc.createElement('div');
-      div.innerHTML = html;
-      if (!div.hasChildNodes() || div.childNodes.length > 1) {
-        domGlobals.console.error('HTML does not have a single root node', html);
-        throw new Error('HTML must have a single root node');
+    var fromhtml = function (html, scope) {
+      var doc = scope || domglobals.document;
+      var div = doc.createelement('div');
+      div.innerhtml = html;
+      if (!div.haschildnodes() || div.childnodes.length > 1) {
+        domglobals.console.error('html does not have a single root node', html);
+        throw new error('html must have a single root node');
       }
-      return fromDom(div.childNodes[0]);
+      return fromdom(div.childnodes[0]);
     };
-    var fromTag = function (tag, scope) {
-      var doc = scope || domGlobals.document;
-      var node = doc.createElement(tag);
-      return fromDom(node);
+    var fromtag = function (tag, scope) {
+      var doc = scope || domglobals.document;
+      var node = doc.createelement(tag);
+      return fromdom(node);
     };
-    var fromText = function (text, scope) {
-      var doc = scope || domGlobals.document;
-      var node = doc.createTextNode(text);
-      return fromDom(node);
+    var fromtext = function (text, scope) {
+      var doc = scope || domglobals.document;
+      var node = doc.createtextnode(text);
+      return fromdom(node);
     };
-    var fromDom = function (node) {
+    var fromdom = function (node) {
       if (node === null || node === undefined) {
-        throw new Error('Node cannot be null or undefined');
+        throw new error('node cannot be null or undefined');
       }
       return { dom: constant(node) };
     };
-    var fromPoint = function (docElm, x, y) {
-      var doc = docElm.dom();
-      return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
+    var frompoint = function (docelm, x, y) {
+      var doc = docelm.dom();
+      return option.from(doc.elementfrompoint(x, y)).map(fromdom);
     };
-    var Element = {
-      fromHtml: fromHtml,
-      fromTag: fromTag,
-      fromText: fromText,
-      fromDom: fromDom,
-      fromPoint: fromPoint
+    var element = {
+      fromhtml: fromhtml,
+      fromtag: fromtag,
+      fromtext: fromtext,
+      fromdom: fromdom,
+      frompoint: frompoint
     };
 
     var lift2 = function (oa, ob, f) {
-      return oa.isSome() && ob.isSome() ? Option.some(f(oa.getOrDie(), ob.getOrDie())) : Option.none();
+      return oa.issome() && ob.issome() ? option.some(f(oa.getordie(), ob.getordie())) : option.none();
     };
 
-    var fromElements = function (elements, scope) {
-      var doc = scope || domGlobals.document;
-      var fragment = doc.createDocumentFragment();
+    var fromelements = function (elements, scope) {
+      var doc = scope || domglobals.document;
+      var fragment = doc.createdocumentfragment();
       each(elements, function (element) {
-        fragment.appendChild(element.dom());
+        fragment.appendchild(element.dom());
       });
-      return Element.fromDom(fragment);
+      return element.fromdom(fragment);
     };
 
-    var Immutable = function () {
+    var immutable = function () {
       var fields = [];
       for (var _i = 0; _i < arguments.length; _i++) {
         fields[_i] = arguments[_i];
@@ -626,7 +626,7 @@ var lists = (function (domGlobals) {
           values[_i] = arguments[_i];
         }
         if (fields.length !== values.length) {
-          throw new Error('Wrong number of arguments to struct. Expected "[' + fields.length + ']", got ' + values.length + ' arguments');
+          throw new error('wrong number of arguments to struct. expected "[' + fields.length + ']", got ' + values.length + ' arguments');
         }
         var struct = {};
         each(fields, function (name, i) {
@@ -636,7 +636,7 @@ var lists = (function (domGlobals) {
       };
     };
 
-    var keys = Object.keys;
+    var keys = object.keys;
     var each$1 = function (obj, f) {
       var props = keys(obj);
       for (var k = 0, len = props.length; k < len; k++) {
@@ -647,21 +647,21 @@ var lists = (function (domGlobals) {
     };
 
     var node = function () {
-      var f = Global$1.getOrDie('Node');
+      var f = global$1.getordie('node');
       return f;
     };
-    var compareDocumentPosition = function (a, b, match) {
-      return (a.compareDocumentPosition(b) & match) !== 0;
+    var comparedocumentposition = function (a, b, match) {
+      return (a.comparedocumentposition(b) & match) !== 0;
     };
-    var documentPositionPreceding = function (a, b) {
-      return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_PRECEDING);
+    var documentpositionpreceding = function (a, b) {
+      return comparedocumentposition(a, b, node().document_position_preceding);
     };
-    var documentPositionContainedBy = function (a, b) {
-      return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_CONTAINED_BY);
+    var documentpositioncontainedby = function (a, b) {
+      return comparedocumentposition(a, b, node().document_position_contained_by);
     };
-    var Node = {
-      documentPositionPreceding: documentPositionPreceding,
-      documentPositionContainedBy: documentPositionContainedBy
+    var node = {
+      documentpositionpreceding: documentpositionpreceding,
+      documentpositioncontainedby: documentpositioncontainedby
     };
 
     var cached = function (f) {
@@ -680,7 +680,7 @@ var lists = (function (domGlobals) {
       };
     };
 
-    var firstMatch = function (regexes, s) {
+    var firstmatch = function (regexes, s) {
       for (var i = 0; i < regexes.length; i++) {
         var x = regexes[i];
         if (x.test(s)) {
@@ -690,7 +690,7 @@ var lists = (function (domGlobals) {
       return undefined;
     };
     var find$1 = function (regexes, agent) {
-      var r = firstMatch(regexes, agent);
+      var r = firstmatch(regexes, agent);
       if (!r) {
         return {
           major: 0,
@@ -698,16 +698,16 @@ var lists = (function (domGlobals) {
         };
       }
       var group = function (i) {
-        return Number(agent.replace(r, '$' + i));
+        return number(agent.replace(r, '$' + i));
       };
       return nu(group(1), group(2));
     };
-    var detect = function (versionRegexes, agent) {
-      var cleanedAgent = String(agent).toLowerCase();
-      if (versionRegexes.length === 0) {
+    var detect = function (versionregexes, agent) {
+      var cleanedagent = string(agent).tolowercase();
+      if (versionregexes.length === 0) {
         return unknown();
       }
-      return find$1(versionRegexes, cleanedAgent);
+      return find$1(versionregexes, cleanedagent);
     };
     var unknown = function () {
       return nu(0, 0);
@@ -718,19 +718,19 @@ var lists = (function (domGlobals) {
         minor: minor
       };
     };
-    var Version = {
+    var version = {
       nu: nu,
       detect: detect,
       unknown: unknown
     };
 
-    var edge = 'Edge';
-    var chrome = 'Chrome';
-    var ie = 'IE';
-    var opera = 'Opera';
-    var firefox = 'Firefox';
-    var safari = 'Safari';
-    var isBrowser = function (name, current) {
+    var edge = 'edge';
+    var chrome = 'chrome';
+    var ie = 'ie';
+    var opera = 'opera';
+    var firefox = 'firefox';
+    var safari = 'safari';
+    var isbrowser = function (name, current) {
       return function () {
         return current === name;
       };
@@ -738,7 +738,7 @@ var lists = (function (domGlobals) {
     var unknown$1 = function () {
       return nu$1({
         current: undefined,
-        version: Version.unknown()
+        version: version.unknown()
       });
     };
     var nu$1 = function (info) {
@@ -747,15 +747,15 @@ var lists = (function (domGlobals) {
       return {
         current: current,
         version: version,
-        isEdge: isBrowser(edge, current),
-        isChrome: isBrowser(chrome, current),
-        isIE: isBrowser(ie, current),
-        isOpera: isBrowser(opera, current),
-        isFirefox: isBrowser(firefox, current),
-        isSafari: isBrowser(safari, current)
+        isedge: isbrowser(edge, current),
+        ischrome: isbrowser(chrome, current),
+        isie: isbrowser(ie, current),
+        isopera: isbrowser(opera, current),
+        isfirefox: isbrowser(firefox, current),
+        issafari: isbrowser(safari, current)
       };
     };
-    var Browser = {
+    var browser = {
       unknown: unknown$1,
       nu: nu$1,
       edge: constant(edge),
@@ -766,14 +766,14 @@ var lists = (function (domGlobals) {
       safari: constant(safari)
     };
 
-    var windows = 'Windows';
-    var ios = 'iOS';
-    var android = 'Android';
-    var linux = 'Linux';
-    var osx = 'OSX';
-    var solaris = 'Solaris';
-    var freebsd = 'FreeBSD';
-    var isOS = function (name, current) {
+    var windows = 'windows';
+    var ios = 'ios';
+    var android = 'android';
+    var linux = 'linux';
+    var osx = 'osx';
+    var solaris = 'solaris';
+    var freebsd = 'freebsd';
+    var isos = function (name, current) {
       return function () {
         return current === name;
       };
@@ -781,7 +781,7 @@ var lists = (function (domGlobals) {
     var unknown$2 = function () {
       return nu$2({
         current: undefined,
-        version: Version.unknown()
+        version: version.unknown()
       });
     };
     var nu$2 = function (info) {
@@ -790,16 +790,16 @@ var lists = (function (domGlobals) {
       return {
         current: current,
         version: version,
-        isWindows: isOS(windows, current),
-        isiOS: isOS(ios, current),
-        isAndroid: isOS(android, current),
-        isOSX: isOS(osx, current),
-        isLinux: isOS(linux, current),
-        isSolaris: isOS(solaris, current),
-        isFreeBSD: isOS(freebsd, current)
+        iswindows: isos(windows, current),
+        isios: isos(ios, current),
+        isandroid: isos(android, current),
+        isosx: isos(osx, current),
+        islinux: isos(linux, current),
+        issolaris: isos(solaris, current),
+        isfreebsd: isos(freebsd, current)
       };
     };
-    var OperatingSystem = {
+    var operatingsystem = {
       unknown: unknown$2,
       nu: nu$2,
       windows: constant(windows),
@@ -811,87 +811,87 @@ var lists = (function (domGlobals) {
       freebsd: constant(freebsd)
     };
 
-    var DeviceType = function (os, browser, userAgent) {
-      var isiPad = os.isiOS() && /ipad/i.test(userAgent) === true;
-      var isiPhone = os.isiOS() && !isiPad;
-      var isAndroid3 = os.isAndroid() && os.version.major === 3;
-      var isAndroid4 = os.isAndroid() && os.version.major === 4;
-      var isTablet = isiPad || isAndroid3 || isAndroid4 && /mobile/i.test(userAgent) === true;
-      var isTouch = os.isiOS() || os.isAndroid();
-      var isPhone = isTouch && !isTablet;
-      var iOSwebview = browser.isSafari() && os.isiOS() && /safari/i.test(userAgent) === false;
+    var devicetype = function (os, browser, useragent) {
+      var isipad = os.isios() && /ipad/i.test(useragent) === true;
+      var isiphone = os.isios() && !isipad;
+      var isandroid3 = os.isandroid() && os.version.major === 3;
+      var isandroid4 = os.isandroid() && os.version.major === 4;
+      var istablet = isipad || isandroid3 || isandroid4 && /mobile/i.test(useragent) === true;
+      var istouch = os.isios() || os.isandroid();
+      var isphone = istouch && !istablet;
+      var ioswebview = browser.issafari() && os.isios() && /safari/i.test(useragent) === false;
       return {
-        isiPad: constant(isiPad),
-        isiPhone: constant(isiPhone),
-        isTablet: constant(isTablet),
-        isPhone: constant(isPhone),
-        isTouch: constant(isTouch),
-        isAndroid: os.isAndroid,
-        isiOS: os.isiOS,
-        isWebView: constant(iOSwebview)
+        isipad: constant(isipad),
+        isiphone: constant(isiphone),
+        istablet: constant(istablet),
+        isphone: constant(isphone),
+        istouch: constant(istouch),
+        isandroid: os.isandroid,
+        isios: os.isios,
+        iswebview: constant(ioswebview)
       };
     };
 
-    var detect$1 = function (candidates, userAgent) {
-      var agent = String(userAgent).toLowerCase();
+    var detect$1 = function (candidates, useragent) {
+      var agent = string(useragent).tolowercase();
       return find(candidates, function (candidate) {
         return candidate.search(agent);
       });
     };
-    var detectBrowser = function (browsers, userAgent) {
-      return detect$1(browsers, userAgent).map(function (browser) {
-        var version = Version.detect(browser.versionRegexes, userAgent);
+    var detectbrowser = function (browsers, useragent) {
+      return detect$1(browsers, useragent).map(function (browser) {
+        var version = version.detect(browser.versionregexes, useragent);
         return {
           current: browser.name,
           version: version
         };
       });
     };
-    var detectOs = function (oses, userAgent) {
-      return detect$1(oses, userAgent).map(function (os) {
-        var version = Version.detect(os.versionRegexes, userAgent);
+    var detectos = function (oses, useragent) {
+      return detect$1(oses, useragent).map(function (os) {
+        var version = version.detect(os.versionregexes, useragent);
         return {
           current: os.name,
           version: version
         };
       });
     };
-    var UaString = {
-      detectBrowser: detectBrowser,
-      detectOs: detectOs
+    var uastring = {
+      detectbrowser: detectbrowser,
+      detectos: detectos
     };
 
     var contains = function (str, substr) {
-      return str.indexOf(substr) !== -1;
+      return str.indexof(substr) !== -1;
     };
 
-    var normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
-    var checkContains = function (target) {
+    var normalversionregex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
+    var checkcontains = function (target) {
       return function (uastring) {
         return contains(uastring, target);
       };
     };
     var browsers = [
       {
-        name: 'Edge',
-        versionRegexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
+        name: 'edge',
+        versionregexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
         search: function (uastring) {
           return contains(uastring, 'edge/') && contains(uastring, 'chrome') && contains(uastring, 'safari') && contains(uastring, 'applewebkit');
         }
       },
       {
-        name: 'Chrome',
-        versionRegexes: [
+        name: 'chrome',
+        versionregexes: [
           /.*?chrome\/([0-9]+)\.([0-9]+).*/,
-          normalVersionRegex
+          normalversionregex
         ],
         search: function (uastring) {
           return contains(uastring, 'chrome') && !contains(uastring, 'chromeframe');
         }
       },
       {
-        name: 'IE',
-        versionRegexes: [
+        name: 'ie',
+        versionregexes: [
           /.*?msie\ ?([0-9]+)\.([0-9]+).*/,
           /.*?rv:([0-9]+)\.([0-9]+).*/
         ],
@@ -900,22 +900,22 @@ var lists = (function (domGlobals) {
         }
       },
       {
-        name: 'Opera',
-        versionRegexes: [
-          normalVersionRegex,
+        name: 'opera',
+        versionregexes: [
+          normalversionregex,
           /.*?opera\/([0-9]+)\.([0-9]+).*/
         ],
-        search: checkContains('opera')
+        search: checkcontains('opera')
       },
       {
-        name: 'Firefox',
-        versionRegexes: [/.*?firefox\/\ ?([0-9]+)\.([0-9]+).*/],
-        search: checkContains('firefox')
+        name: 'firefox',
+        versionregexes: [/.*?firefox\/\ ?([0-9]+)\.([0-9]+).*/],
+        search: checkcontains('firefox')
       },
       {
-        name: 'Safari',
-        versionRegexes: [
-          normalVersionRegex,
+        name: 'safari',
+        versionregexes: [
+          normalversionregex,
           /.*?cpu os ([0-9]+)_([0-9]+).*/
         ],
         search: function (uastring) {
@@ -925,102 +925,102 @@ var lists = (function (domGlobals) {
     ];
     var oses = [
       {
-        name: 'Windows',
-        search: checkContains('win'),
-        versionRegexes: [/.*?windows\ nt\ ?([0-9]+)\.([0-9]+).*/]
+        name: 'windows',
+        search: checkcontains('win'),
+        versionregexes: [/.*?windows\ nt\ ?([0-9]+)\.([0-9]+).*/]
       },
       {
-        name: 'iOS',
+        name: 'ios',
         search: function (uastring) {
           return contains(uastring, 'iphone') || contains(uastring, 'ipad');
         },
-        versionRegexes: [
+        versionregexes: [
           /.*?version\/\ ?([0-9]+)\.([0-9]+).*/,
           /.*cpu os ([0-9]+)_([0-9]+).*/,
           /.*cpu iphone os ([0-9]+)_([0-9]+).*/
         ]
       },
       {
-        name: 'Android',
-        search: checkContains('android'),
-        versionRegexes: [/.*?android\ ?([0-9]+)\.([0-9]+).*/]
+        name: 'android',
+        search: checkcontains('android'),
+        versionregexes: [/.*?android\ ?([0-9]+)\.([0-9]+).*/]
       },
       {
-        name: 'OSX',
-        search: checkContains('os x'),
-        versionRegexes: [/.*?os\ x\ ?([0-9]+)_([0-9]+).*/]
+        name: 'osx',
+        search: checkcontains('os x'),
+        versionregexes: [/.*?os\ x\ ?([0-9]+)_([0-9]+).*/]
       },
       {
-        name: 'Linux',
-        search: checkContains('linux'),
-        versionRegexes: []
+        name: 'linux',
+        search: checkcontains('linux'),
+        versionregexes: []
       },
       {
-        name: 'Solaris',
-        search: checkContains('sunos'),
-        versionRegexes: []
+        name: 'solaris',
+        search: checkcontains('sunos'),
+        versionregexes: []
       },
       {
-        name: 'FreeBSD',
-        search: checkContains('freebsd'),
-        versionRegexes: []
+        name: 'freebsd',
+        search: checkcontains('freebsd'),
+        versionregexes: []
       }
     ];
-    var PlatformInfo = {
+    var platforminfo = {
       browsers: constant(browsers),
       oses: constant(oses)
     };
 
-    var detect$2 = function (userAgent) {
-      var browsers = PlatformInfo.browsers();
-      var oses = PlatformInfo.oses();
-      var browser = UaString.detectBrowser(browsers, userAgent).fold(Browser.unknown, Browser.nu);
-      var os = UaString.detectOs(oses, userAgent).fold(OperatingSystem.unknown, OperatingSystem.nu);
-      var deviceType = DeviceType(os, browser, userAgent);
+    var detect$2 = function (useragent) {
+      var browsers = platforminfo.browsers();
+      var oses = platforminfo.oses();
+      var browser = uastring.detectbrowser(browsers, useragent).fold(browser.unknown, browser.nu);
+      var os = uastring.detectos(oses, useragent).fold(operatingsystem.unknown, operatingsystem.nu);
+      var devicetype = devicetype(os, browser, useragent);
       return {
         browser: browser,
         os: os,
-        deviceType: deviceType
+        devicetype: devicetype
       };
     };
-    var PlatformDetection = { detect: detect$2 };
+    var platformdetection = { detect: detect$2 };
 
     var detect$3 = cached(function () {
-      var userAgent = domGlobals.navigator.userAgent;
-      return PlatformDetection.detect(userAgent);
+      var useragent = domglobals.navigator.useragent;
+      return platformdetection.detect(useragent);
     });
-    var PlatformDetection$1 = { detect: detect$3 };
+    var platformdetection$1 = { detect: detect$3 };
 
-    var ATTRIBUTE = domGlobals.Node.ATTRIBUTE_NODE;
-    var CDATA_SECTION = domGlobals.Node.CDATA_SECTION_NODE;
-    var COMMENT = domGlobals.Node.COMMENT_NODE;
-    var DOCUMENT = domGlobals.Node.DOCUMENT_NODE;
-    var DOCUMENT_TYPE = domGlobals.Node.DOCUMENT_TYPE_NODE;
-    var DOCUMENT_FRAGMENT = domGlobals.Node.DOCUMENT_FRAGMENT_NODE;
-    var ELEMENT = domGlobals.Node.ELEMENT_NODE;
-    var TEXT = domGlobals.Node.TEXT_NODE;
-    var PROCESSING_INSTRUCTION = domGlobals.Node.PROCESSING_INSTRUCTION_NODE;
-    var ENTITY_REFERENCE = domGlobals.Node.ENTITY_REFERENCE_NODE;
-    var ENTITY = domGlobals.Node.ENTITY_NODE;
-    var NOTATION = domGlobals.Node.NOTATION_NODE;
+    var attribute = domglobals.node.attribute_node;
+    var cdata_section = domglobals.node.cdata_section_node;
+    var comment = domglobals.node.comment_node;
+    var document = domglobals.node.document_node;
+    var document_type = domglobals.node.document_type_node;
+    var document_fragment = domglobals.node.document_fragment_node;
+    var element = domglobals.node.element_node;
+    var text = domglobals.node.text_node;
+    var processing_instruction = domglobals.node.processing_instruction_node;
+    var entity_reference = domglobals.node.entity_reference_node;
+    var entity = domglobals.node.entity_node;
+    var notation = domglobals.node.notation_node;
 
-    var ELEMENT$1 = ELEMENT;
+    var element$1 = element;
     var is = function (element, selector) {
       var dom = element.dom();
-      if (dom.nodeType !== ELEMENT$1) {
+      if (dom.nodetype !== element$1) {
         return false;
       } else {
         var elem = dom;
         if (elem.matches !== undefined) {
           return elem.matches(selector);
-        } else if (elem.msMatchesSelector !== undefined) {
-          return elem.msMatchesSelector(selector);
-        } else if (elem.webkitMatchesSelector !== undefined) {
-          return elem.webkitMatchesSelector(selector);
-        } else if (elem.mozMatchesSelector !== undefined) {
-          return elem.mozMatchesSelector(selector);
+        } else if (elem.msmatchesselector !== undefined) {
+          return elem.msmatchesselector(selector);
+        } else if (elem.webkitmatchesselector !== undefined) {
+          return elem.webkitmatchesselector(selector);
+        } else if (elem.mozmatchesselector !== undefined) {
+          return elem.mozmatchesselector(selector);
         } else {
-          throw new Error('Browser lacks native selectors');
+          throw new error('browser lacks native selectors');
         }
       }
     };
@@ -1028,44 +1028,44 @@ var lists = (function (domGlobals) {
     var eq = function (e1, e2) {
       return e1.dom() === e2.dom();
     };
-    var regularContains = function (e1, e2) {
+    var regularcontains = function (e1, e2) {
       var d1 = e1.dom();
       var d2 = e2.dom();
       return d1 === d2 ? false : d1.contains(d2);
     };
-    var ieContains = function (e1, e2) {
-      return Node.documentPositionContainedBy(e1.dom(), e2.dom());
+    var iecontains = function (e1, e2) {
+      return node.documentpositioncontainedby(e1.dom(), e2.dom());
     };
-    var browser = PlatformDetection$1.detect().browser;
-    var contains$1 = browser.isIE() ? ieContains : regularContains;
+    var browser = platformdetection$1.detect().browser;
+    var contains$1 = browser.isie() ? iecontains : regularcontains;
     var is$1 = is;
 
     var parent = function (element) {
-      return Option.from(element.dom().parentNode).map(Element.fromDom);
+      return option.from(element.dom().parentnode).map(element.fromdom);
     };
     var children = function (element) {
-      return map(element.dom().childNodes, Element.fromDom);
+      return map(element.dom().childnodes, element.fromdom);
     };
     var child = function (element, index) {
-      var cs = element.dom().childNodes;
-      return Option.from(cs[index]).map(Element.fromDom);
+      var cs = element.dom().childnodes;
+      return option.from(cs[index]).map(element.fromdom);
     };
-    var firstChild = function (element) {
+    var firstchild = function (element) {
       return child(element, 0);
     };
-    var lastChild = function (element) {
-      return child(element, element.dom().childNodes.length - 1);
+    var lastchild = function (element) {
+      return child(element, element.dom().childnodes.length - 1);
     };
-    var spot = Immutable('element', 'offset');
+    var spot = immutable('element', 'offset');
 
     var before = function (marker, element) {
       var parent$1 = parent(marker);
       parent$1.each(function (v) {
-        v.dom().insertBefore(element.dom(), marker.dom());
+        v.dom().insertbefore(element.dom(), marker.dom());
       });
     };
     var append = function (parent, element) {
-      parent.dom().appendChild(element.dom());
+      parent.dom().appendchild(element.dom());
     };
 
     var before$1 = function (marker, elements) {
@@ -1081,37 +1081,37 @@ var lists = (function (domGlobals) {
 
     var remove = function (element) {
       var dom = element.dom();
-      if (dom.parentNode !== null) {
-        dom.parentNode.removeChild(dom);
+      if (dom.parentnode !== null) {
+        dom.parentnode.removechild(dom);
       }
     };
 
     var name = function (element) {
-      var r = element.dom().nodeName;
-      return r.toLowerCase();
+      var r = element.dom().nodename;
+      return r.tolowercase();
     };
     var type = function (element) {
-      return element.dom().nodeType;
+      return element.dom().nodetype;
     };
-    var isType$1 = function (t) {
+    var istype$1 = function (t) {
       return function (element) {
         return type(element) === t;
       };
     };
-    var isElement = isType$1(ELEMENT);
+    var iselement = istype$1(element);
 
-    var rawSet = function (dom, key, value) {
-      if (isString(value) || isBoolean(value) || isNumber(value)) {
-        dom.setAttribute(key, value + '');
+    var rawset = function (dom, key, value) {
+      if (isstring(value) || isboolean(value) || isnumber(value)) {
+        dom.setattribute(key, value + '');
       } else {
-        domGlobals.console.error('Invalid call to Attr.set. Key ', key, ':: Value ', value, ':: Element ', dom);
-        throw new Error('Attribute value was not simple');
+        domglobals.console.error('invalid call to attr.set. key ', key, ':: value ', value, ':: element ', dom);
+        throw new error('attribute value was not simple');
       }
     };
-    var setAll = function (element, attrs) {
+    var setall = function (element, attrs) {
       var dom = element.dom();
       each$1(attrs, function (v, k) {
-        rawSet(dom, k, v);
+        rawset(dom, k, v);
       });
     };
     var clone = function (element) {
@@ -1121,38 +1121,38 @@ var lists = (function (domGlobals) {
       }, {});
     };
 
-    var isSupported = function (dom) {
-      return dom.style !== undefined && isFunction(dom.style.getPropertyValue);
+    var issupported = function (dom) {
+      return dom.style !== undefined && isfunction(dom.style.getpropertyvalue);
     };
 
-    var internalSet = function (dom, property, value) {
-      if (!isString(value)) {
-        domGlobals.console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
-        throw new Error('CSS value must be a string: ' + value);
+    var internalset = function (dom, property, value) {
+      if (!isstring(value)) {
+        domglobals.console.error('invalid call to css.set. property ', property, ':: value ', value, ':: element ', dom);
+        throw new error('css value must be a string: ' + value);
       }
-      if (isSupported(dom)) {
-        dom.style.setProperty(property, value);
+      if (issupported(dom)) {
+        dom.style.setproperty(property, value);
       }
     };
     var set = function (element, property, value) {
       var dom = element.dom();
-      internalSet(dom, property, value);
+      internalset(dom, property, value);
     };
 
-    var clone$1 = function (original, isDeep) {
-      return Element.fromDom(original.dom().cloneNode(isDeep));
+    var clone$1 = function (original, isdeep) {
+      return element.fromdom(original.dom().clonenode(isdeep));
     };
     var deep = function (original) {
       return clone$1(original, true);
     };
-    var shallowAs = function (original, tag) {
-      var nu = Element.fromTag(tag);
+    var shallowas = function (original, tag) {
+      var nu = element.fromtag(tag);
       var attributes = clone(original);
-      setAll(nu, attributes);
+      setall(nu, attributes);
       return nu;
     };
     var mutate = function (original, tag) {
-      var nu = shallowAs(original, tag);
+      var nu = shallowas(original, tag);
       before(original, nu);
       var children$1 = children(original);
       append$1(nu, children$1);
@@ -1160,182 +1160,182 @@ var lists = (function (domGlobals) {
       return nu;
     };
 
-    var joinSegment = function (parent, child) {
+    var joinsegment = function (parent, child) {
       append(parent.item, child.list);
     };
-    var joinSegments = function (segments) {
+    var joinsegments = function (segments) {
       for (var i = 1; i < segments.length; i++) {
-        joinSegment(segments[i - 1], segments[i]);
+        joinsegment(segments[i - 1], segments[i]);
       }
     };
-    var appendSegments = function (head$1, tail) {
-      lift2(last(head$1), head(tail), joinSegment);
+    var appendsegments = function (head$1, tail) {
+      lift2(last(head$1), head(tail), joinsegment);
     };
-    var createSegment = function (scope, listType) {
+    var createsegment = function (scope, listtype) {
       var segment = {
-        list: Element.fromTag(listType, scope),
-        item: Element.fromTag('li', scope)
+        list: element.fromtag(listtype, scope),
+        item: element.fromtag('li', scope)
       };
       append(segment.list, segment.item);
       return segment;
     };
-    var createSegments = function (scope, entry, size) {
+    var createsegments = function (scope, entry, size) {
       var segments = [];
       for (var i = 0; i < size; i++) {
-        segments.push(createSegment(scope, entry.listType));
+        segments.push(createsegment(scope, entry.listtype));
       }
       return segments;
     };
-    var populateSegments = function (segments, entry) {
+    var populatesegments = function (segments, entry) {
       for (var i = 0; i < segments.length - 1; i++) {
         set(segments[i].item, 'list-style-type', 'none');
       }
       last(segments).each(function (segment) {
-        setAll(segment.list, entry.listAttributes);
-        setAll(segment.item, entry.itemAttributes);
+        setall(segment.list, entry.listattributes);
+        setall(segment.item, entry.itemattributes);
         append$1(segment.item, entry.content);
       });
     };
-    var normalizeSegment = function (segment, entry) {
-      if (name(segment.list) !== entry.listType) {
-        segment.list = mutate(segment.list, entry.listType);
+    var normalizesegment = function (segment, entry) {
+      if (name(segment.list) !== entry.listtype) {
+        segment.list = mutate(segment.list, entry.listtype);
       }
-      setAll(segment.list, entry.listAttributes);
+      setall(segment.list, entry.listattributes);
     };
-    var createItem = function (scope, attr, content) {
-      var item = Element.fromTag('li', scope);
-      setAll(item, attr);
+    var createitem = function (scope, attr, content) {
+      var item = element.fromtag('li', scope);
+      setall(item, attr);
       append$1(item, content);
       return item;
     };
-    var appendItem = function (segment, item) {
+    var appenditem = function (segment, item) {
       append(segment.list, item);
       segment.item = item;
     };
-    var writeShallow = function (scope, cast, entry) {
-      var newCast = cast.slice(0, entry.depth);
-      last(newCast).each(function (segment) {
-        var item = createItem(scope, entry.itemAttributes, entry.content);
-        appendItem(segment, item);
-        normalizeSegment(segment, entry);
+    var writeshallow = function (scope, cast, entry) {
+      var newcast = cast.slice(0, entry.depth);
+      last(newcast).each(function (segment) {
+        var item = createitem(scope, entry.itemattributes, entry.content);
+        appenditem(segment, item);
+        normalizesegment(segment, entry);
       });
-      return newCast;
+      return newcast;
     };
-    var writeDeep = function (scope, cast, entry) {
-      var segments = createSegments(scope, entry, entry.depth - cast.length);
-      joinSegments(segments);
-      populateSegments(segments, entry);
-      appendSegments(cast, segments);
+    var writedeep = function (scope, cast, entry) {
+      var segments = createsegments(scope, entry, entry.depth - cast.length);
+      joinsegments(segments);
+      populatesegments(segments, entry);
+      appendsegments(cast, segments);
       return cast.concat(segments);
     };
-    var composeList = function (scope, entries) {
+    var composelist = function (scope, entries) {
       var cast = foldl(entries, function (cast, entry) {
-        return entry.depth > cast.length ? writeDeep(scope, cast, entry) : writeShallow(scope, cast, entry);
+        return entry.depth > cast.length ? writedeep(scope, cast, entry) : writeshallow(scope, cast, entry);
       }, []);
       return head(cast).map(function (segment) {
         return segment.list;
       });
     };
 
-    var isList$1 = function (el) {
-      return is$1(el, 'OL,UL');
+    var islist$1 = function (el) {
+      return is$1(el, 'ol,ul');
     };
-    var hasFirstChildList = function (el) {
-      return firstChild(el).map(isList$1).getOr(false);
+    var hasfirstchildlist = function (el) {
+      return firstchild(el).map(islist$1).getor(false);
     };
-    var hasLastChildList = function (el) {
-      return lastChild(el).map(isList$1).getOr(false);
+    var haslastchildlist = function (el) {
+      return lastchild(el).map(islist$1).getor(false);
     };
 
-    var isIndented = function (entry) {
+    var isindented = function (entry) {
       return entry.depth > 0;
     };
-    var isSelected = function (entry) {
-      return entry.isSelected;
+    var isselected = function (entry) {
+      return entry.isselected;
     };
-    var cloneItemContent = function (li) {
+    var cloneitemcontent = function (li) {
       var children$1 = children(li);
-      var content = hasLastChildList(li) ? children$1.slice(0, -1) : children$1;
+      var content = haslastchildlist(li) ? children$1.slice(0, -1) : children$1;
       return map(content, deep);
     };
-    var createEntry = function (li, depth, isSelected) {
-      return parent(li).filter(isElement).map(function (list) {
+    var createentry = function (li, depth, isselected) {
+      return parent(li).filter(iselement).map(function (list) {
         return {
           depth: depth,
-          isSelected: isSelected,
-          content: cloneItemContent(li),
-          itemAttributes: clone(li),
-          listAttributes: clone(list),
-          listType: name(list)
+          isselected: isselected,
+          content: cloneitemcontent(li),
+          itemattributes: clone(li),
+          listattributes: clone(list),
+          listtype: name(list)
         };
       });
     };
 
-    var indentEntry = function (indentation, entry) {
+    var indententry = function (indentation, entry) {
       switch (indentation) {
-      case 'Indent':
+      case 'indent':
         entry.depth++;
         break;
-      case 'Outdent':
+      case 'outdent':
         entry.depth--;
         break;
-      case 'Flatten':
+      case 'flatten':
         entry.depth = 0;
       }
     };
 
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var hasownproperty = object.prototype.hasownproperty;
     var shallow = function (old, nu) {
       return nu;
     };
-    var baseMerge = function (merger) {
+    var basemerge = function (merger) {
       return function () {
-        var objects = new Array(arguments.length);
+        var objects = new array(arguments.length);
         for (var i = 0; i < objects.length; i++) {
           objects[i] = arguments[i];
         }
         if (objects.length === 0) {
-          throw new Error('Can\'t merge zero objects');
+          throw new error('can\'t merge zero objects');
         }
         var ret = {};
         for (var j = 0; j < objects.length; j++) {
-          var curObject = objects[j];
-          for (var key in curObject) {
-            if (hasOwnProperty.call(curObject, key)) {
-              ret[key] = merger(ret[key], curObject[key]);
+          var curobject = objects[j];
+          for (var key in curobject) {
+            if (hasownproperty.call(curobject, key)) {
+              ret[key] = merger(ret[key], curobject[key]);
             }
           }
         }
         return ret;
       };
     };
-    var merge = baseMerge(shallow);
+    var merge = basemerge(shallow);
 
-    var cloneListProperties = function (target, source) {
-      target.listType = source.listType;
-      target.listAttributes = merge({}, source.listAttributes);
+    var clonelistproperties = function (target, source) {
+      target.listtype = source.listtype;
+      target.listattributes = merge({}, source.listattributes);
     };
-    var previousSiblingEntry = function (entries, start) {
+    var previoussiblingentry = function (entries, start) {
       var depth = entries[start].depth;
       for (var i = start - 1; i >= 0; i--) {
         if (entries[i].depth === depth) {
-          return Option.some(entries[i]);
+          return option.some(entries[i]);
         }
         if (entries[i].depth < depth) {
           break;
         }
       }
-      return Option.none();
+      return option.none();
     };
-    var normalizeEntries = function (entries) {
+    var normalizeentries = function (entries) {
       each(entries, function (entry, i) {
-        previousSiblingEntry(entries, i).each(function (matchingEntry) {
-          cloneListProperties(entry, matchingEntry);
+        previoussiblingentry(entries, i).each(function (matchingentry) {
+          clonelistproperties(entry, matchingentry);
         });
       });
     };
 
-    var Cell = function (initial) {
+    var cell = function (initial) {
       var value = initial;
       var get = function () {
         return value;
@@ -1344,7 +1344,7 @@ var lists = (function (domGlobals) {
         value = v;
       };
       var clone = function () {
-        return Cell(get());
+        return cell(get());
       };
       return {
         get: get,
@@ -1353,343 +1353,343 @@ var lists = (function (domGlobals) {
       };
     };
 
-    var parseItem = function (depth, itemSelection, selectionState, item) {
-      return firstChild(item).filter(isList$1).fold(function () {
-        itemSelection.each(function (selection) {
+    var parseitem = function (depth, itemselection, selectionstate, item) {
+      return firstchild(item).filter(islist$1).fold(function () {
+        itemselection.each(function (selection) {
           if (eq(selection.start, item)) {
-            selectionState.set(true);
+            selectionstate.set(true);
           }
         });
-        var currentItemEntry = createEntry(item, depth, selectionState.get());
-        itemSelection.each(function (selection) {
+        var currentitementry = createentry(item, depth, selectionstate.get());
+        itemselection.each(function (selection) {
           if (eq(selection.end, item)) {
-            selectionState.set(false);
+            selectionstate.set(false);
           }
         });
-        var childListEntries = lastChild(item).filter(isList$1).map(function (list) {
-          return parseList(depth, itemSelection, selectionState, list);
-        }).getOr([]);
-        return currentItemEntry.toArray().concat(childListEntries);
+        var childlistentries = lastchild(item).filter(islist$1).map(function (list) {
+          return parselist(depth, itemselection, selectionstate, list);
+        }).getor([]);
+        return currentitementry.toarray().concat(childlistentries);
       }, function (list) {
-        return parseList(depth, itemSelection, selectionState, list);
+        return parselist(depth, itemselection, selectionstate, list);
       });
     };
-    var parseList = function (depth, itemSelection, selectionState, list) {
+    var parselist = function (depth, itemselection, selectionstate, list) {
       return bind(children(list), function (element) {
-        var parser = isList$1(element) ? parseList : parseItem;
-        var newDepth = depth + 1;
-        return parser(newDepth, itemSelection, selectionState, element);
+        var parser = islist$1(element) ? parselist : parseitem;
+        var newdepth = depth + 1;
+        return parser(newdepth, itemselection, selectionstate, element);
       });
     };
-    var parseLists = function (lists, itemSelection) {
-      var selectionState = Cell(false);
-      var initialDepth = 0;
+    var parselists = function (lists, itemselection) {
+      var selectionstate = cell(false);
+      var initialdepth = 0;
       return map(lists, function (list) {
         return {
-          sourceList: list,
-          entries: parseList(initialDepth, itemSelection, selectionState, list)
+          sourcelist: list,
+          entries: parselist(initialdepth, itemselection, selectionstate, list)
         };
       });
     };
 
-    var global$8 = tinymce.util.Tools.resolve('tinymce.Env');
+    var global$8 = tinymce.util.tools.resolve('tinymce.env');
 
-    var createTextBlock = function (editor, contentNode) {
+    var createtextblock = function (editor, contentnode) {
       var dom = editor.dom;
-      var blockElements = editor.schema.getBlockElements();
-      var fragment = dom.createFragment();
-      var node, textBlock, blockName, hasContentNode;
+      var blockelements = editor.schema.getblockelements();
+      var fragment = dom.createfragment();
+      var node, textblock, blockname, hascontentnode;
       if (editor.settings.forced_root_block) {
-        blockName = editor.settings.forced_root_block;
+        blockname = editor.settings.forced_root_block;
       }
-      if (blockName) {
-        textBlock = dom.create(blockName);
-        if (textBlock.tagName === editor.settings.forced_root_block) {
-          dom.setAttribs(textBlock, editor.settings.forced_root_block_attrs);
+      if (blockname) {
+        textblock = dom.create(blockname);
+        if (textblock.tagname === editor.settings.forced_root_block) {
+          dom.setattribs(textblock, editor.settings.forced_root_block_attrs);
         }
-        if (!NodeType.isBlock(contentNode.firstChild, blockElements)) {
-          fragment.appendChild(textBlock);
+        if (!nodetype.isblock(contentnode.firstchild, blockelements)) {
+          fragment.appendchild(textblock);
         }
       }
-      if (contentNode) {
-        while (node = contentNode.firstChild) {
-          var nodeName = node.nodeName;
-          if (!hasContentNode && (nodeName !== 'SPAN' || node.getAttribute('data-mce-type') !== 'bookmark')) {
-            hasContentNode = true;
+      if (contentnode) {
+        while (node = contentnode.firstchild) {
+          var nodename = node.nodename;
+          if (!hascontentnode && (nodename !== 'span' || node.getattribute('data-mce-type') !== 'bookmark')) {
+            hascontentnode = true;
           }
-          if (NodeType.isBlock(node, blockElements)) {
-            fragment.appendChild(node);
-            textBlock = null;
+          if (nodetype.isblock(node, blockelements)) {
+            fragment.appendchild(node);
+            textblock = null;
           } else {
-            if (blockName) {
-              if (!textBlock) {
-                textBlock = dom.create(blockName);
-                fragment.appendChild(textBlock);
+            if (blockname) {
+              if (!textblock) {
+                textblock = dom.create(blockname);
+                fragment.appendchild(textblock);
               }
-              textBlock.appendChild(node);
+              textblock.appendchild(node);
             } else {
-              fragment.appendChild(node);
+              fragment.appendchild(node);
             }
           }
         }
       }
       if (!editor.settings.forced_root_block) {
-        fragment.appendChild(dom.create('br'));
+        fragment.appendchild(dom.create('br'));
       } else {
-        if (!hasContentNode && (!global$8.ie || global$8.ie > 10)) {
-          textBlock.appendChild(dom.create('br', { 'data-mce-bogus': '1' }));
+        if (!hascontentnode && (!global$8.ie || global$8.ie > 10)) {
+          textblock.appendchild(dom.create('br', { 'data-mce-bogus': '1' }));
         }
       }
       return fragment;
     };
 
-    var outdentedComposer = function (editor, entries) {
+    var outdentedcomposer = function (editor, entries) {
       return map(entries, function (entry) {
-        var content = fromElements(entry.content);
-        return Element.fromDom(createTextBlock(editor, content.dom()));
+        var content = fromelements(entry.content);
+        return element.fromdom(createtextblock(editor, content.dom()));
       });
     };
-    var indentedComposer = function (editor, entries) {
-      normalizeEntries(entries);
-      return composeList(editor.contentDocument, entries).toArray();
+    var indentedcomposer = function (editor, entries) {
+      normalizeentries(entries);
+      return composelist(editor.contentdocument, entries).toarray();
     };
-    var composeEntries = function (editor, entries) {
-      return bind(groupBy(entries, isIndented), function (entries) {
-        var groupIsIndented = head(entries).map(isIndented).getOr(false);
-        return groupIsIndented ? indentedComposer(editor, entries) : outdentedComposer(editor, entries);
+    var composeentries = function (editor, entries) {
+      return bind(groupby(entries, isindented), function (entries) {
+        var groupisindented = head(entries).map(isindented).getor(false);
+        return groupisindented ? indentedcomposer(editor, entries) : outdentedcomposer(editor, entries);
       });
     };
-    var indentSelectedEntries = function (entries, indentation) {
-      each(filter(entries, isSelected), function (entry) {
-        return indentEntry(indentation, entry);
+    var indentselectedentries = function (entries, indentation) {
+      each(filter(entries, isselected), function (entry) {
+        return indententry(indentation, entry);
       });
     };
-    var getItemSelection = function (editor) {
-      var selectedListItems = map(Selection.getSelectedListItems(editor), Element.fromDom);
-      return lift2(find(selectedListItems, not(hasFirstChildList)), find(reverse(selectedListItems), not(hasFirstChildList)), function (start, end) {
+    var getitemselection = function (editor) {
+      var selectedlistitems = map(selection.getselectedlistitems(editor), element.fromdom);
+      return lift2(find(selectedlistitems, not(hasfirstchildlist)), find(reverse(selectedlistitems), not(hasfirstchildlist)), function (start, end) {
         return {
           start: start,
           end: end
         };
       });
     };
-    var listsIndentation = function (editor, lists, indentation) {
-      var entrySets = parseLists(lists, getItemSelection(editor));
-      each(entrySets, function (entrySet) {
-        indentSelectedEntries(entrySet.entries, indentation);
-        before$1(entrySet.sourceList, composeEntries(editor, entrySet.entries));
-        remove(entrySet.sourceList);
+    var listsindentation = function (editor, lists, indentation) {
+      var entrysets = parselists(lists, getitemselection(editor));
+      each(entrysets, function (entryset) {
+        indentselectedentries(entryset.entries, indentation);
+        before$1(entryset.sourcelist, composeentries(editor, entryset.entries));
+        remove(entryset.sourcelist);
       });
     };
 
-    var DOM$1 = global$6.DOM;
-    var splitList = function (editor, ul, li) {
-      var tmpRng, fragment, bookmarks, node, newBlock;
-      var removeAndKeepBookmarks = function (targetNode) {
+    var dom$1 = global$6.dom;
+    var splitlist = function (editor, ul, li) {
+      var tmprng, fragment, bookmarks, node, newblock;
+      var removeandkeepbookmarks = function (targetnode) {
         global$5.each(bookmarks, function (node) {
-          targetNode.parentNode.insertBefore(node, li.parentNode);
+          targetnode.parentnode.insertbefore(node, li.parentnode);
         });
-        DOM$1.remove(targetNode);
+        dom$1.remove(targetnode);
       };
-      bookmarks = DOM$1.select('span[data-mce-type="bookmark"]', ul);
-      newBlock = createTextBlock(editor, li);
-      tmpRng = DOM$1.createRng();
-      tmpRng.setStartAfter(li);
-      tmpRng.setEndAfter(ul);
-      fragment = tmpRng.extractContents();
-      for (node = fragment.firstChild; node; node = node.firstChild) {
-        if (node.nodeName === 'LI' && editor.dom.isEmpty(node)) {
-          DOM$1.remove(node);
+      bookmarks = dom$1.select('span[data-mce-type="bookmark"]', ul);
+      newblock = createtextblock(editor, li);
+      tmprng = dom$1.createrng();
+      tmprng.setstartafter(li);
+      tmprng.setendafter(ul);
+      fragment = tmprng.extractcontents();
+      for (node = fragment.firstchild; node; node = node.firstchild) {
+        if (node.nodename === 'li' && editor.dom.isempty(node)) {
+          dom$1.remove(node);
           break;
         }
       }
-      if (!editor.dom.isEmpty(fragment)) {
-        DOM$1.insertAfter(fragment, ul);
+      if (!editor.dom.isempty(fragment)) {
+        dom$1.insertafter(fragment, ul);
       }
-      DOM$1.insertAfter(newBlock, ul);
-      if (NodeType.isEmpty(editor.dom, li.parentNode)) {
-        removeAndKeepBookmarks(li.parentNode);
+      dom$1.insertafter(newblock, ul);
+      if (nodetype.isempty(editor.dom, li.parentnode)) {
+        removeandkeepbookmarks(li.parentnode);
       }
-      DOM$1.remove(li);
-      if (NodeType.isEmpty(editor.dom, ul)) {
-        DOM$1.remove(ul);
+      dom$1.remove(li);
+      if (nodetype.isempty(editor.dom, ul)) {
+        dom$1.remove(ul);
       }
     };
-    var SplitList = { splitList: splitList };
+    var splitlist = { splitlist: splitlist };
 
-    var outdentDlItem = function (editor, item) {
+    var outdentdlitem = function (editor, item) {
       if (is$1(item, 'dd')) {
         mutate(item, 'dt');
       } else if (is$1(item, 'dt')) {
         parent(item).each(function (dl) {
-          return SplitList.splitList(editor, dl.dom(), item.dom());
+          return splitlist.splitlist(editor, dl.dom(), item.dom());
         });
       }
     };
-    var indentDlItem = function (item) {
+    var indentdlitem = function (item) {
       if (is$1(item, 'dt')) {
         mutate(item, 'dd');
       }
     };
-    var dlIndentation = function (editor, indentation, dlItems) {
-      if (indentation === 'Indent') {
-        each(dlItems, indentDlItem);
+    var dlindentation = function (editor, indentation, dlitems) {
+      if (indentation === 'indent') {
+        each(dlitems, indentdlitem);
       } else {
-        each(dlItems, function (item) {
-          return outdentDlItem(editor, item);
+        each(dlitems, function (item) {
+          return outdentdlitem(editor, item);
         });
       }
     };
 
-    var selectionIndentation = function (editor, indentation) {
-      var lists = map(Selection.getSelectedListRoots(editor), Element.fromDom);
-      var dlItems = map(Selection.getSelectedDlItems(editor), Element.fromDom);
-      var isHandled = false;
-      if (lists.length || dlItems.length) {
-        var bookmark = editor.selection.getBookmark();
-        listsIndentation(editor, lists, indentation);
-        dlIndentation(editor, indentation, dlItems);
-        editor.selection.moveToBookmark(bookmark);
-        editor.selection.setRng(Range.normalizeRange(editor.selection.getRng()));
-        editor.nodeChanged();
-        isHandled = true;
+    var selectionindentation = function (editor, indentation) {
+      var lists = map(selection.getselectedlistroots(editor), element.fromdom);
+      var dlitems = map(selection.getselecteddlitems(editor), element.fromdom);
+      var ishandled = false;
+      if (lists.length || dlitems.length) {
+        var bookmark = editor.selection.getbookmark();
+        listsindentation(editor, lists, indentation);
+        dlindentation(editor, indentation, dlitems);
+        editor.selection.movetobookmark(bookmark);
+        editor.selection.setrng(range.normalizerange(editor.selection.getrng()));
+        editor.nodechanged();
+        ishandled = true;
       }
-      return isHandled;
+      return ishandled;
     };
-    var indentListSelection = function (editor) {
-      return selectionIndentation(editor, 'Indent');
+    var indentlistselection = function (editor) {
+      return selectionindentation(editor, 'indent');
     };
-    var outdentListSelection = function (editor) {
-      return selectionIndentation(editor, 'Outdent');
+    var outdentlistselection = function (editor) {
+      return selectionindentation(editor, 'outdent');
     };
-    var flattenListSelection = function (editor) {
-      return selectionIndentation(editor, 'Flatten');
+    var flattenlistselection = function (editor) {
+      return selectionindentation(editor, 'flatten');
     };
 
-    var updateListStyle = function (dom, el, detail) {
+    var updateliststyle = function (dom, el, detail) {
       var type = detail['list-style-type'] ? detail['list-style-type'] : null;
-      dom.setStyle(el, 'list-style-type', type);
+      dom.setstyle(el, 'list-style-type', type);
     };
-    var setAttribs = function (elm, attrs) {
+    var setattribs = function (elm, attrs) {
       global$5.each(attrs, function (value, key) {
-        elm.setAttribute(key, value);
+        elm.setattribute(key, value);
       });
     };
-    var updateListAttrs = function (dom, el, detail) {
-      setAttribs(el, detail['list-attributes']);
+    var updatelistattrs = function (dom, el, detail) {
+      setattribs(el, detail['list-attributes']);
       global$5.each(dom.select('li', el), function (li) {
-        setAttribs(li, detail['list-item-attributes']);
+        setattribs(li, detail['list-item-attributes']);
       });
     };
-    var updateListWithDetails = function (dom, el, detail) {
-      updateListStyle(dom, el, detail);
-      updateListAttrs(dom, el, detail);
+    var updatelistwithdetails = function (dom, el, detail) {
+      updateliststyle(dom, el, detail);
+      updatelistattrs(dom, el, detail);
     };
-    var removeStyles = function (dom, element, styles) {
+    var removestyles = function (dom, element, styles) {
       global$5.each(styles, function (style) {
         var _a;
-        return dom.setStyle(element, (_a = {}, _a[style] = '', _a));
+        return dom.setstyle(element, (_a = {}, _a[style] = '', _a));
       });
     };
-    var getEndPointNode = function (editor, rng, start, root) {
+    var getendpointnode = function (editor, rng, start, root) {
       var container, offset;
-      container = rng[start ? 'startContainer' : 'endContainer'];
-      offset = rng[start ? 'startOffset' : 'endOffset'];
-      if (container.nodeType === 1) {
-        container = container.childNodes[Math.min(offset, container.childNodes.length - 1)] || container;
+      container = rng[start ? 'startcontainer' : 'endcontainer'];
+      offset = rng[start ? 'startoffset' : 'endoffset'];
+      if (container.nodetype === 1) {
+        container = container.childnodes[math.min(offset, container.childnodes.length - 1)] || container;
       }
-      if (!start && NodeType.isBr(container.nextSibling)) {
-        container = container.nextSibling;
+      if (!start && nodetype.isbr(container.nextsibling)) {
+        container = container.nextsibling;
       }
-      while (container.parentNode !== root) {
-        if (NodeType.isTextBlock(editor, container)) {
+      while (container.parentnode !== root) {
+        if (nodetype.istextblock(editor, container)) {
           return container;
         }
-        if (/^(TD|TH)$/.test(container.parentNode.nodeName)) {
+        if (/^(td|th)$/.test(container.parentnode.nodename)) {
           return container;
         }
-        container = container.parentNode;
+        container = container.parentnode;
       }
       return container;
     };
-    var getSelectedTextBlocks = function (editor, rng, root) {
-      var textBlocks = [], dom = editor.dom;
-      var startNode = getEndPointNode(editor, rng, true, root);
-      var endNode = getEndPointNode(editor, rng, false, root);
+    var getselectedtextblocks = function (editor, rng, root) {
+      var textblocks = [], dom = editor.dom;
+      var startnode = getendpointnode(editor, rng, true, root);
+      var endnode = getendpointnode(editor, rng, false, root);
       var block;
       var siblings = [];
-      for (var node = startNode; node; node = node.nextSibling) {
+      for (var node = startnode; node; node = node.nextsibling) {
         siblings.push(node);
-        if (node === endNode) {
+        if (node === endnode) {
           break;
         }
       }
       global$5.each(siblings, function (node) {
-        if (NodeType.isTextBlock(editor, node)) {
-          textBlocks.push(node);
+        if (nodetype.istextblock(editor, node)) {
+          textblocks.push(node);
           block = null;
           return;
         }
-        if (dom.isBlock(node) || NodeType.isBr(node)) {
-          if (NodeType.isBr(node)) {
+        if (dom.isblock(node) || nodetype.isbr(node)) {
+          if (nodetype.isbr(node)) {
             dom.remove(node);
           }
           block = null;
           return;
         }
-        var nextSibling = node.nextSibling;
-        if (global$4.isBookmarkNode(node)) {
-          if (NodeType.isTextBlock(editor, nextSibling) || !nextSibling && node.parentNode === root) {
+        var nextsibling = node.nextsibling;
+        if (global$4.isbookmarknode(node)) {
+          if (nodetype.istextblock(editor, nextsibling) || !nextsibling && node.parentnode === root) {
             block = null;
             return;
           }
         }
         if (!block) {
           block = dom.create('p');
-          node.parentNode.insertBefore(block, node);
-          textBlocks.push(block);
+          node.parentnode.insertbefore(block, node);
+          textblocks.push(block);
         }
-        block.appendChild(node);
+        block.appendchild(node);
       });
-      return textBlocks;
+      return textblocks;
     };
-    var hasCompatibleStyle = function (dom, sib, detail) {
-      var sibStyle = dom.getStyle(sib, 'list-style-type');
-      var detailStyle = detail ? detail['list-style-type'] : '';
-      detailStyle = detailStyle === null ? '' : detailStyle;
-      return sibStyle === detailStyle;
+    var hascompatiblestyle = function (dom, sib, detail) {
+      var sibstyle = dom.getstyle(sib, 'list-style-type');
+      var detailstyle = detail ? detail['list-style-type'] : '';
+      detailstyle = detailstyle === null ? '' : detailstyle;
+      return sibstyle === detailstyle;
     };
-    var applyList = function (editor, listName, detail) {
+    var applylist = function (editor, listname, detail) {
       if (detail === void 0) {
         detail = {};
       }
-      var rng = editor.selection.getRng(true);
+      var rng = editor.selection.getrng(true);
       var bookmark;
-      var listItemName = 'LI';
-      var root = Selection.getClosestListRootElm(editor, editor.selection.getStart(true));
+      var listitemname = 'li';
+      var root = selection.getclosestlistrootelm(editor, editor.selection.getstart(true));
       var dom = editor.dom;
-      if (dom.getContentEditable(editor.selection.getNode()) === 'false') {
+      if (dom.getcontenteditable(editor.selection.getnode()) === 'false') {
         return;
       }
-      listName = listName.toUpperCase();
-      if (listName === 'DL') {
-        listItemName = 'DT';
+      listname = listname.touppercase();
+      if (listname === 'dl') {
+        listitemname = 'dt';
       }
-      bookmark = Bookmark.createBookmark(rng);
-      global$5.each(getSelectedTextBlocks(editor, rng, root), function (block) {
-        var listBlock, sibling;
-        sibling = block.previousSibling;
-        if (sibling && NodeType.isListNode(sibling) && sibling.nodeName === listName && hasCompatibleStyle(dom, sibling, detail)) {
-          listBlock = sibling;
-          block = dom.rename(block, listItemName);
-          sibling.appendChild(block);
+      bookmark = bookmark.createbookmark(rng);
+      global$5.each(getselectedtextblocks(editor, rng, root), function (block) {
+        var listblock, sibling;
+        sibling = block.previoussibling;
+        if (sibling && nodetype.islistnode(sibling) && sibling.nodename === listname && hascompatiblestyle(dom, sibling, detail)) {
+          listblock = sibling;
+          block = dom.rename(block, listitemname);
+          sibling.appendchild(block);
         } else {
-          listBlock = dom.create(listName);
-          block.parentNode.insertBefore(listBlock, block);
-          listBlock.appendChild(block);
-          block = dom.rename(block, listItemName);
+          listblock = dom.create(listname);
+          block.parentnode.insertbefore(listblock, block);
+          listblock.appendchild(block);
+          block = dom.rename(block, listitemname);
         }
-        removeStyles(dom, block, [
+        removestyles(dom, block, [
           'margin',
           'margin-right',
           'margin-bottom',
@@ -1701,392 +1701,392 @@ var lists = (function (domGlobals) {
           'padding-left',
           'padding-top'
         ]);
-        updateListWithDetails(dom, listBlock, detail);
-        mergeWithAdjacentLists(editor.dom, listBlock);
+        updatelistwithdetails(dom, listblock, detail);
+        mergewithadjacentlists(editor.dom, listblock);
       });
-      editor.selection.setRng(Bookmark.resolveBookmark(bookmark));
+      editor.selection.setrng(bookmark.resolvebookmark(bookmark));
     };
-    var isValidLists = function (list1, list2) {
-      return list1 && list2 && NodeType.isListNode(list1) && list1.nodeName === list2.nodeName;
+    var isvalidlists = function (list1, list2) {
+      return list1 && list2 && nodetype.islistnode(list1) && list1.nodename === list2.nodename;
     };
-    var hasSameListStyle = function (dom, list1, list2) {
-      var targetStyle = dom.getStyle(list1, 'list-style-type', true);
-      var style = dom.getStyle(list2, 'list-style-type', true);
-      return targetStyle === style;
+    var hassameliststyle = function (dom, list1, list2) {
+      var targetstyle = dom.getstyle(list1, 'list-style-type', true);
+      var style = dom.getstyle(list2, 'list-style-type', true);
+      return targetstyle === style;
     };
-    var hasSameClasses = function (elm1, elm2) {
-      return elm1.className === elm2.className;
+    var hassameclasses = function (elm1, elm2) {
+      return elm1.classname === elm2.classname;
     };
-    var shouldMerge = function (dom, list1, list2) {
-      return isValidLists(list1, list2) && hasSameListStyle(dom, list1, list2) && hasSameClasses(list1, list2);
+    var shouldmerge = function (dom, list1, list2) {
+      return isvalidlists(list1, list2) && hassameliststyle(dom, list1, list2) && hassameclasses(list1, list2);
     };
-    var mergeWithAdjacentLists = function (dom, listBlock) {
+    var mergewithadjacentlists = function (dom, listblock) {
       var sibling, node;
-      sibling = listBlock.nextSibling;
-      if (shouldMerge(dom, listBlock, sibling)) {
-        while (node = sibling.firstChild) {
-          listBlock.appendChild(node);
+      sibling = listblock.nextsibling;
+      if (shouldmerge(dom, listblock, sibling)) {
+        while (node = sibling.firstchild) {
+          listblock.appendchild(node);
         }
         dom.remove(sibling);
       }
-      sibling = listBlock.previousSibling;
-      if (shouldMerge(dom, listBlock, sibling)) {
-        while (node = sibling.lastChild) {
-          listBlock.insertBefore(node, listBlock.firstChild);
+      sibling = listblock.previoussibling;
+      if (shouldmerge(dom, listblock, sibling)) {
+        while (node = sibling.lastchild) {
+          listblock.insertbefore(node, listblock.firstchild);
         }
         dom.remove(sibling);
       }
     };
-    var updateList = function (dom, list, listName, detail) {
-      if (list.nodeName !== listName) {
-        var newList = dom.rename(list, listName);
-        updateListWithDetails(dom, newList, detail);
+    var updatelist = function (dom, list, listname, detail) {
+      if (list.nodename !== listname) {
+        var newlist = dom.rename(list, listname);
+        updatelistwithdetails(dom, newlist, detail);
       } else {
-        updateListWithDetails(dom, list, detail);
+        updatelistwithdetails(dom, list, detail);
       }
     };
-    var toggleMultipleLists = function (editor, parentList, lists, listName, detail) {
-      if (parentList.nodeName === listName && !hasListStyleDetail(detail)) {
-        flattenListSelection(editor);
+    var togglemultiplelists = function (editor, parentlist, lists, listname, detail) {
+      if (parentlist.nodename === listname && !hasliststyledetail(detail)) {
+        flattenlistselection(editor);
       } else {
-        var bookmark = Bookmark.createBookmark(editor.selection.getRng(true));
-        global$5.each([parentList].concat(lists), function (elm) {
-          updateList(editor.dom, elm, listName, detail);
+        var bookmark = bookmark.createbookmark(editor.selection.getrng(true));
+        global$5.each([parentlist].concat(lists), function (elm) {
+          updatelist(editor.dom, elm, listname, detail);
         });
-        editor.selection.setRng(Bookmark.resolveBookmark(bookmark));
+        editor.selection.setrng(bookmark.resolvebookmark(bookmark));
       }
     };
-    var hasListStyleDetail = function (detail) {
+    var hasliststyledetail = function (detail) {
       return 'list-style-type' in detail;
     };
-    var toggleSingleList = function (editor, parentList, listName, detail) {
-      if (parentList === editor.getBody()) {
+    var togglesinglelist = function (editor, parentlist, listname, detail) {
+      if (parentlist === editor.getbody()) {
         return;
       }
-      if (parentList) {
-        if (parentList.nodeName === listName && !hasListStyleDetail(detail)) {
-          flattenListSelection(editor);
+      if (parentlist) {
+        if (parentlist.nodename === listname && !hasliststyledetail(detail)) {
+          flattenlistselection(editor);
         } else {
-          var bookmark = Bookmark.createBookmark(editor.selection.getRng(true));
-          updateListWithDetails(editor.dom, parentList, detail);
-          mergeWithAdjacentLists(editor.dom, editor.dom.rename(parentList, listName));
-          editor.selection.setRng(Bookmark.resolveBookmark(bookmark));
+          var bookmark = bookmark.createbookmark(editor.selection.getrng(true));
+          updatelistwithdetails(editor.dom, parentlist, detail);
+          mergewithadjacentlists(editor.dom, editor.dom.rename(parentlist, listname));
+          editor.selection.setrng(bookmark.resolvebookmark(bookmark));
         }
       } else {
-        applyList(editor, listName, detail);
+        applylist(editor, listname, detail);
       }
     };
-    var toggleList = function (editor, listName, detail) {
-      var parentList = Selection.getParentList(editor);
-      var selectedSubLists = Selection.getSelectedSubLists(editor);
+    var togglelist = function (editor, listname, detail) {
+      var parentlist = selection.getparentlist(editor);
+      var selectedsublists = selection.getselectedsublists(editor);
       detail = detail ? detail : {};
-      if (parentList && selectedSubLists.length > 0) {
-        toggleMultipleLists(editor, parentList, selectedSubLists, listName, detail);
+      if (parentlist && selectedsublists.length > 0) {
+        togglemultiplelists(editor, parentlist, selectedsublists, listname, detail);
       } else {
-        toggleSingleList(editor, parentList, listName, detail);
+        togglesinglelist(editor, parentlist, listname, detail);
       }
     };
-    var ToggleList = {
-      toggleList: toggleList,
-      mergeWithAdjacentLists: mergeWithAdjacentLists
+    var togglelist = {
+      togglelist: togglelist,
+      mergewithadjacentlists: mergewithadjacentlists
     };
 
-    var DOM$2 = global$6.DOM;
-    var normalizeList = function (dom, ul) {
+    var dom$2 = global$6.dom;
+    var normalizelist = function (dom, ul) {
       var sibling;
-      var parentNode = ul.parentNode;
-      if (parentNode.nodeName === 'LI' && parentNode.firstChild === ul) {
-        sibling = parentNode.previousSibling;
-        if (sibling && sibling.nodeName === 'LI') {
-          sibling.appendChild(ul);
-          if (NodeType.isEmpty(dom, parentNode)) {
-            DOM$2.remove(parentNode);
+      var parentnode = ul.parentnode;
+      if (parentnode.nodename === 'li' && parentnode.firstchild === ul) {
+        sibling = parentnode.previoussibling;
+        if (sibling && sibling.nodename === 'li') {
+          sibling.appendchild(ul);
+          if (nodetype.isempty(dom, parentnode)) {
+            dom$2.remove(parentnode);
           }
         } else {
-          DOM$2.setStyle(parentNode, 'listStyleType', 'none');
+          dom$2.setstyle(parentnode, 'liststyletype', 'none');
         }
       }
-      if (NodeType.isListNode(parentNode)) {
-        sibling = parentNode.previousSibling;
-        if (sibling && sibling.nodeName === 'LI') {
-          sibling.appendChild(ul);
+      if (nodetype.islistnode(parentnode)) {
+        sibling = parentnode.previoussibling;
+        if (sibling && sibling.nodename === 'li') {
+          sibling.appendchild(ul);
         }
       }
     };
-    var normalizeLists = function (dom, element) {
+    var normalizelists = function (dom, element) {
       global$5.each(global$5.grep(dom.select('ol,ul', element)), function (ul) {
-        normalizeList(dom, ul);
+        normalizelist(dom, ul);
       });
     };
-    var NormalizeLists = {
-      normalizeList: normalizeList,
-      normalizeLists: normalizeLists
+    var normalizelists = {
+      normalizelist: normalizelist,
+      normalizelists: normalizelists
     };
 
-    var findNextCaretContainer = function (editor, rng, isForward, root) {
-      var node = rng.startContainer;
-      var offset = rng.startOffset;
-      var nonEmptyBlocks, walker;
-      if (node.nodeType === 3 && (isForward ? offset < node.data.length : offset > 0)) {
+    var findnextcaretcontainer = function (editor, rng, isforward, root) {
+      var node = rng.startcontainer;
+      var offset = rng.startoffset;
+      var nonemptyblocks, walker;
+      if (node.nodetype === 3 && (isforward ? offset < node.data.length : offset > 0)) {
         return node;
       }
-      nonEmptyBlocks = editor.schema.getNonEmptyElements();
-      if (node.nodeType === 1) {
-        node = global$1.getNode(node, offset);
+      nonemptyblocks = editor.schema.getnonemptyelements();
+      if (node.nodetype === 1) {
+        node = global$1.getnode(node, offset);
       }
       walker = new global$2(node, root);
-      if (isForward) {
-        if (NodeType.isBogusBr(editor.dom, node)) {
+      if (isforward) {
+        if (nodetype.isbogusbr(editor.dom, node)) {
           walker.next();
         }
       }
-      while (node = walker[isForward ? 'next' : 'prev2']()) {
-        if (node.nodeName === 'LI' && !node.hasChildNodes()) {
+      while (node = walker[isforward ? 'next' : 'prev2']()) {
+        if (node.nodename === 'li' && !node.haschildnodes()) {
           return node;
         }
-        if (nonEmptyBlocks[node.nodeName]) {
+        if (nonemptyblocks[node.nodename]) {
           return node;
         }
-        if (node.nodeType === 3 && node.data.length > 0) {
+        if (node.nodetype === 3 && node.data.length > 0) {
           return node;
         }
       }
     };
-    var hasOnlyOneBlockChild = function (dom, elm) {
-      var childNodes = elm.childNodes;
-      return childNodes.length === 1 && !NodeType.isListNode(childNodes[0]) && dom.isBlock(childNodes[0]);
+    var hasonlyoneblockchild = function (dom, elm) {
+      var childnodes = elm.childnodes;
+      return childnodes.length === 1 && !nodetype.islistnode(childnodes[0]) && dom.isblock(childnodes[0]);
     };
-    var unwrapSingleBlockChild = function (dom, elm) {
-      if (hasOnlyOneBlockChild(dom, elm)) {
-        dom.remove(elm.firstChild, true);
+    var unwrapsingleblockchild = function (dom, elm) {
+      if (hasonlyoneblockchild(dom, elm)) {
+        dom.remove(elm.firstchild, true);
       }
     };
-    var moveChildren = function (dom, fromElm, toElm) {
-      var node, targetElm;
-      targetElm = hasOnlyOneBlockChild(dom, toElm) ? toElm.firstChild : toElm;
-      unwrapSingleBlockChild(dom, fromElm);
-      if (!NodeType.isEmpty(dom, fromElm, true)) {
-        while (node = fromElm.firstChild) {
-          targetElm.appendChild(node);
+    var movechildren = function (dom, fromelm, toelm) {
+      var node, targetelm;
+      targetelm = hasonlyoneblockchild(dom, toelm) ? toelm.firstchild : toelm;
+      unwrapsingleblockchild(dom, fromelm);
+      if (!nodetype.isempty(dom, fromelm, true)) {
+        while (node = fromelm.firstchild) {
+          targetelm.appendchild(node);
         }
       }
     };
-    var mergeLiElements = function (dom, fromElm, toElm) {
-      var node, listNode;
-      var ul = fromElm.parentNode;
-      if (!NodeType.isChildOfBody(dom, fromElm) || !NodeType.isChildOfBody(dom, toElm)) {
+    var mergelielements = function (dom, fromelm, toelm) {
+      var node, listnode;
+      var ul = fromelm.parentnode;
+      if (!nodetype.ischildofbody(dom, fromelm) || !nodetype.ischildofbody(dom, toelm)) {
         return;
       }
-      if (NodeType.isListNode(toElm.lastChild)) {
-        listNode = toElm.lastChild;
+      if (nodetype.islistnode(toelm.lastchild)) {
+        listnode = toelm.lastchild;
       }
-      if (ul === toElm.lastChild) {
-        if (NodeType.isBr(ul.previousSibling)) {
-          dom.remove(ul.previousSibling);
+      if (ul === toelm.lastchild) {
+        if (nodetype.isbr(ul.previoussibling)) {
+          dom.remove(ul.previoussibling);
         }
       }
-      node = toElm.lastChild;
-      if (node && NodeType.isBr(node) && fromElm.hasChildNodes()) {
+      node = toelm.lastchild;
+      if (node && nodetype.isbr(node) && fromelm.haschildnodes()) {
         dom.remove(node);
       }
-      if (NodeType.isEmpty(dom, toElm, true)) {
-        dom.$(toElm).empty();
+      if (nodetype.isempty(dom, toelm, true)) {
+        dom.$(toelm).empty();
       }
-      moveChildren(dom, fromElm, toElm);
-      if (listNode) {
-        toElm.appendChild(listNode);
+      movechildren(dom, fromelm, toelm);
+      if (listnode) {
+        toelm.appendchild(listnode);
       }
-      var contains = contains$1(Element.fromDom(toElm), Element.fromDom(fromElm));
-      var nestedLists = contains ? dom.getParents(fromElm, NodeType.isListNode, toElm) : [];
-      dom.remove(fromElm);
-      each(nestedLists, function (list) {
-        if (NodeType.isEmpty(dom, list) && list !== dom.getRoot()) {
+      var contains = contains$1(element.fromdom(toelm), element.fromdom(fromelm));
+      var nestedlists = contains ? dom.getparents(fromelm, nodetype.islistnode, toelm) : [];
+      dom.remove(fromelm);
+      each(nestedlists, function (list) {
+        if (nodetype.isempty(dom, list) && list !== dom.getroot()) {
           dom.remove(list);
         }
       });
     };
-    var mergeIntoEmptyLi = function (editor, fromLi, toLi) {
-      editor.dom.$(toLi).empty();
-      mergeLiElements(editor.dom, fromLi, toLi);
-      editor.selection.setCursorLocation(toLi);
+    var mergeintoemptyli = function (editor, fromli, toli) {
+      editor.dom.$(toli).empty();
+      mergelielements(editor.dom, fromli, toli);
+      editor.selection.setcursorlocation(toli);
     };
-    var mergeForward = function (editor, rng, fromLi, toLi) {
+    var mergeforward = function (editor, rng, fromli, toli) {
       var dom = editor.dom;
-      if (dom.isEmpty(toLi)) {
-        mergeIntoEmptyLi(editor, fromLi, toLi);
+      if (dom.isempty(toli)) {
+        mergeintoemptyli(editor, fromli, toli);
       } else {
-        var bookmark = Bookmark.createBookmark(rng);
-        mergeLiElements(dom, fromLi, toLi);
-        editor.selection.setRng(Bookmark.resolveBookmark(bookmark));
+        var bookmark = bookmark.createbookmark(rng);
+        mergelielements(dom, fromli, toli);
+        editor.selection.setrng(bookmark.resolvebookmark(bookmark));
       }
     };
-    var mergeBackward = function (editor, rng, fromLi, toLi) {
-      var bookmark = Bookmark.createBookmark(rng);
-      mergeLiElements(editor.dom, fromLi, toLi);
-      var resolvedBookmark = Bookmark.resolveBookmark(bookmark);
-      editor.selection.setRng(resolvedBookmark);
+    var mergebackward = function (editor, rng, fromli, toli) {
+      var bookmark = bookmark.createbookmark(rng);
+      mergelielements(editor.dom, fromli, toli);
+      var resolvedbookmark = bookmark.resolvebookmark(bookmark);
+      editor.selection.setrng(resolvedbookmark);
     };
-    var backspaceDeleteFromListToListCaret = function (editor, isForward) {
+    var backspacedeletefromlisttolistcaret = function (editor, isforward) {
       var dom = editor.dom, selection = editor.selection;
-      var selectionStartElm = selection.getStart();
-      var root = Selection.getClosestListRootElm(editor, selectionStartElm);
-      var li = dom.getParent(selection.getStart(), 'LI', root);
-      var ul, rng, otherLi;
+      var selectionstartelm = selection.getstart();
+      var root = selection.getclosestlistrootelm(editor, selectionstartelm);
+      var li = dom.getparent(selection.getstart(), 'li', root);
+      var ul, rng, otherli;
       if (li) {
-        ul = li.parentNode;
-        if (ul === editor.getBody() && NodeType.isEmpty(dom, ul)) {
+        ul = li.parentnode;
+        if (ul === editor.getbody() && nodetype.isempty(dom, ul)) {
           return true;
         }
-        rng = Range.normalizeRange(selection.getRng(true));
-        otherLi = dom.getParent(findNextCaretContainer(editor, rng, isForward, root), 'LI', root);
-        if (otherLi && otherLi !== li) {
-          if (isForward) {
-            mergeForward(editor, rng, otherLi, li);
+        rng = range.normalizerange(selection.getrng(true));
+        otherli = dom.getparent(findnextcaretcontainer(editor, rng, isforward, root), 'li', root);
+        if (otherli && otherli !== li) {
+          if (isforward) {
+            mergeforward(editor, rng, otherli, li);
           } else {
-            mergeBackward(editor, rng, li, otherLi);
+            mergebackward(editor, rng, li, otherli);
           }
           return true;
-        } else if (!otherLi) {
-          if (!isForward) {
-            flattenListSelection(editor);
+        } else if (!otherli) {
+          if (!isforward) {
+            flattenlistselection(editor);
             return true;
           }
         }
       }
       return false;
     };
-    var removeBlock = function (dom, block, root) {
-      var parentBlock = dom.getParent(block.parentNode, dom.isBlock, root);
+    var removeblock = function (dom, block, root) {
+      var parentblock = dom.getparent(block.parentnode, dom.isblock, root);
       dom.remove(block);
-      if (parentBlock && dom.isEmpty(parentBlock)) {
-        dom.remove(parentBlock);
+      if (parentblock && dom.isempty(parentblock)) {
+        dom.remove(parentblock);
       }
     };
-    var backspaceDeleteIntoListCaret = function (editor, isForward) {
+    var backspacedeleteintolistcaret = function (editor, isforward) {
       var dom = editor.dom;
-      var selectionStartElm = editor.selection.getStart();
-      var root = Selection.getClosestListRootElm(editor, selectionStartElm);
-      var block = dom.getParent(selectionStartElm, dom.isBlock, root);
-      if (block && dom.isEmpty(block)) {
-        var rng = Range.normalizeRange(editor.selection.getRng(true));
-        var otherLi_1 = dom.getParent(findNextCaretContainer(editor, rng, isForward, root), 'LI', root);
-        if (otherLi_1) {
-          editor.undoManager.transact(function () {
-            removeBlock(dom, block, root);
-            ToggleList.mergeWithAdjacentLists(dom, otherLi_1.parentNode);
-            editor.selection.select(otherLi_1, true);
-            editor.selection.collapse(isForward);
+      var selectionstartelm = editor.selection.getstart();
+      var root = selection.getclosestlistrootelm(editor, selectionstartelm);
+      var block = dom.getparent(selectionstartelm, dom.isblock, root);
+      if (block && dom.isempty(block)) {
+        var rng = range.normalizerange(editor.selection.getrng(true));
+        var otherli_1 = dom.getparent(findnextcaretcontainer(editor, rng, isforward, root), 'li', root);
+        if (otherli_1) {
+          editor.undomanager.transact(function () {
+            removeblock(dom, block, root);
+            togglelist.mergewithadjacentlists(dom, otherli_1.parentnode);
+            editor.selection.select(otherli_1, true);
+            editor.selection.collapse(isforward);
           });
           return true;
         }
       }
       return false;
     };
-    var backspaceDeleteCaret = function (editor, isForward) {
-      return backspaceDeleteFromListToListCaret(editor, isForward) || backspaceDeleteIntoListCaret(editor, isForward);
+    var backspacedeletecaret = function (editor, isforward) {
+      return backspacedeletefromlisttolistcaret(editor, isforward) || backspacedeleteintolistcaret(editor, isforward);
     };
-    var backspaceDeleteRange = function (editor) {
-      var selectionStartElm = editor.selection.getStart();
-      var root = Selection.getClosestListRootElm(editor, selectionStartElm);
-      var startListParent = editor.dom.getParent(selectionStartElm, 'LI,DT,DD', root);
-      if (startListParent || Selection.getSelectedListItems(editor).length > 0) {
-        editor.undoManager.transact(function () {
-          editor.execCommand('Delete');
-          NormalizeLists.normalizeLists(editor.dom, editor.getBody());
+    var backspacedeleterange = function (editor) {
+      var selectionstartelm = editor.selection.getstart();
+      var root = selection.getclosestlistrootelm(editor, selectionstartelm);
+      var startlistparent = editor.dom.getparent(selectionstartelm, 'li,dt,dd', root);
+      if (startlistparent || selection.getselectedlistitems(editor).length > 0) {
+        editor.undomanager.transact(function () {
+          editor.execcommand('delete');
+          normalizelists.normalizelists(editor.dom, editor.getbody());
         });
         return true;
       }
       return false;
     };
-    var backspaceDelete = function (editor, isForward) {
-      return editor.selection.isCollapsed() ? backspaceDeleteCaret(editor, isForward) : backspaceDeleteRange(editor);
+    var backspacedelete = function (editor, isforward) {
+      return editor.selection.iscollapsed() ? backspacedeletecaret(editor, isforward) : backspacedeleterange(editor);
     };
     var setup = function (editor) {
       editor.on('keydown', function (e) {
-        if (e.keyCode === global$3.BACKSPACE) {
-          if (backspaceDelete(editor, false)) {
-            e.preventDefault();
+        if (e.keycode === global$3.backspace) {
+          if (backspacedelete(editor, false)) {
+            e.preventdefault();
           }
-        } else if (e.keyCode === global$3.DELETE) {
-          if (backspaceDelete(editor, true)) {
-            e.preventDefault();
+        } else if (e.keycode === global$3.delete) {
+          if (backspacedelete(editor, true)) {
+            e.preventdefault();
           }
         }
       });
     };
-    var Delete = {
+    var delete = {
       setup: setup,
-      backspaceDelete: backspaceDelete
+      backspacedelete: backspacedelete
     };
 
     var get = function (editor) {
       return {
-        backspaceDelete: function (isForward) {
-          Delete.backspaceDelete(editor, isForward);
+        backspacedelete: function (isforward) {
+          delete.backspacedelete(editor, isforward);
         }
       };
     };
-    var Api = { get: get };
+    var api = { get: get };
 
-    var queryListCommandState = function (editor, listName) {
+    var querylistcommandstate = function (editor, listname) {
       return function () {
-        var parentList = editor.dom.getParent(editor.selection.getStart(), 'UL,OL,DL');
-        return parentList && parentList.nodeName === listName;
+        var parentlist = editor.dom.getparent(editor.selection.getstart(), 'ul,ol,dl');
+        return parentlist && parentlist.nodename === listname;
       };
     };
     var register = function (editor) {
-      editor.on('BeforeExecCommand', function (e) {
-        var cmd = e.command.toLowerCase();
+      editor.on('beforeexeccommand', function (e) {
+        var cmd = e.command.tolowercase();
         if (cmd === 'indent') {
-          indentListSelection(editor);
+          indentlistselection(editor);
         } else if (cmd === 'outdent') {
-          outdentListSelection(editor);
+          outdentlistselection(editor);
         }
       });
-      editor.addCommand('InsertUnorderedList', function (ui, detail) {
-        ToggleList.toggleList(editor, 'UL', detail);
+      editor.addcommand('insertunorderedlist', function (ui, detail) {
+        togglelist.togglelist(editor, 'ul', detail);
       });
-      editor.addCommand('InsertOrderedList', function (ui, detail) {
-        ToggleList.toggleList(editor, 'OL', detail);
+      editor.addcommand('insertorderedlist', function (ui, detail) {
+        togglelist.togglelist(editor, 'ol', detail);
       });
-      editor.addCommand('InsertDefinitionList', function (ui, detail) {
-        ToggleList.toggleList(editor, 'DL', detail);
+      editor.addcommand('insertdefinitionlist', function (ui, detail) {
+        togglelist.togglelist(editor, 'dl', detail);
       });
-      editor.addCommand('RemoveList', function () {
-        flattenListSelection(editor);
+      editor.addcommand('removelist', function () {
+        flattenlistselection(editor);
       });
-      editor.addQueryStateHandler('InsertUnorderedList', queryListCommandState(editor, 'UL'));
-      editor.addQueryStateHandler('InsertOrderedList', queryListCommandState(editor, 'OL'));
-      editor.addQueryStateHandler('InsertDefinitionList', queryListCommandState(editor, 'DL'));
+      editor.addquerystatehandler('insertunorderedlist', querylistcommandstate(editor, 'ul'));
+      editor.addquerystatehandler('insertorderedlist', querylistcommandstate(editor, 'ol'));
+      editor.addquerystatehandler('insertdefinitionlist', querylistcommandstate(editor, 'dl'));
     };
-    var Commands = { register: register };
+    var commands = { register: register };
 
-    var shouldIndentOnTab = function (editor) {
-      return editor.getParam('lists_indent_on_tab', true);
+    var shouldindentontab = function (editor) {
+      return editor.getparam('lists_indent_on_tab', true);
     };
-    var Settings = { shouldIndentOnTab: shouldIndentOnTab };
+    var settings = { shouldindentontab: shouldindentontab };
 
-    var setupTabKey = function (editor) {
+    var setuptabkey = function (editor) {
       editor.on('keydown', function (e) {
-        if (e.keyCode !== global$3.TAB || global$3.metaKeyPressed(e)) {
+        if (e.keycode !== global$3.tab || global$3.metakeypressed(e)) {
           return;
         }
-        editor.undoManager.transact(function () {
-          if (e.shiftKey ? outdentListSelection(editor) : indentListSelection(editor)) {
-            e.preventDefault();
+        editor.undomanager.transact(function () {
+          if (e.shiftkey ? outdentlistselection(editor) : indentlistselection(editor)) {
+            e.preventdefault();
           }
         });
       });
     };
     var setup$1 = function (editor) {
-      if (Settings.shouldIndentOnTab(editor)) {
-        setupTabKey(editor);
+      if (settings.shouldindentontab(editor)) {
+        setuptabkey(editor);
       }
-      Delete.setup(editor);
+      delete.setup(editor);
     };
-    var Keyboard = { setup: setup$1 };
+    var keyboard = { setup: setup$1 };
 
-    var findIndex = function (list, predicate) {
+    var findindex = function (list, predicate) {
       for (var index = 0; index < list.length; index++) {
         var element = list[index];
         if (predicate(element)) {
@@ -2095,54 +2095,56 @@ var lists = (function (domGlobals) {
       }
       return -1;
     };
-    var listState = function (editor, listName) {
+    var liststate = function (editor, listname) {
       return function (e) {
         var ctrl = e.control;
-        editor.on('NodeChange', function (e) {
-          var tableCellIndex = findIndex(e.parents, NodeType.isTableCellNode);
-          var parents = tableCellIndex !== -1 ? e.parents.slice(0, tableCellIndex) : e.parents;
-          var lists = global$5.grep(parents, NodeType.isListNode);
-          ctrl.active(lists.length > 0 && lists[0].nodeName === listName);
+        editor.on('nodechange', function (e) {
+          var tablecellindex = findindex(e.parents, nodetype.istablecellnode);
+          var parents = tablecellindex !== -1 ? e.parents.slice(0, tablecellindex) : e.parents;
+          var lists = global$5.grep(parents, nodetype.islistnode);
+          ctrl.active(lists.length > 0 && lists[0].nodename === listname);
         });
       };
     };
     var register$1 = function (editor) {
-      var hasPlugin = function (editor, plugin) {
+      var hasplugin = function (editor, plugin) {
         var plugins = editor.settings.plugins ? editor.settings.plugins : '';
-        return global$5.inArray(plugins.split(/[ ,]/), plugin) !== -1;
+        return global$5.inarray(plugins.split(/[ ,]/), plugin) !== -1;
       };
-      if (!hasPlugin(editor, 'advlist')) {
-        editor.addButton('numlist', {
+      if (!hasplugin(editor, 'advlist')) {
+        editor.addbutton('numlist', {
           active: false,
-          title: 'Numbered list',
-          cmd: 'InsertOrderedList',
-          onPostRender: listState(editor, 'OL')
+          title: 'numbered list',
+          cmd: 'insertorderedlist',
+          onpostrender: liststate(editor, 'ol')
         });
-        editor.addButton('bullist', {
+        editor.addbutton('bullist', {
           active: false,
-          title: 'Bullet list',
-          cmd: 'InsertUnorderedList',
-          onPostRender: listState(editor, 'UL')
+          title: 'bullet list',
+          cmd: 'insertunorderedlist',
+          onpostrender: liststate(editor, 'ul')
         });
       }
-      editor.addButton('indent', {
+      editor.addbutton('indent', {
         icon: 'indent',
-        title: 'Increase indent',
-        cmd: 'Indent'
+        title: 'increase indent',
+        cmd: 'indent'
       });
     };
-    var Buttons = { register: register$1 };
+    var buttons = { register: register$1 };
 
     global.add('lists', function (editor) {
-      Keyboard.setup(editor);
-      Buttons.register(editor);
-      Commands.register(editor);
-      return Api.get(editor);
+      keyboard.setup(editor);
+      buttons.register(editor);
+      commands.register(editor);
+      return api.get(editor);
     });
-    function Plugin () {
+    function plugin () {
     }
 
-    return Plugin;
+    return plugin;
 
 }(window));
 })();
+
+

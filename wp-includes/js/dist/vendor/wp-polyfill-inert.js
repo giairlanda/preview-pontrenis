@@ -4,293 +4,293 @@
   (factory());
 }(this, (function () { 'use strict';
 
-  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+  var _createclass = function () { function defineproperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; object.defineproperty(target, descriptor.key, descriptor); } } return function (constructor, protoprops, staticprops) { if (protoprops) defineproperties(constructor.prototype, protoprops); if (staticprops) defineproperties(constructor, staticprops); return constructor; }; }();
 
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+  function _classcallcheck(instance, constructor) { if (!(instance instanceof constructor)) { throw new typeerror("cannot call a class as a function"); } }
 
   /**
-   * This work is licensed under the W3C Software and Document License
-   * (http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document).
+   * this work is licensed under the w3c software and document license
+   * (http://www.w3.org/consortium/legal/2015/copyright-software-and-document).
    */
 
   (function () {
-    // Return early if we're not running inside of the browser.
-    if (typeof window === 'undefined' || typeof Element === 'undefined') {
+    // return early if we're not running inside of the browser.
+    if (typeof window === 'undefined' || typeof element === 'undefined') {
       return;
     }
 
-    // Convenience function for converting NodeLists.
-    /** @type {typeof Array.prototype.slice} */
-    var slice = Array.prototype.slice;
+    // convenience function for converting nodelists.
+    /** @type {typeof array.prototype.slice} */
+    var slice = array.prototype.slice;
 
     /**
-     * IE has a non-standard name for "matches".
-     * @type {typeof Element.prototype.matches}
+     * ie has a non-standard name for "matches".
+     * @type {typeof element.prototype.matches}
      */
-    var matches = Element.prototype.matches || Element.prototype.msMatchesSelector;
+    var matches = element.prototype.matches || element.prototype.msmatchesselector;
 
     /** @type {string} */
-    var _focusableElementsString = ['a[href]', 'area[href]', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'button:not([disabled])', 'details', 'summary', 'iframe', 'object', 'embed', 'video', '[contenteditable]'].join(',');
+    var _focusableelementsstring = ['a[href]', 'area[href]', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'button:not([disabled])', 'details', 'summary', 'iframe', 'object', 'embed', 'video', '[contenteditable]'].join(',');
 
     /**
-     * `InertRoot` manages a single inert subtree, i.e. a DOM subtree whose root element has an `inert`
+     * `inertroot` manages a single inert subtree, i.e. a dom subtree whose root element has an `inert`
      * attribute.
      *
-     * Its main functions are:
+     * its main functions are:
      *
-     * - to create and maintain a set of managed `InertNode`s, including when mutations occur in the
-     *   subtree. The `makeSubtreeUnfocusable()` method handles collecting `InertNode`s via registering
-     *   each focusable node in the subtree with the singleton `InertManager` which manages all known
-     *   focusable nodes within inert subtrees. `InertManager` ensures that a single `InertNode`
+     * - to create and maintain a set of managed `inertnode`s, including when mutations occur in the
+     *   subtree. the `makesubtreeunfocusable()` method handles collecting `inertnode`s via registering
+     *   each focusable node in the subtree with the singleton `inertmanager` which manages all known
+     *   focusable nodes within inert subtrees. `inertmanager` ensures that a single `inertnode`
      *   instance exists for each focusable node which has at least one inert root as an ancestor.
      *
-     * - to notify all managed `InertNode`s when this subtree stops being inert (i.e. when the `inert`
-     *   attribute is removed from the root node). This is handled in the destructor, which calls the
-     *   `deregister` method on `InertManager` for each managed inert node.
+     * - to notify all managed `inertnode`s when this subtree stops being inert (i.e. when the `inert`
+     *   attribute is removed from the root node). this is handled in the destructor, which calls the
+     *   `deregister` method on `inertmanager` for each managed inert node.
      */
 
-    var InertRoot = function () {
+    var inertroot = function () {
       /**
-       * @param {!HTMLElement} rootElement The HTMLElement at the root of the inert subtree.
-       * @param {!InertManager} inertManager The global singleton InertManager object.
+       * @param {!htmlelement} rootelement the htmlelement at the root of the inert subtree.
+       * @param {!inertmanager} inertmanager the global singleton inertmanager object.
        */
-      function InertRoot(rootElement, inertManager) {
-        _classCallCheck(this, InertRoot);
+      function inertroot(rootelement, inertmanager) {
+        _classcallcheck(this, inertroot);
 
-        /** @type {!InertManager} */
-        this._inertManager = inertManager;
+        /** @type {!inertmanager} */
+        this._inertmanager = inertmanager;
 
-        /** @type {!HTMLElement} */
-        this._rootElement = rootElement;
+        /** @type {!htmlelement} */
+        this._rootelement = rootelement;
 
         /**
-         * @type {!Set<!InertNode>}
-         * All managed focusable nodes in this InertRoot's subtree.
+         * @type {!set<!inertnode>}
+         * all managed focusable nodes in this inertroot's subtree.
          */
-        this._managedNodes = new Set();
+        this._managednodes = new set();
 
-        // Make the subtree hidden from assistive technology
-        if (this._rootElement.hasAttribute('aria-hidden')) {
+        // make the subtree hidden from assistive technology
+        if (this._rootelement.hasattribute('aria-hidden')) {
           /** @type {?string} */
-          this._savedAriaHidden = this._rootElement.getAttribute('aria-hidden');
+          this._savedariahidden = this._rootelement.getattribute('aria-hidden');
         } else {
-          this._savedAriaHidden = null;
+          this._savedariahidden = null;
         }
-        this._rootElement.setAttribute('aria-hidden', 'true');
+        this._rootelement.setattribute('aria-hidden', 'true');
 
-        // Make all focusable elements in the subtree unfocusable and add them to _managedNodes
-        this._makeSubtreeUnfocusable(this._rootElement);
+        // make all focusable elements in the subtree unfocusable and add them to _managednodes
+        this._makesubtreeunfocusable(this._rootelement);
 
-        // Watch for:
+        // watch for:
         // - any additions in the subtree: make them unfocusable too
         // - any removals from the subtree: remove them from this inert root's managed nodes
         // - attribute changes: if `tabindex` is added, or removed from an intrinsically focusable
         //   element, make that node a managed node.
-        this._observer = new MutationObserver(this._onMutation.bind(this));
-        this._observer.observe(this._rootElement, { attributes: true, childList: true, subtree: true });
+        this._observer = new mutationobserver(this._onmutation.bind(this));
+        this._observer.observe(this._rootelement, { attributes: true, childlist: true, subtree: true });
       }
 
       /**
-       * Call this whenever this object is about to become obsolete.  This unwinds all of the state
+       * call this whenever this object is about to become obsolete.  this unwinds all of the state
        * stored in this object and updates the state of all of the managed nodes.
        */
 
 
-      _createClass(InertRoot, [{
+      _createclass(inertroot, [{
         key: 'destructor',
         value: function destructor() {
           this._observer.disconnect();
 
-          if (this._rootElement) {
-            if (this._savedAriaHidden !== null) {
-              this._rootElement.setAttribute('aria-hidden', this._savedAriaHidden);
+          if (this._rootelement) {
+            if (this._savedariahidden !== null) {
+              this._rootelement.setattribute('aria-hidden', this._savedariahidden);
             } else {
-              this._rootElement.removeAttribute('aria-hidden');
+              this._rootelement.removeattribute('aria-hidden');
             }
           }
 
-          this._managedNodes.forEach(function (inertNode) {
-            this._unmanageNode(inertNode.node);
+          this._managednodes.foreach(function (inertnode) {
+            this._unmanagenode(inertnode.node);
           }, this);
 
-          // Note we cast the nulls to the ANY type here because:
-          // 1) We want the class properties to be declared as non-null, or else we
-          //    need even more casts throughout this code. All bets are off if an
+          // note we cast the nulls to the any type here because:
+          // 1) we want the class properties to be declared as non-null, or else we
+          //    need even more casts throughout this code. all bets are off if an
           //    instance has been destroyed and a method is called.
-          // 2) We don't want to cast "this", because we want type-aware optimizations
+          // 2) we don't want to cast "this", because we want type-aware optimizations
           //    to know which properties we're setting.
           this._observer = /** @type {?} */null;
-          this._rootElement = /** @type {?} */null;
-          this._managedNodes = /** @type {?} */null;
-          this._inertManager = /** @type {?} */null;
+          this._rootelement = /** @type {?} */null;
+          this._managednodes = /** @type {?} */null;
+          this._inertmanager = /** @type {?} */null;
         }
 
         /**
-         * @return {!Set<!InertNode>} A copy of this InertRoot's managed nodes set.
+         * @return {!set<!inertnode>} a copy of this inertroot's managed nodes set.
          */
 
       }, {
-        key: '_makeSubtreeUnfocusable',
+        key: '_makesubtreeunfocusable',
 
 
         /**
-         * @param {!Node} startNode
+         * @param {!node} startnode
          */
-        value: function _makeSubtreeUnfocusable(startNode) {
+        value: function _makesubtreeunfocusable(startnode) {
           var _this2 = this;
 
-          composedTreeWalk(startNode, function (node) {
-            return _this2._visitNode(node);
+          composedtreewalk(startnode, function (node) {
+            return _this2._visitnode(node);
           });
 
-          var activeElement = document.activeElement;
+          var activeelement = document.activeelement;
 
-          if (!document.body.contains(startNode)) {
-            // startNode may be in shadow DOM, so find its nearest shadowRoot to get the activeElement.
-            var node = startNode;
-            /** @type {!ShadowRoot|undefined} */
+          if (!document.body.contains(startnode)) {
+            // startnode may be in shadow dom, so find its nearest shadowroot to get the activeelement.
+            var node = startnode;
+            /** @type {!shadowroot|undefined} */
             var root = undefined;
             while (node) {
-              if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-                root = /** @type {!ShadowRoot} */node;
+              if (node.nodetype === node.document_fragment_node) {
+                root = /** @type {!shadowroot} */node;
                 break;
               }
-              node = node.parentNode;
+              node = node.parentnode;
             }
             if (root) {
-              activeElement = root.activeElement;
+              activeelement = root.activeelement;
             }
           }
-          if (startNode.contains(activeElement)) {
-            activeElement.blur();
-            // In IE11, if an element is already focused, and then set to tabindex=-1
+          if (startnode.contains(activeelement)) {
+            activeelement.blur();
+            // in ie11, if an element is already focused, and then set to tabindex=-1
             // calling blur() will not actually move the focus.
-            // To work around this we call focus() on the body instead.
-            if (activeElement === document.activeElement) {
+            // to work around this we call focus() on the body instead.
+            if (activeelement === document.activeelement) {
               document.body.focus();
             }
           }
         }
 
         /**
-         * @param {!Node} node
+         * @param {!node} node
          */
 
       }, {
-        key: '_visitNode',
-        value: function _visitNode(node) {
-          if (node.nodeType !== Node.ELEMENT_NODE) {
+        key: '_visitnode',
+        value: function _visitnode(node) {
+          if (node.nodetype !== node.element_node) {
             return;
           }
-          var element = /** @type {!HTMLElement} */node;
+          var element = /** @type {!htmlelement} */node;
 
-          // If a descendant inert root becomes un-inert, its descendants will still be inert because of
-          // this inert root, so all of its managed nodes need to be adopted by this InertRoot.
-          if (element !== this._rootElement && element.hasAttribute('inert')) {
-            this._adoptInertRoot(element);
+          // if a descendant inert root becomes un-inert, its descendants will still be inert because of
+          // this inert root, so all of its managed nodes need to be adopted by this inertroot.
+          if (element !== this._rootelement && element.hasattribute('inert')) {
+            this._adoptinertroot(element);
           }
 
-          if (matches.call(element, _focusableElementsString) || element.hasAttribute('tabindex')) {
-            this._manageNode(element);
-          }
-        }
-
-        /**
-         * Register the given node with this InertRoot and with InertManager.
-         * @param {!Node} node
-         */
-
-      }, {
-        key: '_manageNode',
-        value: function _manageNode(node) {
-          var inertNode = this._inertManager.register(node, this);
-          this._managedNodes.add(inertNode);
-        }
-
-        /**
-         * Unregister the given node with this InertRoot and with InertManager.
-         * @param {!Node} node
-         */
-
-      }, {
-        key: '_unmanageNode',
-        value: function _unmanageNode(node) {
-          var inertNode = this._inertManager.deregister(node, this);
-          if (inertNode) {
-            this._managedNodes['delete'](inertNode);
+          if (matches.call(element, _focusableelementsstring) || element.hasattribute('tabindex')) {
+            this._managenode(element);
           }
         }
 
         /**
-         * Unregister the entire subtree starting at `startNode`.
-         * @param {!Node} startNode
+         * register the given node with this inertroot and with inertmanager.
+         * @param {!node} node
          */
 
       }, {
-        key: '_unmanageSubtree',
-        value: function _unmanageSubtree(startNode) {
+        key: '_managenode',
+        value: function _managenode(node) {
+          var inertnode = this._inertmanager.register(node, this);
+          this._managednodes.add(inertnode);
+        }
+
+        /**
+         * unregister the given node with this inertroot and with inertmanager.
+         * @param {!node} node
+         */
+
+      }, {
+        key: '_unmanagenode',
+        value: function _unmanagenode(node) {
+          var inertnode = this._inertmanager.deregister(node, this);
+          if (inertnode) {
+            this._managednodes['delete'](inertnode);
+          }
+        }
+
+        /**
+         * unregister the entire subtree starting at `startnode`.
+         * @param {!node} startnode
+         */
+
+      }, {
+        key: '_unmanagesubtree',
+        value: function _unmanagesubtree(startnode) {
           var _this3 = this;
 
-          composedTreeWalk(startNode, function (node) {
-            return _this3._unmanageNode(node);
+          composedtreewalk(startnode, function (node) {
+            return _this3._unmanagenode(node);
           });
         }
 
         /**
-         * If a descendant node is found with an `inert` attribute, adopt its managed nodes.
-         * @param {!HTMLElement} node
+         * if a descendant node is found with an `inert` attribute, adopt its managed nodes.
+         * @param {!htmlelement} node
          */
 
       }, {
-        key: '_adoptInertRoot',
-        value: function _adoptInertRoot(node) {
-          var inertSubroot = this._inertManager.getInertRoot(node);
+        key: '_adoptinertroot',
+        value: function _adoptinertroot(node) {
+          var inertsubroot = this._inertmanager.getinertroot(node);
 
-          // During initialisation this inert root may not have been registered yet,
+          // during initialisation this inert root may not have been registered yet,
           // so register it now if need be.
-          if (!inertSubroot) {
-            this._inertManager.setInert(node, true);
-            inertSubroot = this._inertManager.getInertRoot(node);
+          if (!inertsubroot) {
+            this._inertmanager.setinert(node, true);
+            inertsubroot = this._inertmanager.getinertroot(node);
           }
 
-          inertSubroot.managedNodes.forEach(function (savedInertNode) {
-            this._manageNode(savedInertNode.node);
+          inertsubroot.managednodes.foreach(function (savedinertnode) {
+            this._managenode(savedinertnode.node);
           }, this);
         }
 
         /**
-         * Callback used when mutation observer detects subtree additions, removals, or attribute changes.
-         * @param {!Array<!MutationRecord>} records
-         * @param {!MutationObserver} self
+         * callback used when mutation observer detects subtree additions, removals, or attribute changes.
+         * @param {!array<!mutationrecord>} records
+         * @param {!mutationobserver} self
          */
 
       }, {
-        key: '_onMutation',
-        value: function _onMutation(records, self) {
-          records.forEach(function (record) {
-            var target = /** @type {!HTMLElement} */record.target;
-            if (record.type === 'childList') {
-              // Manage added nodes
-              slice.call(record.addedNodes).forEach(function (node) {
-                this._makeSubtreeUnfocusable(node);
+        key: '_onmutation',
+        value: function _onmutation(records, self) {
+          records.foreach(function (record) {
+            var target = /** @type {!htmlelement} */record.target;
+            if (record.type === 'childlist') {
+              // manage added nodes
+              slice.call(record.addednodes).foreach(function (node) {
+                this._makesubtreeunfocusable(node);
               }, this);
 
-              // Un-manage removed nodes
-              slice.call(record.removedNodes).forEach(function (node) {
-                this._unmanageSubtree(node);
+              // un-manage removed nodes
+              slice.call(record.removednodes).foreach(function (node) {
+                this._unmanagesubtree(node);
               }, this);
             } else if (record.type === 'attributes') {
-              if (record.attributeName === 'tabindex') {
-                // Re-initialise inert node if tabindex changes
-                this._manageNode(target);
-              } else if (target !== this._rootElement && record.attributeName === 'inert' && target.hasAttribute('inert')) {
-                // If a new inert root is added, adopt its managed nodes and make sure it knows about the
+              if (record.attributename === 'tabindex') {
+                // re-initialise inert node if tabindex changes
+                this._managenode(target);
+              } else if (target !== this._rootelement && record.attributename === 'inert' && target.hasattribute('inert')) {
+                // if a new inert root is added, adopt its managed nodes and make sure it knows about the
                 // already managed nodes from this inert subroot.
-                this._adoptInertRoot(target);
-                var inertSubroot = this._inertManager.getInertRoot(target);
-                this._managedNodes.forEach(function (managedNode) {
-                  if (target.contains(managedNode.node)) {
-                    inertSubroot._manageNode(managedNode.node);
+                this._adoptinertroot(target);
+                var inertsubroot = this._inertmanager.getinertroot(target);
+                this._managednodes.foreach(function (managednode) {
+                  if (target.contains(managednode.node)) {
+                    inertsubroot._managenode(managednode.node);
                   }
                 });
               }
@@ -298,543 +298,545 @@
           }, this);
         }
       }, {
-        key: 'managedNodes',
+        key: 'managednodes',
         get: function get() {
-          return new Set(this._managedNodes);
+          return new set(this._managednodes);
         }
 
         /** @return {boolean} */
 
       }, {
-        key: 'hasSavedAriaHidden',
+        key: 'hassavedariahidden',
         get: function get() {
-          return this._savedAriaHidden !== null;
+          return this._savedariahidden !== null;
         }
 
-        /** @param {?string} ariaHidden */
+        /** @param {?string} ariahidden */
 
       }, {
-        key: 'savedAriaHidden',
-        set: function set(ariaHidden) {
-          this._savedAriaHidden = ariaHidden;
+        key: 'savedariahidden',
+        set: function set(ariahidden) {
+          this._savedariahidden = ariahidden;
         }
 
         /** @return {?string} */
         ,
         get: function get() {
-          return this._savedAriaHidden;
+          return this._savedariahidden;
         }
       }]);
 
-      return InertRoot;
+      return inertroot;
     }();
 
     /**
-     * `InertNode` initialises and manages a single inert node.
-     * A node is inert if it is a descendant of one or more inert root elements.
+     * `inertnode` initialises and manages a single inert node.
+     * a node is inert if it is a descendant of one or more inert root elements.
      *
-     * On construction, `InertNode` saves the existing `tabindex` value for the node, if any, and
+     * on construction, `inertnode` saves the existing `tabindex` value for the node, if any, and
      * either removes the `tabindex` attribute or sets it to `-1`, depending on whether the element
      * is intrinsically focusable or not.
      *
-     * `InertNode` maintains a set of `InertRoot`s which are descendants of this `InertNode`. When an
-     * `InertRoot` is destroyed, and calls `InertManager.deregister()`, the `InertManager` notifies the
-     * `InertNode` via `removeInertRoot()`, which in turn destroys the `InertNode` if no `InertRoot`s
-     * remain in the set. On destruction, `InertNode` reinstates the stored `tabindex` if one exists,
+     * `inertnode` maintains a set of `inertroot`s which are descendants of this `inertnode`. when an
+     * `inertroot` is destroyed, and calls `inertmanager.deregister()`, the `inertmanager` notifies the
+     * `inertnode` via `removeinertroot()`, which in turn destroys the `inertnode` if no `inertroot`s
+     * remain in the set. on destruction, `inertnode` reinstates the stored `tabindex` if one exists,
      * or removes the `tabindex` attribute if the element is intrinsically focusable.
      */
 
 
-    var InertNode = function () {
+    var inertnode = function () {
       /**
-       * @param {!Node} node A focusable element to be made inert.
-       * @param {!InertRoot} inertRoot The inert root element associated with this inert node.
+       * @param {!node} node a focusable element to be made inert.
+       * @param {!inertroot} inertroot the inert root element associated with this inert node.
        */
-      function InertNode(node, inertRoot) {
-        _classCallCheck(this, InertNode);
+      function inertnode(node, inertroot) {
+        _classcallcheck(this, inertnode);
 
-        /** @type {!Node} */
+        /** @type {!node} */
         this._node = node;
 
         /** @type {boolean} */
-        this._overrodeFocusMethod = false;
+        this._overrodefocusmethod = false;
 
         /**
-         * @type {!Set<!InertRoot>} The set of descendant inert roots.
-         *    If and only if this set becomes empty, this node is no longer inert.
+         * @type {!set<!inertroot>} the set of descendant inert roots.
+         *    if and only if this set becomes empty, this node is no longer inert.
          */
-        this._inertRoots = new Set([inertRoot]);
+        this._inertroots = new set([inertroot]);
 
         /** @type {?number} */
-        this._savedTabIndex = null;
+        this._savedtabindex = null;
 
         /** @type {boolean} */
         this._destroyed = false;
 
-        // Save any prior tabindex info and make this node untabbable
-        this.ensureUntabbable();
+        // save any prior tabindex info and make this node untabbable
+        this.ensureuntabbable();
       }
 
       /**
-       * Call this whenever this object is about to become obsolete.
-       * This makes the managed node focusable again and deletes all of the previously stored state.
+       * call this whenever this object is about to become obsolete.
+       * this makes the managed node focusable again and deletes all of the previously stored state.
        */
 
 
-      _createClass(InertNode, [{
+      _createclass(inertnode, [{
         key: 'destructor',
         value: function destructor() {
-          this._throwIfDestroyed();
+          this._throwifdestroyed();
 
-          if (this._node && this._node.nodeType === Node.ELEMENT_NODE) {
-            var element = /** @type {!HTMLElement} */this._node;
-            if (this._savedTabIndex !== null) {
-              element.setAttribute('tabindex', this._savedTabIndex);
+          if (this._node && this._node.nodetype === node.element_node) {
+            var element = /** @type {!htmlelement} */this._node;
+            if (this._savedtabindex !== null) {
+              element.setattribute('tabindex', this._savedtabindex);
             } else {
-              element.removeAttribute('tabindex');
+              element.removeattribute('tabindex');
             }
 
-            // Use `delete` to restore native focus method.
-            if (this._overrodeFocusMethod) {
+            // use `delete` to restore native focus method.
+            if (this._overrodefocusmethod) {
               delete element.focus;
             }
           }
 
-          // See note in InertRoot.destructor for why we cast these nulls to ANY.
+          // see note in inertroot.destructor for why we cast these nulls to any.
           this._node = /** @type {?} */null;
-          this._inertRoots = /** @type {?} */null;
+          this._inertroots = /** @type {?} */null;
           this._destroyed = true;
         }
 
         /**
-         * @type {boolean} Whether this object is obsolete because the managed node is no longer inert.
-         * If the object has been destroyed, any attempt to access it will cause an exception.
+         * @type {boolean} whether this object is obsolete because the managed node is no longer inert.
+         * if the object has been destroyed, any attempt to access it will cause an exception.
          */
 
       }, {
-        key: '_throwIfDestroyed',
+        key: '_throwifdestroyed',
 
 
         /**
-         * Throw if user tries to access destroyed InertNode.
+         * throw if user tries to access destroyed inertnode.
          */
-        value: function _throwIfDestroyed() {
+        value: function _throwifdestroyed() {
           if (this.destroyed) {
-            throw new Error('Trying to access destroyed InertNode');
+            throw new error('trying to access destroyed inertnode');
           }
         }
 
         /** @return {boolean} */
 
       }, {
-        key: 'ensureUntabbable',
+        key: 'ensureuntabbable',
 
 
-        /** Save the existing tabindex value and make the node untabbable and unfocusable */
-        value: function ensureUntabbable() {
-          if (this.node.nodeType !== Node.ELEMENT_NODE) {
+        /** save the existing tabindex value and make the node untabbable and unfocusable */
+        value: function ensureuntabbable() {
+          if (this.node.nodetype !== node.element_node) {
             return;
           }
-          var element = /** @type {!HTMLElement} */this.node;
-          if (matches.call(element, _focusableElementsString)) {
-            if ( /** @type {!HTMLElement} */element.tabIndex === -1 && this.hasSavedTabIndex) {
+          var element = /** @type {!htmlelement} */this.node;
+          if (matches.call(element, _focusableelementsstring)) {
+            if ( /** @type {!htmlelement} */element.tabindex === -1 && this.hassavedtabindex) {
               return;
             }
 
-            if (element.hasAttribute('tabindex')) {
-              this._savedTabIndex = /** @type {!HTMLElement} */element.tabIndex;
+            if (element.hasattribute('tabindex')) {
+              this._savedtabindex = /** @type {!htmlelement} */element.tabindex;
             }
-            element.setAttribute('tabindex', '-1');
-            if (element.nodeType === Node.ELEMENT_NODE) {
+            element.setattribute('tabindex', '-1');
+            if (element.nodetype === node.element_node) {
               element.focus = function () {};
-              this._overrodeFocusMethod = true;
+              this._overrodefocusmethod = true;
             }
-          } else if (element.hasAttribute('tabindex')) {
-            this._savedTabIndex = /** @type {!HTMLElement} */element.tabIndex;
-            element.removeAttribute('tabindex');
+          } else if (element.hasattribute('tabindex')) {
+            this._savedtabindex = /** @type {!htmlelement} */element.tabindex;
+            element.removeattribute('tabindex');
           }
         }
 
         /**
-         * Add another inert root to this inert node's set of managing inert roots.
-         * @param {!InertRoot} inertRoot
+         * add another inert root to this inert node's set of managing inert roots.
+         * @param {!inertroot} inertroot
          */
 
       }, {
-        key: 'addInertRoot',
-        value: function addInertRoot(inertRoot) {
-          this._throwIfDestroyed();
-          this._inertRoots.add(inertRoot);
+        key: 'addinertroot',
+        value: function addinertroot(inertroot) {
+          this._throwifdestroyed();
+          this._inertroots.add(inertroot);
         }
 
         /**
-         * Remove the given inert root from this inert node's set of managing inert roots.
-         * If the set of managing inert roots becomes empty, this node is no longer inert,
+         * remove the given inert root from this inert node's set of managing inert roots.
+         * if the set of managing inert roots becomes empty, this node is no longer inert,
          * so the object should be destroyed.
-         * @param {!InertRoot} inertRoot
+         * @param {!inertroot} inertroot
          */
 
       }, {
-        key: 'removeInertRoot',
-        value: function removeInertRoot(inertRoot) {
-          this._throwIfDestroyed();
-          this._inertRoots['delete'](inertRoot);
-          if (this._inertRoots.size === 0) {
+        key: 'removeinertroot',
+        value: function removeinertroot(inertroot) {
+          this._throwifdestroyed();
+          this._inertroots['delete'](inertroot);
+          if (this._inertroots.size === 0) {
             this.destructor();
           }
         }
       }, {
         key: 'destroyed',
         get: function get() {
-          return (/** @type {!InertNode} */this._destroyed
+          return (/** @type {!inertnode} */this._destroyed
           );
         }
       }, {
-        key: 'hasSavedTabIndex',
+        key: 'hassavedtabindex',
         get: function get() {
-          return this._savedTabIndex !== null;
+          return this._savedtabindex !== null;
         }
 
-        /** @return {!Node} */
+        /** @return {!node} */
 
       }, {
         key: 'node',
         get: function get() {
-          this._throwIfDestroyed();
+          this._throwifdestroyed();
           return this._node;
         }
 
-        /** @param {?number} tabIndex */
+        /** @param {?number} tabindex */
 
       }, {
-        key: 'savedTabIndex',
-        set: function set(tabIndex) {
-          this._throwIfDestroyed();
-          this._savedTabIndex = tabIndex;
+        key: 'savedtabindex',
+        set: function set(tabindex) {
+          this._throwifdestroyed();
+          this._savedtabindex = tabindex;
         }
 
         /** @return {?number} */
         ,
         get: function get() {
-          this._throwIfDestroyed();
-          return this._savedTabIndex;
+          this._throwifdestroyed();
+          return this._savedtabindex;
         }
       }]);
 
-      return InertNode;
+      return inertnode;
     }();
 
     /**
-     * InertManager is a per-document singleton object which manages all inert roots and nodes.
+     * inertmanager is a per-document singleton object which manages all inert roots and nodes.
      *
-     * When an element becomes an inert root by having an `inert` attribute set and/or its `inert`
-     * property set to `true`, the `setInert` method creates an `InertRoot` object for the element.
-     * The `InertRoot` in turn registers itself as managing all of the element's focusable descendant
-     * nodes via the `register()` method. The `InertManager` ensures that a single `InertNode` instance
-     * is created for each such node, via the `_managedNodes` map.
+     * when an element becomes an inert root by having an `inert` attribute set and/or its `inert`
+     * property set to `true`, the `setinert` method creates an `inertroot` object for the element.
+     * the `inertroot` in turn registers itself as managing all of the element's focusable descendant
+     * nodes via the `register()` method. the `inertmanager` ensures that a single `inertnode` instance
+     * is created for each such node, via the `_managednodes` map.
      */
 
 
-    var InertManager = function () {
+    var inertmanager = function () {
       /**
-       * @param {!Document} document
+       * @param {!document} document
        */
-      function InertManager(document) {
-        _classCallCheck(this, InertManager);
+      function inertmanager(document) {
+        _classcallcheck(this, inertmanager);
 
         if (!document) {
-          throw new Error('Missing required argument; InertManager needs to wrap a document.');
+          throw new error('missing required argument; inertmanager needs to wrap a document.');
         }
 
-        /** @type {!Document} */
+        /** @type {!document} */
         this._document = document;
 
         /**
-         * All managed nodes known to this InertManager. In a map to allow looking up by Node.
-         * @type {!Map<!Node, !InertNode>}
+         * all managed nodes known to this inertmanager. in a map to allow looking up by node.
+         * @type {!map<!node, !inertnode>}
          */
-        this._managedNodes = new Map();
+        this._managednodes = new map();
 
         /**
-         * All inert roots known to this InertManager. In a map to allow looking up by Node.
-         * @type {!Map<!Node, !InertRoot>}
+         * all inert roots known to this inertmanager. in a map to allow looking up by node.
+         * @type {!map<!node, !inertroot>}
          */
-        this._inertRoots = new Map();
+        this._inertroots = new map();
 
         /**
-         * Observer for mutations on `document.body`.
-         * @type {!MutationObserver}
+         * observer for mutations on `document.body`.
+         * @type {!mutationobserver}
          */
-        this._observer = new MutationObserver(this._watchForInert.bind(this));
+        this._observer = new mutationobserver(this._watchforinert.bind(this));
 
-        // Add inert style.
-        addInertStyle(document.head || document.body || document.documentElement);
+        // add inert style.
+        addinertstyle(document.head || document.body || document.documentelement);
 
-        // Wait for document to be loaded.
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', this._onDocumentLoaded.bind(this));
+        // wait for document to be loaded.
+        if (document.readystate === 'loading') {
+          document.addeventlistener('domcontentloaded', this._ondocumentloaded.bind(this));
         } else {
-          this._onDocumentLoaded();
+          this._ondocumentloaded();
         }
       }
 
       /**
-       * Set whether the given element should be an inert root or not.
-       * @param {!HTMLElement} root
+       * set whether the given element should be an inert root or not.
+       * @param {!htmlelement} root
        * @param {boolean} inert
        */
 
 
-      _createClass(InertManager, [{
-        key: 'setInert',
-        value: function setInert(root, inert) {
+      _createclass(inertmanager, [{
+        key: 'setinert',
+        value: function setinert(root, inert) {
           if (inert) {
-            if (this._inertRoots.has(root)) {
+            if (this._inertroots.has(root)) {
               // element is already inert
               return;
             }
 
-            var inertRoot = new InertRoot(root, this);
-            root.setAttribute('inert', '');
-            this._inertRoots.set(root, inertRoot);
-            // If not contained in the document, it must be in a shadowRoot.
-            // Ensure inert styles are added there.
+            var inertroot = new inertroot(root, this);
+            root.setattribute('inert', '');
+            this._inertroots.set(root, inertroot);
+            // if not contained in the document, it must be in a shadowroot.
+            // ensure inert styles are added there.
             if (!this._document.body.contains(root)) {
-              var parent = root.parentNode;
+              var parent = root.parentnode;
               while (parent) {
-                if (parent.nodeType === 11) {
-                  addInertStyle(parent);
+                if (parent.nodetype === 11) {
+                  addinertstyle(parent);
                 }
-                parent = parent.parentNode;
+                parent = parent.parentnode;
               }
             }
           } else {
-            if (!this._inertRoots.has(root)) {
+            if (!this._inertroots.has(root)) {
               // element is already non-inert
               return;
             }
 
-            var _inertRoot = this._inertRoots.get(root);
-            _inertRoot.destructor();
-            this._inertRoots['delete'](root);
-            root.removeAttribute('inert');
+            var _inertroot = this._inertroots.get(root);
+            _inertroot.destructor();
+            this._inertroots['delete'](root);
+            root.removeattribute('inert');
           }
         }
 
         /**
-         * Get the InertRoot object corresponding to the given inert root element, if any.
-         * @param {!Node} element
-         * @return {!InertRoot|undefined}
+         * get the inertroot object corresponding to the given inert root element, if any.
+         * @param {!node} element
+         * @return {!inertroot|undefined}
          */
 
       }, {
-        key: 'getInertRoot',
-        value: function getInertRoot(element) {
-          return this._inertRoots.get(element);
+        key: 'getinertroot',
+        value: function getinertroot(element) {
+          return this._inertroots.get(element);
         }
 
         /**
-         * Register the given InertRoot as managing the given node.
-         * In the case where the node has a previously existing inert root, this inert root will
+         * register the given inertroot as managing the given node.
+         * in the case where the node has a previously existing inert root, this inert root will
          * be added to its set of inert roots.
-         * @param {!Node} node
-         * @param {!InertRoot} inertRoot
-         * @return {!InertNode} inertNode
+         * @param {!node} node
+         * @param {!inertroot} inertroot
+         * @return {!inertnode} inertnode
          */
 
       }, {
         key: 'register',
-        value: function register(node, inertRoot) {
-          var inertNode = this._managedNodes.get(node);
-          if (inertNode !== undefined) {
+        value: function register(node, inertroot) {
+          var inertnode = this._managednodes.get(node);
+          if (inertnode !== undefined) {
             // node was already in an inert subtree
-            inertNode.addInertRoot(inertRoot);
+            inertnode.addinertroot(inertroot);
           } else {
-            inertNode = new InertNode(node, inertRoot);
+            inertnode = new inertnode(node, inertroot);
           }
 
-          this._managedNodes.set(node, inertNode);
+          this._managednodes.set(node, inertnode);
 
-          return inertNode;
+          return inertnode;
         }
 
         /**
-         * De-register the given InertRoot as managing the given inert node.
-         * Removes the inert root from the InertNode's set of managing inert roots, and remove the inert
-         * node from the InertManager's set of managed nodes if it is destroyed.
-         * If the node is not currently managed, this is essentially a no-op.
-         * @param {!Node} node
-         * @param {!InertRoot} inertRoot
-         * @return {?InertNode} The potentially destroyed InertNode associated with this node, if any.
+         * de-register the given inertroot as managing the given inert node.
+         * removes the inert root from the inertnode's set of managing inert roots, and remove the inert
+         * node from the inertmanager's set of managed nodes if it is destroyed.
+         * if the node is not currently managed, this is essentially a no-op.
+         * @param {!node} node
+         * @param {!inertroot} inertroot
+         * @return {?inertnode} the potentially destroyed inertnode associated with this node, if any.
          */
 
       }, {
         key: 'deregister',
-        value: function deregister(node, inertRoot) {
-          var inertNode = this._managedNodes.get(node);
-          if (!inertNode) {
+        value: function deregister(node, inertroot) {
+          var inertnode = this._managednodes.get(node);
+          if (!inertnode) {
             return null;
           }
 
-          inertNode.removeInertRoot(inertRoot);
-          if (inertNode.destroyed) {
-            this._managedNodes['delete'](node);
+          inertnode.removeinertroot(inertroot);
+          if (inertnode.destroyed) {
+            this._managednodes['delete'](node);
           }
 
-          return inertNode;
+          return inertnode;
         }
 
         /**
-         * Callback used when document has finished loading.
+         * callback used when document has finished loading.
          */
 
       }, {
-        key: '_onDocumentLoaded',
-        value: function _onDocumentLoaded() {
-          // Find all inert roots in document and make them actually inert.
-          var inertElements = slice.call(this._document.querySelectorAll('[inert]'));
-          inertElements.forEach(function (inertElement) {
-            this.setInert(inertElement, true);
+        key: '_ondocumentloaded',
+        value: function _ondocumentloaded() {
+          // find all inert roots in document and make them actually inert.
+          var inertelements = slice.call(this._document.queryselectorall('[inert]'));
+          inertelements.foreach(function (inertelement) {
+            this.setinert(inertelement, true);
           }, this);
 
-          // Comment this out to use programmatic API only.
-          this._observer.observe(this._document.body || this._document.documentElement, { attributes: true, subtree: true, childList: true });
+          // comment this out to use programmatic api only.
+          this._observer.observe(this._document.body || this._document.documentelement, { attributes: true, subtree: true, childlist: true });
         }
 
         /**
-         * Callback used when mutation observer detects attribute changes.
-         * @param {!Array<!MutationRecord>} records
-         * @param {!MutationObserver} self
+         * callback used when mutation observer detects attribute changes.
+         * @param {!array<!mutationrecord>} records
+         * @param {!mutationobserver} self
          */
 
       }, {
-        key: '_watchForInert',
-        value: function _watchForInert(records, self) {
+        key: '_watchforinert',
+        value: function _watchforinert(records, self) {
           var _this = this;
-          records.forEach(function (record) {
+          records.foreach(function (record) {
             switch (record.type) {
-              case 'childList':
-                slice.call(record.addedNodes).forEach(function (node) {
-                  if (node.nodeType !== Node.ELEMENT_NODE) {
+              case 'childlist':
+                slice.call(record.addednodes).foreach(function (node) {
+                  if (node.nodetype !== node.element_node) {
                     return;
                   }
-                  var inertElements = slice.call(node.querySelectorAll('[inert]'));
+                  var inertelements = slice.call(node.queryselectorall('[inert]'));
                   if (matches.call(node, '[inert]')) {
-                    inertElements.unshift(node);
+                    inertelements.unshift(node);
                   }
-                  inertElements.forEach(function (inertElement) {
-                    this.setInert(inertElement, true);
+                  inertelements.foreach(function (inertelement) {
+                    this.setinert(inertelement, true);
                   }, _this);
                 }, _this);
                 break;
               case 'attributes':
-                if (record.attributeName !== 'inert') {
+                if (record.attributename !== 'inert') {
                   return;
                 }
-                var target = /** @type {!HTMLElement} */record.target;
-                var inert = target.hasAttribute('inert');
-                _this.setInert(target, inert);
+                var target = /** @type {!htmlelement} */record.target;
+                var inert = target.hasattribute('inert');
+                _this.setinert(target, inert);
                 break;
             }
           }, this);
         }
       }]);
 
-      return InertManager;
+      return inertmanager;
     }();
 
     /**
-     * Recursively walk the composed tree from |node|.
-     * @param {!Node} node
-     * @param {(function (!HTMLElement))=} callback Callback to be called for each element traversed,
+     * recursively walk the composed tree from |node|.
+     * @param {!node} node
+     * @param {(function (!htmlelement))=} callback callback to be called for each element traversed,
      *     before descending into child nodes.
-     * @param {?ShadowRoot=} shadowRootAncestor The nearest ShadowRoot ancestor, if any.
+     * @param {?shadowroot=} shadowrootancestor the nearest shadowroot ancestor, if any.
      */
 
 
-    function composedTreeWalk(node, callback, shadowRootAncestor) {
-      if (node.nodeType == Node.ELEMENT_NODE) {
-        var element = /** @type {!HTMLElement} */node;
+    function composedtreewalk(node, callback, shadowrootancestor) {
+      if (node.nodetype == node.element_node) {
+        var element = /** @type {!htmlelement} */node;
         if (callback) {
           callback(element);
         }
 
-        // Descend into node:
-        // If it has a ShadowRoot, ignore all child elements - these will be picked
-        // up by the <content> or <shadow> elements. Descend straight into the
-        // ShadowRoot.
-        var shadowRoot = /** @type {!HTMLElement} */element.shadowRoot;
-        if (shadowRoot) {
-          composedTreeWalk(shadowRoot, callback, shadowRoot);
+        // descend into node:
+        // if it has a shadowroot, ignore all child elements - these will be picked
+        // up by the <content> or <shadow> elements. descend straight into the
+        // shadowroot.
+        var shadowroot = /** @type {!htmlelement} */element.shadowroot;
+        if (shadowroot) {
+          composedtreewalk(shadowroot, callback, shadowroot);
           return;
         }
 
-        // If it is a <content> element, descend into distributed elements - these
+        // if it is a <content> element, descend into distributed elements - these
         // are elements from outside the shadow root which are rendered inside the
-        // shadow DOM.
-        if (element.localName == 'content') {
-          var content = /** @type {!HTMLContentElement} */element;
-          // Verifies if ShadowDom v0 is supported.
-          var distributedNodes = content.getDistributedNodes ? content.getDistributedNodes() : [];
-          for (var i = 0; i < distributedNodes.length; i++) {
-            composedTreeWalk(distributedNodes[i], callback, shadowRootAncestor);
+        // shadow dom.
+        if (element.localname == 'content') {
+          var content = /** @type {!htmlcontentelement} */element;
+          // verifies if shadowdom v0 is supported.
+          var distributednodes = content.getdistributednodes ? content.getdistributednodes() : [];
+          for (var i = 0; i < distributednodes.length; i++) {
+            composedtreewalk(distributednodes[i], callback, shadowrootancestor);
           }
           return;
         }
 
-        // If it is a <slot> element, descend into assigned nodes - these
+        // if it is a <slot> element, descend into assigned nodes - these
         // are elements from outside the shadow root which are rendered inside the
-        // shadow DOM.
-        if (element.localName == 'slot') {
-          var slot = /** @type {!HTMLSlotElement} */element;
-          // Verify if ShadowDom v1 is supported.
-          var _distributedNodes = slot.assignedNodes ? slot.assignedNodes({ flatten: true }) : [];
-          for (var _i = 0; _i < _distributedNodes.length; _i++) {
-            composedTreeWalk(_distributedNodes[_i], callback, shadowRootAncestor);
+        // shadow dom.
+        if (element.localname == 'slot') {
+          var slot = /** @type {!htmlslotelement} */element;
+          // verify if shadowdom v1 is supported.
+          var _distributednodes = slot.assignednodes ? slot.assignednodes({ flatten: true }) : [];
+          for (var _i = 0; _i < _distributednodes.length; _i++) {
+            composedtreewalk(_distributednodes[_i], callback, shadowrootancestor);
           }
           return;
         }
       }
 
-      // If it is neither the parent of a ShadowRoot, a <content> element, a <slot>
+      // if it is neither the parent of a shadowroot, a <content> element, a <slot>
       // element, nor a <shadow> element recurse normally.
-      var child = node.firstChild;
+      var child = node.firstchild;
       while (child != null) {
-        composedTreeWalk(child, callback, shadowRootAncestor);
-        child = child.nextSibling;
+        composedtreewalk(child, callback, shadowrootancestor);
+        child = child.nextsibling;
       }
     }
 
     /**
-     * Adds a style element to the node containing the inert specific styles
-     * @param {!Node} node
+     * adds a style element to the node containing the inert specific styles
+     * @param {!node} node
      */
-    function addInertStyle(node) {
-      if (node.querySelector('style#inert-style, link#inert-style')) {
+    function addinertstyle(node) {
+      if (node.queryselector('style#inert-style, link#inert-style')) {
         return;
       }
-      var style = document.createElement('style');
-      style.setAttribute('id', 'inert-style');
-      style.textContent = '\n' + '[inert] {\n' + '  pointer-events: none;\n' + '  cursor: default;\n' + '}\n' + '\n' + '[inert], [inert] * {\n' + '  -webkit-user-select: none;\n' + '  -moz-user-select: none;\n' + '  -ms-user-select: none;\n' + '  user-select: none;\n' + '}\n';
-      node.appendChild(style);
+      var style = document.createelement('style');
+      style.setattribute('id', 'inert-style');
+      style.textcontent = '\n' + '[inert] {\n' + '  pointer-events: none;\n' + '  cursor: default;\n' + '}\n' + '\n' + '[inert], [inert] * {\n' + '  -webkit-user-select: none;\n' + '  -moz-user-select: none;\n' + '  -ms-user-select: none;\n' + '  user-select: none;\n' + '}\n';
+      node.appendchild(style);
     }
 
-    if (!HTMLElement.prototype.hasOwnProperty('inert')) {
-      /** @type {!InertManager} */
-      var inertManager = new InertManager(document);
+    if (!htmlelement.prototype.hasownproperty('inert')) {
+      /** @type {!inertmanager} */
+      var inertmanager = new inertmanager(document);
 
-      Object.defineProperty(HTMLElement.prototype, 'inert', {
+      object.defineproperty(htmlelement.prototype, 'inert', {
         enumerable: true,
-        /** @this {!HTMLElement} */
+        /** @this {!htmlelement} */
         get: function get() {
-          return this.hasAttribute('inert');
+          return this.hasattribute('inert');
         },
-        /** @this {!HTMLElement} */
+        /** @this {!htmlelement} */
         set: function set(inert) {
-          inertManager.setInert(this, inert);
+          inertmanager.setinert(this, inert);
         }
       });
     }
   })();
 
 })));
+
+

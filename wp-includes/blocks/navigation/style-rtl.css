@@ -40,7 +40,7 @@
   align-self:center;
   background-color:inherit;
   border:none;
-  color:currentColor;
+  color:currentcolor;
   display:inline-block;
   font-size:inherit;
   height:.6em;
@@ -51,7 +51,7 @@
 }
 .wp-block-navigation .wp-block-navigation__submenu-icon svg{
   display:inline-block;
-  stroke:currentColor;
+  stroke:currentcolor;
   height:inherit;
   margin-top:.075em;
   width:inherit;
@@ -173,13 +173,13 @@
   position:relative;
 }
 .wp-block-navigation-submenu .wp-block-navigation__submenu-icon svg{
-  stroke:currentColor;
+  stroke:currentcolor;
 }
 
 button.wp-block-navigation-item__content{
   background-color:initial;
   border:none;
-  color:currentColor;
+  color:currentcolor;
   font-family:inherit;
   font-size:inherit;
   font-style:inherit;
@@ -267,11 +267,11 @@ button.wp-block-navigation-item__content{
 @keyframes overlay-menu__fade-in-animation{
   0%{
     opacity:0;
-    transform:translateY(.5em);
+    transform:translatey(.5em);
   }
   to{
     opacity:1;
-    transform:translateY(0);
+    transform:translatey(0);
   }
 }
 .wp-block-navigation__responsive-container{
@@ -392,7 +392,7 @@ button.wp-block-navigation-item__content{
 .wp-block-navigation__responsive-container-close,.wp-block-navigation__responsive-container-open{
   background:#0000;
   border:none;
-  color:currentColor;
+  color:currentcolor;
   cursor:pointer;
   margin:0;
   padding:0;
@@ -400,7 +400,7 @@ button.wp-block-navigation-item__content{
   vertical-align:middle;
 }
 .wp-block-navigation__responsive-container-close svg,.wp-block-navigation__responsive-container-open svg{
-  fill:currentColor;
+  fill:currentcolor;
   display:block;
   height:24px;
   pointer-events:none;
@@ -465,3 +465,4 @@ button.wp-block-navigation-item__content{
 html.has-modal-open{
   overflow:hidden;
 }
+

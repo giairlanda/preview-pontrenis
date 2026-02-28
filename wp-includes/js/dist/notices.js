@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,94 +10,94 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
   store: () => (/* reexport */ store)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/notices/build-module/store/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, {
-  createErrorNotice: () => (createErrorNotice),
-  createInfoNotice: () => (createInfoNotice),
-  createNotice: () => (createNotice),
-  createSuccessNotice: () => (createSuccessNotice),
-  createWarningNotice: () => (createWarningNotice),
-  removeAllNotices: () => (removeAllNotices),
-  removeNotice: () => (removeNotice),
-  removeNotices: () => (removeNotices)
+// namespace object: ./node_modules/@wordpress/notices/build-module/store/actions.js
+var actions_namespaceobject = {};
+__webpack_require__.r(actions_namespaceobject);
+__webpack_require__.d(actions_namespaceobject, {
+  createerrornotice: () => (createerrornotice),
+  createinfonotice: () => (createinfonotice),
+  createnotice: () => (createnotice),
+  createsuccessnotice: () => (createsuccessnotice),
+  createwarningnotice: () => (createwarningnotice),
+  removeallnotices: () => (removeallnotices),
+  removenotice: () => (removenotice),
+  removenotices: () => (removenotices)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/notices/build-module/store/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, {
-  getNotices: () => (getNotices)
+// namespace object: ./node_modules/@wordpress/notices/build-module/store/selectors.js
+var selectors_namespaceobject = {};
+__webpack_require__.r(selectors_namespaceobject);
+__webpack_require__.d(selectors_namespaceobject, {
+  getnotices: () => (getnotices)
 });
 
 ;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceobject = window["wp"]["data"];
 ;// ./node_modules/@wordpress/notices/build-module/store/utils/on-sub-key.js
-const onSubKey = (actionProperty) => (reducer) => (state = {}, action) => {
-  const key = action[actionProperty];
+const onsubkey = (actionproperty) => (reducer) => (state = {}, action) => {
+  const key = action[actionproperty];
   if (key === void 0) {
     return state;
   }
-  const nextKeyState = reducer(state[key], action);
-  if (nextKeyState === state[key]) {
+  const nextkeystate = reducer(state[key], action);
+  if (nextkeystate === state[key]) {
     return state;
   }
   return {
     ...state,
-    [key]: nextKeyState
+    [key]: nextkeystate
   };
 };
-var on_sub_key_default = onSubKey;
+var on_sub_key_default = onsubkey;
 
 
 ;// ./node_modules/@wordpress/notices/build-module/store/reducer.js
 
 const notices = on_sub_key_default("context")((state = [], action) => {
   switch (action.type) {
-    case "CREATE_NOTICE":
+    case "create_notice":
       return [
         ...state.filter(({ id }) => id !== action.notice.id),
         action.notice
       ];
-    case "REMOVE_NOTICE":
+    case "remove_notice":
       return state.filter(({ id }) => id !== action.id);
-    case "REMOVE_NOTICES":
+    case "remove_notices":
       return state.filter(({ id }) => !action.ids.includes(id));
-    case "REMOVE_ALL_NOTICES":
-      return state.filter(({ type }) => type !== action.noticeType);
+    case "remove_all_notices":
+      return state.filter(({ type }) => type !== action.noticetype);
   }
   return state;
 });
@@ -105,74 +105,74 @@ var reducer_default = notices;
 
 
 ;// ./node_modules/@wordpress/notices/build-module/store/constants.js
-const DEFAULT_CONTEXT = "global";
-const DEFAULT_STATUS = "info";
+const default_context = "global";
+const default_status = "info";
 
 
 ;// ./node_modules/@wordpress/notices/build-module/store/actions.js
 
-let uniqueId = 0;
-function createNotice(status = DEFAULT_STATUS, content, options = {}) {
+let uniqueid = 0;
+function createnotice(status = default_status, content, options = {}) {
   const {
     speak = true,
-    isDismissible = true,
-    context = DEFAULT_CONTEXT,
-    id = `${context}${++uniqueId}`,
+    isdismissible = true,
+    context = default_context,
+    id = `${context}${++uniqueid}`,
     actions = [],
     type = "default",
-    __unstableHTML,
+    __unstablehtml,
     icon = null,
-    explicitDismiss = false,
-    onDismiss
+    explicitdismiss = false,
+    ondismiss
   } = options;
-  content = String(content);
+  content = string(content);
   return {
-    type: "CREATE_NOTICE",
+    type: "create_notice",
     context,
     notice: {
       id,
       status,
       content,
-      spokenMessage: speak ? content : null,
-      __unstableHTML,
-      isDismissible,
+      spokenmessage: speak ? content : null,
+      __unstablehtml,
+      isdismissible,
       actions,
       type,
       icon,
-      explicitDismiss,
-      onDismiss
+      explicitdismiss,
+      ondismiss
     }
   };
 }
-function createSuccessNotice(content, options) {
-  return createNotice("success", content, options);
+function createsuccessnotice(content, options) {
+  return createnotice("success", content, options);
 }
-function createInfoNotice(content, options) {
-  return createNotice("info", content, options);
+function createinfonotice(content, options) {
+  return createnotice("info", content, options);
 }
-function createErrorNotice(content, options) {
-  return createNotice("error", content, options);
+function createerrornotice(content, options) {
+  return createnotice("error", content, options);
 }
-function createWarningNotice(content, options) {
-  return createNotice("warning", content, options);
+function createwarningnotice(content, options) {
+  return createnotice("warning", content, options);
 }
-function removeNotice(id, context = DEFAULT_CONTEXT) {
+function removenotice(id, context = default_context) {
   return {
-    type: "REMOVE_NOTICE",
+    type: "remove_notice",
     id,
     context
   };
 }
-function removeAllNotices(noticeType = "default", context = DEFAULT_CONTEXT) {
+function removeallnotices(noticetype = "default", context = default_context) {
   return {
-    type: "REMOVE_ALL_NOTICES",
-    noticeType,
+    type: "remove_all_notices",
+    noticetype,
     context
   };
 }
-function removeNotices(ids, context = DEFAULT_CONTEXT) {
+function removenotices(ids, context = default_context) {
   return {
-    type: "REMOVE_NOTICES",
+    type: "remove_notices",
     ids,
     context
   };
@@ -181,9 +181,9 @@ function removeNotices(ids, context = DEFAULT_CONTEXT) {
 
 ;// ./node_modules/@wordpress/notices/build-module/store/selectors.js
 
-const DEFAULT_NOTICES = [];
-function getNotices(state, context = DEFAULT_CONTEXT) {
-  return state[context] || DEFAULT_NOTICES;
+const default_notices = [];
+function getnotices(state, context = default_context) {
+  return state[context] || default_notices;
 }
 
 
@@ -192,12 +192,12 @@ function getNotices(state, context = DEFAULT_CONTEXT) {
 
 
 
-const store = (0,external_wp_data_namespaceObject.createReduxStore)("core/notices", {
+const store = (0,external_wp_data_namespaceobject.createreduxstore)("core/notices", {
   reducer: reducer_default,
-  actions: actions_namespaceObject,
-  selectors: selectors_namespaceObject
+  actions: actions_namespaceobject,
+  selectors: selectors_namespaceobject
 });
-(0,external_wp_data_namespaceObject.register)(store);
+(0,external_wp_data_namespaceobject.register)(store);
 
 
 ;// ./node_modules/@wordpress/notices/build-module/index.js
@@ -207,3 +207,4 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)("core/notice
 (window.wp = window.wp || {}).notices = __webpack_exports__;
 /******/ })()
 ;
+

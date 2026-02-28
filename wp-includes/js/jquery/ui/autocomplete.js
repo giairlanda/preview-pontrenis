@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Autocomplete 1.13.3
+ * jquery ui autocomplete 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Autocomplete
-//>>group: Widgets
-//>>description: Lists suggested words as the user is typing.
+//>>label: autocomplete
+//>>group: widgets
+//>>description: lists suggested words as the user is typing.
 //>>docs: https://api.jqueryui.com/autocomplete/
 //>>demos: https://jqueryui.com/autocomplete/
 //>>css.structure: ../../themes/base/core.css
@@ -21,7 +21,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"./menu",
@@ -33,20 +33,20 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 $.widget( "ui.autocomplete", {
 	version: "1.13.3",
-	defaultElement: "<input>",
+	defaultelement: "<input>",
 	options: {
-		appendTo: null,
-		autoFocus: false,
+		appendto: null,
+		autofocus: false,
 		delay: 300,
-		minLength: 1,
+		minlength: 1,
 		position: {
 			my: "left top",
 			at: "left bottom",
@@ -54,7 +54,7 @@ $.widget( "ui.autocomplete", {
 		},
 		source: null,
 
-		// Callbacks
+		// callbacks
 		change: null,
 		close: null,
 		focus: null,
@@ -64,192 +64,192 @@ $.widget( "ui.autocomplete", {
 		select: null
 	},
 
-	requestIndex: 0,
+	requestindex: 0,
 	pending: 0,
-	liveRegionTimer: null,
+	liveregiontimer: null,
 
 	_create: function() {
 
-		// Some browsers only repeat keydown events, not keypress events,
-		// so we use the suppressKeyPress flag to determine if we've already
+		// some browsers only repeat keydown events, not keypress events,
+		// so we use the suppresskeypress flag to determine if we've already
 		// handled the keydown event. #7269
-		// Unfortunately the code for & in keypress is the same as the up arrow,
-		// so we use the suppressKeyPressRepeat flag to avoid handling keypress
+		// unfortunately the code for & in keypress is the same as the up arrow,
+		// so we use the suppresskeypressrepeat flag to avoid handling keypress
 		// events when we know the keydown event was used to modify the
 		// search term. #7799
-		var suppressKeyPress, suppressKeyPressRepeat, suppressInput,
-			nodeName = this.element[ 0 ].nodeName.toLowerCase(),
-			isTextarea = nodeName === "textarea",
-			isInput = nodeName === "input";
+		var suppresskeypress, suppresskeypressrepeat, suppressinput,
+			nodename = this.element[ 0 ].nodename.tolowercase(),
+			istextarea = nodename === "textarea",
+			isinput = nodename === "input";
 
-		// Textareas are always multi-line
-		// Inputs are always single-line, even if inside a contentEditable element
-		// IE also treats inputs as contentEditable
-		// All other element types are determined by whether or not they're contentEditable
-		this.isMultiLine = isTextarea || !isInput && this._isContentEditable( this.element );
+		// textareas are always multi-line
+		// inputs are always single-line, even if inside a contenteditable element
+		// ie also treats inputs as contenteditable
+		// all other element types are determined by whether or not they're contenteditable
+		this.ismultiline = istextarea || !isinput && this._iscontenteditable( this.element );
 
-		this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
-		this.isNewMenu = true;
+		this.valuemethod = this.element[ istextarea || isinput ? "val" : "text" ];
+		this.isnewmenu = true;
 
-		this._addClass( "ui-autocomplete-input" );
+		this._addclass( "ui-autocomplete-input" );
 		this.element.attr( "autocomplete", "off" );
 
 		this._on( this.element, {
 			keydown: function( event ) {
-				if ( this.element.prop( "readOnly" ) ) {
-					suppressKeyPress = true;
-					suppressInput = true;
-					suppressKeyPressRepeat = true;
+				if ( this.element.prop( "readonly" ) ) {
+					suppresskeypress = true;
+					suppressinput = true;
+					suppresskeypressrepeat = true;
 					return;
 				}
 
-				suppressKeyPress = false;
-				suppressInput = false;
-				suppressKeyPressRepeat = false;
-				var keyCode = $.ui.keyCode;
-				switch ( event.keyCode ) {
-				case keyCode.PAGE_UP:
-					suppressKeyPress = true;
-					this._move( "previousPage", event );
+				suppresskeypress = false;
+				suppressinput = false;
+				suppresskeypressrepeat = false;
+				var keycode = $.ui.keycode;
+				switch ( event.keycode ) {
+				case keycode.page_up:
+					suppresskeypress = true;
+					this._move( "previouspage", event );
 					break;
-				case keyCode.PAGE_DOWN:
-					suppressKeyPress = true;
-					this._move( "nextPage", event );
+				case keycode.page_down:
+					suppresskeypress = true;
+					this._move( "nextpage", event );
 					break;
-				case keyCode.UP:
-					suppressKeyPress = true;
-					this._keyEvent( "previous", event );
+				case keycode.up:
+					suppresskeypress = true;
+					this._keyevent( "previous", event );
 					break;
-				case keyCode.DOWN:
-					suppressKeyPress = true;
-					this._keyEvent( "next", event );
+				case keycode.down:
+					suppresskeypress = true;
+					this._keyevent( "next", event );
 					break;
-				case keyCode.ENTER:
+				case keycode.enter:
 
 					// when menu is open and has focus
 					if ( this.menu.active ) {
 
-						// #6055 - Opera still allows the keypress to occur
+						// #6055 - opera still allows the keypress to occur
 						// which causes forms to submit
-						suppressKeyPress = true;
-						event.preventDefault();
+						suppresskeypress = true;
+						event.preventdefault();
 						this.menu.select( event );
 					}
 					break;
-				case keyCode.TAB:
+				case keycode.tab:
 					if ( this.menu.active ) {
 						this.menu.select( event );
 					}
 					break;
-				case keyCode.ESCAPE:
+				case keycode.escape:
 					if ( this.menu.element.is( ":visible" ) ) {
-						if ( !this.isMultiLine ) {
+						if ( !this.ismultiline ) {
 							this._value( this.term );
 						}
 						this.close( event );
 
-						// Different browsers have different default behavior for escape
-						// Single press can mean undo or clear
-						// Double press in IE means clear the whole form
-						event.preventDefault();
+						// different browsers have different default behavior for escape
+						// single press can mean undo or clear
+						// double press in ie means clear the whole form
+						event.preventdefault();
 					}
 					break;
 				default:
-					suppressKeyPressRepeat = true;
+					suppresskeypressrepeat = true;
 
 					// search timeout should be triggered before the input value is changed
-					this._searchTimeout( event );
+					this._searchtimeout( event );
 					break;
 				}
 			},
 			keypress: function( event ) {
-				if ( suppressKeyPress ) {
-					suppressKeyPress = false;
-					if ( !this.isMultiLine || this.menu.element.is( ":visible" ) ) {
-						event.preventDefault();
+				if ( suppresskeypress ) {
+					suppresskeypress = false;
+					if ( !this.ismultiline || this.menu.element.is( ":visible" ) ) {
+						event.preventdefault();
 					}
 					return;
 				}
-				if ( suppressKeyPressRepeat ) {
+				if ( suppresskeypressrepeat ) {
 					return;
 				}
 
-				// Replicate some key handlers to allow them to repeat in Firefox and Opera
-				var keyCode = $.ui.keyCode;
-				switch ( event.keyCode ) {
-				case keyCode.PAGE_UP:
-					this._move( "previousPage", event );
+				// replicate some key handlers to allow them to repeat in firefox and opera
+				var keycode = $.ui.keycode;
+				switch ( event.keycode ) {
+				case keycode.page_up:
+					this._move( "previouspage", event );
 					break;
-				case keyCode.PAGE_DOWN:
-					this._move( "nextPage", event );
+				case keycode.page_down:
+					this._move( "nextpage", event );
 					break;
-				case keyCode.UP:
-					this._keyEvent( "previous", event );
+				case keycode.up:
+					this._keyevent( "previous", event );
 					break;
-				case keyCode.DOWN:
-					this._keyEvent( "next", event );
+				case keycode.down:
+					this._keyevent( "next", event );
 					break;
 				}
 			},
 			input: function( event ) {
-				if ( suppressInput ) {
-					suppressInput = false;
-					event.preventDefault();
+				if ( suppressinput ) {
+					suppressinput = false;
+					event.preventdefault();
 					return;
 				}
-				this._searchTimeout( event );
+				this._searchtimeout( event );
 			},
 			focus: function() {
-				this.selectedItem = null;
+				this.selecteditem = null;
 				this.previous = this._value();
 			},
 			blur: function( event ) {
-				clearTimeout( this.searching );
+				cleartimeout( this.searching );
 				this.close( event );
 				this._change( event );
 			}
 		} );
 
-		this._initSource();
+		this._initsource();
 		this.menu = $( "<ul>" )
-			.appendTo( this._appendTo() )
+			.appendto( this._appendto() )
 			.menu( {
 
-				// disable ARIA support, the live region takes care of that
+				// disable aria support, the live region takes care of that
 				role: null
 			} )
 			.hide()
 
-			// Support: IE 11 only, Edge <= 14
-			// For other browsers, we preventDefault() on the mousedown event
-			// to keep the dropdown from taking focus from the input. This doesn't
-			// work for IE/Edge, causing problems with selection and scrolling (#9638)
-			// Happily, IE and Edge support an "unselectable" attribute that
+			// support: ie 11 only, edge <= 14
+			// for other browsers, we preventdefault() on the mousedown event
+			// to keep the dropdown from taking focus from the input. this doesn't
+			// work for ie/edge, causing problems with selection and scrolling (#9638)
+			// happily, ie and edge support an "unselectable" attribute that
 			// prevents an element from receiving focus, exactly what we want here.
 			.attr( {
 				"unselectable": "on"
 			} )
 			.menu( "instance" );
 
-		this._addClass( this.menu.element, "ui-autocomplete", "ui-front" );
+		this._addclass( this.menu.element, "ui-autocomplete", "ui-front" );
 		this._on( this.menu.element, {
 			mousedown: function( event ) {
 
-				// Prevent moving focus out of the text field
-				event.preventDefault();
+				// prevent moving focus out of the text field
+				event.preventdefault();
 			},
 			menufocus: function( event, ui ) {
 				var label, item;
 
-				// support: Firefox
-				// Prevent accidental activation of menu items in Firefox (#7024 #9118)
-				if ( this.isNewMenu ) {
-					this.isNewMenu = false;
-					if ( event.originalEvent && /^mouse/.test( event.originalEvent.type ) ) {
+				// support: firefox
+				// prevent accidental activation of menu items in firefox (#7024 #9118)
+				if ( this.isnewmenu ) {
+					this.isnewmenu = false;
+					if ( event.originalevent && /^mouse/.test( event.originalevent.type ) ) {
 						this.menu.blur();
 
 						this.document.one( "mousemove", function() {
-							$( event.target ).trigger( event.originalEvent );
+							$( event.target ).trigger( event.originalevent );
 						} );
 
 						return;
@@ -260,17 +260,17 @@ $.widget( "ui.autocomplete", {
 				if ( false !== this._trigger( "focus", event, { item: item } ) ) {
 
 					// use value to match what will end up in the input, if it was a key event
-					if ( event.originalEvent && /^key/.test( event.originalEvent.type ) ) {
+					if ( event.originalevent && /^key/.test( event.originalevent.type ) ) {
 						this._value( item.value );
 					}
 				}
 
-				// Announce the value in the liveRegion
+				// announce the value in the liveregion
 				label = ui.item.attr( "aria-label" ) || item.value;
-				if ( label && String.prototype.trim.call( label ).length ) {
-					clearTimeout( this.liveRegionTimer );
-					this.liveRegionTimer = this._delay( function() {
-						this.liveRegion.html( $( "<div>" ).text( label ) );
+				if ( label && string.prototype.trim.call( label ).length ) {
+					cleartimeout( this.liveregiontimer );
+					this.liveregiontimer = this._delay( function() {
+						this.liveregion.html( $( "<div>" ).text( label ) );
 					}, 100 );
 				}
 			},
@@ -278,17 +278,17 @@ $.widget( "ui.autocomplete", {
 				var item = ui.item.data( "ui-autocomplete-item" ),
 					previous = this.previous;
 
-				// Only trigger when focus was lost (click on menu)
-				if ( this.element[ 0 ] !== $.ui.safeActiveElement( this.document[ 0 ] ) ) {
+				// only trigger when focus was lost (click on menu)
+				if ( this.element[ 0 ] !== $.ui.safeactiveelement( this.document[ 0 ] ) ) {
 					this.element.trigger( "focus" );
 					this.previous = previous;
 
-					// #6109 - IE triggers two focus events and the second
+					// #6109 - ie triggers two focus events and the second
 					// is asynchronous, so we need to reset the previous
 					// term synchronously and asynchronously :-(
 					this._delay( function() {
 						this.previous = previous;
-						this.selectedItem = item;
+						this.selecteditem = item;
 					} );
 				}
 
@@ -301,68 +301,68 @@ $.widget( "ui.autocomplete", {
 				this.term = this._value();
 
 				this.close( event );
-				this.selectedItem = item;
+				this.selecteditem = item;
 			}
 		} );
 
-		this.liveRegion = $( "<div>", {
+		this.liveregion = $( "<div>", {
 			role: "status",
 			"aria-live": "assertive",
 			"aria-relevant": "additions"
 		} )
-			.appendTo( this.document[ 0 ].body );
+			.appendto( this.document[ 0 ].body );
 
-		this._addClass( this.liveRegion, null, "ui-helper-hidden-accessible" );
+		this._addclass( this.liveregion, null, "ui-helper-hidden-accessible" );
 
-		// Turning off autocomplete prevents the browser from remembering the
+		// turning off autocomplete prevents the browser from remembering the
 		// value when navigating through history, so we re-enable autocomplete
 		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
-				this.element.removeAttr( "autocomplete" );
+				this.element.removeattr( "autocomplete" );
 			}
 		} );
 	},
 
 	_destroy: function() {
-		clearTimeout( this.searching );
-		this.element.removeAttr( "autocomplete" );
+		cleartimeout( this.searching );
+		this.element.removeattr( "autocomplete" );
 		this.menu.element.remove();
-		this.liveRegion.remove();
+		this.liveregion.remove();
 	},
 
-	_setOption: function( key, value ) {
+	_setoption: function( key, value ) {
 		this._super( key, value );
 		if ( key === "source" ) {
-			this._initSource();
+			this._initsource();
 		}
-		if ( key === "appendTo" ) {
-			this.menu.element.appendTo( this._appendTo() );
+		if ( key === "appendto" ) {
+			this.menu.element.appendto( this._appendto() );
 		}
 		if ( key === "disabled" && value && this.xhr ) {
 			this.xhr.abort();
 		}
 	},
 
-	_isEventTargetInWidget: function( event ) {
-		var menuElement = this.menu.element[ 0 ];
+	_iseventtargetinwidget: function( event ) {
+		var menuelement = this.menu.element[ 0 ];
 
 		return event.target === this.element[ 0 ] ||
-			event.target === menuElement ||
-			$.contains( menuElement, event.target );
+			event.target === menuelement ||
+			$.contains( menuelement, event.target );
 	},
 
-	_closeOnClickOutside: function( event ) {
-		if ( !this._isEventTargetInWidget( event ) ) {
+	_closeonclickoutside: function( event ) {
+		if ( !this._iseventtargetinwidget( event ) ) {
 			this.close();
 		}
 	},
 
-	_appendTo: function() {
-		var element = this.options.appendTo;
+	_appendto: function() {
+		var element = this.options.appendto;
 
 		if ( element ) {
-			element = element.jquery || element.nodeType ?
+			element = element.jquery || element.nodetype ?
 				$( element ) :
 				this.document.find( element ).eq( 0 );
 		}
@@ -378,10 +378,10 @@ $.widget( "ui.autocomplete", {
 		return element;
 	},
 
-	_initSource: function() {
+	_initsource: function() {
 		var array, url,
 			that = this;
-		if ( Array.isArray( this.options.source ) ) {
+		if ( array.isarray( this.options.source ) ) {
 			array = this.options.source;
 			this.source = function( request, response ) {
 				response( $.ui.autocomplete.filter( array, request.term ) );
@@ -395,7 +395,7 @@ $.widget( "ui.autocomplete", {
 				that.xhr = $.ajax( {
 					url: url,
 					data: request,
-					dataType: "json",
+					datatype: "json",
 					success: function( data ) {
 						response( data );
 					},
@@ -409,17 +409,17 @@ $.widget( "ui.autocomplete", {
 		}
 	},
 
-	_searchTimeout: function( event ) {
-		clearTimeout( this.searching );
+	_searchtimeout: function( event ) {
+		cleartimeout( this.searching );
 		this.searching = this._delay( function() {
 
-			// Search if the value has changed, or if the user retypes the same value (see #7434)
-			var equalValues = this.term === this._value(),
-				menuVisible = this.menu.element.is( ":visible" ),
-				modifierKey = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+			// search if the value has changed, or if the user retypes the same value (see #7434)
+			var equalvalues = this.term === this._value(),
+				menuvisible = this.menu.element.is( ":visible" ),
+				modifierkey = event.altkey || event.ctrlkey || event.metakey || event.shiftkey;
 
-			if ( !equalValues || ( equalValues && !menuVisible && !modifierKey ) ) {
-				this.selectedItem = null;
+			if ( !equalvalues || ( equalvalues && !menuvisible && !modifierkey ) ) {
+				this.selecteditem = null;
 				this.search( null, event );
 			}
 		}, this.options.delay );
@@ -428,10 +428,10 @@ $.widget( "ui.autocomplete", {
 	search: function( value, event ) {
 		value = value != null ? value : this._value();
 
-		// Always save the actual value, not the one passed as an argument
+		// always save the actual value, not the one passed as an argument
 		this.term = this._value();
 
-		if ( value.length < this.options.minLength ) {
+		if ( value.length < this.options.minlength ) {
 			return this.close( event );
 		}
 
@@ -444,23 +444,23 @@ $.widget( "ui.autocomplete", {
 
 	_search: function( value ) {
 		this.pending++;
-		this._addClass( "ui-autocomplete-loading" );
-		this.cancelSearch = false;
+		this._addclass( "ui-autocomplete-loading" );
+		this.cancelsearch = false;
 
 		this.source( { term: value }, this._response() );
 	},
 
 	_response: function() {
-		var index = ++this.requestIndex;
+		var index = ++this.requestindex;
 
 		return function( content ) {
-			if ( index === this.requestIndex ) {
+			if ( index === this.requestindex ) {
 				this.__response( content );
 			}
 
 			this.pending--;
 			if ( !this.pending ) {
-				this._removeClass( "ui-autocomplete-loading" );
+				this._removeclass( "ui-autocomplete-loading" );
 			}
 		}.bind( this );
 	},
@@ -470,7 +470,7 @@ $.widget( "ui.autocomplete", {
 			content = this._normalize( content );
 		}
 		this._trigger( "response", null, { content: content } );
-		if ( !this.options.disabled && content && content.length && !this.cancelSearch ) {
+		if ( !this.options.disabled && content && content.length && !this.cancelsearch ) {
 			this._suggest( content );
 			this._trigger( "open" );
 		} else {
@@ -481,26 +481,26 @@ $.widget( "ui.autocomplete", {
 	},
 
 	close: function( event ) {
-		this.cancelSearch = true;
+		this.cancelsearch = true;
 		this._close( event );
 	},
 
 	_close: function( event ) {
 
-		// Remove the handler that closes the menu on outside clicks
+		// remove the handler that closes the menu on outside clicks
 		this._off( this.document, "mousedown" );
 
 		if ( this.menu.element.is( ":visible" ) ) {
 			this.menu.element.hide();
 			this.menu.blur();
-			this.isNewMenu = true;
+			this.isnewmenu = true;
 			this._trigger( "close", event );
 		}
 	},
 
 	_change: function( event ) {
 		if ( this.previous !== this._value() ) {
-			this._trigger( "change", event, { item: this.selectedItem } );
+			this._trigger( "change", event, { item: this.selecteditem } );
 		}
 	},
 
@@ -526,53 +526,53 @@ $.widget( "ui.autocomplete", {
 
 	_suggest: function( items ) {
 		var ul = this.menu.element.empty();
-		this._renderMenu( ul, items );
-		this.isNewMenu = true;
+		this._rendermenu( ul, items );
+		this.isnewmenu = true;
 		this.menu.refresh();
 
-		// Size and position menu
+		// size and position menu
 		ul.show();
-		this._resizeMenu();
+		this._resizemenu();
 		ul.position( $.extend( {
 			of: this.element
 		}, this.options.position ) );
 
-		if ( this.options.autoFocus ) {
+		if ( this.options.autofocus ) {
 			this.menu.next();
 		}
 
-		// Listen for interactions outside of the widget (#6642)
+		// listen for interactions outside of the widget (#6642)
 		this._on( this.document, {
-			mousedown: "_closeOnClickOutside"
+			mousedown: "_closeonclickoutside"
 		} );
 	},
 
-	_resizeMenu: function() {
+	_resizemenu: function() {
 		var ul = this.menu.element;
-		ul.outerWidth( Math.max(
+		ul.outerwidth( math.max(
 
-			// Firefox wraps long text (possibly a rounding bug)
+			// firefox wraps long text (possibly a rounding bug)
 			// so we add 1px to avoid the wrapping (#7513)
-			ul.width( "" ).outerWidth() + 1,
-			this.element.outerWidth()
+			ul.width( "" ).outerwidth() + 1,
+			this.element.outerwidth()
 		) );
 	},
 
-	_renderMenu: function( ul, items ) {
+	_rendermenu: function( ul, items ) {
 		var that = this;
 		$.each( items, function( index, item ) {
-			that._renderItemData( ul, item );
+			that._renderitemdata( ul, item );
 		} );
 	},
 
-	_renderItemData: function( ul, item ) {
-		return this._renderItem( ul, item ).data( "ui-autocomplete-item", item );
+	_renderitemdata: function( ul, item ) {
+		return this._renderitem( ul, item ).data( "ui-autocomplete-item", item );
 	},
 
-	_renderItem: function( ul, item ) {
+	_renderitem: function( ul, item ) {
 		return $( "<li>" )
 			.append( $( "<div>" ).text( item.label ) )
-			.appendTo( ul );
+			.appendto( ul );
 	},
 
 	_move: function( direction, event ) {
@@ -580,10 +580,10 @@ $.widget( "ui.autocomplete", {
 			this.search( null, event );
 			return;
 		}
-		if ( this.menu.isFirstItem() && /^previous/.test( direction ) ||
-				this.menu.isLastItem() && /^next/.test( direction ) ) {
+		if ( this.menu.isfirstitem() && /^previous/.test( direction ) ||
+				this.menu.islastitem() && /^next/.test( direction ) ) {
 
-			if ( !this.isMultiLine ) {
+			if ( !this.ismultiline ) {
 				this._value( this.term );
 			}
 
@@ -598,31 +598,31 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_value: function() {
-		return this.valueMethod.apply( this.element, arguments );
+		return this.valuemethod.apply( this.element, arguments );
 	},
 
-	_keyEvent: function( keyEvent, event ) {
-		if ( !this.isMultiLine || this.menu.element.is( ":visible" ) ) {
-			this._move( keyEvent, event );
+	_keyevent: function( keyevent, event ) {
+		if ( !this.ismultiline || this.menu.element.is( ":visible" ) ) {
+			this._move( keyevent, event );
 
-			// Prevents moving cursor to beginning/end of the text field in some browsers
-			event.preventDefault();
+			// prevents moving cursor to beginning/end of the text field in some browsers
+			event.preventdefault();
 		}
 	},
 
-	// Support: Chrome <=50
-	// We should be able to just use this.element.prop( "isContentEditable" )
-	// but hidden elements always report false in Chrome.
+	// support: chrome <=50
+	// we should be able to just use this.element.prop( "iscontenteditable" )
+	// but hidden elements always report false in chrome.
 	// https://code.google.com/p/chromium/issues/detail?id=313082
-	_isContentEditable: function( element ) {
+	_iscontenteditable: function( element ) {
 		if ( !element.length ) {
 			return false;
 		}
 
-		var editable = element.prop( "contentEditable" );
+		var editable = element.prop( "contenteditable" );
 
 		if ( editable === "inherit" ) {
-			return this._isContentEditable( element.parent() );
+			return this._iscontenteditable( element.parent() );
 		}
 
 		return editable === "true";
@@ -630,24 +630,24 @@ $.widget( "ui.autocomplete", {
 } );
 
 $.extend( $.ui.autocomplete, {
-	escapeRegex: function( value ) {
+	escaperegex: function( value ) {
 		return value.replace( /[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&" );
 	},
 	filter: function( array, term ) {
-		var matcher = new RegExp( $.ui.autocomplete.escapeRegex( term ), "i" );
+		var matcher = new regexp( $.ui.autocomplete.escaperegex( term ), "i" );
 		return $.grep( array, function( value ) {
 			return matcher.test( value.label || value.value || value );
 		} );
 	}
 } );
 
-// Live region extension, adding a `messages` option
-// NOTE: This is an experimental API. We are still investigating
+// live region extension, adding a `messages` option
+// note: this is an experimental api. we are still investigating
 // a full solution for string manipulation and internationalization.
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
 	options: {
 		messages: {
-			noResults: "No search results.",
+			noresults: "no search results.",
 			results: function( amount ) {
 				return amount + ( amount > 1 ? " results are" : " result is" ) +
 					" available, use up and down arrow keys to navigate.";
@@ -657,18 +657,18 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 
 	__response: function( content ) {
 		var message;
-		this._superApply( arguments );
-		if ( this.options.disabled || this.cancelSearch ) {
+		this._superapply( arguments );
+		if ( this.options.disabled || this.cancelsearch ) {
 			return;
 		}
 		if ( content && content.length ) {
 			message = this.options.messages.results( content.length );
 		} else {
-			message = this.options.messages.noResults;
+			message = this.options.messages.noresults;
 		}
-		clearTimeout( this.liveRegionTimer );
-		this.liveRegionTimer = this._delay( function() {
-			this.liveRegion.html( $( "<div>" ).text( message ) );
+		cleartimeout( this.liveregiontimer );
+		this.liveregiontimer = this._delay( function() {
+			this.liveregion.html( $( "<div>" ).text( message ) );
 		}, 100 );
 	}
 } );
@@ -676,3 +676,5 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 return $.ui.autocomplete;
 
 } );
+
+

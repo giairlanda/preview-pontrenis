@@ -1,108 +1,108 @@
 /**
- * Thin jQuery.ajax wrapper for WP REST API requests.
+ * thin jquery.ajax wrapper for wp rest api requests.
  *
- * Currently only applies to requests that do not use the `wp-api.js` Backbone
- * client library, though this may change.  Serves several purposes:
+ * currently only applies to requests that do not use the `wp-api.js` backbone
+ * client library, though this may change.  serves several purposes:
  *
- * - Allows overriding these requests as needed by customized WP installations.
- * - Sends the REST API nonce as a request header.
- * - Allows specifying only an endpoint namespace/path instead of a full URL.
+ * - allows overriding these requests as needed by customized wp installations.
+ * - sends the rest api nonce as a request header.
+ * - allows specifying only an endpoint namespace/path instead of a full url.
  *
  * @since 4.9.0
- * @since 5.6.0 Added overriding of the "PUT" and "DELETE" methods with "POST".
- *              Added an "application/json" Accept header to all requests.
+ * @since 5.6.0 added overriding of the "put" and "delete" methods with "post".
+ *              added an "application/json" accept header to all requests.
  * @output wp-includes/js/api-request.js
  */
 
 ( function( $ ) {
-	var wpApiSettings = window.wpApiSettings;
+	var wpapisettings = window.wpapisettings;
 
-	function apiRequest( options ) {
-		options = apiRequest.buildAjaxOptions( options );
-		return apiRequest.transport( options );
+	function apirequest( options ) {
+		options = apirequest.buildajaxoptions( options );
+		return apirequest.transport( options );
 	}
 
-	apiRequest.buildAjaxOptions = function( options ) {
+	apirequest.buildajaxoptions = function( options ) {
 		var url = options.url;
 		var path = options.path;
 		var method = options.method;
-		var namespaceTrimmed, endpointTrimmed, apiRoot;
-		var headers, addNonceHeader, addAcceptHeader, headerName;
+		var namespacetrimmed, endpointtrimmed, apiroot;
+		var headers, addnonceheader, addacceptheader, headername;
 
 		if (
 			typeof options.namespace === 'string' &&
 			typeof options.endpoint === 'string'
 		) {
-			namespaceTrimmed = options.namespace.replace( /^\/|\/$/g, '' );
-			endpointTrimmed = options.endpoint.replace( /^\//, '' );
-			if ( endpointTrimmed ) {
-				path = namespaceTrimmed + '/' + endpointTrimmed;
+			namespacetrimmed = options.namespace.replace( /^\/|\/$/g, '' );
+			endpointtrimmed = options.endpoint.replace( /^\//, '' );
+			if ( endpointtrimmed ) {
+				path = namespacetrimmed + '/' + endpointtrimmed;
 			} else {
-				path = namespaceTrimmed;
+				path = namespacetrimmed;
 			}
 		}
 		if ( typeof path === 'string' ) {
-			apiRoot = wpApiSettings.root;
+			apiroot = wpapisettings.root;
 			path = path.replace( /^\//, '' );
 
-			// API root may already include query parameter prefix
+			// api root may already include query parameter prefix
 			// if site is configured to use plain permalinks.
-			if ( 'string' === typeof apiRoot && -1 !== apiRoot.indexOf( '?' ) ) {
+			if ( 'string' === typeof apiroot && -1 !== apiroot.indexof( '?' ) ) {
 				path = path.replace( '?', '&' );
 			}
 
-			url = apiRoot + path;
+			url = apiroot + path;
 		}
 
-		// If ?_wpnonce=... is present, no need to add a nonce header.
-		addNonceHeader = ! ( options.data && options.data._wpnonce );
-		addAcceptHeader = true;
+		// if ?_wpnonce=... is present, no need to add a nonce header.
+		addnonceheader = ! ( options.data && options.data._wpnonce );
+		addacceptheader = true;
 
 		headers = options.headers || {};
 
-		for ( headerName in headers ) {
-			if ( ! headers.hasOwnProperty( headerName ) ) {
+		for ( headername in headers ) {
+			if ( ! headers.hasownproperty( headername ) ) {
 				continue;
 			}
 
-			// If an 'X-WP-Nonce' or 'Accept' header (or any case-insensitive variation
+			// if an 'x-wp-nonce' or 'accept' header (or any case-insensitive variation
 			// thereof) was specified, no need to add the header again.
-			switch ( headerName.toLowerCase() ) {
+			switch ( headername.tolowercase() ) {
 				case 'x-wp-nonce':
-					addNonceHeader = false;
+					addnonceheader = false;
 					break;
 				case 'accept':
-					addAcceptHeader = false;
+					addacceptheader = false;
 					break;
 			}
 		}
 
-		if ( addNonceHeader ) {
-			// Do not mutate the original headers object, if any.
+		if ( addnonceheader ) {
+			// do not mutate the original headers object, if any.
 			headers = $.extend( {
-				'X-WP-Nonce': wpApiSettings.nonce
+				'x-wp-nonce': wpapisettings.nonce
 			}, headers );
 		}
 
-		if ( addAcceptHeader ) {
+		if ( addacceptheader ) {
 			headers = $.extend( {
-				'Accept': 'application/json, */*;q=0.1'
+				'accept': 'application/json, */*;q=0.1'
 			}, headers );
 		}
 
 		if ( typeof method === 'string' ) {
-			method = method.toUpperCase();
+			method = method.touppercase();
 
-			if ( 'PUT' === method || 'DELETE' === method ) {
+			if ( 'put' === method || 'delete' === method ) {
 				headers = $.extend( {
-					'X-HTTP-Method-Override': method
+					'x-http-method-override': method
 				}, headers );
 
-				method = 'POST';
+				method = 'post';
 			}
 		}
 
-		// Do not mutate the original options object.
+		// do not mutate the original options object.
 		options = $.extend( {}, options, {
 			headers: headers,
 			url: url,
@@ -116,9 +116,11 @@
 		return options;
 	};
 
-	apiRequest.transport = $.ajax;
+	apirequest.transport = $.ajax;
 
 	/** @namespace wp */
 	window.wp = window.wp || {};
-	window.wp.apiRequest = apiRequest;
-} )( jQuery );
+	window.wp.apirequest = apirequest;
+} )( jquery );
+
+

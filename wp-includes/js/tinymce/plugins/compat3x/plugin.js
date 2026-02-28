@@ -1,23 +1,23 @@
 /**
  * plugin.js
  *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * released under lgpl license.
+ * copyright (c) 1999-2017 ephox corp. all rights reserved
  *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
+ * license: http://www.tinymce.com/license
+ * contributing: http://www.tinymce.com/contributing
  */
 
 /*global tinymce:true, console:true */
 /*eslint no-console:0, new-cap:0 */
 
 /**
- * This plugin adds missing events form the 4.x API back. Not every event is
+ * this plugin adds missing events form the 4.x api back. not every event is
  * properly supported but most things should work.
  *
- * Unsupported things:
- *  - No editor.onEvent
- *  - Can't cancel execCommands with beforeExecCommand
+ * unsupported things:
+ *  - no editor.onevent
+ *  - can't cancel execcommands with beforeexeccommand
  */
 (function (tinymce) {
   var reported;
@@ -25,143 +25,143 @@
   function noop() {
   }
 
-  function log(apiCall) {
+  function log(apicall) {
     if (!reported && window && window.console) {
       reported = true;
-      console.log("Deprecated TinyMCE API call: " + apiCall);
+      console.log("deprecated tinymce api call: " + apicall);
     }
   }
 
-  function Dispatcher(target, newEventName, argsMap, defaultScope) {
+  function dispatcher(target, neweventname, argsmap, defaultscope) {
     target = target || this;
     var cbs = [];
 
-    if (!newEventName) {
-      this.add = this.addToTop = this.remove = this.dispatch = noop;
+    if (!neweventname) {
+      this.add = this.addtotop = this.remove = this.dispatch = noop;
       return;
     }
 
     this.add = function (callback, scope, prepend) {
-      log('<target>.on' + newEventName + ".add(..)");
+      log('<target>.on' + neweventname + ".add(..)");
 
-      // Convert callback({arg1:x, arg2:x}) -> callback(arg1, arg2)
-      function patchedEventCallback(e) {
-        var callbackArgs = [];
+      // convert callback({arg1:x, arg2:x}) -> callback(arg1, arg2)
+      function patchedeventcallback(e) {
+        var callbackargs = [];
 
-        if (typeof argsMap == "string") {
-          argsMap = argsMap.split(" ");
+        if (typeof argsmap == "string") {
+          argsmap = argsmap.split(" ");
         }
 
-        if (argsMap && typeof argsMap !== "function") {
-          for (var i = 0; i < argsMap.length; i++) {
-            callbackArgs.push(e[argsMap[i]]);
+        if (argsmap && typeof argsmap !== "function") {
+          for (var i = 0; i < argsmap.length; i++) {
+            callbackargs.push(e[argsmap[i]]);
           }
         }
 
-        if (typeof argsMap == "function") {
-          callbackArgs = argsMap(newEventName, e, target);
-          if (!callbackArgs) {
+        if (typeof argsmap == "function") {
+          callbackargs = argsmap(neweventname, e, target);
+          if (!callbackargs) {
             return;
           }
         }
 
-        if (!argsMap) {
-          callbackArgs = [e];
+        if (!argsmap) {
+          callbackargs = [e];
         }
 
-        callbackArgs.unshift(defaultScope || target);
+        callbackargs.unshift(defaultscope || target);
 
-        if (callback.apply(scope || defaultScope || target, callbackArgs) === false) {
-          e.stopImmediatePropagation();
+        if (callback.apply(scope || defaultscope || target, callbackargs) === false) {
+          e.stopimmediatepropagation();
         }
       }
 
-      target.on(newEventName, patchedEventCallback, prepend);
+      target.on(neweventname, patchedeventcallback, prepend);
 
       var handlers = {
         original: callback,
-        patched: patchedEventCallback
+        patched: patchedeventcallback
       };
 
       cbs.push(handlers);
-      return patchedEventCallback;
+      return patchedeventcallback;
     };
 
-    this.addToTop = function (callback, scope) {
+    this.addtotop = function (callback, scope) {
       this.add(callback, scope, true);
     };
 
     this.remove = function (callback) {
-      cbs.forEach(function (item, i) {
+      cbs.foreach(function (item, i) {
         if (item.original === callback) {
           cbs.splice(i, 1);
-          return target.off(newEventName, item.patched);
+          return target.off(neweventname, item.patched);
         }
       });
 
-      return target.off(newEventName, callback);
+      return target.off(neweventname, callback);
     };
 
     this.dispatch = function () {
-      target.fire(newEventName);
+      target.fire(neweventname);
       return true;
     };
   }
 
-  tinymce.util.Dispatcher = Dispatcher;
-  tinymce.onBeforeUnload = new Dispatcher(tinymce, "BeforeUnload");
-  tinymce.onAddEditor = new Dispatcher(tinymce, "AddEditor", "editor");
-  tinymce.onRemoveEditor = new Dispatcher(tinymce, "RemoveEditor", "editor");
+  tinymce.util.dispatcher = dispatcher;
+  tinymce.onbeforeunload = new dispatcher(tinymce, "beforeunload");
+  tinymce.onaddeditor = new dispatcher(tinymce, "addeditor", "editor");
+  tinymce.onremoveeditor = new dispatcher(tinymce, "removeeditor", "editor");
 
-  tinymce.util.Cookie = {
-    get: noop, getHash: noop, remove: noop, set: noop, setHash: noop
+  tinymce.util.cookie = {
+    get: noop, gethash: noop, remove: noop, set: noop, sethash: noop
   };
 
-  function patchEditor(editor) {
+  function patcheditor(editor) {
 
     function translate(str) {
       var prefix = editor.settings.language || "en";
-      var prefixedStr = [prefix, str].join('.');
-      var translatedStr = tinymce.i18n.translate(prefixedStr);
+      var prefixedstr = [prefix, str].join('.');
+      var translatedstr = tinymce.i18n.translate(prefixedstr);
 
-      return prefixedStr !== translatedStr ? translatedStr : tinymce.i18n.translate(str);
+      return prefixedstr !== translatedstr ? translatedstr : tinymce.i18n.translate(str);
     }
 
-    function patchEditorEvents(oldEventNames, argsMap) {
-      tinymce.each(oldEventNames.split(" "), function (oldName) {
-        editor["on" + oldName] = new Dispatcher(editor, oldName, argsMap);
+    function patcheditorevents(oldeventnames, argsmap) {
+      tinymce.each(oldeventnames.split(" "), function (oldname) {
+        editor["on" + oldname] = new dispatcher(editor, oldname, argsmap);
       });
     }
 
-    function convertUndoEventArgs(type, event, target) {
+    function convertundoeventargs(type, event, target) {
       return [
         event.level,
         target
       ];
     }
 
-    function filterSelectionEvents(needsSelection) {
+    function filterselectionevents(needsselection) {
       return function (type, e) {
-        if ((!e.selection && !needsSelection) || e.selection == needsSelection) {
+        if ((!e.selection && !needsselection) || e.selection == needsselection) {
           return [e];
         }
       };
     }
 
-    if (editor.controlManager) {
+    if (editor.controlmanager) {
       return;
     }
 
-    function cmNoop() {
-      var obj = {}, methods = 'add addMenu addSeparator collapse createMenu destroy displayColor expand focus ' +
-        'getLength hasMenus hideMenu isActive isCollapsed isDisabled isRendered isSelected mark ' +
-        'postRender remove removeAll renderHTML renderMenu renderNode renderTo select selectByIndex ' +
-        'setActive setAriaProperty setColor setDisabled setSelected setState showMenu update';
+    function cmnoop() {
+      var obj = {}, methods = 'add addmenu addseparator collapse createmenu destroy displaycolor expand focus ' +
+        'getlength hasmenus hidemenu isactive iscollapsed isdisabled isrendered isselected mark ' +
+        'postrender remove removeall renderhtml rendermenu rendernode renderto select selectbyindex ' +
+        'setactive setariaproperty setcolor setdisabled setselected setstate showmenu update';
 
-      log('editor.controlManager.*');
+      log('editor.controlmanager.*');
 
       function _noop() {
-        return cmNoop();
+        return cmnoop();
       }
 
       tinymce.each(methods.split(' '), function (method) {
@@ -171,133 +171,133 @@
       return obj;
     }
 
-    editor.controlManager = {
+    editor.controlmanager = {
       buttons: {},
 
-      setDisabled: function (name, state) {
-        log("controlManager.setDisabled(..)");
+      setdisabled: function (name, state) {
+        log("controlmanager.setdisabled(..)");
 
         if (this.buttons[name]) {
           this.buttons[name].disabled(state);
         }
       },
 
-      setActive: function (name, state) {
-        log("controlManager.setActive(..)");
+      setactive: function (name, state) {
+        log("controlmanager.setactive(..)");
 
         if (this.buttons[name]) {
           this.buttons[name].active(state);
         }
       },
 
-      onAdd: new Dispatcher(),
-      onPostRender: new Dispatcher(),
+      onadd: new dispatcher(),
+      onpostrender: new dispatcher(),
 
       add: function (obj) {
         return obj;
       },
-      createButton: cmNoop,
-      createColorSplitButton: cmNoop,
-      createControl: cmNoop,
-      createDropMenu: cmNoop,
-      createListBox: cmNoop,
-      createMenuButton: cmNoop,
-      createSeparator: cmNoop,
-      createSplitButton: cmNoop,
-      createToolbar: cmNoop,
-      createToolbarGroup: cmNoop,
+      createbutton: cmnoop,
+      createcolorsplitbutton: cmnoop,
+      createcontrol: cmnoop,
+      createdropmenu: cmnoop,
+      createlistbox: cmnoop,
+      createmenubutton: cmnoop,
+      createseparator: cmnoop,
+      createsplitbutton: cmnoop,
+      createtoolbar: cmnoop,
+      createtoolbargroup: cmnoop,
       destroy: noop,
       get: noop,
-      setControlType: cmNoop
+      setcontroltype: cmnoop
     };
 
-    patchEditorEvents("PreInit BeforeRenderUI PostRender Load Init Remove Activate Deactivate", "editor");
-    patchEditorEvents("Click MouseUp MouseDown DblClick KeyDown KeyUp KeyPress ContextMenu Paste Submit Reset");
-    patchEditorEvents("BeforeExecCommand ExecCommand", "command ui value args"); // args.terminate not supported
-    patchEditorEvents("PreProcess PostProcess LoadContent SaveContent Change");
-    patchEditorEvents("BeforeSetContent BeforeGetContent SetContent GetContent", filterSelectionEvents(false));
-    patchEditorEvents("SetProgressState", "state time");
-    patchEditorEvents("VisualAid", "element hasVisual");
-    patchEditorEvents("Undo Redo", convertUndoEventArgs);
+    patcheditorevents("preinit beforerenderui postrender load init remove activate deactivate", "editor");
+    patcheditorevents("click mouseup mousedown dblclick keydown keyup keypress contextmenu paste submit reset");
+    patcheditorevents("beforeexeccommand execcommand", "command ui value args"); // args.terminate not supported
+    patcheditorevents("preprocess postprocess loadcontent savecontent change");
+    patcheditorevents("beforesetcontent beforegetcontent setcontent getcontent", filterselectionevents(false));
+    patcheditorevents("setprogressstate", "state time");
+    patcheditorevents("visualaid", "element hasvisual");
+    patcheditorevents("undo redo", convertundoeventargs);
 
-    patchEditorEvents("NodeChange", function (type, e) {
+    patcheditorevents("nodechange", function (type, e) {
       return [
-        editor.controlManager,
+        editor.controlmanager,
         e.element,
-        editor.selection.isCollapsed(),
+        editor.selection.iscollapsed(),
         e
       ];
     });
 
-    var originalAddButton = editor.addButton;
-    editor.addButton = function (name, settings) {
-      var originalOnPostRender;
+    var originaladdbutton = editor.addbutton;
+    editor.addbutton = function (name, settings) {
+      var originalonpostrender;
 
-      function patchedPostRender() {
-        editor.controlManager.buttons[name] = this;
+      function patchedpostrender() {
+        editor.controlmanager.buttons[name] = this;
 
-        if (originalOnPostRender) {
-          return originalOnPostRender.apply(this, arguments);
+        if (originalonpostrender) {
+          return originalonpostrender.apply(this, arguments);
         }
       }
 
       for (var key in settings) {
-        if (key.toLowerCase() === "onpostrender") {
-          originalOnPostRender = settings[key];
-          settings.onPostRender = patchedPostRender;
+        if (key.tolowercase() === "onpostrender") {
+          originalonpostrender = settings[key];
+          settings.onpostrender = patchedpostrender;
         }
       }
 
-      if (!originalOnPostRender) {
-        settings.onPostRender = patchedPostRender;
+      if (!originalonpostrender) {
+        settings.onpostrender = patchedpostrender;
       }
 
       if (settings.title) {
         settings.title = translate(settings.title);
       }
 
-      return originalAddButton.call(this, name, settings);
+      return originaladdbutton.call(this, name, settings);
     };
 
     editor.on('init', function () {
-      var undoManager = editor.undoManager, selection = editor.selection;
+      var undomanager = editor.undomanager, selection = editor.selection;
 
-      undoManager.onUndo = new Dispatcher(editor, "Undo", convertUndoEventArgs, null, undoManager);
-      undoManager.onRedo = new Dispatcher(editor, "Redo", convertUndoEventArgs, null, undoManager);
-      undoManager.onBeforeAdd = new Dispatcher(editor, "BeforeAddUndo", null, undoManager);
-      undoManager.onAdd = new Dispatcher(editor, "AddUndo", null, undoManager);
+      undomanager.onundo = new dispatcher(editor, "undo", convertundoeventargs, null, undomanager);
+      undomanager.onredo = new dispatcher(editor, "redo", convertundoeventargs, null, undomanager);
+      undomanager.onbeforeadd = new dispatcher(editor, "beforeaddundo", null, undomanager);
+      undomanager.onadd = new dispatcher(editor, "addundo", null, undomanager);
 
-      selection.onBeforeGetContent = new Dispatcher(editor, "BeforeGetContent", filterSelectionEvents(true), selection);
-      selection.onGetContent = new Dispatcher(editor, "GetContent", filterSelectionEvents(true), selection);
-      selection.onBeforeSetContent = new Dispatcher(editor, "BeforeSetContent", filterSelectionEvents(true), selection);
-      selection.onSetContent = new Dispatcher(editor, "SetContent", filterSelectionEvents(true), selection);
+      selection.onbeforegetcontent = new dispatcher(editor, "beforegetcontent", filterselectionevents(true), selection);
+      selection.ongetcontent = new dispatcher(editor, "getcontent", filterselectionevents(true), selection);
+      selection.onbeforesetcontent = new dispatcher(editor, "beforesetcontent", filterselectionevents(true), selection);
+      selection.onsetcontent = new dispatcher(editor, "setcontent", filterselectionevents(true), selection);
     });
 
-    editor.on('BeforeRenderUI', function () {
-      var windowManager = editor.windowManager;
+    editor.on('beforerenderui', function () {
+      var windowmanager = editor.windowmanager;
 
-      windowManager.onOpen = new Dispatcher();
-      windowManager.onClose = new Dispatcher();
-      windowManager.createInstance = function (className, a, b, c, d, e) {
-        log("windowManager.createInstance(..)");
+      windowmanager.onopen = new dispatcher();
+      windowmanager.onclose = new dispatcher();
+      windowmanager.createinstance = function (classname, a, b, c, d, e) {
+        log("windowmanager.createinstance(..)");
 
-        var constr = tinymce.resolve(className);
+        var constr = tinymce.resolve(classname);
         return new constr(a, b, c, d, e);
       };
     });
   }
 
-  tinymce.on('SetupEditor', function (e) {
-    patchEditor(e.editor);
+  tinymce.on('setupeditor', function (e) {
+    patcheditor(e.editor);
   });
 
-  tinymce.PluginManager.add("compat3x", patchEditor);
+  tinymce.pluginmanager.add("compat3x", patcheditor);
 
-  tinymce.addI18n = function (prefix, o) {
-    var I18n = tinymce.util.I18n, each = tinymce.each;
+  tinymce.addi18n = function (prefix, o) {
+    var i18n = tinymce.util.i18n, each = tinymce.each;
 
-    if (typeof prefix == "string" && prefix.indexOf('.') === -1) {
-      I18n.add(prefix, o);
+    if (typeof prefix == "string" && prefix.indexof('.') === -1) {
+      i18n.add(prefix, o);
       return;
     }
 
@@ -306,17 +306,19 @@
         each(o, function (o, g) {
           each(o, function (o, k) {
             if (g === 'common') {
-              I18n.data[lc + '.' + k] = o;
+              i18n.data[lc + '.' + k] = o;
             } else {
-              I18n.data[lc + '.' + g + '.' + k] = o;
+              i18n.data[lc + '.' + g + '.' + k] = o;
             }
           });
         });
       });
     } else {
       each(o, function (o, k) {
-        I18n.data[prefix + '.' + k] = o;
+        i18n.data[prefix + '.' + k] = o;
       });
     }
   };
 })(tinymce);
+
+

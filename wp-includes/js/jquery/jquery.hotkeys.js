@@ -1,31 +1,31 @@
 /******************************************************************************************************************************
 
- * @ Original idea by by Binny V A, Original version: 2.00.A
+ * @ original idea by by binny v a, original version: 2.00.a
  * @ http://www.openjs.com/scripts/events/keyboard_shortcuts/
- * @ Original License : BSD
+ * @ original license : bsd
 
- * @ jQuery Plugin by Tzury Bar Yochay
+ * @ jquery plugin by tzury bar yochay
         mail: tzury.by@gmail.com
         blog: evalinux.wordpress.com
         face: facebook.com/profile.php?id=513676303
 
-        (c) Copyrights 2007
+        (c) copyrights 2007
 
- * @ jQuery Plugin version Beta (0.0.2)
- * @ License: jQuery-License.
+ * @ jquery plugin version beta (0.0.2)
+ * @ license: jquery-license.
 
-TODO:
+todo:
     add queue support (as in gmail) e.g. 'x' then 'y', etc.
     add mouse + mouse wheel events.
 
-USAGE:
-    $.hotkeys.add('Ctrl+c', function(){ alert('copy anyone?');});
-    $.hotkeys.add('Ctrl+c', {target:'div#editor', type:'keyup', propagate: true},function(){ alert('copy anyone?');});>
-    $.hotkeys.remove('Ctrl+c');
-    $.hotkeys.remove('Ctrl+c', {target:'div#editor', type:'keypress'});
+usage:
+    $.hotkeys.add('ctrl+c', function(){ alert('copy anyone?');});
+    $.hotkeys.add('ctrl+c', {target:'div#editor', type:'keyup', propagate: true},function(){ alert('copy anyone?');});>
+    $.hotkeys.remove('ctrl+c');
+    $.hotkeys.remove('ctrl+c', {target:'div#editor', type:'keypress'});
 
 ******************************************************************************************************************************/
-(function (jQuery){
+(function (jquery){
     this.version = '(beta)(0.0.3)';
 	this.all = {};
     this.special_keys = {
@@ -44,52 +44,52 @@ USAGE:
             options = {};
         }
         var opt = {},
-            defaults = {type: 'keydown', propagate: false, disableInInput: false, target: jQuery('html')[0]},
+            defaults = {type: 'keydown', propagate: false, disableininput: false, target: jquery('html')[0]},
             that = this;
-        opt = jQuery.extend( opt , defaults, options || {} );
-        combi = combi.toLowerCase();
+        opt = jquery.extend( opt , defaults, options || {} );
+        combi = combi.tolowercase();
 
         // inspect if keystroke matches
         var inspector = function(event) {
-            // WP: not needed with newer jQuery
-            // event = jQuery.event.fix(event); // jQuery event normalization.
+            // wp: not needed with newer jquery
+            // event = jquery.event.fix(event); // jquery event normalization.
             var element = event.target;
-            // @ TextNode -> nodeType == 3
-            // WP: not needed with newer jQuery
-            // element = (element.nodeType==3) ? element.parentNode : element;
+            // @ textnode -> nodetype == 3
+            // wp: not needed with newer jquery
+            // element = (element.nodetype==3) ? element.parentnode : element;
 
-            if ( opt['disableInInput'] ) { // Disable shortcut keys in Input, Textarea fields
-                var target = jQuery(element);
+            if ( opt['disableininput'] ) { // disable shortcut keys in input, textarea fields
+                var target = jquery(element);
 
 				if ( ( target.is('input') || target.is('textarea') ) &&
-					( ! opt.noDisable || ! target.is( opt.noDisable ) ) ) {
+					( ! opt.nodisable || ! target.is( opt.nodisable ) ) ) {
 
 					return;
                 }
             }
             var code = event.which,
                 type = event.type,
-                character = String.fromCharCode(code).toLowerCase(),
+                character = string.fromcharcode(code).tolowercase(),
                 special = that.special_keys[code],
-                shift = event.shiftKey,
-                ctrl = event.ctrlKey,
-                alt= event.altKey,
-                meta = event.metaKey,
+                shift = event.shiftkey,
+                ctrl = event.ctrlkey,
+                alt= event.altkey,
+                meta = event.metakey,
                 propagate = true, // default behaivour
-                mapPoint = null;
+                mappoint = null;
 
             // in opera + safari, the event.target is unpredictable.
-            // for example: 'keydown' might be associated with HtmlBodyElement
+            // for example: 'keydown' might be associated with htmlbodyelement
             // or the element where you last clicked with your mouse.
-            // WP: needed for all browsers
-            // if (jQuery.browser.opera || jQuery.browser.safari){
-                while (!that.all[element] && element.parentNode){
-                    element = element.parentNode;
+            // wp: needed for all browsers
+            // if (jquery.browser.opera || jquery.browser.safari){
+                while (!that.all[element] && element.parentnode){
+                    element = element.parentnode;
                 }
             // }
-            var cbMap = that.all[element].events[type].callbackMap;
-            if(!shift && !ctrl && !alt && !meta) { // No Modifiers
-                mapPoint = cbMap[special] ||  cbMap[character]
+            var cbmap = that.all[element].events[type].callbackmap;
+            if(!shift && !ctrl && !alt && !meta) { // no modifiers
+                mappoint = cbmap[special] ||  cbmap[character]
 			}
             // deals with combinaitons (alt|ctrl|shift+anything)
             else{
@@ -99,13 +99,13 @@ USAGE:
                 if(shift) modif += 'shift+';
                 if(meta) modif += 'meta+';
                 // modifiers + special keys or modifiers + characters or modifiers + shift characters
-                mapPoint = cbMap[modif+special] || cbMap[modif+character] || cbMap[modif+that.shift_nums[character]]
+                mappoint = cbmap[modif+special] || cbmap[modif+character] || cbmap[modif+that.shift_nums[character]]
             }
-            if (mapPoint){
-                mapPoint.cb(event);
-                if(!mapPoint.propagate) {
-                    event.stopPropagation();
-                    event.preventDefault();
+            if (mappoint){
+                mappoint.cb(event);
+                if(!mappoint.propagate) {
+                    event.stoppropagation();
+                    event.preventdefault();
                     return false;
                 }
             }
@@ -115,20 +115,22 @@ USAGE:
             this.all[opt.target] = {events:{}};
         }
         if (!this.all[opt.target].events[opt.type]){
-            this.all[opt.target].events[opt.type] = {callbackMap: {}}
-            jQuery.event.add(opt.target, opt.type, inspector);
+            this.all[opt.target].events[opt.type] = {callbackmap: {}}
+            jquery.event.add(opt.target, opt.type, inspector);
         }
-        this.all[opt.target].events[opt.type].callbackMap[combi] =  {cb: callback, propagate:opt.propagate};
-        return jQuery;
+        this.all[opt.target].events[opt.type].callbackmap[combi] =  {cb: callback, propagate:opt.propagate};
+        return jquery;
 	};
     this.remove = function(exp, opt) {
         opt = opt || {};
-        target = opt.target || jQuery('html')[0];
+        target = opt.target || jquery('html')[0];
         type = opt.type || 'keydown';
-		exp = exp.toLowerCase();
-        delete this.all[target].events[type].callbackMap[exp]
-        return jQuery;
+		exp = exp.tolowercase();
+        delete this.all[target].events[type].callbackmap[exp]
+        return jquery;
 	};
-    jQuery.hotkeys = this;
-    return jQuery;
-})(jQuery);
+    jquery.hotkeys = this;
+    return jquery;
+})(jquery);
+
+

@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,128 +10,128 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  privateApis: () => (/* reexport */ privateApis)
+  privateapis: () => (/* reexport */ privateapis)
 });
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
 ;// ./node_modules/route-recognizer/dist/route-recognizer.es.js
-var createObject = Object.create;
-function createMap() {
-    var map = createObject(null);
+var createobject = object.create;
+function createmap() {
+    var map = createobject(null);
     map["__"] = undefined;
     delete map["__"];
     return map;
 }
 
-var Target = function Target(path, matcher, delegate) {
+var target = function target(path, matcher, delegate) {
     this.path = path;
     this.matcher = matcher;
     this.delegate = delegate;
 };
-Target.prototype.to = function to (target, callback) {
+target.prototype.to = function to (target, callback) {
     var delegate = this.delegate;
-    if (delegate && delegate.willAddRoute) {
-        target = delegate.willAddRoute(this.matcher.target, target);
+    if (delegate && delegate.willaddroute) {
+        target = delegate.willaddroute(this.matcher.target, target);
     }
     this.matcher.add(this.path, target);
     if (callback) {
         if (callback.length === 0) {
-            throw new Error("You must have an argument in the function passed to `to`");
+            throw new error("you must have an argument in the function passed to `to`");
         }
-        this.matcher.addChild(this.path, target, callback, this.delegate);
+        this.matcher.addchild(this.path, target, callback, this.delegate);
     }
 };
-var Matcher = function Matcher(target) {
-    this.routes = createMap();
-    this.children = createMap();
+var matcher = function matcher(target) {
+    this.routes = createmap();
+    this.children = createmap();
     this.target = target;
 };
-Matcher.prototype.add = function add (path, target) {
+matcher.prototype.add = function add (path, target) {
     this.routes[path] = target;
 };
-Matcher.prototype.addChild = function addChild (path, target, callback, delegate) {
-    var matcher = new Matcher(target);
+matcher.prototype.addchild = function addchild (path, target, callback, delegate) {
+    var matcher = new matcher(target);
     this.children[path] = matcher;
-    var match = generateMatch(path, matcher, delegate);
-    if (delegate && delegate.contextEntered) {
-        delegate.contextEntered(target, match);
+    var match = generatematch(path, matcher, delegate);
+    if (delegate && delegate.contextentered) {
+        delegate.contextentered(target, match);
     }
     callback(match);
 };
-function generateMatch(startingPath, matcher, delegate) {
+function generatematch(startingpath, matcher, delegate) {
     function match(path, callback) {
-        var fullPath = startingPath + path;
+        var fullpath = startingpath + path;
         if (callback) {
-            callback(generateMatch(fullPath, matcher, delegate));
+            callback(generatematch(fullpath, matcher, delegate));
         }
         else {
-            return new Target(fullPath, matcher, delegate);
+            return new target(fullpath, matcher, delegate);
         }
     }
     
     return match;
 }
-function addRoute(routeArray, path, handler) {
+function addroute(routearray, path, handler) {
     var len = 0;
-    for (var i = 0; i < routeArray.length; i++) {
-        len += routeArray[i].path.length;
+    for (var i = 0; i < routearray.length; i++) {
+        len += routearray[i].path.length;
     }
     path = path.substr(len);
     var route = { path: path, handler: handler };
-    routeArray.push(route);
+    routearray.push(route);
 }
-function eachRoute(baseRoute, matcher, callback, binding) {
+function eachroute(baseroute, matcher, callback, binding) {
     var routes = matcher.routes;
-    var paths = Object.keys(routes);
+    var paths = object.keys(routes);
     for (var i = 0; i < paths.length; i++) {
         var path = paths[i];
-        var routeArray = baseRoute.slice();
-        addRoute(routeArray, path, routes[path]);
+        var routearray = baseroute.slice();
+        addroute(routearray, path, routes[path]);
         var nested = matcher.children[path];
         if (nested) {
-            eachRoute(routeArray, nested, callback, binding);
+            eachroute(routearray, nested, callback, binding);
         }
         else {
-            callback.call(binding, routeArray);
+            callback.call(binding, routearray);
         }
     }
 }
-var map = function (callback, addRouteCallback) {
-    var matcher = new Matcher();
-    callback(generateMatch("", matcher, this.delegate));
-    eachRoute([], matcher, function (routes) {
-        if (addRouteCallback) {
-            addRouteCallback(this, routes);
+var map = function (callback, addroutecallback) {
+    var matcher = new matcher();
+    callback(generatematch("", matcher, this.delegate));
+    eachroute([], matcher, function (routes) {
+        if (addroutecallback) {
+            addroutecallback(this, routes);
         }
         else {
             this.add(routes);
@@ -139,278 +139,278 @@ var map = function (callback, addRouteCallback) {
     }, this);
 };
 
-// Normalizes percent-encoded values in `path` to upper-case and decodes percent-encoded
-// values that are not reserved (i.e., unicode characters, emoji, etc). The reserved
+// normalizes percent-encoded values in `path` to upper-case and decodes percent-encoded
+// values that are not reserved (i.e., unicode characters, emoji, etc). the reserved
 // chars are "/" and "%".
-// Safe to call multiple times on the same path.
-// Normalizes percent-encoded values in `path` to upper-case and decodes percent-encoded
-function normalizePath(path) {
+// safe to call multiple times on the same path.
+// normalizes percent-encoded values in `path` to upper-case and decodes percent-encoded
+function normalizepath(path) {
     return path.split("/")
-        .map(normalizeSegment)
+        .map(normalizesegment)
         .join("/");
 }
-// We want to ensure the characters "%" and "/" remain in percent-encoded
+// we want to ensure the characters "%" and "/" remain in percent-encoded
 // form when normalizing paths, so replace them with their encoded form after
 // decoding the rest of the path
-var SEGMENT_RESERVED_CHARS = /%|\//g;
-function normalizeSegment(segment) {
-    if (segment.length < 3 || segment.indexOf("%") === -1)
+var segment_reserved_chars = /%|\//g;
+function normalizesegment(segment) {
+    if (segment.length < 3 || segment.indexof("%") === -1)
         { return segment; }
-    return decodeURIComponent(segment).replace(SEGMENT_RESERVED_CHARS, encodeURIComponent);
+    return decodeuricomponent(segment).replace(segment_reserved_chars, encodeuricomponent);
 }
-// We do not want to encode these characters when generating dynamic path segments
-// See https://tools.ietf.org/html/rfc3986#section-3.3
+// we do not want to encode these characters when generating dynamic path segments
+// see https://tools.ietf.org/html/rfc3986#section-3.3
 // sub-delims: "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "="
-// others allowed by RFC 3986: ":", "@"
+// others allowed by rfc 3986: ":", "@"
 //
-// First encode the entire path segment, then decode any of the encoded special chars.
+// first encode the entire path segment, then decode any of the encoded special chars.
 //
-// The chars "!", "'", "(", ")", "*" do not get changed by `encodeURIComponent`,
+// the chars "!", "'", "(", ")", "*" do not get changed by `encodeuricomponent`,
 // so the possible encoded chars are:
-// ['%24', '%26', '%2B', '%2C', '%3B', '%3D', '%3A', '%40'].
-var PATH_SEGMENT_ENCODINGS = /%(?:2(?:4|6|B|C)|3(?:B|D|A)|40)/g;
-function encodePathSegment(str) {
-    return encodeURIComponent(str).replace(PATH_SEGMENT_ENCODINGS, decodeURIComponent);
+// ['%24', '%26', '%2b', '%2c', '%3b', '%3d', '%3a', '%40'].
+var path_segment_encodings = /%(?:2(?:4|6|b|c)|3(?:b|d|a)|40)/g;
+function encodepathsegment(str) {
+    return encodeuricomponent(str).replace(path_segment_encodings, decodeuricomponent);
 }
 
-var escapeRegex = /(\/|\.|\*|\+|\?|\||\(|\)|\[|\]|\{|\}|\\)/g;
-var isArray = Array.isArray;
-var route_recognizer_es_hasOwnProperty = Object.prototype.hasOwnProperty;
-function getParam(params, key) {
+var escaperegex = /(\/|\.|\*|\+|\?|\||\(|\)|\[|\]|\{|\}|\\)/g;
+var isarray = array.isarray;
+var route_recognizer_es_hasownproperty = object.prototype.hasownproperty;
+function getparam(params, key) {
     if (typeof params !== "object" || params === null) {
-        throw new Error("You must pass an object as the second argument to `generate`.");
+        throw new error("you must pass an object as the second argument to `generate`.");
     }
-    if (!route_recognizer_es_hasOwnProperty.call(params, key)) {
-        throw new Error("You must provide param `" + key + "` to `generate`.");
+    if (!route_recognizer_es_hasownproperty.call(params, key)) {
+        throw new error("you must provide param `" + key + "` to `generate`.");
     }
     var value = params[key];
     var str = typeof value === "string" ? value : "" + value;
     if (str.length === 0) {
-        throw new Error("You must provide a param `" + key + "`.");
+        throw new error("you must provide a param `" + key + "`.");
     }
     return str;
 }
-var eachChar = [];
-eachChar[0 /* Static */] = function (segment, currentState) {
-    var state = currentState;
+var eachchar = [];
+eachchar[0 /* static */] = function (segment, currentstate) {
+    var state = currentstate;
     var value = segment.value;
     for (var i = 0; i < value.length; i++) {
-        var ch = value.charCodeAt(i);
+        var ch = value.charcodeat(i);
         state = state.put(ch, false, false);
     }
     return state;
 };
-eachChar[1 /* Dynamic */] = function (_, currentState) {
-    return currentState.put(47 /* SLASH */, true, true);
+eachchar[1 /* dynamic */] = function (_, currentstate) {
+    return currentstate.put(47 /* slash */, true, true);
 };
-eachChar[2 /* Star */] = function (_, currentState) {
-    return currentState.put(-1 /* ANY */, false, true);
+eachchar[2 /* star */] = function (_, currentstate) {
+    return currentstate.put(-1 /* any */, false, true);
 };
-eachChar[4 /* Epsilon */] = function (_, currentState) {
-    return currentState;
+eachchar[4 /* epsilon */] = function (_, currentstate) {
+    return currentstate;
 };
 var regex = [];
-regex[0 /* Static */] = function (segment) {
-    return segment.value.replace(escapeRegex, "\\$1");
+regex[0 /* static */] = function (segment) {
+    return segment.value.replace(escaperegex, "\\$1");
 };
-regex[1 /* Dynamic */] = function () {
+regex[1 /* dynamic */] = function () {
     return "([^/]+)";
 };
-regex[2 /* Star */] = function () {
+regex[2 /* star */] = function () {
     return "(.+)";
 };
-regex[4 /* Epsilon */] = function () {
+regex[4 /* epsilon */] = function () {
     return "";
 };
 var generate = [];
-generate[0 /* Static */] = function (segment) {
+generate[0 /* static */] = function (segment) {
     return segment.value;
 };
-generate[1 /* Dynamic */] = function (segment, params) {
-    var value = getParam(params, segment.value);
-    if (RouteRecognizer.ENCODE_AND_DECODE_PATH_SEGMENTS) {
-        return encodePathSegment(value);
+generate[1 /* dynamic */] = function (segment, params) {
+    var value = getparam(params, segment.value);
+    if (routerecognizer.encode_and_decode_path_segments) {
+        return encodepathsegment(value);
     }
     else {
         return value;
     }
 };
-generate[2 /* Star */] = function (segment, params) {
-    return getParam(params, segment.value);
+generate[2 /* star */] = function (segment, params) {
+    return getparam(params, segment.value);
 };
-generate[4 /* Epsilon */] = function () {
+generate[4 /* epsilon */] = function () {
     return "";
 };
-var EmptyObject = Object.freeze({});
-var EmptyArray = Object.freeze([]);
-// The `names` will be populated with the paramter name for each dynamic/star
-// segment. `shouldDecodes` will be populated with a boolean for each dyanamic/star
+var emptyobject = object.freeze({});
+var emptyarray = object.freeze([]);
+// the `names` will be populated with the paramter name for each dynamic/star
+// segment. `shoulddecodes` will be populated with a boolean for each dyanamic/star
 // segment, indicating whether it should be decoded during recognition.
 function parse(segments, route, types) {
-    // normalize route as not starting with a "/". Recognition will
+    // normalize route as not starting with a "/". recognition will
     // also normalize.
-    if (route.length > 0 && route.charCodeAt(0) === 47 /* SLASH */) {
+    if (route.length > 0 && route.charcodeat(0) === 47 /* slash */) {
         route = route.substr(1);
     }
     var parts = route.split("/");
     var names = undefined;
-    var shouldDecodes = undefined;
+    var shoulddecodes = undefined;
     for (var i = 0; i < parts.length; i++) {
         var part = parts[i];
         var flags = 0;
         var type = 0;
         if (part === "") {
-            type = 4 /* Epsilon */;
+            type = 4 /* epsilon */;
         }
-        else if (part.charCodeAt(0) === 58 /* COLON */) {
-            type = 1 /* Dynamic */;
+        else if (part.charcodeat(0) === 58 /* colon */) {
+            type = 1 /* dynamic */;
         }
-        else if (part.charCodeAt(0) === 42 /* STAR */) {
-            type = 2 /* Star */;
+        else if (part.charcodeat(0) === 42 /* star */) {
+            type = 2 /* star */;
         }
         else {
-            type = 0 /* Static */;
+            type = 0 /* static */;
         }
         flags = 2 << type;
-        if (flags & 12 /* Named */) {
+        if (flags & 12 /* named */) {
             part = part.slice(1);
             names = names || [];
             names.push(part);
-            shouldDecodes = shouldDecodes || [];
-            shouldDecodes.push((flags & 4 /* Decoded */) !== 0);
+            shoulddecodes = shoulddecodes || [];
+            shoulddecodes.push((flags & 4 /* decoded */) !== 0);
         }
-        if (flags & 14 /* Counted */) {
+        if (flags & 14 /* counted */) {
             types[type]++;
         }
         segments.push({
             type: type,
-            value: normalizeSegment(part)
+            value: normalizesegment(part)
         });
     }
     return {
-        names: names || EmptyArray,
-        shouldDecodes: shouldDecodes || EmptyArray,
+        names: names || emptyarray,
+        shoulddecodes: shoulddecodes || emptyarray,
     };
 }
-function isEqualCharSpec(spec, char, negate) {
+function isequalcharspec(spec, char, negate) {
     return spec.char === char && spec.negate === negate;
 }
-// A State has a character specification and (`charSpec`) and a list of possible
-// subsequent states (`nextStates`).
+// a state has a character specification and (`charspec`) and a list of possible
+// subsequent states (`nextstates`).
 //
-// If a State is an accepting state, it will also have several additional
+// if a state is an accepting state, it will also have several additional
 // properties:
 //
-// * `regex`: A regular expression that is used to extract parameters from paths
+// * `regex`: a regular expression that is used to extract parameters from paths
 //   that reached this accepting state.
-// * `handlers`: Information on how to convert the list of captures into calls
+// * `handlers`: information on how to convert the list of captures into calls
 //   to registered handlers with the specified parameters
-// * `types`: How many static, dynamic or star segments in this route. Used to
+// * `types`: how many static, dynamic or star segments in this route. used to
 //   decide which route to use if multiple registered routes match a path.
 //
-// Currently, State is implemented naively by looping over `nextStates` and
-// comparing a character specification against a character. A more efficient
+// currently, state is implemented naively by looping over `nextstates` and
+// comparing a character specification against a character. a more efficient
 // implementation would use a hash of keys pointing at one or more next states.
-var State = function State(states, id, char, negate, repeat) {
+var state = function state(states, id, char, negate, repeat) {
     this.states = states;
     this.id = id;
     this.char = char;
     this.negate = negate;
-    this.nextStates = repeat ? id : null;
+    this.nextstates = repeat ? id : null;
     this.pattern = "";
     this._regex = undefined;
     this.handlers = undefined;
     this.types = undefined;
 };
-State.prototype.regex = function regex$1 () {
+state.prototype.regex = function regex$1 () {
     if (!this._regex) {
-        this._regex = new RegExp(this.pattern);
+        this._regex = new regexp(this.pattern);
     }
     return this._regex;
 };
-State.prototype.get = function get (char, negate) {
+state.prototype.get = function get (char, negate) {
         var this$1 = this;
 
-    var nextStates = this.nextStates;
-    if (nextStates === null)
+    var nextstates = this.nextstates;
+    if (nextstates === null)
         { return; }
-    if (isArray(nextStates)) {
-        for (var i = 0; i < nextStates.length; i++) {
-            var child = this$1.states[nextStates[i]];
-            if (isEqualCharSpec(child, char, negate)) {
+    if (isarray(nextstates)) {
+        for (var i = 0; i < nextstates.length; i++) {
+            var child = this$1.states[nextstates[i]];
+            if (isequalcharspec(child, char, negate)) {
                 return child;
             }
         }
     }
     else {
-        var child$1 = this.states[nextStates];
-        if (isEqualCharSpec(child$1, char, negate)) {
+        var child$1 = this.states[nextstates];
+        if (isequalcharspec(child$1, char, negate)) {
             return child$1;
         }
     }
 };
-State.prototype.put = function put (char, negate, repeat) {
+state.prototype.put = function put (char, negate, repeat) {
     var state;
-    // If the character specification already exists in a child of the current
+    // if the character specification already exists in a child of the current
     // state, just return that state.
     if (state = this.get(char, negate)) {
         return state;
     }
-    // Make a new state for the character spec
+    // make a new state for the character spec
     var states = this.states;
-    state = new State(states, states.length, char, negate, repeat);
+    state = new state(states, states.length, char, negate, repeat);
     states[states.length] = state;
-    // Insert the new state as a child of the current state
-    if (this.nextStates == null) {
-        this.nextStates = state.id;
+    // insert the new state as a child of the current state
+    if (this.nextstates == null) {
+        this.nextstates = state.id;
     }
-    else if (isArray(this.nextStates)) {
-        this.nextStates.push(state.id);
+    else if (isarray(this.nextstates)) {
+        this.nextstates.push(state.id);
     }
     else {
-        this.nextStates = [this.nextStates, state.id];
+        this.nextstates = [this.nextstates, state.id];
     }
-    // Return the new state
+    // return the new state
     return state;
 };
-// Find a list of child states matching the next character
-State.prototype.match = function match (ch) {
+// find a list of child states matching the next character
+state.prototype.match = function match (ch) {
         var this$1 = this;
 
-    var nextStates = this.nextStates;
-    if (!nextStates)
+    var nextstates = this.nextstates;
+    if (!nextstates)
         { return []; }
     var returned = [];
-    if (isArray(nextStates)) {
-        for (var i = 0; i < nextStates.length; i++) {
-            var child = this$1.states[nextStates[i]];
-            if (isMatch(child, ch)) {
+    if (isarray(nextstates)) {
+        for (var i = 0; i < nextstates.length; i++) {
+            var child = this$1.states[nextstates[i]];
+            if (ismatch(child, ch)) {
                 returned.push(child);
             }
         }
     }
     else {
-        var child$1 = this.states[nextStates];
-        if (isMatch(child$1, ch)) {
+        var child$1 = this.states[nextstates];
+        if (ismatch(child$1, ch)) {
             returned.push(child$1);
         }
     }
     return returned;
 };
-function isMatch(spec, char) {
-    return spec.negate ? spec.char !== char && spec.char !== -1 /* ANY */ : spec.char === char || spec.char === -1 /* ANY */;
+function ismatch(spec, char) {
+    return spec.negate ? spec.char !== char && spec.char !== -1 /* any */ : spec.char === char || spec.char === -1 /* any */;
 }
-// This is a somewhat naive strategy, but should work in a lot of cases
-// A better strategy would properly resolve /posts/:id/new and /posts/edit/:id.
+// this is a somewhat naive strategy, but should work in a lot of cases
+// a better strategy would properly resolve /posts/:id/new and /posts/edit/:id.
 //
-// This strategy generally prefers more static and less dynamic matching.
-// Specifically, it
+// this strategy generally prefers more static and less dynamic matching.
+// specifically, it
 //
 //  * prefers fewer stars to more, then
 //  * prefers using stars for less of the match to more, then
 //  * prefers fewer dynamic segments to more, then
 //  * prefers more static segments to more
-function sortSolutions(states) {
+function sortsolutions(states) {
     return states.sort(function (a, b) {
         var ref = a.types || [0, 0, 0];
         var astatics = ref[0];
@@ -440,47 +440,47 @@ function sortSolutions(states) {
         return 0;
     });
 }
-function recognizeChar(states, ch) {
-    var nextStates = [];
+function recognizechar(states, ch) {
+    var nextstates = [];
     for (var i = 0, l = states.length; i < l; i++) {
         var state = states[i];
-        nextStates = nextStates.concat(state.match(ch));
+        nextstates = nextstates.concat(state.match(ch));
     }
-    return nextStates;
+    return nextstates;
 }
-var RecognizeResults = function RecognizeResults(queryParams) {
+var recognizeresults = function recognizeresults(queryparams) {
     this.length = 0;
-    this.queryParams = queryParams || {};
+    this.queryparams = queryparams || {};
 };
 
-RecognizeResults.prototype.splice = Array.prototype.splice;
-RecognizeResults.prototype.slice = Array.prototype.slice;
-RecognizeResults.prototype.push = Array.prototype.push;
-function findHandler(state, originalPath, queryParams) {
+recognizeresults.prototype.splice = array.prototype.splice;
+recognizeresults.prototype.slice = array.prototype.slice;
+recognizeresults.prototype.push = array.prototype.push;
+function findhandler(state, originalpath, queryparams) {
     var handlers = state.handlers;
     var regex = state.regex();
     if (!regex || !handlers)
-        { throw new Error("state not initialized"); }
-    var captures = originalPath.match(regex);
-    var currentCapture = 1;
-    var result = new RecognizeResults(queryParams);
+        { throw new error("state not initialized"); }
+    var captures = originalpath.match(regex);
+    var currentcapture = 1;
+    var result = new recognizeresults(queryparams);
     result.length = handlers.length;
     for (var i = 0; i < handlers.length; i++) {
         var handler = handlers[i];
         var names = handler.names;
-        var shouldDecodes = handler.shouldDecodes;
-        var params = EmptyObject;
-        var isDynamic = false;
-        if (names !== EmptyArray && shouldDecodes !== EmptyArray) {
+        var shoulddecodes = handler.shoulddecodes;
+        var params = emptyobject;
+        var isdynamic = false;
+        if (names !== emptyarray && shoulddecodes !== emptyarray) {
             for (var j = 0; j < names.length; j++) {
-                isDynamic = true;
+                isdynamic = true;
                 var name = names[j];
-                var capture = captures && captures[currentCapture++];
-                if (params === EmptyObject) {
+                var capture = captures && captures[currentcapture++];
+                if (params === emptyobject) {
                     params = {};
                 }
-                if (RouteRecognizer.ENCODE_AND_DECODE_PATH_SEGMENTS && shouldDecodes[j]) {
-                    params[name] = capture && decodeURIComponent(capture);
+                if (routerecognizer.encode_and_decode_path_segments && shoulddecodes[j]) {
+                    params[name] = capture && decodeuricomponent(capture);
                 }
                 else {
                     params[name] = capture;
@@ -490,126 +490,126 @@ function findHandler(state, originalPath, queryParams) {
         result[i] = {
             handler: handler.handler,
             params: params,
-            isDynamic: isDynamic
+            isdynamic: isdynamic
         };
     }
     return result;
 }
-function decodeQueryParamPart(part) {
-    // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
+function decodequeryparampart(part) {
+    // http://www.w3.org/tr/html401/interact/forms.html#h-17.13.4.1
     part = part.replace(/\+/gm, "%20");
     var result;
     try {
-        result = decodeURIComponent(part);
+        result = decodeuricomponent(part);
     }
     catch (error) {
         result = "";
     }
     return result;
 }
-var RouteRecognizer = function RouteRecognizer() {
-    this.names = createMap();
+var routerecognizer = function routerecognizer() {
+    this.names = createmap();
     var states = [];
-    var state = new State(states, 0, -1 /* ANY */, true, false);
+    var state = new state(states, 0, -1 /* any */, true, false);
     states[0] = state;
     this.states = states;
-    this.rootState = state;
+    this.rootstate = state;
 };
-RouteRecognizer.prototype.add = function add (routes, options) {
-    var currentState = this.rootState;
+routerecognizer.prototype.add = function add (routes, options) {
+    var currentstate = this.rootstate;
     var pattern = "^";
     var types = [0, 0, 0];
-    var handlers = new Array(routes.length);
-    var allSegments = [];
-    var isEmpty = true;
+    var handlers = new array(routes.length);
+    var allsegments = [];
+    var isempty = true;
     var j = 0;
     for (var i = 0; i < routes.length; i++) {
         var route = routes[i];
-        var ref = parse(allSegments, route.path, types);
+        var ref = parse(allsegments, route.path, types);
             var names = ref.names;
-            var shouldDecodes = ref.shouldDecodes;
+            var shoulddecodes = ref.shoulddecodes;
         // preserve j so it points to the start of newly added segments
-        for (; j < allSegments.length; j++) {
-            var segment = allSegments[j];
-            if (segment.type === 4 /* Epsilon */) {
+        for (; j < allsegments.length; j++) {
+            var segment = allsegments[j];
+            if (segment.type === 4 /* epsilon */) {
                 continue;
             }
-            isEmpty = false;
-            // Add a "/" for the new segment
-            currentState = currentState.put(47 /* SLASH */, false, false);
+            isempty = false;
+            // add a "/" for the new segment
+            currentstate = currentstate.put(47 /* slash */, false, false);
             pattern += "/";
-            // Add a representation of the segment to the NFA and regex
-            currentState = eachChar[segment.type](segment, currentState);
+            // add a representation of the segment to the nfa and regex
+            currentstate = eachchar[segment.type](segment, currentstate);
             pattern += regex[segment.type](segment);
         }
         handlers[i] = {
             handler: route.handler,
             names: names,
-            shouldDecodes: shouldDecodes
+            shoulddecodes: shoulddecodes
         };
     }
-    if (isEmpty) {
-        currentState = currentState.put(47 /* SLASH */, false, false);
+    if (isempty) {
+        currentstate = currentstate.put(47 /* slash */, false, false);
         pattern += "/";
     }
-    currentState.handlers = handlers;
-    currentState.pattern = pattern + "$";
-    currentState.types = types;
+    currentstate.handlers = handlers;
+    currentstate.pattern = pattern + "$";
+    currentstate.types = types;
     var name;
     if (typeof options === "object" && options !== null && options.as) {
         name = options.as;
     }
     if (name) {
         // if (this.names[name]) {
-        //   throw new Error("You may not add a duplicate route named `" + name + "`.");
+        //   throw new error("you may not add a duplicate route named `" + name + "`.");
         // }
         this.names[name] = {
-            segments: allSegments,
+            segments: allsegments,
             handlers: handlers
         };
     }
 };
-RouteRecognizer.prototype.handlersFor = function handlersFor (name) {
+routerecognizer.prototype.handlersfor = function handlersfor (name) {
     var route = this.names[name];
     if (!route) {
-        throw new Error("There is no route named " + name);
+        throw new error("there is no route named " + name);
     }
-    var result = new Array(route.handlers.length);
+    var result = new array(route.handlers.length);
     for (var i = 0; i < route.handlers.length; i++) {
         var handler = route.handlers[i];
         result[i] = handler;
     }
     return result;
 };
-RouteRecognizer.prototype.hasRoute = function hasRoute (name) {
+routerecognizer.prototype.hasroute = function hasroute (name) {
     return !!this.names[name];
 };
-RouteRecognizer.prototype.generate = function generate$1 (name, params) {
+routerecognizer.prototype.generate = function generate$1 (name, params) {
     var route = this.names[name];
     var output = "";
     if (!route) {
-        throw new Error("There is no route named " + name);
+        throw new error("there is no route named " + name);
     }
     var segments = route.segments;
     for (var i = 0; i < segments.length; i++) {
         var segment = segments[i];
-        if (segment.type === 4 /* Epsilon */) {
+        if (segment.type === 4 /* epsilon */) {
             continue;
         }
         output += "/";
         output += generate[segment.type](segment, params);
     }
-    if (output.charAt(0) !== "/") {
+    if (output.charat(0) !== "/") {
         output = "/" + output;
     }
-    if (params && params.queryParams) {
-        output += this.generateQueryString(params.queryParams);
+    if (params && params.queryparams) {
+        output += this.generatequerystring(params.queryparams);
     }
     return output;
 };
-RouteRecognizer.prototype.generateQueryString = function generateQueryString (params) {
+routerecognizer.prototype.generatequerystring = function generatequerystring (params) {
     var pairs = [];
-    var keys = Object.keys(params);
+    var keys = object.keys(params);
     keys.sort();
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i];
@@ -617,15 +617,15 @@ RouteRecognizer.prototype.generateQueryString = function generateQueryString (pa
         if (value == null) {
             continue;
         }
-        var pair = encodeURIComponent(key);
-        if (isArray(value)) {
+        var pair = encodeuricomponent(key);
+        if (isarray(value)) {
             for (var j = 0; j < value.length; j++) {
-                var arrayPair = key + "[]" + "=" + encodeURIComponent(value[j]);
-                pairs.push(arrayPair);
+                var arraypair = key + "[]" + "=" + encodeuricomponent(value[j]);
+                pairs.push(arraypair);
             }
         }
         else {
-            pair += "=" + encodeURIComponent(value);
+            pair += "=" + encodeuricomponent(value);
             pairs.push(pair);
         }
     }
@@ -634,68 +634,68 @@ RouteRecognizer.prototype.generateQueryString = function generateQueryString (pa
     }
     return "?" + pairs.join("&");
 };
-RouteRecognizer.prototype.parseQueryString = function parseQueryString (queryString) {
-    var pairs = queryString.split("&");
-    var queryParams = {};
+routerecognizer.prototype.parsequerystring = function parsequerystring (querystring) {
+    var pairs = querystring.split("&");
+    var queryparams = {};
     for (var i = 0; i < pairs.length; i++) {
-        var pair = pairs[i].split("="), key = decodeQueryParamPart(pair[0]), keyLength = key.length, isArray = false, value = (void 0);
+        var pair = pairs[i].split("="), key = decodequeryparampart(pair[0]), keylength = key.length, isarray = false, value = (void 0);
         if (pair.length === 1) {
             value = "true";
         }
         else {
-            // Handle arrays
-            if (keyLength > 2 && key.slice(keyLength - 2) === "[]") {
-                isArray = true;
-                key = key.slice(0, keyLength - 2);
-                if (!queryParams[key]) {
-                    queryParams[key] = [];
+            // handle arrays
+            if (keylength > 2 && key.slice(keylength - 2) === "[]") {
+                isarray = true;
+                key = key.slice(0, keylength - 2);
+                if (!queryparams[key]) {
+                    queryparams[key] = [];
                 }
             }
-            value = pair[1] ? decodeQueryParamPart(pair[1]) : "";
+            value = pair[1] ? decodequeryparampart(pair[1]) : "";
         }
-        if (isArray) {
-            queryParams[key].push(value);
+        if (isarray) {
+            queryparams[key].push(value);
         }
         else {
-            queryParams[key] = value;
+            queryparams[key] = value;
         }
     }
-    return queryParams;
+    return queryparams;
 };
-RouteRecognizer.prototype.recognize = function recognize (path) {
+routerecognizer.prototype.recognize = function recognize (path) {
     var results;
-    var states = [this.rootState];
-    var queryParams = {};
-    var isSlashDropped = false;
-    var hashStart = path.indexOf("#");
-    if (hashStart !== -1) {
-        path = path.substr(0, hashStart);
+    var states = [this.rootstate];
+    var queryparams = {};
+    var isslashdropped = false;
+    var hashstart = path.indexof("#");
+    if (hashstart !== -1) {
+        path = path.substr(0, hashstart);
     }
-    var queryStart = path.indexOf("?");
-    if (queryStart !== -1) {
-        var queryString = path.substr(queryStart + 1, path.length);
-        path = path.substr(0, queryStart);
-        queryParams = this.parseQueryString(queryString);
+    var querystart = path.indexof("?");
+    if (querystart !== -1) {
+        var querystring = path.substr(querystart + 1, path.length);
+        path = path.substr(0, querystart);
+        queryparams = this.parsequerystring(querystring);
     }
-    if (path.charAt(0) !== "/") {
+    if (path.charat(0) !== "/") {
         path = "/" + path;
     }
-    var originalPath = path;
-    if (RouteRecognizer.ENCODE_AND_DECODE_PATH_SEGMENTS) {
-        path = normalizePath(path);
+    var originalpath = path;
+    if (routerecognizer.encode_and_decode_path_segments) {
+        path = normalizepath(path);
     }
     else {
-        path = decodeURI(path);
-        originalPath = decodeURI(originalPath);
+        path = decodeuri(path);
+        originalpath = decodeuri(originalpath);
     }
-    var pathLen = path.length;
-    if (pathLen > 1 && path.charAt(pathLen - 1) === "/") {
-        path = path.substr(0, pathLen - 1);
-        originalPath = originalPath.substr(0, originalPath.length - 1);
-        isSlashDropped = true;
+    var pathlen = path.length;
+    if (pathlen > 1 && path.charat(pathlen - 1) === "/") {
+        path = path.substr(0, pathlen - 1);
+        originalpath = originalpath.substr(0, originalpath.length - 1);
+        isslashdropped = true;
     }
     for (var i = 0; i < path.length; i++) {
-        states = recognizeChar(states, path.charCodeAt(i));
+        states = recognizechar(states, path.charcodeat(i));
         if (!states.length) {
             break;
         }
@@ -706,36 +706,36 @@ RouteRecognizer.prototype.recognize = function recognize (path) {
             solutions.push(states[i$1]);
         }
     }
-    states = sortSolutions(solutions);
+    states = sortsolutions(solutions);
     var state = solutions[0];
     if (state && state.handlers) {
         // if a trailing slash was dropped and a star segment is the last segment
         // specified, put the trailing slash back
-        if (isSlashDropped && state.pattern && state.pattern.slice(-5) === "(.+)$") {
-            originalPath = originalPath + "/";
+        if (isslashdropped && state.pattern && state.pattern.slice(-5) === "(.+)$") {
+            originalpath = originalpath + "/";
         }
-        results = findHandler(state, originalPath, queryParams);
+        results = findhandler(state, originalpath, queryparams);
     }
     return results;
 };
-RouteRecognizer.VERSION = "0.3.4";
-// Set to false to opt-out of encoding and decoding path segments.
-// See https://github.com/tildeio/route-recognizer/pull/55
-RouteRecognizer.ENCODE_AND_DECODE_PATH_SEGMENTS = true;
-RouteRecognizer.Normalizer = {
-    normalizeSegment: normalizeSegment, normalizePath: normalizePath, encodePathSegment: encodePathSegment
+routerecognizer.version = "0.3.4";
+// set to false to opt-out of encoding and decoding path segments.
+// see https://github.com/tildeio/route-recognizer/pull/55
+routerecognizer.encode_and_decode_path_segments = true;
+routerecognizer.normalizer = {
+    normalizesegment: normalizesegment, normalizepath: normalizepath, encodepathsegment: encodepathsegment
 };
-RouteRecognizer.prototype.map = map;
+routerecognizer.prototype.map = map;
 
-/* harmony default export */ const route_recognizer_es = (RouteRecognizer);
+/* harmony default export */ const route_recognizer_es = (routerecognizer);
 
 
 ;// ./node_modules/@babel/runtime/helpers/esm/extends.js
 function extends_extends() {
-  return extends_extends = Object.assign ? Object.assign.bind() : function (n) {
+  return extends_extends = object.assign ? object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {
       var t = arguments[e];
-      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
+      for (var r in t) ({}).hasownproperty.call(t, r) && (n[r] = t[r]);
     }
     return n;
   }, extends_extends.apply(null, arguments);
@@ -745,37 +745,37 @@ function extends_extends() {
 
 
 /**
- * Actions represent the type of change to a location value.
+ * actions represent the type of change to a location value.
  *
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#action
  */
-var Action;
+var action;
 
-(function (Action) {
+(function (action) {
   /**
-   * A POP indicates a change to an arbitrary index in the history stack, such
-   * as a back or forward navigation. It does not describe the direction of the
+   * a pop indicates a change to an arbitrary index in the history stack, such
+   * as a back or forward navigation. it does not describe the direction of the
    * navigation, only that the current index changed.
    *
-   * Note: This is the default action for newly created history objects.
+   * note: this is the default action for newly created history objects.
    */
-  Action["Pop"] = "POP";
+  action["pop"] = "pop";
   /**
-   * A PUSH indicates a new entry being added to the history stack, such as when
-   * a link is clicked and a new page loads. When this happens, all subsequent
+   * a push indicates a new entry being added to the history stack, such as when
+   * a link is clicked and a new page loads. when this happens, all subsequent
    * entries in the stack are lost.
    */
 
-  Action["Push"] = "PUSH";
+  action["push"] = "push";
   /**
-   * A REPLACE indicates the entry at the current index in the history stack
+   * a replace indicates the entry at the current index in the history stack
    * being replaced by a new one.
    */
 
-  Action["Replace"] = "REPLACE";
-})(Action || (Action = {}));
+  action["replace"] = "replace";
+})(action || (action = {}));
 
-var readOnly =  false ? 0 : function (obj) {
+var readonly =  false ? 0 : function (obj) {
   return obj;
 };
 
@@ -785,44 +785,44 @@ function warning(cond, message) {
     if (typeof console !== 'undefined') console.warn(message);
 
     try {
-      // Welcome to debugging history!
+      // welcome to debugging history!
       //
-      // This error is thrown as a convenience so you can more easily
+      // this error is thrown as a convenience so you can more easily
       // find the source for a warning that appears in the console by
-      // enabling "pause on exceptions" in your JavaScript debugger.
-      throw new Error(message); // eslint-disable-next-line no-empty
+      // enabling "pause on exceptions" in your javascript debugger.
+      throw new error(message); // eslint-disable-next-line no-empty
     } catch (e) {}
   }
 }
 
-var BeforeUnloadEventType = 'beforeunload';
-var HashChangeEventType = 'hashchange';
-var PopStateEventType = 'popstate';
+var beforeunloadeventtype = 'beforeunload';
+var hashchangeeventtype = 'hashchange';
+var popstateeventtype = 'popstate';
 /**
- * Browser history stores the location in regular URLs. This is the standard for
+ * browser history stores the location in regular urls. this is the standard for
  * most web apps, but it requires some configuration on the server to ensure you
- * serve the same app at multiple URLs.
+ * serve the same app at multiple urls.
  *
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createbrowserhistory
  */
 
-function createBrowserHistory(options) {
+function createbrowserhistory(options) {
   if (options === void 0) {
     options = {};
   }
 
   var _options = options,
       _options$window = _options.window,
-      window = _options$window === void 0 ? document.defaultView : _options$window;
-  var globalHistory = window.history;
+      window = _options$window === void 0 ? document.defaultview : _options$window;
+  var globalhistory = window.history;
 
-  function getIndexAndLocation() {
+  function getindexandlocation() {
     var _window$location = window.location,
         pathname = _window$location.pathname,
         search = _window$location.search,
         hash = _window$location.hash;
-    var state = globalHistory.state || {};
-    return [state.idx, readOnly({
+    var state = globalhistory.state || {};
+    return [state.idx, readonly({
       pathname: pathname,
       search: search,
       hash: hash,
@@ -831,28 +831,28 @@ function createBrowserHistory(options) {
     })];
   }
 
-  var blockedPopTx = null;
+  var blockedpoptx = null;
 
-  function handlePop() {
-    if (blockedPopTx) {
-      blockers.call(blockedPopTx);
-      blockedPopTx = null;
+  function handlepop() {
+    if (blockedpoptx) {
+      blockers.call(blockedpoptx);
+      blockedpoptx = null;
     } else {
-      var nextAction = Action.Pop;
+      var nextaction = action.pop;
 
-      var _getIndexAndLocation = getIndexAndLocation(),
-          nextIndex = _getIndexAndLocation[0],
-          nextLocation = _getIndexAndLocation[1];
+      var _getindexandlocation = getindexandlocation(),
+          nextindex = _getindexandlocation[0],
+          nextlocation = _getindexandlocation[1];
 
       if (blockers.length) {
-        if (nextIndex != null) {
-          var delta = index - nextIndex;
+        if (nextindex != null) {
+          var delta = index - nextindex;
 
           if (delta) {
-            // Revert the POP
-            blockedPopTx = {
-              action: nextAction,
-              location: nextLocation,
+            // revert the pop
+            blockedpoptx = {
+              action: nextaction,
+              location: nextlocation,
               retry: function retry() {
                 go(delta * -1);
               }
@@ -860,62 +860,62 @@ function createBrowserHistory(options) {
             go(delta);
           }
         } else {
-          // Trying to POP to a location with no index. We did not create
+          // trying to pop to a location with no index. we did not create
           // this location, so we can't effectively block the navigation.
            false ? 0 : void 0;
         }
       } else {
-        applyTx(nextAction);
+        applytx(nextaction);
       }
     }
   }
 
-  window.addEventListener(PopStateEventType, handlePop);
-  var action = Action.Pop;
+  window.addeventlistener(popstateeventtype, handlepop);
+  var action = action.pop;
 
-  var _getIndexAndLocation2 = getIndexAndLocation(),
-      index = _getIndexAndLocation2[0],
-      location = _getIndexAndLocation2[1];
+  var _getindexandlocation2 = getindexandlocation(),
+      index = _getindexandlocation2[0],
+      location = _getindexandlocation2[1];
 
-  var listeners = createEvents();
-  var blockers = createEvents();
+  var listeners = createevents();
+  var blockers = createevents();
 
   if (index == null) {
     index = 0;
-    globalHistory.replaceState(extends_extends({}, globalHistory.state, {
+    globalhistory.replacestate(extends_extends({}, globalhistory.state, {
       idx: index
     }), '');
   }
 
-  function createHref(to) {
-    return typeof to === 'string' ? to : createPath(to);
+  function createhref(to) {
+    return typeof to === 'string' ? to : createpath(to);
   } // state defaults to `null` because `window.history.state` does
 
 
-  function getNextLocation(to, state) {
+  function getnextlocation(to, state) {
     if (state === void 0) {
       state = null;
     }
 
-    return readOnly(extends_extends({
+    return readonly(extends_extends({
       pathname: location.pathname,
       hash: '',
       search: ''
-    }, typeof to === 'string' ? parsePath(to) : to, {
+    }, typeof to === 'string' ? parsepath(to) : to, {
       state: state,
-      key: createKey()
+      key: createkey()
     }));
   }
 
-  function getHistoryStateAndUrl(nextLocation, index) {
+  function gethistorystateandurl(nextlocation, index) {
     return [{
-      usr: nextLocation.state,
-      key: nextLocation.key,
+      usr: nextlocation.state,
+      key: nextlocation.key,
       idx: index
-    }, createHref(nextLocation)];
+    }, createhref(nextlocation)];
   }
 
-  function allowTx(action, location, retry) {
+  function allowtx(action, location, retry) {
     return !blockers.length || (blockers.call({
       action: action,
       location: location,
@@ -923,13 +923,13 @@ function createBrowserHistory(options) {
     }), false);
   }
 
-  function applyTx(nextAction) {
-    action = nextAction;
+  function applytx(nextaction) {
+    action = nextaction;
 
-    var _getIndexAndLocation3 = getIndexAndLocation();
+    var _getindexandlocation3 = getindexandlocation();
 
-    index = _getIndexAndLocation3[0];
-    location = _getIndexAndLocation3[1];
+    index = _getindexandlocation3[0];
+    location = _getindexandlocation3[1];
     listeners.call({
       action: action,
       location: location
@@ -937,53 +937,53 @@ function createBrowserHistory(options) {
   }
 
   function push(to, state) {
-    var nextAction = Action.Push;
-    var nextLocation = getNextLocation(to, state);
+    var nextaction = action.push;
+    var nextlocation = getnextlocation(to, state);
 
     function retry() {
       push(to, state);
     }
 
-    if (allowTx(nextAction, nextLocation, retry)) {
-      var _getHistoryStateAndUr = getHistoryStateAndUrl(nextLocation, index + 1),
-          historyState = _getHistoryStateAndUr[0],
-          url = _getHistoryStateAndUr[1]; // TODO: Support forced reloading
-      // try...catch because iOS limits us to 100 pushState calls :/
+    if (allowtx(nextaction, nextlocation, retry)) {
+      var _gethistorystateandur = gethistorystateandurl(nextlocation, index + 1),
+          historystate = _gethistorystateandur[0],
+          url = _gethistorystateandur[1]; // todo: support forced reloading
+      // try...catch because ios limits us to 100 pushstate calls :/
 
 
       try {
-        globalHistory.pushState(historyState, '', url);
+        globalhistory.pushstate(historystate, '', url);
       } catch (error) {
-        // They are going to lose state here, but there is no real
+        // they are going to lose state here, but there is no real
         // way to warn them about it since the page will refresh...
         window.location.assign(url);
       }
 
-      applyTx(nextAction);
+      applytx(nextaction);
     }
   }
 
   function replace(to, state) {
-    var nextAction = Action.Replace;
-    var nextLocation = getNextLocation(to, state);
+    var nextaction = action.replace;
+    var nextlocation = getnextlocation(to, state);
 
     function retry() {
       replace(to, state);
     }
 
-    if (allowTx(nextAction, nextLocation, retry)) {
-      var _getHistoryStateAndUr2 = getHistoryStateAndUrl(nextLocation, index),
-          historyState = _getHistoryStateAndUr2[0],
-          url = _getHistoryStateAndUr2[1]; // TODO: Support forced reloading
+    if (allowtx(nextaction, nextlocation, retry)) {
+      var _gethistorystateandur2 = gethistorystateandurl(nextlocation, index),
+          historystate = _gethistorystateandur2[0],
+          url = _gethistorystateandur2[1]; // todo: support forced reloading
 
 
-      globalHistory.replaceState(historyState, '', url);
-      applyTx(nextAction);
+      globalhistory.replacestate(historystate, '', url);
+      applytx(nextaction);
     }
   }
 
   function go(delta) {
-    globalHistory.go(delta);
+    globalhistory.go(delta);
   }
 
   var history = {
@@ -995,7 +995,7 @@ function createBrowserHistory(options) {
       return location;
     },
 
-    createHref: createHref,
+    createhref: createhref,
     push: push,
     replace: replace,
     go: go,
@@ -1012,16 +1012,16 @@ function createBrowserHistory(options) {
       var unblock = blockers.push(blocker);
 
       if (blockers.length === 1) {
-        window.addEventListener(BeforeUnloadEventType, promptBeforeUnload);
+        window.addeventlistener(beforeunloadeventtype, promptbeforeunload);
       }
 
       return function () {
-        unblock(); // Remove the beforeunload listener so the document may
+        unblock(); // remove the beforeunload listener so the document may
         // still be salvageable in the pagehide event.
-        // See https://html.spec.whatwg.org/#unloading-documents
+        // see https://html.spec.whatwg.org/#unloading-documents
 
         if (!blockers.length) {
-          window.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
+          window.removeeventlistener(beforeunloadeventtype, promptbeforeunload);
         }
       };
     }
@@ -1029,35 +1029,35 @@ function createBrowserHistory(options) {
   return history;
 }
 /**
- * Hash history stores the location in window.location.hash. This makes it ideal
+ * hash history stores the location in window.location.hash. this makes it ideal
  * for situations where you don't want to send the location to the server for
- * some reason, either because you do cannot configure it or the URL space is
+ * some reason, either because you do cannot configure it or the url space is
  * reserved for something else.
  *
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createhashhistory
  */
 
-function createHashHistory(options) {
+function createhashhistory(options) {
   if (options === void 0) {
     options = {};
   }
 
   var _options2 = options,
       _options2$window = _options2.window,
-      window = _options2$window === void 0 ? document.defaultView : _options2$window;
-  var globalHistory = window.history;
+      window = _options2$window === void 0 ? document.defaultview : _options2$window;
+  var globalhistory = window.history;
 
-  function getIndexAndLocation() {
-    var _parsePath = parsePath(window.location.hash.substr(1)),
-        _parsePath$pathname = _parsePath.pathname,
-        pathname = _parsePath$pathname === void 0 ? '/' : _parsePath$pathname,
-        _parsePath$search = _parsePath.search,
-        search = _parsePath$search === void 0 ? '' : _parsePath$search,
-        _parsePath$hash = _parsePath.hash,
-        hash = _parsePath$hash === void 0 ? '' : _parsePath$hash;
+  function getindexandlocation() {
+    var _parsepath = parsepath(window.location.hash.substr(1)),
+        _parsepath$pathname = _parsepath.pathname,
+        pathname = _parsepath$pathname === void 0 ? '/' : _parsepath$pathname,
+        _parsepath$search = _parsepath.search,
+        search = _parsepath$search === void 0 ? '' : _parsepath$search,
+        _parsepath$hash = _parsepath.hash,
+        hash = _parsepath$hash === void 0 ? '' : _parsepath$hash;
 
-    var state = globalHistory.state || {};
-    return [state.idx, readOnly({
+    var state = globalhistory.state || {};
+    return [state.idx, readonly({
       pathname: pathname,
       search: search,
       hash: hash,
@@ -1066,28 +1066,28 @@ function createHashHistory(options) {
     })];
   }
 
-  var blockedPopTx = null;
+  var blockedpoptx = null;
 
-  function handlePop() {
-    if (blockedPopTx) {
-      blockers.call(blockedPopTx);
-      blockedPopTx = null;
+  function handlepop() {
+    if (blockedpoptx) {
+      blockers.call(blockedpoptx);
+      blockedpoptx = null;
     } else {
-      var nextAction = Action.Pop;
+      var nextaction = action.pop;
 
-      var _getIndexAndLocation4 = getIndexAndLocation(),
-          nextIndex = _getIndexAndLocation4[0],
-          nextLocation = _getIndexAndLocation4[1];
+      var _getindexandlocation4 = getindexandlocation(),
+          nextindex = _getindexandlocation4[0],
+          nextlocation = _getindexandlocation4[1];
 
       if (blockers.length) {
-        if (nextIndex != null) {
-          var delta = index - nextIndex;
+        if (nextindex != null) {
+          var delta = index - nextindex;
 
           if (delta) {
-            // Revert the POP
-            blockedPopTx = {
-              action: nextAction,
-              location: nextLocation,
+            // revert the pop
+            blockedpoptx = {
+              action: nextaction,
+              location: nextlocation,
               retry: function retry() {
                 go(delta * -1);
               }
@@ -1095,85 +1095,85 @@ function createHashHistory(options) {
             go(delta);
           }
         } else {
-          // Trying to POP to a location with no index. We did not create
+          // trying to pop to a location with no index. we did not create
           // this location, so we can't effectively block the navigation.
            false ? 0 : void 0;
         }
       } else {
-        applyTx(nextAction);
+        applytx(nextaction);
       }
     }
   }
 
-  window.addEventListener(PopStateEventType, handlePop); // popstate does not fire on hashchange in IE 11 and old (trident) Edge
-  // https://developer.mozilla.org/de/docs/Web/API/Window/popstate_event
+  window.addeventlistener(popstateeventtype, handlepop); // popstate does not fire on hashchange in ie 11 and old (trident) edge
+  // https://developer.mozilla.org/de/docs/web/api/window/popstate_event
 
-  window.addEventListener(HashChangeEventType, function () {
-    var _getIndexAndLocation5 = getIndexAndLocation(),
-        nextLocation = _getIndexAndLocation5[1]; // Ignore extraneous hashchange events.
+  window.addeventlistener(hashchangeeventtype, function () {
+    var _getindexandlocation5 = getindexandlocation(),
+        nextlocation = _getindexandlocation5[1]; // ignore extraneous hashchange events.
 
 
-    if (createPath(nextLocation) !== createPath(location)) {
-      handlePop();
+    if (createpath(nextlocation) !== createpath(location)) {
+      handlepop();
     }
   });
-  var action = Action.Pop;
+  var action = action.pop;
 
-  var _getIndexAndLocation6 = getIndexAndLocation(),
-      index = _getIndexAndLocation6[0],
-      location = _getIndexAndLocation6[1];
+  var _getindexandlocation6 = getindexandlocation(),
+      index = _getindexandlocation6[0],
+      location = _getindexandlocation6[1];
 
-  var listeners = createEvents();
-  var blockers = createEvents();
+  var listeners = createevents();
+  var blockers = createevents();
 
   if (index == null) {
     index = 0;
-    globalHistory.replaceState(_extends({}, globalHistory.state, {
+    globalhistory.replacestate(_extends({}, globalhistory.state, {
       idx: index
     }), '');
   }
 
-  function getBaseHref() {
-    var base = document.querySelector('base');
+  function getbasehref() {
+    var base = document.queryselector('base');
     var href = '';
 
-    if (base && base.getAttribute('href')) {
+    if (base && base.getattribute('href')) {
       var url = window.location.href;
-      var hashIndex = url.indexOf('#');
-      href = hashIndex === -1 ? url : url.slice(0, hashIndex);
+      var hashindex = url.indexof('#');
+      href = hashindex === -1 ? url : url.slice(0, hashindex);
     }
 
     return href;
   }
 
-  function createHref(to) {
-    return getBaseHref() + '#' + (typeof to === 'string' ? to : createPath(to));
+  function createhref(to) {
+    return getbasehref() + '#' + (typeof to === 'string' ? to : createpath(to));
   }
 
-  function getNextLocation(to, state) {
+  function getnextlocation(to, state) {
     if (state === void 0) {
       state = null;
     }
 
-    return readOnly(_extends({
+    return readonly(_extends({
       pathname: location.pathname,
       hash: '',
       search: ''
-    }, typeof to === 'string' ? parsePath(to) : to, {
+    }, typeof to === 'string' ? parsepath(to) : to, {
       state: state,
-      key: createKey()
+      key: createkey()
     }));
   }
 
-  function getHistoryStateAndUrl(nextLocation, index) {
+  function gethistorystateandurl(nextlocation, index) {
     return [{
-      usr: nextLocation.state,
-      key: nextLocation.key,
+      usr: nextlocation.state,
+      key: nextlocation.key,
       idx: index
-    }, createHref(nextLocation)];
+    }, createhref(nextlocation)];
   }
 
-  function allowTx(action, location, retry) {
+  function allowtx(action, location, retry) {
     return !blockers.length || (blockers.call({
       action: action,
       location: location,
@@ -1181,13 +1181,13 @@ function createHashHistory(options) {
     }), false);
   }
 
-  function applyTx(nextAction) {
-    action = nextAction;
+  function applytx(nextaction) {
+    action = nextaction;
 
-    var _getIndexAndLocation7 = getIndexAndLocation();
+    var _getindexandlocation7 = getindexandlocation();
 
-    index = _getIndexAndLocation7[0];
-    location = _getIndexAndLocation7[1];
+    index = _getindexandlocation7[0];
+    location = _getindexandlocation7[1];
     listeners.call({
       action: action,
       location: location
@@ -1195,8 +1195,8 @@ function createHashHistory(options) {
   }
 
   function push(to, state) {
-    var nextAction = Action.Push;
-    var nextLocation = getNextLocation(to, state);
+    var nextaction = action.push;
+    var nextlocation = getnextlocation(to, state);
 
     function retry() {
       push(to, state);
@@ -1204,28 +1204,28 @@ function createHashHistory(options) {
 
      false ? 0 : void 0;
 
-    if (allowTx(nextAction, nextLocation, retry)) {
-      var _getHistoryStateAndUr3 = getHistoryStateAndUrl(nextLocation, index + 1),
-          historyState = _getHistoryStateAndUr3[0],
-          url = _getHistoryStateAndUr3[1]; // TODO: Support forced reloading
-      // try...catch because iOS limits us to 100 pushState calls :/
+    if (allowtx(nextaction, nextlocation, retry)) {
+      var _gethistorystateandur3 = gethistorystateandurl(nextlocation, index + 1),
+          historystate = _gethistorystateandur3[0],
+          url = _gethistorystateandur3[1]; // todo: support forced reloading
+      // try...catch because ios limits us to 100 pushstate calls :/
 
 
       try {
-        globalHistory.pushState(historyState, '', url);
+        globalhistory.pushstate(historystate, '', url);
       } catch (error) {
-        // They are going to lose state here, but there is no real
+        // they are going to lose state here, but there is no real
         // way to warn them about it since the page will refresh...
         window.location.assign(url);
       }
 
-      applyTx(nextAction);
+      applytx(nextaction);
     }
   }
 
   function replace(to, state) {
-    var nextAction = Action.Replace;
-    var nextLocation = getNextLocation(to, state);
+    var nextaction = action.replace;
+    var nextlocation = getnextlocation(to, state);
 
     function retry() {
       replace(to, state);
@@ -1233,19 +1233,19 @@ function createHashHistory(options) {
 
      false ? 0 : void 0;
 
-    if (allowTx(nextAction, nextLocation, retry)) {
-      var _getHistoryStateAndUr4 = getHistoryStateAndUrl(nextLocation, index),
-          historyState = _getHistoryStateAndUr4[0],
-          url = _getHistoryStateAndUr4[1]; // TODO: Support forced reloading
+    if (allowtx(nextaction, nextlocation, retry)) {
+      var _gethistorystateandur4 = gethistorystateandurl(nextlocation, index),
+          historystate = _gethistorystateandur4[0],
+          url = _gethistorystateandur4[1]; // todo: support forced reloading
 
 
-      globalHistory.replaceState(historyState, '', url);
-      applyTx(nextAction);
+      globalhistory.replacestate(historystate, '', url);
+      applytx(nextaction);
     }
   }
 
   function go(delta) {
-    globalHistory.go(delta);
+    globalhistory.go(delta);
   }
 
   var history = {
@@ -1257,7 +1257,7 @@ function createHashHistory(options) {
       return location;
     },
 
-    createHref: createHref,
+    createhref: createhref,
     push: push,
     replace: replace,
     go: go,
@@ -1274,16 +1274,16 @@ function createHashHistory(options) {
       var unblock = blockers.push(blocker);
 
       if (blockers.length === 1) {
-        window.addEventListener(BeforeUnloadEventType, promptBeforeUnload);
+        window.addeventlistener(beforeunloadeventtype, promptbeforeunload);
       }
 
       return function () {
-        unblock(); // Remove the beforeunload listener so the document may
+        unblock(); // remove the beforeunload listener so the document may
         // still be salvageable in the pagehide event.
-        // See https://html.spec.whatwg.org/#unloading-documents
+        // see https://html.spec.whatwg.org/#unloading-documents
 
         if (!blockers.length) {
-          window.removeEventListener(BeforeUnloadEventType, promptBeforeUnload);
+          window.removeeventlistener(beforeunloadeventtype, promptbeforeunload);
         }
       };
     }
@@ -1291,58 +1291,58 @@ function createHashHistory(options) {
   return history;
 }
 /**
- * Memory history stores the current location in memory. It is designed for use
- * in stateful non-browser environments like tests and React Native.
+ * memory history stores the current location in memory. it is designed for use
+ * in stateful non-browser environments like tests and react native.
  *
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#creatememoryhistory
  */
 
-function createMemoryHistory(options) {
+function creatememoryhistory(options) {
   if (options === void 0) {
     options = {};
   }
 
   var _options3 = options,
-      _options3$initialEntr = _options3.initialEntries,
-      initialEntries = _options3$initialEntr === void 0 ? ['/'] : _options3$initialEntr,
-      initialIndex = _options3.initialIndex;
-  var entries = initialEntries.map(function (entry) {
-    var location = readOnly(_extends({
+      _options3$initialentr = _options3.initialentries,
+      initialentries = _options3$initialentr === void 0 ? ['/'] : _options3$initialentr,
+      initialindex = _options3.initialindex;
+  var entries = initialentries.map(function (entry) {
+    var location = readonly(_extends({
       pathname: '/',
       search: '',
       hash: '',
       state: null,
-      key: createKey()
-    }, typeof entry === 'string' ? parsePath(entry) : entry));
+      key: createkey()
+    }, typeof entry === 'string' ? parsepath(entry) : entry));
      false ? 0 : void 0;
     return location;
   });
-  var index = clamp(initialIndex == null ? entries.length - 1 : initialIndex, 0, entries.length - 1);
-  var action = Action.Pop;
+  var index = clamp(initialindex == null ? entries.length - 1 : initialindex, 0, entries.length - 1);
+  var action = action.pop;
   var location = entries[index];
-  var listeners = createEvents();
-  var blockers = createEvents();
+  var listeners = createevents();
+  var blockers = createevents();
 
-  function createHref(to) {
-    return typeof to === 'string' ? to : createPath(to);
+  function createhref(to) {
+    return typeof to === 'string' ? to : createpath(to);
   }
 
-  function getNextLocation(to, state) {
+  function getnextlocation(to, state) {
     if (state === void 0) {
       state = null;
     }
 
-    return readOnly(_extends({
+    return readonly(_extends({
       pathname: location.pathname,
       search: '',
       hash: ''
-    }, typeof to === 'string' ? parsePath(to) : to, {
+    }, typeof to === 'string' ? parsepath(to) : to, {
       state: state,
-      key: createKey()
+      key: createkey()
     }));
   }
 
-  function allowTx(action, location, retry) {
+  function allowtx(action, location, retry) {
     return !blockers.length || (blockers.call({
       action: action,
       location: location,
@@ -1350,9 +1350,9 @@ function createMemoryHistory(options) {
     }), false);
   }
 
-  function applyTx(nextAction, nextLocation) {
-    action = nextAction;
-    location = nextLocation;
+  function applytx(nextaction, nextlocation) {
+    action = nextaction;
+    location = nextlocation;
     listeners.call({
       action: action,
       location: location
@@ -1360,8 +1360,8 @@ function createMemoryHistory(options) {
   }
 
   function push(to, state) {
-    var nextAction = Action.Push;
-    var nextLocation = getNextLocation(to, state);
+    var nextaction = action.push;
+    var nextlocation = getnextlocation(to, state);
 
     function retry() {
       push(to, state);
@@ -1369,16 +1369,16 @@ function createMemoryHistory(options) {
 
      false ? 0 : void 0;
 
-    if (allowTx(nextAction, nextLocation, retry)) {
+    if (allowtx(nextaction, nextlocation, retry)) {
       index += 1;
-      entries.splice(index, entries.length, nextLocation);
-      applyTx(nextAction, nextLocation);
+      entries.splice(index, entries.length, nextlocation);
+      applytx(nextaction, nextlocation);
     }
   }
 
   function replace(to, state) {
-    var nextAction = Action.Replace;
-    var nextLocation = getNextLocation(to, state);
+    var nextaction = action.replace;
+    var nextlocation = getnextlocation(to, state);
 
     function retry() {
       replace(to, state);
@@ -1386,24 +1386,24 @@ function createMemoryHistory(options) {
 
      false ? 0 : void 0;
 
-    if (allowTx(nextAction, nextLocation, retry)) {
-      entries[index] = nextLocation;
-      applyTx(nextAction, nextLocation);
+    if (allowtx(nextaction, nextlocation, retry)) {
+      entries[index] = nextlocation;
+      applytx(nextaction, nextlocation);
     }
   }
 
   function go(delta) {
-    var nextIndex = clamp(index + delta, 0, entries.length - 1);
-    var nextAction = Action.Pop;
-    var nextLocation = entries[nextIndex];
+    var nextindex = clamp(index + delta, 0, entries.length - 1);
+    var nextaction = action.pop;
+    var nextlocation = entries[nextindex];
 
     function retry() {
       go(delta);
     }
 
-    if (allowTx(nextAction, nextLocation, retry)) {
-      index = nextIndex;
-      applyTx(nextAction, nextLocation);
+    if (allowtx(nextaction, nextlocation, retry)) {
+      index = nextindex;
+      applytx(nextaction, nextlocation);
     }
   }
 
@@ -1420,7 +1420,7 @@ function createMemoryHistory(options) {
       return location;
     },
 
-    createHref: createHref,
+    createhref: createhref,
     push: push,
     replace: replace,
     go: go,
@@ -1439,21 +1439,21 @@ function createMemoryHistory(options) {
   };
   return history;
 } ////////////////////////////////////////////////////////////////////////////////
-// UTILS
+// utils
 ////////////////////////////////////////////////////////////////////////////////
 
-function clamp(n, lowerBound, upperBound) {
-  return Math.min(Math.max(n, lowerBound), upperBound);
+function clamp(n, lowerbound, upperbound) {
+  return math.min(math.max(n, lowerbound), upperbound);
 }
 
-function promptBeforeUnload(event) {
-  // Cancel the event.
-  event.preventDefault(); // Chrome (and legacy IE) requires returnValue to be set.
+function promptbeforeunload(event) {
+  // cancel the event.
+  event.preventdefault(); // chrome (and legacy ie) requires returnvalue to be set.
 
-  event.returnValue = '';
+  event.returnvalue = '';
 }
 
-function createEvents() {
+function createevents() {
   var handlers = [];
   return {
     get length() {
@@ -1469,74 +1469,74 @@ function createEvents() {
       };
     },
     call: function call(arg) {
-      handlers.forEach(function (fn) {
+      handlers.foreach(function (fn) {
         return fn && fn(arg);
       });
     }
   };
 }
 
-function createKey() {
-  return Math.random().toString(36).substr(2, 8);
+function createkey() {
+  return math.random().tostring(36).substr(2, 8);
 }
 /**
- * Creates a string URL path from the given pathname, search, and hash components.
+ * creates a string url path from the given pathname, search, and hash components.
  *
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createpath
  */
 
 
-function createPath(_ref) {
+function createpath(_ref) {
   var _ref$pathname = _ref.pathname,
       pathname = _ref$pathname === void 0 ? '/' : _ref$pathname,
       _ref$search = _ref.search,
       search = _ref$search === void 0 ? '' : _ref$search,
       _ref$hash = _ref.hash,
       hash = _ref$hash === void 0 ? '' : _ref$hash;
-  if (search && search !== '?') pathname += search.charAt(0) === '?' ? search : '?' + search;
-  if (hash && hash !== '#') pathname += hash.charAt(0) === '#' ? hash : '#' + hash;
+  if (search && search !== '?') pathname += search.charat(0) === '?' ? search : '?' + search;
+  if (hash && hash !== '#') pathname += hash.charat(0) === '#' ? hash : '#' + hash;
   return pathname;
 }
 /**
- * Parses a string URL path into its separate pathname, search, and hash components.
+ * parses a string url path into its separate pathname, search, and hash components.
  *
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#parsepath
  */
 
-function parsePath(path) {
-  var parsedPath = {};
+function parsepath(path) {
+  var parsedpath = {};
 
   if (path) {
-    var hashIndex = path.indexOf('#');
+    var hashindex = path.indexof('#');
 
-    if (hashIndex >= 0) {
-      parsedPath.hash = path.substr(hashIndex);
-      path = path.substr(0, hashIndex);
+    if (hashindex >= 0) {
+      parsedpath.hash = path.substr(hashindex);
+      path = path.substr(0, hashindex);
     }
 
-    var searchIndex = path.indexOf('?');
+    var searchindex = path.indexof('?');
 
-    if (searchIndex >= 0) {
-      parsedPath.search = path.substr(searchIndex);
-      path = path.substr(0, searchIndex);
+    if (searchindex >= 0) {
+      parsedpath.search = path.substr(searchindex);
+      path = path.substr(0, searchindex);
     }
 
     if (path) {
-      parsedPath.pathname = path;
+      parsedpath.pathname = path;
     }
   }
 
-  return parsedPath;
+  return parsedpath;
 }
 
 
 
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// external ["wp","url"]
-const external_wp_url_namespaceObject = window["wp"]["url"];
+const external_wp_url_namespaceobject = window["wp"]["url"];
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
 ;// ./node_modules/@wordpress/router/build-module/router.js
 
 
@@ -1544,68 +1544,68 @@ const external_wp_compose_namespaceObject = window["wp"]["compose"];
 
 
 
-const router_history = createBrowserHistory();
-const RoutesContext = (0,external_wp_element_namespaceObject.createContext)(null);
-RoutesContext.displayName = "RoutesContext";
-const ConfigContext = (0,external_wp_element_namespaceObject.createContext)({ pathArg: "p" });
-ConfigContext.displayName = "ConfigContext";
-const locationMemo = /* @__PURE__ */ new WeakMap();
-function getLocationWithQuery() {
+const router_history = createbrowserhistory();
+const routescontext = (0,external_wp_element_namespaceobject.createcontext)(null);
+routescontext.displayname = "routescontext";
+const configcontext = (0,external_wp_element_namespaceobject.createcontext)({ patharg: "p" });
+configcontext.displayname = "configcontext";
+const locationmemo = /* @__pure__ */ new weakmap();
+function getlocationwithquery() {
   const location = router_history.location;
-  let locationWithQuery = locationMemo.get(location);
-  if (!locationWithQuery) {
-    locationWithQuery = {
+  let locationwithquery = locationmemo.get(location);
+  if (!locationwithquery) {
+    locationwithquery = {
       ...location,
-      query: Object.fromEntries(new URLSearchParams(location.search))
+      query: object.fromentries(new urlsearchparams(location.search))
     };
-    locationMemo.set(location, locationWithQuery);
+    locationmemo.set(location, locationwithquery);
   }
-  return locationWithQuery;
+  return locationwithquery;
 }
-function useLocation() {
-  const context = (0,external_wp_element_namespaceObject.useContext)(RoutesContext);
+function uselocation() {
+  const context = (0,external_wp_element_namespaceobject.usecontext)(routescontext);
   if (!context) {
-    throw new Error("useLocation must be used within a RouterProvider");
+    throw new error("uselocation must be used within a routerprovider");
   }
   return context;
 }
-function useHistory() {
-  const { pathArg, beforeNavigate } = (0,external_wp_element_namespaceObject.useContext)(ConfigContext);
-  const navigate = (0,external_wp_compose_namespaceObject.useEvent)(
-    async (rawPath, options = {}) => {
-      const query = (0,external_wp_url_namespaceObject.getQueryArgs)(rawPath);
-      const path = (0,external_wp_url_namespaceObject.getPath)("http://domain.com/" + rawPath) ?? "";
-      const performPush = () => {
-        const result = beforeNavigate ? beforeNavigate({ path, query }) : { path, query };
+function usehistory() {
+  const { patharg, beforenavigate } = (0,external_wp_element_namespaceobject.usecontext)(configcontext);
+  const navigate = (0,external_wp_compose_namespaceobject.useevent)(
+    async (rawpath, options = {}) => {
+      const query = (0,external_wp_url_namespaceobject.getqueryargs)(rawpath);
+      const path = (0,external_wp_url_namespaceobject.getpath)("http://domain.com/" + rawpath) ?? "";
+      const performpush = () => {
+        const result = beforenavigate ? beforenavigate({ path, query }) : { path, query };
         return router_history.push(
           {
-            search: (0,external_wp_url_namespaceObject.buildQueryString)({
-              [pathArg]: result.path,
+            search: (0,external_wp_url_namespaceobject.buildquerystring)({
+              [patharg]: result.path,
               ...result.query
             })
           },
           options.state
         );
       };
-      const isMediumOrBigger = window.matchMedia("(min-width: 782px)").matches;
-      if (!isMediumOrBigger || !document.startViewTransition || !options.transition) {
-        performPush();
+      const ismediumorbigger = window.matchmedia("(min-width: 782px)").matches;
+      if (!ismediumorbigger || !document.startviewtransition || !options.transition) {
+        performpush();
         return;
       }
-      await new Promise((resolve) => {
+      await new promise((resolve) => {
         const classname = options.transition ?? "";
-        document.documentElement.classList.add(classname);
-        const transition = document.startViewTransition(
-          () => performPush()
+        document.documentelement.classlist.add(classname);
+        const transition = document.startviewtransition(
+          () => performpush()
         );
         transition.finished.finally(() => {
-          document.documentElement.classList.remove(classname);
+          document.documentelement.classlist.remove(classname);
           resolve();
         });
       });
     }
   );
-  return (0,external_wp_element_namespaceObject.useMemo)(
+  return (0,external_wp_element_namespaceobject.usememo)(
     () => ({
       navigate,
       back: router_history.back,
@@ -1618,93 +1618,93 @@ function useHistory() {
     [navigate]
   );
 }
-function useMatch(location, matcher, pathArg, matchResolverArgs) {
-  const { query: rawQuery = {} } = location;
-  const [resolvedMatch, setMatch] = (0,external_wp_element_namespaceObject.useState)();
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    const { [pathArg]: path = "/", ...query } = rawQuery;
+function usematch(location, matcher, patharg, matchresolverargs) {
+  const { query: rawquery = {} } = location;
+  const [resolvedmatch, setmatch] = (0,external_wp_element_namespaceobject.usestate)();
+  (0,external_wp_element_namespaceobject.useeffect)(() => {
+    const { [patharg]: path = "/", ...query } = rawquery;
     const ret = matcher.recognize(path)?.[0];
-    async function resolveMatch(result) {
-      const matchedRoute = result.handler;
-      const resolveFunctions = async (record = {}) => {
-        const entries = await Promise.all(
-          Object.entries(record).map(async ([key, value]) => {
+    async function resolvematch(result) {
+      const matchedroute = result.handler;
+      const resolvefunctions = async (record = {}) => {
+        const entries = await promise.all(
+          object.entries(record).map(async ([key, value]) => {
             if (typeof value === "function") {
               return [
                 key,
                 await value({
                   query,
                   params: result.params,
-                  ...matchResolverArgs
+                  ...matchresolverargs
                 })
               ];
             }
             return [key, value];
           })
         );
-        return Object.fromEntries(entries);
+        return object.fromentries(entries);
       };
-      const [resolvedAreas, resolvedWidths] = await Promise.all([
-        resolveFunctions(matchedRoute.areas),
-        resolveFunctions(matchedRoute.widths)
+      const [resolvedareas, resolvedwidths] = await promise.all([
+        resolvefunctions(matchedroute.areas),
+        resolvefunctions(matchedroute.widths)
       ]);
-      setMatch({
-        name: matchedRoute.name,
-        areas: resolvedAreas,
-        widths: resolvedWidths,
+      setmatch({
+        name: matchedroute.name,
+        areas: resolvedareas,
+        widths: resolvedwidths,
         params: result.params,
         query,
-        path: (0,external_wp_url_namespaceObject.addQueryArgs)(path, query)
+        path: (0,external_wp_url_namespaceobject.addqueryargs)(path, query)
       });
     }
     if (!ret) {
-      setMatch({
+      setmatch({
         name: "404",
-        path: (0,external_wp_url_namespaceObject.addQueryArgs)(path, query),
+        path: (0,external_wp_url_namespaceobject.addqueryargs)(path, query),
         areas: {},
         widths: {},
         query,
         params: {}
       });
     } else {
-      resolveMatch(ret);
+      resolvematch(ret);
     }
-    return () => setMatch(void 0);
-  }, [matcher, rawQuery, pathArg, matchResolverArgs]);
-  return resolvedMatch;
+    return () => setmatch(void 0);
+  }, [matcher, rawquery, patharg, matchresolverargs]);
+  return resolvedmatch;
 }
-function RouterProvider({
+function routerprovider({
   routes,
-  pathArg,
-  beforeNavigate,
+  patharg,
+  beforenavigate,
   children,
-  matchResolverArgs
+  matchresolverargs
 }) {
-  const location = (0,external_wp_element_namespaceObject.useSyncExternalStore)(
+  const location = (0,external_wp_element_namespaceobject.usesyncexternalstore)(
     router_history.listen,
-    getLocationWithQuery,
-    getLocationWithQuery
+    getlocationwithquery,
+    getlocationwithquery
   );
-  const matcher = (0,external_wp_element_namespaceObject.useMemo)(() => {
+  const matcher = (0,external_wp_element_namespaceobject.usememo)(() => {
     const ret = new route_recognizer_es();
-    (routes ?? []).forEach((route) => {
+    (routes ?? []).foreach((route) => {
       ret.add([{ path: route.path, handler: route }], {
         as: route.name
       });
     });
     return ret;
   }, [routes]);
-  const match = useMatch(location, matcher, pathArg, matchResolverArgs);
-  const previousMatch = (0,external_wp_compose_namespaceObject.usePrevious)(match);
-  const config = (0,external_wp_element_namespaceObject.useMemo)(
-    () => ({ beforeNavigate, pathArg }),
-    [beforeNavigate, pathArg]
+  const match = usematch(location, matcher, patharg, matchresolverargs);
+  const previousmatch = (0,external_wp_compose_namespaceobject.useprevious)(match);
+  const config = (0,external_wp_element_namespaceobject.usememo)(
+    () => ({ beforenavigate, patharg }),
+    [beforenavigate, patharg]
   );
-  const renderedMatch = match || previousMatch;
-  if (!renderedMatch) {
+  const renderedmatch = match || previousmatch;
+  if (!renderedmatch) {
     return null;
   }
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(ConfigContext.Provider, { value: config, children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(RoutesContext.Provider, { value: renderedMatch, children }) });
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(configcontext.provider, { value: config, children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(routescontext.provider, { value: renderedmatch, children }) });
 }
 
 
@@ -1713,44 +1713,44 @@ function RouterProvider({
 
 
 
-function useLink(to, options = {}) {
-  const history = useHistory();
-  const { pathArg, beforeNavigate } = (0,external_wp_element_namespaceObject.useContext)(ConfigContext);
-  function onClick(event) {
-    event?.preventDefault();
+function uselink(to, options = {}) {
+  const history = usehistory();
+  const { patharg, beforenavigate } = (0,external_wp_element_namespaceobject.usecontext)(configcontext);
+  function onclick(event) {
+    event?.preventdefault();
     history.navigate(to, options);
   }
-  const query = (0,external_wp_url_namespaceObject.getQueryArgs)(to);
-  const path = (0,external_wp_url_namespaceObject.getPath)("http://domain.com/" + to) ?? "";
-  const link = (0,external_wp_element_namespaceObject.useMemo)(() => {
-    return beforeNavigate ? beforeNavigate({ path, query }) : { path, query };
-  }, [path, query, beforeNavigate]);
+  const query = (0,external_wp_url_namespaceobject.getqueryargs)(to);
+  const path = (0,external_wp_url_namespaceobject.getpath)("http://domain.com/" + to) ?? "";
+  const link = (0,external_wp_element_namespaceobject.usememo)(() => {
+    return beforenavigate ? beforenavigate({ path, query }) : { path, query };
+  }, [path, query, beforenavigate]);
   const [before] = window.location.href.split("?");
   return {
-    href: `${before}?${(0,external_wp_url_namespaceObject.buildQueryString)({
-      [pathArg]: link.path,
+    href: `${before}?${(0,external_wp_url_namespaceobject.buildquerystring)({
+      [patharg]: link.path,
       ...link.query
     })}`,
-    onClick
+    onclick
   };
 }
-function Link({
+function link({
   to,
   options,
   children,
   ...props
 }) {
-  const { href, onClick } = useLink(to, options);
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("a", { href, onClick, ...props, children });
+  const { href, onclick } = uselink(to, options);
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("a", { href, onclick, ...props, children });
 }
 
 
-;// external ["wp","privateApis"]
-const external_wp_privateApis_namespaceObject = window["wp"]["privateApis"];
+;// external ["wp","privateapis"]
+const external_wp_privateapis_namespaceobject = window["wp"]["privateapis"];
 ;// ./node_modules/@wordpress/router/build-module/lock-unlock.js
 
-const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousOptInToUnstableAPIsOnlyForCoreModules)(
-  "I acknowledge private features are not for use in themes or plugins and doing so will break in the next version of WordPress.",
+const { lock, unlock } = (0,external_wp_privateapis_namespaceobject.__dangerousoptintounstableapisonlyforcoremodules)(
+  "i acknowledge private features are not for use in themes or plugins and doing so will break in the next version of wordpress.",
   "@wordpress/router"
 );
 
@@ -1759,13 +1759,13 @@ const { lock, unlock } = (0,external_wp_privateApis_namespaceObject.__dangerousO
 
 
 
-const privateApis = {};
-lock(privateApis, {
-  useHistory: useHistory,
-  useLocation: useLocation,
-  RouterProvider: RouterProvider,
-  useLink: useLink,
-  Link: Link
+const privateapis = {};
+lock(privateapis, {
+  usehistory: usehistory,
+  uselocation: uselocation,
+  routerprovider: routerprovider,
+  uselink: uselink,
+  link: link
 });
 
 
@@ -1776,3 +1776,4 @@ lock(privateApis, {
 (window.wp = window.wp || {}).router = __webpack_exports__;
 /******/ })()
 ;
+

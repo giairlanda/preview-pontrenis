@@ -1,11 +1,11 @@
 /*
- * Edited for compatibility with old TinyMCE 3.x plugins in WordPress.
- * More info: https://core.trac.wordpress.org/ticket/31596#comment:10
+ * edited for compatibility with old tinymce 3.x plugins in wordpress.
+ * more info: https://core.trac.wordpress.org/ticket/31596#comment:10
  */
 
-/* Generic */
+/* generic */
 body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", sans-serif;
 font-size:13px;
 background:#fcfcfc;
 padding:0;
@@ -15,36 +15,36 @@ margin:8px 8px 0 8px;
 textarea {resize:none;outline:none;}
 
 a:link, a:hover {
-	color: #2B6FB6;
+	color: #2b6fb6;
 }
 
 a:visited {
-	color: #3C2BB6;
+	color: #3c2bb6;
 }
 
 .nowrap {white-space: nowrap}
 
-/* Forms */
+/* forms */
 form {margin: 0;}
-fieldset {margin:0; padding:4px; border:1px solid #dfdfdf; font-family:Verdana, Arial; font-size:10px;}
-legend {color:#2B6FB6; font-weight:bold;}
+fieldset {margin:0; padding:4px; border:1px solid #dfdfdf; font-family:verdana, arial; font-size:10px;}
+legend {color:#2b6fb6; font-weight:bold;}
 label.msg {display:none;}
-label.invalid {color:#EE0000; display:inline;}
-input.invalid {border:1px solid #EE0000;}
-input {background:#FFF; border:1px solid #dfdfdf;}
-input, select, textarea {font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px;}
+label.invalid {color:#ee0000; display:inline;}
+input.invalid {border:1px solid #ee0000;}
+input {background:#fff; border:1px solid #dfdfdf;}
+input, select, textarea {font-family:verdana, arial, helvetica, sans-serif; font-size:10px;}
 input, select, textarea {border:1px solid #dfdfdf;}
 input.radio {border:1px none #000000; background:transparent; vertical-align:middle;}
 input.checkbox {border:1px none #000000; background:transparent; vertical-align:middle;}
 .input_noborder {border:0;}
 
-/* Buttons */
+/* buttons */
 #insert,
 #cancel,
 #apply,
-.mceActionPanel .button,
-input.mceButton,
-.updateButton {
+.mceactionpanel .button,
+input.mcebutton,
+.updatebutton {
 	display: inline-block;
 	text-decoration: none;
 	border: 1px solid #adadad;
@@ -80,7 +80,7 @@ input.mceButton,
 	background: -webkit-gradient(linear, left top, left bottom, from(#2ea2cc), to(#1e8cbe));
 	background: -webkit-linear-gradient(top, #2ea2cc 0%,#1e8cbe 100%);
 	background: linear-gradient(top, #2ea2cc 0%,#1e8cbe 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ea2cc', endColorstr='#1e8cbe',GradientType=0 );
+	filter: progid:dximagetransform.microsoft.gradient( startcolorstr='#2ea2cc', endcolorstr='#1e8cbe',gradienttype=0 );
 	border-color: #0074a2;
 	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
 	box-shadow: inset 0 1px 0 rgba(120,200,230,0.5);
@@ -90,11 +90,11 @@ input.mceButton,
 }
 
 #cancel:hover,
-input.mceButton:hover,
-.updateButton:hover,
+input.mcebutton:hover,
+.updatebutton:hover,
 #cancel:focus,
-input.mceButton:focus,
-.updateButton:focus {
+input.mcebutton:focus,
+.updatebutton:focus {
 	background: #f3f3f3;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f3f3f3));
 	background-image: -webkit-linear-gradient(top, #fff, #f3f3f3);
@@ -112,49 +112,49 @@ input.mceButton:focus,
 	background: -webkit-gradient(linear, left top, left bottom, from(#1e8cbe), to(#0074a2));
 	background: -webkit-linear-gradient(top, #1e8cbe 0%,#0074a2 100%);
 	background: linear-gradient(top, #1e8cbe 0%,#0074a2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e8cbe', endColorstr='#0074a2',GradientType=0 );
+	filter: progid:dximagetransform.microsoft.gradient( startcolorstr='#1e8cbe', endcolorstr='#0074a2',gradienttype=0 );
 	border-color: #0074a2;
 	-webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
 	box-shadow: inset 0 1px 0 rgba(120,200,230,0.6);
 	color: #fff;
 }
 
-.mceActionPanel #insert {
+.mceactionpanel #insert {
 	float: right;
 }
 
-/* Browse */
+/* browse */
 a.pickcolor, a.browse {text-decoration:none}
-a.browse span {display:block; width:20px; height:18px; border:1px solid #FFF; margin-left:1px;}
-.mceOldBoxModel a.browse span {width:22px; height:20px;}
-a.browse:hover span {border:1px solid #0A246A; background-color:#B2BBD0;}
+a.browse span {display:block; width:20px; height:18px; border:1px solid #fff; margin-left:1px;}
+.mceoldboxmodel a.browse span {width:22px; height:20px;}
+a.browse:hover span {border:1px solid #0a246a; background-color:#b2bbd0;}
 a.browse span.disabled {border:1px solid white; opacity:0.3; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=30);}
 a.browse:hover span.disabled {border:1px solid white; background-color:transparent;}
 a.pickcolor span {display:block; width:20px; height:16px; margin-left:2px;}
-.mceOldBoxModel a.pickcolor span {width:21px; height:17px;}
-a.pickcolor:hover span {background-color:#B2BBD0;}
+.mceoldboxmodel a.pickcolor span {width:21px; height:17px;}
+a.pickcolor:hover span {background-color:#b2bbd0;}
 div.iframecontainer {background: #fff;}
 
-/* Charmap */
-table.charmap {border:1px solid #AAA; text-align:center}
-td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #AAA; text-align:center; font-size:12px; vertical-align:middle; line-height: 18px;}
+/* charmap */
+table.charmap {border:1px solid #aaa; text-align:center}
+td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #aaa; text-align:center; font-size:12px; vertical-align:middle; line-height: 18px;}
 #charmap a {display:block; color:#000; text-decoration:none; border:0}
-#charmap a:hover {background:#CCC;color:#2B6FB6}
-#charmap #codeN {font-size:10px; font-family:Arial,Helvetica,sans-serif; text-align:center}
-#charmap #codeV {font-size:40px; height:80px; border:1px solid #AAA; text-align:center}
-#charmap #charmapView {background-color:#fff;}
+#charmap a:hover {background:#ccc;color:#2b6fb6}
+#charmap #coden {font-size:10px; font-family:arial,helvetica,sans-serif; text-align:center}
+#charmap #codev {font-size:40px; height:80px; border:1px solid #aaa; text-align:center}
+#charmap #charmapview {background-color:#fff;}
 
-/* Source */
-.wordWrapCode {vertical-align:middle; border:1px none #000000; background:transparent;}
-.mceActionPanel {margin-top:5px;}
+/* source */
+.wordwrapcode {vertical-align:middle; border:1px none #000000; background:transparent;}
+.mceactionpanel {margin-top:5px;}
 
-/* Tabs classes */
+/* tabs classes */
 .tabs {width:100%; height:19px; line-height:normal; border-bottom: 1px solid #aaa;}
 .tabs ul {margin:0; padding:0; list-style:none;}
 .tabs li {float:left; border: 1px solid #aaa; margin:0 2px 0 0; padding:0 0 0 10px; line-height:17px; height:18px; display:block;}
 .tabs li.current {border-bottom: 1px solid #fff; margin-right:2px;}
 .tabs span {float:left; display:block; padding:0px 10px 0 0;}
-.tabs a {text-decoration:none; font-family:Verdana, Arial; font-size:10px;}
+.tabs a {text-decoration:none; font-family:verdana, arial; font-size:10px;}
 .tabs a:link, .tabs a:visited, .tabs a:hover {color:black;}
 
 .wp-core-ui #tabs {
@@ -167,27 +167,27 @@ td.charmap, #charmap a {width:18px; height:18px; color:#000; border:1px solid #A
 	margin: 0 2px;
 }
 
-/* Panels */
+/* panels */
 .panel_wrapper div.panel {display:none;}
 .panel_wrapper div.current {display:block; width:100%; height:300px; overflow:visible;}
-.panel_wrapper {border:1px solid #919B9C; border-top:0px; padding:10px; padding-top:5px; clear:both; background:white;}
+.panel_wrapper {border:1px solid #919b9c; border-top:0px; padding:10px; padding-top:5px; clear:both; background:white;}
 
-/* Columns */
+/* columns */
 .column {float:left;}
 .properties {width:100%;}
 .properties .column1 {}
 .properties .column2 {text-align:left;}
 
-/* Titles */
-h1, h2, h3, h4 {color:#2B6FB6; margin:0; padding:0; padding-top:5px;}
+/* titles */
+h1, h2, h3, h4 {color:#2b6fb6; margin:0; padding:0; padding-top:5px;}
 h3 {font-size:14px;}
-.title {font-size:12px; font-weight:bold; color:#2B6FB6;}
+.title {font-size:12px; font-weight:bold; color:#2b6fb6;}
 
-/* Dialog specific */
+/* dialog specific */
 #link .panel_wrapper, #link div.current {height:125px;}
 #image .panel_wrapper, #image div.current {height:200px;}
-#plugintable thead {font-weight:bold; background:#DDD;}
-#plugintable, #about #plugintable td {border:1px solid #919B9C;}
+#plugintable thead {font-weight:bold; background:#ddd;}
+#plugintable, #about #plugintable td {border:1px solid #919b9c;}
 #plugintable {width:96%; margin-top:10px;}
 #pluginscontainer {height:290px; overflow:auto;}
 #colorpicker #preview {display:inline-block; padding-left:40px; height:14px; border:1px solid black; margin-left:5px; margin-right: 5px}
@@ -204,12 +204,14 @@ h3 {font-size:14px;}
 #colorpicker #picker_panel fieldset {margin:auto;width:325px;}
 
 
-/* Localization */
+/* localization */
 
 body[dir="rtl"],
 body[dir="rtl"] fieldset,
 body[dir="rtl"] input, body[dir="rtl"] select, body[dir="rtl"]  textarea,
-body[dir="rtl"]  #charmap #codeN,
+body[dir="rtl"]  #charmap #coden,
 body[dir="rtl"] .tabs a {
-	font-family: Tahoma, sans-serif;
+	font-family: tahoma, sans-serif;
 }
+
+

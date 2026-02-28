@@ -2,26 +2,26 @@
 var colorpicker = (function () {
     'use strict';
 
-    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+    var global = tinymce.util.tools.resolve('tinymce.pluginmanager');
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Color');
+    var global$1 = tinymce.util.tools.resolve('tinymce.util.color');
 
-    var showPreview = function (win, hexColor) {
-      win.find('#preview')[0].getEl().style.background = hexColor;
+    var showpreview = function (win, hexcolor) {
+      win.find('#preview')[0].getel().style.background = hexcolor;
     };
-    var setColor = function (win, value) {
-      var color = global$1(value), rgb = color.toRgb();
-      win.fromJSON({
+    var setcolor = function (win, value) {
+      var color = global$1(value), rgb = color.torgb();
+      win.fromjson({
         r: rgb.r,
         g: rgb.g,
         b: rgb.b,
-        hex: color.toHex().substr(1)
+        hex: color.tohex().substr(1)
       });
-      showPreview(win, color.toHex());
+      showpreview(win, color.tohex());
     };
     var open = function (editor, callback, value) {
-      var win = editor.windowManager.open({
-        title: 'Color',
+      var win = editor.windowmanager.open({
+        title: 'color',
         items: {
           type: 'container',
           layout: 'flex',
@@ -40,14 +40,14 @@ var colorpicker = (function () {
                   win.find('#g').value(rgb.g);
                   win.find('#b').value(rgb.b);
                   win.find('#hex').value(this.value().substr(1));
-                  showPreview(win, this.value());
+                  showpreview(win, this.value());
                 }
               }
             },
             {
               type: 'form',
               padding: 0,
-              labelGap: 5,
+              labelgap: 5,
               defaults: {
                 type: 'textbox',
                 size: 7,
@@ -55,14 +55,14 @@ var colorpicker = (function () {
                 flex: 1,
                 spellcheck: false,
                 onchange: function () {
-                  var colorPickerCtrl = win.find('colorpicker')[0];
+                  var colorpickerctrl = win.find('colorpicker')[0];
                   var name, value;
                   name = this.name();
                   value = this.value();
                   if (name === 'hex') {
                     value = '#' + value;
-                    setColor(win, value);
-                    colorPickerCtrl.value(value);
+                    setcolor(win, value);
+                    colorpickerctrl.value(value);
                     return;
                   }
                   value = {
@@ -70,23 +70,23 @@ var colorpicker = (function () {
                     g: win.find('#g').value(),
                     b: win.find('#b').value()
                   };
-                  colorPickerCtrl.value(value);
-                  setColor(win, value);
+                  colorpickerctrl.value(value);
+                  setcolor(win, value);
                 }
               },
               items: [
                 {
                   name: 'r',
-                  label: 'R',
+                  label: 'r',
                   autofocus: 1
                 },
                 {
                   name: 'g',
-                  label: 'G'
+                  label: 'g'
                 },
                 {
                   name: 'b',
-                  label: 'B'
+                  label: 'b'
                 },
                 {
                   name: 'hex',
@@ -102,25 +102,27 @@ var colorpicker = (function () {
             }
           ]
         },
-        onSubmit: function () {
-          callback('#' + win.toJSON().hex);
+        onsubmit: function () {
+          callback('#' + win.tojson().hex);
         }
       });
-      setColor(win, value);
+      setcolor(win, value);
     };
-    var Dialog = { open: open };
+    var dialog = { open: open };
 
     global.add('colorpicker', function (editor) {
       if (!editor.settings.color_picker_callback) {
         editor.settings.color_picker_callback = function (callback, value) {
-          Dialog.open(editor, callback, value);
+          dialog.open(editor, callback, value);
         };
       }
     });
-    function Plugin () {
+    function plugin () {
     }
 
-    return Plugin;
+    return plugin;
 
 }());
 })();
+
+

@@ -1,526 +1,526 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 9681:
 /***/ ((module) => {
 
-var characterMap = {
-	"Ã€": "A",
-	"Ã": "A",
-	"Ã‚": "A",
-	"Ãƒ": "A",
-	"Ã„": "A",
-	"Ã…": "A",
-	"áº¤": "A",
-	"áº®": "A",
-	"áº²": "A",
-	"áº´": "A",
-	"áº¶": "A",
-	"Ã†": "AE",
-	"áº¦": "A",
-	"áº°": "A",
-	"È‚": "A",
-	"áº¢": "A",
-	"áº ": "A",
-	"áº¨": "A",
-	"áºª": "A",
-	"áº¬": "A",
-	"Ã‡": "C",
-	"á¸ˆ": "C",
-	"Ãˆ": "E",
-	"Ã‰": "E",
-	"ÃŠ": "E",
-	"Ã‹": "E",
-	"áº¾": "E",
-	"á¸–": "E",
-	"á»€": "E",
-	"á¸”": "E",
-	"á¸œ": "E",
-	"È†": "E",
-	"áºº": "E",
-	"áº¼": "E",
-	"áº¸": "E",
-	"á»‚": "E",
-	"á»„": "E",
-	"á»†": "E",
-	"ÃŒ": "I",
-	"Ã": "I",
-	"ÃŽ": "I",
-	"Ã": "I",
-	"á¸®": "I",
-	"ÈŠ": "I",
-	"á»ˆ": "I",
-	"á»Š": "I",
-	"Ã": "D",
-	"Ã‘": "N",
-	"Ã’": "O",
-	"Ã“": "O",
-	"Ã”": "O",
-	"Ã•": "O",
-	"Ã–": "O",
-	"Ã˜": "O",
-	"á»": "O",
-	"á¹Œ": "O",
-	"á¹’": "O",
-	"ÈŽ": "O",
-	"á»Ž": "O",
-	"á»Œ": "O",
-	"á»”": "O",
-	"á»–": "O",
-	"á»˜": "O",
-	"á»œ": "O",
-	"á»ž": "O",
-	"á» ": "O",
-	"á»š": "O",
-	"á»¢": "O",
-	"Ã™": "U",
-	"Ãš": "U",
-	"Ã›": "U",
-	"Ãœ": "U",
-	"á»¦": "U",
-	"á»¤": "U",
-	"á»¬": "U",
-	"á»®": "U",
-	"á»°": "U",
-	"Ã": "Y",
-	"Ã ": "a",
-	"Ã¡": "a",
-	"Ã¢": "a",
-	"Ã£": "a",
-	"Ã¤": "a",
-	"Ã¥": "a",
+var charactermap = {
+	"ã€": "a",
+	"ã": "a",
+	"ã‚": "a",
+	"ãƒ": "a",
+	"ã„": "a",
+	"ã…": "a",
+	"áº¤": "a",
+	"áº®": "a",
+	"áº²": "a",
+	"áº´": "a",
+	"áº¶": "a",
+	"ã†": "ae",
+	"áº¦": "a",
+	"áº°": "a",
+	"è‚": "a",
+	"áº¢": "a",
+	"áº ": "a",
+	"áº¨": "a",
+	"áºª": "a",
+	"áº¬": "a",
+	"ã‡": "c",
+	"á¸ˆ": "c",
+	"ãˆ": "e",
+	"ã‰": "e",
+	"ãš": "e",
+	"ã‹": "e",
+	"áº¾": "e",
+	"á¸–": "e",
+	"á»€": "e",
+	"á¸”": "e",
+	"á¸œ": "e",
+	"è†": "e",
+	"áºº": "e",
+	"áº¼": "e",
+	"áº¸": "e",
+	"á»‚": "e",
+	"á»„": "e",
+	"á»†": "e",
+	"ãœ": "i",
+	"ã": "i",
+	"ãž": "i",
+	"ã": "i",
+	"á¸®": "i",
+	"èš": "i",
+	"á»ˆ": "i",
+	"á»š": "i",
+	"ã": "d",
+	"ã‘": "n",
+	"ã’": "o",
+	"ã“": "o",
+	"ã”": "o",
+	"ã•": "o",
+	"ã–": "o",
+	"ã˜": "o",
+	"á»": "o",
+	"á¹œ": "o",
+	"á¹’": "o",
+	"èž": "o",
+	"á»ž": "o",
+	"á»œ": "o",
+	"á»”": "o",
+	"á»–": "o",
+	"á»˜": "o",
+	"á»œ": "o",
+	"á»ž": "o",
+	"á» ": "o",
+	"á»š": "o",
+	"á»¢": "o",
+	"ã™": "u",
+	"ãš": "u",
+	"ã›": "u",
+	"ãœ": "u",
+	"á»¦": "u",
+	"á»¤": "u",
+	"á»¬": "u",
+	"á»®": "u",
+	"á»°": "u",
+	"ã": "y",
+	"ã ": "a",
+	"ã¡": "a",
+	"ã¢": "a",
+	"ã£": "a",
+	"ã¤": "a",
+	"ã¥": "a",
 	"áº¥": "a",
 	"áº¯": "a",
 	"áº³": "a",
 	"áºµ": "a",
 	"áº·": "a",
-	"Ã¦": "ae",
+	"ã¦": "ae",
 	"áº§": "a",
 	"áº±": "a",
-	"Èƒ": "a",
+	"èƒ": "a",
 	"áº£": "a",
 	"áº¡": "a",
 	"áº©": "a",
 	"áº«": "a",
 	"áº­": "a",
-	"Ã§": "c",
+	"ã§": "c",
 	"á¸‰": "c",
-	"Ã¨": "e",
-	"Ã©": "e",
-	"Ãª": "e",
-	"Ã«": "e",
+	"ã¨": "e",
+	"ã©": "e",
+	"ãª": "e",
+	"ã«": "e",
 	"áº¿": "e",
 	"á¸—": "e",
 	"á»": "e",
 	"á¸•": "e",
 	"á¸": "e",
-	"È‡": "e",
+	"è‡": "e",
 	"áº»": "e",
 	"áº½": "e",
 	"áº¹": "e",
 	"á»ƒ": "e",
 	"á»…": "e",
 	"á»‡": "e",
-	"Ã¬": "i",
-	"Ã­": "i",
-	"Ã®": "i",
-	"Ã¯": "i",
+	"ã¬": "i",
+	"ã­": "i",
+	"ã®": "i",
+	"ã¯": "i",
 	"á¸¯": "i",
-	"È‹": "i",
+	"è‹": "i",
 	"á»‰": "i",
 	"á»‹": "i",
-	"Ã°": "d",
-	"Ã±": "n",
-	"Ã²": "o",
-	"Ã³": "o",
-	"Ã´": "o",
-	"Ãµ": "o",
-	"Ã¶": "o",
-	"Ã¸": "o",
+	"ã°": "d",
+	"ã±": "n",
+	"ã²": "o",
+	"ã³": "o",
+	"ã´": "o",
+	"ãµ": "o",
+	"ã¶": "o",
+	"ã¸": "o",
 	"á»‘": "o",
 	"á¹": "o",
 	"á¹“": "o",
-	"È": "o",
+	"è": "o",
 	"á»": "o",
 	"á»": "o",
 	"á»•": "o",
 	"á»—": "o",
 	"á»™": "o",
 	"á»": "o",
-	"á»Ÿ": "o",
+	"á»ÿ": "o",
 	"á»¡": "o",
 	"á»›": "o",
 	"á»£": "o",
-	"Ã¹": "u",
-	"Ãº": "u",
-	"Ã»": "u",
-	"Ã¼": "u",
+	"ã¹": "u",
+	"ãº": "u",
+	"ã»": "u",
+	"ã¼": "u",
 	"á»§": "u",
 	"á»¥": "u",
 	"á»­": "u",
 	"á»¯": "u",
 	"á»±": "u",
-	"Ã½": "y",
-	"Ã¿": "y",
-	"Ä€": "A",
-	"Ä": "a",
-	"Ä‚": "A",
-	"Äƒ": "a",
-	"Ä„": "A",
-	"Ä…": "a",
-	"Ä†": "C",
-	"Ä‡": "c",
-	"Äˆ": "C",
-	"Ä‰": "c",
-	"ÄŠ": "C",
-	"Ä‹": "c",
-	"ÄŒ": "C",
-	"Ä": "c",
-	"CÌ†": "C",
-	"cÌ†": "c",
-	"ÄŽ": "D",
-	"Ä": "d",
-	"Ä": "D",
-	"Ä‘": "d",
-	"Ä’": "E",
-	"Ä“": "e",
-	"Ä”": "E",
-	"Ä•": "e",
-	"Ä–": "E",
-	"Ä—": "e",
-	"Ä˜": "E",
-	"Ä™": "e",
-	"Äš": "E",
-	"Ä›": "e",
-	"Äœ": "G",
-	"Ç´": "G",
-	"Ä": "g",
-	"Çµ": "g",
-	"Äž": "G",
-	"ÄŸ": "g",
-	"Ä ": "G",
-	"Ä¡": "g",
-	"Ä¢": "G",
-	"Ä£": "g",
-	"Ä¤": "H",
-	"Ä¥": "h",
-	"Ä¦": "H",
-	"Ä§": "h",
-	"á¸ª": "H",
+	"ã½": "y",
+	"ã¿": "y",
+	"ä€": "a",
+	"ä": "a",
+	"ä‚": "a",
+	"äƒ": "a",
+	"ä„": "a",
+	"ä…": "a",
+	"ä†": "c",
+	"ä‡": "c",
+	"äˆ": "c",
+	"ä‰": "c",
+	"äš": "c",
+	"ä‹": "c",
+	"äœ": "c",
+	"ä": "c",
+	"cì†": "c",
+	"cì†": "c",
+	"äž": "d",
+	"ä": "d",
+	"ä": "d",
+	"ä‘": "d",
+	"ä’": "e",
+	"ä“": "e",
+	"ä”": "e",
+	"ä•": "e",
+	"ä–": "e",
+	"ä—": "e",
+	"ä˜": "e",
+	"ä™": "e",
+	"äš": "e",
+	"ä›": "e",
+	"äœ": "g",
+	"ç´": "g",
+	"ä": "g",
+	"çµ": "g",
+	"äž": "g",
+	"äÿ": "g",
+	"ä ": "g",
+	"ä¡": "g",
+	"ä¢": "g",
+	"ä£": "g",
+	"ä¤": "h",
+	"ä¥": "h",
+	"ä¦": "h",
+	"ä§": "h",
+	"á¸ª": "h",
 	"á¸«": "h",
-	"Ä¨": "I",
-	"Ä©": "i",
-	"Äª": "I",
-	"Ä«": "i",
-	"Ä¬": "I",
-	"Ä­": "i",
-	"Ä®": "I",
-	"Ä¯": "i",
-	"Ä°": "I",
-	"Ä±": "i",
-	"Ä²": "IJ",
-	"Ä³": "ij",
-	"Ä´": "J",
-	"Äµ": "j",
-	"Ä¶": "K",
-	"Ä·": "k",
-	"á¸°": "K",
+	"ä¨": "i",
+	"ä©": "i",
+	"äª": "i",
+	"ä«": "i",
+	"ä¬": "i",
+	"ä­": "i",
+	"ä®": "i",
+	"ä¯": "i",
+	"ä°": "i",
+	"ä±": "i",
+	"ä²": "ij",
+	"ä³": "ij",
+	"ä´": "j",
+	"äµ": "j",
+	"ä¶": "k",
+	"ä·": "k",
+	"á¸°": "k",
 	"á¸±": "k",
-	"KÌ†": "K",
-	"kÌ†": "k",
-	"Ä¹": "L",
-	"Äº": "l",
-	"Ä»": "L",
-	"Ä¼": "l",
-	"Ä½": "L",
-	"Ä¾": "l",
-	"Ä¿": "L",
-	"Å€": "l",
-	"Å": "l",
-	"Å‚": "l",
-	"á¸¾": "M",
+	"kì†": "k",
+	"kì†": "k",
+	"ä¹": "l",
+	"äº": "l",
+	"ä»": "l",
+	"ä¼": "l",
+	"ä½": "l",
+	"ä¾": "l",
+	"ä¿": "l",
+	"å€": "l",
+	"å": "l",
+	"å‚": "l",
+	"á¸¾": "m",
 	"á¸¿": "m",
-	"MÌ†": "M",
-	"mÌ†": "m",
-	"Åƒ": "N",
-	"Å„": "n",
-	"Å…": "N",
-	"Å†": "n",
-	"Å‡": "N",
-	"Åˆ": "n",
-	"Å‰": "n",
-	"NÌ†": "N",
-	"nÌ†": "n",
-	"ÅŒ": "O",
-	"Å": "o",
-	"ÅŽ": "O",
-	"Å": "o",
-	"Å": "O",
-	"Å‘": "o",
-	"Å’": "OE",
-	"Å“": "oe",
-	"PÌ†": "P",
-	"pÌ†": "p",
-	"Å”": "R",
-	"Å•": "r",
-	"Å–": "R",
-	"Å—": "r",
-	"Å˜": "R",
-	"Å™": "r",
-	"RÌ†": "R",
-	"rÌ†": "r",
-	"È’": "R",
-	"È“": "r",
-	"Åš": "S",
-	"Å›": "s",
-	"Åœ": "S",
-	"Å": "s",
-	"Åž": "S",
-	"È˜": "S",
-	"È™": "s",
-	"ÅŸ": "s",
-	"Å ": "S",
-	"Å¡": "s",
-	"Å¢": "T",
-	"Å£": "t",
-	"È›": "t",
-	"Èš": "T",
-	"Å¤": "T",
-	"Å¥": "t",
-	"Å¦": "T",
-	"Å§": "t",
-	"TÌ†": "T",
-	"tÌ†": "t",
-	"Å¨": "U",
-	"Å©": "u",
-	"Åª": "U",
-	"Å«": "u",
-	"Å¬": "U",
-	"Å­": "u",
-	"Å®": "U",
-	"Å¯": "u",
-	"Å°": "U",
-	"Å±": "u",
-	"Å²": "U",
-	"Å³": "u",
-	"È–": "U",
-	"È—": "u",
-	"VÌ†": "V",
-	"vÌ†": "v",
-	"Å´": "W",
-	"Åµ": "w",
-	"áº‚": "W",
+	"mì†": "m",
+	"mì†": "m",
+	"åƒ": "n",
+	"å„": "n",
+	"å…": "n",
+	"å†": "n",
+	"å‡": "n",
+	"åˆ": "n",
+	"å‰": "n",
+	"nì†": "n",
+	"nì†": "n",
+	"åœ": "o",
+	"å": "o",
+	"åž": "o",
+	"å": "o",
+	"å": "o",
+	"å‘": "o",
+	"å’": "oe",
+	"å“": "oe",
+	"pì†": "p",
+	"pì†": "p",
+	"å”": "r",
+	"å•": "r",
+	"å–": "r",
+	"å—": "r",
+	"å˜": "r",
+	"å™": "r",
+	"rì†": "r",
+	"rì†": "r",
+	"è’": "r",
+	"è“": "r",
+	"åš": "s",
+	"å›": "s",
+	"åœ": "s",
+	"å": "s",
+	"åž": "s",
+	"è˜": "s",
+	"è™": "s",
+	"åÿ": "s",
+	"å ": "s",
+	"å¡": "s",
+	"å¢": "t",
+	"å£": "t",
+	"è›": "t",
+	"èš": "t",
+	"å¤": "t",
+	"å¥": "t",
+	"å¦": "t",
+	"å§": "t",
+	"tì†": "t",
+	"tì†": "t",
+	"å¨": "u",
+	"å©": "u",
+	"åª": "u",
+	"å«": "u",
+	"å¬": "u",
+	"å­": "u",
+	"å®": "u",
+	"å¯": "u",
+	"å°": "u",
+	"å±": "u",
+	"å²": "u",
+	"å³": "u",
+	"è–": "u",
+	"è—": "u",
+	"vì†": "v",
+	"vì†": "v",
+	"å´": "w",
+	"åµ": "w",
+	"áº‚": "w",
 	"áºƒ": "w",
-	"XÌ†": "X",
-	"xÌ†": "x",
-	"Å¶": "Y",
-	"Å·": "y",
-	"Å¸": "Y",
-	"YÌ†": "Y",
-	"yÌ†": "y",
-	"Å¹": "Z",
-	"Åº": "z",
-	"Å»": "Z",
-	"Å¼": "z",
-	"Å½": "Z",
-	"Å¾": "z",
-	"Å¿": "s",
-	"Æ’": "f",
-	"Æ ": "O",
-	"Æ¡": "o",
-	"Æ¯": "U",
-	"Æ°": "u",
-	"Ç": "A",
-	"ÇŽ": "a",
-	"Ç": "I",
-	"Ç": "i",
-	"Ç‘": "O",
-	"Ç’": "o",
-	"Ç“": "U",
-	"Ç”": "u",
-	"Ç•": "U",
-	"Ç–": "u",
-	"Ç—": "U",
-	"Ç˜": "u",
-	"Ç™": "U",
-	"Çš": "u",
-	"Ç›": "U",
-	"Çœ": "u",
-	"á»¨": "U",
+	"xì†": "x",
+	"xì†": "x",
+	"å¶": "y",
+	"å·": "y",
+	"å¸": "y",
+	"yì†": "y",
+	"yì†": "y",
+	"å¹": "z",
+	"åº": "z",
+	"å»": "z",
+	"å¼": "z",
+	"å½": "z",
+	"å¾": "z",
+	"å¿": "s",
+	"æ’": "f",
+	"æ ": "o",
+	"æ¡": "o",
+	"æ¯": "u",
+	"æ°": "u",
+	"ç": "a",
+	"çž": "a",
+	"ç": "i",
+	"ç": "i",
+	"ç‘": "o",
+	"ç’": "o",
+	"ç“": "u",
+	"ç”": "u",
+	"ç•": "u",
+	"ç–": "u",
+	"ç—": "u",
+	"ç˜": "u",
+	"ç™": "u",
+	"çš": "u",
+	"ç›": "u",
+	"çœ": "u",
+	"á»¨": "u",
 	"á»©": "u",
-	"á¹¸": "U",
+	"á¹¸": "u",
 	"á¹¹": "u",
-	"Çº": "A",
-	"Ç»": "a",
-	"Ç¼": "AE",
-	"Ç½": "ae",
-	"Ç¾": "O",
-	"Ç¿": "o",
-	"Ãž": "TH",
-	"Ã¾": "th",
-	"á¹”": "P",
+	"çº": "a",
+	"ç»": "a",
+	"ç¼": "ae",
+	"ç½": "ae",
+	"ç¾": "o",
+	"ç¿": "o",
+	"ãž": "th",
+	"ã¾": "th",
+	"á¹”": "p",
 	"á¹•": "p",
-	"á¹¤": "S",
+	"á¹¤": "s",
 	"á¹¥": "s",
-	"XÌ": "X",
-	"xÌ": "x",
-	"Ðƒ": "Ð“",
-	"Ñ“": "Ð³",
-	"ÐŒ": "Ðš",
-	"Ñœ": "Ðº",
-	"AÌ‹": "A",
-	"aÌ‹": "a",
-	"EÌ‹": "E",
-	"eÌ‹": "e",
-	"IÌ‹": "I",
-	"iÌ‹": "i",
-	"Ç¸": "N",
-	"Ç¹": "n",
-	"á»’": "O",
+	"xì": "x",
+	"xì": "x",
+	"ðƒ": "ð“",
+	"ñ“": "ð³",
+	"ðœ": "ðš",
+	"ñœ": "ðº",
+	"aì‹": "a",
+	"aì‹": "a",
+	"eì‹": "e",
+	"eì‹": "e",
+	"iì‹": "i",
+	"iì‹": "i",
+	"ç¸": "n",
+	"ç¹": "n",
+	"á»’": "o",
 	"á»“": "o",
-	"á¹": "O",
+	"á¹": "o",
 	"á¹‘": "o",
-	"á»ª": "U",
+	"á»ª": "u",
 	"á»«": "u",
-	"áº€": "W",
+	"áº€": "w",
 	"áº": "w",
-	"á»²": "Y",
+	"á»²": "y",
 	"á»³": "y",
-	"È€": "A",
-	"È": "a",
-	"È„": "E",
-	"È…": "e",
-	"Èˆ": "I",
-	"È‰": "i",
-	"ÈŒ": "O",
-	"È": "o",
-	"È": "R",
-	"È‘": "r",
-	"È”": "U",
-	"È•": "u",
-	"BÌŒ": "B",
-	"bÌŒ": "b",
-	"ÄŒÌ£": "C",
-	"ÄÌ£": "c",
-	"ÃŠÌŒ": "E",
-	"ÃªÌŒ": "e",
-	"FÌŒ": "F",
-	"fÌŒ": "f",
-	"Ç¦": "G",
-	"Ç§": "g",
-	"Èž": "H",
-	"ÈŸ": "h",
-	"JÌŒ": "J",
-	"Ç°": "j",
-	"Ç¨": "K",
-	"Ç©": "k",
-	"MÌŒ": "M",
-	"mÌŒ": "m",
-	"PÌŒ": "P",
-	"pÌŒ": "p",
-	"QÌŒ": "Q",
-	"qÌŒ": "q",
-	"Å˜Ì©": "R",
-	"Å™Ì©": "r",
-	"á¹¦": "S",
+	"è€": "a",
+	"è": "a",
+	"è„": "e",
+	"è…": "e",
+	"èˆ": "i",
+	"è‰": "i",
+	"èœ": "o",
+	"è": "o",
+	"è": "r",
+	"è‘": "r",
+	"è”": "u",
+	"è•": "u",
+	"bìœ": "b",
+	"bìœ": "b",
+	"äœì£": "c",
+	"äì£": "c",
+	"ãšìœ": "e",
+	"ãªìœ": "e",
+	"fìœ": "f",
+	"fìœ": "f",
+	"ç¦": "g",
+	"ç§": "g",
+	"èž": "h",
+	"èÿ": "h",
+	"jìœ": "j",
+	"ç°": "j",
+	"ç¨": "k",
+	"ç©": "k",
+	"mìœ": "m",
+	"mìœ": "m",
+	"pìœ": "p",
+	"pìœ": "p",
+	"qìœ": "q",
+	"qìœ": "q",
+	"å˜ì©": "r",
+	"å™ì©": "r",
+	"á¹¦": "s",
 	"á¹§": "s",
-	"VÌŒ": "V",
-	"vÌŒ": "v",
-	"WÌŒ": "W",
-	"wÌŒ": "w",
-	"XÌŒ": "X",
-	"xÌŒ": "x",
-	"YÌŒ": "Y",
-	"yÌŒ": "y",
-	"AÌ§": "A",
-	"aÌ§": "a",
-	"BÌ§": "B",
-	"bÌ§": "b",
-	"á¸": "D",
+	"vìœ": "v",
+	"vìœ": "v",
+	"wìœ": "w",
+	"wìœ": "w",
+	"xìœ": "x",
+	"xìœ": "x",
+	"yìœ": "y",
+	"yìœ": "y",
+	"aì§": "a",
+	"aì§": "a",
+	"bì§": "b",
+	"bì§": "b",
+	"á¸": "d",
 	"á¸‘": "d",
-	"È¨": "E",
-	"È©": "e",
-	"ÆÌ§": "E",
-	"É›Ì§": "e",
-	"á¸¨": "H",
+	"è¨": "e",
+	"è©": "e",
+	"æì§": "e",
+	"é›ì§": "e",
+	"á¸¨": "h",
 	"á¸©": "h",
-	"IÌ§": "I",
-	"iÌ§": "i",
-	"Æ—Ì§": "I",
-	"É¨Ì§": "i",
-	"MÌ§": "M",
-	"mÌ§": "m",
-	"OÌ§": "O",
-	"oÌ§": "o",
-	"QÌ§": "Q",
-	"qÌ§": "q",
-	"UÌ§": "U",
-	"uÌ§": "u",
-	"XÌ§": "X",
-	"xÌ§": "x",
-	"ZÌ§": "Z",
-	"zÌ§": "z",
-	"Ð¹":"Ð¸",
-	"Ð™":"Ð˜",
-	"Ñ‘":"Ðµ",
-	"Ð":"Ð•",
+	"iì§": "i",
+	"iì§": "i",
+	"æ—ì§": "i",
+	"é¨ì§": "i",
+	"mì§": "m",
+	"mì§": "m",
+	"oì§": "o",
+	"oì§": "o",
+	"qì§": "q",
+	"qì§": "q",
+	"uì§": "u",
+	"uì§": "u",
+	"xì§": "x",
+	"xì§": "x",
+	"zì§": "z",
+	"zì§": "z",
+	"ð¹":"ð¸",
+	"ð™":"ð˜",
+	"ñ‘":"ðµ",
+	"ð":"ð•",
 };
 
-var chars = Object.keys(characterMap).join('|');
-var allAccents = new RegExp(chars, 'g');
-var firstAccent = new RegExp(chars, '');
+var chars = object.keys(charactermap).join('|');
+var allaccents = new regexp(chars, 'g');
+var firstaccent = new regexp(chars, '');
 
 function matcher(match) {
-	return characterMap[match];
+	return charactermap[match];
 }
 
-var removeAccents = function(string) {
-	return string.replace(allAccents, matcher);
+var removeaccents = function(string) {
+	return string.replace(allaccents, matcher);
 };
 
-var hasAccents = function(string) {
-	return !!string.match(firstAccent);
+var hasaccents = function(string) {
+	return !!string.match(firstaccent);
 };
 
-module.exports = removeAccents;
-module.exports.has = hasAccents;
-module.exports.remove = removeAccents;
+module.exports = removeaccents;
+module.exports.has = hasaccents;
+module.exports.remove = removeaccents;
 
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	// the module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
+/******/ 	// the require function
+/******/ 	function __webpack_require__(moduleid) {
+/******/ 		// check if module is in cache
+/******/ 		var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 		if (cachedmodule !== undefined) {
+/******/ 			return cachedmodule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleid] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		// execute the module function
+/******/ 		__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		// return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -534,72 +534,72 @@ module.exports.remove = removeAccents;
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// this entry needs to be wrapped in an iife because it needs to be in strict mode.
 (() => {
 "use strict";
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  addQueryArgs: () => (/* reexport */ addQueryArgs),
-  buildQueryString: () => (/* reexport */ buildQueryString),
-  cleanForSlug: () => (/* reexport */ cleanForSlug),
-  filterURLForDisplay: () => (/* reexport */ filterURLForDisplay),
-  getAuthority: () => (/* reexport */ getAuthority),
-  getFilename: () => (/* reexport */ getFilename),
-  getFragment: () => (/* reexport */ getFragment),
-  getPath: () => (/* reexport */ getPath),
-  getPathAndQueryString: () => (/* reexport */ getPathAndQueryString),
-  getProtocol: () => (/* reexport */ getProtocol),
-  getQueryArg: () => (/* reexport */ getQueryArg),
-  getQueryArgs: () => (/* reexport */ getQueryArgs),
-  getQueryString: () => (/* reexport */ getQueryString),
-  hasQueryArg: () => (/* reexport */ hasQueryArg),
-  isEmail: () => (/* reexport */ isEmail),
-  isPhoneNumber: () => (/* reexport */ isPhoneNumber),
-  isURL: () => (/* reexport */ isURL),
-  isValidAuthority: () => (/* reexport */ isValidAuthority),
-  isValidFragment: () => (/* reexport */ isValidFragment),
-  isValidPath: () => (/* reexport */ isValidPath),
-  isValidProtocol: () => (/* reexport */ isValidProtocol),
-  isValidQueryString: () => (/* reexport */ isValidQueryString),
-  normalizePath: () => (/* reexport */ normalizePath),
-  prependHTTP: () => (/* reexport */ prependHTTP),
-  prependHTTPS: () => (/* reexport */ prependHTTPS),
-  removeQueryArgs: () => (/* reexport */ removeQueryArgs),
-  safeDecodeURI: () => (/* reexport */ safeDecodeURI),
-  safeDecodeURIComponent: () => (/* reexport */ safeDecodeURIComponent)
+  addqueryargs: () => (/* reexport */ addqueryargs),
+  buildquerystring: () => (/* reexport */ buildquerystring),
+  cleanforslug: () => (/* reexport */ cleanforslug),
+  filterurlfordisplay: () => (/* reexport */ filterurlfordisplay),
+  getauthority: () => (/* reexport */ getauthority),
+  getfilename: () => (/* reexport */ getfilename),
+  getfragment: () => (/* reexport */ getfragment),
+  getpath: () => (/* reexport */ getpath),
+  getpathandquerystring: () => (/* reexport */ getpathandquerystring),
+  getprotocol: () => (/* reexport */ getprotocol),
+  getqueryarg: () => (/* reexport */ getqueryarg),
+  getqueryargs: () => (/* reexport */ getqueryargs),
+  getquerystring: () => (/* reexport */ getquerystring),
+  hasqueryarg: () => (/* reexport */ hasqueryarg),
+  isemail: () => (/* reexport */ isemail),
+  isphonenumber: () => (/* reexport */ isphonenumber),
+  isurl: () => (/* reexport */ isurl),
+  isvalidauthority: () => (/* reexport */ isvalidauthority),
+  isvalidfragment: () => (/* reexport */ isvalidfragment),
+  isvalidpath: () => (/* reexport */ isvalidpath),
+  isvalidprotocol: () => (/* reexport */ isvalidprotocol),
+  isvalidquerystring: () => (/* reexport */ isvalidquerystring),
+  normalizepath: () => (/* reexport */ normalizepath),
+  prependhttp: () => (/* reexport */ prependhttp),
+  prependhttps: () => (/* reexport */ prependhttps),
+  removequeryargs: () => (/* reexport */ removequeryargs),
+  safedecodeuri: () => (/* reexport */ safedecodeuri),
+  safedecodeuricomponent: () => (/* reexport */ safedecodeuricomponent)
 });
 
 ;// ./node_modules/@wordpress/url/build-module/is-url.js
-function isURL(url) {
+function isurl(url) {
   try {
-    new URL(url);
+    new url(url);
     return true;
   } catch {
     return false;
@@ -608,22 +608,22 @@ function isURL(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-email.js
-const EMAIL_REGEXP = /^(mailto:)?[a-z0-9._%+-]+@[a-z0-9][a-z0-9.-]*\.[a-z]{2,63}$/i;
-function isEmail(email) {
-  return EMAIL_REGEXP.test(email);
+const email_regexp = /^(mailto:)?[a-z0-9._%+-]+@[a-z0-9][a-z0-9.-]*\.[a-z]{2,63}$/i;
+function isemail(email) {
+  return email_regexp.test(email);
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-phone-number.js
-const PHONE_REGEXP = /^(tel:)?(\+)?\d{6,15}$/;
-function isPhoneNumber(phoneNumber) {
-  phoneNumber = phoneNumber.replace(/[-.() ]/g, "");
-  return PHONE_REGEXP.test(phoneNumber);
+const phone_regexp = /^(tel:)?(\+)?\d{6,15}$/;
+function isphonenumber(phonenumber) {
+  phonenumber = phonenumber.replace(/[-.() ]/g, "");
+  return phone_regexp.test(phonenumber);
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-protocol.js
-function getProtocol(url) {
+function getprotocol(url) {
   const matches = /^([^\s:]+:)/.exec(url);
   if (matches) {
     return matches[1];
@@ -632,7 +632,7 @@ function getProtocol(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-valid-protocol.js
-function isValidProtocol(protocol) {
+function isvalidprotocol(protocol) {
   if (!protocol) {
     return false;
   }
@@ -641,8 +641,8 @@ function isValidProtocol(protocol) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-authority.js
-function getAuthority(url) {
-  const matches = /^[^\/\s:]+:(?:\/\/)?\/?([^\/\s#?]+)[\/#?]{0,1}\S*$/.exec(
+function getauthority(url) {
+  const matches = /^[^\/\s:]+:(?:\/\/)?\/?([^\/\s#?]+)[\/#?]{0,1}\s*$/.exec(
     url
   );
   if (matches) {
@@ -652,7 +652,7 @@ function getAuthority(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-valid-authority.js
-function isValidAuthority(authority) {
+function isvalidauthority(authority) {
   if (!authority) {
     return false;
   }
@@ -661,8 +661,8 @@ function isValidAuthority(authority) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-path.js
-function getPath(url) {
-  const matches = /^[^\/\s:]+:(?:\/\/)?[^\/\s#?]+[\/]([^\s#?]+)[#?]{0,1}\S*$/.exec(url);
+function getpath(url) {
+  const matches = /^[^\/\s:]+:(?:\/\/)?[^\/\s#?]+[\/]([^\s#?]+)[#?]{0,1}\s*$/.exec(url);
   if (matches) {
     return matches[1];
   }
@@ -670,7 +670,7 @@ function getPath(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-valid-path.js
-function isValidPath(path) {
+function isvalidpath(path) {
   if (!path) {
     return false;
   }
@@ -679,10 +679,10 @@ function isValidPath(path) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-query-string.js
-function getQueryString(url) {
+function getquerystring(url) {
   let query;
   try {
-    query = new URL(url, "http://example.com").search.substring(1);
+    query = new url(url, "http://example.com").search.substring(1);
   } catch (error) {
   }
   if (query) {
@@ -692,23 +692,23 @@ function getQueryString(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/build-query-string.js
-function buildQueryString(data) {
+function buildquerystring(data) {
   let string = "";
-  const stack = Object.entries(data);
+  const stack = object.entries(data);
   let pair;
   while (pair = stack.shift()) {
     let [key, value] = pair;
-    const hasNestedData = Array.isArray(value) || value && value.constructor === Object;
-    if (hasNestedData) {
-      const valuePairs = Object.entries(value).reverse();
-      for (const [member, memberValue] of valuePairs) {
-        stack.unshift([`${key}[${member}]`, memberValue]);
+    const hasnesteddata = array.isarray(value) || value && value.constructor === object;
+    if (hasnesteddata) {
+      const valuepairs = object.entries(value).reverse();
+      for (const [member, membervalue] of valuepairs) {
+        stack.unshift([`${key}[${member}]`, membervalue]);
       }
     } else if (value !== void 0) {
       if (value === null) {
         value = "";
       }
-      string += "&" + [key, String(value)].map(encodeURIComponent).join("=");
+      string += "&" + [key, string(value)].map(encodeuricomponent).join("=");
     }
   }
   return string.substr(1);
@@ -716,33 +716,33 @@ function buildQueryString(data) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-valid-query-string.js
-function isValidQueryString(queryString) {
-  if (!queryString) {
+function isvalidquerystring(querystring) {
+  if (!querystring) {
     return false;
   }
-  return /^[^\s#?\/]+$/.test(queryString);
+  return /^[^\s#?\/]+$/.test(querystring);
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-path-and-query-string.js
 
-function getPathAndQueryString(url) {
-  const path = getPath(url);
-  const queryString = getQueryString(url);
+function getpathandquerystring(url) {
+  const path = getpath(url);
+  const querystring = getquerystring(url);
   let value = "/";
   if (path) {
     value += path;
   }
-  if (queryString) {
-    value += `?${queryString}`;
+  if (querystring) {
+    value += `?${querystring}`;
   }
   return value;
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-fragment.js
-function getFragment(url) {
-  const matches = /^\S+?(#[^\s\?]*)/.exec(url);
+function getfragment(url) {
+  const matches = /^\s+?(#[^\s\?]*)/.exec(url);
   if (matches) {
     return matches[1];
   }
@@ -750,7 +750,7 @@ function getFragment(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/is-valid-fragment.js
-function isValidFragment(fragment) {
+function isvalidfragment(fragment) {
   if (!fragment) {
     return false;
   }
@@ -759,11 +759,11 @@ function isValidFragment(fragment) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/safe-decode-uri-component.js
-function safeDecodeURIComponent(uriComponent) {
+function safedecodeuricomponent(uricomponent) {
   try {
-    return decodeURIComponent(uriComponent);
-  } catch (uriComponentError) {
-    return uriComponent;
+    return decodeuricomponent(uricomponent);
+  } catch (uricomponenterror) {
+    return uricomponent;
   }
 }
 
@@ -771,39 +771,39 @@ function safeDecodeURIComponent(uriComponent) {
 ;// ./node_modules/@wordpress/url/build-module/get-query-args.js
 
 
-function setPath(object, path, value) {
+function setpath(object, path, value) {
   const length = path.length;
-  const lastIndex = length - 1;
+  const lastindex = length - 1;
   for (let i = 0; i < length; i++) {
     let key = path[i];
-    if (!key && Array.isArray(object)) {
-      key = object.length.toString();
+    if (!key && array.isarray(object)) {
+      key = object.length.tostring();
     }
-    key = ["__proto__", "constructor", "prototype"].includes(key) ? key.toUpperCase() : key;
-    const isNextKeyArrayIndex = !isNaN(Number(path[i + 1]));
-    object[key] = i === lastIndex ? (
-      // If at end of path, assign the intended value.
+    key = ["__proto__", "constructor", "prototype"].includes(key) ? key.touppercase() : key;
+    const isnextkeyarrayindex = !isnan(number(path[i + 1]));
+    object[key] = i === lastindex ? (
+      // if at end of path, assign the intended value.
       value
     ) : (
-      // Otherwise, advance to the next object in the path, creating
+      // otherwise, advance to the next object in the path, creating
       // it if it does not yet exist.
-      object[key] || (isNextKeyArrayIndex ? [] : {})
+      object[key] || (isnextkeyarrayindex ? [] : {})
     );
-    if (Array.isArray(object[key]) && !isNextKeyArrayIndex) {
+    if (array.isarray(object[key]) && !isnextkeyarrayindex) {
       object[key] = { ...object[key] };
     }
     object = object[key];
   }
 }
-function getQueryArgs(url) {
-  return (getQueryString(url) || "").replace(/\+/g, "%20").split("&").reduce((accumulator, keyValue) => {
-    const [key, value = ""] = keyValue.split("=").filter(Boolean).map(safeDecodeURIComponent);
+function getqueryargs(url) {
+  return (getquerystring(url) || "").replace(/\+/g, "%20").split("&").reduce((accumulator, keyvalue) => {
+    const [key, value = ""] = keyvalue.split("=").filter(boolean).map(safedecodeuricomponent);
     if (key) {
       const segments = key.replace(/\]/g, "").split("[");
-      setPath(accumulator, segments, value);
+      setpath(accumulator, segments, value);
     }
     return accumulator;
-  }, /* @__PURE__ */ Object.create(null));
+  }, /* @__pure__ */ object.create(null));
 }
 
 
@@ -811,63 +811,63 @@ function getQueryArgs(url) {
 
 
 
-function addQueryArgs(url = "", args) {
-  if (!args || !Object.keys(args).length) {
+function addqueryargs(url = "", args) {
+  if (!args || !object.keys(args).length) {
     return url;
   }
-  const fragment = getFragment(url) || "";
-  let baseUrl = url.replace(fragment, "");
-  const queryStringIndex = url.indexOf("?");
-  if (queryStringIndex !== -1) {
-    args = Object.assign(getQueryArgs(url), args);
-    baseUrl = baseUrl.substr(0, queryStringIndex);
+  const fragment = getfragment(url) || "";
+  let baseurl = url.replace(fragment, "");
+  const querystringindex = url.indexof("?");
+  if (querystringindex !== -1) {
+    args = object.assign(getqueryargs(url), args);
+    baseurl = baseurl.substr(0, querystringindex);
   }
-  return baseUrl + "?" + buildQueryString(args) + fragment;
+  return baseurl + "?" + buildquerystring(args) + fragment;
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-query-arg.js
 
-function getQueryArg(url, arg) {
-  return getQueryArgs(url)[arg];
+function getqueryarg(url, arg) {
+  return getqueryargs(url)[arg];
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/has-query-arg.js
 
-function hasQueryArg(url, arg) {
-  return getQueryArg(url, arg) !== void 0;
+function hasqueryarg(url, arg) {
+  return getqueryarg(url, arg) !== void 0;
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/remove-query-args.js
 
 
-function removeQueryArgs(url, ...args) {
+function removequeryargs(url, ...args) {
   const fragment = url.replace(/^[^#]*/, "");
   url = url.replace(/#.*/, "");
-  const queryStringIndex = url.indexOf("?");
-  if (queryStringIndex === -1) {
+  const querystringindex = url.indexof("?");
+  if (querystringindex === -1) {
     return url + fragment;
   }
-  const query = getQueryArgs(url);
-  const baseURL = url.substr(0, queryStringIndex);
-  args.forEach((arg) => delete query[arg]);
-  const queryString = buildQueryString(query);
-  const updatedUrl = queryString ? baseURL + "?" + queryString : baseURL;
-  return updatedUrl + fragment;
+  const query = getqueryargs(url);
+  const baseurl = url.substr(0, querystringindex);
+  args.foreach((arg) => delete query[arg]);
+  const querystring = buildquerystring(query);
+  const updatedurl = querystring ? baseurl + "?" + querystring : baseurl;
+  return updatedurl + fragment;
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/prepend-http.js
 
-const USABLE_HREF_REGEXP = /^(?:[a-z]+:|#|\?|\.|\/)/i;
-function prependHTTP(url) {
+const usable_href_regexp = /^(?:[a-z]+:|#|\?|\.|\/)/i;
+function prependhttp(url) {
   if (!url) {
     return url;
   }
   url = url.trim();
-  if (!USABLE_HREF_REGEXP.test(url) && !isEmail(url)) {
+  if (!usable_href_regexp.test(url) && !isemail(url)) {
     return "http://" + url;
   }
   return url;
@@ -875,65 +875,65 @@ function prependHTTP(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/safe-decode-uri.js
-function safeDecodeURI(uri) {
+function safedecodeuri(uri) {
   try {
-    return decodeURI(uri);
-  } catch (uriError) {
+    return decodeuri(uri);
+  } catch (urierror) {
     return uri;
   }
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/filter-url-for-display.js
-function filterURLForDisplay(url, maxLength = null) {
+function filterurlfordisplay(url, maxlength = null) {
   if (!url) {
     return "";
   }
-  let filteredURL = url.replace(/^[a-z\-.\+]+[0-9]*:(\/\/)?/i, "").replace(/^www\./i, "");
-  if (filteredURL.match(/^[^\/]+\/$/)) {
-    filteredURL = filteredURL.replace("/", "");
+  let filteredurl = url.replace(/^[a-z\-.\+]+[0-9]*:(\/\/)?/i, "").replace(/^www\./i, "");
+  if (filteredurl.match(/^[^\/]+\/$/)) {
+    filteredurl = filteredurl.replace("/", "");
   }
-  const fileRegexp = /\/([^\/?]+)\.(?:[\w]+)(?=\?|$)/;
-  if (!maxLength || filteredURL.length <= maxLength || !filteredURL.match(fileRegexp)) {
-    return filteredURL;
+  const fileregexp = /\/([^\/?]+)\.(?:[\w]+)(?=\?|$)/;
+  if (!maxlength || filteredurl.length <= maxlength || !filteredurl.match(fileregexp)) {
+    return filteredurl;
   }
-  filteredURL = filteredURL.split("?")[0];
-  const urlPieces = filteredURL.split("/");
-  const file = urlPieces[urlPieces.length - 1];
-  if (file.length <= maxLength) {
-    return "\u2026" + filteredURL.slice(-maxLength);
+  filteredurl = filteredurl.split("?")[0];
+  const urlpieces = filteredurl.split("/");
+  const file = urlpieces[urlpieces.length - 1];
+  if (file.length <= maxlength) {
+    return "\u2026" + filteredurl.slice(-maxlength);
   }
-  const index = file.lastIndexOf(".");
-  const [fileName, extension] = [
+  const index = file.lastindexof(".");
+  const [filename, extension] = [
     file.slice(0, index),
     file.slice(index + 1)
   ];
-  const truncatedFile = fileName.slice(-3) + "." + extension;
-  return file.slice(0, maxLength - truncatedFile.length - 1) + "\u2026" + truncatedFile;
+  const truncatedfile = filename.slice(-3) + "." + extension;
+  return file.slice(0, maxlength - truncatedfile.length - 1) + "\u2026" + truncatedfile;
 }
 
 
-// EXTERNAL MODULE: ./node_modules/remove-accents/index.js
+// external module: ./node_modules/remove-accents/index.js
 var remove_accents = __webpack_require__(9681);
-var remove_accents_default = /*#__PURE__*/__webpack_require__.n(remove_accents);
+var remove_accents_default = /*#__pure__*/__webpack_require__.n(remove_accents);
 ;// ./node_modules/@wordpress/url/build-module/clean-for-slug.js
 
-function cleanForSlug(string) {
+function cleanforslug(string) {
   if (!string) {
     return "";
   }
-  return remove_accents_default()(string).replace(/(&nbsp;|&ndash;|&mdash;)/g, "-").replace(/[\s\./]+/g, "-").replace(/&\S+?;/g, "").replace(/[^\p{L}\p{N}_-]+/gu, "").toLowerCase().replace(/-+/g, "-").replace(/(^-+)|(-+$)/g, "");
+  return remove_accents_default()(string).replace(/(&nbsp;|&ndash;|&mdash;)/g, "-").replace(/[\s\./]+/g, "-").replace(/&\s+?;/g, "").replace(/[^\p{l}\p{n}_-]+/gu, "").tolowercase().replace(/-+/g, "-").replace(/(^-+)|(-+$)/g, "");
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/get-filename.js
-function getFilename(url) {
+function getfilename(url) {
   let filename;
   if (!url) {
     return;
   }
   try {
-    filename = new URL(url, "http://example.com").pathname.split("/").pop();
+    filename = new url(url, "http://example.com").pathname.split("/").pop();
   } catch (error) {
   }
   if (filename) {
@@ -943,27 +943,27 @@ function getFilename(url) {
 
 
 ;// ./node_modules/@wordpress/url/build-module/normalize-path.js
-function normalizePath(path) {
+function normalizepath(path) {
   const split = path.split("?");
   const query = split[1];
   const base = split[0];
   if (!query) {
     return base;
   }
-  return base + "?" + query.split("&").map((entry) => entry.split("=")).map((pair) => pair.map(decodeURIComponent)).sort((a, b) => a[0].localeCompare(b[0])).map((pair) => pair.map(encodeURIComponent)).map((pair) => pair.join("=")).join("&");
+  return base + "?" + query.split("&").map((entry) => entry.split("=")).map((pair) => pair.map(decodeuricomponent)).sort((a, b) => a[0].localecompare(b[0])).map((pair) => pair.map(encodeuricomponent)).map((pair) => pair.join("=")).join("&");
 }
 
 
 ;// ./node_modules/@wordpress/url/build-module/prepend-https.js
 
-function prependHTTPS(url) {
+function prependhttps(url) {
   if (!url) {
     return url;
   }
-  if (url.startsWith("http://")) {
+  if (url.startswith("http://")) {
     return url;
   }
-  url = prependHTTP(url);
+  url = prependhttp(url);
   return url.replace(/^http:/, "https:");
 }
 
@@ -1004,3 +1004,4 @@ function prependHTTPS(url) {
 (window.wp = window.wp || {}).url = __webpack_exports__;
 /******/ })()
 ;
+

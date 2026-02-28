@@ -1,6 +1,6 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
@@ -10,25 +10,25 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -36,27 +36,28 @@
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   decodeEntities: () => (/* binding */ decodeEntities)
+/* harmony export */   decodeentities: () => (/* binding */ decodeentities)
 /* harmony export */ });
-let _decodeTextArea;
-function decodeEntities(html) {
-  if ("string" !== typeof html || -1 === html.indexOf("&")) {
+let _decodetextarea;
+function decodeentities(html) {
+  if ("string" !== typeof html || -1 === html.indexof("&")) {
     return html;
   }
-  if (void 0 === _decodeTextArea) {
-    if (document.implementation && document.implementation.createHTMLDocument) {
-      _decodeTextArea = document.implementation.createHTMLDocument("").createElement("textarea");
+  if (void 0 === _decodetextarea) {
+    if (document.implementation && document.implementation.createhtmldocument) {
+      _decodetextarea = document.implementation.createhtmldocument("").createelement("textarea");
     } else {
-      _decodeTextArea = document.createElement("textarea");
+      _decodetextarea = document.createelement("textarea");
     }
   }
-  _decodeTextArea.innerHTML = html;
-  const decoded = _decodeTextArea.textContent ?? "";
-  _decodeTextArea.innerHTML = "";
+  _decodetextarea.innerhtml = html;
+  const decoded = _decodetextarea.textcontent ?? "";
+  _decodetextarea.innerhtml = "";
   return decoded;
 }
 
 
-(window.wp = window.wp || {}).htmlEntities = __webpack_exports__;
+(window.wp = window.wp || {}).htmlentities = __webpack_exports__;
 /******/ })()
 ;
+

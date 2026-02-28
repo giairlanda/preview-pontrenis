@@ -1,15 +1,15 @@
 /*!
- * jQuery UI Effects Slide 1.13.3
+ * jquery ui effects slide 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Slide Effect
-//>>group: Effects
-//>>description: Slides an element in and out of the viewport.
+//>>label: slide effect
+//>>group: effects
+//>>description: slides an element in and out of the viewport.
 //>>docs: https://api.jqueryui.com/slide-effect/
 //>>demos: https://jqueryui.com/effect/
 
@@ -18,7 +18,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"../version",
@@ -26,14 +26,14 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
 return $.effects.define( "slide", "show", function( options, done ) {
-	var startClip, startRef,
+	var startclip, startref,
 		element = $( this ),
 		map = {
 			up: [ "bottom", "top" ],
@@ -44,30 +44,30 @@ return $.effects.define( "slide", "show", function( options, done ) {
 		mode = options.mode,
 		direction = options.direction || "left",
 		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
-		positiveMotion = ( direction === "up" || direction === "left" ),
+		positivemotion = ( direction === "up" || direction === "left" ),
 		distance = options.distance ||
-			element[ ref === "top" ? "outerHeight" : "outerWidth" ]( true ),
+			element[ ref === "top" ? "outerheight" : "outerwidth" ]( true ),
 		animation = {};
 
-	$.effects.createPlaceholder( element );
+	$.effects.createplaceholder( element );
 
-	startClip = element.cssClip();
-	startRef = element.position()[ ref ];
+	startclip = element.cssclip();
+	startref = element.position()[ ref ];
 
-	// Define hide animation
-	animation[ ref ] = ( positiveMotion ? -1 : 1 ) * distance + startRef;
-	animation.clip = element.cssClip();
+	// define hide animation
+	animation[ ref ] = ( positivemotion ? -1 : 1 ) * distance + startref;
+	animation.clip = element.cssclip();
 	animation.clip[ map[ direction ][ 1 ] ] = animation.clip[ map[ direction ][ 0 ] ];
 
-	// Reverse the animation if we're showing
+	// reverse the animation if we're showing
 	if ( mode === "show" ) {
-		element.cssClip( animation.clip );
+		element.cssclip( animation.clip );
 		element.css( ref, animation[ ref ] );
-		animation.clip = startClip;
-		animation[ ref ] = startRef;
+		animation.clip = startclip;
+		animation[ ref ] = startref;
 	}
 
-	// Actually animate
+	// actually animate
 	element.animate( animation, {
 		queue: false,
 		duration: options.duration,
@@ -77,3 +77,5 @@ return $.effects.define( "slide", "show", function( options, done ) {
 } );
 
 } );
+
+

@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -25,27 +25,27 @@ module.exports = window["wp"]["data"];
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	// the module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
+/******/ 	// the require function
+/******/ 	function __webpack_require__(moduleid) {
+/******/ 		// check if module is in cache
+/******/ 		var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 		if (cachedmodule !== undefined) {
+/******/ 			return cachedmodule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleid] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		// execute the module function
+/******/ 		__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		// return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
@@ -56,41 +56,41 @@ module.exports = window["wp"]["data"];
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  loadView: () => (/* reexport */ loadView),
-  useView: () => (/* reexport */ useView)
+  loadview: () => (/* reexport */ loadview),
+  useview: () => (/* reexport */ useview)
 });
 
 ;// ./node_modules/dequal/dist/index.mjs
-var has = Object.prototype.hasOwnProperty;
+var has = object.prototype.hasownproperty;
 
 function find(iter, tar, key) {
 	for (key of iter.keys()) {
@@ -103,17 +103,17 @@ function dequal(foo, bar) {
 	if (foo === bar) return true;
 
 	if (foo && bar && (ctor=foo.constructor) === bar.constructor) {
-		if (ctor === Date) return foo.getTime() === bar.getTime();
-		if (ctor === RegExp) return foo.toString() === bar.toString();
+		if (ctor === date) return foo.gettime() === bar.gettime();
+		if (ctor === regexp) return foo.tostring() === bar.tostring();
 
-		if (ctor === Array) {
+		if (ctor === array) {
 			if ((len=foo.length) === bar.length) {
 				while (len-- && dequal(foo[len], bar[len]));
 			}
 			return len === -1;
 		}
 
-		if (ctor === Set) {
+		if (ctor === set) {
 			if (foo.size !== bar.size) {
 				return false;
 			}
@@ -128,7 +128,7 @@ function dequal(foo, bar) {
 			return true;
 		}
 
-		if (ctor === Map) {
+		if (ctor === map) {
 			if (foo.size !== bar.size) {
 				return false;
 			}
@@ -145,18 +145,18 @@ function dequal(foo, bar) {
 			return true;
 		}
 
-		if (ctor === ArrayBuffer) {
-			foo = new Uint8Array(foo);
-			bar = new Uint8Array(bar);
-		} else if (ctor === DataView) {
-			if ((len=foo.byteLength) === bar.byteLength) {
-				while (len-- && foo.getInt8(len) === bar.getInt8(len));
+		if (ctor === arraybuffer) {
+			foo = new uint8array(foo);
+			bar = new uint8array(bar);
+		} else if (ctor === dataview) {
+			if ((len=foo.bytelength) === bar.bytelength) {
+				while (len-- && foo.getint8(len) === bar.getint8(len));
 			}
 			return len === -1;
 		}
 
-		if (ArrayBuffer.isView(foo)) {
-			if ((len=foo.byteLength) === bar.byteLength) {
+		if (arraybuffer.isview(foo)) {
+			if ((len=foo.bytelength) === bar.bytelength) {
 				while (len-- && foo[len] === bar[len]);
 			}
 			return len === -1;
@@ -168,7 +168,7 @@ function dequal(foo, bar) {
 				if (has.call(foo, ctor) && ++len && !has.call(bar, ctor)) return false;
 				if (!(ctor in bar) || !dequal(foo[ctor], bar[ctor])) return false;
 			}
-			return Object.keys(bar).length === len;
+			return object.keys(bar).length === len;
 		}
 	}
 
@@ -176,16 +176,16 @@ function dequal(foo, bar) {
 }
 
 ;// ./node_modules/@wordpress/views/build-module/preference-keys.js
-function generatePreferenceKey(kind, name, slug) {
+function generatepreferencekey(kind, name, slug) {
   return `dataviews-${kind}-${name}-${slug}`;
 }
 
 
-// EXTERNAL MODULE: external ["wp","element"]
+// external module: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(6087);
-// EXTERNAL MODULE: external ["wp","data"]
+// external module: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7143);
-// EXTERNAL MODULE: external ["wp","preferences"]
+// external module: external ["wp","preferences"]
 var external_wp_preferences_ = __webpack_require__(1233);
 ;// ./node_modules/@wordpress/views/build-module/use-view.js
 
@@ -200,66 +200,66 @@ function omit(obj, keys) {
   }
   return result;
 }
-function useView(config) {
-  const { kind, name, slug, defaultView, queryParams, onChangeQueryParams } = config;
-  const preferenceKey = generatePreferenceKey(kind, name, slug);
-  const persistedView = (0,external_wp_data_.useSelect)(
+function useview(config) {
+  const { kind, name, slug, defaultview, queryparams, onchangequeryparams } = config;
+  const preferencekey = generatepreferencekey(kind, name, slug);
+  const persistedview = (0,external_wp_data_.useselect)(
     (select) => {
       return select(external_wp_preferences_.store).get(
         "core/views",
-        preferenceKey
+        preferencekey
       );
     },
-    [preferenceKey]
+    [preferencekey]
   );
-  const { set } = (0,external_wp_data_.useDispatch)(external_wp_preferences_.store);
-  const baseView = persistedView ?? defaultView;
-  const page = Number(queryParams?.page ?? baseView.page ?? 1);
-  const search = queryParams?.search ?? baseView.search ?? "";
-  const view = (0,external_wp_element_.useMemo)(() => {
+  const { set } = (0,external_wp_data_.usedispatch)(external_wp_preferences_.store);
+  const baseview = persistedview ?? defaultview;
+  const page = number(queryparams?.page ?? baseview.page ?? 1);
+  const search = queryparams?.search ?? baseview.search ?? "";
+  const view = (0,external_wp_element_.usememo)(() => {
     return {
-      ...baseView,
+      ...baseview,
       page,
       search
     };
-  }, [baseView, page, search]);
-  const isModified = !!persistedView;
-  const updateView = (0,external_wp_element_.useCallback)(
-    (newView) => {
-      const urlParams = {
-        page: newView?.page,
-        search: newView?.search
+  }, [baseview, page, search]);
+  const ismodified = !!persistedview;
+  const updateview = (0,external_wp_element_.usecallback)(
+    (newview) => {
+      const urlparams = {
+        page: newview?.page,
+        search: newview?.search
       };
-      const preferenceView = omit(newView, ["page", "search"]);
-      if (onChangeQueryParams && !dequal(urlParams, { page, search })) {
-        onChangeQueryParams(urlParams);
+      const preferenceview = omit(newview, ["page", "search"]);
+      if (onchangequeryparams && !dequal(urlparams, { page, search })) {
+        onchangequeryparams(urlparams);
       }
-      if (!dequal(baseView, preferenceView)) {
-        if (dequal(preferenceView, defaultView)) {
-          set("core/views", preferenceKey, void 0);
+      if (!dequal(baseview, preferenceview)) {
+        if (dequal(preferenceview, defaultview)) {
+          set("core/views", preferencekey, void 0);
         } else {
-          set("core/views", preferenceKey, preferenceView);
+          set("core/views", preferencekey, preferenceview);
         }
       }
     },
     [
-      onChangeQueryParams,
+      onchangequeryparams,
       page,
       search,
-      baseView,
-      defaultView,
+      baseview,
+      defaultview,
       set,
-      preferenceKey
+      preferencekey
     ]
   );
-  const resetToDefault = (0,external_wp_element_.useCallback)(() => {
-    set("core/views", preferenceKey, void 0);
-  }, [preferenceKey, set]);
+  const resettodefault = (0,external_wp_element_.usecallback)(() => {
+    set("core/views", preferencekey, void 0);
+  }, [preferencekey, set]);
   return {
     view,
-    isModified,
-    updateView,
-    resetToDefault
+    ismodified,
+    updateview,
+    resettodefault
   };
 }
 
@@ -268,18 +268,18 @@ function useView(config) {
 
 
 
-async function loadView(config) {
-  const { kind, name, slug, defaultView, queryParams } = config;
-  const preferenceKey = generatePreferenceKey(kind, name, slug);
-  const persistedView = (0,external_wp_data_.select)(external_wp_preferences_.store).get(
+async function loadview(config) {
+  const { kind, name, slug, defaultview, queryparams } = config;
+  const preferencekey = generatepreferencekey(kind, name, slug);
+  const persistedview = (0,external_wp_data_.select)(external_wp_preferences_.store).get(
     "core/views",
-    preferenceKey
+    preferencekey
   );
-  const baseView = persistedView ?? defaultView;
-  const page = queryParams?.page ?? 1;
-  const search = queryParams?.search ?? "";
+  const baseview = persistedview ?? defaultview;
+  const page = queryparams?.page ?? 1;
+  const search = queryparams?.search ?? "";
   return {
-    ...baseView,
+    ...baseview,
     page,
     search
   };
@@ -294,3 +294,4 @@ async function loadView(config) {
 (window.wp = window.wp || {}).views = __webpack_exports__;
 /******/ })()
 ;
+

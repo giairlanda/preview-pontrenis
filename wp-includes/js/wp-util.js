@@ -2,42 +2,42 @@
  * @output wp-includes/js/wp-util.js
  */
 
-/* global _wpUtilSettings */
+/* global _wputilsettings */
 
 /** @namespace wp */
 window.wp = window.wp || {};
 
 (function ($) {
-	// Check for the utility settings.
-	var settings = typeof _wpUtilSettings === 'undefined' ? {} : _wpUtilSettings;
+	// check for the utility settings.
+	var settings = typeof _wputilsettings === 'undefined' ? {} : _wputilsettings;
 
 	/**
 	 * wp.template( id )
 	 *
-	 * Fetch a JavaScript template for an id, and return a templating function for it.
+	 * fetch a javascript template for an id, and return a templating function for it.
 	 *
-	 * @param {string} id A string that corresponds to a DOM element with an id prefixed with "tmpl-".
-	 *                    For example, "attachment" maps to "tmpl-attachment".
-	 * @return {function} A function that lazily-compiles the template requested.
+	 * @param {string} id a string that corresponds to a dom element with an id prefixed with "tmpl-".
+	 *                    for example, "attachment" maps to "tmpl-attachment".
+	 * @return {function} a function that lazily-compiles the template requested.
 	 */
 	wp.template = _.memoize(function ( id ) {
 		var compiled,
 			/*
-			 * Underscore's default ERB-style templates are incompatible with PHP
-			 * when asp_tags is enabled, so WordPress uses Mustache-inspired templating syntax.
+			 * underscore's default erb-style templates are incompatible with php
+			 * when asp_tags is enabled, so wordpress uses mustache-inspired templating syntax.
 			 *
 			 * @see trac ticket #22344.
 			 */
 			options = {
-				evaluate:    /<#([\s\S]+?)#>/g,
-				interpolate: /\{\{\{([\s\S]+?)\}\}\}/g,
+				evaluate:    /<#([\s\s]+?)#>/g,
+				interpolate: /\{\{\{([\s\s]+?)\}\}\}/g,
 				escape:      /\{\{([^\}]+?)\}\}(?!\})/g,
 				variable:    'data'
 			};
 
 		return function ( data ) {
-			if ( ! document.getElementById( 'tmpl-' + id ) ) {
-				throw new Error( 'Template not found: ' + '#tmpl-' + id );
+			if ( ! document.getelementbyid( 'tmpl-' + id ) ) {
+				throw new error( 'template not found: ' + '#tmpl-' + id );
 			}
 			compiled = compiled || _.template( $( '#tmpl-' + id ).html(),  options );
 			return compiled( data );
@@ -48,8 +48,8 @@ window.wp = window.wp || {};
 	 * wp.ajax
 	 * ------
 	 *
-	 * Tools for sending ajax requests with JSON responses and built in error handling.
-	 * Mirrors and wraps jQuery's ajax APIs.
+	 * tools for sending ajax requests with json responses and built in error handling.
+	 * mirrors and wraps jquery's ajax apis.
 	 */
 	wp.ajax = {
 		settings: settings.ajax || {},
@@ -57,34 +57,34 @@ window.wp = window.wp || {};
 		/**
 		 * wp.ajax.post( [action], [data] )
 		 *
-		 * Sends a POST request to WordPress.
+		 * sends a post request to wordpress.
 		 *
-		 * @param {(string|Object)} action The slug of the action to fire in WordPress or options passed
-		 *                                 to jQuery.ajax.
-		 * @param {Object=}         data   Optional. The data to populate $_POST with.
-		 * @return {$.promise} A jQuery promise that represents the request,
+		 * @param {(string|object)} action the slug of the action to fire in wordpress or options passed
+		 *                                 to jquery.ajax.
+		 * @param {object=}         data   optional. the data to populate $_post with.
+		 * @return {$.promise} a jquery promise that represents the request,
 		 *                     decorated with an abort() method.
 		 */
 		post: function( action, data ) {
 			return wp.ajax.send({
-				data: _.isObject( action ) ? action : _.extend( data || {}, { action: action })
+				data: _.isobject( action ) ? action : _.extend( data || {}, { action: action })
 			});
 		},
 
 		/**
 		 * wp.ajax.send( [action], [options] )
 		 *
-		 * Sends a POST request to WordPress.
+		 * sends a post request to wordpress.
 		 *
-		 * @param {(string|Object)} action  The slug of the action to fire in WordPress or options passed
-		 *                                  to jQuery.ajax.
-		 * @param {Object=}         options Optional. The options passed to jQuery.ajax.
-		 * @return {$.promise} A jQuery promise that represents the request,
+		 * @param {(string|object)} action  the slug of the action to fire in wordpress or options passed
+		 *                                  to jquery.ajax.
+		 * @param {object=}         options optional. the options passed to jquery.ajax.
+		 * @return {$.promise} a jquery promise that represents the request,
 		 *                     decorated with an abort() method.
 		 */
 		send: function( action, options ) {
 			var promise, deferred;
-			if ( _.isObject( action ) ) {
+			if ( _.isobject( action ) ) {
 				options = action;
 			} else {
 				options = options || {};
@@ -92,13 +92,13 @@ window.wp = window.wp || {};
 			}
 
 			options = _.defaults( options || {}, {
-				type:    'POST',
+				type:    'post',
 				url:     wp.ajax.settings.url,
 				context: this
 			});
 
-			deferred = $.Deferred( function( deferred ) {
-				// Transfer success/error callbacks.
+			deferred = $.deferred( function( deferred ) {
+				// transfer success/error callbacks.
 				if ( options.success ) {
 					deferred.done( options.success );
 				}
@@ -110,42 +110,42 @@ window.wp = window.wp || {};
 				delete options.success;
 				delete options.error;
 
-				// Use with PHP's wp_send_json_success() and wp_send_json_error().
-				deferred.jqXHR = $.ajax( options ).done( function( response ) {
-					// Treat a response of 1 as successful for backward compatibility with existing handlers.
+				// use with php's wp_send_json_success() and wp_send_json_error().
+				deferred.jqxhr = $.ajax( options ).done( function( response ) {
+					// treat a response of 1 as successful for backward compatibility with existing handlers.
 					if ( response === '1' || response === 1 ) {
 						response = { success: true };
 					}
 
-					if ( _.isObject( response ) && ! _.isUndefined( response.success ) ) {
+					if ( _.isobject( response ) && ! _.isundefined( response.success ) ) {
 
-						// When handling a media attachments request, get the total attachments from response headers.
+						// when handling a media attachments request, get the total attachments from response headers.
 						var context = this;
 						deferred.done( function() {
 							if (
 								action &&
 								action.data &&
 								'query-attachments' === action.data.action &&
-								deferred.jqXHR.hasOwnProperty( 'getResponseHeader' ) &&
-								deferred.jqXHR.getResponseHeader( 'X-WP-Total' )
+								deferred.jqxhr.hasownproperty( 'getresponseheader' ) &&
+								deferred.jqxhr.getresponseheader( 'x-wp-total' )
 							) {
-								context.totalAttachments = parseInt( deferred.jqXHR.getResponseHeader( 'X-WP-Total' ), 10 );
+								context.totalattachments = parseint( deferred.jqxhr.getresponseheader( 'x-wp-total' ), 10 );
 							} else {
-								context.totalAttachments = 0;
+								context.totalattachments = 0;
 							}
 						} );
-						deferred[ response.success ? 'resolveWith' : 'rejectWith' ]( this, [response.data] );
+						deferred[ response.success ? 'resolvewith' : 'rejectwith' ]( this, [response.data] );
 					} else {
-						deferred.rejectWith( this, [response] );
+						deferred.rejectwith( this, [response] );
 					}
 				}).fail( function() {
-					deferred.rejectWith( this, arguments );
+					deferred.rejectwith( this, arguments );
 				});
 			});
 
 			promise = deferred.promise();
 			promise.abort = function() {
-				deferred.jqXHR.abort();
+				deferred.jqxhr.abort();
 				return this;
 			};
 
@@ -153,4 +153,6 @@ window.wp = window.wp || {};
 		}
 	};
 
-}(jQuery));
+}(jquery));
+
+

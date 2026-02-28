@@ -6,15 +6,16 @@
   margin-left:1ch;
 }
 .wp-block-comments-pagination .wp-block-comments-pagination-previous-arrow:not(.is-arrow-chevron){
-  transform:scaleX(-1);;
+  transform:scalex(-1);;
 }
 .wp-block-comments-pagination .wp-block-comments-pagination-next-arrow{
   display:inline-block;
   margin-right:1ch;
 }
 .wp-block-comments-pagination .wp-block-comments-pagination-next-arrow:not(.is-arrow-chevron){
-  transform:scaleX(-1);;
+  transform:scalex(-1);;
 }
 .wp-block-comments-pagination.aligncenter{
   justify-content:center;
 }
+

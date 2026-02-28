@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 507:
@@ -6,76 +6,76 @@
 
 "use strict";
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  A: () => (/* binding */ createHooks_default)
+  a: () => (/* binding */ createhooks_default)
 });
 
-// UNUSED EXPORTS: _Hooks
+// unused exports: _hooks
 
-;// ./node_modules/@wordpress/hooks/build-module/validateNamespace.js
-function validateNamespace(namespace) {
+;// ./node_modules/@wordpress/hooks/build-module/validatenamespace.js
+function validatenamespace(namespace) {
   if ("string" !== typeof namespace || "" === namespace) {
-    console.error("The namespace must be a non-empty string.");
+    console.error("the namespace must be a non-empty string.");
     return false;
   }
-  if (!/^[a-zA-Z][a-zA-Z0-9_.\-\/]*$/.test(namespace)) {
+  if (!/^[a-za-z][a-za-z0-9_.\-\/]*$/.test(namespace)) {
     console.error(
-      "The namespace can only contain numbers, letters, dashes, periods, underscores and slashes."
+      "the namespace can only contain numbers, letters, dashes, periods, underscores and slashes."
     );
     return false;
   }
   return true;
 }
-var validateNamespace_default = validateNamespace;
+var validatenamespace_default = validatenamespace;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/validateHookName.js
-function validateHookName(hookName) {
-  if ("string" !== typeof hookName || "" === hookName) {
-    console.error("The hook name must be a non-empty string.");
+;// ./node_modules/@wordpress/hooks/build-module/validatehookname.js
+function validatehookname(hookname) {
+  if ("string" !== typeof hookname || "" === hookname) {
+    console.error("the hook name must be a non-empty string.");
     return false;
   }
-  if (/^__/.test(hookName)) {
-    console.error("The hook name cannot begin with `__`.");
+  if (/^__/.test(hookname)) {
+    console.error("the hook name cannot begin with `__`.");
     return false;
   }
-  if (!/^[a-zA-Z][a-zA-Z0-9_.-]*$/.test(hookName)) {
+  if (!/^[a-za-z][a-za-z0-9_.-]*$/.test(hookname)) {
     console.error(
-      "The hook name can only contain numbers, letters, dashes, periods and underscores."
+      "the hook name can only contain numbers, letters, dashes, periods and underscores."
     );
     return false;
   }
   return true;
 }
-var validateHookName_default = validateHookName;
+var validatehookname_default = validatehookname;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createAddHook.js
+;// ./node_modules/@wordpress/hooks/build-module/createaddhook.js
 
 
-function createAddHook(hooks, storeKey) {
-  return function addHook(hookName, namespace, callback, priority = 10) {
-    const hooksStore = hooks[storeKey];
-    if (!validateHookName_default(hookName)) {
+function createaddhook(hooks, storekey) {
+  return function addhook(hookname, namespace, callback, priority = 10) {
+    const hooksstore = hooks[storekey];
+    if (!validatehookname_default(hookname)) {
       return;
     }
-    if (!validateNamespace_default(namespace)) {
+    if (!validatenamespace_default(namespace)) {
       return;
     }
     if ("function" !== typeof callback) {
-      console.error("The hook callback must be a function.");
+      console.error("the hook callback must be a function.");
       return;
     }
     if ("number" !== typeof priority) {
       console.error(
-        "If specified, the hook priority must be a number."
+        "if specified, the hook priority must be a number."
       );
       return;
     }
     const handler = { callback, priority, namespace };
-    if (hooksStore[hookName]) {
-      const handlers = hooksStore[hookName].handlers;
+    if (hooksstore[hookname]) {
+      const handlers = hooksstore[hookname].handlers;
       let i;
       for (i = handlers.length; i > 0; i--) {
         if (priority >= handlers[i - 1].priority) {
@@ -87,21 +87,21 @@ function createAddHook(hooks, storeKey) {
       } else {
         handlers.splice(i, 0, handler);
       }
-      hooksStore.__current.forEach((hookInfo) => {
-        if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-          hookInfo.currentIndex++;
+      hooksstore.__current.foreach((hookinfo) => {
+        if (hookinfo.name === hookname && hookinfo.currentindex >= i) {
+          hookinfo.currentindex++;
         }
       });
     } else {
-      hooksStore[hookName] = {
+      hooksstore[hookname] = {
         handlers: [handler],
         runs: 0
       };
     }
-    if (hookName !== "hookAdded") {
-      hooks.doAction(
-        "hookAdded",
-        hookName,
+    if (hookname !== "hookadded") {
+      hooks.doaction(
+        "hookadded",
+        hookname,
         namespace,
         callback,
         priority
@@ -109,227 +109,227 @@ function createAddHook(hooks, storeKey) {
     }
   };
 }
-var createAddHook_default = createAddHook;
+var createaddhook_default = createaddhook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createRemoveHook.js
+;// ./node_modules/@wordpress/hooks/build-module/createremovehook.js
 
 
-function createRemoveHook(hooks, storeKey, removeAll = false) {
-  return function removeHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey];
-    if (!validateHookName_default(hookName)) {
+function createremovehook(hooks, storekey, removeall = false) {
+  return function removehook(hookname, namespace) {
+    const hooksstore = hooks[storekey];
+    if (!validatehookname_default(hookname)) {
       return;
     }
-    if (!removeAll && !validateNamespace_default(namespace)) {
+    if (!removeall && !validatenamespace_default(namespace)) {
       return;
     }
-    if (!hooksStore[hookName]) {
+    if (!hooksstore[hookname]) {
       return 0;
     }
-    let handlersRemoved = 0;
-    if (removeAll) {
-      handlersRemoved = hooksStore[hookName].handlers.length;
-      hooksStore[hookName] = {
-        runs: hooksStore[hookName].runs,
+    let handlersremoved = 0;
+    if (removeall) {
+      handlersremoved = hooksstore[hookname].handlers.length;
+      hooksstore[hookname] = {
+        runs: hooksstore[hookname].runs,
         handlers: []
       };
     } else {
-      const handlers = hooksStore[hookName].handlers;
+      const handlers = hooksstore[hookname].handlers;
       for (let i = handlers.length - 1; i >= 0; i--) {
         if (handlers[i].namespace === namespace) {
           handlers.splice(i, 1);
-          handlersRemoved++;
-          hooksStore.__current.forEach((hookInfo) => {
-            if (hookInfo.name === hookName && hookInfo.currentIndex >= i) {
-              hookInfo.currentIndex--;
+          handlersremoved++;
+          hooksstore.__current.foreach((hookinfo) => {
+            if (hookinfo.name === hookname && hookinfo.currentindex >= i) {
+              hookinfo.currentindex--;
             }
           });
         }
       }
     }
-    if (hookName !== "hookRemoved") {
-      hooks.doAction("hookRemoved", hookName, namespace);
+    if (hookname !== "hookremoved") {
+      hooks.doaction("hookremoved", hookname, namespace);
     }
-    return handlersRemoved;
+    return handlersremoved;
   };
 }
-var createRemoveHook_default = createRemoveHook;
+var createremovehook_default = createremovehook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createHasHook.js
-function createHasHook(hooks, storeKey) {
-  return function hasHook(hookName, namespace) {
-    const hooksStore = hooks[storeKey];
+;// ./node_modules/@wordpress/hooks/build-module/createhashook.js
+function createhashook(hooks, storekey) {
+  return function hashook(hookname, namespace) {
+    const hooksstore = hooks[storekey];
     if ("undefined" !== typeof namespace) {
-      return hookName in hooksStore && hooksStore[hookName].handlers.some(
+      return hookname in hooksstore && hooksstore[hookname].handlers.some(
         (hook) => hook.namespace === namespace
       );
     }
-    return hookName in hooksStore;
+    return hookname in hooksstore;
   };
 }
-var createHasHook_default = createHasHook;
+var createhashook_default = createhashook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createRunHook.js
-function createRunHook(hooks, storeKey, returnFirstArg, async) {
-  return function runHook(hookName, ...args) {
-    const hooksStore = hooks[storeKey];
-    if (!hooksStore[hookName]) {
-      hooksStore[hookName] = {
+;// ./node_modules/@wordpress/hooks/build-module/createrunhook.js
+function createrunhook(hooks, storekey, returnfirstarg, async) {
+  return function runhook(hookname, ...args) {
+    const hooksstore = hooks[storekey];
+    if (!hooksstore[hookname]) {
+      hooksstore[hookname] = {
         handlers: [],
         runs: 0
       };
     }
-    hooksStore[hookName].runs++;
-    const handlers = hooksStore[hookName].handlers;
+    hooksstore[hookname].runs++;
+    const handlers = hooksstore[hookname].handlers;
     if (false) {}
     if (!handlers || !handlers.length) {
-      return returnFirstArg ? args[0] : void 0;
+      return returnfirstarg ? args[0] : void 0;
     }
-    const hookInfo = {
-      name: hookName,
-      currentIndex: 0
+    const hookinfo = {
+      name: hookname,
+      currentindex: 0
     };
-    async function asyncRunner() {
+    async function asyncrunner() {
       try {
-        hooksStore.__current.add(hookInfo);
-        let result = returnFirstArg ? args[0] : void 0;
-        while (hookInfo.currentIndex < handlers.length) {
-          const handler = handlers[hookInfo.currentIndex];
+        hooksstore.__current.add(hookinfo);
+        let result = returnfirstarg ? args[0] : void 0;
+        while (hookinfo.currentindex < handlers.length) {
+          const handler = handlers[hookinfo.currentindex];
           result = await handler.callback.apply(null, args);
-          if (returnFirstArg) {
+          if (returnfirstarg) {
             args[0] = result;
           }
-          hookInfo.currentIndex++;
+          hookinfo.currentindex++;
         }
-        return returnFirstArg ? result : void 0;
+        return returnfirstarg ? result : void 0;
       } finally {
-        hooksStore.__current.delete(hookInfo);
+        hooksstore.__current.delete(hookinfo);
       }
     }
-    function syncRunner() {
+    function syncrunner() {
       try {
-        hooksStore.__current.add(hookInfo);
-        let result = returnFirstArg ? args[0] : void 0;
-        while (hookInfo.currentIndex < handlers.length) {
-          const handler = handlers[hookInfo.currentIndex];
+        hooksstore.__current.add(hookinfo);
+        let result = returnfirstarg ? args[0] : void 0;
+        while (hookinfo.currentindex < handlers.length) {
+          const handler = handlers[hookinfo.currentindex];
           result = handler.callback.apply(null, args);
-          if (returnFirstArg) {
+          if (returnfirstarg) {
             args[0] = result;
           }
-          hookInfo.currentIndex++;
+          hookinfo.currentindex++;
         }
-        return returnFirstArg ? result : void 0;
+        return returnfirstarg ? result : void 0;
       } finally {
-        hooksStore.__current.delete(hookInfo);
+        hooksstore.__current.delete(hookinfo);
       }
     }
-    return (async ? asyncRunner : syncRunner)();
+    return (async ? asyncrunner : syncrunner)();
   };
 }
-var createRunHook_default = createRunHook;
+var createrunhook_default = createrunhook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createCurrentHook.js
-function createCurrentHook(hooks, storeKey) {
-  return function currentHook() {
-    const hooksStore = hooks[storeKey];
-    const currentArray = Array.from(hooksStore.__current);
-    return currentArray.at(-1)?.name ?? null;
+;// ./node_modules/@wordpress/hooks/build-module/createcurrenthook.js
+function createcurrenthook(hooks, storekey) {
+  return function currenthook() {
+    const hooksstore = hooks[storekey];
+    const currentarray = array.from(hooksstore.__current);
+    return currentarray.at(-1)?.name ?? null;
   };
 }
-var createCurrentHook_default = createCurrentHook;
+var createcurrenthook_default = createcurrenthook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createDoingHook.js
-function createDoingHook(hooks, storeKey) {
-  return function doingHook(hookName) {
-    const hooksStore = hooks[storeKey];
-    if ("undefined" === typeof hookName) {
-      return hooksStore.__current.size > 0;
+;// ./node_modules/@wordpress/hooks/build-module/createdoinghook.js
+function createdoinghook(hooks, storekey) {
+  return function doinghook(hookname) {
+    const hooksstore = hooks[storekey];
+    if ("undefined" === typeof hookname) {
+      return hooksstore.__current.size > 0;
     }
-    return Array.from(hooksStore.__current).some(
-      (hook) => hook.name === hookName
+    return array.from(hooksstore.__current).some(
+      (hook) => hook.name === hookname
     );
   };
 }
-var createDoingHook_default = createDoingHook;
+var createdoinghook_default = createdoinghook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createDidHook.js
+;// ./node_modules/@wordpress/hooks/build-module/createdidhook.js
 
-function createDidHook(hooks, storeKey) {
-  return function didHook(hookName) {
-    const hooksStore = hooks[storeKey];
-    if (!validateHookName_default(hookName)) {
+function createdidhook(hooks, storekey) {
+  return function didhook(hookname) {
+    const hooksstore = hooks[storekey];
+    if (!validatehookname_default(hookname)) {
       return;
     }
-    return hooksStore[hookName] && hooksStore[hookName].runs ? hooksStore[hookName].runs : 0;
+    return hooksstore[hookname] && hooksstore[hookname].runs ? hooksstore[hookname].runs : 0;
   };
 }
-var createDidHook_default = createDidHook;
+var createdidhook_default = createdidhook;
 
 
-;// ./node_modules/@wordpress/hooks/build-module/createHooks.js
-
-
-
+;// ./node_modules/@wordpress/hooks/build-module/createhooks.js
 
 
 
 
-class _Hooks {
+
+
+
+class _hooks {
   actions;
   filters;
-  addAction;
-  addFilter;
-  removeAction;
-  removeFilter;
-  hasAction;
-  hasFilter;
-  removeAllActions;
-  removeAllFilters;
-  doAction;
-  doActionAsync;
-  applyFilters;
-  applyFiltersAsync;
-  currentAction;
-  currentFilter;
-  doingAction;
-  doingFilter;
-  didAction;
-  didFilter;
+  addaction;
+  addfilter;
+  removeaction;
+  removefilter;
+  hasaction;
+  hasfilter;
+  removeallactions;
+  removeallfilters;
+  doaction;
+  doactionasync;
+  applyfilters;
+  applyfiltersasync;
+  currentaction;
+  currentfilter;
+  doingaction;
+  doingfilter;
+  didaction;
+  didfilter;
   constructor() {
-    this.actions = /* @__PURE__ */ Object.create(null);
-    this.actions.__current = /* @__PURE__ */ new Set();
-    this.filters = /* @__PURE__ */ Object.create(null);
-    this.filters.__current = /* @__PURE__ */ new Set();
-    this.addAction = createAddHook_default(this, "actions");
-    this.addFilter = createAddHook_default(this, "filters");
-    this.removeAction = createRemoveHook_default(this, "actions");
-    this.removeFilter = createRemoveHook_default(this, "filters");
-    this.hasAction = createHasHook_default(this, "actions");
-    this.hasFilter = createHasHook_default(this, "filters");
-    this.removeAllActions = createRemoveHook_default(this, "actions", true);
-    this.removeAllFilters = createRemoveHook_default(this, "filters", true);
-    this.doAction = createRunHook_default(this, "actions", false, false);
-    this.doActionAsync = createRunHook_default(this, "actions", false, true);
-    this.applyFilters = createRunHook_default(this, "filters", true, false);
-    this.applyFiltersAsync = createRunHook_default(this, "filters", true, true);
-    this.currentAction = createCurrentHook_default(this, "actions");
-    this.currentFilter = createCurrentHook_default(this, "filters");
-    this.doingAction = createDoingHook_default(this, "actions");
-    this.doingFilter = createDoingHook_default(this, "filters");
-    this.didAction = createDidHook_default(this, "actions");
-    this.didFilter = createDidHook_default(this, "filters");
+    this.actions = /* @__pure__ */ object.create(null);
+    this.actions.__current = /* @__pure__ */ new set();
+    this.filters = /* @__pure__ */ object.create(null);
+    this.filters.__current = /* @__pure__ */ new set();
+    this.addaction = createaddhook_default(this, "actions");
+    this.addfilter = createaddhook_default(this, "filters");
+    this.removeaction = createremovehook_default(this, "actions");
+    this.removefilter = createremovehook_default(this, "filters");
+    this.hasaction = createhashook_default(this, "actions");
+    this.hasfilter = createhashook_default(this, "filters");
+    this.removeallactions = createremovehook_default(this, "actions", true);
+    this.removeallfilters = createremovehook_default(this, "filters", true);
+    this.doaction = createrunhook_default(this, "actions", false, false);
+    this.doactionasync = createrunhook_default(this, "actions", false, true);
+    this.applyfilters = createrunhook_default(this, "filters", true, false);
+    this.applyfiltersasync = createrunhook_default(this, "filters", true, true);
+    this.currentaction = createcurrenthook_default(this, "actions");
+    this.currentfilter = createcurrenthook_default(this, "filters");
+    this.doingaction = createdoinghook_default(this, "actions");
+    this.doingfilter = createdoinghook_default(this, "filters");
+    this.didaction = createdidhook_default(this, "actions");
+    this.didfilter = createdidhook_default(this, "filters");
   }
 }
-function createHooks() {
-  return new _Hooks();
+function createhooks() {
+  return new _hooks();
 }
-var createHooks_default = createHooks;
+var createhooks_default = createhooks;
 
 
 
@@ -344,36 +344,36 @@ var createHooks_default = createHooks;
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
+/******/ 	// the module cache
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
+/******/ 	// the require function
+/******/ 	function __webpack_require__(moduleid) {
+/******/ 		// check if module is in cache
+/******/ 		var cachedmodule = __webpack_module_cache__[moduleid];
+/******/ 		if (cachedmodule !== undefined) {
+/******/ 			return cachedmodule.exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		// create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleid] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		// execute the module function
+/******/ 		__webpack_modules__[moduleid](module, module.exports, __webpack_require__);
 /******/ 	
-/******/ 		// Return the exports of the module
+/******/ 		// return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -387,89 +387,89 @@ var createHooks_default = createHooks;
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+// this entry needs to be wrapped in an iife because it needs to be in strict mode.
 (() => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   actions: () => (/* binding */ actions),
-/* harmony export */   addAction: () => (/* binding */ addAction),
-/* harmony export */   addFilter: () => (/* binding */ addFilter),
-/* harmony export */   applyFilters: () => (/* binding */ applyFilters),
-/* harmony export */   applyFiltersAsync: () => (/* binding */ applyFiltersAsync),
-/* harmony export */   createHooks: () => (/* reexport safe */ _createHooks__WEBPACK_IMPORTED_MODULE_1__.A),
-/* harmony export */   currentAction: () => (/* binding */ currentAction),
-/* harmony export */   currentFilter: () => (/* binding */ currentFilter),
-/* harmony export */   defaultHooks: () => (/* binding */ defaultHooks),
-/* harmony export */   didAction: () => (/* binding */ didAction),
-/* harmony export */   didFilter: () => (/* binding */ didFilter),
-/* harmony export */   doAction: () => (/* binding */ doAction),
-/* harmony export */   doActionAsync: () => (/* binding */ doActionAsync),
-/* harmony export */   doingAction: () => (/* binding */ doingAction),
-/* harmony export */   doingFilter: () => (/* binding */ doingFilter),
+/* harmony export */   addaction: () => (/* binding */ addaction),
+/* harmony export */   addfilter: () => (/* binding */ addfilter),
+/* harmony export */   applyfilters: () => (/* binding */ applyfilters),
+/* harmony export */   applyfiltersasync: () => (/* binding */ applyfiltersasync),
+/* harmony export */   createhooks: () => (/* reexport safe */ _createhooks__webpack_imported_module_1__.a),
+/* harmony export */   currentaction: () => (/* binding */ currentaction),
+/* harmony export */   currentfilter: () => (/* binding */ currentfilter),
+/* harmony export */   defaulthooks: () => (/* binding */ defaulthooks),
+/* harmony export */   didaction: () => (/* binding */ didaction),
+/* harmony export */   didfilter: () => (/* binding */ didfilter),
+/* harmony export */   doaction: () => (/* binding */ doaction),
+/* harmony export */   doactionasync: () => (/* binding */ doactionasync),
+/* harmony export */   doingaction: () => (/* binding */ doingaction),
+/* harmony export */   doingfilter: () => (/* binding */ doingfilter),
 /* harmony export */   filters: () => (/* binding */ filters),
-/* harmony export */   hasAction: () => (/* binding */ hasAction),
-/* harmony export */   hasFilter: () => (/* binding */ hasFilter),
-/* harmony export */   removeAction: () => (/* binding */ removeAction),
-/* harmony export */   removeAllActions: () => (/* binding */ removeAllActions),
-/* harmony export */   removeAllFilters: () => (/* binding */ removeAllFilters),
-/* harmony export */   removeFilter: () => (/* binding */ removeFilter)
+/* harmony export */   hasaction: () => (/* binding */ hasaction),
+/* harmony export */   hasfilter: () => (/* binding */ hasfilter),
+/* harmony export */   removeaction: () => (/* binding */ removeaction),
+/* harmony export */   removeallactions: () => (/* binding */ removeallactions),
+/* harmony export */   removeallfilters: () => (/* binding */ removeallfilters),
+/* harmony export */   removefilter: () => (/* binding */ removefilter)
 /* harmony export */ });
-/* harmony import */ var _createHooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(507);
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8770);
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_types__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _types__WEBPACK_IMPORTED_MODULE_0__) if(["default","actions","addAction","addFilter","applyFilters","applyFiltersAsync","createHooks","currentAction","currentFilter","defaultHooks","didAction","didFilter","doAction","doActionAsync","doingAction","doingFilter","filters","hasAction","hasFilter","removeAction","removeAllActions","removeAllFilters","removeFilter"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _types__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _createhooks__webpack_imported_module_1__ = __webpack_require__(507);
+/* harmony import */ var _types__webpack_imported_module_0__ = __webpack_require__(8770);
+/* harmony import */ var _types__webpack_imported_module_0___default = /*#__pure__*/__webpack_require__.n(_types__webpack_imported_module_0__);
+/* harmony reexport (unknown) */ var __webpack_reexport_object__ = {};
+/* harmony reexport (unknown) */ for(const __webpack_import_key__ in _types__webpack_imported_module_0__) if(["default","actions","addaction","addfilter","applyfilters","applyfiltersasync","createhooks","currentaction","currentfilter","defaulthooks","didaction","didfilter","doaction","doactionasync","doingaction","doingfilter","filters","hasaction","hasfilter","removeaction","removeallactions","removeallfilters","removefilter"].indexof(__webpack_import_key__) < 0) __webpack_reexport_object__[__webpack_import_key__] = () => _types__webpack_imported_module_0__[__webpack_import_key__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __webpack_reexport_object__);
 
 
-const defaultHooks = (0,_createHooks__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .A)();
+const defaulthooks = (0,_createhooks__webpack_imported_module_1__/* ["default"] */ .a)();
 const {
-  addAction,
-  addFilter,
-  removeAction,
-  removeFilter,
-  hasAction,
-  hasFilter,
-  removeAllActions,
-  removeAllFilters,
-  doAction,
-  doActionAsync,
-  applyFilters,
-  applyFiltersAsync,
-  currentAction,
-  currentFilter,
-  doingAction,
-  doingFilter,
-  didAction,
-  didFilter,
+  addaction,
+  addfilter,
+  removeaction,
+  removefilter,
+  hasaction,
+  hasfilter,
+  removeallactions,
+  removeallfilters,
+  doaction,
+  doactionasync,
+  applyfilters,
+  applyfiltersasync,
+  currentaction,
+  currentfilter,
+  doingaction,
+  doingfilter,
+  didaction,
+  didfilter,
   actions,
   filters
-} = defaultHooks;
+} = defaulthooks;
 
 
 })();
@@ -477,3 +477,4 @@ const {
 (window.wp = window.wp || {}).hooks = __webpack_exports__;
 /******/ })()
 ;
+

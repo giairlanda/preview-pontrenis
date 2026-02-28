@@ -1,16 +1,16 @@
 /*!
- * jQuery UI Effects 1.13.3
+ * jquery ui effects 1.13.3
  * https://jqueryui.com
  *
- * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license.
+ * copyright openjs foundation and other contributors
+ * released under the mit license.
  * https://jquery.org/license
  */
 
-//>>label: Effects Core
-//>>group: Effects
+//>>label: effects core
+//>>group: effects
 /* eslint-disable max-len */
-//>>description: Extends the internal jQuery effects. Includes morphing and easing. Required by all other effects.
+//>>description: extends the internal jquery effects. includes morphing and easing. required by all other effects.
 /* eslint-enable max-len */
 //>>docs: https://api.jqueryui.com/category/effects-core/
 //>>demos: https://jqueryui.com/effect/
@@ -20,7 +20,7 @@
 
 	if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
+		// amd. register as an anonymous module.
 		define( [
 			"jquery",
 			"./jquery-var-for-color",
@@ -29,61 +29,61 @@
 		], factory );
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// browser globals
+		factory( jquery );
 	}
 } )( function( $ ) {
 "use strict";
 
-var dataSpace = "ui-effects-",
-	dataSpaceStyle = "ui-effects-style",
-	dataSpaceAnimated = "ui-effects-animated";
+var dataspace = "ui-effects-",
+	dataspacestyle = "ui-effects-style",
+	dataspaceanimated = "ui-effects-animated";
 
 $.effects = {
 	effect: {}
 };
 
 /******************************************************************************/
-/****************************** CLASS ANIMATIONS ******************************/
+/****************************** class animations ******************************/
 /******************************************************************************/
 ( function() {
 
-var classAnimationActions = [ "add", "remove", "toggle" ],
-	shorthandStyles = {
+var classanimationactions = [ "add", "remove", "toggle" ],
+	shorthandstyles = {
 		border: 1,
-		borderBottom: 1,
-		borderColor: 1,
-		borderLeft: 1,
-		borderRight: 1,
-		borderTop: 1,
-		borderWidth: 1,
+		borderbottom: 1,
+		bordercolor: 1,
+		borderleft: 1,
+		borderright: 1,
+		bordertop: 1,
+		borderwidth: 1,
 		margin: 1,
 		padding: 1
 	};
 
 $.each(
-	[ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ],
+	[ "borderleftstyle", "borderrightstyle", "borderbottomstyle", "bordertopstyle" ],
 	function( _, prop ) {
 		$.fx.step[ prop ] = function( fx ) {
-			if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
-				jQuery.style( fx.elem, prop, fx.end );
-				fx.setAttr = true;
+			if ( fx.end !== "none" && !fx.setattr || fx.pos === 1 && !fx.setattr ) {
+				jquery.style( fx.elem, prop, fx.end );
+				fx.setattr = true;
 			}
 		};
 	}
 );
 
-function camelCase( string ) {
+function camelcase( string ) {
 	return string.replace( /-([\da-z])/gi, function( all, letter ) {
-		return letter.toUpperCase();
+		return letter.touppercase();
 	} );
 }
 
-function getElementStyles( elem ) {
+function getelementstyles( elem ) {
 	var key, len,
-		style = elem.ownerDocument.defaultView ?
-			elem.ownerDocument.defaultView.getComputedStyle( elem, null ) :
-			elem.currentStyle,
+		style = elem.ownerdocument.defaultview ?
+			elem.ownerdocument.defaultview.getcomputedstyle( elem, null ) :
+			elem.currentstyle,
 		styles = {};
 
 	if ( style && style.length && style[ 0 ] && style[ style[ 0 ] ] ) {
@@ -91,11 +91,11 @@ function getElementStyles( elem ) {
 		while ( len-- ) {
 			key = style[ len ];
 			if ( typeof style[ key ] === "string" ) {
-				styles[ camelCase( key ) ] = style[ key ];
+				styles[ camelcase( key ) ] = style[ key ];
 			}
 		}
 
-	// Support: Opera, IE <9
+	// support: opera, ie <9
 	} else {
 		for ( key in style ) {
 			if ( typeof style[ key ] === "string" ) {
@@ -107,15 +107,15 @@ function getElementStyles( elem ) {
 	return styles;
 }
 
-function styleDifference( oldStyle, newStyle ) {
+function styledifference( oldstyle, newstyle ) {
 	var diff = {},
 		name, value;
 
-	for ( name in newStyle ) {
-		value = newStyle[ name ];
-		if ( oldStyle[ name ] !== value ) {
-			if ( !shorthandStyles[ name ] ) {
-				if ( $.fx.step[ name ] || !isNaN( parseFloat( value ) ) ) {
+	for ( name in newstyle ) {
+		value = newstyle[ name ];
+		if ( oldstyle[ name ] !== value ) {
+			if ( !shorthandstyles[ name ] ) {
+				if ( $.fx.step[ name ] || !isnan( parsefloat( value ) ) ) {
 					diff[ name ] = value;
 				}
 			}
@@ -125,61 +125,61 @@ function styleDifference( oldStyle, newStyle ) {
 	return diff;
 }
 
-// Support: jQuery <1.8
-if ( !$.fn.addBack ) {
-	$.fn.addBack = function( selector ) {
+// support: jquery <1.8
+if ( !$.fn.addback ) {
+	$.fn.addback = function( selector ) {
 		return this.add( selector == null ?
-			this.prevObject : this.prevObject.filter( selector )
+			this.prevobject : this.prevobject.filter( selector )
 		);
 	};
 }
 
-$.effects.animateClass = function( value, duration, easing, callback ) {
+$.effects.animateclass = function( value, duration, easing, callback ) {
 	var o = $.speed( duration, easing, callback );
 
 	return this.queue( function() {
 		var animated = $( this ),
-			baseClass = animated.attr( "class" ) || "",
-			applyClassChange,
-			allAnimations = o.children ? animated.find( "*" ).addBack() : animated;
+			baseclass = animated.attr( "class" ) || "",
+			applyclasschange,
+			allanimations = o.children ? animated.find( "*" ).addback() : animated;
 
-		// Map the animated objects to store the original styles.
-		allAnimations = allAnimations.map( function() {
+		// map the animated objects to store the original styles.
+		allanimations = allanimations.map( function() {
 			var el = $( this );
 			return {
 				el: el,
-				start: getElementStyles( this )
+				start: getelementstyles( this )
 			};
 		} );
 
-		// Apply class change
-		applyClassChange = function() {
-			$.each( classAnimationActions, function( i, action ) {
+		// apply class change
+		applyclasschange = function() {
+			$.each( classanimationactions, function( i, action ) {
 				if ( value[ action ] ) {
-					animated[ action + "Class" ]( value[ action ] );
+					animated[ action + "class" ]( value[ action ] );
 				}
 			} );
 		};
-		applyClassChange();
+		applyclasschange();
 
-		// Map all animated objects again - calculate new styles and diff
-		allAnimations = allAnimations.map( function() {
-			this.end = getElementStyles( this.el[ 0 ] );
-			this.diff = styleDifference( this.start, this.end );
+		// map all animated objects again - calculate new styles and diff
+		allanimations = allanimations.map( function() {
+			this.end = getelementstyles( this.el[ 0 ] );
+			this.diff = styledifference( this.start, this.end );
 			return this;
 		} );
 
-		// Apply original class
-		animated.attr( "class", baseClass );
+		// apply original class
+		animated.attr( "class", baseclass );
 
-		// Map all animated objects again - this time collecting a promise
-		allAnimations = allAnimations.map( function() {
-			var styleInfo = this,
-				dfd = $.Deferred(),
+		// map all animated objects again - this time collecting a promise
+		allanimations = allanimations.map( function() {
+			var styleinfo = this,
+				dfd = $.deferred(),
 				opts = $.extend( {}, o, {
 					queue: false,
 					complete: function() {
-						dfd.resolve( styleInfo );
+						dfd.resolve( styleinfo );
 					}
 				} );
 
@@ -187,13 +187,13 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 			return dfd.promise();
 		} );
 
-		// Once all animations have completed:
-		$.when.apply( $, allAnimations.get() ).done( function() {
+		// once all animations have completed:
+		$.when.apply( $, allanimations.get() ).done( function() {
 
-			// Set the final class
-			applyClassChange();
+			// set the final class
+			applyclasschange();
 
-			// For each animated element,
+			// for each animated element,
 			// clear all css properties that were animated
 			$.each( arguments, function() {
 				var el = this.el;
@@ -202,7 +202,7 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 				} );
 			} );
 
-			// This is guarnteed to be there if you use jQuery.speed()
+			// this is guarnteed to be there if you use jquery.speed()
 			// it also handles dequeuing the next anim...
 			o.complete.call( animated[ 0 ] );
 		} );
@@ -210,47 +210,47 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 };
 
 $.fn.extend( {
-	addClass: ( function( orig ) {
-		return function( classNames, speed, easing, callback ) {
+	addclass: ( function( orig ) {
+		return function( classnames, speed, easing, callback ) {
 			return speed ?
-				$.effects.animateClass.call( this,
-					{ add: classNames }, speed, easing, callback ) :
+				$.effects.animateclass.call( this,
+					{ add: classnames }, speed, easing, callback ) :
 				orig.apply( this, arguments );
 		};
-	} )( $.fn.addClass ),
+	} )( $.fn.addclass ),
 
-	removeClass: ( function( orig ) {
-		return function( classNames, speed, easing, callback ) {
+	removeclass: ( function( orig ) {
+		return function( classnames, speed, easing, callback ) {
 			return arguments.length > 1 ?
-				$.effects.animateClass.call( this,
-					{ remove: classNames }, speed, easing, callback ) :
+				$.effects.animateclass.call( this,
+					{ remove: classnames }, speed, easing, callback ) :
 				orig.apply( this, arguments );
 		};
-	} )( $.fn.removeClass ),
+	} )( $.fn.removeclass ),
 
-	toggleClass: ( function( orig ) {
-		return function( classNames, force, speed, easing, callback ) {
+	toggleclass: ( function( orig ) {
+		return function( classnames, force, speed, easing, callback ) {
 			if ( typeof force === "boolean" || force === undefined ) {
 				if ( !speed ) {
 
-					// Without speed parameter
+					// without speed parameter
 					return orig.apply( this, arguments );
 				} else {
-					return $.effects.animateClass.call( this,
-						( force ? { add: classNames } : { remove: classNames } ),
+					return $.effects.animateclass.call( this,
+						( force ? { add: classnames } : { remove: classnames } ),
 						speed, easing, callback );
 				}
 			} else {
 
-				// Without force parameter
-				return $.effects.animateClass.call( this,
-					{ toggle: classNames }, force, speed, easing );
+				// without force parameter
+				return $.effects.animateclass.call( this,
+					{ toggle: classnames }, force, speed, easing );
 			}
 		};
-	} )( $.fn.toggleClass ),
+	} )( $.fn.toggleclass ),
 
-	switchClass: function( remove, add, speed, easing, callback ) {
-		return $.effects.animateClass.call( this, {
+	switchclass: function( remove, add, speed, easing, callback ) {
+		return $.effects.animateclass.call( this, {
 			add: add,
 			remove: remove
 		}, speed, easing, callback );
@@ -260,7 +260,7 @@ $.fn.extend( {
 } )();
 
 /******************************************************************************/
-/*********************************** EFFECTS **********************************/
+/*********************************** effects **********************************/
 /******************************************************************************/
 
 ( function() {
@@ -268,75 +268,75 @@ $.fn.extend( {
 if ( $.expr && $.expr.pseudos && $.expr.pseudos.animated ) {
 	$.expr.pseudos.animated = ( function( orig ) {
 		return function( elem ) {
-			return !!$( elem ).data( dataSpaceAnimated ) || orig( elem );
+			return !!$( elem ).data( dataspaceanimated ) || orig( elem );
 		};
 	} )( $.expr.pseudos.animated );
 }
 
-if ( $.uiBackCompat !== false ) {
+if ( $.uibackcompat !== false ) {
 	$.extend( $.effects, {
 
-		// Saves a set of properties in a data storage
+		// saves a set of properties in a data storage
 		save: function( element, set ) {
 			var i = 0, length = set.length;
 			for ( ; i < length; i++ ) {
 				if ( set[ i ] !== null ) {
-					element.data( dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ] );
+					element.data( dataspace + set[ i ], element[ 0 ].style[ set[ i ] ] );
 				}
 			}
 		},
 
-		// Restores a set of previously saved properties from a data storage
+		// restores a set of previously saved properties from a data storage
 		restore: function( element, set ) {
 			var val, i = 0, length = set.length;
 			for ( ; i < length; i++ ) {
 				if ( set[ i ] !== null ) {
-					val = element.data( dataSpace + set[ i ] );
+					val = element.data( dataspace + set[ i ] );
 					element.css( set[ i ], val );
 				}
 			}
 		},
 
-		setMode: function( el, mode ) {
+		setmode: function( el, mode ) {
 			if ( mode === "toggle" ) {
 				mode = el.is( ":hidden" ) ? "show" : "hide";
 			}
 			return mode;
 		},
 
-		// Wraps the element around a wrapper that copies position properties
-		createWrapper: function( element ) {
+		// wraps the element around a wrapper that copies position properties
+		createwrapper: function( element ) {
 
-			// If the element is already wrapped, return it
+			// if the element is already wrapped, return it
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
 				return element.parent();
 			}
 
-			// Wrap the element
+			// wrap the element
 			var props = {
-					width: element.outerWidth( true ),
-					height: element.outerHeight( true ),
+					width: element.outerwidth( true ),
+					height: element.outerheight( true ),
 					"float": element.css( "float" )
 				},
 				wrapper = $( "<div></div>" )
-					.addClass( "ui-effects-wrapper" )
+					.addclass( "ui-effects-wrapper" )
 					.css( {
-						fontSize: "100%",
+						fontsize: "100%",
 						background: "transparent",
 						border: "none",
 						margin: 0,
 						padding: 0
 					} ),
 
-				// Store the size in case width/height are defined in % - Fixes #5245
+				// store the size in case width/height are defined in % - fixes #5245
 				size = {
 					width: element.width(),
 					height: element.height()
 				},
-				active = document.activeElement;
+				active = document.activeelement;
 
-			// Support: Firefox
-			// Firefox incorrectly exposes anonymous content
+			// support: firefox
+			// firefox incorrectly exposes anonymous content
 			// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
 			try {
 				// eslint-disable-next-line no-unused-expressions
@@ -347,27 +347,27 @@ if ( $.uiBackCompat !== false ) {
 
 			element.wrap( wrapper );
 
-			// Fixes #7595 - Elements lose focus when wrapped.
+			// fixes #7595 - elements lose focus when wrapped.
 			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
 				$( active ).trigger( "focus" );
 			}
 
-			// Hotfix for jQuery 1.4 since some change in wrap() seems to actually
+			// hotfix for jquery 1.4 since some change in wrap() seems to actually
 			// lose the reference to the wrapped element
 			wrapper = element.parent();
 
-			// Transfer positioning properties to the wrapper
+			// transfer positioning properties to the wrapper
 			if ( element.css( "position" ) === "static" ) {
 				wrapper.css( { position: "relative" } );
 				element.css( { position: "relative" } );
 			} else {
 				$.extend( props, {
 					position: element.css( "position" ),
-					zIndex: element.css( "z-index" )
+					zindex: element.css( "z-index" )
 				} );
 				$.each( [ "top", "left", "bottom", "right" ], function( i, pos ) {
 					props[ pos ] = element.css( pos );
-					if ( isNaN( parseInt( props[ pos ], 10 ) ) ) {
+					if ( isnan( parseint( props[ pos ], 10 ) ) ) {
 						props[ pos ] = "auto";
 					}
 				} );
@@ -384,13 +384,13 @@ if ( $.uiBackCompat !== false ) {
 			return wrapper.css( props ).show();
 		},
 
-		removeWrapper: function( element ) {
-			var active = document.activeElement;
+		removewrapper: function( element ) {
+			var active = document.activeelement;
 
 			if ( element.parent().is( ".ui-effects-wrapper" ) ) {
-				element.parent().replaceWith( element );
+				element.parent().replacewith( element );
 
-				// Fixes #7595 - Elements lose focus when wrapped.
+				// fixes #7595 - elements lose focus when wrapped.
 				if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
 					$( active ).trigger( "focus" );
 				}
@@ -416,13 +416,13 @@ $.extend( $.effects, {
 		return effect;
 	},
 
-	scaledDimensions: function( element, percent, direction ) {
+	scaleddimensions: function( element, percent, direction ) {
 		if ( percent === 0 ) {
 			return {
 				height: 0,
 				width: 0,
-				outerHeight: 0,
-				outerWidth: 0
+				outerheight: 0,
+				outerwidth: 0
 			};
 		}
 
@@ -432,13 +432,13 @@ $.extend( $.effects, {
 		return {
 			height: element.height() * y,
 			width: element.width() * x,
-			outerHeight: element.outerHeight() * y,
-			outerWidth: element.outerWidth() * x
+			outerheight: element.outerheight() * y,
+			outerwidth: element.outerwidth() * x
 		};
 
 	},
 
-	clipToBox: function( animation ) {
+	cliptobox: function( animation ) {
 		return {
 			width: animation.clip.right - animation.clip.left,
 			height: animation.clip.bottom - animation.clip.top,
@@ -447,24 +447,24 @@ $.extend( $.effects, {
 		};
 	},
 
-	// Injects recently queued functions to be first in line (after "inprogress")
-	unshift: function( element, queueLength, count ) {
+	// injects recently queued functions to be first in line (after "inprogress")
+	unshift: function( element, queuelength, count ) {
 		var queue = element.queue();
 
-		if ( queueLength > 1 ) {
+		if ( queuelength > 1 ) {
 			queue.splice.apply( queue,
-				[ 1, 0 ].concat( queue.splice( queueLength, count ) ) );
+				[ 1, 0 ].concat( queue.splice( queuelength, count ) ) );
 		}
 		element.dequeue();
 	},
 
-	saveStyle: function( element ) {
-		element.data( dataSpaceStyle, element[ 0 ].style.cssText );
+	savestyle: function( element ) {
+		element.data( dataspacestyle, element[ 0 ].style.csstext );
 	},
 
-	restoreStyle: function( element ) {
-		element[ 0 ].style.cssText = element.data( dataSpaceStyle ) || "";
-		element.removeData( dataSpaceStyle );
+	restorestyle: function( element ) {
+		element[ 0 ].style.csstext = element.data( dataspacestyle ) || "";
+		element.removedata( dataspacestyle );
 	},
 
 	mode: function( element, mode ) {
@@ -479,8 +479,8 @@ $.extend( $.effects, {
 		return mode;
 	},
 
-	// Translates a [top,left] array into a baseline value
-	getBaseline: function( origin, original ) {
+	// translates a [top,left] array into a baseline value
+	getbaseline: function( origin, original ) {
 		var y, x;
 
 		switch ( origin[ 0 ] ) {
@@ -517,53 +517,53 @@ $.extend( $.effects, {
 		};
 	},
 
-	// Creates a placeholder element so that the original element can be made absolute
-	createPlaceholder: function( element ) {
+	// creates a placeholder element so that the original element can be made absolute
+	createplaceholder: function( element ) {
 		var placeholder,
-			cssPosition = element.css( "position" ),
+			cssposition = element.css( "position" ),
 			position = element.position();
 
-		// Lock in margins first to account for form elements, which
+		// lock in margins first to account for form elements, which
 		// will change margin if you explicitly set height
-		// see: https://jsfiddle.net/JZSMt/3/ https://bugs.webkit.org/show_bug.cgi?id=107380
-		// Support: Safari
+		// see: https://jsfiddle.net/jzsmt/3/ https://bugs.webkit.org/show_bug.cgi?id=107380
+		// support: safari
 		element.css( {
-			marginTop: element.css( "marginTop" ),
-			marginBottom: element.css( "marginBottom" ),
-			marginLeft: element.css( "marginLeft" ),
-			marginRight: element.css( "marginRight" )
+			margintop: element.css( "margintop" ),
+			marginbottom: element.css( "marginbottom" ),
+			marginleft: element.css( "marginleft" ),
+			marginright: element.css( "marginright" )
 		} )
-		.outerWidth( element.outerWidth() )
-		.outerHeight( element.outerHeight() );
+		.outerwidth( element.outerwidth() )
+		.outerheight( element.outerheight() );
 
-		if ( /^(static|relative)/.test( cssPosition ) ) {
-			cssPosition = "absolute";
+		if ( /^(static|relative)/.test( cssposition ) ) {
+			cssposition = "absolute";
 
-			placeholder = $( "<" + element[ 0 ].nodeName + ">" ).insertAfter( element ).css( {
+			placeholder = $( "<" + element[ 0 ].nodename + ">" ).insertafter( element ).css( {
 
-				// Convert inline to inline block to account for inline elements
+				// convert inline to inline block to account for inline elements
 				// that turn to inline block based on content (like img)
 				display: /^(inline|ruby)/.test( element.css( "display" ) ) ?
 					"inline-block" :
 					"block",
 				visibility: "hidden",
 
-				// Margins need to be set to account for margin collapse
-				marginTop: element.css( "marginTop" ),
-				marginBottom: element.css( "marginBottom" ),
-				marginLeft: element.css( "marginLeft" ),
-				marginRight: element.css( "marginRight" ),
+				// margins need to be set to account for margin collapse
+				margintop: element.css( "margintop" ),
+				marginbottom: element.css( "marginbottom" ),
+				marginleft: element.css( "marginleft" ),
+				marginright: element.css( "marginright" ),
 				"float": element.css( "float" )
 			} )
-			.outerWidth( element.outerWidth() )
-			.outerHeight( element.outerHeight() )
-			.addClass( "ui-effects-placeholder" );
+			.outerwidth( element.outerwidth() )
+			.outerheight( element.outerheight() )
+			.addclass( "ui-effects-placeholder" );
 
-			element.data( dataSpace + "placeholder", placeholder );
+			element.data( dataspace + "placeholder", placeholder );
 		}
 
 		element.css( {
-			position: cssPosition,
+			position: cssposition,
 			left: position.left,
 			top: position.top
 		} );
@@ -571,27 +571,27 @@ $.extend( $.effects, {
 		return placeholder;
 	},
 
-	removePlaceholder: function( element ) {
-		var dataKey = dataSpace + "placeholder",
-				placeholder = element.data( dataKey );
+	removeplaceholder: function( element ) {
+		var datakey = dataspace + "placeholder",
+				placeholder = element.data( datakey );
 
 		if ( placeholder ) {
 			placeholder.remove();
-			element.removeData( dataKey );
+			element.removedata( datakey );
 		}
 	},
 
-	// Removes a placeholder if it exists and restores
+	// removes a placeholder if it exists and restores
 	// properties that were modified during placeholder creation
-	cleanUp: function( element ) {
-		$.effects.restoreStyle( element );
-		$.effects.removePlaceholder( element );
+	cleanup: function( element ) {
+		$.effects.restorestyle( element );
+		$.effects.removeplaceholder( element );
 	},
 
-	setTransition: function( element, list, factor, value ) {
+	settransition: function( element, list, factor, value ) {
 		value = value || {};
 		$.each( list, function( i, x ) {
-			var unit = element.cssUnit( x );
+			var unit = element.cssunit( x );
 			if ( unit[ 0 ] > 0 ) {
 				value[ x ] = unit[ 0 ] * factor + unit[ 1 ];
 			}
@@ -600,44 +600,44 @@ $.extend( $.effects, {
 	}
 } );
 
-// Return an effect options object for the given parameters:
-function _normalizeArguments( effect, options, speed, callback ) {
+// return an effect options object for the given parameters:
+function _normalizearguments( effect, options, speed, callback ) {
 
-	// Allow passing all options as the first parameter
-	if ( $.isPlainObject( effect ) ) {
+	// allow passing all options as the first parameter
+	if ( $.isplainobject( effect ) ) {
 		options = effect;
 		effect = effect.effect;
 	}
 
-	// Convert to an object
+	// convert to an object
 	effect = { effect: effect };
 
-	// Catch (effect, null, ...)
+	// catch (effect, null, ...)
 	if ( options == null ) {
 		options = {};
 	}
 
-	// Catch (effect, callback)
+	// catch (effect, callback)
 	if ( typeof options === "function" ) {
 		callback = options;
 		speed = null;
 		options = {};
 	}
 
-	// Catch (effect, speed, ?)
+	// catch (effect, speed, ?)
 	if ( typeof options === "number" || $.fx.speeds[ options ] ) {
 		callback = speed;
 		speed = options;
 		options = {};
 	}
 
-	// Catch (effect, options, callback)
+	// catch (effect, options, callback)
 	if ( typeof speed === "function" ) {
 		callback = speed;
 		speed = null;
 	}
 
-	// Add options to effect
+	// add options to effect
 	if ( options ) {
 		$.extend( effect, options );
 	}
@@ -653,62 +653,62 @@ function _normalizeArguments( effect, options, speed, callback ) {
 	return effect;
 }
 
-function standardAnimationOption( option ) {
+function standardanimationoption( option ) {
 
-	// Valid standard speeds (nothing, number, named speed)
+	// valid standard speeds (nothing, number, named speed)
 	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
 		return true;
 	}
 
-	// Invalid strings - treat as "normal" speed
+	// invalid strings - treat as "normal" speed
 	if ( typeof option === "string" && !$.effects.effect[ option ] ) {
 		return true;
 	}
 
-	// Complete callback
+	// complete callback
 	if ( typeof option === "function" ) {
 		return true;
 	}
 
-	// Options hash (but not naming an effect)
+	// options hash (but not naming an effect)
 	if ( typeof option === "object" && !option.effect ) {
 		return true;
 	}
 
-	// Didn't match any standard API
+	// didn't match any standard api
 	return false;
 }
 
 $.fn.extend( {
 	effect: function( /* effect, options, speed, callback */ ) {
-		var args = _normalizeArguments.apply( this, arguments ),
-			effectMethod = $.effects.effect[ args.effect ],
-			defaultMode = effectMethod.mode,
+		var args = _normalizearguments.apply( this, arguments ),
+			effectmethod = $.effects.effect[ args.effect ],
+			defaultmode = effectmethod.mode,
 			queue = args.queue,
-			queueName = queue || "fx",
+			queuename = queue || "fx",
 			complete = args.complete,
 			mode = args.mode,
 			modes = [],
 			prefilter = function( next ) {
 				var el = $( this ),
-					normalizedMode = $.effects.mode( el, mode ) || defaultMode;
+					normalizedmode = $.effects.mode( el, mode ) || defaultmode;
 
-				// Sentinel for duck-punching the :animated pseudo-selector
-				el.data( dataSpaceAnimated, true );
+				// sentinel for duck-punching the :animated pseudo-selector
+				el.data( dataspaceanimated, true );
 
-				// Save effect mode for later use,
+				// save effect mode for later use,
 				// we can't just call $.effects.mode again later,
 				// as the .show() below destroys the initial state
-				modes.push( normalizedMode );
+				modes.push( normalizedmode );
 
-				// See $.uiBackCompat inside of run() for removal of defaultMode in 1.14
-				if ( defaultMode && ( normalizedMode === "show" ||
-						( normalizedMode === defaultMode && normalizedMode === "hide" ) ) ) {
+				// see $.uibackcompat inside of run() for removal of defaultmode in 1.14
+				if ( defaultmode && ( normalizedmode === "show" ||
+						( normalizedmode === defaultmode && normalizedmode === "hide" ) ) ) {
 					el.show();
 				}
 
-				if ( !defaultMode || normalizedMode !== "none" ) {
-					$.effects.saveStyle( el );
+				if ( !defaultmode || normalizedmode !== "none" ) {
+					$.effects.savestyle( el );
 				}
 
 				if ( typeof next === "function" ) {
@@ -716,9 +716,9 @@ $.fn.extend( {
 				}
 			};
 
-		if ( $.fx.off || !effectMethod ) {
+		if ( $.fx.off || !effectmethod ) {
 
-			// Delegate to the original method (e.g., .show()) if possible
+			// delegate to the original method (e.g., .show()) if possible
 			if ( mode ) {
 				return this[ mode ]( args.duration, complete );
 			} else {
@@ -734,9 +734,9 @@ $.fn.extend( {
 			var elem = $( this );
 
 			function cleanup() {
-				elem.removeData( dataSpaceAnimated );
+				elem.removedata( dataspaceanimated );
 
-				$.effects.cleanUp( elem );
+				$.effects.cleanup( elem );
 
 				if ( args.mode === "hide" ) {
 					elem.hide();
@@ -755,45 +755,45 @@ $.fn.extend( {
 				}
 			}
 
-			// Override mode option on a per element basis,
+			// override mode option on a per element basis,
 			// as toggle can be either show or hide depending on element state
 			args.mode = modes.shift();
 
-			if ( $.uiBackCompat !== false && !defaultMode ) {
+			if ( $.uibackcompat !== false && !defaultmode ) {
 				if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
 
-					// Call the core method to track "olddisplay" properly
+					// call the core method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
-					effectMethod.call( elem[ 0 ], args, done );
+					effectmethod.call( elem[ 0 ], args, done );
 				}
 			} else {
 				if ( args.mode === "none" ) {
 
-					// Call the core method to track "olddisplay" properly
+					// call the core method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
-					effectMethod.call( elem[ 0 ], args, cleanup );
+					effectmethod.call( elem[ 0 ], args, cleanup );
 				}
 			}
 		}
 
-		// Run prefilter on all elements first to ensure that
+		// run prefilter on all elements first to ensure that
 		// any showing or hiding happens before placeholder creation,
 		// which ensures that any layout changes are correctly captured.
 		return queue === false ?
 			this.each( prefilter ).each( run ) :
-			this.queue( queueName, prefilter ).queue( queueName, run );
+			this.queue( queuename, prefilter ).queue( queuename, run );
 	},
 
 	show: ( function( orig ) {
 		return function( option ) {
-			if ( standardAnimationOption( option ) ) {
+			if ( standardanimationoption( option ) ) {
 				return orig.apply( this, arguments );
 			} else {
-				var args = _normalizeArguments.apply( this, arguments );
+				var args = _normalizearguments.apply( this, arguments );
 				args.mode = "show";
 				return this.effect.call( this, args );
 			}
@@ -802,10 +802,10 @@ $.fn.extend( {
 
 	hide: ( function( orig ) {
 		return function( option ) {
-			if ( standardAnimationOption( option ) ) {
+			if ( standardanimationoption( option ) ) {
 				return orig.apply( this, arguments );
 			} else {
-				var args = _normalizeArguments.apply( this, arguments );
+				var args = _normalizearguments.apply( this, arguments );
 				args.mode = "hide";
 				return this.effect.call( this, args );
 			}
@@ -814,62 +814,62 @@ $.fn.extend( {
 
 	toggle: ( function( orig ) {
 		return function( option ) {
-			if ( standardAnimationOption( option ) || typeof option === "boolean" ) {
+			if ( standardanimationoption( option ) || typeof option === "boolean" ) {
 				return orig.apply( this, arguments );
 			} else {
-				var args = _normalizeArguments.apply( this, arguments );
+				var args = _normalizearguments.apply( this, arguments );
 				args.mode = "toggle";
 				return this.effect.call( this, args );
 			}
 		};
 	} )( $.fn.toggle ),
 
-	cssUnit: function( key ) {
+	cssunit: function( key ) {
 		var style = this.css( key ),
 			val = [];
 
 		$.each( [ "em", "px", "%", "pt" ], function( i, unit ) {
-			if ( style.indexOf( unit ) > 0 ) {
-				val = [ parseFloat( style ), unit ];
+			if ( style.indexof( unit ) > 0 ) {
+				val = [ parsefloat( style ), unit ];
 			}
 		} );
 		return val;
 	},
 
-	cssClip: function( clipObj ) {
-		if ( clipObj ) {
-			return this.css( "clip", "rect(" + clipObj.top + "px " + clipObj.right + "px " +
-				clipObj.bottom + "px " + clipObj.left + "px)" );
+	cssclip: function( clipobj ) {
+		if ( clipobj ) {
+			return this.css( "clip", "rect(" + clipobj.top + "px " + clipobj.right + "px " +
+				clipobj.bottom + "px " + clipobj.left + "px)" );
 		}
-		return parseClip( this.css( "clip" ), this );
+		return parseclip( this.css( "clip" ), this );
 	},
 
 	transfer: function( options, done ) {
 		var element = $( this ),
 			target = $( options.to ),
-			targetFixed = target.css( "position" ) === "fixed",
+			targetfixed = target.css( "position" ) === "fixed",
 			body = $( "body" ),
-			fixTop = targetFixed ? body.scrollTop() : 0,
-			fixLeft = targetFixed ? body.scrollLeft() : 0,
-			endPosition = target.offset(),
+			fixtop = targetfixed ? body.scrolltop() : 0,
+			fixleft = targetfixed ? body.scrollleft() : 0,
+			endposition = target.offset(),
 			animation = {
-				top: endPosition.top - fixTop,
-				left: endPosition.left - fixLeft,
-				height: target.innerHeight(),
-				width: target.innerWidth()
+				top: endposition.top - fixtop,
+				left: endposition.left - fixleft,
+				height: target.innerheight(),
+				width: target.innerwidth()
 			},
-			startPosition = element.offset(),
+			startposition = element.offset(),
 			transfer = $( "<div class='ui-effects-transfer'></div>" );
 
 		transfer
-			.appendTo( "body" )
-			.addClass( options.className )
+			.appendto( "body" )
+			.addclass( options.classname )
 			.css( {
-				top: startPosition.top - fixTop,
-				left: startPosition.left - fixLeft,
-				height: element.innerHeight(),
-				width: element.innerWidth(),
-				position: targetFixed ? "fixed" : "absolute"
+				top: startposition.top - fixtop,
+				left: startposition.left - fixleft,
+				height: element.innerheight(),
+				width: element.innerwidth(),
+				position: targetfixed ? "fixed" : "absolute"
 			} )
 			.animate( animation, options.duration, options.easing, function() {
 				transfer.remove();
@@ -880,30 +880,30 @@ $.fn.extend( {
 	}
 } );
 
-function parseClip( str, element ) {
-		var outerWidth = element.outerWidth(),
-			outerHeight = element.outerHeight(),
-			clipRegex = /^rect\((-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto)\)$/,
-			values = clipRegex.exec( str ) || [ "", 0, outerWidth, outerHeight, 0 ];
+function parseclip( str, element ) {
+		var outerwidth = element.outerwidth(),
+			outerheight = element.outerheight(),
+			clipregex = /^rect\((-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto),?\s*(-?\d*\.?\d*px|-?\d+%|auto)\)$/,
+			values = clipregex.exec( str ) || [ "", 0, outerwidth, outerheight, 0 ];
 
 		return {
-			top: parseFloat( values[ 1 ] ) || 0,
-			right: values[ 2 ] === "auto" ? outerWidth : parseFloat( values[ 2 ] ),
-			bottom: values[ 3 ] === "auto" ? outerHeight : parseFloat( values[ 3 ] ),
-			left: parseFloat( values[ 4 ] ) || 0
+			top: parsefloat( values[ 1 ] ) || 0,
+			right: values[ 2 ] === "auto" ? outerwidth : parsefloat( values[ 2 ] ),
+			bottom: values[ 3 ] === "auto" ? outerheight : parsefloat( values[ 3 ] ),
+			left: parsefloat( values[ 4 ] ) || 0
 		};
 }
 
 $.fx.step.clip = function( fx ) {
-	if ( !fx.clipInit ) {
-		fx.start = $( fx.elem ).cssClip();
+	if ( !fx.clipinit ) {
+		fx.start = $( fx.elem ).cssclip();
 		if ( typeof fx.end === "string" ) {
-			fx.end = parseClip( fx.end, fx.elem );
+			fx.end = parseclip( fx.end, fx.elem );
 		}
-		fx.clipInit = true;
+		fx.clipinit = true;
 	}
 
-	$( fx.elem ).cssClip( {
+	$( fx.elem ).cssclip( {
 		top: fx.pos * ( fx.end.top - fx.start.top ) + fx.start.top,
 		right: fx.pos * ( fx.end.right - fx.start.right ) + fx.start.right,
 		bottom: fx.pos * ( fx.end.bottom - fx.start.bottom ) + fx.start.bottom,
@@ -914,53 +914,53 @@ $.fx.step.clip = function( fx ) {
 } )();
 
 /******************************************************************************/
-/*********************************** EASING ***********************************/
+/*********************************** easing ***********************************/
 /******************************************************************************/
 
 ( function() {
 
-// Based on easing equations from Robert Penner (http://robertpenner.com/easing)
+// based on easing equations from robert penner (http://robertpenner.com/easing)
 
-var baseEasings = {};
+var baseeasings = {};
 
-$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
-	baseEasings[ name ] = function( p ) {
-		return Math.pow( p, i + 2 );
+$.each( [ "quad", "cubic", "quart", "quint", "expo" ], function( i, name ) {
+	baseeasings[ name ] = function( p ) {
+		return math.pow( p, i + 2 );
 	};
 } );
 
-$.extend( baseEasings, {
-	Sine: function( p ) {
-		return 1 - Math.cos( p * Math.PI / 2 );
+$.extend( baseeasings, {
+	sine: function( p ) {
+		return 1 - math.cos( p * math.pi / 2 );
 	},
-	Circ: function( p ) {
-		return 1 - Math.sqrt( 1 - p * p );
+	circ: function( p ) {
+		return 1 - math.sqrt( 1 - p * p );
 	},
-	Elastic: function( p ) {
+	elastic: function( p ) {
 		return p === 0 || p === 1 ? p :
-			-Math.pow( 2, 8 * ( p - 1 ) ) * Math.sin( ( ( p - 1 ) * 80 - 7.5 ) * Math.PI / 15 );
+			-math.pow( 2, 8 * ( p - 1 ) ) * math.sin( ( ( p - 1 ) * 80 - 7.5 ) * math.pi / 15 );
 	},
-	Back: function( p ) {
+	back: function( p ) {
 		return p * p * ( 3 * p - 2 );
 	},
-	Bounce: function( p ) {
+	bounce: function( p ) {
 		var pow2,
 			bounce = 4;
 
-		while ( p < ( ( pow2 = Math.pow( 2, --bounce ) ) - 1 ) / 11 ) {}
-		return 1 / Math.pow( 4, 3 - bounce ) - 7.5625 * Math.pow( ( pow2 * 3 - 2 ) / 22 - p, 2 );
+		while ( p < ( ( pow2 = math.pow( 2, --bounce ) ) - 1 ) / 11 ) {}
+		return 1 / math.pow( 4, 3 - bounce ) - 7.5625 * math.pow( ( pow2 * 3 - 2 ) / 22 - p, 2 );
 	}
 } );
 
-$.each( baseEasings, function( name, easeIn ) {
-	$.easing[ "easeIn" + name ] = easeIn;
-	$.easing[ "easeOut" + name ] = function( p ) {
-		return 1 - easeIn( 1 - p );
+$.each( baseeasings, function( name, easein ) {
+	$.easing[ "easein" + name ] = easein;
+	$.easing[ "easeout" + name ] = function( p ) {
+		return 1 - easein( 1 - p );
 	};
-	$.easing[ "easeInOut" + name ] = function( p ) {
+	$.easing[ "easeinout" + name ] = function( p ) {
 		return p < 0.5 ?
-			easeIn( p * 2 ) / 2 :
-			1 - easeIn( p * -2 + 2 ) / 2;
+			easein( p * 2 ) / 2 :
+			1 - easein( p * -2 + 2 ) / 2;
 	};
 } );
 
@@ -969,3 +969,5 @@ $.each( baseEasings, function( name, easeIn ) {
 return $.effects;
 
 } );
+
+

@@ -2,34 +2,34 @@
 var charmap = (function () {
     'use strict';
 
-    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+    var global = tinymce.util.tools.resolve('tinymce.pluginmanager');
 
-    var fireInsertCustomChar = function (editor, chr) {
-      return editor.fire('insertCustomChar', { chr: chr });
+    var fireinsertcustomchar = function (editor, chr) {
+      return editor.fire('insertcustomchar', { chr: chr });
     };
-    var Events = { fireInsertCustomChar: fireInsertCustomChar };
+    var events = { fireinsertcustomchar: fireinsertcustomchar };
 
-    var insertChar = function (editor, chr) {
-      var evtChr = Events.fireInsertCustomChar(editor, chr).chr;
-      editor.execCommand('mceInsertContent', false, evtChr);
+    var insertchar = function (editor, chr) {
+      var evtchr = events.fireinsertcustomchar(editor, chr).chr;
+      editor.execcommand('mceinsertcontent', false, evtchr);
     };
-    var Actions = { insertChar: insertChar };
+    var actions = { insertchar: insertchar };
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+    var global$1 = tinymce.util.tools.resolve('tinymce.util.tools');
 
-    var getCharMap = function (editor) {
+    var getcharmap = function (editor) {
       return editor.settings.charmap;
     };
-    var getCharMapAppend = function (editor) {
+    var getcharmapappend = function (editor) {
       return editor.settings.charmap_append;
     };
-    var Settings = {
-      getCharMap: getCharMap,
-      getCharMapAppend: getCharMapAppend
+    var settings = {
+      getcharmap: getcharmap,
+      getcharmapappend: getcharmapappend
     };
 
-    var isArray = global$1.isArray;
-    var getDefaultCharMap = function () {
+    var isarray = global$1.isarray;
+    var getdefaultcharmap = function () {
       return [
         [
           '160',
@@ -393,159 +393,159 @@ var charmap = (function () {
         ],
         [
           '192',
-          'A - grave'
+          'a - grave'
         ],
         [
           '193',
-          'A - acute'
+          'a - acute'
         ],
         [
           '194',
-          'A - circumflex'
+          'a - circumflex'
         ],
         [
           '195',
-          'A - tilde'
+          'a - tilde'
         ],
         [
           '196',
-          'A - diaeresis'
+          'a - diaeresis'
         ],
         [
           '197',
-          'A - ring above'
+          'a - ring above'
         ],
         [
           '256',
-          'A - macron'
+          'a - macron'
         ],
         [
           '198',
-          'ligature AE'
+          'ligature ae'
         ],
         [
           '199',
-          'C - cedilla'
+          'c - cedilla'
         ],
         [
           '200',
-          'E - grave'
+          'e - grave'
         ],
         [
           '201',
-          'E - acute'
+          'e - acute'
         ],
         [
           '202',
-          'E - circumflex'
+          'e - circumflex'
         ],
         [
           '203',
-          'E - diaeresis'
+          'e - diaeresis'
         ],
         [
           '274',
-          'E - macron'
+          'e - macron'
         ],
         [
           '204',
-          'I - grave'
+          'i - grave'
         ],
         [
           '205',
-          'I - acute'
+          'i - acute'
         ],
         [
           '206',
-          'I - circumflex'
+          'i - circumflex'
         ],
         [
           '207',
-          'I - diaeresis'
+          'i - diaeresis'
         ],
         [
           '298',
-          'I - macron'
+          'i - macron'
         ],
         [
           '208',
-          'ETH'
+          'eth'
         ],
         [
           '209',
-          'N - tilde'
+          'n - tilde'
         ],
         [
           '210',
-          'O - grave'
+          'o - grave'
         ],
         [
           '211',
-          'O - acute'
+          'o - acute'
         ],
         [
           '212',
-          'O - circumflex'
+          'o - circumflex'
         ],
         [
           '213',
-          'O - tilde'
+          'o - tilde'
         ],
         [
           '214',
-          'O - diaeresis'
+          'o - diaeresis'
         ],
         [
           '216',
-          'O - slash'
+          'o - slash'
         ],
         [
           '332',
-          'O - macron'
+          'o - macron'
         ],
         [
           '338',
-          'ligature OE'
+          'ligature oe'
         ],
         [
           '352',
-          'S - caron'
+          's - caron'
         ],
         [
           '217',
-          'U - grave'
+          'u - grave'
         ],
         [
           '218',
-          'U - acute'
+          'u - acute'
         ],
         [
           '219',
-          'U - circumflex'
+          'u - circumflex'
         ],
         [
           '220',
-          'U - diaeresis'
+          'u - diaeresis'
         ],
         [
           '362',
-          'U - macron'
+          'u - macron'
         ],
         [
           '221',
-          'Y - acute'
+          'y - acute'
         ],
         [
           '376',
-          'Y - diaeresis'
+          'y - diaeresis'
         ],
         [
           '562',
-          'Y - macron'
+          'y - macron'
         ],
         [
           '222',
-          'THORN'
+          'thorn'
         ],
         [
           '224',
@@ -705,99 +705,99 @@ var charmap = (function () {
         ],
         [
           '913',
-          'Alpha'
+          'alpha'
         ],
         [
           '914',
-          'Beta'
+          'beta'
         ],
         [
           '915',
-          'Gamma'
+          'gamma'
         ],
         [
           '916',
-          'Delta'
+          'delta'
         ],
         [
           '917',
-          'Epsilon'
+          'epsilon'
         ],
         [
           '918',
-          'Zeta'
+          'zeta'
         ],
         [
           '919',
-          'Eta'
+          'eta'
         ],
         [
           '920',
-          'Theta'
+          'theta'
         ],
         [
           '921',
-          'Iota'
+          'iota'
         ],
         [
           '922',
-          'Kappa'
+          'kappa'
         ],
         [
           '923',
-          'Lambda'
+          'lambda'
         ],
         [
           '924',
-          'Mu'
+          'mu'
         ],
         [
           '925',
-          'Nu'
+          'nu'
         ],
         [
           '926',
-          'Xi'
+          'xi'
         ],
         [
           '927',
-          'Omicron'
+          'omicron'
         ],
         [
           '928',
-          'Pi'
+          'pi'
         ],
         [
           '929',
-          'Rho'
+          'rho'
         ],
         [
           '931',
-          'Sigma'
+          'sigma'
         ],
         [
           '932',
-          'Tau'
+          'tau'
         ],
         [
           '933',
-          'Upsilon'
+          'upsilon'
         ],
         [
           '934',
-          'Phi'
+          'phi'
         ],
         [
           '935',
-          'Chi'
+          'chi'
         ],
         [
           '936',
-          'Psi'
+          'psi'
         ],
         [
           '937',
-          'Omega'
+          'omega'
         ],
         [
           '945',
@@ -917,7 +917,7 @@ var charmap = (function () {
         ],
         [
           '8472',
-          'Weierstrass p'
+          'weierstrass p'
         ],
         [
           '8465',
@@ -1081,129 +1081,129 @@ var charmap = (function () {
         ]
       ];
     };
-    var charmapFilter = function (charmap) {
+    var charmapfilter = function (charmap) {
       return global$1.grep(charmap, function (item) {
-        return isArray(item) && item.length === 2;
+        return isarray(item) && item.length === 2;
       });
     };
-    var getCharsFromSetting = function (settingValue) {
-      if (isArray(settingValue)) {
-        return [].concat(charmapFilter(settingValue));
+    var getcharsfromsetting = function (settingvalue) {
+      if (isarray(settingvalue)) {
+        return [].concat(charmapfilter(settingvalue));
       }
-      if (typeof settingValue === 'function') {
-        return settingValue();
+      if (typeof settingvalue === 'function') {
+        return settingvalue();
       }
       return [];
     };
-    var extendCharMap = function (editor, charmap) {
-      var userCharMap = Settings.getCharMap(editor);
-      if (userCharMap) {
-        charmap = getCharsFromSetting(userCharMap);
+    var extendcharmap = function (editor, charmap) {
+      var usercharmap = settings.getcharmap(editor);
+      if (usercharmap) {
+        charmap = getcharsfromsetting(usercharmap);
       }
-      var userCharMapAppend = Settings.getCharMapAppend(editor);
-      if (userCharMapAppend) {
-        return [].concat(charmap).concat(getCharsFromSetting(userCharMapAppend));
+      var usercharmapappend = settings.getcharmapappend(editor);
+      if (usercharmapappend) {
+        return [].concat(charmap).concat(getcharsfromsetting(usercharmapappend));
       }
       return charmap;
     };
-    var getCharMap$1 = function (editor) {
-      return extendCharMap(editor, getDefaultCharMap());
+    var getcharmap$1 = function (editor) {
+      return extendcharmap(editor, getdefaultcharmap());
     };
-    var CharMap = { getCharMap: getCharMap$1 };
+    var charmap = { getcharmap: getcharmap$1 };
 
     var get = function (editor) {
-      var getCharMap = function () {
-        return CharMap.getCharMap(editor);
+      var getcharmap = function () {
+        return charmap.getcharmap(editor);
       };
-      var insertChar = function (chr) {
-        Actions.insertChar(editor, chr);
+      var insertchar = function (chr) {
+        actions.insertchar(editor, chr);
       };
       return {
-        getCharMap: getCharMap,
-        insertChar: insertChar
+        getcharmap: getcharmap,
+        insertchar: insertchar
       };
     };
-    var Api = { get: get };
+    var api = { get: get };
 
-    var getHtml = function (charmap) {
-      var gridHtml, x, y;
-      var width = Math.min(charmap.length, 25);
-      var height = Math.ceil(charmap.length / width);
-      gridHtml = '<table role="presentation" cellspacing="0" class="mce-charmap"><tbody>';
+    var gethtml = function (charmap) {
+      var gridhtml, x, y;
+      var width = math.min(charmap.length, 25);
+      var height = math.ceil(charmap.length / width);
+      gridhtml = '<table role="presentation" cellspacing="0" class="mce-charmap"><tbody>';
       for (y = 0; y < height; y++) {
-        gridHtml += '<tr>';
+        gridhtml += '<tr>';
         for (x = 0; x < width; x++) {
           var index = y * width + x;
           if (index < charmap.length) {
             var chr = charmap[index];
-            var charCode = parseInt(chr[0], 10);
-            var chrText = chr ? String.fromCharCode(charCode) : '&nbsp;';
-            gridHtml += '<td title="' + chr[1] + '">' + '<div tabindex="-1" title="' + chr[1] + '" role="button" data-chr="' + charCode + '">' + chrText + '</div>' + '</td>';
+            var charcode = parseint(chr[0], 10);
+            var chrtext = chr ? string.fromcharcode(charcode) : '&nbsp;';
+            gridhtml += '<td title="' + chr[1] + '">' + '<div tabindex="-1" title="' + chr[1] + '" role="button" data-chr="' + charcode + '">' + chrtext + '</div>' + '</td>';
           } else {
-            gridHtml += '<td />';
+            gridhtml += '<td />';
           }
         }
-        gridHtml += '</tr>';
+        gridhtml += '</tr>';
       }
-      gridHtml += '</tbody></table>';
-      return gridHtml;
+      gridhtml += '</tbody></table>';
+      return gridhtml;
     };
-    var GridHtml = { getHtml: getHtml };
+    var gridhtml = { gethtml: gethtml };
 
-    var getParentTd = function (elm) {
+    var getparenttd = function (elm) {
       while (elm) {
-        if (elm.nodeName === 'TD') {
+        if (elm.nodename === 'td') {
           return elm;
         }
-        elm = elm.parentNode;
+        elm = elm.parentnode;
       }
     };
     var open = function (editor) {
       var win;
-      var charMapPanel = {
+      var charmappanel = {
         type: 'container',
-        html: GridHtml.getHtml(CharMap.getCharMap(editor)),
+        html: gridhtml.gethtml(charmap.getcharmap(editor)),
         onclick: function (e) {
           var target = e.target;
-          if (/^(TD|DIV)$/.test(target.nodeName)) {
-            var charDiv = getParentTd(target).firstChild;
-            if (charDiv && charDiv.hasAttribute('data-chr')) {
-              var charCodeString = charDiv.getAttribute('data-chr');
-              var charCode = parseInt(charCodeString, 10);
-              if (!isNaN(charCode)) {
-                Actions.insertChar(editor, String.fromCharCode(charCode));
+          if (/^(td|div)$/.test(target.nodename)) {
+            var chardiv = getparenttd(target).firstchild;
+            if (chardiv && chardiv.hasattribute('data-chr')) {
+              var charcodestring = chardiv.getattribute('data-chr');
+              var charcode = parseint(charcodestring, 10);
+              if (!isnan(charcode)) {
+                actions.insertchar(editor, string.fromcharcode(charcode));
               }
-              if (!e.ctrlKey) {
+              if (!e.ctrlkey) {
                 win.close();
               }
             }
           }
         },
         onmouseover: function (e) {
-          var td = getParentTd(e.target);
-          if (td && td.firstChild) {
-            win.find('#preview').text(td.firstChild.firstChild.data);
-            win.find('#previewTitle').text(td.title);
+          var td = getparenttd(e.target);
+          if (td && td.firstchild) {
+            win.find('#preview').text(td.firstchild.firstchild.data);
+            win.find('#previewtitle').text(td.title);
           } else {
             win.find('#preview').text(' ');
-            win.find('#previewTitle').text(' ');
+            win.find('#previewtitle').text(' ');
           }
         }
       };
-      win = editor.windowManager.open({
-        title: 'Special character',
+      win = editor.windowmanager.open({
+        title: 'special character',
         spacing: 10,
         padding: 10,
         items: [
-          charMapPanel,
+          charmappanel,
           {
             type: 'container',
             layout: 'flex',
             direction: 'column',
             align: 'center',
             spacing: 5,
-            minWidth: 160,
-            minHeight: 160,
+            minwidth: 160,
+            minheight: 160,
             items: [
               {
                 type: 'label',
@@ -1211,65 +1211,67 @@ var charmap = (function () {
                 text: ' ',
                 style: 'font-size: 40px; text-align: center',
                 border: 1,
-                minWidth: 140,
-                minHeight: 80
+                minwidth: 140,
+                minheight: 80
               },
               {
                 type: 'spacer',
-                minHeight: 20
+                minheight: 20
               },
               {
                 type: 'label',
-                name: 'previewTitle',
+                name: 'previewtitle',
                 text: ' ',
                 style: 'white-space: pre-wrap;',
                 border: 1,
-                minWidth: 140
+                minwidth: 140
               }
             ]
           }
         ],
         buttons: [{
-            text: 'Close',
+            text: 'close',
             onclick: function () {
               win.close();
             }
           }]
       });
     };
-    var Dialog = { open: open };
+    var dialog = { open: open };
 
     var register = function (editor) {
-      editor.addCommand('mceShowCharmap', function () {
-        Dialog.open(editor);
+      editor.addcommand('mceshowcharmap', function () {
+        dialog.open(editor);
       });
     };
-    var Commands = { register: register };
+    var commands = { register: register };
 
     var register$1 = function (editor) {
-      editor.addButton('charmap', {
+      editor.addbutton('charmap', {
         icon: 'charmap',
-        tooltip: 'Special character',
-        cmd: 'mceShowCharmap'
+        tooltip: 'special character',
+        cmd: 'mceshowcharmap'
       });
-      editor.addMenuItem('charmap', {
+      editor.addmenuitem('charmap', {
         icon: 'charmap',
-        text: 'Special character',
-        cmd: 'mceShowCharmap',
+        text: 'special character',
+        cmd: 'mceshowcharmap',
         context: 'insert'
       });
     };
-    var Buttons = { register: register$1 };
+    var buttons = { register: register$1 };
 
     global.add('charmap', function (editor) {
-      Commands.register(editor);
-      Buttons.register(editor);
-      return Api.get(editor);
+      commands.register(editor);
+      buttons.register(editor);
+      return api.get(editor);
     });
-    function Plugin () {
+    function plugin () {
     }
 
-    return Plugin;
+    return plugin;
 
 }());
 })();
+
+

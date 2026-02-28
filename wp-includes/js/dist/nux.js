@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,156 +22,156 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  DotTip: () => (/* reexport */ dot_tip_default),
+  dottip: () => (/* reexport */ dot_tip_default),
   store: () => (/* reexport */ store)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/nux/build-module/store/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, {
-  disableTips: () => (disableTips),
-  dismissTip: () => (dismissTip),
-  enableTips: () => (enableTips),
-  triggerGuide: () => (triggerGuide)
+// namespace object: ./node_modules/@wordpress/nux/build-module/store/actions.js
+var actions_namespaceobject = {};
+__webpack_require__.r(actions_namespaceobject);
+__webpack_require__.d(actions_namespaceobject, {
+  disabletips: () => (disabletips),
+  dismisstip: () => (dismisstip),
+  enabletips: () => (enabletips),
+  triggerguide: () => (triggerguide)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@wordpress/nux/build-module/store/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, {
-  areTipsEnabled: () => (selectors_areTipsEnabled),
-  getAssociatedGuide: () => (getAssociatedGuide),
-  isTipVisible: () => (isTipVisible)
+// namespace object: ./node_modules/@wordpress/nux/build-module/store/selectors.js
+var selectors_namespaceobject = {};
+__webpack_require__.r(selectors_namespaceobject);
+__webpack_require__.d(selectors_namespaceobject, {
+  aretipsenabled: () => (selectors_aretipsenabled),
+  getassociatedguide: () => (getassociatedguide),
+  istipvisible: () => (istipvisible)
 });
 
 ;// external ["wp","deprecated"]
-const external_wp_deprecated_namespaceObject = window["wp"]["deprecated"];
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_namespaceObject);
+const external_wp_deprecated_namespaceobject = window["wp"]["deprecated"];
+var external_wp_deprecated_default = /*#__pure__*/__webpack_require__.n(external_wp_deprecated_namespaceobject);
 ;// external ["wp","data"]
-const external_wp_data_namespaceObject = window["wp"]["data"];
+const external_wp_data_namespaceobject = window["wp"]["data"];
 ;// ./node_modules/@wordpress/nux/build-module/store/reducer.js
 
 function guides(state = [], action) {
   switch (action.type) {
-    case "TRIGGER_GUIDE":
-      return [...state, action.tipIds];
+    case "trigger_guide":
+      return [...state, action.tipids];
   }
   return state;
 }
-function areTipsEnabled(state = true, action) {
+function aretipsenabled(state = true, action) {
   switch (action.type) {
-    case "DISABLE_TIPS":
+    case "disable_tips":
       return false;
-    case "ENABLE_TIPS":
+    case "enable_tips":
       return true;
   }
   return state;
 }
-function dismissedTips(state = {}, action) {
+function dismissedtips(state = {}, action) {
   switch (action.type) {
-    case "DISMISS_TIP":
+    case "dismiss_tip":
       return {
         ...state,
         [action.id]: true
       };
-    case "ENABLE_TIPS":
+    case "enable_tips":
       return {};
   }
   return state;
 }
-const preferences = (0,external_wp_data_namespaceObject.combineReducers)({ areTipsEnabled, dismissedTips });
-var reducer_default = (0,external_wp_data_namespaceObject.combineReducers)({ guides, preferences });
+const preferences = (0,external_wp_data_namespaceobject.combinereducers)({ aretipsenabled, dismissedtips });
+var reducer_default = (0,external_wp_data_namespaceobject.combinereducers)({ guides, preferences });
 
 
 ;// ./node_modules/@wordpress/nux/build-module/store/actions.js
-function triggerGuide(tipIds) {
+function triggerguide(tipids) {
   return {
-    type: "TRIGGER_GUIDE",
-    tipIds
+    type: "trigger_guide",
+    tipids
   };
 }
-function dismissTip(id) {
+function dismisstip(id) {
   return {
-    type: "DISMISS_TIP",
+    type: "dismiss_tip",
     id
   };
 }
-function disableTips() {
+function disabletips() {
   return {
-    type: "DISABLE_TIPS"
+    type: "disable_tips"
   };
 }
-function enableTips() {
+function enabletips() {
   return {
-    type: "ENABLE_TIPS"
+    type: "enable_tips"
   };
 }
 
 
 ;// ./node_modules/@wordpress/nux/build-module/store/selectors.js
 
-const getAssociatedGuide = (0,external_wp_data_namespaceObject.createSelector)(
-  (state, tipId) => {
-    for (const tipIds of state.guides) {
-      if (tipIds.includes(tipId)) {
-        const nonDismissedTips = tipIds.filter(
-          (tId) => !Object.keys(
-            state.preferences.dismissedTips
-          ).includes(tId)
+const getassociatedguide = (0,external_wp_data_namespaceobject.createselector)(
+  (state, tipid) => {
+    for (const tipids of state.guides) {
+      if (tipids.includes(tipid)) {
+        const nondismissedtips = tipids.filter(
+          (tid) => !object.keys(
+            state.preferences.dismissedtips
+          ).includes(tid)
         );
-        const [currentTipId = null, nextTipId = null] = nonDismissedTips;
-        return { tipIds, currentTipId, nextTipId };
+        const [currenttipid = null, nexttipid = null] = nondismissedtips;
+        return { tipids, currenttipid, nexttipid };
       }
     }
     return null;
   },
-  (state) => [state.guides, state.preferences.dismissedTips]
+  (state) => [state.guides, state.preferences.dismissedtips]
 );
-function isTipVisible(state, tipId) {
-  if (!state.preferences.areTipsEnabled) {
+function istipvisible(state, tipid) {
+  if (!state.preferences.aretipsenabled) {
     return false;
   }
-  if (state.preferences.dismissedTips?.hasOwnProperty(tipId)) {
+  if (state.preferences.dismissedtips?.hasownproperty(tipid)) {
     return false;
   }
-  const associatedGuide = getAssociatedGuide(state, tipId);
-  if (associatedGuide && associatedGuide.currentTipId !== tipId) {
+  const associatedguide = getassociatedguide(state, tipid);
+  if (associatedguide && associatedguide.currenttipid !== tipid) {
     return false;
   }
   return true;
 }
-function selectors_areTipsEnabled(state) {
-  return state.preferences.areTipsEnabled;
+function selectors_aretipsenabled(state) {
+  return state.preferences.aretipsenabled;
 }
 
 
@@ -180,37 +180,37 @@ function selectors_areTipsEnabled(state) {
 
 
 
-const STORE_NAME = "core/nux";
-const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, {
+const store_name = "core/nux";
+const store = (0,external_wp_data_namespaceobject.createreduxstore)(store_name, {
   reducer: reducer_default,
-  actions: actions_namespaceObject,
-  selectors: selectors_namespaceObject,
+  actions: actions_namespaceobject,
+  selectors: selectors_namespaceobject,
   persist: ["preferences"]
 });
-(0,external_wp_data_namespaceObject.registerStore)(STORE_NAME, {
+(0,external_wp_data_namespaceobject.registerstore)(store_name, {
   reducer: reducer_default,
-  actions: actions_namespaceObject,
-  selectors: selectors_namespaceObject,
+  actions: actions_namespaceobject,
+  selectors: selectors_namespaceobject,
   persist: ["preferences"]
 });
 
 
-;// external "ReactJSXRuntime"
-const external_ReactJSXRuntime_namespaceObject = window["ReactJSXRuntime"];
+;// external "reactjsxruntime"
+const external_reactjsxruntime_namespaceobject = window["reactjsxruntime"];
 ;// external ["wp","compose"]
-const external_wp_compose_namespaceObject = window["wp"]["compose"];
+const external_wp_compose_namespaceobject = window["wp"]["compose"];
 ;// external ["wp","components"]
-const external_wp_components_namespaceObject = window["wp"]["components"];
+const external_wp_components_namespaceobject = window["wp"]["components"];
 ;// external ["wp","i18n"]
-const external_wp_i18n_namespaceObject = window["wp"]["i18n"];
+const external_wp_i18n_namespaceobject = window["wp"]["i18n"];
 ;// external ["wp","element"]
-const external_wp_element_namespaceObject = window["wp"]["element"];
+const external_wp_element_namespaceobject = window["wp"]["element"];
 ;// external ["wp","primitives"]
-const external_wp_primitives_namespaceObject = window["wp"]["primitives"];
+const external_wp_primitives_namespaceobject = window["wp"]["primitives"];
 ;// ./node_modules/@wordpress/icons/build-module/library/close.js
 
 
-var close_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_primitives_namespaceObject.Path, { d: "m13.06 12 6.47-6.47-1.06-1.06L12 10.94 5.53 4.47 4.47 5.53 10.94 12l-6.47 6.47 1.06 1.06L12 13.06l6.47 6.47 1.06-1.06L13.06 12Z" }) });
+var close_default = /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.svg, { xmlns: "http://www.w3.org/2000/svg", viewbox: "0 0 24 24", children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(external_wp_primitives_namespaceobject.path, { d: "m13.06 12 6.47-6.47-1.06-1.06l12 10.94 5.53 4.47 4.47 5.53 10.94 12l-6.47 6.47 1.06 1.06l12 13.06l6.47 6.47 1.06-1.06l13.06 12z" }) });
 
 
 ;// ./node_modules/@wordpress/nux/build-module/components/dot-tip/index.js
@@ -222,89 +222,89 @@ var close_default = /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.
 
 
 
-function onClick(event) {
-  event.stopPropagation();
+function onclick(event) {
+  event.stoppropagation();
 }
-function DotTip({
+function dottip({
   position = "middle right",
   children,
-  isVisible,
-  hasNextTip,
-  onDismiss,
-  onDisable
+  isvisible,
+  hasnexttip,
+  ondismiss,
+  ondisable
 }) {
-  const anchorParent = (0,external_wp_element_namespaceObject.useRef)(null);
-  const onFocusOutsideCallback = (0,external_wp_element_namespaceObject.useCallback)(
+  const anchorparent = (0,external_wp_element_namespaceobject.useref)(null);
+  const onfocusoutsidecallback = (0,external_wp_element_namespaceobject.usecallback)(
     (event) => {
-      if (!anchorParent.current) {
+      if (!anchorparent.current) {
         return;
       }
-      if (anchorParent.current.contains(event.relatedTarget)) {
+      if (anchorparent.current.contains(event.relatedtarget)) {
         return;
       }
-      onDisable();
+      ondisable();
     },
-    [onDisable, anchorParent]
+    [ondisable, anchorparent]
   );
-  if (!isVisible) {
+  if (!isvisible) {
     return null;
   }
-  return /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsxs)(
-    external_wp_components_namespaceObject.Popover,
+  return /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsxs)(
+    external_wp_components_namespaceobject.popover,
     {
-      className: "nux-dot-tip",
+      classname: "nux-dot-tip",
       position,
-      focusOnMount: true,
+      focusonmount: true,
       role: "dialog",
-      "aria-label": (0,external_wp_i18n_namespaceObject.__)("Editor tips"),
-      onClick,
-      onFocusOutside: onFocusOutsideCallback,
+      "aria-label": (0,external_wp_i18n_namespaceobject.__)("editor tips"),
+      onclick,
+      onfocusoutside: onfocusoutsidecallback,
       children: [
-        /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("p", { children }),
-        /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)("p", { children: /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-          external_wp_components_namespaceObject.Button,
+        /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("p", { children }),
+        /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)("p", { children: /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+          external_wp_components_namespaceobject.button,
           {
-            __next40pxDefaultSize: true,
+            __next40pxdefaultsize: true,
             variant: "link",
-            onClick: onDismiss,
-            children: hasNextTip ? (0,external_wp_i18n_namespaceObject.__)("See next tip") : (0,external_wp_i18n_namespaceObject.__)("Got it")
+            onclick: ondismiss,
+            children: hasnexttip ? (0,external_wp_i18n_namespaceobject.__)("see next tip") : (0,external_wp_i18n_namespaceobject.__)("got it")
           }
         ) }),
-        /* @__PURE__ */ (0,external_ReactJSXRuntime_namespaceObject.jsx)(
-          external_wp_components_namespaceObject.Button,
+        /* @__pure__ */ (0,external_reactjsxruntime_namespaceobject.jsx)(
+          external_wp_components_namespaceobject.button,
           {
             size: "small",
-            className: "nux-dot-tip__disable",
+            classname: "nux-dot-tip__disable",
             icon: close_default,
-            label: (0,external_wp_i18n_namespaceObject.__)("Disable tips"),
-            onClick: onDisable
+            label: (0,external_wp_i18n_namespaceobject.__)("disable tips"),
+            onclick: ondisable
           }
         )
       ]
     }
   );
 }
-var dot_tip_default = (0,external_wp_compose_namespaceObject.compose)(
-  (0,external_wp_data_namespaceObject.withSelect)((select, { tipId }) => {
-    const { isTipVisible, getAssociatedGuide } = select(store);
-    const associatedGuide = getAssociatedGuide(tipId);
+var dot_tip_default = (0,external_wp_compose_namespaceobject.compose)(
+  (0,external_wp_data_namespaceobject.withselect)((select, { tipid }) => {
+    const { istipvisible, getassociatedguide } = select(store);
+    const associatedguide = getassociatedguide(tipid);
     return {
-      isVisible: isTipVisible(tipId),
-      hasNextTip: !!(associatedGuide && associatedGuide.nextTipId)
+      isvisible: istipvisible(tipid),
+      hasnexttip: !!(associatedguide && associatedguide.nexttipid)
     };
   }),
-  (0,external_wp_data_namespaceObject.withDispatch)((dispatch, { tipId }) => {
-    const { dismissTip, disableTips } = dispatch(store);
+  (0,external_wp_data_namespaceobject.withdispatch)((dispatch, { tipid }) => {
+    const { dismisstip, disabletips } = dispatch(store);
     return {
-      onDismiss() {
-        dismissTip(tipId);
+      ondismiss() {
+        dismisstip(tipid);
       },
-      onDisable() {
-        disableTips();
+      ondisable() {
+        disabletips();
       }
     };
   })
-)(DotTip);
+)(dottip);
 
 
 ;// ./node_modules/@wordpress/nux/build-module/index.js
@@ -313,7 +313,7 @@ var dot_tip_default = (0,external_wp_compose_namespaceObject.compose)(
 
 external_wp_deprecated_default()("wp.nux", {
   since: "5.4",
-  hint: "wp.components.Guide can be used to show a user guide.",
+  hint: "wp.components.guide can be used to show a user guide.",
   version: "6.2"
 });
 
@@ -321,3 +321,4 @@ external_wp_deprecated_default()("wp.nux", {
 (window.wp = window.wp || {}).nux = __webpack_exports__;
 /******/ })()
 ;
+

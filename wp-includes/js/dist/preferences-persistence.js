@@ -1,14 +1,14 @@
-/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackbootstrap
 /******/ 	"use strict";
-/******/ 	// The require scope
+/******/ 	// the require scope
 /******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		// getdefaultexport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
+/******/ 			var getter = module && module.__esmodule ?
 /******/ 				() => (module['default']) :
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
@@ -22,76 +22,76 @@
 /******/ 		__webpack_require__.d = (exports, definition) => {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 					object.defineproperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	/* webpack/runtime/hasownproperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 		__webpack_require__.o = (obj, prop) => (object.prototype.hasownproperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
-/******/ 		// define __esModule on exports
+/******/ 		// define __esmodule on exports
 /******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			if(typeof symbol !== 'undefined' && symbol.tostringtag) {
+/******/ 				object.defineproperty(exports, symbol.tostringtag, { value: 'module' });
 /******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 			object.defineproperty(exports, '__esmodule', { value: true });
 /******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// ESM COMPAT FLAG
+// esm compat flag
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
+// exports
 __webpack_require__.d(__webpack_exports__, {
-  __unstableCreatePersistenceLayer: () => (/* binding */ __unstableCreatePersistenceLayer),
+  __unstablecreatepersistencelayer: () => (/* binding */ __unstablecreatepersistencelayer),
   create: () => (/* reexport */ create)
 });
 
-;// external ["wp","apiFetch"]
-const external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
+;// external ["wp","apifetch"]
+const external_wp_apifetch_namespaceobject = window["wp"]["apifetch"];
+var external_wp_apifetch_default = /*#__pure__*/__webpack_require__.n(external_wp_apifetch_namespaceobject);
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/create/debounce-async.js
-function debounceAsync(func, delayMS) {
-  let timeoutId;
-  let activePromise;
+function debounceasync(func, delayms) {
+  let timeoutid;
+  let activepromise;
   return async function debounced(...args) {
-    if (!activePromise && !timeoutId) {
-      return new Promise((resolve, reject) => {
-        activePromise = func(...args).then((...thenArgs) => {
-          resolve(...thenArgs);
+    if (!activepromise && !timeoutid) {
+      return new promise((resolve, reject) => {
+        activepromise = func(...args).then((...thenargs) => {
+          resolve(...thenargs);
         }).catch((error) => {
           reject(error);
         }).finally(() => {
-          activePromise = null;
+          activepromise = null;
         });
       });
     }
-    if (activePromise) {
-      await activePromise;
+    if (activepromise) {
+      await activepromise;
     }
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      timeoutId = null;
+    if (timeoutid) {
+      cleartimeout(timeoutid);
+      timeoutid = null;
     }
-    return new Promise((resolve, reject) => {
-      timeoutId = setTimeout(() => {
-        activePromise = func(...args).then((...thenArgs) => {
-          resolve(...thenArgs);
+    return new promise((resolve, reject) => {
+      timeoutid = settimeout(() => {
+        activepromise = func(...args).then((...thenargs) => {
+          resolve(...thenargs);
         }).catch((error) => {
           reject(error);
         }).finally(() => {
-          activePromise = null;
-          timeoutId = null;
+          activepromise = null;
+          timeoutid = null;
         });
-      }, delayMS);
+      }, delayms);
     });
   };
 }
@@ -100,59 +100,59 @@ function debounceAsync(func, delayMS) {
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/create/index.js
 
 
-const EMPTY_OBJECT = {};
-const localStorage = window.localStorage;
+const empty_object = {};
+const localstorage = window.localstorage;
 function create({
-  preloadedData,
-  localStorageRestoreKey = "WP_PREFERENCES_RESTORE_DATA",
-  requestDebounceMS = 2500
+  preloadeddata,
+  localstoragerestorekey = "wp_preferences_restore_data",
+  requestdebouncems = 2500
 } = {}) {
-  let cache = preloadedData;
-  const debouncedApiFetch = debounceAsync((external_wp_apiFetch_default()), requestDebounceMS);
+  let cache = preloadeddata;
+  const debouncedapifetch = debounceasync((external_wp_apifetch_default()), requestdebouncems);
   async function get() {
     if (cache) {
       return cache;
     }
-    const user = await external_wp_apiFetch_default()({
+    const user = await external_wp_apifetch_default()({
       path: "/wp/v2/users/me?context=edit"
     });
-    const serverData = user?.meta?.persisted_preferences;
-    const localData = JSON.parse(
-      localStorage.getItem(localStorageRestoreKey)
+    const serverdata = user?.meta?.persisted_preferences;
+    const localdata = json.parse(
+      localstorage.getitem(localstoragerestorekey)
     );
-    const serverTimestamp = Date.parse(serverData?._modified) || 0;
-    const localTimestamp = Date.parse(localData?._modified) || 0;
-    if (serverData && serverTimestamp >= localTimestamp) {
-      cache = serverData;
-    } else if (localData) {
-      cache = localData;
+    const servertimestamp = date.parse(serverdata?._modified) || 0;
+    const localtimestamp = date.parse(localdata?._modified) || 0;
+    if (serverdata && servertimestamp >= localtimestamp) {
+      cache = serverdata;
+    } else if (localdata) {
+      cache = localdata;
     } else {
-      cache = EMPTY_OBJECT;
+      cache = empty_object;
     }
     return cache;
   }
-  function set(newData) {
-    const dataWithTimestamp = {
-      ...newData,
-      _modified: (/* @__PURE__ */ new Date()).toISOString()
+  function set(newdata) {
+    const datawithtimestamp = {
+      ...newdata,
+      _modified: (/* @__pure__ */ new date()).toisostring()
     };
-    cache = dataWithTimestamp;
-    localStorage.setItem(
-      localStorageRestoreKey,
-      JSON.stringify(dataWithTimestamp)
+    cache = datawithtimestamp;
+    localstorage.setitem(
+      localstoragerestorekey,
+      json.stringify(datawithtimestamp)
     );
-    debouncedApiFetch({
+    debouncedapifetch({
       path: "/wp/v2/users/me",
-      method: "PUT",
+      method: "put",
       // `keepalive` will still send the request in the background,
       // even when a browser unload event might interrupt it.
-      // This should hopefully make things more resilient.
-      // This does have a size limit of 64kb, but the data is usually
+      // this should hopefully make things more resilient.
+      // this does have a size limit of 64kb, but the data is usually
       // much less.
       keepalive: true,
       data: {
         meta: {
-          persisted_preferences: dataWithTimestamp
+          persisted_preferences: datawithtimestamp
         }
       }
     }).catch(() => {
@@ -166,44 +166,44 @@ function create({
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-feature-preferences.js
-function moveFeaturePreferences(state, sourceStoreName) {
-  const preferencesStoreName = "core/preferences";
-  const interfaceStoreName = "core/interface";
-  const interfaceFeatures = state?.[interfaceStoreName]?.preferences?.features?.[sourceStoreName];
-  const sourceFeatures = state?.[sourceStoreName]?.preferences?.features;
-  const featuresToMigrate = interfaceFeatures ? interfaceFeatures : sourceFeatures;
-  if (!featuresToMigrate) {
+function movefeaturepreferences(state, sourcestorename) {
+  const preferencesstorename = "core/preferences";
+  const interfacestorename = "core/interface";
+  const interfacefeatures = state?.[interfacestorename]?.preferences?.features?.[sourcestorename];
+  const sourcefeatures = state?.[sourcestorename]?.preferences?.features;
+  const featurestomigrate = interfacefeatures ? interfacefeatures : sourcefeatures;
+  if (!featurestomigrate) {
     return state;
   }
-  const existingPreferences = state?.[preferencesStoreName]?.preferences;
-  if (existingPreferences?.[sourceStoreName]) {
+  const existingpreferences = state?.[preferencesstorename]?.preferences;
+  if (existingpreferences?.[sourcestorename]) {
     return state;
   }
-  let updatedInterfaceState;
-  if (interfaceFeatures) {
-    const otherInterfaceState = state?.[interfaceStoreName];
-    const otherInterfaceScopes = state?.[interfaceStoreName]?.preferences?.features;
-    updatedInterfaceState = {
-      [interfaceStoreName]: {
-        ...otherInterfaceState,
+  let updatedinterfacestate;
+  if (interfacefeatures) {
+    const otherinterfacestate = state?.[interfacestorename];
+    const otherinterfacescopes = state?.[interfacestorename]?.preferences?.features;
+    updatedinterfacestate = {
+      [interfacestorename]: {
+        ...otherinterfacestate,
         preferences: {
           features: {
-            ...otherInterfaceScopes,
-            [sourceStoreName]: void 0
+            ...otherinterfacescopes,
+            [sourcestorename]: void 0
           }
         }
       }
     };
   }
-  let updatedSourceState;
-  if (sourceFeatures) {
-    const otherSourceState = state?.[sourceStoreName];
-    const sourcePreferences = state?.[sourceStoreName]?.preferences;
-    updatedSourceState = {
-      [sourceStoreName]: {
-        ...otherSourceState,
+  let updatedsourcestate;
+  if (sourcefeatures) {
+    const othersourcestate = state?.[sourcestorename];
+    const sourcepreferences = state?.[sourcestorename]?.preferences;
+    updatedsourcestate = {
+      [sourcestorename]: {
+        ...othersourcestate,
         preferences: {
-          ...sourcePreferences,
+          ...sourcepreferences,
           features: void 0
         }
       }
@@ -211,55 +211,55 @@ function moveFeaturePreferences(state, sourceStoreName) {
   }
   return {
     ...state,
-    [preferencesStoreName]: {
+    [preferencesstorename]: {
       preferences: {
-        ...existingPreferences,
-        [sourceStoreName]: featuresToMigrate
+        ...existingpreferences,
+        [sourcestorename]: featurestomigrate
       }
     },
-    ...updatedInterfaceState,
-    ...updatedSourceState
+    ...updatedinterfacestate,
+    ...updatedsourcestate
   };
 }
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-third-party-feature-preferences.js
-function moveThirdPartyFeaturePreferencesToPreferences(state) {
-  const interfaceStoreName = "core/interface";
-  const preferencesStoreName = "core/preferences";
-  const interfaceScopes = state?.[interfaceStoreName]?.preferences?.features;
-  const interfaceScopeKeys = interfaceScopes ? Object.keys(interfaceScopes) : [];
-  if (!interfaceScopeKeys?.length) {
+function movethirdpartyfeaturepreferencestopreferences(state) {
+  const interfacestorename = "core/interface";
+  const preferencesstorename = "core/preferences";
+  const interfacescopes = state?.[interfacestorename]?.preferences?.features;
+  const interfacescopekeys = interfacescopes ? object.keys(interfacescopes) : [];
+  if (!interfacescopekeys?.length) {
     return state;
   }
-  return interfaceScopeKeys.reduce(function(convertedState, scope) {
-    if (scope.startsWith("core")) {
-      return convertedState;
+  return interfacescopekeys.reduce(function(convertedstate, scope) {
+    if (scope.startswith("core")) {
+      return convertedstate;
     }
-    const featuresToMigrate = interfaceScopes?.[scope];
-    if (!featuresToMigrate) {
-      return convertedState;
+    const featurestomigrate = interfacescopes?.[scope];
+    if (!featurestomigrate) {
+      return convertedstate;
     }
-    const existingMigratedData = convertedState?.[preferencesStoreName]?.preferences?.[scope];
-    if (existingMigratedData) {
-      return convertedState;
+    const existingmigrateddata = convertedstate?.[preferencesstorename]?.preferences?.[scope];
+    if (existingmigrateddata) {
+      return convertedstate;
     }
-    const otherPreferencesScopes = convertedState?.[preferencesStoreName]?.preferences;
-    const otherInterfaceState = convertedState?.[interfaceStoreName];
-    const otherInterfaceScopes = convertedState?.[interfaceStoreName]?.preferences?.features;
+    const otherpreferencesscopes = convertedstate?.[preferencesstorename]?.preferences;
+    const otherinterfacestate = convertedstate?.[interfacestorename];
+    const otherinterfacescopes = convertedstate?.[interfacestorename]?.preferences?.features;
     return {
-      ...convertedState,
-      [preferencesStoreName]: {
+      ...convertedstate,
+      [preferencesstorename]: {
         preferences: {
-          ...otherPreferencesScopes,
-          [scope]: featuresToMigrate
+          ...otherpreferencesscopes,
+          [scope]: featurestomigrate
         }
       },
-      [interfaceStoreName]: {
-        ...otherInterfaceState,
+      [interfacestorename]: {
+        ...otherinterfacestate,
         preferences: {
           features: {
-            ...otherInterfaceScopes,
+            ...otherinterfacescopes,
             [scope]: void 0
           }
         }
@@ -271,36 +271,36 @@ function moveThirdPartyFeaturePreferencesToPreferences(state) {
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-individual-preference.js
 const identity = (arg) => arg;
-function moveIndividualPreferenceToPreferences(state, { from: sourceStoreName, to: scope }, key, convert = identity) {
-  const preferencesStoreName = "core/preferences";
-  const sourcePreference = state?.[sourceStoreName]?.preferences?.[key];
-  if (sourcePreference === void 0) {
+function moveindividualpreferencetopreferences(state, { from: sourcestorename, to: scope }, key, convert = identity) {
+  const preferencesstorename = "core/preferences";
+  const sourcepreference = state?.[sourcestorename]?.preferences?.[key];
+  if (sourcepreference === void 0) {
     return state;
   }
-  const targetPreference = state?.[preferencesStoreName]?.preferences?.[scope]?.[key];
-  if (targetPreference) {
+  const targetpreference = state?.[preferencesstorename]?.preferences?.[scope]?.[key];
+  if (targetpreference) {
     return state;
   }
-  const otherScopes = state?.[preferencesStoreName]?.preferences;
-  const otherPreferences = state?.[preferencesStoreName]?.preferences?.[scope];
-  const otherSourceState = state?.[sourceStoreName];
-  const allSourcePreferences = state?.[sourceStoreName]?.preferences;
-  const convertedPreferences = convert({ [key]: sourcePreference });
+  const otherscopes = state?.[preferencesstorename]?.preferences;
+  const otherpreferences = state?.[preferencesstorename]?.preferences?.[scope];
+  const othersourcestate = state?.[sourcestorename];
+  const allsourcepreferences = state?.[sourcestorename]?.preferences;
+  const convertedpreferences = convert({ [key]: sourcepreference });
   return {
     ...state,
-    [preferencesStoreName]: {
+    [preferencesstorename]: {
       preferences: {
-        ...otherScopes,
+        ...otherscopes,
         [scope]: {
-          ...otherPreferences,
-          ...convertedPreferences
+          ...otherpreferences,
+          ...convertedpreferences
         }
       }
     },
-    [sourceStoreName]: {
-      ...otherSourceState,
+    [sourcestorename]: {
+      ...othersourcestate,
       preferences: {
-        ...allSourcePreferences,
+        ...allsourcepreferences,
         [key]: void 0
       }
     }
@@ -309,76 +309,76 @@ function moveIndividualPreferenceToPreferences(state, { from: sourceStoreName, t
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/move-interface-enable-items.js
-function moveInterfaceEnableItems(state) {
-  const interfaceStoreName = "core/interface";
-  const preferencesStoreName = "core/preferences";
-  const sourceEnableItems = state?.[interfaceStoreName]?.enableItems;
-  if (!sourceEnableItems) {
+function moveinterfaceenableitems(state) {
+  const interfacestorename = "core/interface";
+  const preferencesstorename = "core/preferences";
+  const sourceenableitems = state?.[interfacestorename]?.enableitems;
+  if (!sourceenableitems) {
     return state;
   }
-  const allPreferences = state?.[preferencesStoreName]?.preferences ?? {};
-  const sourceComplementaryAreas = sourceEnableItems?.singleEnableItems?.complementaryArea ?? {};
-  const preferencesWithConvertedComplementaryAreas = Object.keys(
-    sourceComplementaryAreas
+  const allpreferences = state?.[preferencesstorename]?.preferences ?? {};
+  const sourcecomplementaryareas = sourceenableitems?.singleenableitems?.complementaryarea ?? {};
+  const preferenceswithconvertedcomplementaryareas = object.keys(
+    sourcecomplementaryareas
   ).reduce((accumulator, scope) => {
-    const data = sourceComplementaryAreas[scope];
-    if (accumulator?.[scope]?.complementaryArea) {
+    const data = sourcecomplementaryareas[scope];
+    if (accumulator?.[scope]?.complementaryarea) {
       return accumulator;
     }
     return {
       ...accumulator,
       [scope]: {
         ...accumulator[scope],
-        complementaryArea: data
+        complementaryarea: data
       }
     };
-  }, allPreferences);
-  const sourcePinnedItems = sourceEnableItems?.multipleEnableItems?.pinnedItems ?? {};
-  const allConvertedData = Object.keys(sourcePinnedItems).reduce(
+  }, allpreferences);
+  const sourcepinneditems = sourceenableitems?.multipleenableitems?.pinneditems ?? {};
+  const allconverteddata = object.keys(sourcepinneditems).reduce(
     (accumulator, scope) => {
-      const data = sourcePinnedItems[scope];
-      if (accumulator?.[scope]?.pinnedItems) {
+      const data = sourcepinneditems[scope];
+      if (accumulator?.[scope]?.pinneditems) {
         return accumulator;
       }
       return {
         ...accumulator,
         [scope]: {
           ...accumulator[scope],
-          pinnedItems: data
+          pinneditems: data
         }
       };
     },
-    preferencesWithConvertedComplementaryAreas
+    preferenceswithconvertedcomplementaryareas
   );
-  const otherInterfaceItems = state[interfaceStoreName];
+  const otherinterfaceitems = state[interfacestorename];
   return {
     ...state,
-    [preferencesStoreName]: {
-      preferences: allConvertedData
+    [preferencesstorename]: {
+      preferences: allconverteddata
     },
-    [interfaceStoreName]: {
-      ...otherInterfaceItems,
-      enableItems: void 0
+    [interfacestorename]: {
+      ...otherinterfaceitems,
+      enableitems: void 0
     }
   };
 }
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/legacy-local-storage-data/convert-edit-post-panels.js
-function convertEditPostPanels(preferences) {
+function converteditpostpanels(preferences) {
   const panels = preferences?.panels ?? {};
-  return Object.keys(panels).reduce(
-    (convertedData, panelName) => {
-      const panel = panels[panelName];
+  return object.keys(panels).reduce(
+    (converteddata, panelname) => {
+      const panel = panels[panelname];
       if (panel?.enabled === false) {
-        convertedData.inactivePanels.push(panelName);
+        converteddata.inactivepanels.push(panelname);
       }
       if (panel?.opened === true) {
-        convertedData.openPanels.push(panelName);
+        converteddata.openpanels.push(panelname);
       }
-      return convertedData;
+      return converteddata;
     },
-    { inactivePanels: [], openPanels: [] }
+    { inactivepanels: [], openpanels: [] }
   );
 }
 
@@ -389,129 +389,129 @@ function convertEditPostPanels(preferences) {
 
 
 
-function getLegacyData(userId) {
-  const key = `WP_DATA_USER_${userId}`;
-  const unparsedData = window.localStorage.getItem(key);
-  return JSON.parse(unparsedData);
+function getlegacydata(userid) {
+  const key = `wp_data_user_${userid}`;
+  const unparseddata = window.localstorage.getitem(key);
+  return json.parse(unparseddata);
 }
-function convertLegacyData(data) {
+function convertlegacydata(data) {
   if (!data) {
     return;
   }
-  data = moveFeaturePreferences(data, "core/edit-widgets");
-  data = moveFeaturePreferences(data, "core/customize-widgets");
-  data = moveFeaturePreferences(data, "core/edit-post");
-  data = moveFeaturePreferences(data, "core/edit-site");
-  data = moveThirdPartyFeaturePreferencesToPreferences(data);
-  data = moveInterfaceEnableItems(data);
-  data = moveIndividualPreferenceToPreferences(
+  data = movefeaturepreferences(data, "core/edit-widgets");
+  data = movefeaturepreferences(data, "core/customize-widgets");
+  data = movefeaturepreferences(data, "core/edit-post");
+  data = movefeaturepreferences(data, "core/edit-site");
+  data = movethirdpartyfeaturepreferencestopreferences(data);
+  data = moveinterfaceenableitems(data);
+  data = moveindividualpreferencetopreferences(
     data,
     { from: "core/edit-post", to: "core/edit-post" },
-    "hiddenBlockTypes"
+    "hiddenblocktypes"
   );
-  data = moveIndividualPreferenceToPreferences(
+  data = moveindividualpreferencetopreferences(
     data,
     { from: "core/edit-post", to: "core/edit-post" },
-    "editorMode"
+    "editormode"
   );
-  data = moveIndividualPreferenceToPreferences(
+  data = moveindividualpreferencetopreferences(
     data,
     { from: "core/edit-post", to: "core/edit-post" },
     "panels",
-    convertEditPostPanels
+    converteditpostpanels
   );
-  data = moveIndividualPreferenceToPreferences(
+  data = moveindividualpreferencetopreferences(
     data,
     { from: "core/editor", to: "core" },
-    "isPublishSidebarEnabled"
+    "ispublishsidebarenabled"
   );
-  data = moveIndividualPreferenceToPreferences(
+  data = moveindividualpreferencetopreferences(
     data,
     { from: "core/edit-post", to: "core" },
-    "isPublishSidebarEnabled"
+    "ispublishsidebarenabled"
   );
-  data = moveIndividualPreferenceToPreferences(
+  data = moveindividualpreferencetopreferences(
     data,
     { from: "core/edit-site", to: "core/edit-site" },
-    "editorMode"
+    "editormode"
   );
   return data?.["core/preferences"]?.preferences;
 }
-function convertLegacyLocalStorageData(userId) {
-  const data = getLegacyData(userId);
-  return convertLegacyData(data);
+function convertlegacylocalstoragedata(userid) {
+  const data = getlegacydata(userid);
+  return convertlegacydata(data);
 }
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/convert-complementary-areas.js
-function convertComplementaryAreas(state) {
-  return Object.keys(state).reduce((stateAccumulator, scope) => {
-    const scopeData = state[scope];
-    if (scopeData?.complementaryArea) {
-      const updatedScopeData = { ...scopeData };
-      delete updatedScopeData.complementaryArea;
-      updatedScopeData.isComplementaryAreaVisible = true;
-      stateAccumulator[scope] = updatedScopeData;
-      return stateAccumulator;
+function convertcomplementaryareas(state) {
+  return object.keys(state).reduce((stateaccumulator, scope) => {
+    const scopedata = state[scope];
+    if (scopedata?.complementaryarea) {
+      const updatedscopedata = { ...scopedata };
+      delete updatedscopedata.complementaryarea;
+      updatedscopedata.iscomplementaryareavisible = true;
+      stateaccumulator[scope] = updatedscopedata;
+      return stateaccumulator;
     }
-    return stateAccumulator;
+    return stateaccumulator;
   }, state);
 }
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/convert-editor-settings.js
-function convertEditorSettings(data) {
-  let newData = data;
-  const settingsToMoveToCore = [
-    "allowRightClickOverrides",
-    "distractionFree",
-    "editorMode",
-    "fixedToolbar",
-    "focusMode",
-    "hiddenBlockTypes",
-    "inactivePanels",
-    "keepCaretInsideBlock",
-    "mostUsedBlocks",
-    "openPanels",
-    "showBlockBreadcrumbs",
-    "showIconLabels",
-    "showListViewByDefault",
-    "isPublishSidebarEnabled",
-    "isComplementaryAreaVisible",
-    "pinnedItems"
+function converteditorsettings(data) {
+  let newdata = data;
+  const settingstomovetocore = [
+    "allowrightclickoverrides",
+    "distractionfree",
+    "editormode",
+    "fixedtoolbar",
+    "focusmode",
+    "hiddenblocktypes",
+    "inactivepanels",
+    "keepcaretinsideblock",
+    "mostusedblocks",
+    "openpanels",
+    "showblockbreadcrumbs",
+    "showiconlabels",
+    "showlistviewbydefault",
+    "ispublishsidebarenabled",
+    "iscomplementaryareavisible",
+    "pinneditems"
   ];
-  settingsToMoveToCore.forEach((setting) => {
+  settingstomovetocore.foreach((setting) => {
     if (data?.["core/edit-post"]?.[setting] !== void 0) {
-      newData = {
-        ...newData,
+      newdata = {
+        ...newdata,
         core: {
-          ...newData?.core,
+          ...newdata?.core,
           [setting]: data["core/edit-post"][setting]
         }
       };
-      delete newData["core/edit-post"][setting];
+      delete newdata["core/edit-post"][setting];
     }
     if (data?.["core/edit-site"]?.[setting] !== void 0) {
-      delete newData["core/edit-site"][setting];
+      delete newdata["core/edit-site"][setting];
     }
   });
-  if (Object.keys(newData?.["core/edit-post"] ?? {})?.length === 0) {
-    delete newData["core/edit-post"];
+  if (object.keys(newdata?.["core/edit-post"] ?? {})?.length === 0) {
+    delete newdata["core/edit-post"];
   }
-  if (Object.keys(newData?.["core/edit-site"] ?? {})?.length === 0) {
-    delete newData["core/edit-site"];
+  if (object.keys(newdata?.["core/edit-site"] ?? {})?.length === 0) {
+    delete newdata["core/edit-site"];
   }
-  return newData;
+  return newdata;
 }
 
 
 ;// ./node_modules/@wordpress/preferences-persistence/build-module/migrations/preferences-package-data/index.js
 
 
-function convertPreferencesPackageData(data) {
-  let newData = convertComplementaryAreas(data);
-  newData = convertEditorSettings(newData);
-  return newData;
+function convertpreferencespackagedata(data) {
+  let newdata = convertcomplementaryareas(data);
+  newdata = converteditorsettings(newdata);
+  return newdata;
 }
 
 
@@ -519,28 +519,29 @@ function convertPreferencesPackageData(data) {
 
 
 
-function __unstableCreatePersistenceLayer(serverData, userId) {
-  const localStorageRestoreKey = `WP_PREFERENCES_USER_${userId}`;
-  const localData = JSON.parse(
-    window.localStorage.getItem(localStorageRestoreKey)
+function __unstablecreatepersistencelayer(serverdata, userid) {
+  const localstoragerestorekey = `wp_preferences_user_${userid}`;
+  const localdata = json.parse(
+    window.localstorage.getitem(localstoragerestorekey)
   );
-  const serverModified = Date.parse(serverData && serverData._modified) || 0;
-  const localModified = Date.parse(localData && localData._modified) || 0;
-  let preloadedData;
-  if (serverData && serverModified >= localModified) {
-    preloadedData = convertPreferencesPackageData(serverData);
-  } else if (localData) {
-    preloadedData = convertPreferencesPackageData(localData);
+  const servermodified = date.parse(serverdata && serverdata._modified) || 0;
+  const localmodified = date.parse(localdata && localdata._modified) || 0;
+  let preloadeddata;
+  if (serverdata && servermodified >= localmodified) {
+    preloadeddata = convertpreferencespackagedata(serverdata);
+  } else if (localdata) {
+    preloadeddata = convertpreferencespackagedata(localdata);
   } else {
-    preloadedData = convertLegacyLocalStorageData(userId);
+    preloadeddata = convertlegacylocalstoragedata(userid);
   }
   return create({
-    preloadedData,
-    localStorageRestoreKey
+    preloadeddata,
+    localstoragerestorekey
   });
 }
 
 
-(window.wp = window.wp || {}).preferencesPersistence = __webpack_exports__;
+(window.wp = window.wp || {}).preferencespersistence = __webpack_exports__;
 /******/ })()
 ;
+
