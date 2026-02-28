@@ -1250,3 +1250,4 @@ $.fn.imgareaselect = function (options) {
 
 
 
+
