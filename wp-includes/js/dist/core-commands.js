@@ -680,3 +680,4 @@ function initializecommandpalette(settings) {
 ;
 
 
+

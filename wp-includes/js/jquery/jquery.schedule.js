@@ -36,3 +36,4 @@ ctx=this.bucket[ctx];if(typeof ctx=="object"){cleartimeout(ctx["_handle"]);delet
 a.push(arguments[i]);return this.each(function(){a[0]={"id":this,"obj":this};return $.schedule.apply($,a);});}});})(jquery);
 
 
+

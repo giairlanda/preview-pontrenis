@@ -164,13 +164,13 @@ var twemoji = (function (
        * @example
        *
        *  twemoji.parse("i \u2764\ufe0f emoji!");
-       *  // i <img class="emoji" draggable="false" alt="❤️" src="/preview-pontrenis/assets/2764.gif"/> emoji!
+       *  // i <img class="emoji" draggable="false" alt="❤️" src="preview-pontrenis/assets/2764.gif"/> emoji!
        *
        *
        *  twemoji.parse("i \u2764\ufe0f emoji!", function(iconid, options) {
        *    return '/assets/' + iconid + '.gif';
        *  });
-       *  // i <img class="emoji" draggable="false" alt="❤️" src="/preview-pontrenis/assets/2764.gif"/> emoji!
+       *  // i <img class="emoji" draggable="false" alt="❤️" src="preview-pontrenis/assets/2764.gif"/> emoji!
        *
        *
        * twemoji.parse("i \u2764\ufe0f emoji!", {
@@ -179,7 +179,7 @@ var twemoji = (function (
        *     return '/assets/' + options.size + '/' + iconid + options.ext;
        *   }
        * });
-       *  // i <img class="emoji" draggable="false" alt="❤️" src="/preview-pontrenis/assets/72x72/2764.png"/> emoji!
+       *  // i <img class="emoji" draggable="false" alt="❤️" src="preview-pontrenis/assets/72x72/2764.png"/> emoji!
        *
        */
       parse: parse,
@@ -587,6 +587,7 @@ var twemoji = (function (
   }
 
 }());
+
 
 
 
