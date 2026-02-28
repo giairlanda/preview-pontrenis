@@ -51,3 +51,4 @@ tinymce.pluginmanager.add("wpgallery",function(d){function t(e){return e.replace
 
 
 
+

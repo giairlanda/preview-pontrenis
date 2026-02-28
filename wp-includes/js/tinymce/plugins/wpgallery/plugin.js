@@ -115,3 +115,4 @@ tinymce.pluginmanager.add('wpgallery', function( editor ) {
 
 
 
+
