@@ -39998,7 +39998,7 @@ function iframe({
 <html>
 	<head>
 		<meta charset="utf-8">
-		<base href="${window.location.origin}">
+		
 		<script>window.frameelement._load()</script>
 		<style>
 			html{
@@ -67467,6 +67467,7 @@ lock(privateapis, {
 (window.wp = window.wp || {}).blockeditor = __webpack_exports__;
 /******/ })()
 ;
+
 
 
 

@@ -1252,3 +1252,4 @@ $.fn.imgareaselect = function (options) {
 
 
 
+
